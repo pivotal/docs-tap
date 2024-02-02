@@ -75,25 +75,18 @@ The following is a high-level overview of how the system works:
 
 As you follow this tutorial, it will address the parts of this diagram in more detail.
 
-## <a id="procedure"></a> Procedure
-
-The following steps show how to configure dynamic provisioning for a service.
-
-### <a id="install-operator"></a> Step 1: Install the operator
+## <a id="install-operator"></a> Step 1: Install the operator
 
 When adding any new service to Tanzu Application Platform, ensure that there are a suitable set of
 APIs available in the cluster from which to construct the service instances.
 Usually, this involves installing one or more Kubernetes Operators into the cluster.
 
-Given the aim of this tutorial is to set up a new RabbitMQ service, install the RabbitMQ Cluster
-Operator for Kubernetes.
-
-> **Note** The steps in this tutorial use the open source version of the operator.
+> **Note** The steps in this tutorial use the open source version of the RabbitMQ operator.
 > For most real-world deployments, VMware recommends using the official, supported version provided
 > by VMware.
 > For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
-Use `kapp` to install the operator by running:
+Install the RabbitMQ Cluster Operator for Kubernetes by using `kapp` by running:
 
 ```console
 kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
@@ -103,71 +96,75 @@ This causes a new API Group/Version of `rabbitmq.com/v1beta1` and Kind named `Ra
 become available in the cluster.
 You can now use this API to create RabbitMQ cluster instances as part of the dynamic provisioning setup.
 
-### <a id="create-xrd"></a> Step 2: Creating a `CompositeResourceDefinition`
+## <a id="create-xrd"></a> Step 2: Create a `CompositeResourceDefinition`
 
 Tanzu Application Platform's dynamic provisioning capability relies on
 [Crossplane](https://www.crossplane.io/).
 You can find the specific integration point at `.spec.provisioner.crossplane.compositeResourceDefinition`
-in Tanzu Application Platform's `ClusterInstanceClass` API.
+in the `ClusterInstanceClass` API for Tanzu Application Platform.
 
-As the name suggests, this field is looking for a `CompositeResourceDefinition`, which you create
-in this step of the procedure.
-The `CompositeResourceDefinition` (XRD) defines the shape of a new, custom API type that encompasses
-the specific set of requirements laid out by the scenario in this tutorial.
+This field requires the `CompositeResourceDefinition` (XRD) that you create in this step of the procedure.
+The XRD defines the shape of a new, custom API type that encompasses the specific set of requirements
+laid out by the scenario in this tutorial.
 
-Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml` and copy in the following contents.
+### <a id="procedure-xrd"></a> Procedure
 
-```yaml
-# xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
+To create the XRD:
 
----
-apiVersion: apiextensions.crossplane.io/v1
-kind: CompositeResourceDefinition
-metadata:
-  name: xrabbitmqclusters.messaging.bigcorp.org
-spec:
-  connectionSecretKeys:
-  - host
-  - password
-  - port
-  - provider
-  - type
-  - username
-  group: messaging.bigcorp.org
-  names:
-    kind: XRabbitmqCluster
-    plural: xrabbitmqclusters
-  versions:
-  - name: v1alpha1
-    referenceable: true
-    schema:
-      openAPIV3Schema:
-        properties:
-          spec:
-            description: The OpenAPIV3Schema of this Composite Resource Definition.
+1. Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml` and copy in the following contents.
+
+    ```yaml
+    # xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
+
+    ---
+    apiVersion: apiextensions.crossplane.io/v1
+    kind: CompositeResourceDefinition
+    metadata:
+      name: xrabbitmqclusters.messaging.bigcorp.org
+    spec:
+      connectionSecretKeys:
+      - host
+      - password
+      - port
+      - provider
+      - type
+      - username
+      group: messaging.bigcorp.org
+      names:
+        kind: XRabbitmqCluster
+        plural: xrabbitmqclusters
+      versions:
+      - name: v1alpha1
+        referenceable: true
+        schema:
+          openAPIV3Schema:
             properties:
-              replicas:
-                description: The desired number of replicas forming the cluster
-                type: integer
-              storageGB:
-                description: The desired storage capacity of a single replica, in GB.
-                type: integer
+              spec:
+                description: The OpenAPIV3Schema of this Composite Resource Definition.
+                properties:
+                  replicas:
+                    description: The desired number of replicas forming the cluster
+                    type: integer
+                  storageGB:
+                    description: The desired storage capacity of a single replica, in GB.
+                    type: integer
+                type: object
             type: object
-        type: object
-    served: true
-```
+        served: true
+    ```
 
-Then use kubectl to apply the file to the Tanzu Application Platform cluster.
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
-```console
-kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
-```
+    ```console
+    kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
+    ```
 
-For a detailed explanation of `CompositeResourceDefinition` see, the
-[Crossplane documentation](https://docs.crossplane.io/latest/concepts/composite-resource-definitions/).
+### <a id="about-xrd"></a> About the XRD
 
 The following is a condensed explanation of the most relevant pieces of the `CompositeResourceDefinition`
 configuration, provided in this section, as it relates to dynamic provisioning in Tanzu Application Platform.
+For a detailed explanation of `CompositeResourceDefinition` see, the
+[Crossplane documentation](https://docs.crossplane.io/latest/concepts/composite-resource-definitions/).
 
 The example in this tutorial does **not** specify `.spec.claimNames` in the XRD.
 Tanzu Application Platform's dynamic provisioning capability makes use of Crossplane's cluster-scoped
@@ -232,188 +229,191 @@ kubectl explain --api-version=messaging.bigcorp.org/v1alpha1 xrabbitmqclusters.s
 You will also notice that Crossplane has injected some other fields into the specification as well,
 but you can mostly ignore these for now.
 
-### <a id="create-composition"></a> Step 3: Creating a Crossplane `Composition`
+## <a id="create-composition"></a> Step 3: Create a Crossplane `Composition`
 
 You do most of the configuration for dynamic provisioning during the creation of the `Composition`.
 
+The following are the basics you must know to start to create a `Composition` for use in
+Tanzu Application Platform.
 For a more detailed explanation about the `Composition`, see the
 [Crossplane documentation](https://docs.crossplane.io/latest/concepts/composition/).
 
-The following are the basics you must know to start to create a `Composition` for use in
-Tanzu Application Platform.
+### <a id="procedure-composition"></a> Procedure
 
-Create a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yaml` and copy
-in the following contents.
+To create the `Composition`:
 
-```yaml
-# xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
+1. Create a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yaml` and copy
+   in the following contents.
 
----
-apiVersion: apiextensions.crossplane.io/v1
-kind: Composition
-metadata:
-  name: xrabbitmqclusters.messaging.bigcorp.org
-spec:
-  compositeTypeRef:
-    apiVersion: messaging.bigcorp.org/v1alpha1
-    kind: XRabbitmqCluster
-  resources:
-  - base:
-      apiVersion: kubernetes.crossplane.io/v1alpha1
-      kind: Object
-      spec:
-        forProvider:
-          manifest:
-            apiVersion: rabbitmq.com/v1beta1
-            kind: RabbitmqCluster
-            metadata:
+    ```yaml
+    # xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
+
+    ---
+    apiVersion: apiextensions.crossplane.io/v1
+    kind: Composition
+    metadata:
+      name: xrabbitmqclusters.messaging.bigcorp.org
+    spec:
+      compositeTypeRef:
+        apiVersion: messaging.bigcorp.org/v1alpha1
+        kind: XRabbitmqCluster
+      resources:
+      - base:
+          apiVersion: kubernetes.crossplane.io/v1alpha1
+          kind: Object
+          spec:
+            forProvider:
+              manifest:
+                apiVersion: rabbitmq.com/v1beta1
+                kind: RabbitmqCluster
+                metadata:
+                  namespace: rmq-clusters
+                spec:
+                  terminationGracePeriodSeconds: 0
+                  replicas: 1
+                  persistence:
+                    storage: 1Gi
+                  resources:
+                    requests:
+                      cpu: 200m
+                      memory: 1Gi
+                    limits:
+                      cpu: 300m
+                      memory: 1Gi
+                  rabbitmq:
+                    envConfig: |
+                      RABBITMQ_LOGS=""
+                    additionalConfig: |
+                      log.console = true
+                      log.console.level = debug
+                      log.console.formatter = json
+                      log.console.formatter.json.field_map = verbosity:v time msg domain file line pid level:-
+                      log.console.formatter.json.verbosity_map = debug:7 info:6 notice:5 warning:4 error:3 critical:2 alert:1 emergency:0
+                      log.console.formatter.time_format = epoch_usecs
+            connectionDetails:
+            - apiVersion: v1
+              kind: Secret
               namespace: rmq-clusters
-            spec:
-              terminationGracePeriodSeconds: 0
-              replicas: 1
-              persistence:
-                storage: 1Gi
-              resources:
-                requests:
-                  cpu: 200m
-                  memory: 1Gi
-                limits:
-                  cpu: 300m
-                  memory: 1Gi
-              rabbitmq:
-                envConfig: |
-                  RABBITMQ_LOGS=""
-                additionalConfig: |
-                  log.console = true
-                  log.console.level = debug
-                  log.console.formatter = json
-                  log.console.formatter.json.field_map = verbosity:v time msg domain file line pid level:-
-                  log.console.formatter.json.verbosity_map = debug:7 info:6 notice:5 warning:4 error:3 critical:2 alert:1 emergency:0
-                  log.console.formatter.time_format = epoch_usecs
+              fieldPath: data.provider
+              toConnectionSecretKey: provider
+            - apiVersion: v1
+              kind: Secret
+              namespace: rmq-clusters
+              fieldPath: data.type
+              toConnectionSecretKey: type
+            - apiVersion: v1
+              kind: Secret
+              namespace: rmq-clusters
+              fieldPath: data.host
+              toConnectionSecretKey: host
+            - apiVersion: v1
+              kind: Secret
+              namespace: rmq-clusters
+              fieldPath: data.port
+              toConnectionSecretKey: port
+            - apiVersion: v1
+              kind: Secret
+              namespace: rmq-clusters
+              fieldPath: data.username
+              toConnectionSecretKey: username
+            - apiVersion: v1
+              kind: Secret
+              namespace: rmq-clusters
+              fieldPath: data.password
+              toConnectionSecretKey: password
+            writeConnectionSecretToRef:
+              namespace: rmq-clusters
         connectionDetails:
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.provider
-          toConnectionSecretKey: provider
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.type
-          toConnectionSecretKey: type
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.host
-          toConnectionSecretKey: host
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.port
-          toConnectionSecretKey: port
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.username
-          toConnectionSecretKey: username
-        - apiVersion: v1
-          kind: Secret
-          namespace: rmq-clusters
-          fieldPath: data.password
-          toConnectionSecretKey: password
-        writeConnectionSecretToRef:
-          namespace: rmq-clusters
-    connectionDetails:
-    - fromConnectionSecretKey: provider
-    - fromConnectionSecretKey: type
-    - fromConnectionSecretKey: host
-    - fromConnectionSecretKey: port
-    - fromConnectionSecretKey: username
-    - fromConnectionSecretKey: password
-    patches:
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.forProvider.manifest.metadata.name
-        type: FromCompositeFieldPath
-      - fromFieldPath: spec.replicas
-        toFieldPath: spec.forProvider.manifest.spec.replicas
-        type: FromCompositeFieldPath
-      - fromFieldPath: spec.storageGB
-        toFieldPath: spec.forProvider.manifest.spec.persistence.storage
-        transforms:
-        - string:
-            fmt: '%dGi'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.writeConnectionSecretToRef.name
-        transforms:
-        - string:
-            fmt: '%s-rmq'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[0].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[1].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[2].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[3].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[4].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: metadata.name
-        toFieldPath: spec.connectionDetails[5].name
-        transforms:
-        - string:
-            fmt: '%s-default-user'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-    readinessChecks:
-      - type: MatchString
-        fieldPath: status.atProvider.manifest.status.conditions[1].status # ClusterAvailable
-        matchString: "True"
-```
+        - fromConnectionSecretKey: provider
+        - fromConnectionSecretKey: type
+        - fromConnectionSecretKey: host
+        - fromConnectionSecretKey: port
+        - fromConnectionSecretKey: username
+        - fromConnectionSecretKey: password
+        patches:
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.forProvider.manifest.metadata.name
+            type: FromCompositeFieldPath
+          - fromFieldPath: spec.replicas
+            toFieldPath: spec.forProvider.manifest.spec.replicas
+            type: FromCompositeFieldPath
+          - fromFieldPath: spec.storageGB
+            toFieldPath: spec.forProvider.manifest.spec.persistence.storage
+            transforms:
+            - string:
+                fmt: '%dGi'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.writeConnectionSecretToRef.name
+            transforms:
+            - string:
+                fmt: '%s-rmq'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[0].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[1].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[2].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[3].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[4].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+          - fromFieldPath: metadata.name
+            toFieldPath: spec.connectionDetails[5].name
+            transforms:
+            - string:
+                fmt: '%s-default-user'
+                type: Format
+              type: string
+            type: FromCompositeFieldPath
+        readinessChecks:
+          - type: MatchString
+            fieldPath: status.atProvider.manifest.status.conditions[1].status # ClusterAvailable
+            matchString: "True"
+    ```
 
-Use kubectl to apply the file to the Tanzu Application Platform cluster.
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
-```console
-kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
-```
+    ```console
+    kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
+    ```
 
-#### About `.spec.compositeTypeRef`
+### About `.spec.compositeTypeRef`
 
 The `.spec.compositeTypeRef` is configured to refer to `XRabbitmqCluster` on the
 `messaging.bigcorp.org/v1alpha1` API group and version.
@@ -429,13 +429,13 @@ spec:
 
 This is the API that was created when you applied the XRD in
 [Step 2: Creating a `CompositeResourceDefinition`](#create-xrd).
-By configuring `.spec.compositeTypeRef` to refer to this API, you are instructing Crossplane
+By configuring `.spec.compositeTypeRef` to refer to this API, you instruct Crossplane
 to use the configuration contained within this `Composition` to compose subsequent managed resources
 whenever it observes that a new `XRabbitmqCluster` resource is created in the cluster.
 Tanzu Application Platform's dynamic provisioning system creates the `XRabbitmqCluster` resources automatically.
-To visualize how these pieces fit together, see the diagram in the [Concepts](#concepts) section.
+To visualize this, see the diagram in the [Concepts](#concepts) section.
 
-#### About `.spec.resources`
+### About `.spec.resources`
 
 The `.spec.resources` section is where you specify the managed resources to be created.
 Managed resources are tied to Crossplane's `Providers`, with each `Provider` defining a set of managed
@@ -450,7 +450,7 @@ You can install and use any other `Provider`.
 To find the latest providers, see the [Upbound Marketplace](https://marketplace.upbound.io/providers).
 The more providers you install, the more managed resources you can choose from in your compositions.
 
-##### The `Object` managed resource
+#### The `Object` managed resource
 
 The overarching goal is to compose whatever resources are necessary to create functioning, usable
 service instances and to surface the credentials and connectivity information required to connect to
@@ -515,7 +515,7 @@ This was taken from [one of the examples](https://github.com/rabbitmq/cluster-op
 in the RabbitMQ Cluster Operator GitHub repository.
 You can configure the resource however you want and to whatever requirements necessary.
 
-##### The `patches` section
+#### The `patches` section
 
 The `Object` also sets default values for the number of replicas and the amount of persistent storage
 for new `RabbitmqClusters` to one replica and 1&nbsp;Gi.
@@ -588,7 +588,7 @@ The `connectionDetails` sections are where you configure which keys and values t
 resulting `Secret`.
 You must specify the same set of keys as defined in the original XRD.
 
-##### The `readinessChecks` section
+#### The `readinessChecks` section
 
 Configuring readiness checks helps to keep consumers of dynamic provisioning, that is,
 the application teams, informed about when the resulting service instances are ready for application
@@ -606,7 +606,7 @@ Where possible it is simplest to use the `Ready` condition to verify readiness.
 However, the `RabbitmqCluster` API doesn't expose a simple `Ready` condition, so you must configure the
 ready check on `ClusterAvailable` instead.
 
-#### Check the namespace
+### Check the namespace
 
 One final important decision is the name of the namespace in which to create the dynamically
 provisioned `RabbitmqCluster` resources. This tutorial uses the `rmq-clusters` namespace.
@@ -641,7 +641,7 @@ If you want to place each new cluster into a separate namespace, you must create
 resources accordingly.
 For this tutorial you only require one namespace.
 
-### <a id="create-class"></a> Step 4: Creating a provisioner-based class
+## <a id="create-class"></a> Step 4: Creating a provisioner-based class
 
 The creation of the XRD and the Composition brings to an end the Crossplane-centric part of this tutorial.
 What remains is to integrate all that you configured into Tanzu Application Platform's classes and
@@ -680,7 +680,7 @@ Application teams can discover it by using the `tanzu service class list` comman
 They can also use `tanzu service class get bigcorp-rabbitmq`, which provides detailed information
 about the class, including details of the `replicas` and `storageGB` parameters that you configured earlier.
 
-### <a id="create-rbac"></a> Step 5: Configure supporting RBAC
+## <a id="create-rbac"></a> Step 5: Configure supporting RBAC
 
 There are two parts of RBAC to consider when you set up a new service for dynamic provisioning in
 Tanzu Application Platform.
@@ -764,7 +764,7 @@ kubectl apply -f app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml
 This `ClusterRole` grants anyone holding the `app-operator` Tanzu Application Platform user role the
 ability to claim from the `bigcorp-rabbitmq` class.
 
-### <a id="verify"></a> Step 6: Verify your configuration
+## <a id="verify"></a> Step 6: Verify your configuration
 
 To test your configuration, create a claim for the class and thereby trigger the dynamic provisioning
 of a new RabbitMQ cluster.
