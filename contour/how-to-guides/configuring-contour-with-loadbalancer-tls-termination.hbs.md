@@ -75,13 +75,13 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
    
    tap_gui:
      app_config:
-        app:
-          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-        backend:
-          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-          reading:
-            allow:
-            - host: "*.DOMAIN"
+       app:
+         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+       backend:
+         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+         reading:
+           allow:
+           - host: "*.DOMAIN"
 
    cnrs:
      default_external_scheme: "https"
