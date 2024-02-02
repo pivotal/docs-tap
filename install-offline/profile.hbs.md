@@ -27,6 +27,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export REGISTRY_CA_PATH=PATH-TO-CA
+    export TO_REPO=MY-REPO
     ```
 
     Where:
@@ -37,6 +38,10 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+    - `MY-REPO` is your repo in the air-gapped container registry. Examples:
+      - Harbor has the form MY-REGISTRY/REPO-NAME/tap-packages
+      - Docker Hub has the form MY-REGISTRY/tap-packages
+      - Google Cloud Registry has the form MY-REGISTRY/MY-PROJECT/REPO-NAME/tap-packages
 
 1. Copy the images into a `.tar` file from the VMware Tanzu Network onto an external storage device with the Carvel tool imgpkg by running:
 
@@ -52,7 +57,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     ```console
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
-      --to-repo $IMGPKG_REGISTRY_HOSTNAME_1/tap-packages \
+      --to-repo $TO_REPO \
       --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
