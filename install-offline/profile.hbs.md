@@ -35,10 +35,10 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
-    - `MY-REPO` is your repo in the air-gapped container registry. Examples:
-      - Harbor has the form MY-REGISTRY/REPO-NAME/tap-packages
-      - Docker Hub has the form MY-REGISTRY/tap-packages
-      - Google Cloud Registry has the form MY-REGISTRY/MY-PROJECT/REPO-NAME/tap-packages
+    - `MY-REPO` is your repository in the air-gapped container image registry. Examples:
+        - Harbor has the form `MY-REGISTRY/REPO-NAME/tap-packages`.
+        - Docker Hub has the form `MY-REGISTRY/tap-packages`.
+        - Google Cloud Registry has the form `MY-REGISTRY/MY-PROJECT/REPO-NAME/tap-packages`.
 
 1. Copy the images into a `.tar` file from the VMware Tanzu Network onto an external storage device with the Carvel tool imgpkg by running:
 
