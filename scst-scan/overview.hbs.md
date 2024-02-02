@@ -47,26 +47,26 @@ Scan 2.0 ships with the default configuration to use open-source [Aqua Trivy](ht
 
 ### Which version should I use?
 
-In TAP 1.8, both Scan 1.0 and Scan 2.0 are supported.  In a future release, Scan 1.0 will be deprecated and replaced with Scan 2.0.  To help facilitate this transition, we are slowly making Scan 2.0 the default component based on the environment TAP is installed in.  Those defaults are as follows:
+In Tanzu Application Platform v1.8, both Scan v1.0 and Scan v2.0 are supported.  In a future release, Scan v1.0 will be deprecated and replaced with Scan v2.0.  To help facilitate this transition, we are slowly making Scan 2.0 the default component.  The defalut version will vary depending on the environment Tanzu Application Platfrom is installed on:
 
-| Installation Type | Default Component | Detail |
+| Installation Environment | Default Component | Detail |
 | --- | --- | --- |
-| [Online Installation](../install-online/intro.hbs.md) | Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
-| [Offline Installation](../install-offline/intro.hbs.md) | Scan 2.0 | Scan 2.0 is the default due to a much simplified air gap experience with Trivy |
-| [Azure Installation](../install-azure/intro.hbs.md)| Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
-| [AWS Installation](../install-aws/intro.hbs.md)| Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
+| [Online Installation](../install-online/intro.hbs.md) | Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan 2.0 |
+| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a much simplified air gap experience with Trivy |
+| [Azure Installation](../install-azure/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
+| [AWS Installation](../install-aws/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
 
 Other general guidance:
 
-If you require policy to block a workload in a supply chain based on detected vulnerabilities, use Scan 1.0.
-If you wish to create a scan integration for a scan tool that does not exist, use Scan 2.0 as the [process is greatly simplified](./bring-your-own-scanner.hbs.md).
-If you opt in to using the new [Supply Chains component](../supply-chain/about.hbs.md), use Scan 2.0 as only Scan 2.0 is supported with Supply Chains.
+If you require policy to block a workload in a supply chain based on detected vulnerabilities, use Scan v1.0.
+If you wish to create a scan integration for a scan tool that does not exist, use Scan v2.0 as the process is greatly simplified. For more information, see [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
+If you are using the [Supply Chain component](../supply-chain/about.hbs.md), use Scan v2.0 as only Scan v2.0 is supported with Supply Chains.
 
 ## <a id="scst-scan-note"></a>A Note on Vulnerability Scanners
 
 Although vulnerability scanning is an important practice in DevSecOps and 
 the benefits of it are widely recognized and accepted, 
-remember that there are limits present that impact its efficacy. 
+there are limits that impact its efficacy. 
 The following examples illustrate the limits that are prevalent in most scanners today:
 
 #### <a id="missed-cves"></a>Missed CVEs
@@ -75,12 +75,16 @@ One limit of all vulnerability scanners is that there is
 no one tool that can find 100% of all CVEs, which means there is always a risk 
 that a missed CVE can be exploited. Some reasons for missed CVEs include:
 
-- The scanner does not detect the vulnerability because it is recently discovered and the CVE databases that the scanner checks against are not updated yet.
-- Scanners verify different CVE sources based on the detected package type and OS.
-- The scanner might not fully support a particular programming language, packaging system or manifest format.
+- The scanner does not detect the vulnerability because it is a recently discovered vulnerability 
+and the CVE databases that the scanner checks against are not updated yet.
+- The scanner verifies different CVE sources based on the detected package type and OS.
+- The scanner might not fully support a particular programming language, packaging system, or
+manifest format.
 - The scanner might not implement binary analysis or fingerprinting.
-- The detected component does not always include a canonical name and vendor, requiring the scanner to infer and attempt fuzzy matching.
-- When vendors register impacted software with NVD, the provided information might not exactly match the values in the release artifacts.
+- The detected component does not always include a canonical name and vendor, requiring the scanner
+to infer and attempt fuzzy matching.
+- When vendors register impacted software with NVD, the provided information might not exactly match
+the values in the release artifacts.
 
 #### <a id="false-positives"></a>False positives
 
