@@ -125,9 +125,10 @@ Assuming TAP has updated successfully, move on to the next part.
 
     ![Image of listeners on AWS LB.](./images/aws-lb-https-listeners.png)
 
-    > **Note:** In order to prevent your URLs from being accessible over HTTP, port 80 is also configured to listen on HTTPS. 
+    > **Note:** AWS will by default add SSL/HTTPS listeners for all ports on the Kubernetes Service.
+      In this guide, this means that port 80 is also configured to listen on HTTPS.
       If you wish to leave port 80 open to HTTP traffic, you can add the annotation `service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"` to your tap-values file at `contour.envoy.service.annotations`.
-      Without that annotation, by default, AWS will add SSL/HTTPS listeners for all ports on the Kubernetes Service. Using the annotation, it only adds an SSL/HTTPS listener for the `https` port on the service. More information on the annotations can be found [here](https://cloud-provider-aws.sigs.k8s.io/service_controller/).
+      Using the annotation, it only adds an SSL/HTTPS listener for the `https` port on the service. More information on the annotations can be found [here](https://cloud-provider-aws.sigs.k8s.io/service_controller/).
     
 
 
