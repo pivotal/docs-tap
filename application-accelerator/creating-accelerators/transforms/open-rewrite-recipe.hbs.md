@@ -48,3 +48,5 @@ chain:
       oldPackageName: "'com.acme'"
       newPackageName: "#companyPkg"
 ```
+
+![image](open-rewrite-recipe.svg.svg)

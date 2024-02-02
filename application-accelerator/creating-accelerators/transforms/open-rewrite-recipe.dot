@@ -1,0 +1,25 @@
+// This file was auto-generated from open-rewrite-recipe.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  String_5ce33a58 -> Include_361c294e;
+  OpenRewriteRecipe_15a902e7 -> String_78a287ed;
+
+  subgraph cluster_3a1d593e {
+    label=<chain>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    Include_361c294e [label=<<b>Include</b><br/>**/*.java>; ]
+    OpenRewriteRecipe_15a902e7 [label=<<b>OpenRewriteRecipe</b><br/>org.openrewrite.java.ChangePackage<br/>oldPackageName = 'com.acme'<br/>newPackageName = #companyPkg>; ]
+
+    Include_361c294e -> OpenRewriteRecipe_15a902e7;
+  }
+}

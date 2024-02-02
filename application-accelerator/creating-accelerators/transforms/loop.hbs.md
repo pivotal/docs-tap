@@ -65,7 +65,11 @@ doAsMerge:
   rewriteTo: "#m + '/' + #g1"
 ```
 
-Add every artifactId in `artifacts` (a list of strings) as a Spring plug-in.
+This behaves in a way equivalent to this:
+![image](loop1.svg)
+
+
+Add every artifactId in `artifacts` (a list of strings) as a Spring dependency.
 
 ``` console
 type: Loop
@@ -73,12 +77,16 @@ on: "#artifacts"
 var: a
 doAsChain:
   type: OpenRewriteRecipe
-  recipe: org.openrewrite.maven.AddPlugin
+  recipe: org.openrewrite.maven.AddDependency
   options:
     groupId: "'org.springframework'"
     artifactId: "#a"
     version: "'5.7.1'"
 ```
+
+This behaves in a way equivalent to this:
+![image](loop2.svg)
+
 
 You can use `Loop` in combination with custom types, for example:
 

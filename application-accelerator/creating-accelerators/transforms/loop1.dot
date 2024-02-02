@@ -1,0 +1,28 @@
+// This file was auto-generated from loop1.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  String_5ce33a58 -> RewritePath_545de5a4;
+  String_5ce33a58 -> RewritePath_29ef6856;
+  String_5ce33a58 -> RewritePath_ab7a938;
+  RewritePath_545de5a4 -> String_78a287ed;
+  RewritePath_29ef6856 -> String_78a287ed;
+  RewritePath_ab7a938 -> String_78a287ed;
+
+  subgraph cluster_3a320ade {
+    label=<merge>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    RewritePath_545de5a4 [label=<<b>RewritePath</b><br/>template/(.*)<br/> &#x21D2; <br/>'module-1' + '/' + #g1>; ]
+    RewritePath_29ef6856 [label=<<b>RewritePath</b><br/>template/(.*)<br/> &#x21D2; <br/>'module-2' + '/' + #g1>; ]
+    RewritePath_ab7a938 [label=<<b>RewritePath</b><br/>template/(.*)<br/> &#x21D2; <br/>'module-3' + '/' + #g1>; ]
+  }
+}

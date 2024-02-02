@@ -20,11 +20,14 @@ by default uses [Fail](#available-strategies). This is customizable.
 type: Combo      # often omitted
 merge:
   - <transform>
+  - <transform>
+  - <transform>
 chain:
   - <transform>
   - ...
 onConflict: <conflict resolution>  # defaults to 'UseLast'
 ```
+![image](conflict-resolution1.svg)
 
 ```yaml
 type: Chain      # or implicitly using Combo
@@ -34,6 +37,7 @@ transformations:
   - type: UniquePath
     strategy: <conflict resolution>  # defaults to 'Fail'
 ```
+![image](conflict-resolution2.svg)
 
 ## <a name="available-strategies"></a>Available strategies
 
@@ -52,6 +56,9 @@ first appearing first.
 - `FavorForeign`: _Only makes sense in the context of [composition](../composition.md)._
   Selects the version of the file that was provided by the caller if present, falls
   back to the file originating from this fragment's fileset otherwise.
+- `NWayDiff`: Try to merge the conflicting resources by applying patches computed against a
+  common ancestor. The resulting resource bears the attributes of the first
+  conflicting resource.
 
 ## See also
 

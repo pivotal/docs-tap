@@ -1,0 +1,10 @@
+engine:
+  type: Chain
+  transformations:
+    - type: Include
+      patterns: ["**/*.java"]
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.java.ChangePackage
+      options:
+        oldPackageName: "'com.acme'"
+        newPackageName: "#companyPkg"
