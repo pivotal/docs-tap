@@ -499,6 +499,20 @@ See [Install the full dependencies package](#tap-install-full-deps) for more inf
 
 Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
 
+### <a id='full-dependencies'></a> (Optional) Override the default retention behavior for Crossplane CRDs
+
+By default, the `crossplane.tanzu.vmware.com` package is configured to retain all Crossplane CRDs, providers, and managed resources when the package is uninstalled. This is in the interest of caution in relation to accidental deletion of stateful data.
+
+You can configure Tanzu Application Platform to delete Crossplane resources to avoid orphaned resources.
+To do so, update the `tap-values.yaml` as follows:
+
+```yaml
+# tap-values.yaml
+
+crossplane:
+  orphan_resources: false
+```
+
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
