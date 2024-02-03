@@ -9,9 +9,8 @@ For production deployments, it is recommended to use an external Postgres databa
    1. Database Instance Connect Endpoint
    2. (Optional if TLS is enabled and certificate is self signed) CA Certificate that signed the certificate
    3. Database Credentials
-   4. Name of the datbase to use for AMR/MDS
+   4. Name of the database to use
 
-- Connectivity to the Postgres datbase is avaiable from the AMR and MDS services
 - If migrating from the internal to an external database, be sure to backup the data before proceeding
 
 ## Configuring AMR and MDS to use the external database
@@ -40,7 +39,7 @@ For production deployments, it is recommended to use an external Postgres databa
        ...
        ...
    ```
-   > **Note** If you initially deployed TAP with an internal datbase and are migrating to an external database, be aware setting `deploy_internal_db` to `false,`  will remove the internal instance of PostgreSQL.  Be sure to backup and migrate your data to the database prior to setting this value to false or it may result in data loss.
+   > **Note** If you initially deployed TAP with an internal database and are migrating to an external database, be aware setting `deploy_internal_db` to `false,`  will remove the internal instance of PostgreSQL.  Be sure to backup and migrate your data to the database prior to setting this value to false or it may result in data loss.
 
 2. Apply the new configuration
    ```console
@@ -49,7 +48,7 @@ For production deployments, it is recommended to use an external Postgres databa
 3. (Optional) If you are migrating from the internal database to an external database, the reconcilation above may fail.  In order for it to succeed, you must manually delete the secret that cert-manager created and cycle the AMR and MDS services so that the new secret can be picked up.
    ```console
    kubectl delete secret -n metadata-store postgres-db-tls-cert
-   kubectl rollout restart -n metadata-store deployment metadata-store-app amr-graphql-app
+   kubectl rollout restart -n metadata-store deployment metadata-store-app
    ```
 
 ## Validation
