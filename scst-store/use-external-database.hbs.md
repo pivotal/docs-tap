@@ -7,7 +7,7 @@ For production deployments, it is recommended to use an external Postgres databa
 - Gather the connection information for the external PostgreSQL database: 
 
    1. Database Instance Connect Endpoint
-   2. (Optional if TLS is enabled and certificate is self signed) CA Certificate that signed the certificate
+   2. CA Certificate for the DB instance TLS certificate (if applicable)
    3. Database Credentials
    4. Name of the database to use
 
