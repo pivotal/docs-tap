@@ -1,6 +1,6 @@
 # Use external PostgreSQL database for Supply Chain Security Tools - Store
 
-For production deployments, it is recommended to use an external Postgres database rather the one packaged with the Tanzu Application Platform.  This will allow you to manage it via best practices and process that your organization have established.  This topic describes how you can configure your TAP deployment to use an external database.
+For production deployments, it is recommended to use an external Postgres database rather the one packaged with the Tanzu Application Platform.  This will allow you to manage it via best practices and processes that your organization have established.  This topic describes how you can configure your TAP deployment to use an external database.
 
 ## <a id='prereqExtrenalDB'></a>Prerequisites
 
