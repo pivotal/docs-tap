@@ -1,18 +1,14 @@
 # Workload CRD
 
-Workloads are custom Kubernetes resources (CRDs). Tanzu Supply Chain does not provide specific Workload CRDs, instead a
-platform engineer declares a [**SupplyChain**](supplychain.hbs.md) including the Kind of CRD to use as it's workload (eg
-SpringOneAppWorkload). The [**Components**](./component.hbs.md) used in the [**SupplyChain**](./supplychain.hbs.md) define the schema (
-shape) of the Workload CRD.
+**Workloads** are [Custom Kubernetes Resources (CRDs)][CRD]. 
 
-See [**SupplyChain**](./supplychain.hbs.md)'s `defines` field.
+[**SupplyChains**] define the Workload CRD by 
+* specifying the [Kind] (see [**SupplyChain**]'s `defines` field) 
+* specifying the [**Components**] that constitute the Supply Chain. 
 
-Once the SupplyChain is applied to the cluster, and is valid, then the `defined` CRD is created on the cluster. It can
-be inspected:
+The [**Components**] used in the [**SupplyChain**] define the schema of the Workload CRD.
 
-```
-$ kubectl get crd hostedapps.widget.com -oyaml # hostedapp is only an example
-```
+Once a valid SupplyChain is applied to the cluster, then the `defined` CRD is created on the cluster.
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -52,3 +48,13 @@ spec:
                         exclusive, use only one.
   ... etc ...
 ```
+
+
+[**SupplyChain**]: ./supplychain.hbs.md
+[**SupplyChains**]: ./supplychain.hbs.md
+[**Workload**]: ./workload.hbs.md
+[**Component**]: ./component.hbs.md
+[**Components**]: ./component.hbs.md
+[**WorkloadRun**]: ./workloadrun.hbs.md
+[CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"
+[Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kebernetes documentation for Objects"

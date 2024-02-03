@@ -754,7 +754,6 @@
           - [SupplyChain API](supply-chain/api/supplychain.hbs.md)
           - [Workload CRD](supply-chain/api/workload.hbs.md)
           - [WorkloadRun API](supply-chain/api/workloadrun.hbs.md)
-          - [Common API](supply-chain/api/common.hbs.md)
       - [Explanation](supply-chain/explanation/about.hbs.md)
           - [Architecture](supply-chain/explanation/architecture.hbs.md)
           - [Components and supply chains](supply-chain/explanation/components-and-supply-chains.hbs.md)
