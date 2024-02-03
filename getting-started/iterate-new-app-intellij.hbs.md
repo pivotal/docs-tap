@@ -332,29 +332,22 @@ To debug the cluster:
 
 1. [Apply your application to the cluster.](#apply-your-app)
 
-1. Obtain the URL for your workload:
-   1. In the center panel of the **Tanzu Panel** go to
-      **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
+1. Obtain the URL for your workload by doing one of the following:
 
-   2. Right-click the `Service/tanzu-java-web-app` entry and select **Describe**.
+   - **If your app deploys a Knative URL:** Click the URL from the Workloads panel.
 
-      ![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
+      ![Screenshot of the Workloads panel with the Knative URL highlighted under the tanzu-java-web-app.](../images/intellij-knative-url.png)
 
-   3. In the resulting output, copy the value after **Status** > **URL:** that begins with
-      `https://tanzu-java-web-app...`. Make sure you copy the value from
-      **Status** > **URL:** and *not* the value under **Status** > **Address** > **URL**.
-
-      ![IntelliJ terminal showing the pod URL.](../images/getting-started-iterate-intellij-service-url.png)
-
-   4. Open your web browser and paste the URL you copied to access your workload.
+   - **If your app does not deploy a Knative URL but exposes an app port:** Access your app through a
+     `portforward`. For instructions, see [Use a portforward to access an application locally](../intellij-extension/using-the-extension.hbs.md#workload-port-forward).
 
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name
    `tanzu-java-web-app` and select **Run \'Tanzu Debug Workload - tanzu-java-web-app\'** to begin debugging
    the application on the cluster.
 
-    1. Alternatively, select the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
-       select **Tanzu Debug Workload - tanzu-java-web-app**, and then click the green debug button to the
-       right of the **Edit Run/Debug configurations** drop-down menu.
+   1. Alternatively, select the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
+      select **Tanzu Debug Workload - tanzu-java-web-app**, and then click the green debug button to the
+      right of the **Edit Run/Debug configurations** drop-down menu.
 
 1. The Debug tab opens and displays a message that it has connected.
 

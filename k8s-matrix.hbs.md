@@ -13,11 +13,15 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
 <tbody>
   <tr>
     <td>Kubernetes</td>
-    <td>v1.26, v1.27, v1.28</td>
+    <td>v1.27, v1.28, v1.29</td>
   </tr>
   <tr>
     <td>VMware Tanzu Kubernetes Grid</td>
     <td>v2.4.0, v2.3.0</td>
+  </tr>
+  <tr>
+    <td>VMware Tanzu Kubernetes Grid Integrated Edition</td>
+    <td>v1.18 or later</td>
   </tr>
   <tr>
     <td>Tanzu Kubernetes releases (vSphere with Tanzu)</td>
@@ -25,7 +29,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   </tr>
   <tr>
     <td>OpenShift</td>
-    <td>v4.13, v4.14</td>
+    <td>v4.14, v4.15</td>
   </tr>
   <tr>
     <td>Azure Kubernetes Service</td>

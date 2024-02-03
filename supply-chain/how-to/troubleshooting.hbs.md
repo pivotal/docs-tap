@@ -1,1 +1,1 @@
-# How to Toubleshoot Tanzu Supply Chain
+# How to Troubleshoot Tanzu Supply Chain

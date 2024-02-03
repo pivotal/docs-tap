@@ -5,16 +5,20 @@ This topic tells you about the Application Accelerator `OpenRewriteRecipe` trans
 The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https://docs.openrewrite.org/)
 **Recipe** to a set of files and gather the results.
 
+The engine leverages v8.7.4 of Open Rewrite and parses Java files using the grammar for Java 17.
+
 The following Open Rewrite Recipes are supported:
 
-- [Java recipes](https://docs.openrewrite.org/reference/recipes/java)
-- [Maven recipes](https://docs.openrewrite.org/reference/recipes/maven)
-- [XML recipes](https://docs.openrewrite.org/reference/recipes/xml)
-- [YAML recipes](https://docs.openrewrite.org/reference/recipes/yaml)
-- [JSON recipes](https://docs.openrewrite.org/reference/recipes/json)
-- [Properties recipes](https://docs.openrewrite.org/reference/recipes/properties)
+- [Java recipes](https://docs.openrewrite.org/recipes/java) (v8.7.4)
+- [Maven recipes](https://docs.openrewrite.org/recipes/maven) (v8.7.4)
+- [XML recipes](https://docs.openrewrite.org/recipes/xml) (v8.7.4)
+- [YAML recipes](https://docs.openrewrite.org/recipes/yaml) (v8.7.4)
+- [JSON recipes](https://docs.openrewrite.org/recipes/json) (v8.7.4)
+- [Properties recipes](https://docs.openrewrite.org/recipes/properties) (v8.7.4)
+- [Kubernetes recipes](https://docs.openrewrite.org/recipes/kubernetes) (v1.18.0)
+- [Python recipes](https://docs.openrewrite.org/recipes/python) (v1.1.2)
+- [Terraform recipes](https://docs.openrewrite.org/recipes/terraform) (v2.0.5)
 
-The engine leverages v7.38.0 of Open Rewrite and parses Java files using the grammar for Java 11.
 
 ## <a id="syntax-ref"></a>Syntax reference
 
@@ -44,3 +48,5 @@ chain:
       oldPackageName: "'com.acme'"
       newPackageName: "#companyPkg"
 ```
+
+<!-- ![image](open-rewrite-recipe.svg.svg) -->

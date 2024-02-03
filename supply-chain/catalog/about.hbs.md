@@ -4,3 +4,4 @@ Inputs and outputs comply with [Idioms](./idioms.hbs.md)
 
 Components:
 - [Source](./source.hbs.md)
+- [Conventions](./conventions.hbs.md)

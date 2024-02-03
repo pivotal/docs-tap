@@ -344,8 +344,8 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
 
-> **Important** The profile installation no longer includes Grype out of the box. 
-> Instead, you can use Namespace Provisioner to install Grype. 
+> **Important** The profile installation no longer includes Grype out of the box.
+> Instead, you can use Namespace Provisioner to install Grype.
 > Namespace Provisioner still uses Grype values to configure the scanner:
 >
 >
@@ -424,7 +424,7 @@ Where:
 
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
   either a blank or populated catalog file from the
-  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
+  [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018).
   Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git
   infrastructure.
 
@@ -498,6 +498,20 @@ you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
 Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
+
+### <a id='full-dependencies'></a> (Optional) Override the default retention behavior for Crossplane CRDs
+
+By default, the `crossplane.tanzu.vmware.com` package is configured to retain all Crossplane CRDs, providers, and managed resources when the package is uninstalled. This is in the interest of caution in relation to accidental deletion of stateful data.
+
+You can configure Tanzu Application Platform to delete Crossplane resources to avoid orphaned resources.
+To do so, update the `tap-values.yaml` as follows:
+
+```yaml
+# tap-values.yaml
+
+crossplane:
+  orphan_resources: false
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

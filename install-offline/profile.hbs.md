@@ -27,6 +27,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export REGISTRY_CA_PATH=PATH-TO-CA
+    export TO_REPO=MY-REPO
     ```
 
     Where:
@@ -37,6 +38,10 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+    - `MY-REPO` is your repository in the air-gapped container image registry. Examples:
+        - Harbor has the form `MY-REGISTRY/REPO-NAME/tap-packages`.
+        - Docker Hub has the form `MY-REGISTRY/tap-packages`.
+        - Google Cloud Registry has the form `MY-REGISTRY/MY-PROJECT/REPO-NAME/tap-packages`.
 
 1. Copy the images into a `.tar` file from the VMware Tanzu Network onto an external storage device with the Carvel tool imgpkg by running:
 
@@ -52,7 +57,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     ```console
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
-      --to-repo $IMGPKG_REGISTRY_HOSTNAME_1/tap-packages \
+      --to-repo $TO_REPO \
       --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
@@ -377,7 +382,7 @@ service's External IP address.
  `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](../scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.

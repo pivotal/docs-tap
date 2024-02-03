@@ -9,8 +9,10 @@ Scanning` supply chain uses SCST - Scan 1.0 but you can switch to using SCST - S
 
 SCST - Scan 2.0 includes two integrations for container image scanners:
 
-- Anchore Grype
-- Aqua Trivy
+| Container Image Scanner | Documentation | Cluster Image Template Name |  Status |
+| --- | --- | --- | --- |
+| Aqua Trivy | [Link](https://aquasecurity.github.io/trivy) | image-vulnerability-scan-trivy | Recommended out-of-box scanner for Scan 2.0 |
+| Anchore Grype | [Link](https://github.com/anchore/grype) | image-vulnerability-scan-grype | Alternative to Trivy that is used in Scan 1.0 |
 
 VMware recommends using Aqua Trivy scanner with Tanzu Application Platform for
 container image scanning.  Anchore Grype is included as an open source
@@ -19,22 +21,11 @@ in SCST - Scan 1.0.  Additionally, you can build an integration for additional
 scanners by following the [Bring Your Own Scanner
 guide](./bring-your-own-scanner.hbs.md).
 
-| Container Image Scanner | Documentation | Template Name |  Status |
-| --- | --- | --- | --- |
-| Aqua Trivy | [Link](https://aquasecurity.github.io/trivy) | image-vulnerability-scan-trivy | Recommended out-of-box scanner for Scan 2.0 |
-| Anchore Grype | [Link](https://github.com/anchore/grype) | image-vulnerability-scan-grype | Alternative to Trivy that is used in Scan 1.0 |
+## <a id="enable-supply-chain"></a> Enable with OOTB supply chain
 
-## <a id="prerequisites"></a> Prerequisites
+To enable Scan 2.0 with an OOTB supply chain using the Trivy scanner:
 
-Before you can integrate SCST - Scan 2.0 with the out of the box supply chain:
-
-- Install the Scan 2.0 component as this component is not included in any of the installation profiles. See [Install Supply Chain Security Tools - Scan 2.0 in a cluster](./install-app-scanning.hbs.md).
-
-## <a id="integration-supply-chain"></a> Integrate with OOTB supply chain
-
-To integrate Scan 2.0 with an OOTB supply chain using the Trivy scanner:
-
-1. After completing the prerequisites, update your `tap-values.yaml` file to specify the Trivy ClusterImageTemplate. For example:
+1.  Update your `tap-values.yaml` file to specify the Trivy ClusterImageTemplate. For example:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -62,9 +53,5 @@ To integrate Scan 2.0 with an OOTB supply chain using the Trivy scanner:
     ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-
-1. Enable AMR and AMR Observer. 
-
-    Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
-
+    
 1. Verify the scan capability is working as expected by creating a workload. See [Verify](./verify-app-scanning-supply-chain.hbs.md).

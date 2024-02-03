@@ -321,9 +321,9 @@ service's External IP address.
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.26.x`, where `x` stands for the patch version. Examples:
-    - Red Hat OpenShift Container Platform v4.13 uses the Kubernetes version `1.26.3`.
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.27.x` or `1.28.x`, where `x` stands for the patch version. Examples:
     - Red Hat OpenShift Container Platform v4.14 uses the Kubernetes version `1.27.6`.
+    - Red Hat OpenShift Container Platform v4.15 uses the Kubernetes version `1.28.5`.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
@@ -348,7 +348,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
   `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.

@@ -1,0 +1,27 @@
+// This file was auto-generated from loop2.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  String_5ce33a58 -> OpenRewriteRecipe_27a5328c;
+  OpenRewriteRecipe_32cb636e -> String_78a287ed;
+
+  subgraph cluster_66629f63 {
+    label=<chain>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    OpenRewriteRecipe_27a5328c [label=<<b>OpenRewriteRecipe</b><br/>org.openrewrite.maven.AddDependency<br/>groupId = 'org.springframework'<br/>artifactId = 'spring-core'<br/>version = '5.7.1'>; ]
+    OpenRewriteRecipe_5fb97279 [label=<<b>OpenRewriteRecipe</b><br/>org.openrewrite.maven.AddDependency<br/>groupId = 'org.springframework'<br/>artifactId = 'spring-web'<br/>version = '5.7.1'>; ]
+    OpenRewriteRecipe_32cb636e [label=<<b>OpenRewriteRecipe</b><br/>org.openrewrite.maven.AddDependency<br/>groupId = 'org.springframework'<br/>artifactId = 'spring-transaction'<br/>version = '5.7.1'>; ]
+
+    OpenRewriteRecipe_27a5328c -> OpenRewriteRecipe_5fb97279;
+    OpenRewriteRecipe_5fb97279 -> OpenRewriteRecipe_32cb636e;
+  }
+}

@@ -24,9 +24,9 @@ workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac
 
   ![The interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
-- Screenshot of the command palette:
+- Screenshot of the command palette
 
-  ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+   ![Tanzu commands in the command palette. Tanzu: Live Update Start is highlighted.](../images/vscode-command-palette.png)
 
 ### <a id="apply-workload"></a> Apply a workload
 
@@ -43,6 +43,10 @@ To apply a workload:
 3. If applicable, select the workload to apply.
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
+
+   A series of dialog boxes appear that ask for information.
+
+   ![The first of five dialog boxes for the Apply Workload command.](../images/vscode-apply-workload-input.png)
 
    A notification appears showing that the workload was applied.
 
@@ -348,3 +352,23 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 
 ![Preferences showing workload apply configurations.](../images/vscode-workload-apply-configuration.png).
+
+## <a id="workload-port-forward"></a> Use a `portforward` to access an application locally
+
+You can create a `portforward` by clicking **Tanzu: Portforward** in the pop-up menu in the
+Tanzu Workloads panel.
+
+{{> 'partials/ide-extensions/workload-port-forward' }}
+
+You can stop a `portforward` by clicking **Tanzu: Stop Portforward** in the pop-up menu in the Tanzu
+Workloads panel. The option to stop a `portforward` is only available if there is an existing
+`portforward`.
+
+![The existing port forward is shown in the Tanzu Workloads panel.](../images/vscode-workload-portforward-existing.png).
+
+## <a id="workload-knative-url"></a> Viewing the Knative URL
+
+{{> 'partials/ide-extensions/workload-knative-url' }}
+
+
+![The Knative URL is shown in the Tanzu Workloads panel.](../images/vscode-knative-url.png)

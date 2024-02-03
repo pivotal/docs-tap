@@ -32,18 +32,32 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
+
+- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Tanzu: Portforward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
+
+#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
+
+- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
+
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
 - The authorization server can auto-discover upstream identity provider
   configuration from
-  `AuthServer.spec.identityProviders[].openID.configurationURI`. 
+  `AuthServer.spec.identityProviders[].openID.configurationURI`.
   For more information, see [Identity providers for Application Single Sign-On](app-sso/how-to-guides/service-operators/identity-providers.hbs.md).
 
 - The `userinfo` endpoint of an upstream identity provider is called when
-  it's known and configured with the scope `openid`. That means user information 
+  it's known and configured with the scope `openid`. That means user information
   is retrieved for non-standard providers.
 
-- Scopes in the token response are filtered according to the roles filtering 
+- Scopes in the token response are filtered according to the roles filtering
   defined on the `AuthServer`.
 
 - Advertises the Application Single Sign-On version on components:
@@ -82,6 +96,14 @@ This release includes the following changes, listed by component and area.
   There is no change to how the resulting composed service instances operate.
   There is no impact to existing instances.
 
+#### <a id='1-8-0-buildpacks'></a> v1.8.0 Features: Buildpacks and Stacks
+
+- Adds a new stack - The [`Tanzu Standard Stack for UBI 8`](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks), along with a builder as part of the [`full`](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full) dependencies.
+
+- Adds a new stack - The [`Tanzu Static Stack for Ubuntu 22.04`](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubuntu-stacks), along with a builder as part of the [`full`](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full) dependencies.
+
+- Adds support for [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8) in the Tanzu .NET Core Buildpack.
+
 #### <a id='1-8-0-cert-manager'></a> v1.8.0 Features: cert-manager
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
@@ -111,6 +133,11 @@ This release includes the following changes, listed by component and area.
 
 - Updates reconciler-runtime to v0.15.1.
 
+#### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
+
+- Adds support for ingesting SBOMs in CycloneDX v1.5 format.
+- Better error messaging for ingestion errors.
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
@@ -120,6 +147,12 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-8-0-apix-bc'></a> v1.8.0 Breaking changes: API Validation and Scoring
 
 - API Validation and Scoring is removed in this release.
+
+#### <a id='1-8-0-buildpacks-bc'></a> v1.8.0 Breaking changes: Buildpacks
+
+- Tanzu Java Buildpack removes Java (BellSoft Liberica) 20, and is replaced with Java 21.
+
+- Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep). This tools has been officially deprecated since 2020.
 
 ---
 
@@ -182,6 +215,17 @@ This release has the following known issues, listed by component and area.
 - On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
+
+#### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload is in a
+failed state due to an invalid date, please wait about 10 hours and the workload will automatically go into
+ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54)
+in the Snyk Github repository.
+
+#### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
+
+- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
 
 ---
 

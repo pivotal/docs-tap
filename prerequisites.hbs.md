@@ -96,7 +96,7 @@ For Tanzu Developer Portal, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.26, v1.27 or v1.28 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.27, v1.28 or v1.29 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
@@ -110,13 +110,15 @@ providers:
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
     regional cluster with three control-plane nodes right from the start.
-- Red Hat OpenShift Container Platform v4.13 and v4.14
+- Red Hat OpenShift Container Platform v4.14 and v4.15
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
-- vSphere with Tanzu v8.0.2 or later and Tanzu Application Platform v1.7.1 or later.
+- vSphere with Tanzu v8.0.2 or later
+- Tanzu Kubernetes Grid Integrated Edition (commonly called TKGi) v1.18 and later.
+    - For TKGi with NSX, the total number of Kubernetes object labels and other tags created by both TKGi and Tanzu Application Platform can exceed the number allowed by NSX. Create or update your network profile by setting the `cni_configurations` parameter `extensions.ncp.k8s.label_filtering_regex_list`. For more information, see the [VMware Tanzu Kubernetes Grid Integrated Edition documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.18/tkgi/GUID-network-profiles-define.html#cni-extensions).
 
-<!-- For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md). -->
+For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
 
 ## <a id="resource-requirements"></a>Resource requirements
 
@@ -148,7 +150,7 @@ providers:
 
 Installation requires:
 
-- The Kubernetes CLI (kubectl) v1.26, v1.27 or v1.28 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- The Kubernetes CLI (kubectl) v1.27, v1.28 or v1.29 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 ## <a id='next-steps'></a>Next steps
 

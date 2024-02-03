@@ -1,11 +1,11 @@
-# Version matrix for service binding
+# Version matrix for Service Bindings
 
-This topic provides you a matrix of versions between
+This topic gives you a matrix of versions between Tanzu Application Platform (commonly known as TAP),
+the package (`servicebinding.tanzu.vmware.com`), and
+[Service Binding Runtime](https://github.com/servicebinding/runtime/).
 
-- Tanzu Application Platform
-- The service binding package (`servicebinding.tanzu.vmware.com`)
-- [Service binding runtime](https://github.com/servicebinding/runtime/), which is the community
-  reference implementation of [Service Binding](https://servicebinding.io/).
+[Service Binding Runtime](https://github.com/servicebinding/runtime/) is the community reference
+implementation of [Service Binding](https://servicebinding.io/).
 
 > **Note** Tanzu Application Platform patch releases are only added to the table when there
 > is a change to one or more of the other versions in the table. Otherwise, the corresponding
@@ -15,8 +15,8 @@ This topic provides you a matrix of versions between
   <thead>
     <tr>
         <th>Tanzu Application Platform version</th>
-        <th>Service Binding package version</th>
-        <th>Service Binding runtime version</th>
+        <th>Service Bindings package version</th>
+        <th>Service Bindings runtime version</th>
     </tr>
   </thead>
   <tbody>

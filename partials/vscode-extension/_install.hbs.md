@@ -65,25 +65,37 @@ To configure VMware Tanzu Developer Tools for VS Code:
 2. Go to **Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools** and
    set the following:
 
+   - **Confirm Apply Config**: This controls whether the extension asks to confirm user input when
+     applying a workload.
+   - **Confirm Debug Port**: This controls whether the extension asks for the debug port when
+     running `Tanzu: Start Java Debug`.
+   - **Confirm Local Port**: This controls whether the extension asks for the local port when
+     running `Tanzu: Start Java Debug`.
    - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
      workload.
-   - **Enable Live Hover**: For more information, see
+   - **Enable Live Hover**: This enables Live Hover. For more information, see
      [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension/live-hover.hbs.md).
-     Reload VS Code for this change to take effect.
+     Restart VS Code for this change to take effect.
    - **Source Image**: The registry location for publishing local source code. For example,
      `registry.io/yourapp-source`. This must include both a registry and a project name. A source
      image registry location is optional when Local Source Proxy is configured.
    - **Local Path**: (Optional) The path on the local file system to a directory of source code to
      build. This is the current directory by default.
    - **Namespace**: (Optional) This is the namespace that workloads are deployed into. The namespace
-     set in `kubeconfig` is the default.
+     set in kubeconfig is the default.
+   - **Tracked Namespaces**: (Optional) Comma-separated list of namespaces. Resources in these
+     namespaces appear in the Tanzu Workloads panel and the Activity panel. If empty, the namespace
+     in the current context is the default.
+   - **Wait Timeout**: (Optional) This sets how long to wait for a workload to become ready.
+   - **Workload Type**: (Optional) This distinguishes the workload type. Examples include web and
+     server.
 
 ## <a id="uninstall"></a> Uninstall
 
 To uninstall VMware Tanzu Developer Tools for VS Code:
 
 1. Go to **Code** > **Preferences** > **Settings** > **Extensions**.
-1. Right-click the extension and select **Uninstall**.
+1. Right-click the extension and then click **Uninstall**.
 
 ## <a id="next-steps"></a> Next steps
 
