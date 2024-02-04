@@ -19,9 +19,9 @@ For information about the languages and frameworks that are supported by Tanzu A
 
 The following use cases apply to SCST - Scan:
 
-- Scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) as part of your software supply chain
+- Scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) as part of your software supply chain at build time
+- Scan container images produced by your supply chain as well as any running image in your TAP Clusters for newly reported vulnerabilities after the initial image build scan
 - Use one of the out-of-box provided scan integrations or create your own to leverage your existing vulnerability scanning platforms
-- Identify CVEs by continuously scanning container images for newly reported vulnerabilities
 - Analyze supply chain scan results against user-defined policies
 - Store vulnerability scan results in SCST - Store for long term archival and reporting
 
@@ -41,9 +41,9 @@ Although other scan integrations are available, the default configuration for Sc
 
 Scan 2.0 was introduced in the TAP 1.5 release as an Alpha and now enters GA in TAP 1.8.  This iteration of SCST - Scan focuses on simplifying the integration experience by decoupling SCST - Store submission and policy from the scanning task.  This allows integration to be simplified and focused on the task of scanning workloads for vulnerabilities. 
 
-The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.
+The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.  See [ recurring-scanning](recurring-scanning.md) for more information.  This capability can be used regardless if you are using Scan 1.0 or Scan 2.0 as part of your supply chain.
 
-Scan 2.0 ships with the default configuration to use open-source [Aqua Trivy](https://www.aquasec.com/products/trivy/) as the imager scanner, and we include a Grype template for backwards compatibility.  Examples of other integrations, as well as how to build your own integration with this simplified interface, are provided in documentation.
+Scan 2.0 ships with the default configuration to use open-source [Aqua Security Trivy](https://www.aquasec.com/products/trivy/) as the imager scanner, and we include a Grype template for backwards compatibility.  Examples of other integrations, as well as how to build your own integration with this simplified interface, are provided in documentation.
 
 ### Which version should I use?
 
