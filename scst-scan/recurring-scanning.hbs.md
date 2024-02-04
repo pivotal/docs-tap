@@ -135,11 +135,9 @@ spec:
     cron: 0 3 * * *
     startingDeadline: 60m
 
-
 ```
 
-
-### <a id="trivy-rvis-template"></a>Trivy recurringimagevulnerabilityscan Template
+### <a id="trivy-rivs-template"></a>Trivy recurringimagevulnerabilityscan Template
 
 The default out-of-the-box scanner with Scan 2.0 is Aqua Security’s Trivy, and this template is intended to pair with the Scan 2.0 out-of-the-box configuration.
 
