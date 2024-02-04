@@ -49,41 +49,41 @@ kind: RecurringImageVulnerabilityScan
 metadata:
   name: recurring-scan-template
 spec:
- scan:
+  images:
+    ranWithinDays: RAN-INTERVAL
+    createdWithinDays: CREATED-INTERVAL
+  retentionPolicy:
+    maxFailedScans: FAILED-RETENTION
+    maxSuccessfulScans: SUCESSFUL-RETENTION
+  schedule:
+    cron: CRON-SCHEDULE
+    startingDeadline: START-DEADLINE
+  scan:
     activeKeychains:
       # Only enable keychains for registries you are using
       - name: acr  # Azure Container Registry
       - name: ecr  # Elastic Container Registry
       - name: gcr  # Google Container Registry
       - name: ghcr # Github Container Registry
-   workspace:
-    size: WORKSPACESIZE
-   steps:
-     STEPS-FROM-IVS-TEMPLATE
-   scanResults:
-     location: RESULTS-REPOSITORY
- images:
-   ranWithinDays: RAN-INTERVAL
-   createdWithinDays: CREATED-INTERVAL
- schedule:
-   cron: CRON-SCHEDULE
-   startingDeadline: START-DEADLINE
- retentionPolicy:
-   maxFailedScans: FAILED-RETENTION
-   maxSuccessfulScans: SUCESSFUL-RETENTION
+    workspace:
+      size: WORKSPACESIZE
+    scanResults:
+      location: RESULTS-REPOSITORY
+    steps:
+      STEPS-FROM-IVS-TEMPLATE
 ```
 
     Where:
 
-    - `WORKSPACESIZE` is the size of the workspace used when scanning images.  This will be created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, number of images to be scanned, and the output of the vulnerability scanner.  Recommend `3Gi` as a starting point. 
-    - `STEPS-FROM-IVS-TEMPLATE` are the steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
-    - `RESULTS-REPOSITORY` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `RAN-INTERVAL` defines how many prior days of images from pods that have started on the TAP clusters should be scanned
+    - `CREATED-INTERVAL` defines how many prior days of images from supply chains should be scanned
+    - `FAILED-RETENTION` is the number of failed recurring scan executions to keep in Kubernetes.
     - `CRON-SCHEDULE` defines the schedule in which to invoke recurring scans in crontab format.  For example as used in the samples below, if you wanted to execute a scan daily at 3:00 AM, the value here would be `0 3 * * *`
     - `START-DEADLINE` is the period of time beyond the scheduled start time that scans can be started in the event they did not start on time.  If this period elapses, the scheduled scan will be skipped.
-    - `FAILED-RETENTION` is the number of failed recurring scan executions to keep in Kubernetes.
     - `SUCESSFUL-RETENTION` is the number of successful recurring scans executions to keep in Kubernetes.  
-
+    - `WORKSPACESIZE` is the size of the workspace used when scanning images.  This will be created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, number of images to be scanned, and the output of the vulnerability scanner.  Recommend `3Gi` as a starting point. 
+    - `RESULTS-REPOSITORY` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
+    - `STEPS-FROM-IVS-TEMPLATE` are the steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
 ### <a id="grype-rivs-template"></a>Grype recurringimagevulnerabilityscan Template
 
@@ -107,6 +107,9 @@ spec:
   retentionPolicy:
     maxFailedScans: 1
     maxSuccessfulScans: 1
+  schedule:
+    cron: 0 3 * * *
+    startingDeadline: 60m
   scan:
     workspace:
       size: 3Gi
@@ -131,10 +134,6 @@ spec:
      - "{output}"
    scanResults:
      location: "harbor.ryanbaker.io/scan-results/recurring-scan"
-  schedule:
-    cron: 0 3 * * *
-    startingDeadline: 60m
-
 ```
 
 ### <a id="trivy-rivs-template"></a>Trivy recurringimagevulnerabilityscan Template
@@ -144,7 +143,7 @@ The default out-of-the-box scanner with Scan 2.0 is Aqua Security’s Trivy, and
 To apply this configuration, save it to to a file and apply it to the namespace created for recurring scans by using the following command:
 
 ```console
-kubectl apply -f trivy-recurring-scan.yaml --namespace <namespace>
+kubectl apply -f trype-recurring-scan.yaml --namespace <namespace>
 ```
 
 ```yaml
@@ -159,33 +158,30 @@ spec:
   retentionPolicy:
     maxFailedScans: 1
     maxSuccessfulScans: 1
+  schedule:
+    cron: 0 3 * * *
+    startingDeadline: 60m
   scan:
     workspace:
       size: 3Gi
     scanResults:
       location: RESULTS-REPOSITORY
-    serviceAccountNames:
-      publisher: default
-      scanner: default
     steps:
-    - args:
-      - image
-      - "{image}"
-      - --exit-code=0
-      - --no-progress
-      - --scanners=vuln
-      - --format=cyclonedx
-      - --output=/workspace/scan-results/scan.cdx.xml
-      env:
-      - name: TRIVY_CACHE_DIR
-        value: /workspace/trivy-cache
-      - name: XDG_CACHE_HOME
-        value: /workspace/.cache
-      - name: TMPDIR
-        value: /workspace
-      image: aquasec/trivy:0.48.3
-      name: trivy-generate-report
-  schedule:
-    cron: 0 3 * * *
-    startingDeadline: 60m
+    -  name: trivy-generate-report
+       image: aquasec/trivy:0.48.3
+       args:
+       - image
+       - '{image}'
+       - --exit-code=0
+       - --no-progress
+       - --scanners=vuln
+       - --format=cyclonedx
+       - '{output}'
+       env:
+       - name: TRIVY_CACHE_DIR
+         value: /workspace/trivy-cache
+       - name: XDG_CACHE_HOME
+         value: /workspace/.cache
+       - name: TMPDIR
+         value: /workspace
 ```
