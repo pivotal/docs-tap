@@ -742,18 +742,18 @@
       - [Troubleshoot Tanzu Developer Tools for VS Code](vscode-extension/troubleshooting.hbs.md)
     - [Tanzu Supply Chain](supply-chain/about.hbs.md)
       - [Platform Engineering with Supply Chain](./supply-chain/platform-engineering/about.hbs.md)
-        - [Tutorials](./supply-chain/platform-engineering/tutorial/about.hbs.md)
-        - [Catalog of Tanzu Supply Chain Components](./supply-chain/platform-engineering/catalog/about.hbs.md) for Platform Engineering
-          - [Source Component](./supply-chain/platform-engineering/catalog/source.hbs.md)
-          - [Git Writer Component](./supply-chain/platform-engineering/catalog/git-writer.hbs.md)
-          - [Conventions Component](./supply-chain/platform-engineering/catalog/conventions.hbs.md)
-          - [Idioms and Conventions](./supply-chain/platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
-        - [How To](./supply-chain/platform-engineering/how-to/about.hbs.md)
-        - [Explanation](./supply-chain/platform-engineering/explanation/about.hbs.md)
+          - [Tutorials](./supply-chain/platform-engineering/tutorial/about.hbs.md)
+          - [Catalog of Tanzu Supply Chain Components](./supply-chain/platform-engineering/catalog/about.hbs.md) for Platform Engineering
+            - [Source Component](./supply-chain/platform-engineering/catalog/source.hbs.md)
+            - [Git Writer Component](./supply-chain/platform-engineering/catalog/git-writer.hbs.md)
+            - [Conventions Component](./supply-chain/platform-engineering/catalog/conventions.hbs.md)
+            - [Idioms and Conventions](./supply-chain/platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
+          - [How To](./supply-chain/platform-engineering/how-to/about.hbs.md)
+          - [Explanation](./supply-chain/platform-engineering/explanation/about.hbs.md)
       - [Developing software with Supply Chain](./supply-chain/development/about.hbs.md)
-        - [Tutorials](./supply-chain/development/tutorial/about.hbs.md)
-        - [How To](./supply-chain/development/how-to/about.hbs.md)
-        - [Explanation](./supply-chain/development/explanation/about.hbs.md)
+          - [Tutorials](./supply-chain/development/tutorial/about.hbs.md)
+          - [How To](./supply-chain/development/how-to/about.hbs.md)
+          - [Explanation](./supply-chain/development/explanation/about.hbs.md)
       - [API](./supply-chain/api/about.hbs.md) Technical Reference of the Supply Chain API.
     - [Tekton Pipelines](tekton/tekton-about.hbs.md)
         - [Tekton overview](tekton/tekton-about.hbs.md)
