@@ -3,6 +3,6 @@
 Inputs and outputs comply with [Idioms](idioms.hbs.md)
 
 Components:
-- [Source](./source.hbs.md)
+- [Source](source.hbs.md)
 - [Conventions](conventions.hbs.md)
 - [Git Writer](git-writer.hbs.md)
