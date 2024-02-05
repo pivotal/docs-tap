@@ -1,4 +1,4 @@
-# Configure Contour to support TLS termination at an AWS Network LoadBalancer (NLB)
+# Configure Contour to support TLS termination at an AWS Network LoadBalancer
 
 This topic tells you how to configure Contour to accept traffic from an AWS 
 Network LoadBalancer (NLB) that terminates TLS traffic.
@@ -33,9 +33,9 @@ Use AWS Certificate Manager (ACM) to import your certificate.
 
 This process is streamlined when Route 53 manages `DOMAIN`.
 
-**Important** Record the `ARN` of the created certificate, which is required in the following steps.
+>**Important** Record the `ARN` of the created certificate, which is required in the following steps.
 
-## <a id="config-tap"></a>Part 2: Configure Tanzu Application Platform
+## <a id="config-tap"></a> Configure Tanzu Application Platform
 
 Follow these steps to configure your Tanzu Application Platform:
 
@@ -123,7 +123,7 @@ Follow these steps to configure your AWS:
 
     ![Image of listeners on AWS LoadBalancer.](./images/aws-lb-https-listeners.png)
 
-    AWS adds SSL or HTTPS listeners for all ports on the Kubernetes service by default.
+    >**Note** AWS adds SSL or HTTPS listeners for all ports on the Kubernetes service by default.
     In the context of this topic, it indicates that port 80 is also configured to listen on HTTPS.
     To leave port 80 open to HTTP traffic, you can add the annotation `service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"` to your tap-values file at `contour.envoy.service.annotations`.
     The annotation adds an SSL or HTTPS listener for the `https` port on the service. For more information about the annotations, see the [AWS cloud provider documentation](https://cloud-provider-aws.sigs.k8s.io/service_controller/).
