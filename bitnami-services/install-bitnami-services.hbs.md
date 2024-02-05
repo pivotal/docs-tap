@@ -37,7 +37,10 @@ To install Bitnami Services:
 1. Install Bitnami Services by running:
 
     ```console
-    tanzu package install bitnami-services -n tap-install -p bitnami.services.tanzu.vmware.com -v VERSION-NUMBER
+    tanzu package install bitnami-services \
+      --package bitnami.services.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install
     ```
 
     Where `VERSION-NUMBER` is the Bitnami Services version you want to install. For example, `0.1.0`.
