@@ -40,9 +40,9 @@ Each stage has a
       * Must contain only lowercase letters, numbers, `-` and `.` [a-z0-9\\-.]
       * Must define a simple `-major.minor.patch` suffix, eg: `my-component-1.0.1`
     
-[**Workload**]: ./workload.hbs.md
-[**WorkloadRun**]: ./workloadrun.hbs.md
-[**Components**]: ./component.hbs.md
-[**Component**]: ./component.hbs.md
+[**Workload**]: workload.hbs.md
+[**WorkloadRun**]: workloadrun.hbs.md
+[**Components**]: component.hbs.md
+[**Component**]: component.hbs.md
 [Object Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kebernetes documentation for Objects"
 [CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"

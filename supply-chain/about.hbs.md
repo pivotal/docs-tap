@@ -13,5 +13,5 @@ These docs are organized into the following sections:
 
 - [Platform Engineering with Supply Chain](./platform-engineering/about.hbs.md) - For Platform Engineers who wish to author Supply Chains that both simplify developer cognitive load, and ensure compliant, secure delivery of source to production.
 - [Developing software with Supply Chain](./development/about.hbs.md) - For developers that want to deliver their software following team and organization standards.
-- [Technical Reference of the Supply Chain API](./api/about.hbs.md)
+- [Technical Reference](reference/about.hbs.md)
 

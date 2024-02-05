@@ -50,11 +50,11 @@ spec:
 ```
 
 
-[**SupplyChain**]: ./supplychain.hbs.md
-[**SupplyChains**]: ./supplychain.hbs.md
+[**SupplyChain**]: supplychain.hbs.md
+[**SupplyChains**]: supplychain.hbs.md
 [**Workload**]: ./workload.hbs.md
-[**Component**]: ./component.hbs.md
-[**Components**]: ./component.hbs.md
-[**WorkloadRun**]: ./workloadrun.hbs.md
+[**Component**]: component.hbs.md
+[**Components**]: component.hbs.md
+[**WorkloadRun**]: workloadrun.hbs.md
 [CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"
 [Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kebernetes documentation for Objects"

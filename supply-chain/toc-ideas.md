@@ -5,25 +5,16 @@ Rought idea of sections to add to our final toc.
         - [Tutorials](./platform-engineering/tutorials/about.hbs.md)
             - [Build your first supply chain](./tutorials/build-your-first-supply-chain.hbs.md)
             - [Build your first component](./tutorials/build-your-first-component.hbs.md)
-        - [Catalog of Tanzu Supply Chain Components](./platform-engineering/catalog/about.hbs.md) for Platform Engineering
-            - [Source Component](./platform-engineering/catalog/source.hbs.md)
-            - [Git Writer Component](./platform-engineering/catalog/git-writer.hbs.md)
-            - [Conventions Component](./platform-engineering/catalog/git-writer.hbs.md)
-            - [Idioms and Conventions](./platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
         - [How To](./how-to/about.hbs.md)
             - [Supply Chain Authoring](#) Technical guide for writing supply chains.
                 - [Construct a supply chain using the CLI](#)
-                - [Ensure Supply Chains are configurable](#)
-                - [Ensure Supply Chains are managed and versioned, via GitOps](supply-chain/how-to/manage-supply-chains-via-gitops.hbs.md)
+                - [Ensure Supply Chains are managed via GitOps](#) - minimal explanation of gitops intent
+                - [Ensure your components and supply chains adhere to version constraints](#)
             - [Component Authoring](#), a technical guide for building your own components.
-                - [Building Components with the CLI](#) (or Accelerator)
-                - [Test components with our test framework](#)
-                - [Ensure developers can mitigate errors in their workload](#)
-                - [Writing Pipelines and Tasks with Tekton](#)
-            - [Deploying and Managing Supply Chains]()
-                - [Install a Supply Chain](#) using our Supply Chain CLI.
-                - [Configure a Supply Chain for an environment](#)
-            - [Troubleshoot a Supply Chain or Component](#)
+                - [Ensure developers can mitigate errors in their workload](#) Put stuff in results.message, how `results.message` works.
+            - [Deploying and Managing Supply Chains](#)
+                - [Install a Supply Chain](#) (using make targets, watching the gitops repo)
+            - [Troubleshoot a Supply Chain or Component](#) - Describe the point of "Failed" vs "PlatformFailed", then what you can observe
         - [Explanation](#)
             - [Core Concepts: Workloads](#)
             - [Core Concepts: Workload Runs](#)
@@ -36,10 +27,19 @@ Rought idea of sections to add to our final toc.
         - [How To](./how-to/about.hbs.md)
             - [Find the kinds of Workloads I can use](#)
             - [Create a workload](#)
-            - [Observe runs for your workloads](#) -- cli details
+            - [Observe runs for your workloads](#)
             - [Troubleshoot a run](#) -- troubleshooting and remediation guidance
         - [Explanation](#)
-            - [Core Concepts: Workloads](#)
-            - [Core Concepts: Workload Runs](#)
-    - [API](./api/about.hbs.md) Technical Reference of the Supply Chain API.
-  
+            - [Core Concepts: Workloads](#) - No mention of components/supply chains
+            - [Core Concepts: Workload Runs](#) - ditto
+    - [Reference](#)
+      - [API](reference/api/about.hbs.md) Technical Reference of the Supply Chain API.
+      - [Workload Plugin Reference](#) - maybe just a link today
+      - [Supply Chain Plugin Reference](#) - maybe just a link today
+      - [Catalog of Tanzu Supply Chain Components](./platform-engineering/catalog/about.hbs.md) for Platform Engineering
+        - [Source Component](./platform-engineering/catalog/source.hbs.md)
+        - [Git Writer Component](./platform-engineering/catalog/git-writer.hbs.md)
+        - [Conventions Component](./platform-engineering/catalog/git-writer.hbs.md)
+        - [Idioms and Conventions](./platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
+
+

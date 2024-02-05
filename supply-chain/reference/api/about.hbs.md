@@ -20,8 +20,8 @@ final names and CRD are described by the [**SupplyChain**] and [**Components**] 
 to the cluster. Many fields of each CRD are the same across the system.
 
 
-[**SupplyChain**]: ./supplychain.hbs.md
-[**Workload**]: ./workload.hbs.md
-[**Component**]: ./component.hbs.md
-[**Components**]: ./component.hbs.md
-[**WorkloadRun**]: ./workloadrun.hbs.md
+[**SupplyChain**]: supplychain.hbs.md
+[**Workload**]: workload.hbs.md
+[**Component**]: component.hbs.md
+[**Components**]: component.hbs.md
+[**WorkloadRun**]: workloadrun.hbs.md

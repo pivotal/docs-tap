@@ -78,8 +78,8 @@ spec:
 ```
 
 
-[**SupplyChain**]: ./supplychain.hbs.md
-[**Workload**]: ./workload.hbs.md
+[**SupplyChain**]: supplychain.hbs.md
+[**Workload**]: workload.hbs.md
 [**Component**]: ./component.hbs.md
 [**Components**]: ./component.hbs.md
-[**WorkloadRun**]: ./workloadrun.hbs.md
+[**WorkloadRun**]: workloadrun.hbs.md
