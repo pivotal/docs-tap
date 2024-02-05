@@ -741,47 +741,20 @@
       - [Use Memory View in Spring Boot Dashboard](vscode-extension/memory-view.hbs.md)
       - [Troubleshoot Tanzu Developer Tools for VS Code](vscode-extension/troubleshooting.hbs.md)
     - [Tanzu Supply Chain](supply-chain/about.hbs.md)
-      - [Platform Engineering with Supply Chain](./platform-engineering/about.hbs.md)
-        - [Tutorials](./platform-engineering/tutorials/about.hbs.md)
-          - [Build your first supply chain](./tutorials/build-your-first-supply-chain.hbs.md)
-          - [Build your first component](./tutorials/build-your-first-component.hbs.md)
-        - [Catalog of Tanzu Supply Chain Components](./platform-engineering/catalog/about.hbs.md) for Platform Engineering
-          - [Source Component](./platform-engineering/catalog/source.hbs.md)
-          - [Git Writer Component](./platform-engineering/catalog/git-writer.hbs.md)
-          - [Conventions Component](./platform-engineering/catalog/git-writer.hbs.md)
-          - [Idioms and Conventions](./platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
-        - [How To](./how-to/about.hbs.md)
-          - [Supply Chain Authoring](#) Technical guide for writing supply chains.
-            - [Construct a supply chain using the CLI](#)
-            - [Ensure Supply Chains are configurable](#)
-            - [Ensure Supply Chains are managed and versioned, via GitOps](supply-chain/how-to/manage-supply-chains-via-gitops.hbs.md)
-          - [Component Authoring](#), a technical guide for building your own components.
-            - [Building Components with the CLI](#) (or Accelerator)
-            - [Test components with our test framework](#)
-            - [Ensure developers can mitigate errors in their workload](#)
-            - [Writing Pipelines and Tasks with Tekton](#)
-          - [Deploying and Managing Supply Chains]()
-            - [Install a Supply Chain](#) using our Supply Chain CLI.
-            - [Configure a Supply Chain for an environment](#)
-          - [Troubleshoot a Supply Chain or Component](#)
-        - [Explanation](#)
-          - [Core Concepts: Workloads](#)
-          - [Core Concepts: Workload Runs](#)
-          - [Core Concepts: Supply Chain](#)
-          - [Core Concepts: Components](#)
-          - [Core Concepts: Resumptions](#)
-      - [Developing software with Supply Chain](./development/about.hbs.md)
-        - [Tutorials](./development/tutorials/about.hbs.md)
-          - [Deploy your first workload](./tutorials/deploy-your-first-workload.hbs.md)
-        - [How To](./how-to/about.hbs.md)
-          - [Find the kinds of Workloads I can use](#)
-          - [Create a workload](#)
-          - [Observe runs for your workloads](#) -- cli details
-          - [Troubleshoot a run](#) -- troubleshooting and remediation guidance
-        - [Explanation](#)
-          - [Core Concepts: Workloads](#)
-          - [Core Concepts: Workload Runs](#)
-      - [API](./api/about.hbs.md) Technical Reference of the Supply Chain API.
+      - [Platform Engineering with Supply Chain](./supply-chain/platform-engineering/about.hbs.md)
+        - [Tutorials](./supply-chain/platform-engineering/tutorial/about.hbs.md)
+        - [Catalog of Tanzu Supply Chain Components](./supply-chain/platform-engineering/catalog/about.hbs.md) for Platform Engineering
+          - [Source Component](./supply-chain/platform-engineering/catalog/source.hbs.md)
+          - [Git Writer Component](./supply-chain/platform-engineering/catalog/git-writer.hbs.md)
+          - [Conventions Component](./supply-chain/platform-engineering/catalog/conventions.hbs.md)
+          - [Idioms and Conventions](./supply-chain/platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
+        - [How To](./supply-chain/platform-engineering/how-to/about.hbs.md)
+        - [Explanation](./supply-chain/platform-engineering/explanation/about.hbs.md)
+      - [Developing software with Supply Chain](./supply-chain/development/about.hbs.md)
+        - [Tutorials](./supply-chain/development/tutorial/about.hbs.md)
+        - [How To](./supply-chain/development/how-to/about.hbs.md)
+        - [Explanation](./supply-chain/development/explanation/about.hbs.md)
+      - [API](./supply-chain/api/about.hbs.md) Technical Reference of the Supply Chain API.
     - [Tekton Pipelines](tekton/tekton-about.hbs.md)
         - [Tekton overview](tekton/tekton-about.hbs.md)
         - [Install Tekton Pipelines](tekton/install-tekton.hbs.md)

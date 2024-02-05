@@ -9,7 +9,7 @@ The Conventions component is a way to invoke the convention controller in a Tanz
 The conventions controller is a sub component of Cartographer Conventions.
 
 Cartographer Conventions is composed of the convention controller and convention server.
-For more information, see [Overview of Cartographer Conventions](../../cartographer-conventions/about.hbs.md).
+For more information, see [Overview of Cartographer Conventions](../../../cartographer-conventions/about.hbs.md).
 
 > **Note** conventions controller is bundled with the Cartographer Conventions package for
 Tanzu Application Platform v1.8 but it will be in a dedicated
