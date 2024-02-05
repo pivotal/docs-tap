@@ -296,10 +296,10 @@ To install Application Live View back end:
 
     ```console
     tanzu package install appliveview \
-      -p backend.appliveview.tanzu.vmware.com \
-      -v VERSION-NUMBER \
-      -n tap-install \
-      -f app-live-view-backend-values.yaml
+      --package backend.appliveview.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file app-live-view-backend-values.yaml
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
@@ -308,10 +308,10 @@ To install Application Live View back end:
 
     ```console
     $ tanzu package install appliveview \
-        -p backend.appliveview.tanzu.vmware.com \
-        -v 1.8.0 \
-        -n tap-install \
-        -f app-live-view-backend-values.yaml
+        --package backend.appliveview.tanzu.vmware.com \
+        --version 1.8.0 \
+        --namespace tap-install \
+        --values-file app-live-view-backend-values.yaml
 
     - Installing package 'backend.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -533,10 +533,10 @@ To install Application Live View connector:
 
     ```console
     tanzu package install appliveview-connector \
-      -p connector.appliveview.tanzu.vmware.com \
-      -v VERSION-NUMBER \
-      -n tap-install \
-      -f app-live-view-connector-values.yaml
+      --package connector.appliveview.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file app-live-view-connector-values.yaml
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
@@ -545,10 +545,10 @@ To install Application Live View connector:
 
     ```console
     $ tanzu package install appliveview-connector \
-        -p connector.appliveview.tanzu.vmware.com \
-        -v 1.8.0 \
-        -n tap-install \
-        -f app-live-view-connector-values.yaml
+        --package connector.appliveview.tanzu.vmware.com \
+        --version 1.8.0 \
+        --namespace tap-install \
+        --values-file app-live-view-connector-values.yaml
 
     | Installing package 'connector.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -641,9 +641,9 @@ To install Application Live View conventions:
 
       ```console
       tanzu package install appliveview-conventions \
-        -p conventions.appliveview.tanzu.vmware.com \
-        -v VERSION-NUMBER \
-        -n tap-install
+        --package conventions.appliveview.tanzu.vmware.com \
+        --version VERSION-NUMBER \
+        --namespace tap-install
       ```
 
       Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
@@ -652,9 +652,9 @@ To install Application Live View conventions:
 
       ```console
       $ tanzu package install appliveview-conventions \
-          -p conventions.appliveview.tanzu.vmware.com \
-          -v 1.8.0 \
-          -n tap-install
+          --package conventions.appliveview.tanzu.vmware.com \
+          --version 1.8.0 \
+          --namespace tap-install
 
       - Installing package 'conventions.appliveview.tanzu.vmware.com'
       | Getting namespace 'tap-install'
@@ -673,10 +673,10 @@ To install Application Live View conventions:
 
       ```console
       tanzu package install appliveview-conventions \
-        -p conventions.appliveview.tanzu.vmware.com \
-        -v VERSION-NUMBER \
-        -n tap-install \
-        -f app-live-view-conventions-values.yaml
+        --package conventions.appliveview.tanzu.vmware.com \
+        --version VERSION-NUMBER \
+        --namespace tap-install \
+        --values-file app-live-view-conventions-values.yaml
       ```
 
       Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
@@ -757,9 +757,9 @@ To install Application Live View APIServer:
 
       ```console
       tanzu package install appliveview-apiserver \
-        -p apiserver.appliveview.tanzu.vmware.com \
-        -v VERSION-NUMBER \
-        -n tap-install
+        --package apiserver.appliveview.tanzu.vmware.com \
+        --version VERSION-NUMBER \
+        --namespace tap-install
       ```
 
       Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
@@ -768,9 +768,9 @@ To install Application Live View APIServer:
 
       ```console
       $ tanzu package install appliveview-apiserver \
-          -p apiserver.appliveview.tanzu.vmware.com \
-          -v 1.8.0 \
-          -n tap-install
+          --package apiserver.appliveview.tanzu.vmware.com \
+          --version 1.8.0 \
+          --namespace tap-install
 
       - Installing package 'apiserver.appliveview.tanzu.vmware.com'
       | Getting namespace 'tap-install'
@@ -786,10 +786,10 @@ To install Application Live View APIServer:
 
       ```console
       tanzu package install appliveview-apiserver \
-        -p apiserver.appliveview.tanzu.vmware.com \
-        -v VERSION-NUMBER \
-        -n tap-install \
-        -f app-live-view-apiserver-values.yaml
+        --package apiserver.appliveview.tanzu.vmware.com \
+        --version VERSION-NUMBER \
+        --namespace tap-install \
+        --values-file app-live-view-apiserver-values.yaml
       ```
 
       Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.8.0`.
