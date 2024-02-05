@@ -38,7 +38,10 @@ To install Crossplane:
 1. Install Crossplane by running:
 
     ```console
-    tanzu package install crossplane -n tap-install -p crossplane.tanzu.vmware.com -v VERSION-NUMBER
+    tanzu package install crossplane \
+      --package crossplane.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install
     ```
 
     Where `VERSION-NUMBER` is the Crossplane version you want to install. For example, `0.1.1`.
