@@ -204,7 +204,7 @@ To install Contour from the Tanzu Application Platform package repository withou
         clusters such as `kind` can fail to complete the package
         install if LoadBalancer services are not supported.
 
-        For local clusters, you can configure `contour.evnoy.service.type` to be
+        For local clusters, you can configure `contour.envoy.service.type` to be
         `NodePort`. If your local cluster is set up with extra port mappings on
         the nodes, you might also need configure `envoy.service.nodePorts.http`
         and `envoy.service.nodePorts.https` to match the port mappings from your
