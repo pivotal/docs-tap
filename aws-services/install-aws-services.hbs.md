@@ -155,7 +155,11 @@ To install the AWS Services package:
 1. Install the AWS Services package by running:
 
     ```console
-    tanzu package install aws-services -p aws.services.tanzu.vmware.com --version VERSION-NUMBER -n tap-install --values-file aws-services-values.yaml
+    tanzu package install aws-services \
+      --package aws.services.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file aws-services-values.yaml
     ```
 
     Where `VERSION-NUMBER` is the AWS Services version you want to install. For example, `0.1.0`.
