@@ -103,7 +103,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
     Where `VERSION` is the version of Tanzu Build Service. You can retrieve this value by running `kubectl get package -n tap-install | grep buildservice`
 
-1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../install-offline/grype-offline-airgap.hbs.md).
+1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id='create-a-new-git-repository'></a> Create a new Git repository
 
