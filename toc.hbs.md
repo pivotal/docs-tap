@@ -744,10 +744,10 @@
       - [Platform Engineering with Supply Chain](./supply-chain/platform-engineering/about.hbs.md)
           - [Tutorials](./supply-chain/platform-engineering/tutorial/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](./supply-chain/platform-engineering/catalog/about.hbs.md) for Platform Engineering
-            - [Source Component](./supply-chain/platform-engineering/catalog/source.hbs.md)
-            - [Git Writer Component](./supply-chain/platform-engineering/catalog/git-writer.hbs.md)
-            - [Conventions Component](./supply-chain/platform-engineering/catalog/conventions.hbs.md)
-            - [Idioms and Conventions](./supply-chain/platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
+              - [Source Component](./supply-chain/platform-engineering/catalog/source.hbs.md)
+              - [Git Writer Component](./supply-chain/platform-engineering/catalog/git-writer.hbs.md)
+              - [Conventions Component](./supply-chain/platform-engineering/catalog/conventions.hbs.md)
+              - [Idioms and Conventions](./supply-chain/platform-engineering/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
           - [How To](./supply-chain/platform-engineering/how-to/about.hbs.md)
           - [Explanation](./supply-chain/platform-engineering/explanation/about.hbs.md)
       - [Developing software with Supply Chain](./supply-chain/development/about.hbs.md)
