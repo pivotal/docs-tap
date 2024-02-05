@@ -755,6 +755,10 @@
           - [How To](./supply-chain/development/how-to/about.hbs.md)
           - [Explanation](./supply-chain/development/explanation/about.hbs.md)
       - [API](./supply-chain/api/about.hbs.md) Technical Reference of the Supply Chain API.
+          - [SupplyChain](./supply-chain/api/supplychain.hbs.md)
+          - [Component](./supply-chain/api/component.hbs.md)
+          - [Workload](./supply-chain/api/workload.hbs.md)
+          - [WorkloadRun](./supply-chain/api/workloadrun.hbs.md)
     - [Tekton Pipelines](tekton/tekton-about.hbs.md)
         - [Tekton overview](tekton/tekton-about.hbs.md)
         - [Install Tekton Pipelines](tekton/install-tekton.hbs.md)
