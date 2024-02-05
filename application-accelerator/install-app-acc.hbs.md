@@ -75,10 +75,10 @@ To install Application Accelerator:
 
     ```console
     tanzu package install app-accelerator \
-      -p accelerator.apps.tanzu.vmware.com \
-      -v VERSION-NUMBER \
-      -n tap-install \
-      -f app-accelerator-values.yaml
+      --package accelerator.apps.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file app-accelerator-values.yaml
     ```
 
     Where `VERSION-NUMBER` is the version of the Application Accelerator package listed earlier.
@@ -87,10 +87,10 @@ To install Application Accelerator:
 
     ```console
     $ tanzu package install app-accelerator \
-        -p accelerator.apps.tanzu.vmware.com \
-        -v 1.4.0 \
-        -n tap-install \
-        -f app-accelerator-values.yaml
+        --package accelerator.apps.tanzu.vmware.com \
+        --version 1.4.0 \
+        --namespace tap-install \
+        --values-file app-accelerator-values.yaml
 
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
