@@ -21,7 +21,7 @@ This topic will cover the simplest case of using a wildcard cert for your domain
 
 For example, if your domain is `bigbiz.com`, then the certificate should be for the wildcard domain `*.bigbiz.com`, and everything routed through Contour should fit that domain pattern.
 
-However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `{{.Name}}.{{.Namespace}}.{{.Domain}}`.
+However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`.
 
 The wildcard cert described previously will not apply to these URLs. To account for this, this topic will explain how to configure CNRs (Cloud Native Runtimes) such that Web Workload URLs will also fit the wildcard domain.
 
@@ -86,7 +86,7 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
    cnrs:
      default_external_scheme: "https"
      ingress_issuer: ""
-     domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+     domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
 
    contour:
      envoy:
