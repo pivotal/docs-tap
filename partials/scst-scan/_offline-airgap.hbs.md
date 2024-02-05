@@ -1,3 +1,69 @@
+## <a id="trivy-with-scan-2-0"></a> Using Trivy with Scan 2.0
+
+The Aqua Trivy vulnerability scanner uses two databases to perform vulnerability scans:
+
+1. Vulnerability Database: This database contains the vulnerability information that is used to scan artifacts. This database is built every six hours on [GitHub](https://github.com/aquasecurity/trivy-db) and is distributed via [GitHub Container registry (GHCR)](https://ghcr.io/aquasecurity/trivy-db). 
+
+2. Java Index Database: This database enables Trivy to identify the groupId, artifactId, and version of JAR files. It is built once a day on [GitHub](https://github.com/aquasecurity/trivy-java-db) and distributed via [GitHub Container registry (GHCR)](https://ghcr.io/aquasecurity/trivy-java-db). 
+
+In an online installation of Tanzu Application Platform, these databases are automatically downloaded from GHCR with each scan execution.  In order to enable scanning in an offline environment, these two databases need to be relocated to your private registry, and Trivy needs to be configured to use your private location instead of downloading from GHCR.
+
+### <a id="relocate-trivy-databases"></a>Relocate Trivy Images
+
+The databases are stored in an OCI compliant registry as OCI artifacts.  In order to copy these to your private registry, Trivy recommends using the oras cli.  It can be installed using the following instructions.  
+
+To make the Trivy databases available in your private registry, do the following:
+
+1.  Create a repository within your private registry.  In this example, we’ll use aquasecurity to remain consistent with the GHCR repository.
+2.  Copy the vulnerability database from GHCR to your private registry using the following oras command:
+    ```console
+    oras cp ghcr.io/aquasecurity/trivy-db:2 <container-registry>/aquasecurity/trivy-db
+    ```
+    > **Note**  The Trivy scanner is hardcode to use the `2` tag for the vulnerability database.
+
+    Where `<container-registry>` is the url for your container registry.  For example, `harbor.example.com`
+    
+3.  Copy the Java index database from GHCR to your private registry
+    ```console
+    oras cp ghcr.io/aquasecurity/trivy-java-db:1 harbor.<container-registry>/aquasecurity/trivy-java-db
+    ```
+
+    Where `<container-registry>` is the url for your container registry.  For example, `harbor.example.com`
+
+    > **Note**  The Trivy scanner is hardcode to use the `1` tag for the Java index database.
+
+### <a id="Configure-trivy"></a>Configure Trivy in the Supply Chain
+
+Now that you have relocated the images, we need to configure the scanning step of the supply chain to use Trivy with the Scan 2.0 component, and provide the location of the database artifacts in the private registry.
+
+1.  To enable Scan 2.0 with Trivy with private registries, update your `tap-values.yaml` file to specify the Trivy ClusterImageTemplate. For example:
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      image_scanner_template_name: image-vulnerability-scan-trivy
+      scanning:
+        steps:
+          env_vars:
+          - name: TRIVY_DB_REPOSITORY
+            value: <container-registry>/aquasecurity/trivy-db
+          - name: TRIVY_JAVA_DB_REPOSITORY
+            value: <container-registry>/aquasercurity/trivy-java-db
+    ```
+
+    Where `<container-registry>` is the url for your container registry.  For example, `harbor.example.com`
+
+2. Update your Tanzu Application Platform installation by running:
+
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+    ```
+
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+
+## <a id="grype-with-scan-1-0"></a> Using Grype with Scan 1.0
+
+VMware recommends using [Aqua Trivy](https://www.aquasec.com/products/trivy/) with Scan 2.0 for offline/air-gapped environments due to the simlified setup and maintenance.  However, if you require policy enablement based on vulnerability scanning, use the following steps to enable Grype scanning with Scan 1.0.  
+
 The `grype` CLI attempts to perform two over the Internet calls:
 
 - One to verify for later versions of the CLI.
@@ -9,7 +75,7 @@ the `grype` CLI with the internal URL.
 
 The `grype` CLI accepts environment variables to satisfy these needs.
 
-## <a id="host-grype-db"></a> Host the Grype vulnerability database
+### <a id="host-grype-db"></a> Host the Grype vulnerability database
 
 To host Grype's vulnerability database in an air-gapped environment:
 
@@ -76,7 +142,7 @@ To host Grype's vulnerability database in an air-gapped environment:
 
   For information about setting up an offline vulnerability database, see the [Anchore Grype README](https://github.com/anchore/grype#offline-and-air-gapped-environments) in GitHub.
 
-## <a id="enable-grype-airgap"></a> To enable Grype in offline air-gapped environments
+### <a id="enable-grype-airgap"></a> To enable Grype in offline air-gapped environments
 
 1. Add the following to your `tap-values.yaml` file:
 
@@ -126,9 +192,9 @@ Where `spec.template.initContainers[]` specifies setting one or more environment
 
 > **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md).
 
-## <a id="troubleshooting"></a> Troubleshooting
+### <a id="troubleshooting"></a> Troubleshooting
 
-### ERROR failed to fetch latest cli version
+#### ERROR failed to fetch latest cli version
 
 > **Note** This message is a warning and the Grype scan still runs with this message.
 
@@ -138,7 +204,7 @@ The Grype CLI checks for later versions of the CLI by contacting the anchore end
 ERROR failed to fetch latest version: Get "https://toolbox-data.anchore.io/grype/releases/latest/VERSION": dial tcp: lookup toolbox-data.anchore.io on [::1]:53: read udp [::1]:65010->[::1]:53: read: connection refused
 ```
 
-#### Solution
+##### Solution
 
 To deactivate this check, set the environment variable `GRYPE_CHECK_FOR_APP_UPDATE` to `false` by using a package overlay with the following steps:
 
@@ -183,7 +249,7 @@ To deactivate this check, set the environment variable `GRYPE_CHECK_FOR_APP_UPDA
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-### Database is too old
+#### Database is too old
 
 ```console
 1 error occurred:
@@ -193,7 +259,7 @@ To deactivate this check, set the environment variable `GRYPE_CHECK_FOR_APP_UPDA
 Grype needs up-to-date vulnerability information to provide accurate matches. By
 default, it fails to run if the local database was not built in the last 5 days.
 
-#### Solution
+##### Solution
 
 Two options to resolve this:
 
@@ -250,14 +316,14 @@ the following steps:
         tanzu package installed update tap -f tap-values.yaml -n tap-install
         ```
 
-### Vulnerability database is invalid
+#### Vulnerability database is invalid
 
 ```console
 scan-pod[scan-plugin]  1 error occurred:
 scan-pod[scan-plugin]  * failed to load vulnerability db: vulnerability database is invalid (run db update to correct): database metadata not found: /.cache/grype/db/5
 ```
 
-#### Solution
+##### Solution
 
 Examine the `listing.json` file you created. This matches the format of the listing file. The listing file is located at Anchore Grype's public endpoint. See the [Grype README.md](https://github.com/anchore/grype#how-database-updates-work) in GitHub.
 
@@ -331,7 +397,7 @@ Verify these possible reasons why the vulnerability database is not valid:
     grype db list -o raw
     ```
 
-#### Debug Grype database in a cluster
+##### Debug Grype database in a cluster
 
 1. Describe the failed source scan or image scan to verify the name of the ScanTemplate being used.
 
