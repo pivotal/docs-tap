@@ -102,10 +102,13 @@ To override the default settings and customize the probes at a cluster level:
 
    ```console
    tanzu package install spring-boot-conventions \
-   --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 1.7.0 \
-   --namespace tap-install -f values.yaml
+     --package spring-boot-conventions.tanzu.vmware.com \
+     --version VERSION-NUMBER \
+     --namespace tap-install
+     --values-file values.yaml
    ```
+
+   Where `VERSION-NUMBER` is the version of the package to install. For example: `1.7.2`.
 
 4. Verify that you installed the package by running:
 
