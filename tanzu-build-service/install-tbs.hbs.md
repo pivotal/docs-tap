@@ -55,9 +55,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
       --password "${REGISTRY_PASSWORD}" \
       --namespace tap-install
     ```
-   
+
     Where:
-    - `REGISTRY_HOST` is the hostname for the registry that will contain your `kp_default_repository`. 
+    - `REGISTRY_HOST` is the hostname for the registry that will contain your `kp_default_repository`.
        Examples:
         - Harbor has the form `server: "my-harbor.io"`.
         - Docker Hub has the form `server: "index.docker.io"`.
@@ -135,7 +135,11 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
 1. Install the Tanzu Build Service package by running:
 
     ```console
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    tanzu package install tbs \
+      --package buildservice.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tbs-values.yaml
     ```
 
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
@@ -143,7 +147,11 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
     For example:
 
     ```console
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs \
+        --package buildservice.tanzu.vmware.com \
+        --version 1.12.4 \
+        --namespace tap-install \
+        --vaules-file tbs-values.yaml
 
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
