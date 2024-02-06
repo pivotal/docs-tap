@@ -56,9 +56,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
       --password "${REGISTRY-PASSWORD}" \
       --namespace tap-install
     ```
-   
+
     Where:
-    - `REGISTRY-HOST` is the host name for the registry that contains your `kp_default_repository`. 
+    - `REGISTRY-HOST` is the host name for the registry that contains your `kp_default_repository`.
        For example:
         - Harbor has the form `server: "my-harbor.io"`.
         - Docker Hub has the form `server: "index.docker.io"`.
@@ -134,7 +134,11 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
 1. Install the Tanzu Build Service package by running:
 
     ```console
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    tanzu package install tbs \
+      --package buildservice.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tbs-values.yaml
     ```
 
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
@@ -142,7 +146,11 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
     For example:
 
     ```console
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs \
+        --package buildservice.tanzu.vmware.com \
+        --version 1.12.4 \
+        --namespace tap-install \
+        --vaules-file tbs-values.yaml
 
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -238,7 +246,7 @@ To install `full` Tanzu Build Service dependencies:
         namespace: tap-install
       exclude_dependencies: true
     ```
- 
+
 1. If you have not updated your package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
@@ -281,8 +289,14 @@ To install `full` Tanzu Build Service dependencies:
 3. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TBS-OR-TAP-VALUES-FILE
+    tanzu package install full-tbs-deps \
+      --package full-deps.buildservice.tanzu.vmware.com \
+      --version "> 0.0.0" \
+      --namespace tap-install \
+      --values-file VALUES-FILE
     ```
+
+    Where `VALUES-FILE` is the path to your Tanzu Build Service or Tanzu Application Platform values YAML file.
 
 ## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
 

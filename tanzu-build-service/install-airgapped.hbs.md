@@ -74,7 +74,11 @@ To install the Tanzu Build Service package on an air-gapped environment:
 1. Install the package by running:
 
     ```console
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    tanzu package install tbs \
+      --package buildservice.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tbs-values.yaml
     ```
 
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
@@ -82,7 +86,11 @@ To install the Tanzu Build Service package on an air-gapped environment:
     For example:
 
     ```console
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs \
+        --package buildservice.tanzu.vmware.com \
+        --version 1.12.4 \
+        --namespace tap-install \
+        --values-file tbs-values.yaml
 
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
