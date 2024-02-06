@@ -87,13 +87,23 @@ To install Cloud Native Runtimes:
 2. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.3.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes \
+      --package cnrs.tanzu.vmware.com \
+      --version 2.3.1 \
+      --namespace tap-install \
+      --values-file cnr-values.yaml \
+      --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.3.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes \
+        --package cnrs.tanzu.vmware.com \
+        --version 2.3.1 \
+        --namespace tap-install \
+        --values-file cnr-values.yaml \
+        --poll-timeout 30m
 
     | Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
