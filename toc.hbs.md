@@ -774,10 +774,7 @@
               - [Core Concepts: Workload Runs](./supply-chain/development/explanation/workload-runs.hbs.md)
       - [Reference](./supply-chain/reference/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](supply-chain/reference/catalog/about.hbs.md) for Platform Engineering
-              - [Source Component](supply-chain/reference/catalog/source.hbs.md)
-              - [Git Writer Component](supply-chain/reference/catalog/git-writer.hbs.md)
-              - [Conventions Component](supply-chain/reference/catalog/conventions.hbs.md)
-              - [Idioms and Conventions](supply-chain/reference/catalog/idioms.hbs.md) used with Tanzu Supply Chain Components
+              - [Output Types](supply-chain/reference/catalog/output-types.hbs.md) used with Tanzu Supply Chain Components
           - [Workload CLI Plugin Reference](./supply-chain/reference/workload-cli.hbs.md)
           - [Supply Chain CLI Plugin Reference](./supply-chain/reference/supply-chain-cli.hbs.md)
           - [API](supply-chain/reference/api/about.hbs.md)
