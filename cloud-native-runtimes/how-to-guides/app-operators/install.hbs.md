@@ -1,6 +1,7 @@
 # Install Cloud Native Runtimes
 
-This topic describes how you can install Cloud Native Runtimes, commonly known as CNRs, from the Tanzu Application Platform package repository.
+This topic describes how you can install Cloud Native Runtimes, commonly known as CNRs, from the
+Tanzu Application Platform package repository.
 
 >**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
 The full profile includes Cloud Native Runtimes.
@@ -84,13 +85,21 @@ To install Cloud Native Runtimes:
 2. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.4.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes \
+      --package cnrs.tanzu.vmware.com \
+      --version 2.4.0 -n tap-install \
+      --values-file cnr-values.yaml \
+      --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.4.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes \
+      --package cnrs.tanzu.vmware.com \
+      --version 2.4.0 -n tap-install \
+      --values-file cnr-values.yaml \
+      --poll-timeout 30m
 
     | Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
