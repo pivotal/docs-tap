@@ -148,7 +148,7 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
     ```console
     $ tanzu package install tbs \
         --package buildservice.tanzu.vmware.com \
-        --version 1.12.4 \
+        --version 1.11.16 \
         --namespace tap-install \
         --vaules-file tbs-values.yaml
 

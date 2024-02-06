@@ -88,7 +88,7 @@ To install the Tanzu Build Service package on an air-gapped environment:
     ```console
     $ tanzu package install tbs \
         --package buildservice.tanzu.vmware.com \
-        --version 1.12.4 \
+        --version 1.11.16 \
         --namespace tap-install \
         --values-file tbs-values.yaml
 
