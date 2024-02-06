@@ -12,7 +12,7 @@ clusters in an air-gapped environment:
 |5.| Install Tanzu Build Service full dependencies. |[Install the Tanzu Build Service dependencies](tbs-offline-install-deps.hbs.md)|
 |6.| Configure custom certificate authorities for Tanzu Developer Portal. |[Configure custom certificate authorities for Tanzu Developer Portal](tap-gui-non-standard-certs-offline.hbs.md) |
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace. |[Configure Application Accelerator](./application-accelerator-configuration.hbs.md)|
-|8.| Apply patch to Grype. |[Use Grype in offline and air-gapped environments](grype-offline-airgap.hbs.md)|
+|8.| (Optional) Apply patch to Grype. |[Use Grype in offline and air-gapped environments](grype-offline-airgap.hbs.md)|
 |9.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
 |10.| Install IDE extensions from Marketplace|[Install IDE Extensions in your air-gapped environment](offline-ide-extensions.hbs.md)|
 

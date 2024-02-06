@@ -25,7 +25,7 @@
       - [Install the Tanzu Build Service dependencies](install-offline/tbs-offline-install-deps.hbs.md)
       - [Configure custom CAs for Tanzu Developer Portal](install-offline/tap-gui-non-standard-certs-offline.hbs.md)
       - [Configure Application Accelerator](install-offline/application-accelerator-configuration.hbs.md)
-      - [Use Grype](install-offline/grype-offline-airgap.hbs.md)
+      - [Set up vulnerability scanning](install-offline/scan-offline-airgap.hbs.md)
       - [Set up namespaces](install-offline/set-up-namespaces.hbs.md)
       - [Install IDE extensions](install-offline/offline-ide-extensions.hbs.md)
   - [Install on AWS Cloud](install-aws/intro.hbs.md)

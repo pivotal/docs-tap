@@ -11,7 +11,7 @@ overlays to the ScanTemplate through package customization as Namespace Provisio
 directly create the ScanTemplate. For more information on how to customize a package installation, see [Customize a package](../customize-package-installation.hbs.md).
 
 For information about potential customizations of the `grype-scanner` and troubleshooting
-tips, see [Use Grype in offline and air-gapped environments](../install-offline/grype-offline-airgap.hbs.md).
+tips, see [Use Grype in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md).
 
 1. To enable updates to the ScanTemplates, create an overlay specifically designed for this
 purpose. When the package is processed, the overlay is applied to the ScanTemplate. It is done

@@ -98,7 +98,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
 1. [Configure custom certificate authorities for Tanzu Developer Portal](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
 
-1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../../install-offline/grype-offline-airgap.hbs.md).
+1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id='create-a-new-git-repository'></a>Create a new Git repository
 
