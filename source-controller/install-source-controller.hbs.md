@@ -87,7 +87,11 @@ To install Source Controller:
 4. Install the package by running:
 
     ```console
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
+    tanzu package install source-controller \
+      --package controller.source.apps.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file VALUES-FILE
     ```
 
     Where:
@@ -98,7 +102,12 @@ To install Source Controller:
     For example:
 
     ```console
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.4.1  -n tap-install -f source-controller-values.yaml
+    $ tanzu package install source-controller
+        --package controller.source.apps.tanzu.vmware.com
+        --version 0.4.1  
+        --namespace tap-install
+        --values-file source-controller-values.yaml
+
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
     | Creating service account 'source-controller-default-sa'
