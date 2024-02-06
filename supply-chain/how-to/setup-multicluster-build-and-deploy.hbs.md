@@ -1,1 +1,0 @@
-# How To set up multicluster build and deploy configurations 

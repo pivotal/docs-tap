@@ -1,0 +1,1 @@
+# Ensure Supply Chains are managed via GitOps

@@ -1,1 +1,0 @@
-# Components and Supply Chains explained
