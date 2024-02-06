@@ -84,11 +84,11 @@ To install External Secrets Operator:
    For example:
 
    ```console
-   tanzu package install external-secrets \
-   --package external-secrets.apps.tanzu.vmware.com \
-   --version 0.6.1+tap.6 \
-   --values-file external-secrets-values.yaml \
-   --namespace tap-install
+   $ tanzu package install external-secrets \
+       --package external-secrets.apps.tanzu.vmware.com \
+       --version 0.6.1+tap.6 \
+       --values-file external-secrets-values.yaml \
+       --namespace tap-install
 
    \ Installing package 'external-secrets.apps.tanzu.vmware.com'
    | Getting package metadata for 'external-secrets.apps.tanzu.vmware.com'
