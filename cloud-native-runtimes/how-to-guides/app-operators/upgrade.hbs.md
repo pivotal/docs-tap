@@ -17,7 +17,11 @@ The following prerequisites are required to upgrade Cloud Native Runtimes:
 To upgrade the Cloud Native Runtimes PackageInstall specifically, run:
 
 ```console
-tanzu package installed update cloud-native-runtimes -p cnrs.tanzu.vmware.com -v CNR-VERSION --values-file cnr-values.yaml -n tap-install
+tanzu package installed update cloud-native-runtimes \
+  --package cnrs.tanzu.vmware.com \
+  --version CNR-VERSION \
+  --namespace tap-install \
+  --values-file cnr-values.yaml
 ```
 
 Where `CNR-VERSION` is the latest version of Cloud Native Runtimes available as part of the new Tanzu Application Platform package repository.
