@@ -6,3 +6,4 @@ Components:
 - [Source](source.hbs.md)
 - [Conventions](conventions.hbs.md)
 - [Git Writer](git-writer.hbs.md)
+- [Trivy Scanning](trivy-scanning.hbs.md)
