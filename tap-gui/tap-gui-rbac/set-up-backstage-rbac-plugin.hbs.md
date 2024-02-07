@@ -183,10 +183,12 @@ like below as an example that's using Google authentication:
 tap_gui:
   app_config:
     auth:
+      environment: development
       providers:
         google: # https://backstage.io/docs/auth/google/provider/
-          clientId: GOOGLE-CLIENT-ID
-          clientSecret: GOOGLE-CLIENT-SECRET
+          development:
+            clientId: GOOGLE-CLIENT-ID
+            clientSecret: GOOGLE-CLIENT-SECRET
     permission:
       enabled: true
       permissionedPlugins:
