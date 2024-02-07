@@ -54,6 +54,11 @@ The following issues, listed by component and area, are resolved in this release
 no more items to be retrieved during a paginated query. This fixes the issue
 where the last page always returns an empty list.
 
+#### <a id='1-7-4-contour-ri'></a> v1.7.4 Resolved issues: Contour
+
+- Ships with Contour 1.25.3
+- Fixes downtime during upgrades to 1.7.0-1.7.3. No downtime is experienced when upgrading to 1.7.4. Additionally, switching from DaemonSet to Deployments is now safe to do without downtime.
+  - No downtime upgrades are only possible with more than one node on the cluster
 ---
  
 ### <a id='1-7-4-known-issues'></a> v1.7.4 Known issues 
