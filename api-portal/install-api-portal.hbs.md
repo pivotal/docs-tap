@@ -97,7 +97,7 @@ To update the installation values for the `api-portal` package:
    `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values by running:
 
     ```console
-    tanzu package installed get api-portal -n tap-install -f api-portal-values.yaml
+    tanzu package installed get api-portal -n tap-install --values-file api-portal-values.yaml
     ```
 
     You can view the schema of the package:
@@ -128,7 +128,7 @@ To update the installation values for the `api-portal` package:
 See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
     ```console
-    tanzu package installed update tap --package tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
+    tanzu package installed update tap --package tap.tanzu.vmware.com --version {VERSION} --values-file tap-values.yaml -n tap-install
     ```
 
 >**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
