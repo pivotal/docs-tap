@@ -84,7 +84,7 @@ To install Tanzu Developer Portal on a compliant Kubernetes cluster:
     tanzu package install tap-gui \
      --package tap-gui.tanzu.vmware.com \
      --version VERSION -n tap-install \
-     -f tap-gui-values.yaml
+     --values-file tap-gui-values.yaml
     ```
 
     Where `VERSION` is the version that you want. For example, `1.0.1`.
@@ -93,7 +93,7 @@ To install Tanzu Developer Portal on a compliant Kubernetes cluster:
 
     ```console
     $ tanzu package install tap-gui --package tap-gui.tanzu.vmware.com --version 1.0.1 -n \
-    tap-install -f tap-gui-values.yaml
+    tap-install --values-file tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
