@@ -97,7 +97,7 @@ To update the installation values for the `api-portal` package:
    `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values by running:
 
     ```console
-    tanzu package installed get api-portal -n tap-install --values-file api-portal-values.yaml
+    tanzu package installed get api-portal -n tap-install --values-file-output api-portal-values.yaml
     ```
 
     You can view the schema of the package:
