@@ -13,7 +13,7 @@ Scan 2.0 provides the ability to schedule container image scans with the followi
 * Customize how far back you want to scan container images based on
 ** When the container image was created via the supply chain
 ** When the container image entered a running state on your TAP Cluster
-* Use the same [ImageVulnerabilityScan]() templates used in Scan 2.0 scans to use one of the provided [samples](scst-scan/ivs-custom-samples.hbs.md) or [create your own](scst-scan/ivs-create-your-own.hbs.md)
+* Use the same [ImageVulnerabilityScan]() templates used in Scan 2.0 scans to use one of the provided [samples](ivs-custom-samples.hbs.md) or [create your own](scst-scan/ivs-create-your-own.hbs.md)
 * View discovered vulnerabilities from your most recent image in the Tanzu Developer Portal Supply Chain Choreographer plugin
 * Use when either Scan 1.0 or Scan 2.0 is defined as your supply chain scanning component
 
