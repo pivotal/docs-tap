@@ -202,7 +202,7 @@ To create the composition:
                 key: password
                 namespace: crossplane-system
               engine: postgres
-              engineVersion: "13.7"
+              engineVersion: "13.8"                   # <---- Refer to https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-release-calendar.html for latest
               name: postgres
               username: masteruser
               publiclyAccessible: true                # <---- DANGER
