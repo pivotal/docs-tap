@@ -171,7 +171,7 @@ published TechDocs files:
       ```console
       tanzu package installed update tap \
         --version PACKAGE-VERSION \
-        -f VALUES-FILE
+        --values-file VALUES-FILE
       ```
 
       Where `PACKAGE-VERSION` is your package version and `VALUES-FILE` is your values file
@@ -183,7 +183,7 @@ published TechDocs files:
       ```console
       tanzu package installed update tap-gui \
         --version PACKAGE-VERSION \
-        -f VALUES-FILE
+        --values-file VALUES-FILE
       ```
 
       Where `PACKAGE-VERSION` is your package version and `VALUES-FILE` is your values file
