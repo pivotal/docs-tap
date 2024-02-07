@@ -41,7 +41,7 @@ Although other scan integrations are available, the default configuration for Sc
 
 Scan 2.0 was introduced in the TAP 1.5 release as an Alpha and now enters GA in TAP 1.8.  This iteration of SCST - Scan focuses on simplifying the integration experience by decoupling SCST - Store submission and policy from the scanning task.  This allows integration to be simplified and focused on the task of scanning workloads for vulnerabilities. 
 
-The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.  See [ recurring-scanning](recurring-scanning.md) for more information.  This capability can be used regardless if you are using Scan 1.0 or Scan 2.0 as part of your supply chain.
+The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.  See [ recurring-scanning](recurring-scanning.hbs.md) for more information.  This capability can be used regardless if you are using Scan 1.0 or Scan 2.0 as part of your supply chain.
 
 Scan 2.0 ships with the default configuration to use open-source [Aqua Security Trivy](https://www.aquasec.com/products/trivy/) as the imager scanner, and we include a Grype template for backwards compatibility.  Examples of other integrations, as well as how to build your own integration with this simplified interface, are provided in documentation.
 
