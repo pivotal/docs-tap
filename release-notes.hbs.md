@@ -11,29 +11,16 @@ v{{ vars.url_version }}.
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-6-8-COMPONENT-NAME-fixes'></a> v1.6.8 Security fixes: COMPONENT-NAME
- 
-- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table
- 
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table> 
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-29409</li><li>CVE-2023-29406</li><li>CVE-2023-41053</li><li>CVE-2023-41056</li><li>CVE-2023-45145 </li></ul>|
+| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-22365</li><li>CVE-2022-44840</li><li>CVE-2022-45703</li><li>CVE-2022-47007</li><li>CVE-2022-47008</li><li>CVE-2022-47010</li><li>CVE-2022-47011</li><li>CVE-2023-6004</li><li>CVE-2023-6918 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li> GHSA-45x7-px36-x8w8</li><li>CVE-2023-42503</li><li>GHSA-cgwf-w82q-5jrr</li><li>GHSA-wjxj-5m7g-mg7q </li></ul>|
+| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>CVE-2023-34053 </li></ul>|
+| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-33pg-m6jh-5237</li><li>GHSA-6wrf-mxfj-pf5p</li><li>GHSA-6xv5-86q9-7xr8 </li></ul>|
+| cert-manager.tanzu.vmware.com | <ul><li> CVE-2023-39326 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-46862</li><li>CVE-2023-6121</li><li>CVE-2024-0641</li><li>CVE-2023-5197</li><li>CVE-2023-45863</li><li>CVE-2021-44879 </li></ul>|
+| metadata-store.apps.tanzu.vmware.com | <ul><li> CVE-2023-29409</li><li>CVE-2023-45285 </li></ul>|
  
 ---
  
