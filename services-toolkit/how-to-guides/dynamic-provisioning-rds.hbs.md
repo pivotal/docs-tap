@@ -142,7 +142,7 @@ To create the composition:
               dbInstanceClass: db.t2.micro
               engine: postgres
               dbName: postgres
-              engineVersion: "12"
+              engineVersion: "12"                     # <---- Refer to https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-release-calendar.html for latest
               masterUsername: masteruser
               publiclyAccessible: true                # <---- DANGER
               region: us-east-1
