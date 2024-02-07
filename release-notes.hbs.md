@@ -11,29 +11,12 @@ v{{ vars.url_version }}.
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-5-10-COMPONENT-NAME-fixes'></a> v1.5.10 Security fixes: COMPONENT-NAME
- 
-- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table
- 
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table> 
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-39804</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-5981</li><li>CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-22365</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-7ww5-4wqc-m92c</li><li>CVE-2022-35205</li><li>CVE-2022-40982</li><li>CVE-2022-4269</li><li>CVE-2022-44840</li><li>CVE-2022-45703</li><li>CVE-2022-45886</li><li>CVE-2022-45919</li><li>CVE-2022-47007</li><li>CVE-2022-47008</li><li>CVE-2022-47010</li><li>CVE-2022-47011</li><li>CVE-2022-48502</li><li>CVE-2023-0597</li><li>CVE-2023-1206</li><li>CVE-2023-1611</li><li>CVE-2023-1855</li><li>CVE-2023-1990</li><li>CVE-2023-2002</li><li>CVE-2023-20569</li><li>CVE-2023-20588</li><li>CVE-2023-20593</li><li>CVE-2023-21255</li><li>CVE-2023-21400</li><li>CVE-2023-2163</li><li>CVE-2023-2194</li><li>CVE-2023-25775</li><li>CVE-2023-28321</li><li>CVE-2023-28322</li><li>CVE-2023-28466</li><li>CVE-2023-30772</li><li>CVE-2023-3090</li><li>CVE-2023-31248</li><li>CVE-2023-3141</li><li>CVE-2023-3212</li><li>CVE-2023-3268</li><li>CVE-2023-33203</li><li>CVE-2023-33288</li><li>CVE-2023-3338</li><li>CVE-2023-3389</li><li>CVE-2023-3390</li><li>CVE-2023-34256</li><li>CVE-2023-34319</li><li>CVE-2023-3439</li><li>CVE-2023-35001</li><li>CVE-2023-35788</li><li>CVE-2023-35823</li><li>CVE-2023-35824</li><li>CVE-2023-35828</li><li>CVE-2023-35829</li><li>CVE-2023-3609</li><li>CVE-2023-3610</li><li>CVE-2023-3611</li><li>CVE-2023-37453</li><li>CVE-2023-3772</li><li>CVE-2023-3773</li><li>CVE-2023-3776</li><li>CVE-2023-3777</li><li>CVE-2023-38426</li><li>CVE-2023-38428</li><li>CVE-2023-38429</li><li>CVE-2023-38545</li><li>CVE-2023-38546</li><li>CVE-2023-3863</li><li>CVE-2023-3865</li><li>CVE-2023-3866</li><li>CVE-2023-39189</li><li>CVE-2023-39192</li><li>CVE-2023-39193</li><li>CVE-2023-39194</li><li>CVE-2023-39197</li><li>CVE-2023-39198</li><li>CVE-2023-4004</li><li>CVE-2023-4015</li><li>CVE-2023-40283</li><li>CVE-2023-4132</li><li>CVE-2023-4147</li><li>CVE-2023-4155</li><li>CVE-2023-4194</li><li>CVE-2023-4206</li><li>CVE-2023-4207</li><li>CVE-2023-4208</li><li>CVE-2023-4244</li><li>CVE-2023-4273</li><li>CVE-2023-42752</li><li>CVE-2023-42753</li><li>CVE-2023-42754</li><li>CVE-2023-42755</li><li>CVE-2023-42756</li><li>CVE-2023-44466</li><li>CVE-2023-4569</li><li>CVE-2023-45862</li><li>CVE-2023-45871</li><li>CVE-2023-46218</li><li>CVE-2023-4622</li><li>CVE-2023-4623</li><li>CVE-2023-4911</li><li>CVE-2023-4921</li><li>CVE-2023-5158</li><li>CVE-2023-5178</li><li>CVE-2023-5197</li><li>CVE-2023-5717</li><li>CVE-2023-6040</li><li>CVE-2023-6546</li><li>CVE-2023-6606</li><li>CVE-2023-6817</li><li>CVE-2023-6931</li><li>CVE-2023-6932</li><li>CVE-2023-7192</li><li>CVE-2024-0193</li><li>CVE-2022-4285</li><li>CVE-2023-48795</li><li>CVE-2023-6004</li><li>CVE-2023-6918</li><li>GHSA-p782-xgp4-8hr8</li><li>GHSA-mw99-9chc-xw7r</li><li>CVE-2022-48425</li><li>CVE-2023-1192</li><li>CVE-2023-2124</li><li>CVE-2023-2156</li><li>CVE-2023-2235</li><li>CVE-2023-2269</li><li>CVE-2023-23004</li><li>CVE-2023-2898</li><li>CVE-2023-31083</li><li>CVE-2023-31084</li><li>CVE-2023-31085</li><li>CVE-2023-3117</li><li>CVE-2023-32248</li><li>CVE-2023-38432</li><li>CVE-2023-4128</li><li>CVE-2023-4881</li><li>GHSA-449p-3h89-pw88</li><li>GHSA-9763-4f94-gfch</li><li>CVE-2023-3995 </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-29406</li><li>CVE-2023-29409</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-41053</li><li>CVE-2023-41056</li><li>CVE-2023-45145 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li> GHSA-45x7-px36-x8w8</li><li>CVE-2023-42503</li><li>GHSA-cgwf-w82q-5jrr</li><li>GHSA-wjxj-5m7g-mg7q </li></ul>|
+| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-33pg-m6jh-5237</li><li>GHSA-6wrf-mxfj-pf5p</li><li>GHSA-6xv5-86q9-7xr8 </li></ul>|
  
 ---
  
