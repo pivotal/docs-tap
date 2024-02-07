@@ -3,7 +3,7 @@
 This section introduces the catalog of components shipped with TAP. You will find all of these components in the "authoring" profile.
 
 
-## aggregator
+## Aggregator
 
 - Name: aggregator
 - Version: 1.0.0
@@ -27,7 +27,7 @@ _none_
 
 
 ---
-## app-config-server
+## App Config Server
 
 - Name: app-config-server
 - Version: 1.0.0
@@ -49,24 +49,28 @@ _none_
 
 ```yaml
 spec:
-  # Configuration for the registry to use
-  registry:
-    # The name of the repository
-    # +required
-    repository:
-    # The name of the registry server, e.g. docker.io
-    # +required
-    server:
   # Configuration for the deployment to be generated
   deployment:
+    # pod-level security attributes and common container settings
+    securityContext:
+      runAsUser:
+    # DeploymentStrategy describes how to replace existing pods with new ones.
+    strategy:
+      rollingUpdate:
+        maxUnavailable:
+        maxSurge:
+      type:
+    env:
     # If specified, all readiness gates will be evaluated for pod liveness.
     livenessProbe:
-      tcpSocket:
-        host:
-        port:
+      exec:
+      periodSeconds:
+      successThreshold:
       timeoutSeconds:
       failureThreshold:
-      successThreshold:
+      grpc:
+        port:
+        service:
       httpGet:
         host:
         httpHeaders:
@@ -74,12 +78,10 @@ spec:
         port:
         scheme:
       initialDelaySeconds:
-      periodSeconds:
-      terminationGracePeriodSeconds:
-      exec:
-      grpc:
+      tcpSocket:
+        host:
         port:
-        service:
+      terminationGracePeriodSeconds:
     # The name of the deployment resource. defaults to workload if empty
     name:
     # If specified, all readiness gates will be evaluated for pod readiness.
@@ -87,22 +89,22 @@ spec:
       grpc:
         port:
         service:
-      tcpSocket:
-        host:
-        port:
-      failureThreshold:
-      httpGet:
-        host:
-        httpHeaders:
-        path:
-        port:
-        scheme:
       initialDelaySeconds:
       periodSeconds:
       successThreshold:
       terminationGracePeriodSeconds:
-      timeoutSeconds:
       exec:
+      failureThreshold:
+      httpGet:
+        path:
+        port:
+        scheme:
+        host:
+        httpHeaders:
+      tcpSocket:
+        host:
+        port:
+      timeoutSeconds:
     # Number of desired pods.
     # +required
     replicas:
@@ -116,26 +118,14 @@ spec:
       requests:
         cpu:
         memory:
-    # pod-level security attributes and common container settings
-    securityContext:
-      runAsUser:
-    # DeploymentStrategy describes how to replace existing pods with new ones.
-    strategy:
-      rollingUpdate:
-        maxSurge:
-        maxUnavailable:
-      type:
-    env:
   # Configuration for the service to be generated
   service:
-    # The list of ports that are exposed by this service.
-    ports:
     # The name of the ksvc resource. defaults to workload if empty
     name:
+    # The list of ports that are exposed by this service.
+    ports:
   # Configuration for the ingress to be generated
   ingress:
-    # the value to used in the annotation cert-manager.io/cluster-issuer
-    clusterIssuer:
     # hostname is the fully qualified domain name of a network host, as defined by RFC 3986
     hostname:
     # The name of the ingress resource. defaults to workload if empty
@@ -144,21 +134,31 @@ spec:
     port:
     # secretName is the name of the secret used to terminate TLS traffic
     tlsSecretName:
+    # the value to used in the annotation cert-manager.io/cluster-issuer
+    clusterIssuer:
   # Configuration for the http Route to be generated
   httpRoute:
+    # To be used in the httpRoute parentRef
+    gatewayName:
     # To be used in the httpRoute parentRef
     gatewayProtocol:
     # The name of the httpRoute resource. defaults to workload if empty
     name:
     # To be used in the httpRoute BackendRef
     port:
-    # To be used in the httpRoute parentRef
-    gatewayName:
+  # Configuration for the registry to use
+  registry:
+    # The name of the repository
+    # +required
+    repository:
+    # The name of the registry server, e.g. docker.io
+    # +required
+    server:
 ```
 
 
 ---
-## app-config-web
+## App Config Web
 
 - Name: app-config-web
 - Version: 1.0.0
@@ -180,70 +180,50 @@ spec:
 
 ```yaml
 spec:
-  # Configuration for the knative service to be generated
-  service:
-    # Compute Resources required by the app container.
-    resources:
-      # max limits for CPU and memory
-      limits:
-        cpu:
-        memory:
-      # min limits for CPU and memory
-      requests:
-        memory:
-        cpu:
-    env:
-    # The maximum number of replicas that each revision should have
-    maxScale:
-    # The initial scale that a Revision is scaled to immediately after creation
-    minScale:
-    # The name of the ksvc resource. defaults to workload if empty
-    # +required
-    name:
   # Configuration for the probes to be used with the knaitve service
   pod:
     # If specified, all readiness gates will be evaluated for pod liveness.
     livenessProbe:
-      timeoutSeconds:
-      periodSeconds:
+      terminationGracePeriodSeconds:
       failureThreshold:
       grpc:
-        service:
         port:
+        service:
       httpGet:
+        scheme:
+        host:
         httpHeaders:
         path:
         port:
-        scheme:
-        host:
-      initialDelaySeconds:
       successThreshold:
       tcpSocket:
-        port:
         host:
-      terminationGracePeriodSeconds:
+        port:
       exec:
+      initialDelaySeconds:
+      periodSeconds:
+      timeoutSeconds:
     # If specified, all readiness gates will be evaluated for pod readiness.
     readinessProbe:
-      failureThreshold:
-      httpGet:
-        port:
-        scheme:
-        host:
-        httpHeaders:
-        path:
-      initialDelaySeconds:
-      periodSeconds:
-      successThreshold:
-      exec:
-      grpc:
-        port:
-        service:
       tcpSocket:
         host:
         port:
       terminationGracePeriodSeconds:
+      failureThreshold:
+      successThreshold:
+      httpGet:
+        host:
+        httpHeaders:
+        path:
+        port:
+        scheme:
+      initialDelaySeconds:
+      periodSeconds:
       timeoutSeconds:
+      exec:
+      grpc:
+        service:
+        port:
   # Configuration if kapp-config is needed
   kapp-config:
     include:
@@ -255,11 +235,31 @@ spec:
     # The name of the registry server, e.g. docker.io
     # +required
     server:
+  # Configuration for the knative service to be generated
+  service:
+    env:
+    # The maximum number of replicas that each revision should have
+    maxScale:
+    # The initial scale that a Revision is scaled to immediately after creation
+    minScale:
+    # The name of the ksvc resource. defaults to workload if empty
+    # +required
+    name:
+    # Compute Resources required by the app container.
+    resources:
+      # max limits for CPU and memory
+      limits:
+        cpu:
+        memory:
+      # min limits for CPU and memory
+      requests:
+        cpu:
+        memory:
 ```
 
 
 ---
-## app-config-worker
+## App Config Worker
 
 - Name: app-config-worker
 - Version: 1.0.0
@@ -283,73 +283,73 @@ spec:
 spec:
   # Configuration for the deployment to be generated
   deployment:
-    env:
-    # If specified, all readiness gates will be evaluated for pod liveness.
-    livenessProbe:
-      failureThreshold:
-      grpc:
-        port:
-        service:
-      httpGet:
-        scheme:
-        host:
-        httpHeaders:
-        path:
-        port:
-      successThreshold:
-      tcpSocket:
-        host:
-        port:
-      timeoutSeconds:
-      exec:
-      initialDelaySeconds:
-      periodSeconds:
-      terminationGracePeriodSeconds:
     # The name of the deployment resource. defaults to workload if empty
     name:
     # If specified, all readiness gates will be evaluated for pod readiness.
     readinessProbe:
-      timeoutSeconds:
       exec:
+      failureThreshold:
       httpGet:
-        scheme:
         host:
         httpHeaders:
         path:
         port:
-      initialDelaySeconds:
+        scheme:
       successThreshold:
       tcpSocket:
         host:
         port:
-      terminationGracePeriodSeconds:
-      failureThreshold:
       grpc:
         port:
         service:
+      initialDelaySeconds:
       periodSeconds:
+      terminationGracePeriodSeconds:
+      timeoutSeconds:
     # Number of desired pods.
     # +required
     replicas:
     # Compute Resources required by the app container.
     resources:
-      # max limits for CPU and memory
-      limits:
-        cpu:
-        memory:
       # min limits for CPU and memory
       requests:
         memory:
         cpu:
+      # max limits for CPU and memory
+      limits:
+        cpu:
+        memory:
     # pod-level security attributes and common container settings
     securityContext:
       runAsUser:
     # DeploymentStrategy describes how to replace existing pods with new ones.
     strategy:
       rollingUpdate:
-        maxSurge:
         maxUnavailable:
+        maxSurge:
       type:
+    env:
+    # If specified, all readiness gates will be evaluated for pod liveness.
+    livenessProbe:
+      exec:
+      grpc:
+        port:
+        service:
+      periodSeconds:
+      terminationGracePeriodSeconds:
+      failureThreshold:
+      httpGet:
+        host:
+        httpHeaders:
+        path:
+        port:
+        scheme:
+      initialDelaySeconds:
+      successThreshold:
+      tcpSocket:
+        host:
+        port:
+      timeoutSeconds:
   # Configuration for the registry to use
   registry:
     # The name of the repository
@@ -362,7 +362,59 @@ spec:
 
 
 ---
-## carvel-package
+## Buildpack Build
+
+- Name: buildpack-build
+- Version: 1.0.0
+- Description:
+  ```
+  Builds an app with buildpacks using kpack
+  ```
+
+### Inputs
+
+- source[[source](./output-types.hbs.md#source)]
+- git[[git](./output-types.hbs.md#git)]
+
+### Outputs
+
+- image[[image](./output-types.hbs.md#image)]
+
+### Config
+
+```yaml
+spec:
+  # Kpack build specification
+  build:
+    env:
+    # Configure workload to use a non-default builder or clusterbuilder
+    builder:
+      # builder kind
+      kind:
+      # builder name
+      name:
+    # cache options
+    cache:
+      # cache image to use
+      image:
+    # Service account to use
+    serviceAccountName:
+  source:
+    # path inside the source to build from (build has no access to paths above the subPath)
+    subPath:
+  # Registry to use
+  registry:
+    # The repository to use
+    # +required
+    repository:
+    # The registry address
+    # +required
+    server:
+```
+
+
+---
+## Carvel Package
 
 - Name: carvel-package
 - Version: 1.0.0
@@ -394,6 +446,10 @@ spec:
     server:
   # Configuration for the generated carvel package
   carvel:
+    # Service account that gives kapp-controller privileges to create resources in the namespace
+    serviceAccountName:
+    # PEM encoded certificate data for the image registry where the files will be pushed to.
+    caCertData:
     # Enable the use of IAAS based authentication for imgpkg
     iaasAuthEnabled:
     # The name of the carvel package
@@ -401,10 +457,6 @@ spec:
     packageName:
     # Secret that provides customized values to the package installation's templating steps
     secretName:
-    # Service account that gives kapp-controller privileges to create resources in the namespace
-    serviceAccountName:
-    # PEM encoded certificate data for the image registry where the files will be pushed to.
-    caCertData:
   gitOps:
     # the branch to commit changes to
     branch:
@@ -416,63 +468,7 @@ spec:
 
 
 ---
-## deployer
-
-- Name: deployer
-- Version: 1.0.0
-- Description:
-  ```
-  Generates a carvel package from a config bundle
-  ```
-
-### Inputs
-
-- package[[package](./output-types.hbs.md#package)]
-
-### Outputs
-
-* _none_
-
-### Config
-
-```yaml
-spec:
-  # If true, the kubectl apply executed by the component will be recursive.
-  recursive:
-  # The path to the yaml to be applied to the cluster
-  subPath:
-    # The path to the yaml to be applied to the cluster
-    # +required
-    path:
-```
-
-
----
-## source-package-translator
-
-- Name: source-package-translator
-- Version: 1.0.0
-- Description:
-  ```
-  Takes the type source and immediately outputs it as type package.
-  In the future, will be replaced by input type mapping or some similar feature.
-  ```
-
-### Inputs
-
-- source[[source](./output-types.hbs.md#source)]
-
-### Outputs
-
-- package[[package](./output-types.hbs.md#package)]
-
-### Config
-
-_none_
-
-
----
-## conventions
+## Conventions
 
 - Name: conventions
 - Version: 1.0.0
@@ -498,7 +494,39 @@ spec:
 
 
 ---
-## git-writer
+## Deployer
+
+- Name: deployer
+- Version: 1.0.0
+- Description:
+  ```
+  Generates a carvel package from a config bundle
+  ```
+
+### Inputs
+
+- package[[package](./output-types.hbs.md#package)]
+
+### Outputs
+
+* _none_
+
+### Config
+
+```yaml
+spec:
+  # The path to the yaml to be applied to the cluster
+  subPath:
+    # The path to the yaml to be applied to the cluster
+    # +required
+    path:
+  # If true, the kubectl apply executed by the component will be recursive.
+  recursive:
+```
+
+
+---
+## Git Writer
 
 - Name: git-writer
 - Version: 1.0.0
@@ -520,18 +548,18 @@ spec:
 ```yaml
 spec:
   gitOps:
+    # the repository to push the pull request to
+    # +required
+    url:
     # the branch to commit changes to
     branch:
     # the relative path within the gitops repository to add the package configuration to.
     subPath:
-    # the repository to push the pull request to
-    # +required
-    url:
 ```
 
 
 ---
-## git-writer-pr
+## Git Writer Pr
 
 - Name: git-writer-pr
 - Version: 1.0.0
@@ -553,18 +581,18 @@ spec:
 ```yaml
 spec:
   gitOps:
-    # the repository to push the pull request to
-    # +required
-    url:
     # the base branch to create PRs against
     baseBranch:
     # the relative path within the gitops repository to add the package configuration to.
     subPath:
+    # the repository to push the pull request to
+    # +required
+    url:
 ```
 
 
 ---
-## source-git-provider
+## Source Git Provider
 
 - Name: source-git-provider
 - Version: 1.0.0
@@ -591,74 +619,46 @@ spec:
     # The tag, commit and branch fields are mutually exclusive, use only one.
     # +required
     git:
+      # The url to the git source repository
+      # +required
+      url:
       # A git branch ref to watch for new source
       branch:
       # A git commit sha to use
       commit:
       # A git tag ref to watch for new source
       tag:
-      # The url to the git source repository
-      # +required
-      url:
     # The sub path in the bundle to locate source code
     subPath:
 ```
 
 
 ---
-## buildpack-build
+## Source Package Translator
 
-- Name: buildpack-build
+- Name: source-package-translator
 - Version: 1.0.0
 - Description:
   ```
-  Builds an app with buildpacks using kpack
+  Takes the type source and immediately outputs it as type package.
+  In the future, will be replaced by input type mapping or some similar feature.
   ```
 
 ### Inputs
 
 - source[[source](./output-types.hbs.md#source)]
-- git[[git](./output-types.hbs.md#git)]
 
 ### Outputs
 
-- image[[image](./output-types.hbs.md#image)]
+- package[[package](./output-types.hbs.md#package)]
 
 ### Config
 
-```yaml
-spec:
-  source:
-    # path inside the source to build from (build has no access to paths above the subPath)
-    subPath:
-  # Registry to use
-  registry:
-    # The repository to use
-    # +required
-    repository:
-    # The registry address
-    # +required
-    server:
-  # Kpack build specification
-  build:
-    # Configure workload to use a non-default builder or clusterbuilder
-    builder:
-      # builder kind
-      kind:
-      # builder name
-      name:
-    # cache options
-    cache:
-      # cache image to use
-      image:
-    # Service account to use
-    serviceAccountName:
-    env:
-```
+_none_
 
 
 ---
-## trivy-image-scan
+## Trivy Image Scan
 
 - Name: trivy-image-scan
 - Version: 1.0.0
@@ -689,10 +689,14 @@ spec:
     # +required
     server:
   source:
+    # The sub path in the bundle to locate source code
+    subPath:
     # Fill this object in if you want your source to come from git.
     # The tag, commit and branch fields are mutually exclusive, use only one.
     # +required
     git:
+      # A git commit sha to use
+      commit:
       # A git tag ref to watch for new source
       tag:
       # The url to the git source repository
@@ -700,18 +704,14 @@ spec:
       url:
       # A git branch ref to watch for new source
       branch:
-      # A git commit sha to use
-      commit:
-    # The sub path in the bundle to locate source code
-    subPath:
   # Image Scanning configuration
   scanning:
-    workspace:
-      bindings:
-      size:
     active-keychains:
     service-account-publisher:
     service-account-scanner:
+    workspace:
+      bindings:
+      size:
 ```
 
 
