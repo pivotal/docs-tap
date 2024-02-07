@@ -35,8 +35,8 @@ modifying the steps to be like so:
     ```
 
     > **IMPORTANT** If you are installing additional plug-ins, `@vmware-tanzu/tdp-plugin-rbac-backend`
-    > must still come before `@vmware-tanzu/tdp-plugin-permission-backend` in the `backend.plugins`
-    > section in `tdp-config.yaml`.
+    must still come before `@vmware-tanzu/tdp-plugin-permission-backend` in the `backend.plugins`
+    section in `tdp-config.yaml`.
 
 2. Encode the `tdp-config.yaml` file in Base64 by running:
 
@@ -85,7 +85,7 @@ modifying the steps to be like so:
     kubectl create ns my-apps
     ```
 
-5. Once the workload has gone through the `image-provider` stage in the supply chain, following the
+5. Once the workload has gone through the `image-provider` stage in the supply chain, follow the
    steps in [running a customized Tanzu Developer Portal](../configurator/running.hbs.md) to
    retrieve the location of the customized Tanzu Developer Portal image that the workload produces
    as well as to overlay the customized image onto the currently running instance of Tanzu Developer
