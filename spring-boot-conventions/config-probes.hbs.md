@@ -104,7 +104,7 @@ To override the default settings and customize the probes at a cluster level:
    tanzu package install spring-boot-conventions \
      --package spring-boot-conventions.tanzu.vmware.com \
      --version VERSION-NUMBER \
-     --namespace tap-install
+     --namespace tap-install \
      --values-file values.yaml
    ```
 
