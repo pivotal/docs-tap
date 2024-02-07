@@ -37,7 +37,7 @@ To install the API portal package:
     tanzu package available get api-portal.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed earlier.
+    Where `VERSION-NUMBER` is the version of the API Portal package listed earlier.
 
     For example:
 
@@ -57,7 +57,7 @@ To install the API portal package:
     tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v VERSION-NUMBER --values-file api-portal-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed earlier.
+    Where `VERSION-NUMBER` is the version of the API Portal package listed earlier.
 
     For example:
 
@@ -106,7 +106,7 @@ To update the installation values for the `api-portal` package:
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
+    Where `VERSION-NUMBER` is the version of the API Portal package listed in the earlier step.
 
     For example:
 
@@ -120,15 +120,19 @@ To update the installation values for the `api-portal` package:
     tanzu package installed update api-auto-registration
     --package apis.apps.tanzu.vmware.com
     --namespace tap-install
-    --version $VERSION
+    --version VERSION-NUMBER
     --values-file api-portal-values.yaml
     ```
+
+    Where `VERSION-NUMBER` is the version of the API Portal package listed in the earlier step.
 
 3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform.
 See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
     ```console
-    tanzu package installed update tap --package tap.tanzu.vmware.com --version {VERSION} --values-file tap-values.yaml -n tap-install
+    tanzu package installed update tap --package tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
     ```
+
+    Where `VERSION-NUMBER` is the version of the API Portal package listed in the earlier step.
 
 >**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
