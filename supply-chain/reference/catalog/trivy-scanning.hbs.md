@@ -10,20 +10,13 @@ Component input: `image` is an input from the buildpack component
 
 Workload input: `spec.registry` is where the scan results are uploaded
 
-Workload input: `spec.source` is for the source component to retrieve source from git
-
 Workload input: `spec.scanning` is for configurations for [Supply Chain Security Tools - Scan 2.0](../../scst-scan/scan-2-0.hbs.md)
 
-Configuring the Trivy Scanning component:
 ```
 spec:
   registry:
     repository: REGISTRY-REPOSITORY
     server: REGISTRY-SERVER
-  source:
-    git:
-      branch: BRANCH-NAME
-      url: GIT-URL
   scanning:
     service-account-scanner: SERVICE-ACCOUNT-SCANNER
     service-account-publisher: SERVICE-ACCOUNT-PUBLISHER
@@ -35,8 +28,6 @@ spec:
 Where:
 * REGISTRY-REPOSITORY is the registry server repository where scan results are uploaded
 * REGISTRY-SERVER is the registry server where scan results are uploaded
-* BRANCH-NAME is the git branch ref
-* GIT-URL is the url to the git source repository
 * SERVICE-ACCOUNT-SCANNER is the service account that runs the scan. It must have read access to the image being scanned.
 * SERVICE-ACCOUNT-PUBLISHER is the service account that uploads results. It must have write access to where the scan results are being published which is the REGISTRY-SERVER/REGISTRY-REPOSITORY.
 * spec.scanning.active-keychains is an array of enabled credential helpers to authenticate against registries using workload identity mechanisms.
