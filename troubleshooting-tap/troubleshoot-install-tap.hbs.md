@@ -67,15 +67,15 @@ When running the `tanzu package install` command, you receive an error message t
 UNAUTHORIZED: unauthorized to access repository
 ```
 
-Example:
+For example:
 
-  ```console
-  $ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install -f ./app-live-view.yml
+```console
+$ tanzu package install app-live-view -p appliveview.tanzu.vmware.com -v 0.1.0 -n tap-install --values-file ./app-live-view.yaml
 
-  Error: package reconciliation failed: vendir: Error: Syncing directory '0':
-    Syncing directory '.' with imgpkgBundle contents:
-      Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
-  ```
+Error: package reconciliation failed: vendir: Error: Syncing directory '0':
+  Syncing directory '.' with imgpkgBundle contents:
+    Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
+```
 
 >**Note** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
@@ -107,13 +107,13 @@ When running the `tanzu package install` command, you receive the following erro
 failed to create ServiceAccount resource: serviceaccounts already exists
 ```
 
-Example:
+For example:
 
-  ```console
-  $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install -f app-accelerator-values.yaml
+```console
+$ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 0.2.0 -n tap-install --values-file app-accelerator-values.yaml
 
-  Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
-  ```
+Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
+```
 
 >**Note** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
@@ -132,28 +132,29 @@ tanzu package installed update
 ## <a id='failed-reconcile'></a> After package installation, one or more packages fails to reconcile
 
 You run the `tanzu package install` command and one or more packages fails to install.
+
 For example:
 
-  ```console
-  tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 --values-file tap-values.yaml -n tap-install
-  - Installing package 'tap.tanzu.vmware.com'
-  \ Getting package metadata for 'tap.tanzu.vmware.com'
-  | Creating service account 'tap-tap-install-sa'
-  / Creating cluster admin role 'tap-tap-install-cluster-role'
-  | Creating cluster role binding 'tap-tap-install-cluster-rolebinding'
-  | Creating secret 'tap-tap-install-values'
-  | Creating package resource
-  - Waiting for 'PackageInstall' reconciliation for 'tap'
-  / 'PackageInstall' resource install status: Reconciling
-  | 'PackageInstall' resource install status: ReconcileFailed
+```console
+tanzu package install tap -p tap.tanzu.vmware.com -v 0.4.0 -n tap-install --values-file tap-values.yaml
+- Installing package 'tap.tanzu.vmware.com'
+\ Getting package metadata for 'tap.tanzu.vmware.com'
+| Creating service account 'tap-tap-install-sa'
+/ Creating cluster admin role 'tap-tap-install-cluster-role'
+| Creating cluster role binding 'tap-tap-install-cluster-rolebinding'
+| Creating secret 'tap-tap-install-values'
+| Creating package resource
+- Waiting for 'PackageInstall' reconciliation for 'tap'
+/ 'PackageInstall' resource install status: Reconciling
+| 'PackageInstall' resource install status: ReconcileFailed
 
-  Please consider using 'tanzu package installed update' to update the installed package with correct settings
+Please consider using 'tanzu package installed update' to update the installed package with correct settings
 
 
-  Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
-    Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
-  Error: exit status 1
-  ```
+Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/tap-gui (packaging.carvel.dev/v1alpha1) namespace: tap-install:
+  Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
+Error: exit status 1
+```
 
 **Explanation**
 
@@ -166,7 +167,7 @@ Often, the cause is one of the following:
 
 The VMware Carvel tools kapp-controller continues to try in a reconciliation loop in these cases.
 However, if the reconciliation status is `failed` then there might be a configuration issue
-in the provided `tap-config.yml` file.
+in the provided `tap-config.yaml` file.
 
 **Solution**
 
