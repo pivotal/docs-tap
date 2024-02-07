@@ -159,7 +159,11 @@ following steps.
 1. Install the Application Live View connector package by running:
 
     ```console
-    tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
+    tanzu package install appliveview-connector \
+      --package connector.appliveview.tanzu.vmware.com \
+      --version VERSION-NUMBER \
+      --namespace tap-install \
+      --values-file app-live-view-connector-values.yaml
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
@@ -168,7 +172,11 @@ following steps.
     For example:
 
     ```console
-    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.8.0 -n tap-install -f app-live-view-connector-values.yaml
+    $ tanzu package install appliveview-connector \
+        --package connector.appliveview.tanzu.vmware.com \
+        --version 1.8.0 \
+        --namespace tap-install \
+        --values-file app-live-view-connector-values.yaml
     | Installing package 'connector.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'connector.appliveview.tanzu.vmware.com'
@@ -249,9 +257,10 @@ plug-in, take the following steps.
 
     ```console
     tanzu package install tap-gui \
-     --package tap-gui.tanzu.vmware.com \
-     --version VERSION -n tap-install \
-     -f tap-gui-values.yaml
+      --package tap-gui.tanzu.vmware.com \
+      --version VERSION \
+      --namespace tap-install \
+      --values-file tap-gui-values.yaml
     ```
 
     Where `VERSION` is the version that you want. For example, `1.4.6`.
@@ -259,7 +268,11 @@ plug-in, take the following steps.
     For example:
 
     ```console
-    $ tanzu package install tap-gui --package tap-gui.tanzu.vmware.com --version 1.4.6 -n tap-install -f tap-gui-values.yaml
+    $ tanzu package install tap-gui \
+        --package tap-gui.tanzu.vmware.com \
+        --version 1.4.6 \
+        --namespace tap-install \
+        --values-file tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
