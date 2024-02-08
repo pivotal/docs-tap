@@ -1,5 +1,5 @@
 # Tanzu Supply Chain API
-{{> 'partials/supply-chain/<beta-banner>' }}
+{{> 'partials/supply-chain/beta-banner' }}
 
 Tanzu Supply Chain introduces two concrete resources and two *Duck-typed resources* to your Kubernetes cluster.
 

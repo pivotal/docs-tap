@@ -1,2 +1,2 @@
 # Components explained
-{{> 'partials/supply-chain/<beta-banner>' }} 
+{{> 'partials/supply-chain/beta-banner' }} 

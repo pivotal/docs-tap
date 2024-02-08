@@ -1,5 +1,5 @@
 # Workload CRD
-{{> 'partials/supply-chain/<beta-banner>' }}
+{{> 'partials/supply-chain/beta-banner' }}
 
 **Workloads** are [Custom Kubernetes Resources (CRDs)][CRD]. 
 

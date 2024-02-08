@@ -1,2 +1,2 @@
 # Supply Chain Tutorials for Platform Engineering
-{{> 'partials/supply-chain/<beta-banner>' }} 
+{{> 'partials/supply-chain/beta-banner' }} 

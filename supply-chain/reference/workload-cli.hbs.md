@@ -1,2 +1,2 @@
 # Workload CLI Plugin Reference
-{{> 'partials/supply-chain/<beta-banner>' }} 
+{{> 'partials/supply-chain/beta-banner' }} 

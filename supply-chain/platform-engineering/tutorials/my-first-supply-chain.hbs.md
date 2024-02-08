@@ -1,5 +1,5 @@
 # Build your first Supply Chain
-{{> 'partials/supply-chain/<beta-banner>' }}
+{{> 'partials/supply-chain/beta-banner' }}
 
 [//]: # (Keep this section at the bottom of the doc)
 # Useful links

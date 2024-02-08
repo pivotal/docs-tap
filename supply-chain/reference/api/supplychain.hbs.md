@@ -1,5 +1,5 @@
 # SupplyChain API
-{{> 'partials/supply-chain/<beta-banner>' }}
+{{> 'partials/supply-chain/beta-banner' }}
 
 A SupplyChain pulls together components to define the path to production for a [**Components**]. 
 

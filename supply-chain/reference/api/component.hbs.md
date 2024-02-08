@@ -1,5 +1,5 @@
 # Component API
-{{> 'partials/supply-chain/<beta-banner>' }}
+{{> 'partials/supply-chain/beta-banner' }}
 
 Components:
 

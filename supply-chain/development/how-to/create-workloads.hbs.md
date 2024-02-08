@@ -1,2 +1,2 @@
 # How to create a Workload
-{{> 'partials/supply-chain/<beta-banner>' }} 
+{{> 'partials/supply-chain/beta-banner' }} 
