@@ -2,14 +2,13 @@
 
 This topic tells how to create a workload from a Tanzu Supply Chain and apply it.
 
-## Overview
+## <a id="overview"></a> Overview
 
 * Create and apply workload
-* Apply workload
 * Observe workload
 * Verify workload performed scanning by checking scan results
 
-### Create workload from Supply Chain
+### <a id="create-apply-workload-from-supply-chain"></a> Create workload from Supply Chain and apply workload
 
 * Use tanzu cartographer plugin to create workload from supply chain:
 ```
@@ -114,8 +113,8 @@ spec:
       url: "https://github.com/acme/my-workload.git"
 ```
 Here the user can create a supply chain using the:
-* Trivy Supply Chain Component created in the previous page.
-* Custom Scanner Component created in the previous page.
+* Trivy Supply Chain created in the setup [trivy supply chain](./setup-supply-chain-component.md#how-to-use-the-trivy-supply-chain-component-that-uses-scst---scan-20)
+* Custom Scanner Component created in the setup [your own scanner component supply chain](./setup-supply-chain-component.md#how-to-create-your-own-scanning-component-that-uses-scst---scan-20)
 
 This will render a sample workload yaml that the user can configure that we will put in `workload.yaml`.
 
@@ -125,7 +124,7 @@ kubectl apply -f workload.yaml -n DEV-NAMESPACE
 ```
 
 
-### Observe workload
+### <a id="observe-workload"></a> Observe workload
 
 * Tanzu cartographer to see workload is running:
 ```
@@ -194,7 +193,7 @@ grype-app-scanning-catalog          └─Pod/stage-2-grype-image-scan-7789q-pre
 ```
 
 
-#### Verify workload performed scanning by checking scan results
+### <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
 * Get the ivs name by looking for the IVS in the namespace it was created in:
 ```

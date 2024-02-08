@@ -2,13 +2,13 @@
 
 This topic tells how to install the Trivy Supply Chain Component and create your own Supply Chain Component where they use the SCST - Scan 2.0 and the components are used in the Tanzu Supply Chain.
 
-## Overview
+## <a id="overview"></a> Overview
 
 * How to install the Trivy Supply Chain Component that uses SCST - Scan 2.0
 * How to write your own Component that uses SCST - Scan 2.0
 * How to view the component
 
-### How to use the Trivy Supply Chain Component that uses SCST - Scan 2.0
+### <a id="use-trivy-component"></a> How to use the Trivy Supply Chain Component that uses SCST - Scan 2.0
 
 1. List version information for the Trivy Supply Chain Component package by running:
 ```
@@ -30,7 +30,7 @@ tanzu package install trivy-app-scanning-component --package-name trivy.app-scan
 ```
 
 
-### How to create your own Scanning Component that uses SCST - Scan 2.0
+### <a id="create-own-component"></a> How to create your own Scanning Component that uses SCST - Scan 2.0
 
 1. Reuse the trivy component by:
 
@@ -38,9 +38,9 @@ tanzu package install trivy-app-scanning-component --package-name trivy.app-scan
     ```
     kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog > component.yaml
     ```
-    Replace the `image-scanning-cli` with another scanner of your choice.
-    Replace the `image-scanning-steps-env-vars` with env vars.
-    Replace the pipelineref to the name of the pipeline you create in the next step.
+    * Replace the `image-scanning-cli` with another scanner of your choice.
+    * Replace the `image-scanning-steps-env-vars` with env vars.
+    * Replace the pipelineref to the name of the pipeline you create in the next step.
 
   * Reuse the pipeline from the trivy component
     ```
@@ -54,7 +54,7 @@ tanzu package install trivy-app-scanning-component --package-name trivy.app-scan
   ```
 
 
-### How to view Component
+### <a id="view-component"></a> How to view Component
 
 Prereq:
 * cartographer plugin
@@ -99,7 +99,7 @@ $ tanzu cartographer supply-chain component list
 ```
 
 Note:
-* It is important that if you create your own component that it has the following label so that it can be observed by supplychain:
+* If you create your own component, it needs the following label so that it can be observed by supplychain:
 ```
 labels:
   supply-chain.apps.tanzu.vmware.com/catalog: tanzu
