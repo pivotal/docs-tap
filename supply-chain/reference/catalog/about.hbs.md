@@ -1,40 +1,17 @@
 # Catalog of Tanzu Supply Chain Components
+{{> 'partials/supply-chain/<beta-banner>' }}
 
 This section introduces the catalog of components shipped with TAP. You will find all of these components in the "authoring" profile.
 
-
-## Aggregator
-
-- Name: aggregator
-- Version: 1.0.0
-- Description:
-  ```
-  Constructs configuration from a series of inputs
-  ```
-
-### Inputs
-
-- oci-yaml-files[[oci-yaml-files](./output-types.hbs.md#oci-yaml-files)]
-- oci-ytt-files[[oci-ytt-files](./output-types.hbs.md#oci-ytt-files)]
-
-### Outputs
-
-- config[[config](./output-types.hbs.md#config)]
-
-### Config
-
-_none_
-
-
----
 ## App Config Server
 
 - Name: app-config-server
 - Version: 1.0.0
-- Description:
-  ```
-  Generates a server workload template from a config bundle
-  ```
+### Description:
+Generates configuration for a Server application from a Conventions PodIntent.
+Server applications contain a K8s Deployment and Service and can be configured with Ingress.
+
+
 
 ### Inputs
 
@@ -49,103 +26,6 @@ _none_
 
 ```yaml
 spec:
-  # Configuration for the deployment to be generated
-  deployment:
-    # pod-level security attributes and common container settings
-    securityContext:
-      runAsUser:
-    # DeploymentStrategy describes how to replace existing pods with new ones.
-    strategy:
-      rollingUpdate:
-        maxUnavailable:
-        maxSurge:
-      type:
-    env:
-    # If specified, all readiness gates will be evaluated for pod liveness.
-    livenessProbe:
-      exec:
-      periodSeconds:
-      successThreshold:
-      timeoutSeconds:
-      failureThreshold:
-      grpc:
-        port:
-        service:
-      httpGet:
-        host:
-        httpHeaders:
-        path:
-        port:
-        scheme:
-      initialDelaySeconds:
-      tcpSocket:
-        host:
-        port:
-      terminationGracePeriodSeconds:
-    # The name of the deployment resource. defaults to workload if empty
-    name:
-    # If specified, all readiness gates will be evaluated for pod readiness.
-    readinessProbe:
-      grpc:
-        port:
-        service:
-      initialDelaySeconds:
-      periodSeconds:
-      successThreshold:
-      terminationGracePeriodSeconds:
-      exec:
-      failureThreshold:
-      httpGet:
-        path:
-        port:
-        scheme:
-        host:
-        httpHeaders:
-      tcpSocket:
-        host:
-        port:
-      timeoutSeconds:
-    # Number of desired pods.
-    # +required
-    replicas:
-    # Compute Resources required by the app container.
-    resources:
-      # max limits for CPU and memory
-      limits:
-        cpu:
-        memory:
-      # min limits for CPU and memory
-      requests:
-        cpu:
-        memory:
-  # Configuration for the service to be generated
-  service:
-    # The name of the ksvc resource. defaults to workload if empty
-    name:
-    # The list of ports that are exposed by this service.
-    ports:
-  # Configuration for the ingress to be generated
-  ingress:
-    # hostname is the fully qualified domain name of a network host, as defined by RFC 3986
-    hostname:
-    # The name of the ingress resource. defaults to workload if empty
-    name:
-    # provides information about the ports exposed by this LoadBalancer
-    port:
-    # secretName is the name of the secret used to terminate TLS traffic
-    tlsSecretName:
-    # the value to used in the annotation cert-manager.io/cluster-issuer
-    clusterIssuer:
-  # Configuration for the http Route to be generated
-  httpRoute:
-    # To be used in the httpRoute parentRef
-    gatewayName:
-    # To be used in the httpRoute parentRef
-    gatewayProtocol:
-    # The name of the httpRoute resource. defaults to workload if empty
-    name:
-    # To be used in the httpRoute BackendRef
-    port:
   # Configuration for the registry to use
   registry:
     # The name of the repository
@@ -162,10 +42,11 @@ spec:
 
 - Name: app-config-web
 - Version: 1.0.0
-- Description:
-  ```
-  Generates a web workload template from a config bundle
-  ```
+### Description:
+Generates configuration for a Web application from a Conventions PodIntent.
+Web applications contain a Knative Service.
+
+
 
 ### Inputs
 
@@ -180,53 +61,6 @@ spec:
 
 ```yaml
 spec:
-  # Configuration for the probes to be used with the knaitve service
-  pod:
-    # If specified, all readiness gates will be evaluated for pod liveness.
-    livenessProbe:
-      terminationGracePeriodSeconds:
-      failureThreshold:
-      grpc:
-        port:
-        service:
-      httpGet:
-        scheme:
-        host:
-        httpHeaders:
-        path:
-        port:
-      successThreshold:
-      tcpSocket:
-        host:
-        port:
-      exec:
-      initialDelaySeconds:
-      periodSeconds:
-      timeoutSeconds:
-    # If specified, all readiness gates will be evaluated for pod readiness.
-    readinessProbe:
-      tcpSocket:
-        host:
-        port:
-      terminationGracePeriodSeconds:
-      failureThreshold:
-      successThreshold:
-      httpGet:
-        host:
-        httpHeaders:
-        path:
-        port:
-        scheme:
-      initialDelaySeconds:
-      periodSeconds:
-      timeoutSeconds:
-      exec:
-      grpc:
-        service:
-        port:
-  # Configuration if kapp-config is needed
-  kapp-config:
-    include:
   # Configuration for the registry to use
   registry:
     # The name of the repository
@@ -235,26 +69,6 @@ spec:
     # The name of the registry server, e.g. docker.io
     # +required
     server:
-  # Configuration for the knative service to be generated
-  service:
-    env:
-    # The maximum number of replicas that each revision should have
-    maxScale:
-    # The initial scale that a Revision is scaled to immediately after creation
-    minScale:
-    # The name of the ksvc resource. defaults to workload if empty
-    # +required
-    name:
-    # Compute Resources required by the app container.
-    resources:
-      # max limits for CPU and memory
-      limits:
-        cpu:
-        memory:
-      # min limits for CPU and memory
-      requests:
-        cpu:
-        memory:
 ```
 
 
@@ -263,10 +77,11 @@ spec:
 
 - Name: app-config-worker
 - Version: 1.0.0
-- Description:
-  ```
-  Generates a worker workload template from a config bundle
-  ```
+### Description:
+Generates configuration for a Worker application from a Conventions PodIntent.
+Worker applications contain a K8s Deployment.
+
+
 
 ### Inputs
 
@@ -281,75 +96,6 @@ spec:
 
 ```yaml
 spec:
-  # Configuration for the deployment to be generated
-  deployment:
-    # The name of the deployment resource. defaults to workload if empty
-    name:
-    # If specified, all readiness gates will be evaluated for pod readiness.
-    readinessProbe:
-      exec:
-      failureThreshold:
-      httpGet:
-        host:
-        httpHeaders:
-        path:
-        port:
-        scheme:
-      successThreshold:
-      tcpSocket:
-        host:
-        port:
-      grpc:
-        port:
-        service:
-      initialDelaySeconds:
-      periodSeconds:
-      terminationGracePeriodSeconds:
-      timeoutSeconds:
-    # Number of desired pods.
-    # +required
-    replicas:
-    # Compute Resources required by the app container.
-    resources:
-      # min limits for CPU and memory
-      requests:
-        memory:
-        cpu:
-      # max limits for CPU and memory
-      limits:
-        cpu:
-        memory:
-    # pod-level security attributes and common container settings
-    securityContext:
-      runAsUser:
-    # DeploymentStrategy describes how to replace existing pods with new ones.
-    strategy:
-      rollingUpdate:
-        maxUnavailable:
-        maxSurge:
-      type:
-    env:
-    # If specified, all readiness gates will be evaluated for pod liveness.
-    livenessProbe:
-      exec:
-      grpc:
-        port:
-        service:
-      periodSeconds:
-      terminationGracePeriodSeconds:
-      failureThreshold:
-      httpGet:
-        host:
-        httpHeaders:
-        path:
-        port:
-        scheme:
-      initialDelaySeconds:
-      successThreshold:
-      tcpSocket:
-        host:
-        port:
-      timeoutSeconds:
   # Configuration for the registry to use
   registry:
     # The name of the repository
@@ -366,10 +112,9 @@ spec:
 
 - Name: buildpack-build
 - Version: 1.0.0
-- Description:
-  ```
-  Builds an app with buildpacks using kpack
-  ```
+### Description:
+Builds an app with buildpacks using kpack
+
 
 ### Inputs
 
@@ -384,9 +129,16 @@ spec:
 
 ```yaml
 spec:
+  # Registry to use
+  registry:
+    # The repository to use
+    # +required
+    repository:
+    # The registry address
+    # +required
+    server:
   # Kpack build specification
   build:
-    env:
     # Configure workload to use a non-default builder or clusterbuilder
     builder:
       # builder kind
@@ -399,17 +151,10 @@ spec:
       image:
     # Service account to use
     serviceAccountName:
+    env:
   source:
     # path inside the source to build from (build has no access to paths above the subPath)
     subPath:
-  # Registry to use
-  registry:
-    # The repository to use
-    # +required
-    repository:
-    # The registry address
-    # +required
-    server:
 ```
 
 
@@ -418,10 +163,10 @@ spec:
 
 - Name: carvel-package
 - Version: 1.0.0
-- Description:
-  ```
-  Generates a carvel package from a config bundle
-  ```
+### Description:
+Generates a carvel package from OCI images containing raw YAML files and YTT files.
+
+
 
 ### Inputs
 
@@ -444,19 +189,20 @@ spec:
     # The name of the registry server, e.g. docker.io
     # +required
     server:
-  # Configuration for the generated carvel package
+  # Configuration for the generated Carvel Package
   carvel:
-    # Service account that gives kapp-controller privileges to create resources in the namespace
-    serviceAccountName:
+    # Name of the values Secret that provides customized values to the package installation's templating steps.
+    valuesSecretName:
     # PEM encoded certificate data for the image registry where the files will be pushed to.
     caCertData:
-    # Enable the use of IAAS based authentication for imgpkg
+    # Enable the use of IAAS based authentication for imgpkg.
     iaasAuthEnabled:
-    # The name of the carvel package
-    # +required
+    # The domain of the Carvel Package. Combines with spec.carvel.packageName to create the Package refName. If set to "", will use "default.tap".
+    packageDomain:
+    # The name of the Carvel Package. Combines with spec.carvel.packageDomain to create the Package refName. If set to "", will use the workload name.
     packageName:
-    # Secret that provides customized values to the package installation's templating steps
-    secretName:
+    # Service account that gives kapp-controller privileges to create resources in the namespace.
+    serviceAccountName:
   gitOps:
     # the branch to commit changes to
     branch:
@@ -472,10 +218,9 @@ spec:
 
 - Name: conventions
 - Version: 1.0.0
-- Description:
-  ```
-  Use the Cartographer Conventions service to generate decorated pod template specs
-  ```
+### Description:
+Use the Cartographer Conventions service to generate decorated pod template specs
+
 
 ### Inputs
 
@@ -498,10 +243,9 @@ spec:
 
 - Name: deployer
 - Version: 1.0.0
-- Description:
-  ```
-  Generates a carvel package from a config bundle
-  ```
+### Description:
+Deploys K8s resources to the cluster.
+
 
 ### Inputs
 
@@ -515,13 +259,11 @@ spec:
 
 ```yaml
 spec:
-  # The path to the yaml to be applied to the cluster
+  # The path to the yaml to be applied to the cluster.
   subPath:
     # The path to the yaml to be applied to the cluster
     # +required
     path:
-  # If true, the kubectl apply executed by the component will be recursive.
-  recursive:
 ```
 
 
@@ -530,10 +272,9 @@ spec:
 
 - Name: git-writer
 - Version: 1.0.0
-- Description:
-  ```
-  Writes carvel package config directly to a gitops repository
-  ```
+### Description:
+Writes carvel package config directly to a gitops repository
+
 
 ### Inputs
 
@@ -541,20 +282,20 @@ spec:
 
 ### Outputs
 
-- gitops[[gitops](./output-types.hbs.md#gitops)]
+* _none_
 
 ### Config
 
 ```yaml
 spec:
   gitOps:
-    # the repository to push the pull request to
-    # +required
-    url:
     # the branch to commit changes to
     branch:
     # the relative path within the gitops repository to add the package configuration to.
     subPath:
+    # the repository to push the pull request to
+    # +required
+    url:
 ```
 
 
@@ -563,10 +304,9 @@ spec:
 
 - Name: git-writer-pr
 - Version: 1.0.0
-- Description:
-  ```
-  Writes carvel package config to a gitops repository and opens a PR
-  ```
+### Description:
+Writes carvel package config to a gitops repository and opens a PR
+
 
 ### Inputs
 
@@ -574,7 +314,7 @@ spec:
 
 ### Outputs
 
-- gitops[[gitops](./output-types.hbs.md#gitops)]
+- git-pr[[git-pr](./output-types.hbs.md#git-pr)]
 
 ### Config
 
@@ -596,10 +336,9 @@ spec:
 
 - Name: source-git-provider
 - Version: 1.0.0
-- Description:
-  ```
-  Monitors a git repository
-  ```
+### Description:
+Monitors a git repository
+
 
 ### Inputs
 
@@ -619,15 +358,15 @@ spec:
     # The tag, commit and branch fields are mutually exclusive, use only one.
     # +required
     git:
-      # The url to the git source repository
-      # +required
-      url:
       # A git branch ref to watch for new source
       branch:
       # A git commit sha to use
       commit:
       # A git tag ref to watch for new source
       tag:
+      # The url to the git source repository
+      # +required
+      url:
     # The sub path in the bundle to locate source code
     subPath:
 ```
@@ -638,11 +377,10 @@ spec:
 
 - Name: source-package-translator
 - Version: 1.0.0
-- Description:
-  ```
-  Takes the type source and immediately outputs it as type package.
-  In the future, will be replaced by input type mapping or some similar feature.
-  ```
+### Description:
+Takes the type source and immediately outputs it as type package.
+
+
 
 ### Inputs
 
@@ -662,10 +400,9 @@ _none_
 
 - Name: trivy-image-scan
 - Version: 1.0.0
-- Description:
-  ```
-  Performs a trivy image scan using the scan 2.0 components
-  ```
+### Description:
+Performs a trivy image scan using the scan 2.0 components
+
 
 ### Inputs
 
@@ -680,17 +417,7 @@ _none_
 
 ```yaml
 spec:
-  # Configuration for the registry to use
-  registry:
-    # The name of the repository
-    # +required
-    repository:
-    # The name of the registry server, e.g. docker.io
-    # +required
-    server:
   source:
-    # The sub path in the bundle to locate source code
-    subPath:
     # Fill this object in if you want your source to come from git.
     # The tag, commit and branch fields are mutually exclusive, use only one.
     # +required
@@ -704,14 +431,24 @@ spec:
       url:
       # A git branch ref to watch for new source
       branch:
+    # The sub path in the bundle to locate source code
+    subPath:
   # Image Scanning configuration
   scanning:
-    active-keychains:
     service-account-publisher:
     service-account-scanner:
     workspace:
       bindings:
       size:
+    active-keychains:
+  # Configuration for the registry to use
+  registry:
+    # The name of the repository
+    # +required
+    repository:
+    # The name of the registry server, e.g. docker.io
+    # +required
+    server:
 ```
 
 
