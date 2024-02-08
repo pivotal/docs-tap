@@ -36,7 +36,7 @@ Some features from SSO for TAS are not supported in SSO for TAP:
   AppSSO does not support managing individual users. In SSO for TAS, users from an external Identity Provider are synced
   to the user database when they first log in. Permissions (scopes) can be assigned to each user. This is not possible
   in AppSSO, all scopes come
-  from [roles to scopes mapping](service-operators/configure-authorization.hbs.md#individual-roles).
+  from [roles to scopes mapping](../app-sso/how-to-guides/service-operators/configure-authorization.hbs.md#individual-roles).
   Users cannot manage their own accounts in AppSSO. When allowed, they can manage their account in the External Identity
   Provider.
 - Single-log out: AppSSO does not support single-log out.
