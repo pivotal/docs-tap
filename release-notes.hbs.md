@@ -455,6 +455,10 @@ Github repository.
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
+- Using a custom issuer - for example _Let's Encrypt_ -  it seems to break the TMC orchestration
+  that pushes out the AMR observer creds from view cluster to non-view cluster cluster. There are
+  no steps current steps to remediate the issue.
+
 #### <a id='1-7-4-tbs-ki'></a> v1.7.4 Known issues: Tanzu Build Service
 
 - During upgrades a large number of builds might be created due to buildpack and stack updates.
