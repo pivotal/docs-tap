@@ -130,6 +130,7 @@
 - [Uninstall by Tanzu CLI](uninstall.hbs.md)
 - [Uninstall by GitOps (beta)](install-gitops/uninstall.hbs.md)
 - [Migrate TAS applications](tas-migration/overview.hbs.md)
+    - [Migrate Single Sign-On for TAS](tas-migration/migrating-from-sso-for-tas.hbs.md)
 - [Glossary](glossary.hbs.md)
 - [Component documentation](components.hbs.md)
     - [Components overview](components.hbs.md)
