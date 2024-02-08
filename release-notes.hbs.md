@@ -3,67 +3,280 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-8'></a> v1.6.8 
- 
-**Release Date**: 13 February 2024 
- 
-### <a id='1-6-8-security-fixes'></a> v1.6.8 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-29409</li><li>CVE-2023-29406</li><li>CVE-2023-41053</li><li>CVE-2023-41056</li><li>CVE-2023-45145 </li></ul>|
-| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-22365</li><li>CVE-2022-44840</li><li>CVE-2022-45703</li><li>CVE-2022-47007</li><li>CVE-2022-47008</li><li>CVE-2022-47010</li><li>CVE-2022-47011</li><li>CVE-2023-6004</li><li>CVE-2023-6918 </li></ul>|
-| application-configuration-service.tanzu.vmware.com | <ul><li> GHSA-45x7-px36-x8w8</li><li>CVE-2023-42503</li><li>GHSA-cgwf-w82q-5jrr</li><li>GHSA-wjxj-5m7g-mg7q </li></ul>|
-| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>CVE-2023-34053 </li></ul>|
-| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-33pg-m6jh-5237</li><li>GHSA-6wrf-mxfj-pf5p</li><li>GHSA-6xv5-86q9-7xr8 </li></ul>|
-| cert-manager.tanzu.vmware.com | <ul><li> CVE-2023-39326 </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-46862</li><li>CVE-2023-6121</li><li>CVE-2024-0641</li><li>CVE-2023-5197</li><li>CVE-2023-45863</li><li>CVE-2021-44879 </li></ul>|
-| metadata-store.apps.tanzu.vmware.com | <ul><li> CVE-2023-29409</li><li>CVE-2023-45285 </li></ul>|
- 
+## <a id='1-6-8'></a> v1.6.8
+
+**Release Date**: 13 February 2024
+
+### <a id='1-6-8-security-fixes'></a> v1.6.8 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accelerator.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34053">CVE-2023-34053</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22049">CVE-2023-22049</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22045">CVE-2023-22045</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22044">CVE-2023-22044</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22041">CVE-2023-22041</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22036">CVE-2023-22036</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22006">CVE-2023-22006</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>application-configuration-service.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-wjxj-5m7g-mg7q">GHSA-wjxj-5m7g-mg7q</a></li>
+<li><a href="https://github.com/advisories/GHSA-cgwf-w82q-5jrr">GHSA-cgwf-w82q-5jrr</a></li>
+<li><a href="https://github.com/advisories/GHSA-45x7-px36-x8w8">GHSA-45x7-px36-x8w8</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42503">CVE-2023-42503</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>base-jammy-stack-lite.buildpacks.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-22365">CVE-2024-22365</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-0567">CVE-2024-0567</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-0553">CVE-2024-0553</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-6918">CVE-2023-6918</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-6004">CVE-2023-6004</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47011">CVE-2022-47011</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47010">CVE-2022-47010</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47008">CVE-2022-47008</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47007">CVE-2022-47007</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45703">CVE-2022-45703</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44840">CVE-2022-44840</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>carbonblack.scanning.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-6xv5-86q9-7xr8">GHSA-6xv5-86q9-7xr8</a></li>
+<li><a href="https://github.com/advisories/GHSA-6wrf-mxfj-pf5p">GHSA-6wrf-mxfj-pf5p</a></li>
+<li><a href="https://github.com/advisories/GHSA-33pg-m6jh-5237">GHSA-33pg-m6jh-5237</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>cert-manager.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39326">CVE-2023-39326</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>metadata-store.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45285">CVE-2023-45285</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29409">CVE-2023-29409</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45145">CVE-2023-45145</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-41056">CVE-2023-41056</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-41053">CVE-2023-41053</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39319">CVE-2023-39319</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39318">CVE-2023-39318</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36054">CVE-2023-36054</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29409">CVE-2023-29409</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29406">CVE-2023-29406</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-0641">CVE-2024-0641</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-6121">CVE-2023-6121</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5197">CVE-2023-5197</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-46862">CVE-2023-46862</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45863">CVE-2023-45863</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44879">CVE-2021-44879</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
+
 ---
- 
-### <a id='1-6-8-resolved-issues'></a> v1.6.8 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-8-resolved-issues'></a> v1.6.8 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-8-app-sso-ri'></a> v1.6.8 Resolved issues: Application Single Sign-On (AppSSO)
 
 - When requesting an `access_token` by using the the Authorization Code flow, scopes in the token are
   filtered based on user roles. In this version, the `scope` parameter of the
-  access token response is also filtered, with the same rules. 
+  access token response is also filtered, with the same rules.
   For more information, see the [OAuth documentation](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-10.html#name-token-response).
 
 #### <a id='1-6-8-contour-ri'></a> v1.6.8 Resolved issues: Contour
 
 - Ships with Contour v1.24.6.
-- Supports upgrades to Tanzu Application Platform v1.6.8 without downtime when transitioning from `DaemonSet` to `Deployments`.
+- Supports upgrades to Tanzu Application Platform v1.6.8 without downtime when transitioning from
+  `DaemonSet` to `Deployments`.
 
-    >**Note** Downtime-free upgrades require more than one nodes in the cluster.
+    >**Note** Downtime-free upgrades require more than one node in the cluster.
 
 ---
- 
-### <a id='1-6-8-known-issues'></a> v1.6.8 Known issues 
- 
-This release has the following known issues, listed by component and area. 
+
+### <a id='1-6-8-known-issues'></a> v1.6.8 Known issues
+
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-6-8-tap-ki'></a> v1.6.8 Known issues: Tanzu Application Platform
+
+- This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
+  vSphere with Tanzu v8.
+
+#### <a id='1-6-8-amr-obs-ce-hndlr-ki'></a> v1.6.8 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+- ReplicaSet status in AMR only has two states: `created` and `deleted`.
+  There is a known issue where the `available` and `unavailable` state is not showing.
+  The workaround is that you can interpolate this information from the `instances` metadata in the
+  AMR for the ReplicaSet.
+
+#### <a id='1-6-8-bitnami-services-ki'></a> v1.6.8 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-6-8-cnrs-ki'></a> v1.6.8 Known issues: Cloud Native Runtimes
+
+- For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
+  with status `CertificateNotReady`. For more information, see
+  [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+#### <a id='1-6-8-crossplane-ki'></a> v1.6.8 Known issues: Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane Package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-6-8-eventing-ki'></a> v1.6.8 Known issues: Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory use.
+
+#### <a id='1-6-8-learningcenter-ki'></a> v1.6.8 Known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
+#### <a id='1-6-8-stk-ki'></a> v1.6.8 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-6-8-scc-ki'></a> v1.6.8 Known issues: Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
 #### <a id='1-6-8-scst-scan-ki'></a> v1.6.8 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
 information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
 Github repository.
- 
-#### <a id='1-6-8-COMPONENT-NAME-ki'></a> v1.6.8 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+#### <a id='1-6-8-supply-chain-security-tools-store-ki'></a> v1.6.8 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-6-8-tap-gui-ki'></a> v1.6.8 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+   ```console
+   No configured authentication providers. Please configure at least one.
+   ```
+
+  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-6-8-sc-plugin-ki'></a> v1.6.8 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
+
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+
+#### <a id='1-6-8-intellij-plugin-ki'></a> v1.6.8 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-6-8-vs-plugin-ki'></a> v1.6.8 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-6-8-vscode-plugin-ki'></a> v1.6.8 Known issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
+
 ---
- 
+
 ### <a id='1-6-8-components'></a> v1.6.8 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                                   | Version        |
 | ---------------------------------------------------------------- | -------------- |
 | API Auto Registration                                            |                |
