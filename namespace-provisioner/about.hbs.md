@@ -83,4 +83,4 @@ GitOps mode
 
 The Namespace Provisioner controller (controller) is installed by default and manages the content contained in
 the `desired-namespaces` ConfigMap. The controller watches namespaces in the cluster and updates the
-`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The defalut namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.hbs.md#con-label-selector).
+`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The default namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.hbs.md#con-label-selector).

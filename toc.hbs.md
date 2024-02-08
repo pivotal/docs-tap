@@ -575,7 +575,7 @@
         - [Supply Chain Security Tools - Scan 2.0](scst-scan/scan-2-0.hbs.md)
             - [Getting Started](scst-scan/getting-started.hbs.md)
                 - [Installing SCST - Scan 2.0](scst-scan/install-app-scanning.hbs.md)
-                - [Add App Scanning to default Test and Scan supply chains](scst-scan/integrate-app-scanning.hbs.md)
+                - [Enable App Scanning for default Test and Scan supply chains](scst-scan/integrate-app-scanning.hbs.md)
                 - [Using Scan 2.0 with other Scanners in Supply Chains](scst-scan/bring-your-own-scanner.hbs.md)
                     - [Creating an ImageVulnerabilityScan](scst-scan/ivs-create-your-own.hbs.md)
                     - [Verifying an ImageVulnerabilityScan](scst-scan/verify-app-scanning.hbs.md)
