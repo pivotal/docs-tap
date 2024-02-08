@@ -198,7 +198,7 @@ grype-app-scanning-catalog          └─Pod/stage-2-grype-image-scan-7789q-pre
 
 * Get the ivs name by looking for the IVS in the namespace it was created in:
 ```
-lrobin@lrobin6MD6R supply-chain % k get ivs -A
+kubectl get ivs -A
 NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
 grype-app-scanning-catalog   golang-app-robin-test-bbrpz   True        Succeeded   4m52s
 ```

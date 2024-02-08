@@ -11,8 +11,8 @@ This topic tells you how to create a Tanzu Supply Chain with App Scanning which 
 
 * Installed Packages:
   * Supplychain:
-    * Supply Chain (Supply-chain.apps.tanzu.vmware.com)
-    * Supply Chain Catalog (Supply-chain-catalog.apps.tanzu.vmware.com)
+    * Supply Chain (supply-chain.apps.tanzu.vmware.com)
+    * Supply Chain Catalog (supply-chain-catalog.apps.tanzu.vmware.com)
     * Managed Resource Controller (managed-resource-controller.apps.tanzu.vmware.com)
     * Tekton (tekton.apps.tanzu.vmware.com)
   * Components:
@@ -25,35 +25,37 @@ This topic tells you how to create a Tanzu Supply Chain with App Scanning which 
 
 ### Create Tanzu Supply Chain with App Scanning using Tanzu Cartographer Plugin
 
-* Use Tanzu Cartographer Wizard to Create Supply Chain with App-Scanning using either Trivy Supply Chain Component or a Component you created in the previous page.
+* Create a Supply Chain with App Scanning using Trivy Supply Chain Component Tanzu Cartographer Wizard to Create Supply Chain with App-Scanning using either Trivy Supply Chain Component or a Component you created in the previous page.
 ```
-$ tanzu cartographer supply-chain wizard --file example-supply-chain.yaml
-? What should this supply chain be called? example-supply-chain-1.0.0
-? Give the supply chain a description? TODO
-? What Kind would you like to use as the developer interface? Example
-? What group would you like to use for the developer interface? example.com
-? What version would you like to use for the developer interface? v1alpha1
-? Would you like to add stages to the supply chain now? Yes
-? Select a Component to add? source-git-provider-1.0.0 (Monitors a git repository)
-? Would you like to add another stage? Yes
-? Select a Component to add? buildpack-build-1.0.0 (Builds an app with buildpacks using kpack)
-? Would you like to add another stage? Yes
-? Select a Component to add?  [Use arrows to move, type to filter]
-  source-package-translator-1.0.0 (Takes the type source and immediately outputs it as type package.
-In the future, will be replaced by input type mapping or some similar feature.
-)
-  conventions-1.0.0 (Use the Cartographer Conventions service to generate decorated pod template specs)
-> trivy-image-scan-1.0.0 (Performs a trivy image scan using the scan 2.0 components)
-  <SCANNING-COMPONENT> (Performs a <SCANNING> image scan using the scan 2.0 components)
+tanzu cartographer supply-chain wizard --name trivy-supply-chain-1.0.0 \
+--description Trivy \
+--developer-interface-group example.com \
+--developer-interface-kind TrivySC \
+--developer-interface-version v1alpha1 \
+--stages source-git-provider-1.0.0 \
+--stages buildpack-build-1.0.0 \
+--stages trivy-image-scan-0.0.1 \
+--file trivy-supply-chain.yaml
 ```
 
+Create a Supply Chain with App Scanning using your custom Scanning Component you created in the previous page:
+```
+tanzu cartographer supply-chain wizard --name <scanner>-supply-chain-1.0.0 \
+--description <your scanner> \
+--developer-interface-group example.com \
+--developer-interface-kind <your own Kind workload> \
+--developer-interface-version v1alpha1 \
+--stages source-git-provider-1.0.0 \
+--stages buildpack-build-1.0.0 \
+--stages <SCANNING-COMPONENT-NAME> \
+--file <scanner>-supply-chain.yaml
+```
 Where:
-* SCANNING-COMPONENT is the scanning component made in the previous page
-* SCANNING is the scanner name of the scanning component made in the previous page
+* SCANNING-COMPONENT-NAME is the name of the scanning component you made in the previous page.
 
 **Note:** See Tanzu Supply Chain [docs](../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md) how to construct a Supply Chain using the CLI
 
 * Apply Supply Chain into the DEV-NAMESPACE where you plan to run workload
 ```
-kubectl apply -f example-supply-chain.yaml -n DEV-NAMESPACE
+kubectl apply -f <supply-chain yaml made in previous step> -n DEV-NAMESPACE
 ```

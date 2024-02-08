@@ -6,7 +6,7 @@ This topic tells how to install the Trivy Supply Chain Component and create your
 
 * How to install the Trivy Supply Chain Component that uses SCST - Scan 2.0
 * How to write your own Component that uses SCST - Scan 2.0
-* How to view component
+* How to view the component
 
 ### How to use the Trivy Supply Chain Component that uses SCST - Scan 2.0
 
