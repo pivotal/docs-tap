@@ -55,9 +55,9 @@ where the last page always returns an empty list.
 #### <a id='1-7-4-contour-ri'></a> v1.7.4 Resolved issues: Contour
 
 - Ships with Contour v1.25.3.
-- Addresses downtime concerns during 1.7.x upgrade. It is now safe to switch from `DaemonSet` to `Deployments` without causing any downtime.
+- Supports upgrades to v1.7.4 without downtime when transitioning from `DaemonSet` to `Deployments`.
 
->**Note** Downtime-free upgrades require more than one nodes in the cluster.
+    >**Note** Downtime-free upgrades require more than one nodes in the cluster.
 
 ---
  
