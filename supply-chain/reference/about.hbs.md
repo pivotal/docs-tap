@@ -1,4 +1,5 @@
 # Tanzu Supply Chain Reference
+{{> 'partials/supply-chain/<beta-banner>' }}
 
 - [Component Catalog](./catalog/about.hbs.md)
 - [Supply Chain CLI Plugin Reference](./supply-chain-cli.hbs.md)

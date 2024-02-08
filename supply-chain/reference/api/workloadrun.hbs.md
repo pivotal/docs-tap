@@ -1,4 +1,5 @@
 # WorkloadRun API
+{{> 'partials/supply-chain/<beta-banner>' }}
 
 ```yaml
 apiVersion: <defined in supply chain>/v1alpha1
