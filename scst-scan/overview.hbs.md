@@ -31,7 +31,7 @@ There are currently two versions of SCST - Scan:
 
 ### Scan 1.0
 
-Scan 1.0 has been in the testing and scanning supply chain since it was introduced with TAP 1.0.  Scan 1.0 includes the ability to scan a workload for vulnerabilities, submit the scan results to SCST - Store for long term storage and reporting, and compare the results against a policy defined by the user.  This is all included in a tightly coupled scan job that is executed as part of the testing and scanning supply chain.  
+Scan 1.0 has been in the testing and scanning supply chain since it was introduced with TAP 1.0.  Scan 1.0 includes the ability to scan a workload for vulnerabilities, submit the scan results to SCST - Store for long term storage and reporting, and compare the results against a policy defined by the user.  This is all included in a tightly coupled scan job that is executed as part of the testing and scanning supply chain.
 
 This tight coupling of the capabilities made it difficult to develop and maintain integrations for the vast ecosystem of vulnerability scanning platforms.  To simplify this integration process, we have introduced Scan 2.0.
 
@@ -39,7 +39,7 @@ Although other scan integrations are available, the default configuration for Sc
 
 ### Scan 2.0
 
-Scan 2.0 was introduced in the TAP 1.5 release as an Alpha and now enters GA in TAP 1.8.  This iteration of SCST - Scan focuses on simplifying the integration experience by decoupling SCST - Store submission and policy from the scanning task.  This allows integration to be simplified and focused on the task of scanning workloads for vulnerabilities. 
+Scan 2.0 was introduced in the TAP 1.5 release as an Alpha and now enters GA in TAP 1.8.  This iteration of SCST - Scan focuses on simplifying the integration experience by decoupling SCST - Store submission and policy from the scanning task.  This allows integration to be simplified and focused on the task of scanning workloads for vulnerabilities.
 
 The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.  See [ recurring-scanning](recurring-scanning.hbs.md) for more information.  This capability can be used regardless if you are using Scan 1.0 or Scan 2.0 as part of your supply chain.
 
@@ -60,7 +60,7 @@ Other general guidance:
 
 If you require policy to block a workload in a supply chain based on detected vulnerabilities, use Scan v1.0.
 If you wish to create a scan integration for a scan tool that does not exist, use Scan v2.0 as the process is greatly simplified. For more information, see [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
-If you are using the [Supply Chain component](../supply-chain/about.hbs.md), use Scan v2.0 as only Scan v2.0 is supported with Supply Chains.
+If you are using the Tanzu Supply Chain component, use Scan v2.0 as only Scan v2.0 is supported with Supply Chains. For more information, see [Overview of Tanzu Supply Chain](../supply-chain/about.hbs.md)
 
 ## <a id="scst-scan-note"></a>A Note on Vulnerability Scanners
 
