@@ -325,9 +325,10 @@ service's External IP address. It is not required to know the External IP addres
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
 - `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You can create a secret configured with a valid registry credential with a name and namespace of your choice. For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
     - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
+    - You must create the namespace before the installation. For example, you can use the `tap-install` namespace created earlier.
 - `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
 - `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
 - `SERVER-NAME` is the host name of the registry server. Examples:
@@ -448,7 +449,7 @@ For more information, see [Set up developer namespaces to use your installed pac
 
 You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
-```
+```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
