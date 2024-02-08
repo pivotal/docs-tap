@@ -1,124 +1,40 @@
 # Create Workload from SupplyChain
 
-This topic tells how to create a workload from a Tanzu Supply Chain and apply it.
+This topic covers how to create and apply a workload from a Tanzu Supply Chain, how to observe a workload, and how to verify the scanning performed in a workload.
 
 ## <a id="overview"></a> Overview
 
-* Create and apply workload
-* Observe workload
-* Verify workload performed scanning by checking scan results
+* [Create and apply workload](./create-supply-chain-workload.md#create-and-apply-workload)
+* [Observe workload](./create-supply-chain-workload.md#observe-workload)
+* [Verify workload performed scanning by checking scan results](./create-supply-chain-workload.md#verify-workload-performed-scanning-by-checking-scan-results)
 
-### <a id="create-apply-workload-from-supply-chain"></a> Create workload from Supply Chain and apply workload
+### <a id="create-apply-workload-from-supply-chain"></a> Create and apply workload
+
+This sections covers how to create a workload from an existing [supply chain](./create-supply-chain-with-app-scanning.md).
 
 * Use tanzu cartographer plugin to create workload from supply chain:
 ```
 $ tanzu cartographer workload generate
 ? Select the supply chain:   [Use arrows to move, type to filter]
-> sample-supply-chain-1.0.0 (11h)
+> SCANNER-supply-chain-1.0.0 (11h)
   trivy-supply-chain-1.0.0 (3d)
 kind: Sample
 apiVersion: sample.com/v1alpha1
 metadata:
   name: example-sample
 spec:
-  # Kpack build specification
-  build:
-    # Configure workload to use a non-default builder or clusterbuilder
-    builder:
-      # builder kind
-      kind: "clusterbuilder"
-      # builder name
-      name: "tiny-jammy"
-    # cache options
-    cache:
-      # cache image to use
-      image: "myregistry.com/some-repository/my-cache"
-    env:
-    - name: ""
-      value: ""
-    # Service account to use
-    serviceAccountName: ""
-  # Configuration for the registry to use
   registry:
-    # The name of the repository
-    # Required
-    repository: "my-repository"
-    # The name of the registry server, e.g. docker.io
-    # Required
-    server: "docker.io"
-  # Image Scanning configuration
+    ...
   scanning:
-    active-keychains:
-    - name: ""
-    service-account-publisher: ""
-    service-account-scanner: ""
-    workspace:
-      bindings:
-        # ConfigMap represents a configMap that should populate this workspace.
-      - configMap:
-          # items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
-          items:
-            # key is the key to project.
-          - key: ""
-            # mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-            mode:
-            # path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
-            path: ""
-          # Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
-          name: ""
-          # optional specify whether the ConfigMap or its keys must be defined
-          optional:
-          # defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-          defaultMode:
-        # Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.
-        emptyDir:
-          # medium represents what type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-          medium: ""
-          # sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-          sizeLimit:
-        # Name is the name of the workspace populated by the volume.
-        name: ""
-        # Secret represents a secret that should populate this workspace.
-        secret:
-          # secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
-          secretName: ""
-          # defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-          defaultMode:
-          # items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
-          items:
-            # mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
-          - mode:
-            # path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
-            path: ""
-            # key is the key to project.
-            key: ""
-          # optional field specify whether the Secret or its keys must be defined
-          optional:
-      size: ""
-  source:
-    # The sub path in the bundle to locate source code
-    subPath: "sub-dir"
-    # Fill this object in if you want your source to come from git.
-    # The tag, commit and branch fields are mutually exclusive, use only one.
-    # Required
-    git:
-      # A git branch ref to watch for new source
-      branch: "main"
-      # A git commit sha to use
-      commit: ""
-      # A git tag ref to watch for new source
-      tag: "v1.0.0"
-      # The url to the git source repository
-      # Required
-      url: "https://github.com/acme/my-workload.git"
+    ...
 ```
-Here the user can create a supply chain using the:
-* Trivy Supply Chain created in the setup [trivy supply chain](./setup-supply-chain-component.md#how-to-use-the-trivy-supply-chain-component-that-uses-scst---scan-20)
-* Custom Scanner Component created in the setup [your own scanner component supply chain](./setup-supply-chain-component.md#how-to-create-your-own-scanning-component-that-uses-scst---scan-20)
+Here the user can create a supply chain workload from the:
+* [Trivy Supply Chain](./create-supply-chain-with-app-scanning.md#create-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component)
+* [Supply Chain with Custom Scanner Component](./create-supply-chain-with-app-scanning.md#create-supply-chain-with-scst---scan-20-and-the-custom-scanning-component)
 
-This will render a sample workload yaml that the user can configure that we will put in `workload.yaml`.
+This will render a sample workload yaml that the user can configure and put in a `workload.yaml`.
 
-Apply workload
+* Apply workload:
 ```
 kubectl apply -f workload.yaml -n DEV-NAMESPACE
 ```
@@ -134,7 +50,8 @@ Sample/golang-app-robin-test   grype-app-scanning-catalog  sample-supply-chain-1
 ```
 
 * Trace workload progress:
-See here to get kubectl tree plugin (https://github.com/ahmetb/kubectl-tree)
+
+Install kubectl tree [plugin](https://github.com/ahmetb/kubectl-tree)
 ```
 $ kubectl tree Sample golang-app-robin-test -n grype-app-scanning-catalog
 NAMESPACE                   NAME                                                                              READY  REASON              AGE
@@ -189,17 +106,15 @@ grype-app-scanning-catalog        │         └─Pod/golang-app-robin-test-bb
 grype-app-scanning-catalog        ├─ResolutionRequest/cluster-ed022311336c4f218d4065723b853bfc                -                          64s
 grype-app-scanning-catalog        └─TaskRun/stage-2-grype-image-scan-7789q-prepare                            -                          64s
 grype-app-scanning-catalog          └─Pod/stage-2-grype-image-scan-7789q-prepare-pod                          False  PodCompleted        64s
-
 ```
-
 
 ### <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
 * Get the ivs name by looking for the IVS in the namespace it was created in:
 ```
-kubectl get ivs -A
+kubectl get ivs -n DEV-NAMESPACE
 NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
-grype-app-scanning-catalog   golang-app-robin-test-bbrpz   True        Succeeded   4m52s
+DEV-NAMESPACE    golang-app-robin-test-bbrpz   True        Succeeded   4m52s
 ```
 
 * Follow this [verify app-scanning page](./verify-app-scanning.hbs.md#retrieve-scan-results) to see how to retrieve scan results by using the IVS name found in the previous step.

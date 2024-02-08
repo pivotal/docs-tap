@@ -14,4 +14,4 @@ You can get started with Supply Chain Security Tools (SCST) - Scan 2.0 by using 
 * Tanzu Supply Chain:
   * [Setup the Supply Chain Component](./setup-supply-chain-component.md)
   * [Create a Supply Chain that uses SCST - Scan 2.0 with a Component](./create-supply-chain-with-app-scanning.md)
-  * [Create a Workload from the SupplyChain](./create-supply-chain-workload.md)
+  * [Create a Workload from the Supply Chain](./create-supply-chain-workload.md)

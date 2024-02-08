@@ -1,31 +1,37 @@
 # Create Tanzu Supply Chain that uses App Scanning
 
-This topic tells you how to create a Tanzu Supply Chain with App Scanning which replaces the previous solution for Supply Chains Choreographer for Tanzu.
+This topic covers how to create a Tanzu Supply Chain with App Scanning which replaces the previous solution for Supply Chains Choreographer for Tanzu.
 
 ## <a id="overview"></a> Overview
 
-* Prereqs
-* Create Tanzu Supply Chain using Tanzu Cartographer Plugin
+* [Prerequisities](./create-supply-chain-with-app-scanning.md#prerequisities)
+* [Create Tanzu Supply Chain using Tanzu Cartographer Plugin](./create-supply-chain-with-app-scanning.md#create-tanzu-supply-chain-with-app-scanning-using-tanzu-cartographer-plugin)
 
 ### <a id="prerequisities"></a> Prerequisities
+
+This sections covers what dependencies are needed in order to create and run a Tanzu Supply Chain Workload.
 
 * Installed Packages:
   * Supplychain:
     * Supply Chain (supply-chain.apps.tanzu.vmware.com)
     * Supply Chain Catalog (supply-chain-catalog.apps.tanzu.vmware.com)
     * Managed Resource Controller (managed-resource-controller.apps.tanzu.vmware.com)
-    * Tekton (tekton.apps.tanzu.vmware.com)
+    * [Tekton](../tekton/install-tekton.hbs.md)
   * Components:
-    * Source (Source.component.apps.tanzu.vmware.com)
-    * Buildpack (buildpack-build.component.apps.tanzu.vmware.com)
-    * Trivy Scanning (Trivy.app-scanning.component.apps.tanzu.vmware.com)
+    * [Source](../supply-chain/reference/catalog/about.hbs.md#source-git-provider)
+    * [Buildpack](../supply-chain/reference/catalog/about.hbs.md#buildpack-build)
+    * [Trivy Scanning](../supply-chain/reference/catalog/about.hbs.md#trivy-image-scan)
   * Scanning:
-    * App-Scanning (app.scanning.apps.tanzu.vmware.com)
-* Tanzu Cartographer Plugin to create Tanzu Supply Chains and Workloads
+    * [App-Scanning](./install-app-scanning.hbs.md)
+* [Tanzu Cartographer CLI Plugin](../install-tanzu-cli.hbs.md)
 
-### <a id="create-supply-chain"></a> Create Tanzu Supply Chain with App Scanning using Tanzu Cartographer Plugin
+### <a id="create-supply-chain"></a> Create Supply Chain with SCST - Scan 2.0 and Component
 
-* Create a Supply Chain with App Scanning and Trivy Supply Chain Component using Tanzu Cartographer Wizard if you installed the Trivy Supply Chain Component in the previous component [page](./setup-supply-chain-component.md#how-to-use-the-trivy-supply-chain-component-that-uses-scst---scan-20):
+This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.md#install-trivy-supply-chain-component) or a [Customized Scanning Component](./setup-supply-chain-component.md#customize-scanning-component)
+
+#### <a id="create-supply-chain-trivy-component"></a> Create Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
+
+* Create a Supply Chain with App Scanning and installed [Trivy Supply Chain Component](./setup-supply-chain-component.md#install-trivy-supply-chain-component) using Tanzu Cartographer Wizard:
 ```
 tanzu cartographer supply-chain wizard --name trivy-supply-chain-1.0.0 \
 --description Trivy \
@@ -38,7 +44,9 @@ tanzu cartographer supply-chain wizard --name trivy-supply-chain-1.0.0 \
 --file trivy-supply-chain.yaml
 ```
 
-* Create a Supply Chain with App Scanning and the custom Scanning Component if you created your own component in the previous component [page](./setup-supply-chain-component.md#how-to-create-your-own-scanning-component-that-uses-scst---scan-20):
+#### <a id="create-supply-chain-custom-component"></a> Create Supply Chain with SCST - Scan 2.0 and the custom Scanning Component
+
+* Create a Supply Chain with App Scanning and the custom Scanning Component created in the component [page](./setup-supply-chain-component.md#customize-scanning-component):
 ```
 tanzu cartographer supply-chain wizard --name SCANNER-supply-chain-1.0.0 \
 --description <your scanner> \
@@ -51,10 +59,10 @@ tanzu cartographer supply-chain wizard --name SCANNER-supply-chain-1.0.0 \
 --file SCANNER-supply-chain.yaml
 ```
 Where:
-* SCANNING-COMPONENT-NAME is the name of the scanning component made in the previous page.
-* SCANNER is the name of the scanner from the scanning component made in the previous page.
+* SCANNING-COMPONENT-NAME is the name of the [custom scanning component](./setup-supply-chain-component.md#customize-scanning-component).
+* SCANNER is the name of the scanner from the [custom scanning component](./setup-supply-chain-component.md#customize-scanning-component).
 
-**Note:** See Tanzu Supply Chain [docs](../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md) how to construct a Supply Chain using the CLI
+**Note:** See Tanzu Supply Chain [docs](../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md) for more details on how to construct a Supply Chain using the CLI.
 
 * Apply Supply Chain into the DEV-NAMESPACE where you plan to run workload
 ```
