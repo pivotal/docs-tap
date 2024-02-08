@@ -37,9 +37,11 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-8-contour-ri'></a> v1.6.8 Resolved issues: Contour
 
-- Ships with Contour 1.24.6
-- Fixes downtime during switches from daemonset to deployments. Users would see downtime during an update to TAP 1.6.7 and below when daemonset was used before and switched to deployments. This downtime will also occurs upgrading to 1.7.0-1.7.3. With 1.6.7 and 1.7.4, this downtime issue is resolved.
-  - No downtime upgrades are only possible with more than one node on the cluster
+- Ships with Contour v1.24.6.
+- Supports upgrades to v1.6.8 without downtime when transitioning from `daemonset` to `deployments`.
+
+    >**Note** Downtime-free upgrades require more than one nodes in the cluster.
+
 ---
  
 ### <a id='1-6-8-known-issues'></a> v1.6.8 Known issues 
