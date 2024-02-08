@@ -112,7 +112,7 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-8-app-sso-ri'></a> v1.6.8 Resolved issues: Application Single Sign-On (AppSSO)
+#### <a id='1-6-8-app-sso-ri'></a> v1.6.8 Resolved issues: Application Single Sign-On
 
 - When requesting an `access_token` by using the the Authorization Code flow, scopes in the token are
   filtered based on user roles. In this version, the `scope` parameter of the
