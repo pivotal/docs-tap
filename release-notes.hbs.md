@@ -55,7 +55,7 @@ where the last page always returns an empty list.
 #### <a id='1-7-4-contour-ri'></a> v1.7.4 Resolved issues: Contour
 
 - Ships with Contour v1.25.3.
-- Supports upgrades to v1.7.4 without downtime when transitioning from `DaemonSet` to `Deployments`.
+- Supports upgrades to Tanzu Application Platform v1.7.4 without downtime when transitioning from `DaemonSet` to `Deployments`.
 
     >**Note** Downtime-free upgrades require more than one nodes in the cluster.
 
