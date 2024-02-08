@@ -14,7 +14,7 @@ Once you are happy with the new or modifed accelerators and fragments you can co
 
 Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com/) then go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform) and select your TAP version.
 
-There is a file group named `acc-engine-v1.8.1` that containes four different ZIP archives, one for each of `macos-aarch64`, `macos-amd64`, `windows` and `linux`. Download the one that matches you OS and architecture.
+There is a file group named `Application Accelerator Engine Server-v1.8.1` that contains four different ZIP archives, one for each of `macos-aarch64`, `macos-amd64`, `windows` and `linux`. Download the one that matches you OS and architecture.
 
 The ZIP file contains the local engine server and a Java runtime for running the server. Extract it to a local directory, eith using the `unzip` command or any other extraction tool.
 
