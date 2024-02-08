@@ -38,7 +38,7 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-8-contour-ri'></a> v1.6.8 Resolved issues: Contour
 
 - Ships with Contour v1.24.6.
-- Supports upgrades to v1.6.8 without downtime when transitioning from `DaemonSet` to `Deployments`.
+- Supports upgrades to Tanzu Application Platform v1.6.8 without downtime when transitioning from `DaemonSet` to `Deployments`.
 
     >**Note** Downtime-free upgrades require more than one nodes in the cluster.
 
