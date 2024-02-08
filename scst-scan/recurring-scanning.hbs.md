@@ -1,6 +1,6 @@
 # Recurring Scanning
 
-In a world where new vulnerabilities are reported daily, it is important that workloads are scanned with updated vulnerability databases frequently.  Tanzu Application Platform provides the capability to use the scanner of your choice to scan images produce by your software supply chain, as well as any container image running in your Tanzu Application Platform clusters.
+In a world where new vulnerabilities are reported daily, it is important that workloads are scanned with updated vulnerability databases frequently.  Tanzu Application Platform provides the capability to use the scanner of your choice to scan images produced by your software supply chain, as well as any container image running in your Tanzu Application Platform clusters.
 
 ## <a id="overview"></a>Overview
 
@@ -27,7 +27,7 @@ In order to enable recurring scanning, you must create a recurringimagevulnerabi
 * The steps from [IVS template]() to use to scan your images, which defines what scanner to use
 * The OCI compliant container registry to push the recurring scan results to
 
-Below, this document will outline the prerequisites needed, an example template for recurring scanning, then a samples for Grype to use with the out of box default for Scan 1.0, and a sample for Trivy to use with the out-of-box default for Scan 2.0.
+Below, this document will outline the prerequisites needed, an example template for recurring scanning, then samples for Grype to use with the out of box default for Scan 1.0, and a sample for Trivy to use with the out-of-box default for Scan 2.0.
 
 ### <a id="preqrequisites"></a>Prerequisites
 
@@ -41,7 +41,7 @@ The prerequisites for recurring scan are the same as Scan 2.0.  For service acco
 
 ### <a id="example-template"></a>Example recurringimagevulnerabilityscan Template
 
-Below is a sample template with an explanation of all the input variables that can be provided for the recurringimagevulnerabilityscan CR.  The samples for Grype and Trivy below are intended to used in a namespace that is created by the namespace provisioner and a simple environment.  As such, the Grype and Trivy examples are a subset of this template.  Additional configurations from this template can be added to the Grype and Trivy samples for more advanced configurations.  
+Below is a sample template with an explanation of all the input variables that can be provided for the recurringimagevulnerabilityscan CR.  The samples for Grype and Trivy below are intended to use in a namespace that is created by the namespace provisioner and a simple environment.  As such, the Grype and Trivy examples are a subset of this template.  Additional configurations from this template can be added to the Grype and Trivy samples for more advanced configurations.  
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -78,7 +78,7 @@ spec:
     - `RAN-INTERVAL` defines how many prior days of images from pods that have started on the TAP clusters should be scanned
     - `CREATED-INTERVAL` defines how many prior days of images from supply chains should be scanned
     - `FAILED-RETENTION` is the number of failed recurring scan executions to keep in Kubernetes.
-    - `CRON-SCHEDULE` defines the schedule in which to invoke recurring scans in crontab format.  For example as used in the samples below, if you wanted to execute a scan daily at 3:00 AM, the value here would be `0 3 * * *`
+    - `CRON-SCHEDULE` defines the schedule in which to invoke recurring scans in crontab format.  For example, as used in the samples below, if you wanted to execute a scan daily at 3:00 AM, the value here would be `0 3 * * *`
     - `START-DEADLINE` is the period of time beyond the scheduled start time that scans can be started in the event they did not start on time.  If this period elapses, the scheduled scan will be skipped.
     - `SUCESSFUL-RETENTION` is the number of successful recurring scans executions to keep in Kubernetes.  
     - `WORKSPACESIZE` is the size of the workspace used when scanning images.  This will be created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, number of images to be scanned, and the output of the vulnerability scanner.  Recommend `3Gi` as a starting point. 
@@ -89,7 +89,7 @@ spec:
 
 The default out-of-the-box scanner with Scan 1.0 is Anchore’s Grype, and this template is intended to pair with the Scan 1.0 out-of-the-box configuration.
 
-To apply this configuration, save it to to a file and apply it to the namespace created for recurring scans by using the following command:
+To apply this configuration, save it to a file and apply it to the namespace created for recurring scans by using the following command:
 
 ```console
 kubectl apply -f grype-recurring-scan.yaml  --namespace <namespace>
@@ -140,7 +140,7 @@ spec:
 
 The default out-of-the-box scanner with Scan 2.0 is Aqua Security’s Trivy, and this template is intended to pair with the Scan 2.0 out-of-the-box configuration.
 
-To apply this configuration, save it to to a file and apply it to the namespace created for recurring scans by using the following command:
+To apply this configuration, save it to a file and apply it to the namespace created for recurring scans by using the following command:
 
 ```console
 kubectl apply -f trype-recurring-scan.yaml --namespace <namespace>
