@@ -1,4 +1,5 @@
 # Contributing
+{{> 'partials/supply-chain/beta-banner' }}
 
 Guide for teams contributing docs to the Supply Chain component section.
 

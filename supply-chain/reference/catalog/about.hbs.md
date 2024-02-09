@@ -1,5 +1,7 @@
 # Catalog of Tanzu Supply Chain Components
-{{> 'partials/supply-chain/<beta-banner>' }}
+
+{{> 'partials/supply-chain/beta-banner' }}
+
 
 This section introduces the catalog of components shipped with TAP. You will find all of these components in the "authoring" profile.
 

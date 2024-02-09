@@ -1,5 +1,5 @@
 # Build your first Component
-
+{{> 'partials/supply-chain/beta-banner' }}
 
 
 

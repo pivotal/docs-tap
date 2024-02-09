@@ -1,4 +1,5 @@
 # Tanzu Supply Chain for Platform Engineers
+{{> 'partials/supply-chain/beta-banner' }}
 
 This section details the Platform Engineering features of Supply Chain:
 
