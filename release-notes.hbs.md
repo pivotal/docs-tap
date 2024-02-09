@@ -3422,6 +3422,11 @@ to ensure that they are correctly created.
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 - On first install, Tanzu Developer Portal will sometimes experience a transient failure during reconciliation. No action is needed as reconcile will succeed during automatic retry. The issue is related to the order of creation for Kubernetes resources and will be addressed in a future release.
 
+#### <a id='1-8-0-cloud-native-runtimes-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
+
+- Web workloads created before TAP 1.6.4 will fail to update with the error `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`
+  - Please see [Troubleshoot Cloud Native Runtimes for Tanzu](../cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md) for help.
+
 ---
 
 ### <a id='1-7-0-components'></a> v1.7.0 Component versions
