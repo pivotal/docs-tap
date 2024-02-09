@@ -1,4 +1,5 @@
 # Explanations for Developers
+
 {{> 'partials/supply-chain/beta-banner' }}
 
 - [Core Concepts: Workloads](./workloads.hbs.md)
