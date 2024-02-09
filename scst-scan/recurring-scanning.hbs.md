@@ -1,26 +1,26 @@
-# Recurring Scanning
+# Set up recurring scanning
 
-This topic describes how to setup recurring scans using Supply Chain Security Tools
+This topic describes how to set up recurring scans using Supply Chain Security Tools
 (SCST) - Scan 2.0.
 
 ## <a id="overview"></a>Overview
 
 As new vulnerabilities are reported daily, it is important to scan workloads with updated
 vulnerability databases frequently. Use the
-scanner of your choice to scan images produced by your software supply chain, as well as any
+scanner of your choice to scan images produced by your software supply chain, and any
 container image running in your Tanzu Application Platform clusters.
 
 Use SCST - Scan 2.0 to schedule container image scans with the following capabilities:
 
-Detect vulnerabilities without a supply chain run for the following container images sources:
+Detect vulnerabilities without a supply chain run for the following container image sources:
 
-- Images produced by the supply chain using Tanzu Build Service or Kaniko
+- Images produced by the supply chain using Tanzu Build Service or kaniko
 - Images defined in a workload when using a prebuilt container image in your supply chain
 - Images running in a Tanzu Application Platform cluster that was not produced by a software supply chain
 
 Customize how far back you want to scan container images based on:
 
-- When the container image was created via the supply chain
+- When the container image was created in the supply chain
 - When the container image entered a running state on your Tanzu Application Platform cluster
 
 Use one of the ImageVulnerabilityScan samples or create your own.
@@ -30,9 +30,9 @@ For more information, see[ImageVulnerabilityScan samples](ivs-custom-samples.hbs
 
 - Use when either Scan 1.0 or Scan 2.0 is defined as your supply chain scanning component
 
-## <a id="recurring-scanning-setup"></a>Setup recurring scanning
+## <a id="recurring-scanning-setup"></a>Set up recurring scanning
 
-To setup recurring scanning, you must create a `recurringimagevulnerabilityscan`. This defines the
+To set up recurring scanning, you must create a `recurringimagevulnerabilityscan`. This defines the
 following:
 
 - The interval in which to scan container images in crontab format
@@ -47,7 +47,7 @@ Before you define your `recurringimagevulnerabilityscan` template, you must have
 
 - A repository created on an OCI compliant container registry that scan results are pushed to
 - A service account that can to push an OCI artifact to the results repository
-- Credentials for any registry the scanner will need to pull images from to scan
+- Credentials for any registry the scanner needd to pull images from to scan
 
 The prerequisites for recurring scan are the same as Scan 2.0. For service accounts and credentials,
 you can do this manually following the Scan 2.0 directions, but the recommended approach is to use
@@ -57,7 +57,7 @@ information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md)
 
 ### <a id="example-template"></a>Example recurringimagevulnerabilityscan Template
 
-Below is a sample template with an explanation of the input variables that can be provided for the recurringimagevulnerabilityscan CR. Use the Grype and Trivy samples in a namespace created by
+Below is a sample template with an explanation of the input variables for the recurringimagevulnerabilityscan CR. Use the Grype and Trivy samples in a namespace created by
 Namespace Provisioner in a simple environment. The Grype and Trivy examples are a subset of this template. Additional configurations from this template can be added to the Grype and Trivy samples for more advanced configurations.
 
 ```yaml
@@ -92,20 +92,20 @@ spec:
 
     Where:
 
-    - `RAN-INTERVAL`: How many prior days of images from pods that have started on the Tanzu Application Platform clusters should be scanned.
-    - `CREATED-INTERVAL` How many prior days of images from supply chains should be scanned.
+    - `RAN-INTERVAL`: How many prior days of images from pods that have started on the Tanzu Application Platform clusters to scan.
+    - `CREATED-INTERVAL` How many prior days of images from supply chains to scan.
     - `FAILED-RETENTION`: The number of failed recurring scan executions to keep in Kubernetes.
     - `CRON-SCHEDULE`: The schedule in which to invoke recurring scans in crontab format. For example,
     to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
     - `START-DEADLINE`: The period of time beyond the scheduled start time that scans can be started in the event they did not start on time.  If this period elapses, the scheduled scan is skipped.
     - `SUCESSFUL-RETENTION`: The number of successful recurring scan executions to keep in Kubernetes.
-    - `WORKSPACESIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
+    - `WORKSPACESIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
     - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
 ### <a id="grype-rivs-template"></a>Grype recurringimagevulnerabilityscan Template
 
-The Scan 1.0 default scanner is Grype, and this template is intended to pair with the Scan 1.0
+The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
 default configuration.
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
