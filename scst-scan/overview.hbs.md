@@ -9,7 +9,7 @@ With Supply Chain Security Tools (SCST) - Scan, you can build and deploy
 secure, trusted software that complies with your corporate security requirements.
 SCST - Scan provides scanning and gatekeeping capabilities
 that Application and DevSecOps teams can incorporate early in their path to
-production. This is best practice for reducing security risk
+production. This is the best practice for reducing security risk
 and ensuring more efficient remediation.
 
 ## <a id="use-cases"></a>Language support
@@ -25,8 +25,7 @@ The following use cases apply to SCST - Scan:
 part of your software supply chain at build time.
 - Scan container images produced by your supply chain and any running image in your Tanzu
 Application Platform clusters for newly reported vulnerabilities after the initial image build scan.
-- Use one of the out-of-box provided scan integrations or create your own to leverage your existing
-vulnerability scanning platforms.
+- Use one of the available scan integrations or create your own to use your existing vulnerability scanning platforms.
 - Analyze supply chain scan results against user-defined policies.
 - Store vulnerability scan results in SCST - Store for long-term archival and reporting.
 
@@ -39,8 +38,7 @@ There are two versions of SCST - Scan:
 Scan 1.0 has been in the testing and scanning supply chain since it was introduced with Tanzu
 Application Platform v1.0. Scan 1.0 can scan a workload for vulnerabilities, submit the scan results
 to SCST - Store for long-term storage and reporting, and compare the results against a policy
-defined by the user. This is all included in a tightly coupled scan job that is executed as part of
-the testing and scanning supply chain.
+defined by the user. This is all included in a tightly coupled scan job that is executed as part of the testing and scanning supply chain.
 
 This tight coupling of the capabilities made it difficult to develop and maintain integrations for
 the vast ecosystem of vulnerability scanning platforms. To simplify this integration process,
@@ -64,26 +62,26 @@ used with Scan 1.0 or Scan 2.0.
 
 Scan 2.0 includes the default configuration to use open-source
 [Aqua Security Trivy](https://www.aquasec.com/products/trivy/) as the image scanner, and a Grype
-template is also included for backwards compatibility. Examples of other integrations, and how to
+template is also included for backward compatibility. Examples of other integrations, and how to
 build your own integration with this simplified interface, are provided in documentation.
 
 ### Determine which version to use
 
 In Tanzu Application Platform v1.8, both Scan v1.0 and Scan v2.0 are supported. In a future release,
 Scan v1.0 will be deprecated and replaced with Scan v2.0. To help facilitate this transition,
-VMware are slowly making Scan 2.0 the default component. The default version varies depending on
+VMware is slowly making Scan 2.0 the default component. The default version varies depending on
 the environment Tanzu Application Platform is installed on:
 
 | Installation Environment | Default Component | Detail |
 | --- | --- | --- |
 | [Online Installation](../install-online/intro.hbs.md) | Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan 2.0 |
-| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a much simplified air gap experience with Trivy |
+| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a simplified air gap experience with Trivy |
 | [Azure Installation](../install-azure/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
 | [AWS Installation](../install-aws/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
 
 Other general guidance:
 
-If you require policy to block a workload in a supply chain based on detected vulnerabilities, use
+If you require a policy to block a workload in a supply chain based on detected vulnerabilities, use
 Scan v1.0.
 If you want to create a scan integration for a scan tool that does not exist, use Scan v2.0 as the
 process is greatly simplified. For more information, see
@@ -98,10 +96,10 @@ the benefits of it are widely recognized and accepted,
 some limits impact its efficacy.
 The following examples illustrate the limits that are prevalent in most scanners today:
 
-#### <a id="missed-cves"></a>Missed CVEs
+### <a id="missed-cves"></a>Missed CVEs
 
 One limit of all vulnerability scanners is that
-no one tool that can find all CVEs, which means there is a risk
+no one tool can find all CVEs, which means there is a risk
 that a missed CVE could be exploited. Some reasons for missed CVEs include:
 
 - The scanner does not detect the vulnerability because it is a recently discovered vulnerability
@@ -147,10 +145,10 @@ vulnerabilities quickly:
     scan the OS packages from a base image.
     - Scan running software in test, stage, and production environments at a regular cadence.
     - Generate accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects.
-    Because this SBoM is generated during the image building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. This is because it can highlight dependencies introduced at the time of build that might introduce potential for compromise.
+    Because this SBoM is generated during the image-building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. This is because it can highlight dependencies introduced at the time of build that might introduce the potential for compromise.
 - Scan by using multiple scanners to maximize CVE coverage.
 - Practice keeping your dependencies up-to-date.
-- To reduce overall surface area of attack:
+- To reduce the overall surface area of attack:
   - Use smaller dependencies.
   - Reduce the amount of third-party dependencies when possible.
   - Use distroless base images when possible.
