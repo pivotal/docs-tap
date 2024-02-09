@@ -115,7 +115,7 @@ providers:
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 - vSphere with Tanzu:
     - v8.0.2 or later and Tanzu Application Platform v1.7.1 or later.
-    - v7.0.3P or later and Tanzu Application Platform v1.7.4 or later.
+    - v7.0.3p or later and Tanzu Application Platform v1.7.4 or later.
 For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
 
 ## <a id="resource-requirements"></a>Resource requirements
