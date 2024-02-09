@@ -580,6 +580,7 @@
                     - [Creating an ImageVulnerabilityScan](scst-scan/ivs-create-your-own.hbs.md)
                     - [Verifying an ImageVulnerabilityScan](scst-scan/verify-app-scanning.hbs.md)
                     - [Authoring a ClusterImageTemplate](scst-scan/clusterimagetemplates.hbs.md)
+                    - [Set up recurring scanning](scst-scan/recurring-scanning.hbs.md)
                     - [ImageVulnerabilityScan Samples](scst-scan/ivs-custom-samples.hbs.md)
                         - [Carbon Black IVS sample](scst-scan/ivs-carbon-black.hbs.md)
                         - [Snyk IVS sample](scst-scan/ivs-snyk.hbs.md)
