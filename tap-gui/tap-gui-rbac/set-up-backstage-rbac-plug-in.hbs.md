@@ -1,4 +1,4 @@
-# Set up the Backstage role-based access control plug-in for Tanzu Developer Portal
+# Set up the Backstage RBAC plug-in for Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage role-based access control (RBAC) plug-in and
 demonstrates how to enable it in Tanzu Developer Portal. For more information about the plug-in, see
