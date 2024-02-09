@@ -1,6 +1,6 @@
 # Set up the Backstage role-based access control plug-in for Tanzu Developer Portal
 
-This topic provides you an overview of the Backstage role-based access control (RBAC) plug-in and
+This topic gives you an overview of the Backstage role-based access control (RBAC) plug-in and
 demonstrates how to enable it in Tanzu Developer Portal. For more information about the plug-in, see
 the:
 
@@ -10,14 +10,16 @@ the:
 
 ## <a id='rbac-overview'></a> Overview of the RBAC plug-in
 
-The Backstage RBAC plug-in works with the [permission framework](set-up-tap-gui-prmssn-frmwrk.hbs.md)
-to enable support for RBAC for Tanzu Application Platform operators.
+The Backstage RBAC plug-in works with the permission framework to enable support for RBAC for Tanzu
+Application Platform operators. For more information, see
+[Set up the permission framework for your Tanzu Developer Portal](set-up-tap-gui-prmssn-frmwrk.hbs.md).
 
 ## <a id='install-rbac'></a> Install the RBAC plug-in
 
-To create a customized Tanzu Developer Portal with the RBAC plug-in, follow the steps in
-[building a customized Tanzu Developer Portal with Configurator](../configurator/building.hbs.md)
-modifying the steps to be like so:
+Creating a customized Tanzu Developer Portal with the RBAC plug-in is similar to
+[building a customized Tanzu Developer Portal with Configurator](../configurator/building.hbs.md).
+
+To create a customized Tanzu Developer Portal with the RBAC plug-in:
 
 1. Create a `tdp-config.yaml` file with the following structure:
 
@@ -87,10 +89,12 @@ modifying the steps to be like so:
     $ kubectl create ns my-apps
     ```
 
-1. After the workload has gone through the `image-provider` stage in the supply chain, follow the
-   steps in [running a customized Tanzu Developer Portal](../configurator/running.hbs.md) to
-   retrieve the location of the customized Tanzu Developer Portal image that the workload produces
-   and overlay the customized image on to the instance of Tanzu Developer Portal currently running.
+1. Wait for the workload to go through the `image-provider` stage in the supply chain.
+
+1. Follow the steps in [running a customized Tanzu Developer Portal](../configurator/running.hbs.md)
+   to retrieve the location of the customized Tanzu Developer Portal image that the workload
+   produces and overlay the customized image on to the instance of Tanzu Developer Portal currently
+   running.
 
 ## <a id='enable-rbac'></a> Enable the RBAC plug-in
 
@@ -126,7 +130,7 @@ To enable the RBAC plug-in:
       only first-party Backstage plug-in that includes permissions.
     - `NAMESPACE` is usually `default` unless defined otherwise in the definition file.
     - `NAME` is the name of the group or user.
-    - `SPOTIFY-LICENSE-KEY` is the license key you received from Spotify.
+    - `SPOTIFY-LICENSE-KEY` is the license key that you received from Spotify.
 
    Example:
 
@@ -137,7 +141,7 @@ To enable the RBAC plug-in:
         permission:
           enabled: true
           permissionedPlugins:
-            - PLUGIN-NAME
+            - PLUG-IN-NAME
           rbac:
             authorizedUsers:
               - group:NAMESPACE/NAME
@@ -147,8 +151,9 @@ To enable the RBAC plug-in:
     ```
 
 1. With the overlay from [running a customized Tanzu Developer Portal](../configurator/running.hbs.md),
-   ensure that the `tap-values.yaml` file has the `tap_gui` section and `package_overlays` section
-   similar to this example:
+   ensure that the `tap-values.yaml` file has the `tap_gui` section and `package_overlays` section.
+
+   Example:
 
     ```yaml
     tap_gui:
@@ -157,7 +162,7 @@ To enable the RBAC plug-in:
         permission:
           enabled: true
           permissionedPlugins:
-            - PLUGIN-NAME
+            - PLUG-IN-NAME
           rbac:
             authorizedUsers:
               - group:NAMESPACE/NAME
@@ -184,7 +189,7 @@ To enable the RBAC plug-in:
 
    ![The RBAC label for the RBAC tab is framed in red in the sidebar.](../images/backstage-rbac-plugin.png)
 
-## <a id='extra'></a> Extra
+## <a id='identify'></a> (Optional) Identify a user authorized to author RBAC policies
 
 You can identify someone who used an authentication provider to log in as a user authorized to author
 RBAC policies.
@@ -217,6 +222,6 @@ tap_gui:
 Where:
 
 - `GOOGLE-CLIENT-ID` and `GOOGLE-CLIENT-SECRET` are credentials provided after setting up Google
-  authentication following [steps in the Backstage documentation](https://backstage.io/docs/auth/google/provider/)
-- `USER-GOOGLE-EMAIL` is the Google account used to log in to Tanzu Developer Portal
+  authentication by following steps in the [Backstage documentation](https://backstage.io/docs/auth/google/provider/)
+- `USER-GOOGLE-EMAIL` is the Google account email address used to log in to Tanzu Developer Portal
 - `SPOTIFY-LICENSE-KEY` is the license key provided by Spotify
