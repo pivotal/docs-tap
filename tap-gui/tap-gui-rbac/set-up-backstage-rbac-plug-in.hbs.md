@@ -1,4 +1,4 @@
-# Set up the Backstage role-based access control plug-in for Tanzu Developer Portal
+# Set up the Backstage RBAC plug-in for Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage role-based access control (RBAC) plug-in and
 demonstrates how to enable it in Tanzu Developer Portal. For more information about the plug-in, see
@@ -177,13 +177,7 @@ To enable the RBAC plug-in:
     ```
 
 1. Reinstall the Tanzu Developer Portal package by following the steps in
-   [Upgrade Tanzu Application Platform](../../upgrading.hbs.md), and running this command with the
-   `TAP_VERSION` you are using:
-
-   ```console
-   tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  \
-   --values-file tap-values.yaml --namespace tap-install
-   ```
+   [Upgrade Tanzu Application Platform](../../upgrading.hbs.md).
 
 1. Open Tanzu Developer Portal in your browser and verify that the **RBAC** tab is in the sidebar.
 
