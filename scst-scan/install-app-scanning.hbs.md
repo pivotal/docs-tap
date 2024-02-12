@@ -131,7 +131,7 @@ To install SCST - Scan 2.0:
 
 ## <a id="config-sa-reg-creds"></a> Configure service accounts and registry credentials
 
-This section contains instructions for users that are running a standalone ImageVulnerabilityScan or using multiple registries.
+This section contains instructions for running a standalone ImageVulnerabilityScan or using multiple registries.
 
 If the image that you are scanning, or if you are bringing your own scanner, and
 your vulnerability scanner image are located in private registries different
