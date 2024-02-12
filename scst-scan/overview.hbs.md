@@ -52,8 +52,7 @@ open-source [Anchore Grype](https://anchore.com/opensource/).
 Scan 2.0 was introduced in the Tanzu Application Platform v1.5 release as an Alpha and is now
 GA in Tanzu Application Platform v1.8. This iteration of SCST - Scan focuses on simplifying the
 integration experience by decoupling SCST - Store submission and policy from the scanning task.
-This allows integration to be simplified and focused on the task of scanning workloads for
-vulnerabilities.
+This allows integration to be simplified and more focused on the task of scanning workloads for vulnerabilities.
 
 Scan 2.0 can scan container images after the initial creation of the workload. This allows you to
 have visibility in the security posture of images as new vulnerabilities are reported.
@@ -87,7 +86,7 @@ If you want to create a scan integration for a scan tool that does not exist, us
 process is greatly simplified. For more information, see
 [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
 If you are using the Tanzu Supply Chain component, use Scan v2.0 as only Scan v2.0 is supported with
-Tanzu Supply Chain. For more information, see [Overview of Tanzu Supply Chain](../supply-chain/about.hbs.md)
+Tanzu Supply Chain. For more information, see [Overview of Tanzu Supply Chain](../supply-chain/about.hbs.md).
 
 ## <a id="scst-scan-note"></a>Vulnerability Scanner limitations
 
@@ -103,7 +102,7 @@ no one tool can find all CVEs, which means there is a risk
 that a missed CVE could be exploited. Some reasons for missed CVEs include:
 
 - The scanner does not detect the vulnerability because it is a recently discovered vulnerability
-and the CVE databases that the scanner checks against are not updated yet.
+and the CVE databases are not updated yet.
 - The scanner verifies different CVE sources based on the detected package type and OS.
 - The scanner might not fully support a particular programming language, packaging system, or
 manifest format.
@@ -119,18 +118,15 @@ Vulnerability scanners cannot always access the information to accurately identi
 exists.
 This often leads to an influx of false positives where the tool mistakenly flags something as a
 vulnerability.
-Unless a user is specialized in security or is deeply familiar with what is deemed to be a
-vulnerable component by the scanner, assessing, and determining false positives becomes a
+Unless you are specialized in security or are very familiar with a vulnerable component, assessing, and determining false positives is a
 challenging and time-consuming activity. Some reasons for a false positive flag include:
 
-- A component might be misidentified due to similar names.
-- A sub-component might be identified as the parent component.
+- A component is misidentified due to similar names.
+- A sub-component is identified as the parent component.
 - A component is correctly identified but the impacted function is not on a reachable code path.
-- A component’s impacted function is on a reachable code path but is not a concern due to the
-specific environment or configuration.
+- A component’s impacted function is on a reachable code path but is not a concern due to the specific environment or configuration.
 - The version of a component might be incorrectly flagged as impacted.
-- The detected component does not always include a canonical name and vendor, requiring the scanner
-to infer and attempt fuzzy matching.
+- The detected component does not always include a canonical name and vendor, requiring the scanner to infer and attempt fuzzy matching.
 
 #### Mitigation measures
 
@@ -147,7 +143,7 @@ vulnerabilities quickly:
     - Generate accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects.
     Because this SBoM is generated during the image-building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. This is because it can highlight dependencies introduced at the time of build that might introduce the potential for compromise.
 - Scan by using multiple scanners to maximize CVE coverage.
-- Practice keeping your dependencies up-to-date.
+- Keep your dependencies up-to-date.
 - To reduce the overall surface area of attack:
   - Use smaller dependencies.
   - Reduce the amount of third-party dependencies when possible.
