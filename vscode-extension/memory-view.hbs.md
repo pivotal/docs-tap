@@ -11,7 +11,7 @@ To see the Memory View in Spring Boot Dashboard you need:
 
 - A Tanzu Spring Boot application, such as
   [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
-- The [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack),
+- The [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack),
   which includes Spring Boot Dashboard
 
 ## <a id="deploy-workload"></a> Deploy a workload
