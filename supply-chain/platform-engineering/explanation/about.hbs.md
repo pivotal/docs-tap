@@ -27,12 +27,12 @@ The flow of operations is as follows:
 3. A developer discovers the Workload Kinds available to them using the Tanzu CLI.
 4. The developer generates a workload and fills in the required configuration.
 5. After applying the Workload, Tanzu Supply Chain starts the first [WorkloadRun], capturing progress and artifacts as it progresses.
-6. Tanzu Supply Chain monitors [Components] that have [Resumptions] to discover if new run's need to be generated.
+6. Tanzu Supply Chain monitors [Components] that have [Resumptions] to discover if new runs need to be generated.
    1. New configuration in the [Workload] triggers new runs.
    2. New source code, base images, or other triggers from [Resumptions] trigger new runs.
 7. The developer observes the progress of runs using the Tanzu CLI
 
-## Gitops management of [SupplyChains]
+## GitOps management of SupplyChains
 
 <!-- to be done -->
 
