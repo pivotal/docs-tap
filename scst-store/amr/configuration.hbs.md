@@ -18,7 +18,7 @@ amr:
   observer:
     location: |
       labels:
-      - key: environment
+      - key: env
         value: prod
     resync_period: "10h"
     ca_cert_data: |
@@ -40,6 +40,7 @@ amr:
       image_vulnerability_scans: 1
 ```
 
+
 Where `DOMAIN` is the domain you want to target.
 
 Configuration options:
@@ -49,6 +50,7 @@ Configuration options:
   - Location is the multiline string configuration for the location content.
   - The YAML string can contain a single field:
     - `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata.
+      - Having a label named `env` is important for enabling [DORA functionality](../../tap-gui/plugins/dora.hbs.md).
 
 - `amr.observer.resync_period`
   - Default: "10h"

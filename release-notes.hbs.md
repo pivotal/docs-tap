@@ -137,6 +137,9 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for ingesting SBOMs in CycloneDX v1.5 format.
 - Better error messaging for ingestion errors.
+- Added configuration in [instructions for configuring AMR observer](scst-store/amr/configuration.hbs.md)
+  for how to enable DORA metrics functionality. Users who configured the label `environment` should now rename it
+  to `env`.
 
 ---
 
@@ -225,6 +228,11 @@ automatically goes into the ready state. For more information, see this [issue](
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
 - When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
+
+#### <a id='1-8-0-cloud-native-runtimes-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
+
+- Web workloads created before TAP 1.6.4 will fail to update with the error `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`
+  - Please see [Troubleshoot Cloud Native Runtimes for Tanzu](../cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md) for help.
 
 ---
 
