@@ -2,19 +2,6 @@
 
 This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on Tanzu Application Platform (commonly known as TAP).
 
-- [Install Tanzu CLI](#install-tanzu-cli)
-  - [Accept the End User License Agreements](#accept-the-end-user-license-agreements)
-    - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
-  - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)
-  - [ Install or update the Tanzu CLI and plug-ins](#-install-or-update-the-tanzu-cli-and-plug-ins)
-    - [ Install the Tanzu CLI](#-install-the-tanzu-cli)
-    - [ Install Tanzu CLI Plug-ins](#-install-tanzu-cli-plug-ins)
-      - [List the versions of each plug-in group available across Tanzu](#list-the-versions-of-each-plug-in-group-available-across-tanzu)
-      - [List the versions of the Tanzu Application Platform specific plug-in group](#list-the-versions-of-the-tanzu-application-platform-specific-plug-in-group)
-      - [Install the version of the Tanzu Application Platform specific plug-in group matching your target environment](#install-the-version-of-the-tanzu-application-platform-specific-plug-in-group-matching-your-target-environment)
-      - [Verify the plugin group list against the plug-ins that were installed](#verify-the-plugin-group-list-against-the-plug-ins-that-were-installed)
-  - [Next steps](#next-steps)
-
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
