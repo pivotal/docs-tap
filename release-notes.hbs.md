@@ -484,7 +484,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-7-tap-ki'></a> v1.6.7 Known issues: Tanzu Application Platform
 
 - This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
-  vSphere with Tanzu v8.
+  vSphere with Tanzu.
 
 #### <a id='1-6-7-amr-obs-ce-hndlr-ki'></a> v1.6.7 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -901,7 +901,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-6-tap-ki'></a> v1.6.6 Known issues: Tanzu Application Platform
 
 - This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
-  vSphere with Tanzu v8.
+  vSphere with Tanzu.
 
 #### <a id='1-6-6-amr-obs-ce-hndlr-ki'></a> v1.6.6 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -1202,7 +1202,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-5-tap-ki'></a> v1.6.5 Known issues: Tanzu Application Platform
 
 - This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
-  vSphere with Tanzu v8.
+  vSphere with Tanzu.
 
 #### <a id='1-6-5-amr-obs-ce-hndlr-ki'></a> v1.6.5 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -1609,7 +1609,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-4-tap-ki'></a> v1.6.4 Known issues: Tanzu Application Platform
 
 - This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26
-  on vSphere with Tanzu v8.
+  on vSphere with Tanzu.
 
 #### <a id='1-6-4-amr-obs-ce-hndlr-ki'></a> v1.6.4 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -2028,7 +2028,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-3-tap-ki'></a> v1.6.3 Known issues: Tanzu Application Platform
 
 - This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26
-  on vSphere with Tanzu v8.
+  on vSphere with Tanzu.
 
 #### <a id='1-6-3-app-config-srvc-ki'></a> v1.6.3 Known issues: Application Configuration Service
 
