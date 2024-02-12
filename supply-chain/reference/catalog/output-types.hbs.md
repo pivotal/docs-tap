@@ -18,9 +18,15 @@ structure. Use this as a guide to consuming or emitting types from your own cust
 ...detail about the content found at the url...
 
 ## Conventions
-## Git
-## Gitops
-This is being replaced in 1.8
+
+## Git PR
+
+Output for a Git pull request.
+
+* Name: git-pr
+* URL: url of the pull request
+* Digest: sha digest of the pull request commit
+
 ## Image
 
 ## OCI YAML Files
