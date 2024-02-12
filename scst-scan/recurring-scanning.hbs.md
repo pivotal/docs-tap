@@ -117,7 +117,7 @@ kubectl apply -f grype-recurring-scan.yaml  --namespace <namespace>
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: RecurringImageVulnerabilityScan
 metadata:
-  name: trivy-recurring-scan
+  name: grype-recurring-scan
 spec:
   images:
     createdWithinDays: 180
@@ -133,25 +133,23 @@ spec:
       size: 3Gi
     scanResults:
       location: RESULTS-REPOSITORY
-   steps:
-   - name: update-db
-     image: anchore/grype:latest
-     command: [/grype]
-     args:
-     - db
-     - update
-   - name: grype
-     image: anchore/grype:latest
-     command:
-     - "/grype"
-     args:
-     - "{image}"
-     - "-o"
-     - "cyclonedx-json"
-     - "--file"
-     - "{output}"
-   scanResults:
-     location: "harbor.ryanbaker.io/scan-results/recurring-scan"
+    steps:
+    - name: update-db
+      image: anchore/grype:latest
+      command: [/grype]
+      args:
+      - db
+      - update
+    - name: grype
+      image: anchore/grype:latest
+      command:
+      - "/grype"
+      args:
+      - "{image}"
+      - "-o"
+      - "cyclonedx-json"
+      - "--file"
+      - "{output}"
 ```
 
 ### <a id="trivy-rivs-template"></a>Trivy recurringimagevulnerabilityscan template
@@ -187,21 +185,31 @@ spec:
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
-    -  name: trivy-generate-report
-       image: aquasec/trivy:0.48.3
-       args:
-       - image
-       - '{image}'
-       - --exit-code=0
-       - --no-progress
-       - --scanners=vuln
-       - --format=cyclonedx
-       - '{output}'
-       env:
-       - name: TRIVY_CACHE_DIR
-         value: /workspace/trivy-cache
-       - name: XDG_CACHE_HOME
-         value: /workspace/.cache
-       - name: TMPDIR
-         value: /workspace
+    - name: update-db
+      image: aquasec/trivy:0.48.3
+      command: [/usr/local/bin/trivy]
+      args:
+      - image
+      - --download-db-only
+      - --download-java-db-only
+    - name: trivy-generate-report
+      image: aquasec/trivy:0.48.3
+      command: [/usr/local/bin/trivy]
+      args:
+      - image
+      - '{image}'
+      - --exit-code=0
+      - --no-progress
+      - --scanners=vuln
+      - --format=cyclonedx
+      - --output={output}
+      env:
+      - name: TRIVY_CACHE_DIR
+        value: /workspace/trivy-cache
+      - name: XDG_CACHE_HOME
+        value: /workspace/.cache
+      - name: TMPDIR
+        value: /workspace
 ```
+
+>**Note** Do not enclose the `{output}` interpolation value in quotes for trivy scan
