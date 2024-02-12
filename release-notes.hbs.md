@@ -363,7 +363,13 @@ This release has the following known issues, listed by component and area.
   fail with the status `CrashLoopBackOff` or `OOMKilled`.
   For information about how to increase the memory limit for both the convention server and webhook
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
-  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-4-cnr-ki'></a> v1.7.4 Known issues: Cloud Native Runtimes
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-7-4-crossplane-ki'></a> v1.7.4 Known issues: Crossplane
 
@@ -867,7 +873,13 @@ This release has the following known issues, listed by component and area.
   fail with the status `CrashLoopBackOff` or `OOMKilled`.
   For information about how to increase the memory limit for both the convention server and webhook
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
-  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-3-cnr-ki'></a> v1.7.3 Known issues: Cloud Native Runtimes
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-7-3-crossplane-ki'></a> v1.7.3 Known issues: Crossplane
 
@@ -1403,7 +1415,13 @@ This release has the following known issues, listed by component and area.
   fail with the status `CrashLoopBackOff` or `OOMKilled`.
   For information about how to increase the memory limit for both the convention server and webhook
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
-  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-2-cnr-ki'></a> v1.7.2 Known issues: Cloud Native Runtimes
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-7-2-crossplane-ki'></a> v1.7.2 Known issues: Crossplane
 
@@ -1818,7 +1836,7 @@ This release has the following known issues, listed by component and area.
   fail with the status `CrashLoopBackOff` or `OOMKilled`.
   For information about how to increase the memory limit for both the convention server and webhook
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
-  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
 
 #### <a id='1-7-1-cert-manager-ki'></a> v1.7.1 Known issues: cert-manager
 
@@ -1828,6 +1846,12 @@ This release has the following known issues, listed by component and area.
   solver `Pod` is minimal, if your organization heavily relies on ACME HTTP01
   challenges and deems it too risky to retry certificate issuance, consider using
   DNS01 until VMware provides a technical solution in the future patch release.
+
+#### <a id='1-7-1-cnr-ki'></a> v1.7.1 Known issues: Cloud Native Runtimes
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-7-1-crossplane-ki'></a> v1.7.1 Known issues: Crossplane
 
@@ -3262,7 +3286,13 @@ This release has the following known issues, listed by component and area.
   fail with the status `CrashLoopBackOff` or `OOMKilled`.
   For information about how to increase the memory limit for both the convention server and webhook
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
-  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-0-cnr-ki'></a> v1.7.0 Known issues: Cloud Native Runtimes
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
 
@@ -3421,11 +3451,6 @@ to ensure that they are correctly created.
 
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 - On first install, Tanzu Developer Portal will sometimes experience a transient failure during reconciliation. No action is needed as reconcile will succeed during automatic retry. The issue is related to the order of creation for Kubernetes resources and will be addressed in a future release.
-
-#### <a id='1-8-0-cloud-native-runtimes-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
-
-- Web workloads created before TAP 1.6.4 will fail to update with the error `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`
-  - Please see [Troubleshoot Cloud Native Runtimes for Tanzu](../cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md) for help.
 
 ---
 
