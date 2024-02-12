@@ -438,9 +438,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-4-scst-scan-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Scan
 
-- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
-information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
-Github repository.
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
+is in a failed state due to an invalid date, wait approximately 10 hours and the workload
+automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk Github repository.
 
 #### <a id='1-7-4-scst-store-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Store
 
