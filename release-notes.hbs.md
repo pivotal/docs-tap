@@ -163,6 +163,10 @@ This release has the following known issues, listed by component and area.
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#updates-fail).
+
 #### <a id='1-6-8-crossplane-ki'></a> v1.6.8 Known issues: Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
@@ -506,6 +510,10 @@ This release has the following known issues, listed by component and area.
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#updates-fail).
 
 #### <a id='1-6-7-crossplane-ki'></a> v1.6.7 Known issues: Crossplane
 
@@ -920,6 +928,10 @@ This release has the following known issues, listed by component and area.
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#updates-fail).
+
 #### <a id='1-6-6-crossplane-ki'></a> v1.6.6 Known issues: Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
@@ -1225,6 +1237,10 @@ This release has the following known issues, listed by component and area.
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#updates-fail).
 
 #### <a id='1-6-5-crossplane-ki'></a> v1.6.5 Known issues: Crossplane
 
@@ -1619,6 +1635,10 @@ This release has the following known issues, listed by component and area.
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#updates-fail).
 
 #### <a id='1-6-4-crossplane-ki'></a> v1.6.4 Known issues: Crossplane
 
