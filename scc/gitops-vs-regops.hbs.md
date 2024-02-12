@@ -116,12 +116,12 @@ gitops:
   namespace: awesomeTeam
   params:
      - name: gitops_repository_owner
-       value: pivotal
+       value: buildpacks-community
      - name: gitops_repository_name
        value: kpack
 ```
 
-Resulting GitOps repository: `https://github.com/pivotal/kpack`
+Resulting GitOps repository: `https://github.com/buildpacks-community/kpack`
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
 
@@ -142,7 +142,7 @@ gitops:
   namespace: awesomeTeam
   params:
      - name: gitops_repository_owner
-       value: pivotal
+       value: buildpacks-community
      - name: gitops_repository_name
        value: kpack
 ```
@@ -264,7 +264,7 @@ gitops:
   namespace: awesomeTeam
   params:
     - name: gitops_repository
-      value: https://github.com/pivotal/kpack
+      value: https://github.com/buildpacks-community/kpack
 ```
 
 Resulting GitOps repository: `https://github.com/vmware-tanzu/cartographer` The deprecated parameter
@@ -287,7 +287,7 @@ gitops:
   namespace: awesomeTeam
   params:
     - name: gitops_repository_owner
-      value: pivotal
+      value: buildpacks-community
     - name: gitops_repository_name
       value: kpack
 ```
