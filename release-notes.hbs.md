@@ -137,9 +137,8 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for ingesting SBOMs in CycloneDX v1.5 format.
 - Better error messaging for ingestion errors.
-- Added configuration in [instructions for configuring AMR observer](scst-store/amr/configuration.hbs.md)
-  for how to enable DORA metrics functionality. Users who configured the label `environment` should now rename it
-  to `env`.
+- To enabe DORA metrics functionality, if you configured the `environment` label, rename it
+  to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
 ---
 
