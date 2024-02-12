@@ -73,18 +73,18 @@ the environment Tanzu Application Platform is installed on:
 
 | Installation Environment | Default Component | Detail |
 | --- | --- | --- |
-| [Online Installation](../install-online/intro.hbs.md) | Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan 2.0 |
-| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a simplified air gap experience with Trivy |
-| [Azure Installation](../install-azure/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
-| [AWS Installation](../install-aws/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option for users to opt in to Scan v2.0 |
-
-Other general guidance:
+| [Online Installation](../install-online/intro.hbs.md) | Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan 2.0. |
+| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a simplified air-gapped experience with Trivy. |
+| [Azure Installation](../install-azure/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan v2.0. |
+| [AWS Installation](../install-aws/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan v2.0. |
 
 If you require a policy to block a workload in a supply chain based on detected vulnerabilities, use
 Scan v1.0.
+
 If you want to create a scan integration for a scan tool that does not exist, use Scan v2.0 as the
 process is greatly simplified. For more information, see
 [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
+
 If you are using the Tanzu Supply Chain component, use Scan v2.0 as only Scan v2.0 is supported with
 Tanzu Supply Chain. For more information, see [Overview of Tanzu Supply Chain](../supply-chain/about.hbs.md).
 
@@ -136,16 +136,15 @@ To maximize the benefits while minimizing the impact of the limits of vulnerabil
 following steps to scan more continuously and comprehensively to identify and remediate zero-day
 vulnerabilities quickly:
 
-    - Scan early in the development cycle to ensure that you can address issues more efficiently. Tanzu Application Platform includes security practices such as source and container image vulnerability scanning earlier in the path to production for application teams.
-    - Scan any base images in use. Tanzu Application Platform image scanning can recognize and
-    scan the OS packages from a base image.
-    - Scan running software in test, stage, and production environments at a regular cadence.
-    - Generate accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects.
-    Because this SBoM is generated during the image-building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. This is because it can highlight dependencies introduced at the time of build that might introduce the potential for compromise.
+- Scan early in the development cycle to ensure that you can address issues more efficiently. Tanzu Application Platform includes security practices such as source and container image vulnerability scanning earlier in the path to production for application teams.
+- Scan any base images in use. Tanzu Application Platform image scanning can recognize and
+scan the OS packages from a base image.
+- Scan running software in test, stage, and production environments at a regular cadence.
+- Generate accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. This is where a software bill of materials (SBoM) is used. To help you automate this process, VMware Tanzu Build Service, leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects.
+Because this SBoM is generated during the image-building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. This is because it can highlight dependencies introduced at the time of build that might introduce the potential for compromise.
 - Scan by using multiple scanners to maximize CVE coverage.
 - Keep your dependencies up-to-date.
-- To reduce the overall surface area of attack:
-  - Use smaller dependencies.
-  - Reduce the amount of third-party dependencies when possible.
-  - Use distroless base images when possible.
+- To reduce the overall surface area of attack use smaller dependencies.
+- Reduce the amount of third-party dependencies when possible.
+- Use distroless base images when possible.
 - Maintain a central record of false positives to ease CVE triaging and remediation efforts.
