@@ -4,7 +4,7 @@
 
 This topic introduces the SupplyChain resource which unifies the Tanzu Supply Chain operation.
 
-![core-concepts-supplychains.jpg](images%2Fcore-concepts-supplychains.jpg)
+![core-concepts-supplychains.jpg](./images/core-concepts-supplychains.jpg)
 
 [Detailed Specification in the API Section](../../reference/api/supplychain.hbs.md)
 

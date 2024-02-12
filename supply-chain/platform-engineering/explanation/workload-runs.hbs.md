@@ -2,4 +2,4 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-![core-concepts-workloadruns.jpg](images%2Fcore-concepts-workloadruns.jpg)
+![core-concepts-workloadruns.jpg](./images/core-concepts-workloadruns.jpg)
