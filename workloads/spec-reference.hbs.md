@@ -418,10 +418,10 @@ For information about `live-update`, see [Developer Conventions](../developer-co
 and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
 
 For information about using Kpack builders with `clusterBuilder`,
-see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
+see [Builders](https://github.com/buildpacks-community/kpack/blob/main/docs/builders.md).
 
 For information about `buildServiceBindings`, see
-[Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
+[Service Bindings](https://github.com/buildpacks-community/kpack/blob/main/docs/servicebindings.md).
 
 #### Runnable (TaskRuns for Dockerfile-based builds)
 
