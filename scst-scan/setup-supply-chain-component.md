@@ -8,37 +8,39 @@ This topic covers how to install the Trivy Supply Chain Component, create custom
 * [Customize Scanning Component](./setup-supply-chain-component.md#customize-scanning-component)
 * [How to view the component](./setup-supply-chain-component.md#how-to-view-component)
 
-### <a id="install-trivy-component"></a> Install Trivy Supply Chain Component
+### <a id="install-trivy-supply-chain-component"></a> Install Trivy Supply Chain Component
 
 This section covers how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
 1. List version information for the Trivy Supply Chain Component package by running:
 ```
-tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
+$ tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
 ```
 
 For example:
 ```
 $ tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
+
 NAME                                                VERSION                              RELEASED-AT
 trivy.app-scanning.component.apps.tanzu.vmware.com  TRIVY-COMPONENT-VERSION              2024-01-26 12:35:39 -0500 EST
 ```
 
 2. Install Trivy Supply Chain Component package.
 ```
-tanzu package install trivy-app-scanning-component --package-name trivy.app-scanning.component.apps.tanzu.vmware.com \
+$ tanzu package install trivy-app-scanning-component --package-name trivy.app-scanning.component.apps.tanzu.vmware.com \
     --version TRIVY-COMPONENT-VERSION \
     --namespace tap-install
 ```
 
 
-### <a id="customize-component"></a> Customize Scanning Component
+### <a id="customize-scanning-component"></a> Customize Scanning Component
 
-This section covers how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0.
+This section covers how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0
 
 1. Customize a component by retrieving the yaml of the Trivy Supply Chain Component and modifying the following fields:
     ```
-    kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
+    $ kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
+
     apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
     kind: Component
     metadata:
@@ -58,9 +60,10 @@ This section covers how to create a custom Scanning Supply Chain Component that 
     ```
     * Replace the pipelineref to the name of the pipeline created in the next step.
 
-2. Customize a pipeline by trieving the yaml of the Trivy Supply Chain Component's Pipeline and modifying the following fields:
+2. Customize a pipeline by retrieving the yaml of the Trivy Supply Chain Component's Pipeline and modifying the following fields:
     ```
-    kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
+    $ kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
+
     apiVersion: tekton.dev/v1
     kind: Pipeline
     metadata:
@@ -86,8 +89,8 @@ This section covers how to create a custom Scanning Supply Chain Component that 
 
 3. Apply the custom component and pipeline created above
     ```
-    kubectl apply -f component.yaml
-    kubectl apply -f pipeline.yaml
+    $ kubectl apply -f component.yaml
+    $ kubectl apply -f pipeline.yaml
     ```
 
 > **Note:** If you create your own component, it needs the following label so that it can be observed by supplychain:
@@ -96,12 +99,13 @@ This section covers how to create a custom Scanning Supply Chain Component that 
     supply-chain.apps.tanzu.vmware.com/catalog: tanzu
   ```
 
-### <a id="view-component"></a> How to view Component
+### <a id="how-to-view-component"></a> How to view Component
 
 This sections covers how to view the available components that have been installed and/or applied.
 
   ```
   $ kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
+
   NAMESPACE                    NAME                              RESUMPTIONS   READY   REASON   AGE
   alm-catalog                  aggregator-1.0.0                  False         True    Ready    3d
   alm-catalog                  app-config-server-1.0.0           False         True    Ready    3d
