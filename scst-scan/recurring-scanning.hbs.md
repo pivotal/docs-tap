@@ -211,3 +211,5 @@ spec:
       - name: TMPDIR
         value: /workspace
 ```
+
+>**Note** Do not enclose the `{output}` interpolation value in quotes for trivy scan
