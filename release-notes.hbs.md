@@ -2250,6 +2250,9 @@ AMR has the following new features in v1.7.0:
 - AMR GraphQL now contains data for Images, Containers, and Location.
   For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md).
 
+- To enable DORA metrics functionality, if you configured the `environment` label, rename it
+  to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
+
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI and plug-ins
 
 - This release includes Tanzu CLI v1.1.0 and a set of installable plug-in groups that are versioned
