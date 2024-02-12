@@ -2,6 +2,30 @@
 
 This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
 
+## <a id='updates-fail'></a> Updates fail with annotation is immutable
+
+### Symptom
+
+After creating a web workload in TAP 1.6.3 or below, then upgrading beyond TAP 1.6.3, and attempting to update your web workload, you will see the following error
+
+```
+API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable: metadata.annotations.serving.knative.dev/creator (reason: BadRequest)
+```
+
+### Explanation
+
+Knative adds annotations to Knative Services. Kapp Controller, which is the orchestrator underneath workloads, does validation that created objects are not modified by others. This conflict between Kapp Controller and Knative is a known and expected behaviour but is mitigated by a kapp Config added during deploy time. The kapp Config specifies that the annotations Knative adds are ok and thus should not fail the validation. This configuration is added dynamically in the delivery supply chain.
+
+As of TAP 1.6.4, the kapp Config moved from the delivery supply chain to the build supply chain. Thus, when a web workload is being updated, the delivery supply chain is missing it. As a result, the validation error occurs. Though the kapp Config exists on 1.6.4 in a different part of the supply chains, existing deliverables are not rebuilt to include it.
+
+### Solution
+
+Below is an immediate workaround. Alternate workarounds, as well as a proper resolution, are in development.
+
+#### Workaround 1: Recreate the deliverable
+
+By deleting and recreating the deliverable, the web workload will be recreated and deployed successfully. Additional upgrades to it will continue to succeed. This workaround incurs application downtime.
+
 ## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes>
 
 ### Symptom
