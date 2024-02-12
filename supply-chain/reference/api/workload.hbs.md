@@ -1,7 +1,10 @@
 # Workload CRD
+
 {{> 'partials/supply-chain/beta-banner' }}
 
 **Workloads** are [Custom Kubernetes Resources (CRDs)][CRD]. 
+
+![core-concepts-workloads.jpg](..%2F..%2Fplatform-engineering%2Fexplanation%2Fimages%2Fcore-concepts-workloads.jpg)
 
 [**SupplyChains**] define the Workload CRD by 
 * specifying the [Kind] (see [**SupplyChain**]'s `defines` field) 

@@ -1,4 +1,5 @@
 # Output Types
+
 {{> 'partials/supply-chain/beta-banner' }}
 
 This section describes the common types established in Tanzu Supply Chain Components, their purpose and their

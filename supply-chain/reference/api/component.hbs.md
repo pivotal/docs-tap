@@ -1,4 +1,5 @@
 # Component API
+
 {{> 'partials/supply-chain/beta-banner' }}
 
 Components:
@@ -7,9 +8,9 @@ Components:
     * as a Tekton PipelineRun (*line 44*)
 2. Specify the configuration in a workload that is required for the component to operate
     * as partial Schema (*line 53*)
-3. Optionally specify small tasks used to check for depedency changes, such as new source, base images
+3. Optionally specify small tasks used to check for dependency changes, such as new source, base images
     * as Tekton TaskRuns (*line 29*)
-4. Are used to specify the work to be done in a [**SupplyChain**] `stage`
+4. Are used to specify the work to be done in a [SupplyChain] `stage`
 
 ```yaml=
 apiVersion: supply-chain.tanzu.vmware.com/v1alpha1
@@ -79,8 +80,8 @@ spec:
 ```
 
 
-[**SupplyChain**]: supplychain.hbs.md
-[**Workload**]: workload.hbs.md
-[**Component**]: ./component.hbs.md
-[**Components**]: ./component.hbs.md
-[**WorkloadRun**]: workloadrun.hbs.md
+[SupplyChain]: supplychain.hbs.md
+[Workload]: workload.hbs.md
+[Component]: ./component.hbs.md
+[Components]: ./component.hbs.md
+[WorkloadRun]: workloadrun.hbs.md
