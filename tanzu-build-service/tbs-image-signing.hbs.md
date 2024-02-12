@@ -20,7 +20,7 @@ resource configured.
 - Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-images.html)
 resource configured.
 
-- Review the [kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md). This topic builds upon the steps in this tutorial.
+- Review the [kpack tutorial](https://github.com/buildpacks-community/kpack/blob/main/docs/tutorial.md). This topic builds upon the steps in this tutorial.
 
 ## <a id="sign-image-builds"></a> Configure Tanzu Build Service to sign your image builds
 

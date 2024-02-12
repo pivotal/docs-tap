@@ -441,7 +441,7 @@ These are used as the `image-provider` resource when the workload parameter `doc
 
 ### <a id='kpack-creates'></a> Creates
 
-[Image.kpack.io](https://github.com/pivotal/kpack/blob/main/docs/image.md)
+[Image.kpack.io](https://github.com/buildpacks-community/kpack/blob/main/docs/image.md)
 
 ### <a id='kpack-params'></a> Parameters
 
@@ -527,10 +527,10 @@ For information about `live-update`,
 see [Developer Conventions](../developer-conventions/about.hbs.md) and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
 
 For information about using Kpack builders with `clusterBuilder`,
-see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
+see [Builders](https://github.com/buildpacks-community/kpack/blob/main/docs/builders.md).
 
 For information about `buildServiceBindings`,
-see [Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
+see [Service Bindings](https://github.com/buildpacks-community/kpack/blob/main/docs/servicebindings.md).
 
 ## <a id='kaniko'></a> kaniko-template
 
