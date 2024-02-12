@@ -48,7 +48,8 @@ Configuration options:
   - Default: ""
   - Location is the multiline string configuration for the location content.
   - The YAML string can contain a single field:
-    - `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata.
+    - `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata. For enabling DORA functionality, it is important to have a label named `env`.
+    For more information, see [DORA metrics in Tanzu Developer Portal](../../tap-gui/plugins/dora.hbs.md).
 
 - `amr.observer.resync_period`
   - Default: "10h"
