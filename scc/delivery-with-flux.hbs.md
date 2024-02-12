@@ -165,6 +165,8 @@ Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstal
        --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
    ```
 
+   > **Note** The KubeConfig should be self-contained and not rely on binaries, environment, or credential files from the kustomize-controller Pod. KubeConfigs with cmd-path in them likely won’t work without a custom, per-provider installation of kustomize-controller.
+
 2. Configure your Build cluster to clone the GitOps repository. On the Build cluster, create the following Flux CD `GitRepository`:
 
    ```yaml
