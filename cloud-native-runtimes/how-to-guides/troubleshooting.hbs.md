@@ -16,26 +16,93 @@ API server says: admission webhook "validation.webhook.serving.knative.dev" deni
 
 ### Explanation
 
-Knative adds annotations to Knative Services. kapp controller, which is the orchestrator underneath
-workloads, validates that created objects are not modified by others.
-This conflict between kapp controller and Knative is a known issue and expected behavior that is mitigated
-by a kapp config added during deploy time.
-The kapp config specifies that the annotations Knative adds are correct and can pass validation.
-This configuration is added dynamically in the delivery supply chain.
+Kapp controller, which is the orchestrator underneath workloads, deploys resources exactly as requested.
+Knative adds annotations to Knative Services to track the creator and last modified time of a resource. This
+conflict between kapp controller and Knative is a known issue and expected behavior that is mitigated by a 
+kapp configuration defined and used during deploy time by the delivery supply chain. The kapp config specifies
+that the annotations Knative adds are not to be modified during updates.
 
-As of Tanzu Application Platform v1.6.4, the kapp config moved from the delivery supply chain to the
-build supply chain.
-When a web workload is being updated, the delivery supply chain is missing the kapp config, which causes
-the validation error. Though the kapp config exists on v1.6.4 in a different part of the supply chain,
-existing deliverables are not rebuilt to include it.
+However, as of Tanzu Application Platform v1.6.4, the kapp configuration moved from the delivery supply chain to the
+build supply chain. When a web workload is being updated, the delivery supply chain no longer provides the
+kapp configuration, which causes the validation error. Though the kapp configuration exists on v1.6.4 in
+a different part of the supply chain, existing deliverables are not rebuilt to include it.
 
 ### Solution
 
-To workaround this issue, delete and recreate the deliverable. After you recreate the web workload,
-it will deploy successfully and additional upgrades to the workload will succeed.
-This workaround incurs application downtime.
+To workaround this issue where the web workloads were created from Tanzu Application Platform v1.6.3 or older and
+deployed or updated to an upgraded Tanzu Application Platform v1.6.4 or newer, follow the instructions below:
 
-> **Note** VMware plans to develop alternate workarounds, as well as a resolution.
+Deploy the following overlay as a secret to your tap installation namespace (in this example, TAP is installed to the `tap-install` namespace):
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: old-deliverables-patch
+  namespace: tap-install #! namespace where tap is installed
+stringData:
+  app-deploy-overlay.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+
+    #@ def kapp_config_replace(left, right):
+    #@ return left + "\n" + right
+    #@ end
+
+    #@overlay/match by=overlay.subset({"kind": "ClusterDeploymentTemplate", "metadata": {"name": "app-deploy"}})
+    ---
+    spec:
+      #@overlay/replace via=kapp_config_replace
+      ytt: |
+        #@ load("@ytt:overlay", "overlay")
+        #@ load("@ytt:yaml", "yaml")
+
+        #@ def kapp_config_temp():
+        apiVersion: kapp.k14s.io/v1alpha1
+      kind: Config
+      rebaseRules:
+        - path: [metadata, annotations, serving.knative.dev/creator]
+          type: copy
+          sources: [new, existing]
+          resourceMatchers: &matchers
+            - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
+        - path: [metadata, annotations, serving.knative.dev/lastModifier]
+          type: copy
+          sources: [new, existing]
+          resourceMatchers: *matchers
+      waitRules:
+        - resourceMatchers:
+          - apiVersionKindMatcher:
+              apiVersion: serving.knative.dev/v1
+              kind: Service
+          conditionMatchers:
+            - type: Ready
+              status: "True"
+              success: true
+            - type: Ready
+              status: "False"
+              failure: true
+      ownershipLabelRules:
+        - path: [ spec, template, metadata, labels ]
+          resourceMatchers:
+            - apiVersionKindMatcher: { apiVersion: serving.knative.dev/v1, kind: Service }
+      #@ end
+
+      #@overlay/match by=overlay.subset({"apiVersion": "kappctrl.k14s.io/v1alpha1", "kind": "App", "metadata": { "name": data.values.deliverable.metadata.name}})
+      ---
+      spec:
+        fetch:
+          #@overlay/append
+          - inline:
+              paths:
+                overlay-config.yml: #@ yaml.encode(kapp_config_temp())
+
+```
+
+If you had installed TAP using a profile, the above overlay should be applied to the `ootb-templates` package by following the instructions on [how to customize a package](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/customize-package-installation.html#customize-a-package-that-was-installed-by-using-a-profile-1).
+
+After completing the above steps, updates to the application should now proceed to deploy.
+
+> **Note** VMware plans to include a fix in future releases.
 
 ## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes
 
