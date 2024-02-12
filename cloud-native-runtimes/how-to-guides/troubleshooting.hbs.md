@@ -2,31 +2,42 @@
 
 This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
 
-## <a id='updates-fail'></a> Updates fail with annotation is immutable
+## <a id='updates-fail'></a> Updates fail with annotation value is immutable error
 
 ### Symptom
 
-After creating a web workload in TAP 1.6.3 or below, then upgrading beyond TAP 1.6.3, and attempting to update your web workload, you will see the following error
+After creating a web workload in Tanzu Application Platform v1.6.3 or earlier, if you upgrade to
+Tanzu Application Platform v1.6.4 or later, attempts to update your web workload cause the
+following error:
 
-```
+```console
 API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable: metadata.annotations.serving.knative.dev/creator (reason: BadRequest)
 ```
 
 ### Explanation
 
-Knative adds annotations to Knative Services. Kapp Controller, which is the orchestrator underneath workloads, does validation that created objects are not modified by others. This conflict between Kapp Controller and Knative is a known and expected behaviour but is mitigated by a kapp Config added during deploy time. The kapp Config specifies that the annotations Knative adds are ok and thus should not fail the validation. This configuration is added dynamically in the delivery supply chain.
+Knative adds annotations to Knative Services. kapp controller, which is the orchestrator underneath
+workloads, validates that created objects are not modified by others.
+This conflict between kapp controller and Knative is a known issue and expected behavior that is mitigated
+by a kapp config added during deploy time.
+The kapp config specifies that the annotations Knative adds are correct and can pass validation.
+This configuration is added dynamically in the delivery supply chain.
 
-As of TAP 1.6.4, the kapp Config moved from the delivery supply chain to the build supply chain. Thus, when a web workload is being updated, the delivery supply chain is missing it. As a result, the validation error occurs. Though the kapp Config exists on 1.6.4 in a different part of the supply chains, existing deliverables are not rebuilt to include it.
+As of Tanzu Application Platform v1.6.4, the kapp config moved from the delivery supply chain to the
+build supply chain.
+When a web workload is being updated, the delivery supply chain is missing the kapp config, which causes
+the validation error. Though the kapp config exists on v1.6.4 in a different part of the supply chain,
+existing deliverables are not rebuilt to include it.
 
 ### Solution
 
-Below is an immediate workaround. Alternate workarounds, as well as a proper resolution, are in development.
+To workaround this issue, delete and recreate the deliverable. After you recreate the web workload,
+it will deploy successfully and additional upgrades to the workload will succeed.
+This workaround incurs application downtime.
 
-#### Workaround 1: Recreate the deliverable
+> **Note** VMware plans to develop alternate workarounds, as well as a resolution.
 
-By deleting and recreating the deliverable, the web workload will be recreated and deployed successfully. Additional upgrades to it will continue to succeed. This workaround incurs application downtime.
-
-## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes>
+## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes
 
 ### Symptom
 
