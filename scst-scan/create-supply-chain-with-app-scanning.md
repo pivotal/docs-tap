@@ -36,7 +36,7 @@ This section covers how to create a supply chain with SCST - Scan 2.0 with eithe
 
 * Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Component](./setup-supply-chain-component.md#install-trivy-supply-chain-component) using Tanzu Cartographer Wizard:
   ```
-  $ tanzu cartographer supply-chain wizard --name trivy-supply-chain-1.0.0 \
+  tanzu cartographer supply-chain wizard --name trivy-supply-chain-1.0.0 \
   --description Trivy \
   --developer-interface-group example.com \
   --developer-interface-kind TrivySC \
@@ -51,7 +51,7 @@ This section covers how to create a supply chain with SCST - Scan 2.0 with eithe
 
 * Create a Supply Chain with SCST - Scan 2.0 and the Custom Scanning Component created in the component [page](./setup-supply-chain-component.md#customize-scanning-component):
   ```
-  $ tanzu cartographer supply-chain wizard --name SCANNER-supply-chain-1.0.0 \
+  tanzu cartographer supply-chain wizard --name SCANNER-supply-chain-1.0.0 \
   --description <description of scanner> \
   --developer-interface-group example.com \
   --developer-interface-kind <custom Kind workload> \
@@ -70,7 +70,7 @@ This section covers how to create a supply chain with SCST - Scan 2.0 with eithe
 #### <a id="apply-supply-chain"></a> Apply Supply Chain
 
   ```
-  $ kubectl apply -f <SUPPLYCHAIN-YAML> -n DEV-NAMESPACE
+  kubectl apply -f <SUPPLYCHAIN-YAML> -n DEV-NAMESPACE
   ```
   Where:
   * SUPPLYCHAIN-YAML is the supply chain yaml created in the previous step.

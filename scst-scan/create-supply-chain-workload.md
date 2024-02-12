@@ -13,7 +13,12 @@ This topic covers how to create and apply a workload from a Tanzu Supply Chain, 
 This sections covers how to create a workload from an existing [supply chain](./create-supply-chain-with-app-scanning.md).
 
 * Use the Tanzu Cartographer plugin to create workload from a specific supply chain:
+  ```console
+  tanzu cartographer workload generate
   ```
+
+  The following is an example of the output of running the command above:
+  ```console
   $ tanzu cartographer workload generate
 
   ? Select the supply chain:   [Use arrows to move, type to filter]
@@ -31,13 +36,13 @@ This sections covers how to create a workload from an existing [supply chain](./
   ```
   Here the user can create a supply chain workload from the:
   * [Trivy Supply Chain](./create-supply-chain-with-app-scanning.md#create-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component)
-  * [Supply Chain with Custom Scanner Component](./create-supply-chain-with-app-scanning.md#create-supply-chain-with-scst---scan-20-and-the-custom-scanning-component)
+  * [Supply Chain with Custom Scanner Component](./create-supply-chain-with-app-scanning.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component)
 
 This will render a sample workload yaml that the user can configure and put in a `workload.yaml`.
 
 * Apply workload:
   ```
-  $ kubectl apply -f workload.yaml -n DEV-NAMESPACE
+  kubectl apply -f workload.yaml -n DEV-NAMESPACE
   ```
 
 
@@ -47,7 +52,7 @@ This section shows how to use the Tanzu Cartographer CLI to observe a workload.
 
 * List workloads in cluster:
   ```
-  $ tanzu cartographer workload list
+  tanzu cartographer workload list
   ```
 
   The following is an example of the output of this command:
@@ -61,13 +66,13 @@ This section shows how to use the Tanzu Cartographer CLI to observe a workload.
 
 * View logs for a specific workload:
   ```
-  $ tanzu cartographer workload tail Sample WORKLOAD-NAME
+  tanzu cartographer workload tail Sample WORKLOAD-NAME
   ```
   Where WORKLOAD-NAME is the name of the workload for a specific Kind defined from the supply chain.
 
 * View workload details:
   ```
-  $ tanzu cartographer workload get Sample WORKLOAD-NAME
+  tanzu cartographer workload get Sample WORKLOAD-NAME
   ```
 
 
@@ -76,12 +81,14 @@ See [Tanzu Supply Chain docs](../supply-chain/development/how-to/observe-runs.hb
 
 ### <a id="verify-workload-scanning-by-checking-scan-results"></a>Verify workload performed scanning by checking scan results
 
-* Get the ivs name by looking for the IVS in the namespace it was created in:
-  ```
-  $ kubectl get ivs -n DEV-NAMESPACE
+* Get the ivs name by looking for the IVS in the namespace it was created in.
 
-  NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
-  DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
-  ```
+  * For example, the following to see what IVS was created in the DEV-NAMESPACE for the given workload.
+    ```
+    $ kubectl get ivs -n DEV-NAMESPACE
+
+    NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
+    DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
+    ```
 
 * Follow this [verify app-scanning page](./verify-app-scanning.hbs.md#retrieve-scan-results) to see how to retrieve scan results by using the IVS name found in the previous step.
