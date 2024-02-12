@@ -316,7 +316,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the minimum necessary privlidge to the resources in
+  However, applying this label provides more than the minimum necessary privilege to the resources in
   developer namespaces.
 
 #### <a id='1-7-4-api-auto-reg-ki'></a> v1.7.4 Known issues: API Auto Registration
@@ -826,7 +826,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the minimum necessary privlidge to the resources in
+  However, applying this label provides more than the minimum necessary privilege to the resources in
   developer namespaces.
 
 #### <a id='1-7-3-api-auto-reg-ki'></a> v1.7.3 Known issues: API Auto Registration
@@ -1366,7 +1366,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the minimum necessary privlidge to the resources in
+  However, applying this label provides more than the minimum necessary privilege to the resources in
   developer namespaces.
 
 - Tanzu Mission Control does not support this Tanzu Application Platform release.
@@ -1789,7 +1789,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the minimum necessary privlidge to the resources in
+  However, applying this label provides more than the minimum necessary privilege to the resources in
   developer namespaces.
 
 #### <a id='1-7-1-api-autoreg-ki'></a> v1.7.1 Known issues: API Auto Registration
