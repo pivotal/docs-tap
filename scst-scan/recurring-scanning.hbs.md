@@ -7,7 +7,7 @@ This topic describes how to set up recurring scans using Supply Chain Security T
 
 Scan workloads with updated vulnerability databases frequently. Use the
 scanner of your choice to scan images produced by your software supply chain, and any
-container image running in your Tanzu Application Platform clusters.
+container images running in your Tanzu Application Platform clusters.
 
 Use SCST - Scan 2.0 to schedule container image scans with the following capabilities:
 
