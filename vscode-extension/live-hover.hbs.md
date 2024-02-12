@@ -1,7 +1,7 @@
 # Integrate Live Hover by using Spring Boot Tools
 
 For more information about this feature, see the **Live application information hovers** section of
-the [Spring Boot Tools Marketplace page](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
+the [Spring Boot Tools Marketplace page](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot).
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -10,7 +10,7 @@ To integrate Live Hover by using Spring Boot Tools you need:
 - A Tanzu Spring Boot application, such as
   [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 - Spring Boot Extension Pack (includes Spring Boot Dashboard)
-  [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
+  [extension](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack)
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
