@@ -308,8 +308,8 @@ cat << EOF > workload-trust-policy.json
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
-                "StringEquals": {
-                    "${OIDCPROVIDER}:sub": "system:serviceaccount:default:default",
+                "StringLike": {
+                    "${OIDCPROVIDER}:sub": "system:serviceaccount:*:default",
                     "${OIDCPROVIDER}:aud": "sts.amazonaws.com"
                 }
             }
