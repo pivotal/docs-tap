@@ -6,8 +6,8 @@ This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known a
 
 ### Symptom
 
-After upgrading to Tanzu Application Platform v1.6.4 or later, attempting to update a web workload
-created in Tanzu Application Platform v1.6.3 or earlier causes the following error:
+After upgrading to Tanzu Application Platform v1.6.4 or later, if you attempt to update a web workload
+created in Tanzu Application Platform v1.6.3 or earlier you see the following error:
 
 ```console
 API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable: metadata.annotations.serving.knative.dev/creator (reason: BadRequest)
