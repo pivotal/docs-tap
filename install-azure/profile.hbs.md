@@ -314,19 +314,6 @@ service's External IP address.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
   the credentials to pull an image from the registry for scanning.
 
-For Azure, the default settings create a classic LoadBalancer.
-To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  infrastructure_provider: azure
-  envoy:
-    service:
-      azure:
-        LBType: nlb
-```
-
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
 
 The following tasks are optional during the Tanzu Application Platform installation process:
