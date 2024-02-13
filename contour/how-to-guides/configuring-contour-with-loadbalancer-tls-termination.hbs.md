@@ -26,7 +26,7 @@ The following are required before proceeding with the configuration:
 
 ## <a id="create-tls"></a> Create a TLS certificate in ACM
 
-Create a public TLS certificate for DOMAIN using AWS Certificate Manager (ACM).  
+Create a public TLS certificate for `*.DOMAIN` using AWS Certificate Manager (ACM).  
 See [AWS documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) for more details.
 
 >**Important** Record the `ARN` of the created certificate, which is required in the following steps.
