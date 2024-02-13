@@ -6,9 +6,8 @@ This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known a
 
 ### Symptom
 
-After creating a web workload in Tanzu Application Platform v1.6.3 or earlier, if you upgrade to
-Tanzu Application Platform v1.6.4 or later, attempts to update your web workload cause the
-following error:
+After upgrading to Tanzu Application Platform v1.6.4 or later, attempting to update a web workload
+created in Tanzu Application Platform v1.6.3 or earlier causes the following error:
 
 ```console
 API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable: metadata.annotations.serving.knative.dev/creator (reason: BadRequest)
@@ -17,90 +16,94 @@ API server says: admission webhook "validation.webhook.serving.knative.dev" deni
 ### Explanation
 
 Kapp controller, which is the orchestrator underneath workloads, deploys resources exactly as requested.
-Knative adds annotations to Knative Services to track the creator and last modified time of a resource. This
-conflict between kapp controller and Knative is a known issue and expected behavior that is mitigated by a 
-kapp configuration defined and used during deploy time by the delivery supply chain. The kapp config specifies
-that the annotations Knative adds are not to be modified during updates.
+However, Knative adds annotations to Knative Services to track the creator and last modified time of
+a resource.
+This conflict between kapp controller and Knative is a known issue and expected behavior that is
+mitigated by a kapp configuration that the supply chain defines and uses at deploy time.
+The kapp config specifies that the annotations Knative adds must not be modified during updates.
 
-However, as of Tanzu Application Platform v1.6.4, the kapp configuration moved from the delivery supply chain to the
-build supply chain. When a web workload is being updated, the delivery supply chain no longer provides the
-kapp configuration, which causes the validation error. Though the kapp configuration exists on v1.6.4 in
-a different part of the supply chain, existing deliverables are not rebuilt to include it.
+As of Tanzu Application Platform v1.6.4, the kapp configuration moved from the delivery
+supply chain to the build supply chain.
+When a web workload is being updated, the delivery supply chain no longer provides the kapp configuration,
+which causes the validation error.
+Although the kapp configuration exists on v1.6.4 in a different part of the supply chain, existing
+deliverables are not rebuilt to include it.
 
 ### Solution
 
-To workaround this issue where the web workloads were created from Tanzu Application Platform v1.6.3 or older and
-deployed or updated to an upgraded Tanzu Application Platform v1.6.4 or newer, follow the instructions below:
+To workaround this issue:
 
-Deploy the following overlay as a secret to your tap installation namespace (in this example, TAP is installed to the `tap-install` namespace):
+1. Deploy the following overlay as a secret to your Tanzu Application Platform installation namespace.
+   In the following example, Tanzu Application Platform is installed to the `tap-install` namespace:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: old-deliverables-patch
-  namespace: tap-install #! namespace where tap is installed
-stringData:
-  app-deploy-overlay.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-
-    #@ def kapp_config_replace(left, right):
-    #@ return left + "\n" + right
-    #@ end
-
-    #@overlay/match by=overlay.subset({"kind": "ClusterDeploymentTemplate", "metadata": {"name": "app-deploy"}})
-    ---
-    spec:
-      #@overlay/replace via=kapp_config_replace
-      ytt: |
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: old-deliverables-patch
+      namespace: tap-install #! namespace where tap is installed
+    stringData:
+      app-deploy-overlay.yaml: |
         #@ load("@ytt:overlay", "overlay")
-        #@ load("@ytt:yaml", "yaml")
 
-        #@ def kapp_config_temp():
-        apiVersion: kapp.k14s.io/v1alpha1
-      kind: Config
-      rebaseRules:
-        - path: [metadata, annotations, serving.knative.dev/creator]
-          type: copy
-          sources: [new, existing]
-          resourceMatchers: &matchers
-            - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
-        - path: [metadata, annotations, serving.knative.dev/lastModifier]
-          type: copy
-          sources: [new, existing]
-          resourceMatchers: *matchers
-      waitRules:
-        - resourceMatchers:
-          - apiVersionKindMatcher:
-              apiVersion: serving.knative.dev/v1
-              kind: Service
-          conditionMatchers:
-            - type: Ready
-              status: "True"
-              success: true
-            - type: Ready
-              status: "False"
-              failure: true
-      ownershipLabelRules:
-        - path: [ spec, template, metadata, labels ]
-          resourceMatchers:
-            - apiVersionKindMatcher: { apiVersion: serving.knative.dev/v1, kind: Service }
-      #@ end
+        #@ def kapp_config_replace(left, right):
+        #@ return left + "\n" + right
+        #@ end
 
-      #@overlay/match by=overlay.subset({"apiVersion": "kappctrl.k14s.io/v1alpha1", "kind": "App", "metadata": { "name": data.values.deliverable.metadata.name}})
-      ---
-      spec:
-        fetch:
-          #@overlay/append
-          - inline:
-              paths:
-                overlay-config.yml: #@ yaml.encode(kapp_config_temp())
+        #@overlay/match by=overlay.subset({"kind": "ClusterDeploymentTemplate", "metadata": {"name": "app-deploy"}})
+        ---
+        spec:
+          #@overlay/replace via=kapp_config_replace
+          ytt: |
+            #@ load("@ytt:overlay", "overlay")
+            #@ load("@ytt:yaml", "yaml")
 
-```
+            #@ def kapp_config_temp():
+            apiVersion: kapp.k14s.io/v1alpha1
+          kind: Config
+          rebaseRules:
+            - path: [metadata, annotations, serving.knative.dev/creator]
+              type: copy
+              sources: [new, existing]
+              resourceMatchers: &matchers
+                - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
+            - path: [metadata, annotations, serving.knative.dev/lastModifier]
+              type: copy
+              sources: [new, existing]
+              resourceMatchers: *matchers
+          waitRules:
+            - resourceMatchers:
+              - apiVersionKindMatcher:
+                  apiVersion: serving.knative.dev/v1
+                  kind: Service
+              conditionMatchers:
+                - type: Ready
+                  status: "True"
+                  success: true
+                - type: Ready
+                  status: "False"
+                  failure: true
+          ownershipLabelRules:
+            - path: [ spec, template, metadata, labels ]
+              resourceMatchers:
+                - apiVersionKindMatcher: { apiVersion: serving.knative.dev/v1, kind: Service }
+          #@ end
 
-If you had installed TAP using a profile, the above overlay should be applied to the `ootb-templates` package by following the instructions on [how to customize a package](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/customize-package-installation.html#customize-a-package-that-was-installed-by-using-a-profile-1).
+          #@overlay/match by=overlay.subset({"apiVersion": "kappctrl.k14s.io/v1alpha1", "kind": "App", "metadata": { "name": data.values.deliverable.metadata.name}})
+          ---
+          spec:
+            fetch:
+              #@overlay/append
+              - inline:
+                  paths:
+                    overlay-config.yml: #@ yaml.encode(kapp_config_temp())
 
-After completing the above steps, updates to the application should now proceed to deploy.
+    ```
+
+1. If you installed Tanzu Application Platform using a profile, apply the overlay to the `ootb-templates`
+   package by following the instructions in [Customize a package that was installed by using a profile](../../customize-package-installation.hbs.md#customize-a-package-that-was-installed-by-using-a-profile-1).
+
+After you complete the steps, updates to the application will deploy.
 
 > **Note** VMware plans to include a fix in future releases.
 
