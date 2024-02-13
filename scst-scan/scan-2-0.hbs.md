@@ -18,7 +18,7 @@ With SCST - Scan 2.0 you can:
 as part of a workload definition for known Common Vulnerabilities and Exposures (CVEs).
 - Use your preferred container image scan solution such as Anchore's
 Grype, Aqua's Trivy, Palo Alto's Prisma, and VMware Carbon Black Cloud.
--Posts the scan results in an industry-standard format, such
+- Post the scan results in an industry-standard format, such
 as [CycloneDX](https://cyclonedx.org/) or [SPDX](https://spdx.dev/), as an
 OCI artifact to an OCI-compliant container image registry.
 By using industry standards, you do not need to be familiar with proprietary
