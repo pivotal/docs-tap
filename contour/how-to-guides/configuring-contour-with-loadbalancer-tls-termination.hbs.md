@@ -84,6 +84,7 @@ Follow these steps to configure your Tanzu Application Platform:
      domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
 
     contour:
+      infrastructure_provider: aws
      envoy:
        service:
          aws:
