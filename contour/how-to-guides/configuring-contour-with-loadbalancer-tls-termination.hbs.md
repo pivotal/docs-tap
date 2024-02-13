@@ -1,7 +1,6 @@
 # Configure Contour to support TLS termination against AWS Elastic Load Balancing
 
-This topic tells you how to configure Contour to accept traffic from an AWS 
-Network LoadBalancer (NLB) that terminates TLS traffic.
+This topic tells you how to configure Contour to accept traffic from AWS LoadBalancer that terminates TLS traffic.
 
 For more information, see the [AWS Knowledge Center documentation](https://repost.aws/knowledge-center/terminate-https-traffic-eks-acm).
 
