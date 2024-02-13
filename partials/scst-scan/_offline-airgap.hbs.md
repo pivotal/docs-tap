@@ -8,9 +8,11 @@ The Aqua Trivy vulnerability scanner uses two databases to perform vulnerability
 
 In an online installation of Tanzu Application Platform, these databases are automatically downloaded from GHCR with each scan execution.  In order to enable scanning in an offline environment, these two databases need to be relocated to your private registry, and Trivy needs to be configured to use your private location instead of downloading from GHCR.
 
+For more information about about the Trivy vulnerability databases, you can review the [Trivy documentation](https://aquasecurity.github.io/trivy/v0.48/docs/scanner/vulnerability/).
+
 ### <a id="relocate-trivy-databases"></a>Relocate Trivy Images
 
-The databases are stored in an OCI compliant registry as OCI artifacts.  In order to copy these to your private registry, Trivy recommends using the oras cli.  It can be installed using the following instructions.  
+The databases are stored in an OCI compliant registry as OCI artifacts.  In order to copy these to your private registry, Trivy recommends using the oras cli.  It can be installed using the [following instructions](https://oras.land/docs/installation/).  
 
 To make the Trivy databases available in your private registry, do the following:
 
@@ -31,6 +33,8 @@ To make the Trivy databases available in your private registry, do the following
     Where `<container-registry>` is the url for your container registry.  For example, `harbor.example.com`
 
     > **Note**  The Trivy scanner is hardcode to use the `1` tag for the Java index database.
+
+The databases are now available locally within your airgap environment.  The next step will be to configure the supply chain to use the air-gapped location for Trivy.  For more information on using Trivy in an air-gapped environment, you can review the [Trivy Documentation](https://aquasecurity.github.io/trivy/v0.48/docs/advanced/air-gap/)
 
 ### <a id="Configure-trivy"></a>Configure Trivy in the Supply Chain
 
@@ -59,6 +63,8 @@ Now that you have relocated the images, we need to configure the scanning step o
     ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+
+Trivy is now configured to use resources within your airgapped environment when executed with the supply chain.  For more information on using Trivy in an air-gapped environment, you can review the [Trivy Documentation](https://aquasecurity.github.io/trivy/v0.48/docs/advanced/air-gap/)
 
 ## <a id="grype-with-scan-1-0"></a> Using Grype with Scan 1.0
 
