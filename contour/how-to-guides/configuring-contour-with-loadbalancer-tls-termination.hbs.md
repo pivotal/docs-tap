@@ -65,38 +65,38 @@ Follow these steps to configure your Tanzu Application Platform:
 
     ```yaml
     shared:
-     ingress_issuer: ""
-     ingress_domain: DOMAIN
-
+      ingress_issuer: ""
+      ingress_domain: DOMAIN
+    
     tap_gui:
-     app_config:
-       app:
-         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-       backend:
-         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-         reading:
-           allow:
-           - host: "*.DOMAIN"
-
+      app_config:
+        app:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+        backend:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+          reading:
+            allow:
+            - host: "*.DOMAIN"
+    
     cnrs:
-     default_external_scheme: "https"
-     ingress_issuer: ""
-     domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
-
+      default_external_scheme: "https"
+      ingress_issuer: ""
+      domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
+    
     contour:
       infrastructure_provider: aws
-     envoy:
-       service:
-         aws:
-           LBType: nlb
-         annotations:
-           service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
-           service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-
+      envoy:
+        service:
+          aws:
+            LBType: nlb
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    
     package_overlays:
     - name: contour
-     secrets:
-     - name: overlay-contour-envoy
+      secrets:
+      - name: overlay-contour-envoy
     ```
 
    Where `ARN` is the ARN recored in [Create a TLS certificate in ACM](#create-tls).
