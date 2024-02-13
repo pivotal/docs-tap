@@ -212,4 +212,4 @@ spec:
         value: /workspace
 ```
 
->**Note** Do not enclose the `{output}` interpolation value in quotes for trivy scan
+>**Note** Do not enclose the `{output}` interpolation value in quotes for Trivy scan.
