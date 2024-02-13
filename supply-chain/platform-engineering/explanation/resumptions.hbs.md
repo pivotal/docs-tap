@@ -27,6 +27,8 @@ This is how resumptions trigger a new [WorkloadRun].
 
 [SupplyChain]: ./supply-chains.hbs.md
 [SupplyChains]: ./supply-chains.hbs.md
+[Component]: ./components.hbs.md
+[Components]: ./components.hbs.md
 [Workload]: ./workloads.hbs.md
 [Workloads]: ./workloads.hbs.md
 [WorkloadRuns]: ./workload-runs.hbs.md
