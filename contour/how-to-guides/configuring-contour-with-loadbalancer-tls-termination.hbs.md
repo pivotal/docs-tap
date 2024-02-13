@@ -1,4 +1,4 @@
-# Configure Contour to support TLS termination at an AWS Network LoadBalancer
+# Configure Contour to support TLS termination at an AWS Elastic Load Balancing
 
 This topic tells you how to configure Contour to accept traffic from an AWS 
 Network LoadBalancer (NLB) that terminates TLS traffic.
@@ -91,6 +91,8 @@ Follow these steps to configure your Tanzu Application Platform:
     contour:
      envoy:
        service:
+         aws:
+           LBType: nlb
          annotations:
            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
@@ -101,7 +103,9 @@ Follow these steps to configure your Tanzu Application Platform:
      - name: overlay-contour-envoy
     ```
 
-    Where `ARN` is the ARN recored in [Create a TLS certificate in ACM](#create-tls).
+   Where `ARN` is the ARN recored in [Create a TLS certificate in ACM](#create-tls).
+
+   >**Note** If plan to use Classic LoadBalancer remove `contour.envoy.service.aws.LBType: aws`
 
 1. Update your Tanzu Application Platform installation:
 
