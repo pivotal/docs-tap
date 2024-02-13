@@ -18,10 +18,6 @@ With SCST - Scan 2.0 you can:
 as part of a workload definition for known Common Vulnerabilities and Exposures (CVEs).
 - Use your preferred container image scan solution such as Anchore's
 Grype, Aqua's Trivy, Palo Alto's Prisma, and VMware Carbon Black Cloud.
-- Provide a generic interface as a Kubernetes Custom Resource Definition
-(CRD), ImageVulnerabilityScan, that allows you to declare how the Tanzu
-Application Platform executes a scan on a container image for a container
-image scan solution.
 -Posts the scan results in an industry standard format, such
 as [CycloneDX](https://cyclonedx.org/) or [SPDX](https://spdx.dev/), as an
 OCI artifact to an OCI compliant container image registry.
@@ -31,7 +27,7 @@ Tanzu Application Platform configurations.
 ### AMR Observer
 
 Downstream services such as 
-[Tanzu CLI Insight plug=-in](../cli-plugins/insight/cli-overview.hbs.md),
+[Tanzu CLI Insight plug-in](../cli-plugins/insight/cli-overview.hbs.md),
 [Supply Chain Choreographer](../tap-gui/plugins/scc-tap-gui.hbs.md), and
 [Security Analysis](../tap-gui/plugins/sa-tap-gui.hbs.md) dashboards in the
 Tanzu Developer Portal depend on data being in
@@ -46,6 +42,9 @@ For information about AMR observer, see [Overview of Supply Chain Security Tools
 
 The SCST - Scan 2.0 component defines how to scan a container image with a scan
 solution using the generic Kubernetes custom resource `ImageVulnerabilityScan`.
+This provides a generic interface that allows you to declare how the Tanzu
+Application Platform executes a scan on a container image for a container
+image scan solution.
 For [Cartographer](../scc/about.hbs.md) to stamp out an `ImageVulnerabilityScan`
 custom resource as part of a supply chain execution, the `ImageVulnerabilityScan` must be
 wrapped in a `ClusterImageTemplate` custom resource. This custom resource tells Cartographer not
