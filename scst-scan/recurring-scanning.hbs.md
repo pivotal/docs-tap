@@ -11,23 +11,23 @@ container images running in your Tanzu Application Platform clusters.
 
 Use SCST - Scan 2.0 to schedule container image scans with the following capabilities:
 
-Detect vulnerabilities without a supply chain run for the following container image sources:
+- Detect vulnerabilities without a supply chain run for the following container image sources:
 
-- Images produced by the supply chain using Tanzu Build Service or kaniko.
-- Images defined in a workload when using a prebuilt container image in your supply chain.
-- Images running in a Tanzu Application Platform cluster that were not produced by a software supply chain.
+  - Images produced by the supply chain using Tanzu Build Service or kaniko.
+  - Images defined in a workload when using a prebuilt container image in your supply chain.
+  - Images running in a Tanzu Application Platform cluster that were not produced by a software supply chain.
 
-Customize how far back you want to scan container images based on:
+- Customize how far back you want to scan container images based on:
 
-- When the container image was created in the supply chain.
-- When the container image entered a running state on your Tanzu Application Platform cluster.
+  - When the container image was created in the supply chain.
+  - When the container image entered a running state on your Tanzu Application Platform cluster.
 
-Use one of the `ImageVulnerabilityScan` samples or create your own.
-For more information, see [ImageVulnerabilityScan samples](ivs-custom-samples.hbs.md#overview) or [Bring your own scanner using an ImageVulnerabilityScan](ivs-create-your-own.hbs.md).
+- Use one of the `ImageVulnerabilityScan` samples or create your own.
+  - For more information, see [ImageVulnerabilityScan samples](ivs-custom-samples.hbs.md#overview) or [Bring your own scanner using an ImageVulnerabilityScan](ivs-create-your-own.hbs.md).
 
-View discovered vulnerabilities from your most recent image in the Tanzu Developer Portal Supply Chain Choreographer plug-in.
+- View discovered vulnerabilities from your most recent image built for a workload in the Tanzu Developer Portal Supply Chain Choreographer plug-in.
 
-Use when either Scan 1.0 or Scan 2.0 is defined as your supply chain scanning component.
+- Use when either Scan 1.0 or Scan 2.0 is used to scan a recently built container in your supply chain.  
 
 ## <a id="recurring-scanning-setup"></a>Set up recurring scanning
 
@@ -36,7 +36,7 @@ To set up recurring scanning, you must create a `recurringimagevulnerabilityscan
 - The interval in which to scan container images in crontab format.
 - How far back (in days) of images created using the supply chain to scan.
 - How far back (in days) of images that have started in your Tanzu Application Platform clusters to scan.
-- The steps from [IVS template]() to use to scan your images, which define what scanner to use.
+- The steps from [IVS template](./ivs-custom-samples.hbs.md) to use to scan your images, which define what scanner to use.
 - The OCI compliant registry to push the recurring scan results to.
 
 ### <a id="preqrequisites"></a>Prerequisites
@@ -47,16 +47,18 @@ Before you define your `recurringimagevulnerabilityscan` template, you must have
 - A service account that can push an OCI artifact to the results repository.
 - Credentials for any registry the scanner must pull images from to scan.
 
-The prerequisites for recurring scan are the same as Scan 2.0. For service accounts and credentials,
-you can do this manually following the Scan 2.0 directions, but the recommended approach is to use
-Namespace Provisioner to create a namespace. This creates all of the required resources needed for
-recurring scanning to work. The examples in this topic use Namespace Provisioner. For more
+Recurring scanning uses the Scan 2.0 component, which is included by in the `Full` and `Build Profiles`. 
+
+Special attention should be paid to the service accounts and credentials that are needed.  If you
+opt to only use recurring scanning for images built in your supply chain, the recommended approach is to 
+use Namespace Provisioner to create a namespace, which will automatically create the service accounts and
+secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more 
 information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md).
 
 ### <a id="example-template"></a>Example recurringimagevulnerabilityscan template
 
 The following sample template provides an explanation of the input variables for the `recurringimagevulnerabilityscan` CR. Use the Grype and Trivy samples in a namespace created by
-Namespace Provisioner in a simple environment. The Grype and Trivy examples are a subset of this template. Add additional configurations from this template to the Grype and Trivy samples for more advanced configurations.
+Namespace Provisioner. The Grype and Trivy examples are a subset of this template. Add additional configurations from this template to the Grype and Trivy samples for more advanced configurations.
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -105,6 +107,8 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 
 The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
 default configuration.
+
+>**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin. 
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
@@ -156,6 +160,8 @@ spec:
 
 The SCST - Scan 2.0 default scanner is Trivy, and this template works with the Scan
 2.0 default configuration.
+
+>**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin. 
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
