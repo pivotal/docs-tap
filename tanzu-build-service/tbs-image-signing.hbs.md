@@ -175,7 +175,7 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     Where `LATEST-IMAGE-WITH-DIGEST` is the value of `LATESTIMAGE` you retrieved in the previous step.
     For example, `index.docker.io/your-project/app@sha256:6744b...`.
 
-    The expected output is similar to the following:
+    Expected output:
 
     ```console
     Verification for index.docker.io/your-project/app@sha256:6744b... --
