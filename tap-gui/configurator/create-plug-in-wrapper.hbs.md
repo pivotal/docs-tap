@@ -50,12 +50,12 @@ not develop a traditional Backstage app, and you will remove some portions of ge
    prompted, enter a name for your app:
 
    ```console
-   npx @backstage/create-app@{{ vars.tap_gui.backstage.packages.backstage/create-app }} --skip-install
+   npx @backstage/create-app@{{ vars.tap_gui.backstage.packages.backstage-create-app }} --skip-install
    ```
 
-   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage/create-app }} is used because the Tanzu Developer Portal version that ships
+   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }} is used because the Tanzu Developer Portal version that ships
    with Tanzu Application Platform v1.8 uses Backstage v{{ vars.tap_gui.backstage.version }}. Backstage v{{ vars.tap_gui.backstage.version }} uses
-   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage/create-app }}. For more information, see the
+   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }}. For more information, see the
    [Backstage version manifest](https://github.com/backstage/versions/blob/main/v1/releases/{{ vars.tap_gui.backstage.version }}/manifest.json).
 
    > **Important** Ensure that you use the correct versions of dependencies for your
@@ -159,7 +159,7 @@ Update your dependencies for the specific Backstage plug-in you want to wrap:
    ...
    "dependencies": {
      "@backstage/plugin-tech-insights": "{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}",
-     "@backstage/plugin-catalog": "{{ vars.tap_gui.backstage.packages.backstage/plugin-catalog }}",
+     "@backstage/plugin-catalog": "{{ vars.tap_gui.backstage.packages.backstage-plugin-catalog }}",
      "@vmware-tanzu/core-common": "2.0.0",
      "@vmware-tanzu/core-frontend": "2.0.0"
    },
