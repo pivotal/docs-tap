@@ -58,12 +58,10 @@ Retrieve component YAML:
           value: '[{"name":"<Name of Env var>","value":"<value of Env var>"}]' # insert env vars inside nested {}
         ...
         pipelineRef:
-          name: trivy-image-scan-v2 # SCANNER-image-scan-v2
+          name: trivy-image-scan-v2 # SCANNER-image-scan-v2. Replace with the name of the pipeline created in the next step.
     ```
 
-      * Replace the pipelineref to the name of the pipeline created in the next step.
-
-2. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline. Retrieve pipeline YAML:
+1. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline. Retrieve pipeline YAML:
 
     ```console
     kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
@@ -96,7 +94,7 @@ Retrieve component YAML:
 
       Where `SCANNER` is the name of the scanner from the scanning component
 
-3. Apply the custom component and pipeline:
+2. Apply the custom component and pipeline:
 
     ```console
     kubectl apply -f component.yaml

@@ -1,4 +1,4 @@
-# Create a Workload from the Supply Chain
+# Create a workload from the Supply Chain
 
 This topic covers how to create and apply a workload from a Tanzu Supply Chain, how to observe a
 workload, and how to verify the scanning performed in a workload.

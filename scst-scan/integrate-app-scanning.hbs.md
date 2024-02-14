@@ -51,5 +51,5 @@ To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
     ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-    
+
 1. Verify the scan capability is working as expected by creating a workload. See [Verify scanning with Supply Chain integration](./verify-app-scanning-supply-chain.hbs.md).
