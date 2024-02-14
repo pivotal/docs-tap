@@ -27,11 +27,11 @@ Use SCST - Scan 2.0 to schedule container image scans with the following capabil
 
 - View discovered vulnerabilities from your most recent image built for a workload in the Tanzu Developer Portal Supply Chain Choreographer plug-in.
 
-- Use when either Scan 1.0 or Scan 2.0 is used to scan a recently built container in your supply chain.  
+- Use when either Scan 1.0 or Scan 2.0 is used to scan a recently built container in your supply chain.
 
 ## <a id="recurring-scanning-setup"></a>Set up recurring scanning
 
-To set up recurring scanning, you must create a `recurringimagevulnerabilityscan`. This defines:
+To set up recurring scanning, you must create a `RecurringImageVulnerabilityScan`. This defines:
 
 - The interval in which to scan container images in crontab format.
 - How far back (in days) of images created using the supply chain to scan.
@@ -41,23 +41,23 @@ To set up recurring scanning, you must create a `recurringimagevulnerabilityscan
 
 ### <a id="preqrequisites"></a>Prerequisites
 
-Before you define your `recurringimagevulnerabilityscan` template, you must have:
+Before you define your `RecurringImageVulnerabilityScan` template, you must have:
 
 - A repository created on an OCI compliant registry that scan results are pushed to.
 - A service account that can push an OCI artifact to the results repository.
 - Credentials for any registry the scanner must pull images from to scan.
 
-Recurring scanning uses the Scan 2.0 component, which is included by in the `Full` and `Build Profiles`. 
+Recurring scanning uses the Scan 2.0 component, which is included by in the `Full` and `Build Profiles`.
 
 Special attention should be paid to the service accounts and credentials that are needed.  If you
-opt to only use recurring scanning for images built in your supply chain, the recommended approach is to 
+opt to only use recurring scanning for images built in your supply chain, the recommended approach is to
 use Namespace Provisioner to create a namespace, which will automatically create the service accounts and
-secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more 
+secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more
 information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md).
 
-### <a id="example-template"></a>Example recurringimagevulnerabilityscan template
+### <a id="example-template"></a>Example RecurringImageVulnerabilityScan template
 
-The following sample template provides an explanation of the input variables for the `recurringimagevulnerabilityscan` CR. Use the Grype and Trivy samples in a namespace created by
+The following sample template provides an explanation of the input variables for the `RecurringImageVulnerabilityScan` CR. Use the Grype and Trivy samples in a namespace created by
 Namespace Provisioner. The Grype and Trivy examples are a subset of this template. Add additional configurations from this template to the Grype and Trivy samples for more advanced configurations.
 
 ```yaml
@@ -83,7 +83,7 @@ spec:
       - name: gcr  # Google Container Registry
       - name: ghcr # Github Container Registry
     workspace:
-      size: WORKSPACESIZE
+      size: WORKSPACE-SIZE
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -99,16 +99,16 @@ Where:
 to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `START-DEADLINE`: The period of time beyond the scheduled start time when scans can be started if they did not start on time. If this period elapses, the scheduled scan is skipped.
 - `SUCESSFUL-RETENTION`: The number of successful recurring scan executions to keep in Kubernetes.
-- `WORKSPACESIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
+- `WORKSPACE-SIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `10Gi` is the recommended starting point.
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
-### <a id="grype-rivs-template"></a>Grype recurringimagevulnerabilityscan template
+### <a id="grype-rivs-template"></a>Grype RecurringImageVulnerabilityScan template
 
 The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
 default configuration.
 
->**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin. 
+>**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin.
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
@@ -134,7 +134,7 @@ spec:
     startingDeadline: 60m
   scan:
     workspace:
-      size: 3Gi
+      size: 10Gi
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -144,24 +144,38 @@ spec:
       args:
       - db
       - update
-    - name: grype
+      env:
+      - name: GRYPE_DB_CACHE_DIR
+        value: /workspace/grype-cache
+    - name: grype-scan
       image: anchore/grype:latest
-      command:
-      - "/grype"
+      command: [/grype]
       args:
       - "{image}"
       - "-o"
       - "cyclonedx-json"
       - "--file"
       - "{output}"
+      env:
+      - name: GRYPE_DB_AUTO_UPDATE
+        value: "false"
+      - name: GRYPE_CHECK_FOR_APP_UPDATE
+        value: "false"
+      - name: GRYPE_DB_CACHE_DIR
+        value: /workspace/grype-cache
 ```
 
-### <a id="trivy-rivs-template"></a>Trivy recurringimagevulnerabilityscan template
+In this particular sample configuration, we first download the latest Grype vulnerability
+database and then we perform the scanning with the stored database. This is done
+in order to prevent multiple database updates while running concurrent scans.
+
+
+### <a id="trivy-rivs-template"></a>Trivy RecurringImageVulnerabilityScan template
 
 The SCST - Scan 2.0 default scanner is Trivy, and this template works with the Scan
 2.0 default configuration.
 
->**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin. 
+>**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin.
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
@@ -187,7 +201,7 @@ spec:
     startingDeadline: 60m
   scan:
     workspace:
-      size: 3Gi
+      size: 10Gi
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -197,7 +211,16 @@ spec:
       args:
       - image
       - --download-db-only
+      - --no-progress
+      - --cache-dir=/workspace/trivy-cache
+    - name: update-java-db
+      image: aquasec/trivy:0.48.3
+      command: [/usr/local/bin/trivy]
+      args:
+      - image
       - --download-java-db-only
+      - --no-progress
+      - --cache-dir=/workspace/trivy-cache
     - name: trivy-generate-report
       image: aquasec/trivy:0.48.3
       command: [/usr/local/bin/trivy]
@@ -209,13 +232,12 @@ spec:
       - --scanners=vuln
       - --format=cyclonedx
       - --output={output}
-      env:
-      - name: TRIVY_CACHE_DIR
-        value: /workspace/trivy-cache
-      - name: XDG_CACHE_HOME
-        value: /workspace/.cache
-      - name: TMPDIR
-        value: /workspace
+      - --cache-dir=/workspace/trivy-cache
+      - --skip-db-update
+      - --skip-java-db-update
 ```
+In this particular sample configuration, we first download the latest Trivy vulnerability
+and Java databases and then we perform the scanning with the stored databases. This is done
+in order to prevent multiple database updates while running concurrent scans.
 
 >**Note** Do not enclose the `{output}` interpolation value in quotes for Trivy scan.
