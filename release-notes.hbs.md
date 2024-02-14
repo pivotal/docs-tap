@@ -306,7 +306,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Choreographer                         |         |
 | Supply Chain Security Tools - Policy Controller    |         |
 | Supply Chain Security Tools - Scan                 |         |
-| Supply Chain Security Tools - Scan 2.0 (beta)      |         |
+| Supply Chain Security Tools - Scan 2.0             |         |
 | Supply Chain Security Tools - Store                |         |
 | Tanzu Developer Portal                             |         |
 | Tanzu Developer Portal Configurator                |         |
