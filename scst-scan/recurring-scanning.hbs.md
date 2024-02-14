@@ -57,7 +57,7 @@ information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md)
 
 ### <a id="example-template"></a>Example RecurringImageVulnerabilityScan template
 
-The following sample template provides an explanation of the input variables for the `recurringimagevulnerabilityscan` CR. Use the Grype and Trivy samples in a namespace created by
+The following sample template provides an explanation of the input variables for the `RecurringImageVulnerabilityScan` CR. Use the Grype and Trivy samples in a namespace created by
 Namespace Provisioner. The Grype and Trivy examples are a subset of this template. Add additional configurations from this template to the Grype and Trivy samples for more advanced configurations.
 
 ```yaml
