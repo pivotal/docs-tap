@@ -23,12 +23,14 @@ The ZIP file contains the local engine server and a Java runtime for running the
 >
 >In the Finder on your Mac, locate the directory where you extracted the downloaded ZIP file and expand the "acc-engine" directory.
 >
->  We need to "control-open" the following files:
->  - control-click `acc-engine/app/bin/ytt` and then click Open. This will run it in a terminal that you can close.
->  - control-click `acc-engine/app/bin/java` and then click Open. This will run it in a terminal that you can close.
+>We need to "control-open" the following files:
 >
-> The above app files are saved as exceptions to your security settings.
-> You can now run them without getting a verification message.
+>    - control-click `acc-engine/app/bin/ytt` and then click Open. This will run it in a terminal that you can close.
+>
+>    - control-click `acc-engine/app/bin/java` and then click Open. This will run it in a terminal that you can close.
+>
+>The above app files are saved as exceptions to your security settings.
+>You can now run them without getting a verification message.
 
 Open a terminal window and change directory to `acc-engine` located inside the directory where you extracted the ZIP file.
 
