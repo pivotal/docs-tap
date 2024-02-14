@@ -7,11 +7,13 @@ This topic covers how to install the Trivy Supply Chain Component, create custom
 This section covers how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
 1. List version information for the Trivy Supply Chain Component package by running:
+
     ```
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
+
     ```
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
 
@@ -20,6 +22,7 @@ This section covers how to install the Trivy Supply Chain Component that uses SC
     ```
 
 2. Install Trivy Supply Chain Component package.
+
     ```
     tanzu package install trivy-app-scanning-component --package-name trivy.app-scanning.component.apps.tanzu.vmware.com \
         --version TRIVY-COMPONENT-VERSION \
@@ -33,6 +36,7 @@ This section covers how to create a custom Scanning Supply Chain Component that 
 1. Customize a component by retrieving the YAML of the Trivy Supply Chain Component:
 
     * Retrieve component YAML:
+
       ```console
       kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
       ```
@@ -56,6 +60,7 @@ This section covers how to create a custom Scanning Supply Chain Component that 
           pipelineRef:
             name: trivy-image-scan-v2 # SCANNER-image-scan-v2
       ```
+
       * Replace the pipelineref to the name of the pipeline created in the next step.
 
 2. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline:
