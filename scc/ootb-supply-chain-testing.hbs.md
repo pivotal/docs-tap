@@ -22,11 +22,13 @@ performs the following:
   1. Building a container image out of the source code with Buildpacks
   1. Applying operator-defined conventions to the container definition
   1. Deploying the application to the same cluster
+    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 - Using a prebuilt application image:
 
   1. Applying operator-defined conventions to the container definition
-  1. Creating a deliverable object for deploying the application to a cluster
+  2. Creating a deliverable object for deploying the application to a cluster
+    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 
 ## <a id="prerequisite"></a> Prerequisites

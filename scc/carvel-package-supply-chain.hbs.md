@@ -6,31 +6,32 @@ can use the Carvel Package Supply Chains with Supply Chain Choreographer to
 deliver applications to multiple production environments with configuration for
 each environment.
 
-The [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package
-introduces a variation of the OOTB Basic supply chains that outputs Carvel
+The [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md),
+[Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.hbs.md), and
+[Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.hbs.md) packages
+provide variations of the OOTB supply chains that output Carvel
 Packages.
 
 ## <a id="overview"></a> Overview of the Carvel Package Supply Chains
 
-The out of the box Basic Supply Chain outputs a
+The out of the box Supply Chains output a
 `Deliverable` object. These `Deliverable`s are deployed to a cluster by the Out
-of the Box Delivery Supply Chain. The Carvel Package Supply Chains output a
+of the Box Delivery Supply Chain. The Carvel Package Supply Chains instead output a
 Carvel `Package` object to a GitOps repository. These `Packages` have
 configurable parameters such as `hostname` and `replicas` that are configured
 per environment. GitOps tools such as Flux CD and Argo CD can deploy the
 `Package`s onto multiple environments.
 
-> **Note** The Kubernetes resources created for your `server`
-> `Workload` are the same for `source-to-url` or `basic-image-to-url`, optionally with a `networking.k8s.io/v1 Ingress` resource. For example, a resource named
-> `Deployment`. The Carvel `Package` wraps these resources. You secure the
-> `Ingress` by using the `cluster_issuer` `tap-ingress-selfsigned` by default.
+> **Note** The Kubernetes resources created for your `Workload` are the same for Carvel Package supply chains, but with additional, optional resources such as `networking.k8s.io/v1 Ingress`.
 
 ### <a id="supply-chains-do"></a> What do the Carvel Package Supply Chains Do?
 
-There are two Carvel Package Supply Chains, `source-to-url-package` and
-`basic-image-to-url-package` in the Out of the Box Supply Chain Package. They
-are identical to `source-to-url` and `basic-image-to-url`, except for three
-resources:
+There are two Carvel Package Supply Chains per package:
+- Out of the Box Basic Supply Chain contains `source-to-url-package` and `basic-image-to-url-package`.
+- Out of the Box Supply Chain with Testing contains `source-test-to-url-package` and `testing-image-to-url-package`.
+- Out of the Box Supply Chain with Testing and Scanning contains `source-test-scan-to-url-package` and `scanning-image-scan-to-url-package`
+
+These supply chains are identical to their non Carvel Package counterparts, except for three resources:
 
 - A new `carvel-package` resource is added. The supply chain stamps out a Tekton Task that
   bundles all application Kubernetes resources into a Carvel `Package`.
@@ -171,7 +172,9 @@ The Carvel Package Supply Chains require access to a GitOps repository and crede
 
 ### <a id='installation'></a> Installation
 
-In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) and the [Out of the Box Templates](ootb-templates.hbs.md) package with the following parameters:
+In `tap-values`, configure any Out of the Box Supply Chain and the [Out of the Box Templates](ootb-templates.hbs.md) package with the following parameters:
+
+  > **Note** If you are installing Out of the Box Supply Chain with Testing, replace `ootb_supply_chain_basic` with `ootb_supply_chain_testing` in all of the following steps. If you are installing Out of the Box Supply Chain with Testing and Scanning, replace `ootb_supply_chain_basic` with `ootb_supply_chain_testing_scanning` in all of the following steps.
 
 1. (Required) Enable the Carvel Package workflow.
 
@@ -264,16 +267,19 @@ In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-c
         # copy the existing parameters for worker + web here
     ```
 
-3. Configure the [Out of the Box Basic Supply
-   Chain](ootb-supply-chain-basic.hbs.md) package with your GitOps parameters.
+1. Configure your Out of the Box Supply
+   Chain package with your GitOps parameters.
    See [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#gitops).
 
-4. Install the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package.
+1. Install the Out of the Box Supply Chain package.
 
 ### <a id="verifying"></a> Verifying the Carvel Package Supply Chains are Installed
 
 1. Run `kubectl get ClusterSupplyChains`.
-2. Confirm you see both `source-to-url-package` and `basic-image-to-url-package` with status `Ready: True`.
+2. Confirm you see both Carvel Package supply chains with status `Ready: True`:
+   - Out of the Box Basic Supply Chain contains `source-to-url-package` and `basic-image-to-url-package`.
+   - Out of the Box Supply Chain with Testing contains `source-test-to-url-package` and `testing-image-to-url-package`.
+   - Out of the Box Supply Chain with Testing and Scanning contains `source-test-scan-to-url-package` and `scanning-image-scan-to-url-package`
 
 ## <a id='carvel-package-developer'></a> Using the Carvel Package Supply Chains as a Developer
 
