@@ -96,15 +96,15 @@ To install Source Controller:
 
     Where:
 
-      - `VERSION-NUMBER` is the version of the package listed in step 1 above.
-      - `VALUES-FILE` is the path to the file created in step 3.
+    - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    - `VALUES-FILE` is the path to the file created in step 3.
 
     For example:
 
     ```console
     $ tanzu package install source-controller
         --package controller.source.apps.tanzu.vmware.com
-        --version 0.4.1  
+        --version 0.4.1
         --namespace tap-install
         --values-file source-controller-values.yaml
 
