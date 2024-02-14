@@ -6,12 +6,12 @@ The Aqua Trivy vulnerability scanner uses two databases to perform vulnerability
 artifacts. This database is built every six hours on [GitHub](https://github.com/aquasecurity/trivy-db)
 and is distributed using [GitHub Container registry (GHCR)](https://ghcr.io/aquasecurity/trivy-db).
 
-2. Java Index Database: This database enables Trivy to identify the groupId, artifactId, and version
+2. Java Index Database: This database enables Trivy to identify the `groupId`, `artifactId`, and `version`
 of JAR files. It is built once a day on [GitHub](https://github.com/aquasecurity/trivy-java-db) and
 distributed using [GitHub Container registry (GHCR)](https://ghcr.io/aquasecurity/trivy-java-db).
 
 In an online installation of Tanzu Application Platform, these databases are automatically downloaded
-from GHCR with each scan execution. To enable scanning in an offline environment, these two
+from GHCR (Github Container Registry) with each scan execution. To enable scanning in an offline environment, these two
 databases must be relocated to your private container image registry, and Trivy must be configured
 to use your private location instead of downloading from GHCR.
 
@@ -25,7 +25,7 @@ your private registry, Trivy recommends using the [ORAS CLI](https://oras.land/d
 To make the Trivy databases available in your private registry:
 
 1. Create a repository within your private registry. This example uses aquasecurity to remain
-consistent with the GHCR repository.
+consistent with the GHCR  repository.
 
 1. Copy the vulnerability database from GHCR to your private registry:
 
@@ -47,7 +47,7 @@ consistent with the GHCR repository.
 
     > **Note**  The Trivy scanner is hardcoded to use the `1` tag for the Java index database.
 
-The databases are now available locally within your air-gapped environment. The next step is to
+The databases are now available locally in your air-gapped environment. The next step is to
 configure the supply chain to use the air-gapped location for Trivy. For more information about using
 Trivy in an air-gapped environment, see the [Trivy](https://aquasecurity.github.io/trivy/v0.48/docs/advanced/air-gap/) documentation.
 
@@ -82,7 +82,7 @@ specify the Trivy `ClusterImageTemplate`. For example:
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-Trivy is now configured to use resources within your air-gapped environment when executed with the
+Trivy is now configured to use resources in your air-gapped environment when executed with the
 supply chain. For more information about using Trivy in an air-gapped environment, see the [Trivy](https://aquasecurity.github.io/trivy/v0.48/docs/advanced/air-gap/) documentation.
 
 ## <a id="grype-with-scan-1-0"></a> Using Grype with Scan 1.0
@@ -98,7 +98,7 @@ The Grype CLI attempts to perform two over-the-Internet calls:
 - One to update the vulnerability database before scanning.
 
 For the Grype CLI to function in an offline or air-gapped environment, the
-vulnerability database must be hosted within the environment. You must configure
+vulnerability database must be hosted in the environment. You must configure
 the Grype CLI with the internal URL.
 
 The Grype CLI accepts environment variables to satisfy these needs.
@@ -228,6 +228,7 @@ See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installat
 
 ### <a id="troubleshooting"></a> Troubleshooting
 
+
 #### ERROR failed to fetch latest cli version
 
 ##### Symptom
@@ -294,7 +295,7 @@ using a package overlay:
 
 ##### Symptom
 
-Error message
+Error message:
 
 ```console
 1 error occurred:
@@ -436,7 +437,7 @@ Verify these possible reasons why the vulnerability database is not valid:
 2. The `built` parameters in the `listing.json` file are incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
 
 3. The `url` that you modified to point at an internal endpoint is not reachable
-   from within the cluster. For information about verifying connectivity, see
+   from the cluster. For information about verifying connectivity, see
    [Debug Grype database in a cluster](#debug-grype-database-in-a-cluster).
 4. Verify if there are syntax errors in the listing.json:
     
