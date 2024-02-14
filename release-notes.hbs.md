@@ -152,6 +152,10 @@ Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).  This include
   - Aqua Trivy has been updated to [v0.48.3](https://github.com/aquasecurity/trivy/releases/tag/v0.48.3)
   - Anchore Grype has been updated to [v0.74.1](https://github.com/anchore/grype/releases/tag/v0.74.1)
 
+#### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
+
+- Introduces [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) for the [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.hbs.md) and [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) packages. This feature is in beta.
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
