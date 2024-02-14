@@ -239,11 +239,11 @@ template_variables:
         backstage/plugin-stack-overflow: 0.1.22
         backstage/plugin-stack-overflow-backend: 0.2.11
         backstage/plugin-stackstorm: 0.1.8
-        backstage/plugin-tech-insights: 0.3.19
-        backstage/plugin-tech-insights-backend: 0.5.21
-        backstage/plugin-tech-insights-backend-module-jsonfc: 0.1.39
-        backstage/plugin-tech-insights-common: 0.2.12
-        backstage/plugin-tech-insights-node: 0.4.13
+        backstage-plugin-tech-insights: 0.3.19
+        backstage-plugin-tech-insights-backend: 0.5.21
+        backstage-plugin-tech-insights-backend-module-jsonfc: 0.1.39
+        backstage-plugin-tech-insights-common: 0.2.12
+        backstage-plugin-tech-insights-node: 0.4.13
         backstage/plugin-tech-radar: 0.6.10
         backstage/plugin-techdocs: 1.9.1
         backstage/plugin-techdocs-addons-test-utils: 1.0.24
