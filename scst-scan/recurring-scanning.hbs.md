@@ -81,7 +81,7 @@ spec:
       - name: gcr  # Google Container Registry
       - name: ghcr # Github Container Registry
     workspace:
-      size: WORKSPACESIZE
+      size: WORKSPACE-SIZE
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -97,7 +97,7 @@ Where:
 to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `START-DEADLINE`: The period of time beyond the scheduled start time when scans can be started if they did not start on time. If this period elapses, the scheduled scan is skipped.
 - `SUCESSFUL-RETENTION`: The number of successful recurring scan executions to keep in Kubernetes.
-- `WORKSPACESIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
+- `WORKSPACE-SIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
@@ -140,17 +140,31 @@ spec:
       args:
       - db
       - update
-    - name: grype
+      env:
+      - name: GRYPE_DB_CACHE_DIR
+        value: /workspace/grype-cache
+    - name: grype-scan
       image: anchore/grype:latest
-      command:
-      - "/grype"
+      command: [/grype]
       args:
       - "{image}"
       - "-o"
       - "cyclonedx-json"
       - "--file"
       - "{output}"
+      env:
+      - name: GRYPE_DB_AUTO_UPDATE
+        value: "false"
+      - name: GRYPE_CHECK_FOR_APP_UPDATE
+        value: "false"
+      - name: GRYPE_DB_CACHE_DIR
+        value: /workspace/grype-cache
 ```
+
+In this particular sample configuration, we first download the latest Grype vulnerability
+database and then we perform the scanning with the stored database. This is done
+in order to prevent multiple database updates while running concurrent scans.
+
 
 ### <a id="trivy-rivs-template"></a>Trivy RecurringImageVulnerabilityScan template
 
@@ -181,7 +195,7 @@ spec:
     startingDeadline: 60m
   scan:
     workspace:
-      size: 3Gi
+      size: 4Gi
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -191,7 +205,16 @@ spec:
       args:
       - image
       - --download-db-only
+      - --no-progress
+      - --cache-dir=/workspace/trivy-cache
+    - name: update-java-db
+      image: aquasec/trivy:0.48.3
+      command: [/usr/local/bin/trivy]
+      args:
+      - image
       - --download-java-db-only
+      - --no-progress
+      - --cache-dir=/workspace/trivy-cache
     - name: trivy-generate-report
       image: aquasec/trivy:0.48.3
       command: [/usr/local/bin/trivy]
@@ -203,13 +226,12 @@ spec:
       - --scanners=vuln
       - --format=cyclonedx
       - --output={output}
-      env:
-      - name: TRIVY_CACHE_DIR
-        value: /workspace/trivy-cache
-      - name: XDG_CACHE_HOME
-        value: /workspace/.cache
-      - name: TMPDIR
-        value: /workspace
+      - --cache-dir=/workspace/trivy-cache
+      - --skip-db-update
+      - --skip-java-db-update
 ```
+In this particular sample configuration, we first download the latest Trivy vulnerability
+and Java databases and then we perform the scanning with the stored databases. This is done
+in order to prevent multiple database updates while running concurrent scans.
 
 >**Note** Do not enclose the `{output}` interpolation value in quotes for Trivy scan.
