@@ -13,7 +13,7 @@ Meet the following prerequisites before creating a Tanzu Developer Portal plug-i
 Ensure that you have the following software installed locally to develop a Tanzu Developer Portal
 plug-in:
 
-- Node 16: `nvm` is recommended. For how to install `nvm`, see the `nvm`
+- Node 18: `nvm` is recommended. For how to install `nvm`, see the `nvm`
   [GitHub repository](https://github.com/nvm-sh/nvm#install--update-script). For how to install a
   specific version of `nvm`, see the
   [NodeJS documentation](https://nodejs.org/en/download/package-manager/#nvm).
@@ -30,8 +30,8 @@ development machine and your Tanzu Application Platform cluster must have access
 This topic tells you, by way of example, how to wrap the Backstage TechInsights plug-in.
 This plug-in consists of back-end and front-end components, both of which are available on npm JS:
 
-- [@backstage/plugin-tech-insights v0.3.11](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11)
-- [@backstage/plugin-tech-insights-backend v0.5.12](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12)
+- [@backstage/plugin-tech-insights v{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }})
+- [@backstage/plugin-tech-insights-backend v{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }})
 
 ## <a id="set-up-dev-env"></a> Set up a development environment
 
@@ -50,13 +50,15 @@ not develop a traditional Backstage app, and you will remove some portions of ge
    prompted, enter a name for your app:
 
    ```console
-   npx @backstage/create-app@0.5.2 --skip-install
+   npx @backstage/create-app@{{ vars.tap_gui.backstage.packages.backstage-create-app }} --skip-install
    ```
 
-   `@backstage/create-app` v0.5.2 is used because the Tanzu Developer Portal version that ships
-   with Tanzu Application Platform v1.7 uses Backstage v1.15.0. Backstage v1.15.0 uses
-   `@backstage/create-app` v0.5.2. For more information, see the
-   [Backstage version manifest](https://github.com/backstage/versions/blob/main/v1/releases/1.15.0/manifest.json).
+   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }} is used
+   because the Tanzu Developer Portal version that ships with Tanzu Application Platform v1.8 uses
+   Backstage v{{ vars.tap_gui.backstage.version }}. Backstage v{{ vars.tap_gui.backstage.version }}
+   uses `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }}. For
+   more information, see the
+   [Backstage version manifest](https://github.com/backstage/versions/blob/main/v1/releases/{{ vars.tap_gui.backstage.version }}/manifest.json).
 
    > **Important** Ensure that you use the correct versions of dependencies for your
    > Tanzu Application Platform version. Use the
@@ -123,7 +125,7 @@ To remove unnecessary dependencies you must:
 
 Now that you have an environment to develop your Tanzu Developer Portal plug-ins, you can begin
 wrapping Backstage plug-ins. You will start with the
-[Tech Insight front-end plug-in](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11).
+[Tech Insight front-end plug-in](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}).
 
 ### <a id="gen-frntnd-plgn"></a> Generate a front-end plug-in
 
@@ -158,10 +160,10 @@ Update your dependencies for the specific Backstage plug-in you want to wrap:
    ```json
    ...
    "dependencies": {
-     "@backstage/plugin-tech-insights": "0.3.11",
-     "@backstage/plugin-catalog": "1.11.2",
-     "@vmware-tanzu/core-common": "1.0.0",
-     "@vmware-tanzu/core-frontend": "1.0.0"
+     "@backstage/plugin-tech-insights": "{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}",
+     "@backstage/plugin-catalog": "{{ vars.tap_gui.backstage.packages.backstage-plugin-catalog }}",
+     "@vmware-tanzu/core-common": "2.0.0",
+     "@vmware-tanzu/core-frontend": "2.0.0"
    },
    ...
    ```
@@ -201,9 +203,9 @@ with an empty `src` directory by running:
 ### <a id="wrap-bs-frntnd-plgn"></a> Wrap the Backstage front-end plug-in
 
 1. Read the
-   [documentation for @backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11).
+   [documentation for @backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}).
    You will see that to use this Backstage plug-in, you must
-   [edit the content of the serviceEntityPage constant](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11#add-boolean-checks-overview-scorecards-page-to-the-entitypage).
+   [edit the content of the serviceEntityPage constant](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}#add-boolean-checks-overview-scorecards-page-to-the-entitypage).
    Because you do not have access to the Tanzu Developer Portal source code, you cannot change that
    constant directly. Instead, you must use a [surface](concepts.hbs.md#surfaces-and-wrappers) to make
    the equivalent change.
@@ -266,7 +268,7 @@ with an empty `src` directory by running:
      For surface API reference information, see [API documentation for surfaces](api-docs.hbs.md).
 
    This code accomplishes the same thing as the
-   [@backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11),
+   [@backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights }}),
    but for an integration with Tanzu Developer Portal instead of a traditional Backstage app.
 
 ### <a id="expse-and-bld-frntnd-plgn"></a> Expose and build the Tanzu Developer Portal front-end plug-in
@@ -330,9 +332,9 @@ To add your dependencies for the specific Backstage plug-in you want to wrap:
 
    ```json
    "dependencies": {
-     "@backstage/plugin-tech-insights-backend": "0.5.12",
-     "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
-     "@vmware-tanzu/core-backend": "1.0.0",
+     "@backstage/plugin-tech-insights-backend": "{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}",
+     "@backstage/plugin-tech-insights-backend-module-jsonfc": "{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend-module-jsonfc }}",
+     "@vmware-tanzu/core-backend": "2.0.1",
      "express": "4.18.2"
    },
    ```
@@ -492,8 +494,9 @@ rm -rf src/ && mkdir src
        });
    ```
 
-   The majority of this code comes from the [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#backend-example).
-   The [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#adding-the-plugin-to-your-packagesbackend)
+   The majority of this code comes from the
+   [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}#backend-example).
+   The [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}#adding-the-plugin-to-your-packagesbackend)
    instructs you to create a constant for `techInsightsEnv` and then configure the router by using
    `apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage
    source code. Because you are unable to edit the source code of Tanzu Developer Portal, this code

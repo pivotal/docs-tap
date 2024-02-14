@@ -1,24 +1,20 @@
-# Setup the Supply Chain Component
+# Set up the Supply Chain Component
 
-This topic covers how to install the Trivy Supply Chain Component, create custom Supply Chain Component using the SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
+This topic describes how to install the Trivy Supply Chain Component, create a custom Supply Chain Component using the SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
 
-## <a id="overview"></a> Overview
+## <a id="install-trivy-sc"></a> Install Trivy Supply Chain Component
 
-* [Install Trivy Supply Chain Component](./setup-supply-chain-component.md#install-trivy-supply-chain-component)
-* [Customize Scanning Component](./setup-supply-chain-component.md#customize-scanning-component)
-* [How to view the component](./setup-supply-chain-component.md#how-to-view-component)
-
-### <a id="install-trivy-supply-chain-component"></a> Install Trivy Supply Chain Component
-
-This section covers how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
+This section describes how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
 1. List version information for the Trivy Supply Chain Component package by running:
-    ```
+
+    ```console
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
-    ```
+
+    ```console
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
 
     NAME                                                VERSION                              RELEASED-AT
@@ -26,98 +22,104 @@ This section covers how to install the Trivy Supply Chain Component that uses SC
     ```
 
 2. Install Trivy Supply Chain Component package.
-    ```
+
+    ```console
     tanzu package install trivy-app-scanning-component --package-name trivy.app-scanning.component.apps.tanzu.vmware.com \
         --version TRIVY-COMPONENT-VERSION \
         --namespace tap-install
     ```
 
+### <a id="customize-scan-component"></a> Customize Scanning Component
 
-### <a id="customize-scanning-component"></a> Customize Scanning Component
+This section describes how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0
 
-This section covers how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0
+1. Customize a component by retrieving the YAML of the Trivy Supply Chain Component. 
+Retrieve component YAML:
 
-1. Customize a component by retrieving the yaml of the Trivy Supply Chain Component:
+    ```console
+    kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
+    ```
 
-    * Retrieve component yaml:
-      ```console
-      kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
-      ```
+1. Edit the following lines in the `component.yaml`:
 
-    * Modify the following lines in the `component.yaml`:
-      ```yaml
-      apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
-      kind: Component
-      metadata:
-        name: trivy-image-scan-1.0.0 # change to SCANNER-image-scan-1.0.0
-        namespace: trivy-app-scanning-catalog # change to DEV-NAMESPACE
+    ```yaml
+    apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
+    kind: Component
+    metadata:
+      name: trivy-image-scan-1.0.0 # change to SCANNER-image-scan-1.0.0
+      namespace: trivy-app-scanning-catalog # change to DEV-NAMESPACE
+    ...
+      description: Performs a trivy image scan using the scan 2.0 components # change trivy to SCANNER
       ...
-        description: Performs a trivy image scan using the scan 2.0 components # change trivy to SCANNER
+        - name: image-scanning-cli
+          value: # change to registry url of scanner image
         ...
-          - name: image-scanning-cli
-            value: # change to registry url of scanner image
-          ...
-          - name: image-scanning-steps-env-vars
-            value: '[{"name":"<Name of Env var>","value":"<value of Env var>"}]' # insert env vars inside nested {}
-          ...
-          pipelineRef:
-            name: trivy-image-scan-v2 # SCANNER-image-scan-v2
-      ```
+        - name: image-scanning-steps-env-vars
+          value: '[{"name":"<Name of Env var>","value":"<value of Env var>"}]' # insert env vars inside nested {}
+        ...
+        pipelineRef:
+          name: trivy-image-scan-v2 # SCANNER-image-scan-v2
+    ```
+
       * Replace the pipelineref to the name of the pipeline created in the next step.
 
-2. Customize a pipeline by retrieving the yaml of the Trivy Supply Chain Component's Pipeline:
+2. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline. Retrieve pipeline YAML:
 
-    * Retrieve pipeline yaml:
-      ```console
-      kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
+    ```console
+    kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
+    ```
+
+      Edit the following lines in the `pipeline.yaml`:
+
+    ```yaml
+    apiVersion: tekton.dev/v1
+    kind: Pipeline
+    metadata:
+      name: trivy-image-scan-v2 # change to SCANNER-image-scan-v2
+    spec:
+      description: Scans your image for vulnerabilities using Trivy # change Trivy to SCANNER
+    ...
+            resourceSpec:
+              apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+              kind: ImageVulnerabilityScan
+              metadata:
+                annotations:
+                  app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy # change to SCANNER
+                ...
+                steps:
+                - args:
+                  - # insert array of steps to run for SCANNER
+                ...
+                  name: trivy-generate-report # change to any SCANNER
+                ...
       ```
 
-       Modify the following lines in the `pipeline.yaml`:
-      ```yaml
-      apiVersion: tekton.dev/v1
-      kind: Pipeline
-      metadata:
-        name: trivy-image-scan-v2 # change to SCANNER-image-scan-v2
-      spec:
-        description: Scans your image for vulnerabilities using Trivy # change Trivy to SCANNER
-      ...
-              resourceSpec:
-                apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-                kind: ImageVulnerabilityScan
-                metadata:
-                  annotations:
-                    app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy # change to SCANNER
-                  ...
-                  steps:
-                  - args:
-                    - # insert array of steps to run for SCANNER
-                  ...
-                    name: trivy-generate-report # change to any SCANNER
-                  ...
-        ```
-        Where SCANNER is the name of the scanner from the scanning component
+      Where `SCANNER` is the name of the scanner from the scanning component
 
-3. Apply the custom component and pipeline created above
-    ```
+3. Apply the custom component and pipeline:
+
+    ```console
     kubectl apply -f component.yaml
     kubectl apply -f pipeline.yaml
     ```
 
-> **Note:** If you create your own component, it needs the following label so that it can be observed by supplychain:
-  ```
+> **Note** If you create your own component, it requires the following label so that it can be observed by supplychain:
+
+  ```console
   labels:
     supply-chain.apps.tanzu.vmware.com/catalog: tanzu
   ```
 
-### <a id="how-to-view-component"></a> How to view Component
+### <a id="how-to-view-component"></a> View components
 
-This sections covers how to view the available components that have been installed and/or applied.
+This section covers how to view the available components that were installed or applied.
 
   ```console
   kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
   ```
 
-  The following is an example of the output of the command above:
+  Example output:
+
   ```console
   $ kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
 

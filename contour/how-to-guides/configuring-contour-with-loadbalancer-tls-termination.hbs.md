@@ -1,6 +1,6 @@
 # Configure Contour to support TLS termination against AWS Elastic Load Balancing
 
-This topic tells you how to configure Contour to accept traffic from AWS LoadBalancer that terminates TLS traffic.
+This topic tells you how to configure Contour to accept traffic from an AWS LoadBalancer that stops TLS traffic.
 
 For more information, see the [AWS Knowledge Center documentation](https://repost.aws/knowledge-center/terminate-https-traffic-eks-acm).
 
@@ -25,8 +25,8 @@ The following are required before proceeding with the configuration:
 
 ## <a id="create-tls"></a> Create a TLS certificate in ACM
 
-Create a public TLS certificate for `*.DOMAIN` using AWS Certificate Manager (ACM).  
-See [AWS documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) for more details.
+Create a public TLS certificate for `*.DOMAIN` by using AWS Certificate Manager (ACM). 
+For more information, see the [AWS documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html).
 
 >**Important** Record the `ARN` of the created certificate, which is required in the following steps.
 
@@ -65,43 +65,43 @@ Follow these steps to configure your Tanzu Application Platform:
 
     ```yaml
     shared:
-     ingress_issuer: ""
-     ingress_domain: DOMAIN
-
+      ingress_issuer: ""
+      ingress_domain: DOMAIN
+    
     tap_gui:
-     app_config:
-       app:
-         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-       backend:
-         baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-         reading:
-           allow:
-           - host: "*.DOMAIN"
-
+      app_config:
+        app:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+        backend:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+          reading:
+            allow:
+            - host: "*.DOMAIN"
+    
     cnrs:
-     default_external_scheme: "https"
-     ingress_issuer: ""
-     domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
-
+      default_external_scheme: "https"
+      ingress_issuer: ""
+      domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
+    
     contour:
       infrastructure_provider: aws
-     envoy:
-       service:
-         aws:
-           LBType: nlb
-         annotations:
-           service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
-           service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-
+      envoy:
+        service:
+          aws:
+            LBType: nlb
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    
     package_overlays:
     - name: contour
-     secrets:
-     - name: overlay-contour-envoy
+      secrets:
+      - name: overlay-contour-envoy
     ```
 
-   Where `ARN` is the ARN recored in [Create a TLS certificate in ACM](#create-tls).
+    Where `ARN` is the ARN recorded in [Create a TLS certificate in ACM](#create-tls).
 
-   >**Note** If plan to use Classic LoadBalancer remove `contour.envoy.service.aws.LBType: aws`
+    To use the Classic LoadBalancer, remove `contour.envoy.service.aws.LBType: nlb`.
 
 1. Update your Tanzu Application Platform installation:
 

@@ -16,13 +16,13 @@ The supply chains in this package perform the following:
   2. Building a container image out of the source code with Buildpacks
   3. Applying operator-defined conventions to the container definition
   4. Creating a deliverable object for deploying the application to a cluster
-    1. (Experimental) Alternatively, outputting a Carvel Package containing the application to a Git Repository
+    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 - Using a prebuilt application image:
 
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
-    1. (Experimental) Alternatively, outputting a Carvel Package containing the application to a Git Repository
+    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 
 ## <a id="prerequisites"></a> Prerequisites

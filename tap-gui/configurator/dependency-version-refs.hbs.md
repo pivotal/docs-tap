@@ -56,6 +56,6 @@ Tanzu Application Platform installation.
 When considering upgrading Tanzu Application Platform, read the relevant documentation to see if
 compatibility would change after upgrading.
 
-| Tanzu Application Platform version | Backstage version | Dependencies manifest                                                             |
-|------------------------------------|-------------------|-----------------------------------------------------------------------------------|
-| 1.8.x                              | v1.20             | [Manifest file](https://github.com/backstage/backstage/blob/v1.20.3/package.json) |
+| Tanzu Application Platform version | Backstage version                     | Dependencies manifest                                                             |
+|------------------------------------|---------------------------------------|-----------------------------------------------------------------------------------|
+| 1.8.x                              | v{{ vars.tap_gui.backstage.version }} | [Manifest file](https://github.com/backstage/backstage/blob/v1.20.3/package.json) |

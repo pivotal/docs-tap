@@ -18,8 +18,6 @@ that your supply chains are compatible with the feature limits.
 
 This feature is in beta and has the following limits:
 
-- Only the Out of the Box Basic Supply Chain package is supported. 
-- The Testing and Scanning supply chains are not supported.
 - Innerloop development is not supported.
 
 ## <a id="using-carvel"></a> Using Carvel packages
