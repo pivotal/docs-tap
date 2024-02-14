@@ -171,9 +171,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-buildpacks-bc'></a> v1.8.0 Breaking changes: Buildpacks
 
-- Tanzu Java Buildpack removes Java (BellSoft Liberica) 20, and is replaced with Java 21.
+- Tanzu Java Buildpack removes Java (BellSoft Liberica) v20. This is replaced by Java v21.
 
-- Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep). This tools has been officially deprecated since 2020.
+- Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
+  This tool has been officially deprecated since 2020.
 
 ---
 
