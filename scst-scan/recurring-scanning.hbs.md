@@ -97,7 +97,7 @@ Where:
 to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `START-DEADLINE`: The period of time beyond the scheduled start time when scans can be started if they did not start on time. If this period elapses, the scheduled scan is skipped.
 - `SUCESSFUL-RETENTION`: The number of successful recurring scan executions to keep in Kubernetes.
-- `WORKSPACE-SIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `3Gi` is the recommended starting point.
+- `WORKSPACE-SIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `10Gi` is the recommended starting point.
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
@@ -130,7 +130,7 @@ spec:
     startingDeadline: 60m
   scan:
     workspace:
-      size: 3Gi
+      size: 10Gi
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
@@ -195,7 +195,7 @@ spec:
     startingDeadline: 60m
   scan:
     workspace:
-      size: 4Gi
+      size: 10Gi
     scanResults:
       location: RESULTS-REPOSITORY
     steps:
