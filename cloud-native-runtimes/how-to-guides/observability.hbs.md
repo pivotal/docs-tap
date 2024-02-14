@@ -114,8 +114,8 @@ Prometheus, see the [Prometheus documentation](https://prometheus.io/docs/introd
 documentation](https://docs.wavefront.com/kubernetes.html).
 
 You can configure Prometheus endpoints on Cloud Native Runtimes components to
-collect metrics on your components or apps. For information about annotations
-required to collect metrics on apps, see the [Prometheus documentation](https://www.weave.works/docs/cloud/latest/tasks/monitor/configuration-k8s/#per-pod-prometheus-annotations).
+collect metrics on your components or apps. For information about configuring
+this, see the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/).
 
 You can use annotation based discovery with Prometheus to define which
 Kubernetes objects in your Cloud Native Runtimes environment to add metadata and
