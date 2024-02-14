@@ -2,7 +2,7 @@
 
 This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
 
-## <a id='updates-fail'></a> Updates fail with error  annotation value is immutable error
+## <a id='updates-fail'></a> Updates fail with error annotation value is immutable
 
 ### Symptom
 
