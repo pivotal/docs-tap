@@ -371,7 +371,7 @@
         - [How-to guides](contour/how-to-guides/index.hbs.md)
             - [Configure Cipher Suites and TLS version in Contour](contour/how-to-guides/configuring-cipher-suites-and-tls-version.hbs.md)
             - [Configure Contour to propagate header with Domain Mapping](contour/how-to-guides/configuring-contour-with-domainmapping.hbs.md)
-            - [Configure Contour to support TLS termination at an AWS Network LoadBalancer](contour/how-to-guides/configuring-contour-with-loadbalancer-tls-termination.hbs.md)
+            - [Configure Contour to support TLS termination against AWS Elastic Load Balancing](contour/how-to-guides/configuring-contour-with-loadbalancer-tls-termination.hbs.md)
             - [Troubleshoot Contour](contour/how-to-guides/troubleshooting.hbs.md)
         - [Reference](contour/reference/index.hbs.md)
     - [Crossplane](crossplane/about.hbs.md)

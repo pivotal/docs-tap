@@ -39,7 +39,7 @@ function main {
 
 function transformBackstageVersionsIntoDict {
 	# shellcheck disable=SC2016
-	"$yqCommand" '{version: .releaseVersion, packages: (reduce .packages[] as $item ({}; . + {($item.name | sub("^@"; "")): $item.version}))}'
+	"$yqCommand" '{version: .releaseVersion, packages: (reduce .packages[] as $item ({}; . + {($item.name | sub("^@"; "") | sub("\/"; "-")): $item.version}))}'
 }
 
 function downloadBackstageVersion {
