@@ -172,8 +172,8 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     cosign verify --insecure-ignore-tlog --key cosign.pub LATEST-IMAGE-WITH-DIGEST
     ```
 
-    Where `LATEST-IMAGE-WITH-DIGEST` is the value of `LATESTIMAGE` you retrieved in
-    the previous step. For example: `index.docker.io/your-project/app@sha256:6744b...`
+    Where `LATEST-IMAGE-WITH-DIGEST` is the value of `LATESTIMAGE` you retrieved in the previous step.
+    For example, `index.docker.io/your-project/app@sha256:6744b...`.
 
     The expected output is similar to the following:
 
@@ -185,7 +185,8 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     - Any certificates were verified against the Fulcio roots.
     ```
 
-    Note: the `--insecure-ignore-tlog` flag must be used because we do not write the signature attestation to a transparency log.
+    > **Note** You must use the `--insecure-ignore-tlog` flag because the supply chain does not write
+    > the signature attestation to a transparency log.
 
 1. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
 to ensure that only signed images are allowed in your cluster.
