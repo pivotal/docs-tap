@@ -2,13 +2,7 @@
 
 This topic covers how to install the Trivy Supply Chain Component, create custom Supply Chain Component using the SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
 
-## <a id="overview"></a> Overview
-
-* [Install Trivy Supply Chain Component](./setup-supply-chain-component.md#install-trivy-supply-chain-component)
-* [Customize Scanning Component](./setup-supply-chain-component.md#customize-scanning-component)
-* [How to view the component](./setup-supply-chain-component.md#how-to-view-component)
-
-### <a id="install-trivy-supply-chain-component"></a> Install Trivy Supply Chain Component
+## <a id="install-trivy-sc"></a> Install Trivy Supply Chain Component
 
 This section covers how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
@@ -32,19 +26,18 @@ This section covers how to install the Trivy Supply Chain Component that uses SC
         --namespace tap-install
     ```
 
-
 ### <a id="customize-scanning-component"></a> Customize Scanning Component
 
 This section covers how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0
 
-1. Customize a component by retrieving the yaml of the Trivy Supply Chain Component:
+1. Customize a component by retrieving the YAML of the Trivy Supply Chain Component:
 
-    * Retrieve component yaml:
+    * Retrieve component YAML:
       ```console
       kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
       ```
 
-    * Modify the following lines in the `component.yaml`:
+    * Edit the following lines in the `component.yaml`:
       ```yaml
       apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
       kind: Component
@@ -65,14 +58,15 @@ This section covers how to create a custom Scanning Supply Chain Component that 
       ```
       * Replace the pipelineref to the name of the pipeline created in the next step.
 
-2. Customize a pipeline by retrieving the yaml of the Trivy Supply Chain Component's Pipeline:
+2. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline:
 
-    * Retrieve pipeline yaml:
+    * Retrieve pipeline YAML:
+
       ```console
       kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
       ```
 
-       Modify the following lines in the `pipeline.yaml`:
+       Edit the following lines in the `pipeline.yaml`:
       ```yaml
       apiVersion: tekton.dev/v1
       kind: Pipeline
@@ -95,29 +89,33 @@ This section covers how to create a custom Scanning Supply Chain Component that 
                     name: trivy-generate-report # change to any SCANNER
                   ...
         ```
+
         Where SCANNER is the name of the scanner from the scanning component
 
-3. Apply the custom component and pipeline created above
-    ```
+3. Apply the custom component and pipeline:
+
+    ```console
     kubectl apply -f component.yaml
     kubectl apply -f pipeline.yaml
     ```
 
-> **Note:** If you create your own component, it needs the following label so that it can be observed by supplychain:
-  ```
+> **Note** If you create your own component, it requires the following label so that it can be observed by supplychain:
+
+  ```console
   labels:
     supply-chain.apps.tanzu.vmware.com/catalog: tanzu
   ```
 
-### <a id="how-to-view-component"></a> How to view Component
+### <a id="how-to-view-component"></a> View components
 
-This sections covers how to view the available components that have been installed and/or applied.
+This section covers how to view the available components that were installed or applied.
 
   ```console
   kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
   ```
 
-  The following is an example of the output of the command above:
+  Example output:
+
   ```console
   $ kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
 
