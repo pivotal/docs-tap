@@ -53,9 +53,11 @@ not develop a traditional Backstage app, and you will remove some portions of ge
    npx @backstage/create-app@{{ vars.tap_gui.backstage.packages.backstage-create-app }} --skip-install
    ```
 
-   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }} is used because the Tanzu Developer Portal version that ships
-   with Tanzu Application Platform v1.8 uses Backstage v{{ vars.tap_gui.backstage.version }}. Backstage v{{ vars.tap_gui.backstage.version }} uses
-   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }}. For more information, see the
+   `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }} is used
+   because the Tanzu Developer Portal version that ships with Tanzu Application Platform v1.8 uses
+   Backstage v{{ vars.tap_gui.backstage.version }}. Backstage v{{ vars.tap_gui.backstage.version }}
+   uses `@backstage/create-app` v{{ vars.tap_gui.backstage.packages.backstage-create-app }}. For
+   more information, see the
    [Backstage version manifest](https://github.com/backstage/versions/blob/main/v1/releases/{{ vars.tap_gui.backstage.version }}/manifest.json).
 
    > **Important** Ensure that you use the correct versions of dependencies for your
@@ -492,7 +494,8 @@ rm -rf src/ && mkdir src
        });
    ```
 
-   The majority of this code comes from the [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}#backend-example).
+   The majority of this code comes from the
+   [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}#backend-example).
    The [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/{{ vars.tap_gui.backstage.packages.backstage-plugin-tech-insights-backend }}#adding-the-plugin-to-your-packagesbackend)
    instructs you to create a constant for `techInsightsEnv` and then configure the router by using
    `apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage
