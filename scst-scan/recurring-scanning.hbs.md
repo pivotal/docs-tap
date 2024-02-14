@@ -31,7 +31,7 @@ Use when either Scan 1.0 or Scan 2.0 is defined as your supply chain scanning co
 
 ## <a id="recurring-scanning-setup"></a>Set up recurring scanning
 
-To set up recurring scanning, you must create a `recurringimagevulnerabilityscan`. This defines:
+To set up recurring scanning, you must create a `RecurringImageVulnerabilityScan`. This defines:
 
 - The interval in which to scan container images in crontab format.
 - How far back (in days) of images created using the supply chain to scan.
@@ -41,7 +41,7 @@ To set up recurring scanning, you must create a `recurringimagevulnerabilityscan
 
 ### <a id="preqrequisites"></a>Prerequisites
 
-Before you define your `recurringimagevulnerabilityscan` template, you must have:
+Before you define your `RecurringImageVulnerabilityScan` template, you must have:
 
 - A repository created on an OCI compliant registry that scan results are pushed to.
 - A service account that can push an OCI artifact to the results repository.
@@ -53,9 +53,9 @@ Namespace Provisioner to create a namespace. This creates all of the required re
 recurring scanning to work. The examples in this topic use Namespace Provisioner. For more
 information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md).
 
-### <a id="example-template"></a>Example recurringimagevulnerabilityscan template
+### <a id="example-template"></a>Example RecurringImageVulnerabilityScan template
 
-The following sample template provides an explanation of the input variables for the `recurringimagevulnerabilityscan` CR. Use the Grype and Trivy samples in a namespace created by
+The following sample template provides an explanation of the input variables for the `RecurringImageVulnerabilityScan` CR. Use the Grype and Trivy samples in a namespace created by
 Namespace Provisioner in a simple environment. The Grype and Trivy examples are a subset of this template. Add additional configurations from this template to the Grype and Trivy samples for more advanced configurations.
 
 ```yaml
@@ -101,7 +101,7 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples.
 
-### <a id="grype-rivs-template"></a>Grype recurringimagevulnerabilityscan template
+### <a id="grype-rivs-template"></a>Grype RecurringImageVulnerabilityScan template
 
 The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
 default configuration.
@@ -152,7 +152,7 @@ spec:
       - "{output}"
 ```
 
-### <a id="trivy-rivs-template"></a>Trivy recurringimagevulnerabilityscan template
+### <a id="trivy-rivs-template"></a>Trivy RecurringImageVulnerabilityScan template
 
 The SCST - Scan 2.0 default scanner is Trivy, and this template works with the Scan
 2.0 default configuration.
