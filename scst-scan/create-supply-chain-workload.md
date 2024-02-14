@@ -5,7 +5,7 @@ workload, and how to verify the scanning performed in a workload.
 
 ## <a id="create-and-apply-workload"></a> Create and apply workload
 
-This sections covers how to create a workload from an existing [supply chain](./create-supply-chain-with-app-scanning.md).
+This section describes how to create a workload from an existing [supply chain](./create-supply-chain-with-app-scanning.md).
 
 1. Use the Tanzu Cartographer plug-in to create a workload from a specific supply chain:
 
@@ -79,8 +79,7 @@ This section shows how to use the Tanzu Cartographer CLI to observe a workload.
   tanzu cartographer workload get Sample WORKLOAD-NAME
   ```
 
-See [Tanzu Supply Chain docs](../supply-chain/development/how-to/observe-runs.hbs.md) for more
-details on how to observe runs of the workload.
+For more details about how to observe runs of the workload, see [Tanzu Supply Chain docs](../supply-chain/development/how-to/observe-runs.hbs.md).
 
 ### <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
@@ -93,5 +92,5 @@ details on how to observe runs of the workload.
     DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
     ```
 
-For information on how to retrieve scan results by using the IVS name found in the previous step,
+For information about how to retrieve scan results by using the IVS name found in the previous step,
 see [Retrieve scan results](./verify-app-scanning.hbs.md#retrieve-scan-results).

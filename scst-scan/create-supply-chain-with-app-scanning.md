@@ -3,9 +3,9 @@
 This topic covers how to create a Tanzu Supply Chain with App Scanning which replaces the previous
 solution for Supply Chains Choreographer for Tanzu.
 
-## <a id="prerequisities"></a> Prerequisities
+## <a id="prerequisites"></a> Prerequisites
 
-This section covers what dependencies are needed in order to create and run a Tanzu Supply Chain Workload.
+This section describes what dependencies are needed to create and run a Tanzu Supply Chain Workload.
 
 * Installed Packages:
   * Supplychain:
@@ -62,7 +62,7 @@ component [page](./setup-supply-chain-component.md#customize-scan-component):
   `SCANNING-COMPONENT-NAME` is the name of the [custom scanning component](./setup-supply-chain-component.md#customize-scan-component).
   `SCANNER` is the name of the scanner from the [custom scanning component](./setup-supply-chain-component.md#customize-scan-component).
 
-**Note** For more details on how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
+**Note** For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
 
 #### <a id="apply-supply-chain"></a> Apply Supply Chain
 
@@ -72,5 +72,5 @@ component [page](./setup-supply-chain-component.md#customize-scan-component):
 
   Where:
 
-  `SUPPLYCHAIN-YAML` is the supply chain yaml created in the previous step.
+  `SUPPLYCHAIN-YAML` is the supply chain YAML created in the previous step.
   `DEV-NAMESPACE` is the same namespace where the intended workload will be.

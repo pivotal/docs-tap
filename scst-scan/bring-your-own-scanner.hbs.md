@@ -17,7 +17,7 @@ You might have an existing investment in a scan solution that VMware does not ha
 2. [Verify your ImageVulnerabilityScan](verify-app-scanning.hbs.md): Verify that your ImageVulnerabilityScan is working correctly so that downstream Tanzu Application Platform services work correctly.
 3. [Wrap your ImageVulnerabilityScan in a ClusterImageTemplate](clusterimagetemplates.hbs.md): The ClusterImageTemplate wraps the ImageVulnerabilityScan and allows the Tanzu Application Platform supply chain to run the scan job.
 
-## <a id="prerequisities"></a>Prerequisites
+## <a id="prerequisites"></a>Prerequisites
 
 Tanzu Application Platform users must have the following prerequisites:
 
