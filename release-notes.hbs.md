@@ -145,15 +145,18 @@ dependencies:
 
 #### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools - Scan
 
-- Scan 2.0 is now GA. For more information about Scan 2.0, including guidance for when you should use Scan 1.0 versus
-Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).  This includes:
-  - The Scan 1.0 component remains default scan component with Scan 2.0 being opt in, except in the following situations:
-    - Air-gapped installs will use Scan 2.0 and Trivy to simplify the installation and configuration process
-    - [Supply chains (Beta)](./supply-chain/about.hbs.md) uses the Trivy component based on Scan 2.0.
-- Add the ability to scan container images on a periodic interval after initial build using [recurring scanning](./scst-scan/recurring-scanning.hbs.md)
-- Update the Scan 2.0 scanners to latest versions to support CycloneDX 1.5 outputs
-  - Aqua Trivy has been updated to [v0.48.3](https://github.com/aquasecurity/trivy/releases/tag/v0.48.3)
-  - Anchore Grype has been updated to [v0.74.1](https://github.com/anchore/grype/releases/tag/v0.74.1)
+- SCST - Scan 2.0 is now GA. For more information, including guidance on when to use
+SCST - Scan 1.0 versus SCST - Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
+- SCST - Scan 1.0 remains the default scan component, with SCST - Scan 2.0 available on an
+opt-in basis, except in the following situations:
+  - Air-gapped installs use SCST - Scan 2.0 and Trivy to simplify the installation and configuration
+  process.
+  - [Tanzu Supply Chain (Beta)](./supply-chain/about.hbs.md) uses the Trivy component based on
+  SCST - Scan 2.0.
+- You can scan container images on a periodic interval after the initial build. See [Set up recurring scanning](./scst-scan/recurring-scanning.hbs.md).
+- The SCST - Scan 2.0 scanners are updated to the latest versions to support CycloneDX 1.5 outputs:
+  - Aqua Trivy is updated to [v0.48.3](https://github.com/aquasecurity/trivy/releases/tag/v0.48.3).
+  - Anchore Grype is updated to [v0.74.1](https://github.com/anchore/grype/releases/tag/v0.74.1).
 
 #### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
 
@@ -248,11 +251,16 @@ This release has the following known issues, listed by component and area.
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
 is in a failed state due to an invalid date, wait approximately 10 hours and the workload
-automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk Github repository.
-- Recurring scan fails import keychains for cloud container registries such as ECR, ACR, and GCR.  This can be worked around be creating a docker config secret for the registry.
-- Recurring Scan has a maximum of approximately 5000 container images that can be scanned at a single time due to size limits configMaps.
-- Recurring Scan resources show up in the Security Analysis Plugin in Tanzu Developer Portal.  This is cosmetic and does not have any impact on the vulnerabilities shown.
-- If the supply chain container image scanning is configured to use a different scanner or scanner version than the recurring scanning, displaying vulnerabilities may be inaccurate in Tanzu Developer Portal.
+automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk GitHub repository.
+- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
+To work around, create a Docker config secret for the registry.
+- Recurring Scan has a maximum of approximately 5000 container images that can be scanned at a
+single time due to size limits configMaps.
+- Recurring Scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
+This is cosmetic and does not have any impact on the vulnerabilities shown.
+- If the supply chain container image scanning is configured to use a different scanner or scanner
+version than the recurring scanning, displaying vulnerabilities might be inaccurate in Tanzu
+Developer Portal.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 

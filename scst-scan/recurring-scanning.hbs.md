@@ -236,8 +236,9 @@ spec:
       - --skip-db-update
       - --skip-java-db-update
 ```
-In this particular sample configuration, we first download the latest Trivy vulnerability
-and Java databases and then we perform the scanning with the stored databases. This is done
-in order to prevent multiple database updates while running concurrent scans.
+
+This sample configuration downloads the latest Trivy vulnerability
+and Java databases and then performs the scanning with the stored databases. This prevents
+multiple database updates while running concurrent scans.
 
 >**Note** Do not enclose the `{output}` interpolation value in quotes for Trivy scan.
