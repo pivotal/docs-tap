@@ -27,7 +27,8 @@ Use SCST - Scan 2.0 to schedule container image scans with the following capabil
 
 - View discovered vulnerabilities from your most recent image built for a workload in the Tanzu Developer Portal Supply Chain Choreographer plug-in.
 
-- Use when either Scan 1.0 or Scan 2.0 is used to scan a recently built container in your supply chain.
+- Use when either SCST - Scan 1.0 or SCST - Scan 2.0 is used to scan a recently built container in
+your supply chain.
 
 ## <a id="recurring-scanning-setup"></a>Set up recurring scanning
 
@@ -37,7 +38,7 @@ To set up recurring scanning, you must create a `RecurringImageVulnerabilityScan
 - How far back (in days) of images created using the supply chain to scan.
 - How far back (in days) of images that have started in your Tanzu Application Platform clusters to scan.
 - The steps from [IVS template](./ivs-custom-samples.hbs.md) to use to scan your images, which define what scanner to use.
-- The OCI compliant registry to push the recurring scan results to.
+- The OCI-compliant registry to push the recurring scan results to.
 
 ### <a id="preqrequisites"></a>Prerequisites
 
@@ -47,11 +48,11 @@ Before you define your `RecurringImageVulnerabilityScan` template, you must have
 - A service account that can push an OCI artifact to the results repository.
 - Credentials for any registry the scanner must pull images from to scan.
 
-Recurring scanning uses the Scan 2.0 component, which is included by in the `Full` and `Build Profiles`.
+Recurring scanning uses the SCST - Scan 2.0 component, which is included in the `Full` and `Build Profiles`.
 
-Special attention should be paid to the service accounts and credentials that are needed.  If you
-opt to only use recurring scanning for images built in your supply chain, the recommended approach is to
-use Namespace Provisioner to create a namespace, which will automatically create the service accounts and
+> **Note** Special attention should be paid to the service accounts and credentials that are needed.
+If you only use recurring scanning for images built in your supply chain, VMware recommends you
+use Namespace Provisioner to create a namespace, which automatically creates the service accounts and
 secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more
 information, see [Namespace Provisioner](..//namespace-provisioner/about.hbs.md).
 
@@ -108,7 +109,10 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
 default configuration.
 
->**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin.
+>**Note** You must match the scanner and version to the scanner and version used in the software
+supply chain. Using different types of scanners between build time and recurring scans is not
+supported and results in vulnerabilities being double counted in the Security Analysis plug-in
+in Tanzu Developer Portal.
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
@@ -165,17 +169,19 @@ spec:
         value: /workspace/grype-cache
 ```
 
-In this particular sample configuration, we first download the latest Grype vulnerability
-database and then we perform the scanning with the stored database. This is done
-in order to prevent multiple database updates while running concurrent scans.
-
+This sample configuration, downloads the latest Grype vulnerability
+database and then scans with the stored database. This prevents multiple database updates
+while running concurrent scans.
 
 ### <a id="trivy-rivs-template"></a>Trivy RecurringImageVulnerabilityScan template
 
 The SCST - Scan 2.0 default scanner is Trivy, and this template works with the Scan
 2.0 default configuration.
 
->**Note** You should match the scanner and version to the scanner and version used in the software supply chain.  Using different types of scanner between build time and recurring scans is not supported and will result in vulnerabilities being double counted in the Security Analysis GUI plugin.
+>**Note** You must match the scanner and version to the scanner and version used in the software
+supply chain. Using different types of scanners between build time and recurring scans is not
+supported and results in vulnerabilities being double counted in the Security Analysis plug-in
+in Tanzu Developer Portal.
 
 To apply this configuration, save it to a file and apply it to the namespace created for recurring
 scans:
@@ -238,7 +244,7 @@ spec:
 ```
 
 This sample configuration downloads the latest Trivy vulnerability
-and Java databases and then performs the scanning with the stored databases. This prevents
+and Java databases and then scans with the stored databases. This prevents
 multiple database updates while running concurrent scans.
 
 >**Note** Do not enclose the `{output}` interpolation value in quotes for Trivy scan.
