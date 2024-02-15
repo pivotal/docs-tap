@@ -56,7 +56,7 @@ This release includes the following changes, listed by component and area.
 - By default, the connector is deployed as a Kubernetes DaemonSet to discover applications
   across all the namespaces running in a worker node of a Kubernetes cluster. You can override
   the default settings to run the connector in deployment mode or a namespace-scope. For more
-  information, see [Connector deployment modes in Application Live View](connector-deployment-modes.hbs.md).
+  information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
 #### <a id='1-8-0-spring-boot-convention'></a> v1.8.0 Features: Spring Boot Convention
 
