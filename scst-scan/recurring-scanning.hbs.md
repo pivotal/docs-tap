@@ -106,7 +106,7 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 
 ### <a id="grype-rivs-template"></a>Grype RecurringImageVulnerabilityScan template
 
-The Scan 1.0 default scanner is Grype, and this template works with the Scan 1.0
+The SCST - Scan 1.0 default scanner is Grype, and this template works with the SCST - Scan 1.0
 default configuration.
 
 >**Note** You must match the scanner and version to the scanner and version used in the software
