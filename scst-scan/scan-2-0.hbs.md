@@ -51,6 +51,6 @@ wrapped in a `ClusterImageTemplate` custom resource. This custom resource tells 
 only how to stamp out the `ImageVulnerabilityScan` template, but also what configurations
 are passed to it.
 
-## <a id="getting-started"></a>Getting started with Scan 2.0
+## <a id="getting-started"></a>Getting started with SCST - Scan 2.0
 
-To use the SCST - Scan 2.0 component, review the [Scan 2.0 Getting Started guide](getting-started.hbs.md).
+To use the SCST - Scan 2.0 component, see [Getting Started with Supply Chain Security Tools - Scan 2.0](getting-started.hbs.md).
