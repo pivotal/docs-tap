@@ -259,8 +259,8 @@ single time due to size limits configMaps.
 - Recurring Scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
 This is cosmetic and does not have any impact on the vulnerabilities shown.
 - If the supply chain container image scanning is configured to use a different scanner or scanner
-version than the recurring scanning, displaying vulnerabilities might be inaccurate in Tanzu
-Developer Portal.
+version than the recurring scanning, the vulnerabilities displayed in Tanzu
+Developer Portal might be inaccurate.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
