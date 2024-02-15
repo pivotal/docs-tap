@@ -266,6 +266,10 @@ Developer Portal might be inaccurate.
 
 - When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
 
+#### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
+
+- Tanzu Developer Portal Configurator version is jumping from 1.0.X in TAP 1.7 to 1.8.X in TAP 1.8. This is done for the purpose of synchronizing the Tanzu Developer Portal and Tanzu Developer Portal Configurator versions moving forward.
+
 ---
 
 ### <a id='1-8-0-components'></a> v1.8.0 Component versions
