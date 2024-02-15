@@ -14,7 +14,7 @@ SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md).
-- If you want to store results, install AMR, and AMR Observer. Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
+- To store results, install AMR, and AMR Observer. Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
 
 >**Note** If you are installing SCST - Scan 2.0 in a cluster with restricted Kubernetes Pod Security Standards, you must update configurations for the Tekton Pipelines package. See [Scanning in a cluster with restricted Kubernetes Pod Security Standards](./app-scanning-troubleshooting.hbs.md#scanning-in-a-cluster-with-restricted-kubernetes-pod-security-standards).
 
@@ -34,7 +34,7 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 
 >**Note** If the StorageClass you select does not have a node limit but uses the node storage, such as hostpath, the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` indicates how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` indicates how much storage each node needs.
 
-You must deactivate the Tekton Affinity Assistant to reduce the number of pod scheduling issues when using Scan v2. 
+You must deactivate the Tekton Affinity Assistant to reduce the number of pod scheduling issues when using SCST - Scan v2.
 To achieve this, add the following to your `tap-values.yaml`:
 
 ```yaml
@@ -49,7 +49,7 @@ In vSphere with Tanzu (TKGs) v1.26 and later, enabling the Affinity Assistant fe
 
 To install SCST - Scan 2.0:
 
-1. List version information for the package by running:
+1. List version information for the package:
 
     ```console
     tanzu package available list app-scanning.apps.tanzu.vmware.com --namespace tap-install
@@ -64,7 +64,7 @@ To install SCST - Scan 2.0:
         app-scanning.apps.tanzu.vmware.com  0.1.0             2023-03-01 20:00:00 -0400 EDT
     ```
 
-1. (Optional) Make changes to the default installation settings:
+2. (Optional) Make changes to the default installation settings:
 
     Retrieve the configurable settings:
 
@@ -83,7 +83,7 @@ To install SCST - Scan 2.0:
       KEY                     DEFAULT                 TYPE     DESCRIPTION
       docker.import           true                    boolean  Import `docker.pullSecret` from another namespace (requires
                                                                secretgen-controller). Set to false if the secret will already be present.
-      docker.pullSecret       registries-credentials  string   Name of a docker pull secret in the deployment namespace to pull the scanner
+      docker.pullSecret       registries-credentials  string   Name of a Docker pull secret in the deployment namespace to pull the scanner
                                                                images.
       workspace.storageSize   2Gi                     string   Size of the Persistent Volume to be used by the tekton pipelineruns
       workspace.storageClass                          string   Name of the storage class to use while creating the Persistent Volume Claims
@@ -99,7 +99,7 @@ To install SCST - Scan 2.0:
         storageSize: 200Mi
     ```
 
-2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
+3. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
     tanzu package install app-scanning --package-name app-scanning.apps.tanzu.vmware.com \
@@ -131,26 +131,27 @@ To install SCST - Scan 2.0:
 
 ## <a id="config-sa-reg-creds"></a> Configure service accounts and registry credentials
 
-This section contains instructions for running a standalone ImageVulnerabilityScan or using multiple registries.
+This section contains instructions for running a standalone `ImageVulnerabilityScan` or using
+multiple registries.
 
-If the image that you are scanning, or if you are bringing your own scanner, and
+If the image that you are scanning using a default scanner or your own scanner, and
 your vulnerability scanner image are located in private registries different
 from the `Tanzu Application Platform bundles registry`, you must edit your
 scanner service account to include registry credentials for these registries.
 
->**Important** If your use case is listed below, skip this topic and proceed to [Add App Scanning to default Test and Scan supply chains](./integrate-app-scanning.hbs.md).
+>**Important** If your use case is listed below, skip this topic and proceed to [Enable App Scanning for default Test and Scan supply chains](./integrate-app-scanning.hbs.md).
 
-  > - You are running an ImageVulnerabilityScan in the context of a supply chain.
+  > - You are running an `ImageVulnerabilityScan` in the context of a supply chain.
   > - You used the Namespace Provisioner to provision your developer namespace. For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
 
 To configure service accounts and registry credentials, SCST - Scan 2.0 requires the following access:
 
 | Registry | Permission | Service Account | Example |
 |:--- |:--- |:--- |:--- |
-| Tanzu Application Platform bundles registry| Read | scanner | registry.tanzu.vmware.com |
-| Target image registry | Read | scanner | your-registry.io |
-| Vulnerability scanner image registry | Read | scanner | your-registry.io |
-| Scan results location registry | Write | publisher | your-registry.io |
+| Tanzu Application Platform bundles registry| Read | scanner | `registry.tanzu.vmware.com` |
+| Target image registry | Read | scanner | `your-registry.io` |
+| Vulnerability scanner image registry | Read | scanner | `your-registry.io` |
+| Scan results location registry | Write | publisher | `your-registry.io` |
 
 Where:
 
