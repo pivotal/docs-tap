@@ -46,6 +46,23 @@ This release includes the following changes, listed by component and area.
   when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
   type of workloads) from the Tanzu panel.
 
+#### <a id='1-8-0-app-accelerator'></a> v1.8.0 Features: Application Accelerator
+
+- You can run a local Application Accelerator engine server that can be used for testing accelerators that you are authoring and actively working on. The entire local authoring experience can be achieved using the VSCode IDE locally with App Accelerator extension and downloading App Accelerator server from Tanzunet and running it locally. For more information, see [Using a local Application Accelerator engine serve](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
+
+
+#### <a id='1-8-0-app-live-view'></a> v1.8.0 Features: Application Live View
+
+- By default, the connector is deployed as a Kubernetes DaemonSet to discover applications
+  across all the namespaces running in a worker node of a Kubernetes cluster. You can override
+  the default settings to run the connector in deployment mode or a namespace-scope. For more
+  information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
+
+#### <a id='1-8-0-spring-boot-convention'></a> v1.8.0 Features: Spring Boot Convention
+
+- You no longer must provide the verbose configuration to enable actuators and the App Live View functionalities while running Spring Native workloads on TAP. The Spring Boot convention server enhances Tanzu PodIntents with metadata. This metadata can include labels, annotations, or properties required to run native workloads in Tanzu Application Platform. This metadata enables Application Live View to discover and register the app instances so that Application Live View can access the actuator data from those workloads. For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
+
+
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
 - The authorization server can auto-discover upstream identity provider
@@ -265,6 +282,10 @@ Developer Portal might be inaccurate.
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
 - When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
+
+#### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
+
+- Tanzu Developer Portal Configurator version is jumping from 1.0.X in TAP 1.7 to 1.8.X in TAP 1.8. This is done for the purpose of synchronizing the Tanzu Developer Portal and Tanzu Developer Portal Configurator versions moving forward.
 
 ---
 
