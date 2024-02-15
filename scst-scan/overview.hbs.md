@@ -29,63 +29,64 @@ Application Platform clusters for newly reported vulnerabilities after the initi
 - Analyze supply chain scan results against user-defined policies.
 - Store vulnerability scan results in SCST - Store for long-term archival and reporting.
 
-## <a id="scst-scan-feat"></a>SCST - Scan Versions
+## <a id="scst-scan-feat"></a>SCST - Scan versions
 
 There are two versions of SCST - Scan:
 
-### Scan 1.0
+### SCST - Scan 1.0
 
-Scan 1.0 has been in the testing and scanning supply chain since it was introduced with Tanzu
-Application Platform v1.0. Scan 1.0 can scan a workload for vulnerabilities, submit the scan results
+SCST - Scan 1.0 has been in the testing and scanning supply chain since it was introduced with Tanzu
+Application Platform v1.0. SCST - Scan 1.0 can scan a workload for vulnerabilities, submit the scan results
 to SCST - Store for long-term storage and reporting, and compare the results against a policy
-defined by the user. This is all included in a tightly coupled scan job that is executed as part of the testing and scanning supply chain.
+defined by the user. This is all included in a tightly coupled scan job that is executed as part of
+the testing and scanning supply chain.
 
 This tight coupling of the capabilities made it difficult to develop and maintain integrations for
 the vast ecosystem of vulnerability scanning platforms. To simplify this integration process,
-VMware introduced Scan 2.0.
+VMware introduced SCST - Scan 2.0.
 
-Although other scan integrations are available, the default configuration for Scan 1.0 is the
+Although other scan integrations are available, the default configuration for SCST - Scan 1.0 is the
 open-source [Anchore Grype](https://anchore.com/opensource/).
 
-### Scan 2.0
+### SCST - Scan 2.0
 
-Scan 2.0 was introduced in the Tanzu Application Platform v1.5 release as an Alpha and is now
+SCST - Scan 2.0 was introduced in the Tanzu Application Platform v1.5 release as an Alpha and is now
 GA in Tanzu Application Platform v1.8. This iteration of SCST - Scan focuses on simplifying the
 integration experience by decoupling SCST - Store submission and policy from the scanning task.
 This allows integration to be simplified and more focused on the task of scanning workloads for vulnerabilities.
 
-Scan 2.0 can scan container images after the initial creation of the workload. This allows you to
-have visibility in the security posture of images as new vulnerabilities are reported.
+SCST - Scan 2.0 can scan container images after the initial creation of the workload. This allows you
+to have visibility in the security posture of images as new vulnerabilities are reported.
 For more information, see [Recurring Scanning](recurring-scanning.hbs.md). This capability can be
 used with Scan 1.0 or Scan 2.0.
 
-Scan 2.0 includes the default configuration to use open-source
+SCST - Scan 2.0 includes the default configuration to use open-source
 [Aqua Security Trivy](https://www.aquasec.com/products/trivy/) as the image scanner, and a Grype
 template is also included for backward compatibility. Examples of other integrations, and how to
 build your own integration with this simplified interface, are provided in documentation.
 
 ### Determine which version to use
 
-In Tanzu Application Platform v1.8, both Scan v1.0 and Scan v2.0 are supported. In a future release,
-Scan v1.0 will be deprecated and replaced with Scan v2.0. To help facilitate this transition,
-VMware is slowly making Scan 2.0 the default component. The default version varies depending on
+In Tanzu Application Platform v1.8, both SCST - Scan v1.0 and SCST - Scan v2.0 are supported. In a future release,
+SCST - Scan v1.0 will be deprecated and replaced with SCST - Scan v2.0. To help facilitate this transition,
+VMware is slowly making SCST - Scan 2.0 the default component. The default version varies depending on
 the environment Tanzu Application Platform is installed on:
 
 | Installation Environment | Default Component | Detail |
 | --- | --- | --- |
-| [Online Installation](../install-online/intro.hbs.md) | Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan 2.0. |
-| [Offline Installation](../install-offline/intro.hbs.md) | Scan v2.0 | Scan v2.0 is the default due to a simplified air-gapped experience with Trivy. |
-| [Azure Installation](../install-azure/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan v2.0. |
-| [AWS Installation](../install-aws/intro.hbs.md)| Scan v1.0 | Scan v1.0 remains the default with the option to opt in to Scan v2.0. |
+| [Online Installation](../install-online/intro.hbs.md) | SCST - Scan v1.0 | SCST - Scan v1.0 remains the default with the option to opt in to Scan 2.0. |
+| [Offline Installation](../install-offline/intro.hbs.md) | SCST - Scan v2.0 | SCST - Scan v2.0 is the default due to a simplified air-gapped experience with Trivy. |
+| [Azure Installation](../install-azure/intro.hbs.md)| SCST - Scan v1.0 | SCST - Scan v1.0 remains the default with the option to opt in to Scan v2.0. |
+| [AWS Installation](../install-aws/intro.hbs.md)| SCST - Scan v1.0 | SCST - Scan v1.0 remains the default with the option to opt in to SCST - Scan v2.0. |
 
 If you require a policy to block a workload in a supply chain based on detected vulnerabilities, use
-Scan v1.0.
+SCST - Scan v1.0.
 
-If you want to create a scan integration for a scan tool that does not exist, use Scan v2.0 as the
+If you want to create a scan integration for a scan tool that does not exist, use SCST - Scan v2.0 as the
 process is greatly simplified. For more information, see
 [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
 
-If you are using the Tanzu Supply Chain component, use Scan v2.0 as only Scan v2.0 is supported with
+If you are using the Tanzu Supply Chain component, use SCST - Scan v2.0 as only SCST - Scan v2.0 is supported with
 Tanzu Supply Chain. For more information, see [Overview of Tanzu Supply Chain](../supply-chain/about.hbs.md).
 
 ## <a id="scst-scan-note"></a>Vulnerability Scanner limitations

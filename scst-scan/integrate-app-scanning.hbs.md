@@ -10,8 +10,8 @@ SCST - Scan 2.0 includes two integrations for container image scanners:
 
 | Container Image Scanner | Documentation | Cluster Image Template Name |  Status |
 |:--- |:--- |:--- |:--- |
-| Aqua Trivy | [Link](https://aquasecurity.github.io/trivy) | image-vulnerability-scan-trivy | Recommended out-of-box scanner for Scan 2.0 |
-| Anchore Grype | [Link](https://github.com/anchore/grype) | image-vulnerability-scan-grype | Alternative to Trivy that is used in Scan 1.0 |
+| Aqua Trivy | [Link](https://aquasecurity.github.io/trivy) | `image-vulnerability-scan-trivy` | Recommended scanner for SCST - Scan 2.0 |
+| Anchore Grype | [Link](https://github.com/anchore/grype) | `image-vulnerability-scan-grype` | Alternative to Trivy that is used in SCST - Scan 1.0 |
 
 VMware recommends using Aqua Trivy scanner with Tanzu Application Platform for
 container image scanning. If you want to remain consistent with the default scanner
