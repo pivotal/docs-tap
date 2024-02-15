@@ -78,11 +78,11 @@ spec:
     startingDeadline: START-DEADLINE
   scan:
     activeKeychains:
-      # Only enable keychains for registries you are using
-      - name: acr  # Azure Container Registry
-      - name: ecr  # Elastic Container Registry
-      - name: gcr  # Google Container Registry
-      - name: ghcr # Github Container Registry
+    # Only enable keychains for registries you are using
+    - name: acr  # Azure Container Registry
+    - name: ecr  # Elastic Container Registry
+    - name: gcr  # Google Container Registry
+    - name: ghcr # Github Container Registry
     workspace:
       size: WORKSPACE-SIZE
     scanResults:
