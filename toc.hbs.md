@@ -782,6 +782,7 @@
               - [Core Concepts: Workload Runs](./supply-chain/platform-engineering/explanation/workload-runs.hbs.md)
               - [Core Concepts: Components](./supply-chain/platform-engineering/explanation/components.hbs.md)
               - [Core Concepts: Resumptions](./supply-chain/platform-engineering/explanation/resumptions.hbs.md)
+              - [GitOps Managed Supply Chains](./supply-chain/platform-engineering/explanation/gitops-managed.hbs.md)
       - [Developing software with Supply Chain](./supply-chain/development/about.hbs.md)
           - [Tutorials](supply-chain/development/tutorials/about.hbs.md)
               - [Deploy your first Workload](./supply-chain/development/tutorials/deploy-your-first-workload.hbs.md)
