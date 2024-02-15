@@ -8,7 +8,7 @@ When you are authoring your accelerator, it is convenient to be able to generate
 
 With the local engine server, you can serve your accelerators with their fragments on `localhost`, including any changes you have locally, and use the VS Code "Tanzu App Accelerator" extension or the Tanzu CLI Accelerator plugin to generate new projects based on these local files. 
 
-Once you are happy with the new or modifed accelerators and fragments you can commit them to a Git repository and then publish them to a cluster to give others access to them.
+Once you are happy with the new or modified accelerators and fragments you can commit them to a Git repository and then publish them to a cluster to give others access to them.
 
 ### <a id="install-local-engine-server"></a>Install the local engine server
 
@@ -16,7 +16,7 @@ Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com/) then go to 
 
 There is a file group named `Application Accelerator Engine Server-v1.8.1` that contains four different ZIP archives, one for each of `macos-aarch64`, `macos-amd64`, `windows` and `linux`. Download the one that matches you OS and architecture.
 
-The ZIP file contains the local engine server and a Java runtime for running the server. Extract it to a local directory, eith using the `unzip` command or any other extraction tool.
+The ZIP file contains the local engine server and a Java runtime for running the server. Extract it to a local directory, either using the `unzip` command or any other extraction tool.
 
 >**Note** For macOS users we need to do the following steps in order to open an app from an unidentified developer:
 >(We are working on having these artifacts signed using an Apple developer account to avoid these extra steps)
