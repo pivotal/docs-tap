@@ -258,5 +258,6 @@ Backstage components.
 
 1. From the
    [Tanzu Application Platform downloads](https://network.tanzu.vmware.com/products/tanzu-application-platform)
-   page, click **tanzu-developer-portal-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
-1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
+   page, click **tanzu-developer-portal-catalogs-latest** > **Tanzu Application Platform Developer Portal Yelb Catalog** and download.
+2. Unpack the downloaded tar archive to a local drive. 
+3. Follow the earlier steps for [Register components](#register-comp) to register the `catalog-info.yaml` located at the root of the unpacked archive. This will register all the catalog entities that make up the Yelb system.
