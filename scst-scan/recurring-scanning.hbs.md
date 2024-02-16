@@ -105,7 +105,7 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples. To pass `spec.image` and `scanResults.location` to `args`, you can use `{image}` and `{output}` respectively. Please be aware that these interpolation variables differ from the ones currently used in the IVS (`$(params.image)` and `$(params.scan-results-path)`).
 
 > **Note** Special attention should be paid to the scanning runtime, the scan frequency and the configured deadline.
-Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days increases the scanning runtime. If the
+Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days can increase the number of images scanned, and in turn, the scanning runtime. If the
 scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans will start to queue up. VMware recommends
 running the scan once every 24 hours at a time when your cluster load is low.
 
