@@ -12,13 +12,13 @@ digraph G {
 
   subgraph cluster_3d3ba765 {
     label=<combo>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     subgraph cluster_58e6d4b8 {
       label=<chain>;
-      color="#DDDDDD";
-      fontcolor="#dddddd";
+      color="#555555";
+      fontcolor="#555555";
 
       Include_51850751 [label=<<b>Include</b><br/>**/*.md<br/>**/*.xml<br/>**/*.yaml>; ]
       ReplaceText_4264b240 [label=<<b>ReplaceText</b><br/>hello-world-app &#x21D2; #artifactId>; ]
