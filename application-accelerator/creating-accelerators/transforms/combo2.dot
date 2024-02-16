@@ -14,13 +14,13 @@ digraph G {
 
   subgraph cluster_3e2822 {
     label=<combo>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     subgraph cluster_6a988392 {
       label=<chain>;
-      color="#DDDDDD";
-      fontcolor="#dddddd";
+      color="#555555";
+      fontcolor="#555555";
 
       Include_3ebff828 [label=<<b>Include</b><br/>**/*.yaml>; ]
       Exclude_33352f32 [label=<<b>Exclude</b><br/>**/secret/**>; ]

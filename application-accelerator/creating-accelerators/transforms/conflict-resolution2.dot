@@ -14,8 +14,8 @@ digraph G {
 
   subgraph cluster_4fad94a7 {
     label=<chain>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     T1_5241cf67 [label=<<b>T1</b>>; ]
     T2_716a7124 [label=<<b>T2</b>>; ]
