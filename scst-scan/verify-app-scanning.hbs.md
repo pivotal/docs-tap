@@ -78,7 +78,7 @@ After retrieving the scan results, you must verify that the scan results are in 
   <body>
   <tr>
    <td>CycloneDX</td>
-   <td>1.2, 1.3, 1.4</td>
+   <td>1.2, 1.3, 1.4, 1.5</td>
   </tr>
   <tr>
    <td>SPDX</td>
