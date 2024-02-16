@@ -470,7 +470,7 @@ For a diagram showing the packages contained in each profile, see
       <td>&check;</td>
     </tr>
     <tr>
-      <th scope="row">Artifact Metadata Repository Observer (alpha)</th>
+      <th scope="row">Artifact Metadata Repository Observer</th>
       <td>&check;</td>
       <td></td>
       <td>&check;</td>
@@ -781,15 +781,6 @@ For a diagram showing the packages contained in each profile, see
       <td></td>
       <td>&check;</td>
       <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">SCST - Sign (deprecated)</th>
-      <td>&check;</td>
-      <td>&check;</td>
-      <td></td>
-      <td>&check;</td>
       <td></td>
       <td></td>
     </tr>
