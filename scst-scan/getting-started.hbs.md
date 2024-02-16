@@ -2,9 +2,10 @@
 
 Get started with Supply Chain Security Tools (SCST) - Scan 2.0 by using the following topics:
 
-1. [Install Supply Chain Security Tools - Scan 2.0 in a cluster](./install-app-scanning.hbs.md).
+[Installing SCST - Scan 2.0](./install-app-scanning.hbs.md)
 
-2. Create Supply Chain with SCST - Scan 2.0 with either Supply Chain Choreographer for Tanzu or Tanzu Supply Chain:
-   * [Create Supply Chain with Choreographer and SCST - Scan 2.0](./create-supply-chain-with-choreographer.hbs.md):
+[Add App Scanning to Default Test and Scan Supply Chains](./integrate-app-scanning.hbs.md)
 
-   * [Create Tanzu Supply Chain with SCST - Scan 2.0](./tanzu-supply-chain/create-tanzu-supply-chain.hbs.md)
+[Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md)
+
+[Verifying Scanning with Supply Chain Integration](./verify-app-scanning-supply-chain.hbs.md)
