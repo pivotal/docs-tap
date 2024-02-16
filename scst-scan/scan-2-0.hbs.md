@@ -1,4 +1,4 @@
-# Supply Chain Security Tools - Scan 2.0
+# Supply Chain Security Tools - Scan 2.0 with Supply Chain Choreographer for Tanzu
 
 This topic gives you an overview of Supply Chain Security Tools (SCST) - Scan
 2.0. Include this component in your software supply chain to help identify
