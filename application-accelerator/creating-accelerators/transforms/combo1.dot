@@ -15,13 +15,13 @@ digraph G {
 
   subgraph cluster_5733f295 {
     label=<combo>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     subgraph cluster_83298d7 {
       label=<chain>;
-      color="#DDDDDD";
-      fontcolor="#dddddd";
+      color="#555555";
+      fontcolor="#555555";
 
       UniquePath_2756c0a7 [label=<<b>UniquePath</b><br/>UseLast>; ]
 
@@ -30,18 +30,18 @@ digraph G {
 
       subgraph cluster_7d3430a7 {
         label=<merge>;
-        color="#DDDDDD";
-        fontcolor="#dddddd";
+        color="#555555";
+        fontcolor="#555555";
 
         subgraph cluster_efde75f {
           label=<combo>;
-          color="#DDDDDD";
-          fontcolor="#dddddd";
+          color="#555555";
+          fontcolor="#555555";
 
           subgraph cluster_6c8bca63 {
             label=<chain>;
-            color="#DDDDDD";
-            fontcolor="#dddddd";
+            color="#555555";
+            fontcolor="#555555";
 
             Include_5ef0d29e [label=<<b>Include</b><br/>*.yaml>; ]
             T1_618c5d94 [label=<<b>T1</b>>; ]
@@ -53,13 +53,13 @@ digraph G {
         }
         subgraph cluster_2bef51f2 {
           label=<combo>;
-          color="#DDDDDD";
-          fontcolor="#dddddd";
+          color="#555555";
+          fontcolor="#555555";
 
           subgraph cluster_1bc715b8 {
             label=<chain>;
-            color="#DDDDDD";
-            fontcolor="#dddddd";
+            color="#555555";
+            fontcolor="#555555";
 
             Include_3f1c5af9 [label=<<b>Include</b><br/>*.xml>; ]
             T3_30f5a68a [label=<<b>T3</b>>; ]
