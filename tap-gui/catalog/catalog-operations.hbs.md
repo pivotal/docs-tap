@@ -257,6 +257,7 @@ Backstage components.
 #### <a id='install-yelb-cat'></a> Install the Yelb catalog
 
 1. From the
-[Tanzu Application Platform downloads](https://network.tanzu.vmware.com/products/tanzu-application-platform)
-page, click **tap-gui-catalogs-latest** > **Tanzu Application Platform GUI Yelb Catalog**.
-1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
+   [Tanzu Application Platform downloads](https://network.tanzu.vmware.com/products/tanzu-application-platform)
+   page, click **tap-gui-catalogs-latest** > **Tanzu Application Platform GUI Yelb Catalog** and download.
+2. Unpack the downloaded tar archive to a local drive.
+3. Follow the earlier steps for [Register components](#register-comp) to register the `catalog-info.yaml` located at the root of the unpacked archive. This will register all the catalog entities that make up the Yelb system.
