@@ -11,38 +11,38 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-387 556.5,-387 556.5,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_5733f295</title>
-<polygon fill="none" stroke="#dddddd" points="62,-8 62,-375 478.5,-375 478.5,-8 62,-8"/>
-<text text-anchor="start" x="70" y="-357.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">combo</text>
+<polygon fill="none" stroke="#555555" points="62,-8 62,-375 478.5,-375 478.5,-8 62,-8"/>
+<text text-anchor="start" x="70" y="-357.7" font-family="Times,serif" font-size="14.00" fill="#555555">combo</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_83298d7</title>
-<polygon fill="none" stroke="#dddddd" points="70,-16 70,-342 470.5,-342 470.5,-16 70,-16"/>
-<text text-anchor="start" x="78" y="-324.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">chain</text>
+<polygon fill="none" stroke="#555555" points="70,-16 70,-342 470.5,-342 470.5,-16 70,-16"/>
+<text text-anchor="start" x="78" y="-324.7" font-family="Times,serif" font-size="14.00" fill="#555555">chain</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_7d3430a7</title>
-<polygon fill="none" stroke="#dddddd" points="78,-24 78,-309 365.5,-309 365.5,-24 78,-24"/>
-<text text-anchor="start" x="86" y="-291.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">merge</text>
+<polygon fill="none" stroke="#555555" points="78,-24 78,-309 365.5,-309 365.5,-24 78,-24"/>
+<text text-anchor="start" x="86" y="-291.7" font-family="Times,serif" font-size="14.00" fill="#555555">merge</text>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_efde75f</title>
-<polygon fill="none" stroke="#dddddd" points="86,-158 86,-276 357.5,-276 357.5,-158 86,-158"/>
-<text text-anchor="start" x="94" y="-258.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">combo</text>
+<polygon fill="none" stroke="#555555" points="86,-158 86,-276 357.5,-276 357.5,-158 86,-158"/>
+<text text-anchor="start" x="94" y="-258.7" font-family="Times,serif" font-size="14.00" fill="#555555">combo</text>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_6c8bca63</title>
-<polygon fill="none" stroke="#dddddd" points="94,-166 94,-243 349.5,-243 349.5,-166 94,-166"/>
-<text text-anchor="start" x="102" y="-225.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">chain</text>
+<polygon fill="none" stroke="#555555" points="94,-166 94,-243 349.5,-243 349.5,-166 94,-166"/>
+<text text-anchor="start" x="102" y="-225.7" font-family="Times,serif" font-size="14.00" fill="#555555">chain</text>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_2bef51f2</title>
-<polygon fill="none" stroke="#dddddd" points="86,-32 86,-150 357.5,-150 357.5,-32 86,-32"/>
-<text text-anchor="start" x="94" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">combo</text>
+<polygon fill="none" stroke="#555555" points="86,-32 86,-150 357.5,-150 357.5,-32 86,-32"/>
+<text text-anchor="start" x="94" y="-132.7" font-family="Times,serif" font-size="14.00" fill="#555555">combo</text>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_1bc715b8</title>
-<polygon fill="none" stroke="#dddddd" points="94,-40 94,-117 349.5,-117 349.5,-40 94,-40"/>
-<text text-anchor="start" x="102" y="-99.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">chain</text>
+<polygon fill="none" stroke="#555555" points="94,-40 94,-117 349.5,-117 349.5,-40 94,-40"/>
+<text text-anchor="start" x="102" y="-99.7" font-family="Times,serif" font-size="14.00" fill="#555555">chain</text>
 </g>
 <!-- String_5ce33a58 -->
 <g id="node1" class="node">
