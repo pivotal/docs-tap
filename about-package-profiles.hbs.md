@@ -765,15 +765,6 @@ For a diagram showing the packages contained in each profile, see
       <td>&check;</td>
     </tr>
     <tr>
-      <th scope="row">SCST - Sign (deprecated)</th>
-      <td>&check;</td>
-      <td>&check;</td>
-      <td></td>
-      <td>&check;</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
       <th scope="row">SCST - Store</th>
       <td>&check;</td>
       <td></td>
