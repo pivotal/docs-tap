@@ -208,7 +208,7 @@ live in the same namespace as the workload with the names matching the following
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-If you have not already installed the Grype ScanTemplates in the namespace that you are writing the workload to, you can use the Namespace Provisioner to install them. See [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md#manage-a-list-of-developer-namespaces).
+You can install the Grype ScanTemplates, in the namespace that you are writing the workload to, with Namespace Provisioner. See [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md#manage-a-list-of-developer-namespaces).
 
 1. Label the namespace that you are writing the workload to with the default *namespace_selector* `apps.tanzu.vmware.com/tap-ns=""`.
 
@@ -218,10 +218,8 @@ If you have not already installed the Grype ScanTemplates in the namespace that 
 
 >**Note** Although you can customize the templates, if you are following the Getting Started
 >guide, VMware recommends that you follow what is provided in the installation of
->`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
->using `grype.namespace` in either Tanzu Application Platform profiles or individual component
->installation as in the earlier example. For more information, see
->[About Source and Image Scans](../scst-scan/explanation.md#about-src-and-image-scans).
+>`grype.scanning.apps.tanzu.vmware.com`. For more information, see
+>[About Source and Image Scans](../scst-scan/explanation.hbs.md#about-src-and-image-scans).
 
 #### <a id="storing-scan-results"></a>Enable storing scan results
 

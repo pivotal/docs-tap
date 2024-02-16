@@ -597,12 +597,12 @@ For a diagram showing the packages contained in each profile, see
     </tr>
     <tr>
       <th scope="row">Grype Scanner for SCST - Scan</th>
-      <td>&check;</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td></td>
       <td>&check;</td>
-      <td></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <th scope="row">Local Source Proxy</th>
