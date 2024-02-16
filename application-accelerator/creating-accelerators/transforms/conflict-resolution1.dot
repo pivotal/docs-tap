@@ -16,13 +16,13 @@ digraph G {
 
   subgraph cluster_410ae9a3 {
     label=<combo>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     subgraph cluster_1536602f {
       label=<chain>;
-      color="#DDDDDD";
-      fontcolor="#dddddd";
+      color="#555555";
+      fontcolor="#555555";
 
       UniquePath_235f4c10 [label=<<b>UniquePath</b><br/>UseLast>; ]
       T4_d5ae57e [label=<<b>T4</b>>; ]
@@ -34,8 +34,8 @@ digraph G {
 
       subgraph cluster_44c79f32 {
         label=<merge>;
-        color="#DDDDDD";
-        fontcolor="#dddddd";
+        color="#555555";
+        fontcolor="#555555";
 
         T1_7e242b4d [label=<<b>T1</b>>; ]
         T2_305f031 [label=<<b>T2</b>>; ]

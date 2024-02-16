@@ -11,13 +11,13 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-138 553.5,-138 553.5,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_3e2822</title>
-<polygon fill="none" stroke="#dddddd" points="74,-8 74,-126 475.5,-126 475.5,-8 74,-8"/>
-<text text-anchor="start" x="82" y="-108.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">combo</text>
+<polygon fill="none" stroke="#555555" points="74,-8 74,-126 475.5,-126 475.5,-8 74,-8"/>
+<text text-anchor="start" x="82" y="-108.7" font-family="Times,serif" font-size="14.00" fill="#555555">combo</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_6a988392</title>
-<polygon fill="none" stroke="#dddddd" points="82,-16 82,-93 467.5,-93 467.5,-16 82,-16"/>
-<text text-anchor="start" x="90" y="-75.7" font-family="Times,serif" font-size="14.00" fill="#dddddd">chain</text>
+<polygon fill="none" stroke="#555555" points="82,-16 82,-93 467.5,-93 467.5,-16 82,-16"/>
+<text text-anchor="start" x="90" y="-75.7" font-family="Times,serif" font-size="14.00" fill="#555555">chain</text>
 </g>
 <!-- String_5ce33a58 -->
 <g id="node1" class="node">
