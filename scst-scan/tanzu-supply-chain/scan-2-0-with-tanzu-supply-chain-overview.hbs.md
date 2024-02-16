@@ -16,4 +16,4 @@ To run an `ImageVulnerabilityScan` in a [Tanzu Supply Chain](../../supply-chain/
 
 ## <a id="getting-started"></a>Getting started with SCST - Scan 2.0 with Tanzu Supply Chain
 
-To use the SCST - Scan 2.0 component in a Tanzu Supply Chain, see [Create Tanzu Supply Chain with SCST - Scan 2.0](./create-tanzu-supply-chain.hbs.md)
+To use SCST - Scan 2.0 in a Tanzu Supply Chain, see [Create Tanzu Supply Chain with SCST - Scan 2.0](./create-tanzu-supply-chain.hbs.md)
