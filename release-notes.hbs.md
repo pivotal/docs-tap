@@ -48,15 +48,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-app-accelerator'></a> v1.8.0 Features: Application Accelerator
 
-- You can run a local Application Accelerator engine server that can be used for testing accelerators that you are authoring and actively working on. The entire local authoring experience can be achieved using the VSCode IDE locally with App Accelerator extension and downloading App Accelerator server from Tanzunet and running it locally. For more information, see [Using a local Application Accelerator engine serve](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
+- Accelerator authors can author accelerators faster with a local authoring experience without needing to connect to a TAP cluster. The entire local authoring experience can be achieved using the VSCode IDE locally with App Accelerator extension and downloading App Accelerator server from Tanzunet and running it locally. For more information, see [Using a local Application Accelerator engine serve](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
 
 
 #### <a id='1-8-0-app-live-view'></a> v1.8.0 Features: Application Live View
 
-- By default, the connector is deployed as a Kubernetes DaemonSet to discover applications
-  across all the namespaces running in a worker node of a Kubernetes cluster. You can override
-  the default settings to run the connector in deployment mode or a namespace-scope. For more
-  information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
+- By default, the connector is deployed as a Kubernetes DaemonSet to discover applications across all the namespaces running in a worker node of a Kubernetes cluster. To resolve the issue of unpredictable scheduling pattern followed by K8s in case of a node restart you can override the default settings to run the connector in deployment mode or a namespace-scope. For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
 #### <a id='1-8-0-spring-boot-convention'></a> v1.8.0 Features: Spring Boot Convention
 
