@@ -218,6 +218,13 @@ This release includes the following changes, listed by component and area.
   when iterating locally from a local URL by using **Tanzu: Portforward** or by using a Knative URL
   for web type workloads from the Tanzu panel.
 
+#### <a id='1-8-0-tbs'></a> v1.8.0 Features: Tanzu Build Service
+
+- Added support to genereate SLSA attestations for app images.
+- Cosign signatures for Builders and ClusterBuilders are now generated.
+    - App images were already signed, this release makes it also work for Builders and ClusterBuilders.
+- Builders and ClusterBuilders can now specify additional labels to be attached to the image.
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
