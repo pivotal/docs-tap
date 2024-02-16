@@ -18,8 +18,8 @@ digraph G {
 
   subgraph cluster_37ebc9d8 {
     label=<merge>;
-    color="#DDDDDD";
-    fontcolor="#dddddd";
+    color="#555555";
+    fontcolor="#555555";
 
     T1_2416a51 [label=<<b>T1</b>>; ]
     T2_6fa590ba [label=<<b>T2</b>>; ]
