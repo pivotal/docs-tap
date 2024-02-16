@@ -1,6 +1,6 @@
-# Supply Chain Security Tools - Scan 2.0 with Tanzu Supply Chain
+# Supply Chain Security Tools - Scan 2.0 with Tanzu Supply Chain (Beta)
 
-This topic uses the same overview of Supply Chain Security Tools (SCST) - Scan 2.0 provided in the previous [section](../scan-2-0.hbs.md#overview) and covers how to create a Tanzu Supply Chain with SCST - Scan 2.0.
+This topic provides an overview of using Supply Chain Security Tools (SCST) - Scan 2.0 with Tanzu Supply Chains (Beta).  This section is only applicable if you are evaluating the beta release of Tanzu Supply Chains.
 
 ## <a id="supply-chain-usage"></a>Integrating into a Tanzu Supply Chain
 
