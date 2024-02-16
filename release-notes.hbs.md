@@ -193,6 +193,10 @@ This release includes the following changes, listed by component and area.
 - Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
   This tool has been officially deprecated since 2020.
 
+#### <a id='1-8-0-scst-scan'></a> v1.8.0 Breaking changes: SCST Scan
+
+- The installation of Grype via `build` and `full` profiles has been removed.  It is recommended to use [namespace provisioner](./namespace-provisioner/use-case6.hbs.md) to install the Grype package in to developer namespaces.
+
 ---
 
 ### <a id='1-8-0-security-fixes'></a> v1.8.0 Security fixes
