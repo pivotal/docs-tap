@@ -309,7 +309,9 @@ Developer Portal might be inaccurate.
 
 #### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
 
-- Tanzu Developer Portal Configurator version is jumping from 1.0.X in TAP 1.7 to 1.8.X in TAP 1.8. This is done for the purpose of synchronizing the Tanzu Developer Portal and Tanzu Developer Portal Configurator versions moving forward.
+- Tanzu Developer Portal Configurator jumps from v1.0.x in Tanzu Application Platform v1.7 to v1.8.x
+  in Tanzu Application Platform v1.8. This version jump enables future versions of
+  Tanzu Developer Portal and Tanzu Developer Portal Configurator to sync going forward.
 
 ---
 
