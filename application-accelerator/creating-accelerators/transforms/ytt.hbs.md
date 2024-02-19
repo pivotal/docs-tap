@@ -26,7 +26,7 @@ input is determined entirely by two things only:
 
 YTT is invoked as an external process with the following command line:
 
-```
+```console
 ytt -f <input-folder> \
     --data-values-file <symbols.json> \
     --output-files <output-folder> \
@@ -54,6 +54,8 @@ execution of the `YTT` transform is considered to have failed and
 an exception is raised.
 
 ## <a id="examples"></a>Examples
+
+See the following examples using the `YTT` transform.
 
 ### <a id="basic-invocation"></a>Basic invocation
 
