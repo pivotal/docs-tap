@@ -54,9 +54,9 @@ This includes:
     </tr>
     <tr>
         <td>1.8.0</td>
-        <td>0.4.0</td>
-        <td>1.14.1-up.1</td>
-        <td>1.14.1-up.1</td>
+        <td>0.4.1</td>
+        <td>1.14.5-up.1</td>
+        <td>1.14.5-up.1</td>
         <td>0.15.0</td>
         <td>0.9.0</td>
     </tr>
