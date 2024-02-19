@@ -14,7 +14,7 @@ its input.
 
 ## <a id="syntax-reference"></a>Syntax reference
 
-``` console
+```yaml
 type: Loop
 on: <SpEL expression>
 var: <string>
@@ -52,10 +52,14 @@ that occurred in the previous iteration.
 
 ## <a id="examples"></a>Examples
 
+See the following examples using the `Loop` transform.
+
+### <a id="example1"></a>Example 1
+
 Create a new directory for every module in `modules` (a list of strings) based on the contents of
 the "template" directory.
 
-``` console
+```yaml
 type: Loop
 on: "#modules"
 var: m
@@ -65,13 +69,15 @@ doAsMerge:
   rewriteTo: "#m + '/' + #g1"
 ```
 
-This behaves in a way equivalent to this:
-![image](loop1.svg)
+The following diagram shows how this example behaves:
 
+![Diagram showing a loop transform.](images/loop1.svg)
+
+### <a id="example2"></a>Example 2
 
 Add every artifactId in `artifacts` (a list of strings) as a Spring dependency.
 
-``` console
+```yaml
 type: Loop
 on: "#artifacts"
 var: a
@@ -84,9 +90,11 @@ doAsChain:
     version: "'5.7.1'"
 ```
 
-This behaves in a way equivalent to this:
-![image](loop2.svg)
+The following diagram shows how this example behaves:
 
+![Diagram showing a loop transform.](images/loop2.svg)
+
+### <a id="example3"></a>Example 3
 
 You can use `Loop` in combination with custom types, for example:
 

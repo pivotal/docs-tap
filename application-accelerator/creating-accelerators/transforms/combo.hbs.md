@@ -2,17 +2,16 @@
 
 This topic tells you about the Application Accelerator `Combo` transform in Tanzu Application Platform (commonly known as TAP).
 
-The  `Combo` transform combines the behaviors of [Include](include.md), [Exclude](exclude.md),
+The `Combo` transform combines the behaviors of [Include](include.md), [Exclude](exclude.md),
 [Merge](merge.md), [Chain](chain.md), [UniquePath](unique-path.md), and [Let](let.md).
 
-![image](combo.svg)
-
+![Diagram showing a combo transform.](images/combo.svg)
 
 ## <a id="syntax-referance"></a>Syntax reference
 
 Here is the full syntax of `Combo`:
 
-``` console
+```yaml
 type: Combo                  # This can be omitted, because Combo is the default transform type.
 let:                        # See Let.
   - name: <string>
@@ -85,20 +84,20 @@ without having to write their `type: x` in full.
 
 For example, this:
 
-``` console
+```yaml
 include: ['**/*.txt']
 ```
 
 is a perfectly valid way to achieve the same effect as this:
 
-``` console
+```yaml
 type: Include
 patterns: ['**/*.txt']
 ```
 
 Similarly, this:
 
-``` console
+```yaml
 chain:
   - type: T1
     ...
@@ -108,7 +107,7 @@ chain:
 
 is often preferred over the more verbose:
 
-``` console
+```yaml
 type: Chain
 transformations:
   - type: T1
@@ -117,11 +116,11 @@ transformations:
     ...
 ```
 
-As with other transforms, the order of declaration of properties has no impact. We've used a
-convention that mimics the actual behavior for clarity, but the following applies **T1** and **T2**
-on all `.yaml` files even though one has placed the `include` section after the `merge` section.
+As with other transforms, the order of declaration of properties has no impact. For clarity,
+a convention that mimics the actual behavior is used, but the following applies **T1** and **T2**
+on all `.yaml` files even though it places the `include` section after the `merge` section.
 
-``` console
+```yaml
 merge:
   - type: T1
   - type: T2
@@ -137,10 +136,12 @@ order.
 
 The following are typical use cases for `Combo`.
 
+### <a id="example1"></a>Example 1
+
 To apply separate transformations to separate sets of files. For example, to all `.yaml` files
 and to all `.xml` files:
 
-``` console
+```yaml
 merge:                   # This uses the Merge syntax in a first Combo.
   - include: ['*.yaml']      # This actually nests a second Combo inside the first.
     chain:
@@ -151,11 +152,14 @@ merge:                   # This uses the Merge syntax in a first Combo.
       - type: T3
       - type: T4
 ```
-![image](combo1.svg)
+
+![Diagram showing a combo transform.](images/combo1.svg)
+
+### <a id="example2"></a>Example 2
 
 To apply **T1** then **T2** on all `.yaml` files that are not in any `secret` directory:
 
-``` console
+```yaml
 include: ['**/*.yaml']
 exclude: ['**/secret/**']
 chain:
@@ -165,4 +169,4 @@ chain:
     ..
 ```
 
-![image](combo2.svg)
+![Diagram showing a combo transform.](images/combo2.svg)
