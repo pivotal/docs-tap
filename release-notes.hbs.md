@@ -32,33 +32,22 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
-
-- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
-  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
-  when iterating locally from a local URL (via **Tanzu: Portforward**) or a Knative URL (for the web
-  type of workloads) from the Tanzu panel.
-
-#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
-
-- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
-  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
-  when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
-  type of workloads) from the Tanzu panel.
-
 #### <a id='1-8-0-app-accelerator'></a> v1.8.0 Features: Application Accelerator
 
-- Accelerator authors can author accelerators faster with a local authoring experience without needing to connect to a TAP cluster. The entire local authoring experience can be achieved using the VSCode IDE locally with App Accelerator extension and downloading App Accelerator server from Tanzunet and running it locally. For more information, see [Using a local Application Accelerator engine serve](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
-
+- Accelerator authors can create accelerators faster using a local authoring experience without
+  connecting to a Tanzu Application Platform cluster.
+  This allows you to create accelerators locally by using the VSCode IDE.
+  For more information, see [Using a local Application Accelerator engine server](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
 
 #### <a id='1-8-0-app-live-view'></a> v1.8.0 Features: Application Live View
 
-- By default, the connector is deployed as a Kubernetes DaemonSet to discover applications across all the namespaces running in a worker node of a Kubernetes cluster. To resolve the issue of unpredictable scheduling pattern followed by K8s in case of a node restart you can override the default settings to run the connector in deployment mode or a namespace-scope. For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
-
-#### <a id='1-8-0-spring-boot-convention'></a> v1.8.0 Features: Spring Boot Convention
-
-- You no longer must provide the verbose configuration to enable actuators and the App Live View functionalities while running Spring Native workloads on TAP. The Spring Boot convention server enhances Tanzu PodIntents with metadata. This metadata can include labels, annotations, or properties required to run native workloads in Tanzu Application Platform. This metadata enables Application Live View to discover and register the app instances so that Application Live View can access the actuator data from those workloads. For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
-
+- By default, Application Live View connector is deployed as a Kubernetes DaemonSet to discover
+  applications across all namespaces running in a worker node of a Kubernetes cluster.
+  When the connector is deployed as a DaemonSet, the Kubernetes scheduling pattern might be unpredictable
+  when a node restarts.
+  To avoid this, you can override the default settings to deploy the connector as a deployment or in
+  namespace-scope mode.
+  For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
@@ -150,12 +139,20 @@ dependencies:
 
 - Updates reconciler-runtime to v0.15.1.
 
-#### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
+#### <a id='1-8-0-spring-boot-conv'></a> v1.8.0 Features: Spring Boot Convention
 
-- Adds support for ingesting SBOMs in CycloneDX v1.5 format.
-- Better error messaging for ingestion errors.
-- To enable DORA metrics functionality, if you configured the `environment` label, rename it
-  to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
+- You no longer must provide the verbose configuration to enable actuators and the Application Live View
+  features while running Spring Native workloads on Tanzu Application Platform.
+  The Spring Boot convention server enhances Tanzu PodIntents with metadata.
+  This metadata can include labels, annotations, or properties required to run native workloads in
+  Tanzu Application Platform.
+  This metadata enables Application Live View to discover and register the app instances so that
+  Application Live View can access the actuator data from those workloads.
+  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
+
+#### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
+
+- Introduces [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) for the [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.hbs.md) and [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) packages. This feature is in beta.
 
 #### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools - Scan
 
@@ -172,10 +169,27 @@ opt-in basis, except in the following situations:
   - Aqua Trivy is updated to [v0.48.3](https://github.com/aquasecurity/trivy/releases/tag/v0.48.3).
   - Anchore Grype is updated to [v0.74.1](https://github.com/anchore/grype/releases/tag/v0.74.1).
 
-#### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
+#### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
 
-- Introduces [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) for the [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.hbs.md) and [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) packages. This feature is in beta.
+- Adds support for ingesting SBOMs in CycloneDX v1.5 format.
+- Better error messaging for ingestion errors.
+- To enable DORA metrics functionality, if you configured the `environment` label, rename it
+  to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
+
+#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
+
+- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Tanzu: Portforward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
+
+#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
+
+- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
@@ -295,7 +309,9 @@ Developer Portal might be inaccurate.
 
 #### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
 
-- Tanzu Developer Portal Configurator version is jumping from 1.0.X in TAP 1.7 to 1.8.X in TAP 1.8. This is done for the purpose of synchronizing the Tanzu Developer Portal and Tanzu Developer Portal Configurator versions moving forward.
+- Tanzu Developer Portal Configurator jumps from v1.0.x in Tanzu Application Platform v1.7 to v1.8.x
+  in Tanzu Application Platform v1.8. This version jump enables future versions of
+  Tanzu Developer Portal and Tanzu Developer Portal Configurator to sync going forward.
 
 ---
 
