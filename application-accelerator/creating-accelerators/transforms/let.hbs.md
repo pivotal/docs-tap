@@ -13,7 +13,7 @@ those existing variables won't be accessible.
 
 ## <a id="syntax-reference"></a>Syntax reference
 
-```
+```yaml
 type: Let
 symbols:
 - name: <string>
@@ -27,7 +27,7 @@ in: <transform> # <- new symbols are visible in here
 The `Let` adds variables to the new scope by computation of
 [SpEL expressions](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions).
 
-```
+```yaml
 engine:
   let:
   - name: <string>
