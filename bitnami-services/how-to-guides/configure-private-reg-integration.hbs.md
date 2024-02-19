@@ -8,7 +8,7 @@ You can configure this globally for all services, or on a per-service basis.
 
 Before you integrate Bitnami Services with a private registry or VMware Tanzu Application Catalog, you must:
 
-- Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
+- Have your Helm Chart repository URL in the format `oci://REGISTRY-HOSTNAME/REPOSITORY-PATH/charts`.
 - Have the credentials to access the private registry.
 
 For how to obtain both of these prerequisites for VMware Tanzu Application Catalog integration, see
@@ -43,7 +43,7 @@ The following examples put these in the `default` namespace, but you can choose 
             bitnami_services:
               globals:
                 helm_chart:
-                  repo: oci://REPOSITORY-NAME/charts # update this
+                  repo: oci://REGISTRY-HOSTNAME/REPOSITORY-PATH/charts # Update this value.
                   chart_pull_secret_ref:
                     name: tac-chart-pull
                     namespace: default
@@ -66,7 +66,7 @@ The following examples put these in the `default` namespace, but you can choose 
             bitnami_services:
               mysql: # choose from 'mysql', 'postgresql', 'rabbitmq' and 'redis'
                 helm_chart:
-                  repo: oci://REPOSITORY-NAME/charts # update this
+                  repo: oci://REGISTRY-HOSTNAME/REPOSITORY-PATH/charts # Update this value.
                   chart_pull_secret_ref:
                     name: tac-chart-pull
                     namespace: default
