@@ -200,7 +200,7 @@ To install OOTB Supply Chain with Testing and Scanning:
 
     To install Grype Scanner to multiple namespaces, VMware recommends using [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
     <!-- Can we link to specific instructions for installing Grype with NS Provisioner? -->
-    <!-- Maybe [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md) -->
+    <!-- Maybe [Provision developer namespaces in Namespace Provisioner](../namespace-provisioner/provision-developer-ns.hbs.md) -->
 
     ScanTemplates are installed into the namespaces created by Namespace Provisioner.
     Grype scanner must be present in the namespace that the workload is deployed to for scanning.
