@@ -210,7 +210,7 @@ live in the same namespace as the workload with the names matching the following
 
 You can install the Grype ScanTemplates, in the namespace that you are writing the workload to, with
 Namespace Provisioner.
-See [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md).
+See [Provision developer namespaces in Namespace Provisioner](../namespace-provisioner/provision-developer-ns.hbs.md).
 
 1. Label the namespace that you are writing the workload to with the default *namespace_selector* `apps.tanzu.vmware.com/tap-ns=""`.
 
