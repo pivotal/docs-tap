@@ -6,7 +6,7 @@ Tanzu Application Platform (commonly known as TAP).
 ## Prerequisite
 
 - The Namespace Provisioner package is installed and reconciled.
-- The registry-credential secret referenced by the Supply chain components for pulling and pushing images is added to **tap-install** and exported to all namespaces.
+- The registry-credential secret referenced by the supply chain components for pulling and pushing images is added to **tap-install** and exported to all namespaces.
 
 Example secret creation, exported to all namespaces:
 
@@ -73,7 +73,7 @@ Using Namespace Provisioner Controller
 
       NAME                            CREATED AT
       limitrange/dev-lr   2023-03-08T04:18:58Z
-    
+
      ```
 
 Using GitOps
@@ -110,7 +110,7 @@ by Namespace Provisioner.
   ```
 
   For example:
-  
+
   ```console
   NAME                            TYPE                             DATA   AGE
   secret/app-tls-cert             kubernetes.io/tls                3      52s
@@ -131,11 +131,11 @@ by Namespace Provisioner.
   NAME                CREATED AT
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
-  
+
   For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 ## <a id ='additional-users-k8s-rbac'></a>Enable additional users with Kubernetes RBAC
-  
+
 Namespace Provisioner does not support enabling additional users with Kubernetes RBAC. Support
 is planned for an upcoming release. Until Namespace Provisioner support is provided, follow
 the instructions in [Enable additional users with Kubernetes RBAC](legacy-manual-namespace-setup.hbs.md#user-rbac-k8s).
