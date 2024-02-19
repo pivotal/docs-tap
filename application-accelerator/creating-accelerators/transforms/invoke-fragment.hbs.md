@@ -45,8 +45,8 @@ This behaves as the [Let](let.md) transform: for the duration of the fragment
 invocation, the variables defined by `let` now have their newly defined values.
 Outside the scope of the invocation, the regular model applies.
 
+### <a id="files"></a>Files
 
-### <a id="files"></a/>Files
 The set of files coming from the invoking accelerator and made visible to
 the fragment is the set of files that "reach" the point of invocation.
 For example, in the following case:
@@ -69,14 +69,14 @@ by using `anchor: somedir`, then all files coming from the current accelerator
 are exposed as if their `path` had the `somedir/` prefix removed. When it comes
 to gathering the result of the invocation though, all resulting files are re-introduced
 with a prefix prepended to their `path` (this applies to **all** files produced by
-the fragment, not just the ones originating from the accelerator). 
+the fragment, not just the ones originating from the accelerator).
 
 The value of the `anchor` property must not start nor end with a slash (`/`) character.
 
 ## <a id="examples"></a>Examples
 
-Let's start with a full-featured example showcasing the interaction between
-the `imports` section and `InvokeFragment`
+The following is a full-featured example showcasing the interaction between
+the `imports` section and `InvokeFragment`:
 
 ```yaml
 accelerator:
@@ -97,7 +97,7 @@ engine:
           reference: my-fragment
 ```
 
-Assuming `my-fragment` is defined like so
+Assuming `my-fragment` is defined as follows:
 
 ```yaml
 accelerator:
@@ -144,9 +144,9 @@ engine:
 
 Now you can imagine some scenarios to better clarify all configuration properties.
 
-You can pretend, for some reason, that you don't want to use the value
-entered in the `indentationLevel` option for the fragment, but twice the value
-provided for `someOption`. The `InvokeFragment` block can be rewritten such as this:
+If, for some reason, you don't want to use the value entered in the `indentationLevel` option for
+the fragment, but twice the value provided for `someOption`.
+The `InvokeFragment` block can be rewritten as follows:
 
 ```yaml
     type: InvokeFragment
@@ -156,8 +156,7 @@ provided for `someOption`. The `InvokeFragment` block can be rewritten such as t
         value: '2 * #someOption'
 ```
 
-Now for some other crazy example to better explain the interactions. If the invocation
-in the accelerator looked like this:
+Finally, if the invocation in the accelerator looks like this:
 
 ```yaml
 engine:
@@ -171,7 +170,7 @@ engine:
 
 ```
 
-Then there is absolutely zero visible effect, because this is
+Then there is zero visible effect, because this is
 forwarding only `README.md` files to the fragment and the fragment is itself
 using a filter on `*.xml` files.
 
