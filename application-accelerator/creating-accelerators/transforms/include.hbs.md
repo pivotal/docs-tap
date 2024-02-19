@@ -13,7 +13,7 @@ by [Combo](combo.md).
 
 ## <a id="syntax-ref"></a>Syntax reference
 
-```
+```yaml
 type: Include
 patterns: [<ant pattern>]
 condition: <SpEL expression>
@@ -21,7 +21,7 @@ condition: <SpEL expression>
 
 ## <a id="examples"></a>Examples
 
-```
+```yaml
 type: Chain
 transformations:
   - type: Include
@@ -29,10 +29,9 @@ transformations:
   - type: # At this point, only yaml files are affected
 ```
 
-![image](include.svg)
-
+![Diagram showing an include transform.](images/include.svg)
 
 ## See also
 
-* [Exclude](exclude.md)
-* [Combo](combo.md)   
+- [Exclude](exclude.md)
+- [Combo](combo.md)

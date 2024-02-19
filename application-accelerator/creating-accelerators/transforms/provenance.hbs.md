@@ -9,7 +9,7 @@ For more information, see [Application Bootstrapping Provenance](././provenance.
 
 ## <a id="syntax-reference"></a>Syntax reference
 
-``` console
+```yaml
 type: Provenance
 condition: <SpEL expression>
 ```
@@ -22,7 +22,7 @@ transform, which is usually a `Merge` or a `Chain`, using a `Combo`.
 The `Provenance` transform ignores its input and outputs
 a single resource named `accelerator-info.yaml`. For example:
 
-``` console
+```yaml
 id: <unique GUID of invocation>
 timestamp: <timestamp in RFC3339 format>
 username: <captured username of user triggering the run>

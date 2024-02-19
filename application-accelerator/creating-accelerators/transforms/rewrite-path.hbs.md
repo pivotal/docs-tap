@@ -6,7 +6,7 @@ The `RewritePath` transform allows you to change the name and path of files with
 
 ## <a id="syntax-ref"></a>Syntax reference
 
-```
+```yaml
 type: RewritePath
 regex: <string>
 rewriteTo: <SpEL expression>
@@ -30,11 +30,11 @@ If the regex doesn't match, the behavior depends on the `matchOrFail` property:
   expect all files coming in to match the regex. For more information about
   typical interactions between `RewritePath` and `Chain + Include`,
   see the following section, [Interaction with Chain and Include](#interaction-chain-include).
-  
+
 The default value for `regex` is the following regular expression,
 which provides convenient access to some named capturing groups:
 
-```
+```regex
 ^(?<folder>.*/)?(?<filename>([^/]+?|)(?=(?<ext>\.[^/.]*)?)$)
 ```
 
@@ -50,30 +50,38 @@ which doesn't rewrite paths.
 
 ## <a id="examples"></a>Examples
 
+See the following examples using the `RewritePath` transform.
+
+### <a id="example1"></a>Example 1
+
 The following moves all files from `src/main/java` to `sub-module/src/main/java`:
 
-```
+```yaml
 type: RewritePath
 regex: src/main/java/(.*)
 rewriteTo: "'sub-module/src/main/java' + #g1"   # 'sub-module/' + #g0 works too
 ```
-![image](rewrite-path.svg)
 
+![Diagram showing a RewritePath transform.](images/rewrite-path.svg)
+
+### <a id="example2"></a>Example 2
 
 The following flattens all files found inside the `sub-path` directory and its subdirectories,
 and puts them into the `flattened` folder:
 
-```
+```yaml
 type: RewritePath
 regex: sub-path/(.*/)*(?<filename>[^/]+)
 rewriteTo: "'flattened' + #filename"   # 'flattened' + #g2 would work too
 ```
 
+### <a id="example3"></a>Example 3
+
 The following turns all paths into lowercase:
 
-```
+```yaml
 type: RewritePath
-rewriteTo: "#g0.toLowerCase()" 
+rewriteTo: "#g0.toLowerCase()"
 ```
 
 ## <a id='interaction-chain-include'></a>Interaction with Chain and Include
@@ -81,7 +89,7 @@ rewriteTo: "#g0.toLowerCase()"
 It's common to define pipelines that perform a `Chain` of transformations
 on a subset of files, typically selected by `Include/Exclude`:
 
-```
+```yaml
 - include: "**/*.java"
 - chain:
     - # do something here

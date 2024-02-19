@@ -11,7 +11,7 @@ by [Combo](combo.md).
 
 ## <a id="syntax-reference"></a>Syntax reference
 
-```
+```yaml
 type: Exclude
 patterns: [<ant pattern>]
 condition: <SpEL expression>
@@ -19,7 +19,7 @@ condition: <SpEL expression>
 
 ## <a id="examples"></a>Examples
 
-```
+```yaml
 type: Chain
 transformations:
   - type: Exclude
@@ -27,9 +27,9 @@ transformations:
   - type: # At this point, no file matching **/secret/** is affected.
 ```
 
-![image](exclude.svg)
+![Diagram showing an exclude transform.](images/exclude.svg)
 
 ## See also
 
-* [Include](include.md)
-* [Combo](combo.md)
+- [Include](include.md)
+- [Combo](combo.md)

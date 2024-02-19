@@ -18,7 +18,7 @@ You can use `ReplaceText` transform in one of two ways:
 
 Syntax reference for replacing several literal text tokens:
 
-```console
+```yaml
 type: ReplaceText
 substitutions:
   - text: STRING
@@ -51,10 +51,14 @@ For example, `camel2Snake()` enables changing from camelCase to snake_case.
 
 ## <a id="examples"></a>Examples
 
+See the following examples using The `ReplaceText` transform.
+
+### <a id="example1"></a>Example 1
+
 Replacing the hardcoded string `"hello-world-app"` with the value of variable `#artifactId`
 in all `.md`, `.xml`, and `.yaml` files.
 
-```
+```yaml
 include: ['**/*.md', '**/*.xml', '**/*.yaml']
 chain:
   - type: ReplaceText
@@ -62,12 +66,15 @@ chain:
       - text: "hello-world-app"
         with: "#artifactId"
 ```
-![image](replace-text1.svg)
 
-Doing the same in the `README-fr.md` and `README-de.md` files, which are encoded using
-the `ISO-8859-1` charset:
+![Diagram showing a ReplaceText transform.](images/replace-text1.svg)
 
-```
+### <a id="example2"></a>Example 2
+
+Replacing the hardcoded string `"hello-world-app"` with the value of variable `#artifactId` in the
+`README-fr.md` and `README-de.md` files, which are encoded using the `ISO-8859-1` charset:
+
+```yaml
 include: ['README-fr.md', 'README-de.md']
 chain:
   - type: UseEncoding
@@ -78,10 +85,12 @@ chain:
         with: "#artifactId"
 ```
 
+### <a id="example3"></a>Example 3
+
 Similar to the preceding example, but making sure the value appears as kebab case,
 while the entered `#artifactId` is using camel case:
 
-```
+```yaml
 include: ['**/*.md', '**/*.xml', '**/*.yaml']
 chain:
   - type: ReplaceText
@@ -90,10 +99,12 @@ chain:
         with: "#camel2Kebab(#artifactId)"
 ```
 
+### <a id="example4"></a>Example 4
+
 Replacing the hardcoded string `"REPLACE-ME"` with the contents of
 file named after the value of the `#platform` option in `README.md`:
 
-```
+```yaml
 include: ['README.md']
 chain:
   - type: ReplaceText

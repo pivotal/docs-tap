@@ -18,7 +18,7 @@ The engine leverages v7.30.1 of Open Rewrite and parses Java files using the gra
 
 ## <a id="syntax-ref"></a>Syntax reference
 
-```console
+```yaml
 type: OpenRewriteRecipe
 recipe: <string>                  # Full qualified classname of the recipe
 options:
@@ -35,7 +35,7 @@ of `#companyPkg`. This is more powerful than using [RewritePath](rewrite-path.md
 and [ReplaceText](replace-text.md), as it reads the syntax of files and
 correctly deals with imports, fully compared to non-fully qualified names, and so on.
 
-```console
+```yaml
 chain:
   - include: ["**/*.java"]
   - type: OpenRewriteRecipe
@@ -45,4 +45,4 @@ chain:
       newPackageName: "#companyPkg"
 ```
 
-![image](open-rewrite-recipe.svg.svg)
+![Diagram showing an OpenRewriteRecipe transform.](images/open-rewrite-recipe.svg)

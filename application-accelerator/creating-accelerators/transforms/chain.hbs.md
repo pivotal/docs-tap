@@ -4,11 +4,11 @@ This topic tells you about the Application Accelerator `Chain` transform in Tanz
 
 The `Chain` transform uses function composition to produce its final output.
 
-![image](chain.svg)
+![Diagram of a chain transform.](images/chain.svg)
 
 ## <a id="syntax-reference"></a>Syntax reference
 
-``` console
+```yaml
 type: Chain
 transformations:
   - <transform>
