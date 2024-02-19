@@ -48,9 +48,9 @@ Before you define your `RecurringImageVulnerabilityScan` template, you must have
 - A service account that can push an OCI artifact to the results repository.
 - Credentials for any registry the scanner must pull images from to scan.
 
-Recurring scanning uses the SCST - Scan 2.0 component, which is included in the `Full` and `Build Profiles`.
+Recurring scanning uses the SCST - Scan 2.0 component, which is in the `Full` and `Build Profiles`.
 
-> **Note** Special attention should be paid to the service accounts and credentials that are needed.
+> **Note** Pay special attention to the service accounts and credentials that are needed.
 If you only use recurring scanning for images built in your supply chain, VMware recommends you
 use Namespace Provisioner to create a namespace, which automatically creates the service accounts and
 secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more
@@ -102,13 +102,12 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `SUCESSFUL-RETENTION`: The number of successful recurring scan executions to keep in Kubernetes.
 - `WORKSPACE-SIZE`: The size of the workspace used when scanning images. This is created as a Kubernetes PVC.  This depends mostly on the size of the vulnerability database, the number of images to be scanned, and the output of the vulnerability scanner. `10Gi` is the recommended starting point.
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
-- `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [IVS samples](ivs-custom-samples.hbs.md) for commonly used samples. To pass `spec.image` and `scanResults.location` to `args`, you can use `{image}` and `{output}` respectively. Please be aware that these interpolation variables differ from the ones currently used in the IVS (`$(params.image)` and `$(params.scan-results-path)`).
+- `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [ImageVulnerabilityScan samples](ivs-custom-samples.hbs.md#overview) for commonly used samples. To pass `spec.image` and `scanResults.location` to `args`, you can use `{image}` and `{output}` respectively. These interpolation variables differ from the ones currently used in the `ImageVulnerabilityScan` (`$(params.image)` and `$(params.scan-results-path)`).
 
-> **Note** Special attention should be paid to the scanning runtime, the scan frequency and the configured deadline.
+> **Note** Pay special attention to the scanning runtime, the scan frequency and the configured deadline.
 Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days can increase the number of images scanned, and in turn, the scanning runtime. If the
-scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans will start to queue up. VMware recommends
+scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans start to queue up. VMware recommends
 running the scan once every 24 hours at a time when your cluster load is low.
-
 
 ### <a id="grype-rivs-template"></a>Grype RecurringImageVulnerabilityScan template
 
@@ -179,10 +178,10 @@ This sample configuration, downloads the latest Grype vulnerability
 database and then scans with the stored database. This prevents multiple database updates
 while running concurrent scans.
 
-The placeholder `{image}` will be replaced by each one of the container images that are being scanned.
+The placeholder `{image}` is replaced by each one of the container images that are being scanned.
 This is equivalent to the `$(params.image)` placeholder used in the `ImageVulnerabilityScan`.
 
-The placeholder `{output}` will be replaced by an auto-generated path to store the results for the scanned image.
+The placeholder `{output}` is replaced by an auto-generated path to store the results for the scanned image.
 This is equivalent to the `$(params.scan-results-path)` placeholder used in the `ImageVulnerabilityScan`.
 
 ### <a id="trivy-rivs-template"></a>Trivy RecurringImageVulnerabilityScan template
@@ -259,10 +258,10 @@ This sample configuration downloads the latest Trivy vulnerability
 and Java databases and then scans with the stored databases. This prevents
 multiple database updates while running concurrent scans.
 
-The placeholder `{image}` will be replaced by each one of the container images that are being scanned.
+The placeholder `{image}` is replaced by each one of the container images that are being scanned.
 This is equivalent to the `$(params.image)` placeholder used in the `ImageVulnerabilityScan`.
 
-The placeholder `{output}` will be replaced by an auto-generated path to store the results for the scanned image.
+The placeholder `{output}` is replaced by an auto-generated path to store the results for the scanned image.
 This is equivalent to the `$(params.scan-results-path)` placeholder used in the `ImageVulnerabilityScan`.
 
 >**Note** Do not enclose the `{output}` interpolation value in quotes for a Trivy scan.
