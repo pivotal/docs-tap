@@ -7,14 +7,16 @@ For example, if you're using [Merge](merge.md) (or [Combo](combo.md)'s `merge` s
 The engine then must take an action: Should it keep the last file?
 Report an error? Concatenate the files together?
 
-Such conflicts can arise for a number of reasons.
-You can avoid or resolve them by configuring transforms with a _conflict resolution_. For example:
+## <a id="syntax-ref"></a>Syntax reference
+
+Conflicts can arise for a number of reasons.
+You can avoid or resolve them by configuring transforms with a conflict resolution. For example:
 
 - [Combo](combo.md) uses [UseLast](#available-strategies) by default, but you can configure it to do otherwise.
 - You can explicitly end a transform [Chain](chain.md) with a [UniquePath](unique-path.md), which
 by default uses [Fail](#available-strategies). This is customizable.
 
-## <a id="syntax-ref"></a>Syntax reference
+### <a id="combo"></a>Combo
 
 ```yaml
 type: Combo      # often omitted
@@ -27,7 +29,10 @@ chain:
   - ...
 onConflict: <conflict resolution>  # defaults to 'UseLast'
 ```
-![image](conflict-resolution1.svg)
+
+![Diagram showing a combo transform with UseLast conflict resolution.](images/conflict-resolution1.svg)
+
+### <a id="chain"></a>Chain
 
 ```yaml
 type: Chain      # or implicitly using Combo
@@ -37,7 +42,8 @@ transformations:
   - type: UniquePath
     strategy: <conflict resolution>  # defaults to 'Fail'
 ```
-![image](conflict-resolution2.svg)
+
+![Diagram showing a chain transform with Fail conflict resolution.](images/conflict-resolution2.svg)
 
 ## <a name="available-strategies"></a>Available strategies
 
@@ -50,15 +56,14 @@ The following values and behaviors are available:
   (typically by a transform appearing later in the YAML definition) is retained.
 - `Append`: The conflicting versions of files are concatenated (as if using `cat file1 file2 ...`), with files produced
 first appearing first.
-- `FavorOwn`: _Only makes sense in the context of [composition](../composition.md)._
+- `FavorOwn`: Only makes sense in the context of [composition](../composition.md).
   Selects the version of the file that comes from the current executing fragment if possible,
   falls back to the caller version otherwise.
-- `FavorForeign`: _Only makes sense in the context of [composition](../composition.md)._
+- `FavorForeign`: Only makes sense in the context of [composition](../composition.md).
   Selects the version of the file that was provided by the caller if present, falls
   back to the file originating from this fragment's fileset otherwise.
 - `NWayDiff`: Try to merge the conflicting resources by applying patches computed against a
-  common ancestor. The resulting resource bears the attributes of the first
-  conflicting resource.
+  common ancestor. The resulting resource has the attributes of the first conflicting resource.
 
 ## See also
 
