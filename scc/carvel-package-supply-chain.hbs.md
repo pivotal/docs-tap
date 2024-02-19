@@ -8,9 +8,8 @@ each environment.
 
 The [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md),
 [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.hbs.md), and
-[Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.hbs.md) packages
-provide variations of the OOTB supply chains that output Carvel
-Packages.
+[Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.hbs.md)
+packages provide variations of the OOTB supply chains that output Carvel Packages.
 
 ## <a id="overview"></a> Overview of the Carvel Package Supply Chains
 
@@ -22,7 +21,8 @@ configurable parameters such as `hostname` and `replicas` that are configured
 per environment. GitOps tools such as Flux CD and Argo CD can deploy the
 `Package`s onto multiple environments.
 
-> **Note** The Kubernetes resources created for your `Workload` are the same for Carvel Package supply chains, but with additional, optional resources such as `networking.k8s.io/v1 Ingress`.
+> **Note** The Kubernetes resources created for your `Workload` are the same for Carvel Package
+supply chains, but with additional, optional resources such as `networking.k8s.io/v1 Ingress`.
 
 ### <a id="supply-chains-do"></a> What do the Carvel Package Supply Chains Do?
 
