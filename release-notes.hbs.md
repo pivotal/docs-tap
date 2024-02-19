@@ -139,9 +139,16 @@ dependencies:
 
 - Updates reconciler-runtime to v0.15.1.
 
-#### <a id='1-8-0-spring-boot-convention'></a> v1.8.0 Features: Spring Boot Convention
+#### <a id='1-8-0-spring-boot-conv'></a> v1.8.0 Features: Spring Boot Convention
 
-- You no longer must provide the verbose configuration to enable actuators and the App Live View functionalities while running Spring Native workloads on TAP. The Spring Boot convention server enhances Tanzu PodIntents with metadata. This metadata can include labels, annotations, or properties required to run native workloads in Tanzu Application Platform. This metadata enables Application Live View to discover and register the app instances so that Application Live View can access the actuator data from those workloads. For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
+- You no longer must provide the verbose configuration to enable actuators and the Application Live View
+  features while running Spring Native workloads on Tanzu Application Platform.
+  The Spring Boot convention server enhances Tanzu PodIntents with metadata.
+  This metadata can include labels, annotations, or properties required to run native workloads in
+  Tanzu Application Platform.
+  This metadata enables Application Live View to discover and register the app instances so that
+  Application Live View can access the actuator data from those workloads.
+  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
 
 #### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
 
