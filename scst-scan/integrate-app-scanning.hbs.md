@@ -23,7 +23,7 @@ scanners. For more information, see  [Bring your own scanner with Supply Chain S
 
 To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
 
-1. Update your `tap-values.yaml` file to specify the Trivy ClusterImageTemplate. For example:
+1. Update your `tap-values.yaml` file to specify the Trivy `ClusterImageTemplate`. For example:
 
     ```yaml
     ootb_supply_chain_testing_scanning:

@@ -1,21 +1,26 @@
 # Use external PostgreSQL database for Supply Chain Security Tools - Store
 
-For production deployments, it is recommended to use an external Postgres database rather the one packaged with the Tanzu Application Platform.  This will allow you to manage it via best practices and processes that your organization have established.  This topic describes how you can configure your TAP deployment to use an external database.
+This topic describes how you configure Tanzu Application Platform to use an
+external database.
+
+For production deployments, VMware recommends you use an external PostgreSQL database rather than the
+one packaged with Tanzu Application Platform. This allows you to manage the external database using
+the best practices and processes that your organization has established.
 
 ## <a id='prereqExtrenalDB'></a>Prerequisites
 
-- Gather the connection information for the external PostgreSQL database: 
+Gather the following connection information for the external PostgreSQL database:
 
-   1. Database Instance Connect Endpoint
-   2. CA Certificate for the DB instance TLS certificate (if applicable)
-   3. Database Credentials
-   4. Name of the database to use
+- Database Instance Connect Endpoint
+- CA Certificate for the database instance TLS certificate (if applicable)
+- Database credentials
+- Name of the database
 
-- If migrating from the internal to an external database, be sure to backup the data before proceeding
+If migrating from the internal database to an external database, back up the data before proceeding.
 
-## Configuring AMR and MDS to use the external database
+## Configure AMR (Artifact Metadata Repository) and MDS (Metadata Store) to use the external database
 
-1. Update the TAP values for your deployment to include the following configurations:
+1. Update your `tap-values.yaml` file:
 
    ```yaml
    metadata-store: 
@@ -30,7 +35,7 @@ For production deployments, it is recommended to use an external Postgres databa
      db_max_open_conns: 10
      db_max_idle_conns: 100
      db_conn_max_lifetime: 60
-     # If TLS is enabled on Postgres Instance
+     # If TLS is enabled on PostgreSQL Instance
      db_sslmode: "verify-full"
      # If TLS Certificate is self-signed
      db_ca_certificate: |
@@ -39,13 +44,20 @@ For production deployments, it is recommended to use an external Postgres databa
        ...
        ...
    ```
-   > **Note** If you initially deployed TAP with an internal database and are migrating to an external database, be aware setting `deploy_internal_db` to `false,`  will remove the internal instance of PostgreSQL.  Be sure to backup and migrate your data to the database prior to setting this value to false or it may result in data loss.
 
-2. Apply the new configuration
+   > **Note** If you initially deployed Tanzu Application Platform with an internal database and are migrating to an external database, be aware that setting `deploy_internal_db` to `false,`  removes the
+   internal instance of PostgreSQL. Back up and migrate your data to the database before
+   setting this value to false or it might cause data loss.
+
+2. Apply the new configuration:
+
    ```console
    tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
    ```
-3. (Optional) If you are migrating from the internal database to an external database, the reconcilation above may fail.  In order for it to succeed, you must manually delete the secret that cert-manager created and cycle the AMR and MDS services so that the new secret can be picked up.
+
+3. (Optional) If you are migrating from the internal database to an external database, the
+reconciliation above might fail. To ensure success, you must manually delete the secret that cert-manager created and cycle the AMR and MDS services so that the new secret can be picked up.
+
    ```console
    kubectl delete secret -n metadata-store postgres-db-tls-cert
    kubectl rollout restart -n metadata-store deployment metadata-store-app
@@ -53,4 +65,4 @@ For production deployments, it is recommended to use an external Postgres databa
 
 ## Validation
 
-Verification was done using bitnami PostgreSQL. You can get more information from the [bitnami documentation](https://github.com/bitnami/charts/tree/main/bitnami/postgresql).
+Verification is done using Bitnami PostgreSQL. For more information, see the  [Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql) documentation.
