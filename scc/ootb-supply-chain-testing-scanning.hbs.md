@@ -208,7 +208,7 @@ live in the same namespace as the workload with the names matching the following
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-You can install the Grype ScanTemplates, in the namespace that you are writing the workload to, with
+You can install the Grype ScanTemplates in the namespace that you are writing the workload to with
 Namespace Provisioner.
 See [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md).
 
