@@ -167,37 +167,53 @@ the workload must be updated to point at your Tekton pipeline.
 
 ## <a id="install-OOTB-test-scan"></a>Install OOTB Supply Chain with Testing and Scanning
 
-### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
+To install OOTB Supply Chain with Testing and Scanning, you must install the Scan Controller
+and the Grype scanner.
 
-- Both the Scan Controller and the Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
-
-  > **Note** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
+Leveraging both Grype and Tanzu Build Service in your Tanzu Application Platform supply chain enables
+enhanced scanning coverage for languages and frameworks.
+For the languages and frameworks supported, see the _Extended Scanning Coverage using Anchore Grype_
+column in the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
 
 To install OOTB Supply Chain with Testing and Scanning:
 
->**Note** The OOTB Supply Chain with Testing and Scanning capability has been changed to opt-in and is skipped by default starting in Tanzu Application Platform 1.6. See [Scan Types](../scst-scan/scan-types.hbs.md).
+> **Note** The OOTB Supply Chain with Testing and Scanning capability has been changed to opt-in and
+> is skipped by default starting in Tanzu Application Platform v1.6.
+> For more information, see [Scan Types](../scst-scan/scan-types.hbs.md).
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
-    Verify that Scan Controller is installed by running:
+   Verify that Scan Controller is installed by running:
+
     ```console
     tanzu package installed get scanning -n tap-install
     ```
 
-    If the package is not already installed, follow the steps in [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md) to install the required scanning components.
+    If the package is not already installed, follow the steps in [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md)
+    to install the required scanning components.
 
+1. Grype Scanner for SCST - Scan is installed through Namespace Provisioner. Verify that Grype Scanner
+   is present on your workload namespace:
 
-1. Supply Chain Security Tools (SCST) - Grype Scanner is installed through Namespace Provisioner.
-
-    Verify that Grype Scanner is present on your workload namespace:
     ```console
     tanzu package installed get grype-scanner-YOUR-DEV-NAMESPACE -n tap-install
     ```
 
-    To install Grype Scanner to multiple namespaces, VMware recommends using a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md)
+    To install Grype Scanner to multiple namespaces, VMware recommends using [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+    <!-- Can we link to specific instructions for installing Grype with NS Provisioner? -->
+    <!-- Maybe [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md) -->
 
-    ScanTemplates are installed into the respective namespaces created by Namespace Provisioner. Grype scanner must be present in the namespace the workload is deployed to for scanning.
+    ScanTemplates are installed into the namespaces created by Namespace Provisioner.
+    Grype scanner must be present in the namespace that the workload is deployed to for scanning.
 
-    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows to block a supply chain when CVEs with critical, high, and unknown ratings are found using `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`. You can also configure the supply chain to use your own custom policies and apply exceptions when you want to ignore certain CVEs. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace). To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace text box to the template by running:
+1. Apply a ScanPolicy in the required namespace. The sample ScanPolicy provided in this step is
+   configured with `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`.
+   This blocks a supply chain when the scanner finds CVEs with critical, high, and unknown ratings.
+
+    You can also configure the supply chain to use your own custom policies and apply exceptions when
+    you want to ignore certain CVEs. See
+    [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace).
+    To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or
+    add the namespace field to the template by running:
 
     ```console
     kubectl apply -f - -o yaml << EOF
