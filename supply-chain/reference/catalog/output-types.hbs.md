@@ -19,6 +19,14 @@ structure. Use this as a guide to consuming or emitting types from your own cust
 
 ## Conventions
 
+This output image contains a single file: `app-config.yaml`. The `template` field in this file contains a Kubernetes
+Pod Template Spec, decorated by the Conventions controller. The Conventions component can also copy the settings in the
+configurations `spec.env` into the Pod template's `env` field.
+
+* Name: conventions
+* URL: OCI image URL
+* Digest: OCI image digest
+
 ## Git PR
 
 Output for a Git pull request.
