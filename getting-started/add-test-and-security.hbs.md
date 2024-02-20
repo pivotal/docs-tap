@@ -198,11 +198,11 @@ To install OOTB Supply Chain with Testing and Scanning:
     tanzu package installed get grype-scanner-YOUR-DEV-NAMESPACE -n tap-install
     ```
 
-    To install Grype Scanner to multiple namespaces, VMware recommends using [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
-    <!-- Can we link to specific instructions for installing Grype with NS Provisioner? -->
-    <!-- Maybe [Provision developer namespaces in Namespace Provisioner](../namespace-provisioner/provision-developer-ns.hbs.md) -->
+    To install Grype Scanner to multiple namespaces, VMware recommends using
+    [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+    ScanTemplates with Grype scanner are automatically installed into namespaces created by
+    Namespace Provisioner.
 
-    ScanTemplates are installed into the namespaces created by Namespace Provisioner.
     Grype scanner must be present in the namespace that the workload is deployed to for scanning.
 
 1. Apply a ScanPolicy in the required namespace. The sample ScanPolicy provided in this step is

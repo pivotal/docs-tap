@@ -219,7 +219,8 @@ following additional resources must exist in the same namespace as the workload:
 
   - A ScanTemplate defines the PodTemplateSpec used by a Job to run a particular scan, such as an image or source. When the supply chain initiates an ImageScan or SourceScan, they reference these templates which must be in the same namespace as the workload.
 
-  - Although you can customize the templates, VMware recommends that you follow the installation of the `grype.scanning.apps.tanzu.vmware.com` package. This is automatically created in all the namespaces managed by Namespace Provisioner. For more information, see [About Source and Image Scans](../scst-scan/explanation.hbs.md#about-src-and-image-scans).
+  - Grype scanner is automatically installed in all the namespaces managed by Namespace Provisioner.
+    For more information, see [About Source and Image Scans](../scst-scan/explanation.hbs.md#about-src-and-image-scans).
 
 - `ScanPolicy` defines how to evaluate whether the artifacts scanned are compliant. For example, allowing one to be restrictive about particular vulnerabilities found.
   - When an ImageScan or a SourceScan is created to run a scan, they reference a policy, the policy name must match the following [example ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain/scanpolicy-grype.yaml).
