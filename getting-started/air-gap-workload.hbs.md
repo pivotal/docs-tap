@@ -19,9 +19,10 @@ Before a developer can deploy an air-gapped workload, a platform operator must:
 
 - Configure the air-gapped environment using Namespace Provisioner.
   For instructions, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
-- For the testing supply chain workload, follow the steps in [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
-- For the testing scanning supply chain workload, follow the steps in [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
-- For the testing scanning supply chain workload, set up vulnerability scanning. For instructions, see
+- For the testing supply chain workload: Follow the steps in [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
+- For the testing scanning supply chain workload:
+  - Follow the steps in [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
+  - Set up vulnerability scanning. For instructions, see
   [Use vulnerability scanning in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id="create-workload"></a>Create a workload from Git
