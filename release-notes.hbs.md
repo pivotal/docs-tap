@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-7-5'></a> v1.7.5 
- 
+## <a id='1-7-5'></a> v1.7.5
+
 **Release Date**: 12 March 2024
- 
-### <a id='1-7-5-security-fixes'></a> v1.7.5 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+### <a id='1-7-5-security-fixes'></a> v1.7.5 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-7-5-COMPONENT-NAME-fixes'></a> v1.7.5 Security fixes: COMPONENT-NAME
- 
+
 - [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
+
 OR add HTML table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,34 +33,34 @@ OR add HTML table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-7-5-resolved-issues'></a> v1.7.5 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-7-5-resolved-issues'></a> v1.7.5 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-7-5-COMPONENT-NAME-ri'></a> v1.7.5 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-7-5-known-issues'></a> v1.7.5 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-7-5-known-issues'></a> v1.7.5 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-7-5-COMPONENT-NAME-ki'></a> v1.7.5 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-7-5-components'></a> v1.7.5 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                     | Version        |
 | -------------------------------------------------- | -------------- |
 | API Auto Registration                              |                |
@@ -3681,7 +3681,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id="1-7-sc-deprecations"></a> Source Controller deprecations
 
 - The Source Controller `ImageRepository` API is deprecated and is marked for
-  removal in Tanzu Application Platform. Use the `OCIRepository` API instead.
+  removal. Use the `OCIRepository` API instead.
   The Flux Source Controller installation includes the `OCIRepository` API.
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
