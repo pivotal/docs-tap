@@ -149,7 +149,7 @@ Use an existing supply chain
         build:
           env:
             - name: BP_NODE_RUN_SCRIPTS
-              value: 'set-tdp-config,portal:pack'
+              value: 'set-tpb-config,portal:pack'
             - name: TPB_CONFIG
               value: /tmp/tpb-config.yaml
             - name: TPB_CONFIG_STRING
@@ -186,9 +186,9 @@ Use an existing supply chain
         build:
           env:
             - name: BP_NODE_RUN_SCRIPTS
-              value: "set-tdp-config,portal:pack"
+              value: "set-tpb-config,portal:pack"
             - name: TPB_CONFIG
-              value: /tmp/tdp-config.yaml
+              value: /tmp/tpb-config.yaml
             - name: TPB_CONFIG_STRING
               value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
         source:
