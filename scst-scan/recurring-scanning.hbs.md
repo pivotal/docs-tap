@@ -50,7 +50,7 @@ Before you define your `RecurringImageVulnerabilityScan` template, you must have
 
 Recurring scanning uses the SCST - Scan 2.0 component, which is in the `Full` and `Build Profiles`.
 
-> **Note** Pay special attention to the service accounts and credentials that are needed.
+> **Note** Pay special attention to the service accounts, and credentials that are needed.
 If you only use recurring scanning for images built in your supply chain, VMware recommends you
 use Namespace Provisioner to create a namespace, which automatically creates the service accounts and
 secrets needed. The examples in this topic use a namespace created by Namespace Provisioner. For more
@@ -104,7 +104,7 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [ImageVulnerabilityScan samples](ivs-custom-samples.hbs.md#overview) for commonly used samples. To pass `spec.image` and `scanResults.location` to `args`, you can use `{image}` and `{output}` respectively. These interpolation variables differ from the ones currently used in the `ImageVulnerabilityScan` (`$(params.image)` and `$(params.scan-results-path)`).
 
-> **Note** Pay special attention to the scanning runtime, the scan frequency and the configured deadline.
+> **Note** Pay special attention to the scanning runtime, the scan frequency, and the configured deadline.
 Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days can increase the number of images scanned, and in turn, the scanning runtime. If the
 scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans start to queue up. VMware recommends
 running the scan once every 24 hours at a time when your cluster load is low.
