@@ -30,8 +30,8 @@ To install the local engine server:
   `macos-aarch64`, `macos-amd64`, `windows`, and `linux`. Download the ZIP file for your operating
   system and architecture.
 
-  The ZIP file contains the local engine server and a Java runtime for
-  running the server.
+    The ZIP file contains the local engine server and a Java runtime for
+    running the server.
 
 1. Extract the ZIP file to a local directory by using the `unzip` command or any other extraction tool.
 
