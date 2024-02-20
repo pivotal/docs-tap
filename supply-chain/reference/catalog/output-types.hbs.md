@@ -24,8 +24,8 @@ Pod Template Spec, decorated by the Conventions controller. The Conventions comp
 configurations `spec.env` into the Pod template's `env` field.
 
 * Name: conventions
-* URL: OCI image URL
-* Digest: OCI image digest
+* URL: OCI image URL containing the `app-config.yaml` file
+* Digest: OCI image digest containing the `app-config.yaml` file
 
 ## Git PR
 
