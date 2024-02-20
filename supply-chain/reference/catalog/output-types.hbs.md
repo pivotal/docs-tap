@@ -72,3 +72,7 @@ An OCI image containing the source code retrieved from a git repository.
 * Name: source
 * URL: OCI image URL for the git repository source code
 * Digest: OCI image digest for the git repository source code
+
+* Name: git
+* URL: The source code git repository URL
+* Digest: The source code git commit sha
