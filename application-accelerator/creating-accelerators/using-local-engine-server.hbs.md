@@ -5,16 +5,15 @@ testing accelerators that you are authoring.
 
 ## <a id="overview"></a> About running a local engine server
 
-When you are authoring your accelerator, you might want to generate a project based on the local files.
-This is so you can verify that the accelerator provides the defined options and that it generates
+When you are authoring your accelerator, it might be convenient generate a project based on the local
+files. This enables you to verify that the accelerator provides the defined options and generates
 the correct set of files.
 
 With the local engine server, you can serve your accelerators with their fragments on `localhost`,
 including any changes you have locally, and use the VS Code Tanzu App Accelerator extension or the
 Tanzu CLI Accelerator plug-in to generate new projects based on these local files.
-
-After you are happy with the new or modified accelerators and fragments, you can commit them to a Git
-repository and then publish them to a cluster to give others access to them.
+After you are satisfied with the new or modified accelerators and fragments, you can commit them to
+a Git repository and then publish them to a cluster to give others access.
 
 ## <a id="install-local-engine-server"></a>Install the local engine server
 
@@ -34,12 +33,12 @@ To install the local engine server:
   The ZIP file contains the local engine server and a Java runtime for
   running the server.
 
-1. Extract the ZIP file to a local directory, by using the `unzip` command or any other extraction tool.
+1. Extract the ZIP file to a local directory by using the `unzip` command or any other extraction tool.
 
-1. For macOS users, you must do the following steps to open an app from an unidentified developer:
+1. For macOS users, you must give permission to open an app from an unidentified developer:
 
     > **Note** VMware plans to have these artifacts signed using an Apple developer account
-    to avoid these extra steps.
+    > to avoid these extra steps.
 
     1. In the Finder on your Mac, locate the directory where you extracted the downloaded ZIP file
        and expand the `acc-engine` directory.
@@ -58,12 +57,12 @@ To install the local engine server:
 1. Open a terminal window and change directory to `acc-engine` located inside the directory where
    you extracted the ZIP file.
 
-1. Set an `ACC_LOCAL_FILES` environment variable pointing to a directory that contains the fragments
-   and accelerators that you are working on and want to use with the local engine server.
+1. Set an environment variable named `ACC_LOCAL_FILES` that points to a directory that contains the
+   fragments and accelerators you want to use with the local engine server.
    There must be a directory named `accelerators` and one named `fragments`.
-   Under these directories you can provide your local accelerators and fragments.
+   Under these directories you can provide your local accelerators and fragments. For example:
 
-    ```
+    ```console
       workspace
       ├── accelerators
       │   └── hello-world
@@ -75,19 +74,19 @@ To install the local engine server:
           │   ├── ...
     ```
 
-    - For macOS and Linux you can set this environment variable by running, for example:
+    - **For macOS and Linux:** Set this environment variable by running, for example:
 
         ```console
         export ACC_LOCAL_FILES="$HOME/workspace"
         ```
 
-    - For Windows Powershell you can set this environment variable by running, for example:
+    - **For Windows Powershell:** Set this environment variable by running, for example:
 
         ```console
         $Env:ACC_LOCAL_FILES="$HOME\workspace"
         ```
 
-1. Start the local engine server using the `engine` script from the terminal by running:
+1. Start the local engine server by running the `engine` script from the terminal:
 
     ```console
     ./engine
@@ -96,14 +95,15 @@ To install the local engine server:
 ## <a id="use-local-engine-server"></a>Use the local engine server to generate projects
 
 The latest versions of the VS Code Tanzu App Accelerator extension and the Tanzu CLI Accelerator plug-in
-has settings to use the local engine server instead of the regular cluster endpoints.
+have settings to use the local engine server instead of the regular cluster endpoints.
 
-For the VS Code Tanzu App Accelerator extension there is a new setting under
-**Tanzu Application Accelerator**.
-If you select the **Use Local Server instead of Developer Portal"** check box,
-the plug-in shows available accelerators from the local engine server you started in
-[Install the local engine server](#install-local-engine-server).
-You can use them in the same way that you use accelerators loaded from the Developer Portal.
+- **For the VS Code Tanzu App Accelerator extension:**
+  There is a new setting under **Tanzu Application Accelerator**. If you select the
+  **Use Local Server instead of Developer Portal"** check box, the plug-in shows available
+  accelerators from the local engine server you started in
+  [Install the local engine server](#install-local-engine-server) earlier.
+  You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
 
-For the Tanzu CLI Accelerator plug-in, the `list`, `get`, and `generate` commands now have a
-`--local-server` flag to use instead of the `--server-url` one.
+- **For the Tanzu CLI Accelerator plug-in:**
+  The `list`, `get`, and `generate` commands now have a `--local-server` flag to use instead of
+  `--server-url`.
