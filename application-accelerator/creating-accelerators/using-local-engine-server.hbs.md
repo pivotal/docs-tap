@@ -99,7 +99,7 @@ have settings to use the local engine server instead of the regular cluster endp
 
 - **For the VS Code Tanzu App Accelerator extension:**
   There is a new setting under **Tanzu Application Accelerator**. If you select the
-  **Use Local Server instead of Developer Portal"** check box, the plug-in shows available
+  **Use Local Server instead of Developer Portal** check box, the plug-in shows available
   accelerators from the local engine server you started in
   [Install the local engine server](#install-local-engine-server) earlier.
   You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
