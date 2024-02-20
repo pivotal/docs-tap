@@ -86,24 +86,25 @@ To install the local engine server:
         $Env:ACC_LOCAL_FILES="$HOME\workspace"
         ```
 
+## <a id="use-local-engine-server"></a>Use the local engine server to generate projects
+
+To use the local engine server:
+
 1. Start the local engine server by running the `engine` script from the terminal:
 
     ```console
     ./engine
     ```
 
-## <a id="use-local-engine-server"></a>Use the local engine server to generate projects
+1. The latest versions of the VS Code Tanzu App Accelerator extension and the Tanzu CLI Accelerator
+   plug-in have settings to use the local engine server instead of the regular cluster endpoints.
 
-The latest versions of the VS Code Tanzu App Accelerator extension and the Tanzu CLI Accelerator plug-in
-have settings to use the local engine server instead of the regular cluster endpoints.
+    - **For the VS Code Tanzu App Accelerator extension:**
+      There is a new setting under **Tanzu Application Accelerator**. If you select the
+      **Use Local Server instead of Developer Portal** check box, the plug-in shows available
+      accelerators from the local engine server you started.
+      You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
 
-- **For the VS Code Tanzu App Accelerator extension:**
-  There is a new setting under **Tanzu Application Accelerator**. If you select the
-  **Use Local Server instead of Developer Portal** check box, the plug-in shows available
-  accelerators from the local engine server you started in
-  [Install the local engine server](#install-local-engine-server) earlier.
-  You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
-
-- **For the Tanzu CLI Accelerator plug-in:**
-  The `list`, `get`, and `generate` commands now have a `--local-server` flag to use instead of
-  `--server-url`.
+    - **For the Tanzu CLI Accelerator plug-in:**
+      The `list`, `get`, and `generate` commands now have a `--local-server` flag to use instead of
+      `--server-url`.
