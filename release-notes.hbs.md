@@ -3495,7 +3495,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 ### <a id="1-6-sc-deprecations"></a> Source Controller deprecations
 
 - The Source Controller `ImageRepository` API is deprecated and is marked for
-  removal in Tanzu Application Platform. Use the `OCIRepository` API instead.
+  removal. Use the `OCIRepository` API instead.
   The Flux Source Controller installation includes the `OCIRepository` API.
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
