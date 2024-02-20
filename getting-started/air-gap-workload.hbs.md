@@ -19,8 +19,9 @@ Before a developer can deploy an air-gapped workload, a platform operator must:
 
 - Configure the air-gapped environment using Namespace Provisioner.
   For instructions, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
-- Follow the steps in [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
-- Set up vulnerability scanning by following the instructions in
+- For the testing supply chain workload, follow the steps in [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
+- For the testing scanning supply chain workload, follow the steps in [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
+- For the testing scanning supply chain workload, set up vulnerability scanning. For instructions, see
   [Use vulnerability scanning in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id="create-workload"></a>Create a workload from Git
@@ -122,8 +123,6 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 ```
 
 ## <a id="create-test-wkload"></a>Create a testing supply chain workload
-
-For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
