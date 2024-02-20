@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-The recommended way of installing TAP with Supply Chain support is to use the "authoring" profile, this will install all the
+The recommended way of installing TAP with Tanzu Supply Chain support is to use the "authoring" profile, this will install all the
 required packages for you.
 
 To do this update your `tap-values.yaml` to contain: 
