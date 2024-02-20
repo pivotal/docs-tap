@@ -37,9 +37,6 @@ To install the local engine server:
 
 1. For macOS users, you must give permission to open an app from an unidentified developer:
 
-    > **Note** VMware plans to have these artifacts signed using an Apple developer account
-    > to avoid these extra steps.
-
     1. In the Finder on your Mac, locate the directory where you extracted the downloaded ZIP file
        and expand the `acc-engine` directory.
 
@@ -53,6 +50,9 @@ To install the local engine server:
 
         The app files you control-opened are saved as exceptions to your security settings.
         You can now run them without getting a verification message.
+
+        > **Note** VMware plans to have these artifacts signed using an Apple developer account
+        > to avoid these extra steps.
 
 1. Open a terminal window and change directory to `acc-engine` located inside the directory where
    you extracted the ZIP file.
