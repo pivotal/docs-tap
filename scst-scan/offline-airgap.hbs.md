@@ -1,4 +1,4 @@
-# Using Vulnerability Scanning in air-gapped (offline) environments for Supply Chain Security Tools - Scan
+# Use vulnerability scanning in offline and air-gapped environments for Supply Chain Security Tools - Scan
 
 This topic tells you how to use Grype in air-gapped (offline) environments for Supply Chain Security Tools (SCST) - Scan.
 

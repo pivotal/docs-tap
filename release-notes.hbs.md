@@ -154,7 +154,7 @@ dependencies:
 
 - Introduces [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) for the [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.hbs.md) and [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) packages. This feature is in beta.
 
-#### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools - Scan
+#### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools (SCST) - Scan
 
 - SCST - Scan 2.0 is now GA. For more information, including guidance on when to use
 SCST - Scan 1.0 versus SCST - Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
@@ -207,9 +207,11 @@ This release includes the following changes, listed by component and area.
 - Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
   This tool has been officially deprecated since 2020.
 
-#### <a id='1-8-0-scst-scan'></a> v1.8.0 Breaking changes: SCST Scan
+#### <a id='1-8-0-scst-scan'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
 
-- The installation of Grype via `build` and `full` profiles has been removed.  It is recommended to use [namespace provisioner](./namespace-provisioner/use-case6.hbs.md) to install the Grype package in to developer namespaces.
+- Grype scanner has been removed from the `build` and `full` installation profiles. Use Namespace Provisioner
+  to install the Grype package to developer namespaces. For instructions, see
+  [Apply ScanTemplate overlays in air-gapped environments in Namespace Provisioner](./namespace-provisioner/use-case6.hbs.md).
 
 ---
 

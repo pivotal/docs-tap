@@ -4,8 +4,8 @@
 
 <!-- TODO: use markdown-generated anchor values to ease navigating within VS Code (and validating links). -->
 
-This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
-through GitOps with secrets managed externally in AWS Secrets Manager. 
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP)
+through GitOps with secrets managed externally in AWS Secrets Manager.
 To decide which approach to use, see [Choosing Secrets OPerationS (SOPS) or External Secrets Operator (ESO)](../reference.hbs.md#choosing-sops-or-eso).
 
 Tanzu GitOps Reference Implementation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPS to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
@@ -98,7 +98,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
 1. [Configure custom certificate authorities for Tanzu Developer Portal](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
 
-1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../../install-offline/scan-offline-airgap.hbs.md).
+1. Host a `grype` database in the air-gapped environment. For more information, see [Use vulnerability scanning in offline and air-gapped environments](../../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id='create-a-new-git-repository'></a>Create a new Git repository
 
@@ -233,7 +233,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
 
 ### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
 
-AWS Secrets Manager secrets store all sensitive configurations, which are accessed by both 
+AWS Secrets Manager secrets store all sensitive configurations, which are accessed by both
 Tanzu Sync and the Tanzu Application Platform installation.
 
 Follow these steps to configure the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html):
@@ -342,7 +342,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
         - `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
         - `username` is the username of a user account with read access to the Git repository.
         - `password` is the password or personal access token for the user.
-    
+
 1. To securely store the authentication credentials required for accessing the OCI registry that hosts the Tanzu Application Platform images, create a secret called `dev/CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
 
     ```json
@@ -686,7 +686,7 @@ the AWS Secrets Store secret created in the [Review and store Tanzu Application 
 
     When moving values, you must omit the `tap_install.values` root,
     but keep the remaining structure.
-    All of the parent keys, such as `ootb_supply_chain_basic.gitops` and `ssh_secret`, 
+    All of the parent keys, such as `ootb_supply_chain_basic.gitops` and `ssh_secret`,
     must be copied to the sensitive value YAML.
 
 1. Commit and push the Tanzu Application Platform values:

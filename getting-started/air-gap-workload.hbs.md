@@ -15,8 +15,13 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before you begin, a Platform operator must configure the air-gapped environment using Namespace Provisioner.
-For instructions, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
+Before a developer can deploy an air-gapped workload, a platform operator must:
+
+- Configure the air-gapped environment using Namespace Provisioner.
+  For instructions, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
+- Follow the steps in [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
+- Set up vulnerability scanning by following the instructions in
+  [Use vulnerability scanning in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md).
 
 ## <a id="create-workload"></a>Create a workload from Git
 
@@ -166,12 +171,6 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 ```
 
 ## <a id="create-test-scan-wkload"></a>Create a testing scanning supply chain workload
-
-For instructions about creating a workload with the testing and scanning supply chain, see [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
-
-In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
-follow [Using Vulnerability Scanning in offline and air-gapped environments](../install-offline/scan-offline-airgap.hbs.md))
-before workload creation.
 
 Create workload by running:
 

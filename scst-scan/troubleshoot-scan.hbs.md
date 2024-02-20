@@ -199,7 +199,7 @@ The source scan step is opt-in in Tanzu Application Platform 1.6 to better suppo
 
 ### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
-For information about issues with Grype in air gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
+For information about issues with Grype in air gap environments, see [Use vulnerability scanning in offline and air-gapped environments](offline-airgap.hbs.md).
 
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
@@ -455,8 +455,9 @@ Vulnerability DB [no update available] New version of grype is available: 0.50.2
 
 To resolve this issue, ensure that Grype has access to its vulnerability database:
 
-- If you have set up a [mirror](offline-airgap.hbs.md) of the vulnerability
-  database, verify that it is populated and reachable.
+- If you set up a mirror of the vulnerability database in
+  [Use vulnerability scanning in offline and air-gapped environments](offline-airgap.hbs.md),
+  verify that it is populated and reachable.
 - If you did not set up a mirror, Grype manages its database behind the scenes.
   Verify that the cluster has access to https://anchore.com/.
 
@@ -518,7 +519,7 @@ You might see an error message similar to the following when describing the Task
 ```
 
 1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` file with the following changes.
-    
+
     ```yaml
     tekton_pipelines:
         feature_flags:

@@ -67,9 +67,9 @@ specify the Trivy `ClusterImageTemplate`. For example:
         steps:
           env_vars:
           - name: TRIVY_DB_REPOSITORY
-            value: <container-registry>/aquasecurity/trivy-db
+            value: CONTAINER-REGISTRY/aquasecurity/trivy-db
           - name: TRIVY_JAVA_DB_REPOSITORY
-            value: <container-registry>/aquasecurity/trivy-java-db
+            value: CONTAINER-REGISTRY/aquasecurity/trivy-java-db
           - name: TRIVY_OFFLINE_SCAN
             value: true
     ```
@@ -442,13 +442,13 @@ Verify these possible reasons why the vulnerability database is not valid:
    from the cluster. For information about verifying connectivity, see
    [Debug Grype database in a cluster](#debug-grype-database-in-a-cluster).
 4. Verify if there are syntax errors in the listing.json:
-    
+
     ```console
     grype db check
     ```
 
 5. Validate the configured listing.json:
-   
+
     ```console
     grype db list -o raw
     ```
