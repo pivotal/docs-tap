@@ -16,4 +16,6 @@ We also cover:
 
 ## Getting Started
 
+* [How To Install Tanzu Supply Chain](./how-to/installing-supply-chain)
+ 
 <!-- tbd --->

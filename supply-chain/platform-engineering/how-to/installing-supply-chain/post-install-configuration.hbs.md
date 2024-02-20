@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Once you have Supply Chains installed, there are a number of step you'll need to complete to ensure 
+Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure 
 you have a functioning installation.
 
 ## Namespace Provisioner
