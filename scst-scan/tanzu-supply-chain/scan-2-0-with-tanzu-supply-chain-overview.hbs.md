@@ -11,6 +11,7 @@ Application Platform executes a scan on a container image for a container
 image scan solution.
 
 To run an `ImageVulnerabilityScan` in a [Tanzu Supply Chain](../../supply-chain/about.hbs.md):
+
 * [Author Supply Chains and Components](../../supply-chain/platform-engineering/how-to/about.hbs.md)
 * [Create a Workload](../../supply-chain/development/how-to/about.hbs.md)
 

@@ -100,7 +100,7 @@ This section describes how to create a custom Scanning Supply Chain Component th
     kubectl apply -f pipeline.yaml
     ```
 
-> **Note** If you create your own component, it requires the following label so that it can be observed by supplychain:
+> **Note** If you create your own component, it requires the following label so that it can be observed by Tanzu Supply Chain:
 
   ```console
   labels:

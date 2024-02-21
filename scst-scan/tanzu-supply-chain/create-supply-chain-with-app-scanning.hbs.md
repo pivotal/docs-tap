@@ -8,17 +8,22 @@ solution for Supply Chains Choreographer for Tanzu.
 This section describes what dependencies are needed to create and run a Tanzu Supply Chain Workload.
 
 * Installed Packages:
-  * Supplychain:
+  * Tanzu Supply Chain:
+
     * Supply Chain (supply-chain.apps.tanzu.vmware.com)
     * Supply Chain Catalog (supply-chain-catalog.apps.tanzu.vmware.com)
     * Managed Resource Controller (managed-resource-controller.apps.tanzu.vmware.com)
-    * [Tekton](../../tekton/install-tekton.hbs.md)
-  * Components:
+  * Supply Chain Components:
+
     * [Source](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider)
     * [Buildpack](../../supply-chain/reference/catalog/about.hbs.md#buildpack-build)
     * [Trivy Scanning](../../supply-chain/reference/catalog/about.hbs.md#trivy-image-scan)
   * Scanning:
+
     * [SCST - Scan 2.0](../install-app-scanning.hbs.md)
+
+  * Tekton:
+    * [Tekton](../../tekton/install-tekton.hbs.md)
 * [Tanzu Cartographer CLI Plugin](../../install-tanzu-cli.hbs.md)
 
 ## <a id="supply-chain-scan-2.0"></a> Create Supply Chain with SCST - Scan 2.0 and Component
@@ -61,8 +66,8 @@ component [page](./setup-supply-chain-component.hbs.md#customize-scan-component)
 
   Where:
 
-  * `SCANNING-COMPONENT-NAME` is the name of the [custom scanning component](./setup-supply-chain-component.hbs.md#customize-scan-component).
-  * `SCANNER` is the name of the scanner from the [custom scanning component](./setup-supply-chain-component.hbs.md#customize-scan-component).
+  * `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
+  * `SCANNER` is the name of the scanner from the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 **Note**: For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
 
