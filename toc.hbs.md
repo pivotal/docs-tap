@@ -450,6 +450,7 @@ docs.vmware.com is built.
     - [Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)
       - [Flux CD Source Controller overview](fluxcd-source-controller/about.hbs.md)
       - [Install Flux CD Source Controller](fluxcd-source-controller/install.hbs.md)
+      - [Use Flux CD Source Controller](fluxcd-source-controller/use-flux-sc.hbs.md)
     - [Learning Center](learning-center/about.hbs.md)
       - [Learning Center overview](learning-center/about.hbs.md)
       - [Install Learning Center](learning-center/install-learning-center.hbs.md)
