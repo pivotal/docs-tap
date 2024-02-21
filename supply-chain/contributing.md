@@ -56,8 +56,8 @@ Supply Chain Components page links to this page.
 ### Platform Engineer User Experience
 
 - PE installs the authoring profile when they want to author supply chains. This provides components that PE can use when authoring supply chains.
-- PE uses the CLI to see a catalog of installed components. - tanzu supply-chain component list
-- PE uses the CLI to see detail of the component, including documentation.  - tanzu supply-chain <component>  get or describe
+- PE uses the CLI to see a catalog of installed components. `tanzu supply-chain component list`
+- PE uses the CLI to see detail of the component, including documentation. `tanzu supply-chain <component>  get or describe`
 - While PE is authoring supply chains, they can see details about each component.
 In the CLI there will be links to the vmware.doc docs page that has the component descriptions.
 
