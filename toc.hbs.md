@@ -117,6 +117,7 @@
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)
   - [Use server workloads](workloads/server.hbs.md)
+      - [Use server workloads](workloads/server.hbs.md)
       - [Expose server workloads outside the cluster automatically](workloads/expose-server-workloads/auto.hbs.md)
       - [Expose HTTP server workloads manually](workloads/expose-server-workloads/manually-config-http.hbs.md)
       - [Define a workload type that exposes server workloads outside the cluster](workloads/expose-server-workloads/define-a-workload-type.hbs.md)
