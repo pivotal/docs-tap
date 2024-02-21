@@ -1,4 +1,4 @@
-# How to install the Supply Chain CLI Plugin
+# How to install the Supply Chain CLI Plugins
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
