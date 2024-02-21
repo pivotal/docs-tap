@@ -176,6 +176,16 @@ opt-in basis, except in the following situations:
 - To enable DORA metrics functionality, if you configured the `environment` label, rename it
   to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
+#### <a id='1-8-0-tanzu-developer-portal'></a> v1.8.0 Features: Tanzu Developer Portal
+
+- DORA Metrics Plugin
+  - Adds Date Range drop-down filter
+    - This Week
+    - This Month
+    - This Quarter
+    - Last 90 Days (default)
+  - Adds Environments drop-down filter
+    - Allows selection between All Environments (default) and any available individual environment
 
 #### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
 
