@@ -178,7 +178,7 @@ opt-in basis, except in the following situations:
 
 #### <a id='1-8-0-tanzu-dev-portal'></a> v1.8.0 Features: Tanzu Developer Portal
 
-- The DORA Metrics plug-in now has:
+- The DORA plug-in now has:
   - A Date Range drop-down menu, which includes the filters **This Week**, **This Month**,
     **This Quarter**, and **Last 90 Days (default)**
   - An Environments drop-down menu, which includes the filters **All Environments (default)** and
