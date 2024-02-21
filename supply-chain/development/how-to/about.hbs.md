@@ -7,5 +7,3 @@
 - [Create a Workload](./create-workloads.hbs.md)
 - [Observe runs for your Workloads](./observe-runs.hbs.md)
 - [Troubleshoot a run](./troubleshooting.hbs.md)
-
-
