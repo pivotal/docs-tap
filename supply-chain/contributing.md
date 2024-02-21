@@ -67,12 +67,12 @@ Each component has the following fields that provide descriptions of the compone
 
 Component Fields:
 
-  **Name**
--**Version**
--**Description** -  (multiline string) (potentially could make this a multiline string that has markdown). Some of the descriptions can be long and might require some templated headings underneath to accommodate the full scope.
--**Inputs** - List of objects, usually just 1
--**Outputs** - List of objects, usually just 1
--**Config**: A yaml sample that shows what inputs this component accepts in terms of configuration from the workload. The yaml has inline documentation and this is based on OpenAPI Spec V3 -  a swagger doc format. What inputs this component accepts in terms of configuration from the workload.
+- **Name**
+- **Version**
+- **Description** -  (multiline string) (potentially could make this a multiline string that has markdown). Some of the descriptions can be long and might require some templated headings underneath to accommodate the full scope.
+- **Inputs** - List of objects, usually just 1
+- **Outputs** - List of objects, usually just 1
+- **Config**: A yaml sample that shows what inputs this component accepts in terms of configuration from the workload. The yaml has inline documentation and this is based on OpenAPI Spec V3 -  a swagger doc format. What inputs this component accepts in terms of configuration from the workload.
 
 ### Automation Description
 
