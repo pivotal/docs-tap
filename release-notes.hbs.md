@@ -101,7 +101,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-buildpacks'></a> v1.8.0 Features: Buildpacks and Stacks
 
-- Adds the following new stacks, along with builders, as part of the [full](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full)
+- Adds the following new stacks, along with builders, as part of the [full](tanzu-build-service/dependencies.hbs.md#lite-vs-full)
 dependencies:
 
   - [Tanzu Standard Stack for UBI 8](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks)
@@ -214,11 +214,15 @@ This release includes the following changes, listed by component and area.
 - Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
   This tool has been officially deprecated since 2020.
 
-#### <a id='1-8-0-scst-scan'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-8-0-scst-scan-bc'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
 
 - Grype scanner has been removed from the `build` and `full` installation profiles. Use Namespace Provisioner
   to install the Grype package to developer namespaces. For instructions, see
   [Apply ScanTemplate overlays in air-gapped environments in Namespace Provisioner](./namespace-provisioner/use-case6.hbs.md).
+
+### <a id="1-8-0-tbs-bc"></a> v1.8.0 Breaking changes: Tanzu Build Service
+
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format has been removed.
 
 ---
 
@@ -779,9 +783,52 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 - Deprecation description including the release when the feature will be removed.
 
+### <a id='cnrs-deprecations'></a> Cloud Native Runtimes deprecations
+
+- **`default_tls_secret` config option**: After changes in this release, this config option is moved
+  to `contour.default_tls_secret`. `default_tls_secret` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.default_tls_secret` takes precedence over
+  `default_tls_secret`.
+
+- **`ingress.[internal/external].namespace` config options**: After changes in this release, these
+  config options are moved to `contour.[internal/external].namespace`.
+  `ingress.[internal/external].namespace` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.[internal/external].namespace` takes
+  precedence over `ingress.[internal/external].namespace`.
+
+### <a id="flux-cd-deprecations"></a> Flux CD Source Controller deprecations
+
+- Deprecations for the `GitRepository` API:
+  - `spec.gitImplementation` is deprecated.
+  `GitImplementation` defines the Git client library implementation.
+  `go-git` is the default and only supported implementation. `libgit2`
+  is no longer supported.
+  - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
+  Control List for enabling cross-namespace references to this object, was never
+  implemented.
+  - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+  defined in the observed artifact content config within the status.
+  - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+  - `status.url` is deprecated in favor of `status.artifact.url`.
+
+- Deprecations for the `OCIRepository` API:
+  - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+  defined in the observed artifact content config within the status.
+
 ### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
 
-- The following experimental APIs are marked as deprecated and will be removed in
+- The `tanzu services claims` CLI plug-in command is deprecated and is marked for removal in
+  Tanzu Application Platform v1.9.
+  It is hidden from help text output, but it will continue to work until it is removed.
+  The new `tanzu services resource-claims` command provides the same function.
+
+- The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1` are deprecated
+  and marked for removal in Tanzu Application Platform v1.9.
+
+- The experimental `kubectl-scp` plug-in is deprecated and marked for removal in Tanzu
+  Application Platform v1.9.
+
+- The following experimental APIs are deprecated and are marked for removal in
   Tanzu Application Platform v1.9:
 
   - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
@@ -795,5 +842,29 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+
+### <a id="sc-deprecations"></a> Source Controller deprecations
+
+- The Source Controller `ImageRepository` API is deprecated and is marked for
+  removal. Use the `OCIRepository` API instead.
+  The Flux Source Controller installation includes the `OCIRepository` API.
+  For more information about the `OCIRepository` API, see the
+  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
+
+### <a id='scc-deprecations'></a> Supply Chain Choreographer deprecations
+
+- Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
+  now assumes that `libgit2` is not supported.
+  - Flux CD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
+  see the [fluxcd/source-controller Changelog](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330).
+  - Existing references to the `git_implementation` field are ignored and references to `libgit2`
+    do not cause failures. This is assured up to Tanzu Application Platform v1.9.
+  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.8.
+
+### <a id="tekton-deprecations"></a> Tekton Pipelines deprecations
+
+- Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application Platform v1.9.
+  Use the `Task` API instead. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
 
 ---
