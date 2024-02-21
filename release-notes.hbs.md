@@ -3668,7 +3668,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id="1-7-stk-deprecations"></a> Services Toolkit deprecations
 
 - The `tanzu services claims` CLI plug-in command is deprecated and is marked for removal in
-  Tanzu Application Platform v1.8.
+  Tanzu Application Platform v1.9.
   It is hidden from help text output, but it will continue to work until it is removed.
   The new `tanzu services resource-claims` command provides the same function.
 
