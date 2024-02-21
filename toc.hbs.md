@@ -114,6 +114,7 @@ docs.vmware.com is built.
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)
   - [Use server workloads](workloads/server.hbs.md)
+      - [Use server workloads](workloads/server.hbs.md)
       - [Expose HTTP server workloads manually](workloads/expose-server-workloads/manually-config-http.hbs.md)
       - [Define a workload type that exposes server workloads outside the cluster](workloads/expose-server-workloads/define-a-workload-type.hbs.md)
       - [Expose workloads outside the cluster using AVI L4/L7](workloads/expose-server-workloads/expose-with-avi-l4-l7.hbs.md)
