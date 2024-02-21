@@ -5,7 +5,8 @@ workload, and how to verify the scanning performed in a workload.
 
 ## <a id="create-and-apply-workload"></a> Create and apply workload
 
-This sections covers how to create a workload from an existing [supply chain](./create-supply-chain-with-app-scanning.hbs.md).
+This sections covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
+either the Trivy Supply Chain Component or Customized Scanning Component.
 
 1. Use the Tanzu Cartographer plug-in to create a workload from a specific supply chain:
 
@@ -35,7 +36,7 @@ This sections covers how to create a workload from an existing [supply chain](./
     Here the user can create a supply chain workload from the:
 
     - [Trivy Supply Chain](./create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component)
-    - [Supply Chain with Custom Scanner Component](./create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component)
+    - [Supply Chain with Customized Scanning Component](./create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component)
 
     This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
