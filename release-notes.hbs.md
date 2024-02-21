@@ -114,6 +114,10 @@ dependencies:
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
 
+#### <a id='1-8-0-contour'></a> v1.8.0 Features: Contour
+
+- Updates Contour to v1.26.1. For more information, see the [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.26.1) in GitHub.
+
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
 - Updates [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
@@ -739,7 +743,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Cartographer Conventions                           |         |
 | cert-manager                                       |         |
 | Cloud Native Runtimes                              |         |
-| Contour                                            |         |
+| Contour                                            | Contour 1.26.1 / Contour Package 2.2.0 |
 | Crossplane                                         |         |
 | Default Roles                                      |         |
 | Developer Conventions                              |         |
