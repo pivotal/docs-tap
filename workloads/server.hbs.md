@@ -119,7 +119,6 @@ The following values are valid within the `ports` argument:
 
 You have several options for exposing `server` workloads outside the cluster:
 
-- [Expose server workloads outside the cluster automatically](expose-server-workloads/auto.hbs.md)
 - [Expose HTTP server workloads outside the cluster manually](expose-server-workloads/manually-config-http.hbs.md)
 - [Define a workload type that exposes server workloads outside the cluster](expose-server-workloads/define-a-workload-type.hbs.md)
 - [Expose workloads outside the cluster using AVI L4/L7](expose-server-workloads/expose-with-avi-l4-l7.hbs.md)
