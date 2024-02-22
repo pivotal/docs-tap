@@ -25,8 +25,7 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 ## <a id='deprecated-features'></a> Deprecated Features
 
-**The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see
-[Deactivate the CNB BOM format](install-tbs.md#deactivate-cnb-bom).
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format has been removed.
 
 ## <a id='tbs-offline-install-package'></a> Install the Tanzu Build Service package
 
