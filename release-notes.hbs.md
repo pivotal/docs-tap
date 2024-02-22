@@ -122,7 +122,6 @@ dependencies:
 
 - Updates Contour to v1.26.1. For more information, see the [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.26.1) in GitHub.
 
-
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
 - Updates [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1

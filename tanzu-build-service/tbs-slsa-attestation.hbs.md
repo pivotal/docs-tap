@@ -103,7 +103,6 @@ Tanzu Build Service does not generate SLSA attestation by default. To enable thi
     ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-    <!-- I assumed that you would need to apply the tap-values.yaml. verify this step is correct. -->
 
 ## <a id="unsigned-attestation"></a> Create unsigned attestations (SLSA L0)
 
@@ -183,9 +182,8 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
 1. To verify the signature of the attestation, run:
 
     ```console
-    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST 2> /dev/null
+    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST > /dev/null
     ```
-    <!-- should this be ">" instead of "2>"? -->
 
     Where:
 
