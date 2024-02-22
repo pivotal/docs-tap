@@ -3598,7 +3598,6 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
   VMware plans to remove support in Tanzu Application Platform v1.8.
-  To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.hbs.md#deactivate-cnb-bom).
 
 ### <a id="1-7-tekton-deprecations"></a> Tekton Pipelines deprecations
 
