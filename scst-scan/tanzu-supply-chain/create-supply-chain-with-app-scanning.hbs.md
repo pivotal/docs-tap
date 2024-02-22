@@ -20,12 +20,11 @@ The following installed packages are required:
 - [SCST - Scan 2.0](../install-app-scanning.hbs.md)
 - [Tekton](../../tekton/install-tekton.hbs.md)
 
-## <a id="supply-chain-scan-2.0"></a> Create Supply Chain with SCST - Scan 2.0 and Component
+## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and Component
 
 This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component)
 
-
-### <a id="scan-2.0-and-trivy"></a> Create Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
+### <a id="scan-2.0-and-trivy"></a> Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
 
 Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using Tanzu Cartographer Wizard:
 
@@ -63,7 +62,7 @@ component [page](./setup-supply-chain-component.hbs.md#customize-scan-component)
   * `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
   * `SCANNER` is the name of the scanner from the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
-**Note**: For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
+**Note** For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
 
 ## <a id="apply-supply-chain"></a> Apply Supply Chain
 

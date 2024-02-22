@@ -5,7 +5,7 @@ workload, and how to verify the scanning performed in a workload.
 
 ## <a id="create-and-apply-workload"></a> Create and apply workload
 
-This sections covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
+This section covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
 either the Trivy Supply Chain Component or Customized Scanning Component.
 
 1. Use the Tanzu Cartographer plug-in to create a workload from a specific supply chain:
@@ -80,18 +80,17 @@ This section shows how to use the Tanzu Cartographer CLI to observe a workload.
     tanzu cartographer workload get Sample WORKLOAD-NAME
     ```
 
-    * See [Tanzu Supply Chain docs](../../supply-chain/development/how-to/observe-runs.hbs.md) for more
-    details on how to observe runs of the workload.
+    For more information, [How to observe the Runs of your Workload](../../supply-chain/development/how-to/observe-runs.hbs.md).
 
 ## <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
-1. Get the ivs name by looking for the IVS in the namespace it was created in:
+Get the ivs name by looking for the IVS in the namespace it was created in:
 
-    ```console
-    $ kubectl get ivs -n DEV-NAMESPACE
+```console
+$ kubectl get ivs -n DEV-NAMESPACE
 
-    NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
-    DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
-    ```
+NAMESPACE                    NAME                          SUCCEEDED   REASON      AGE
+DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
+```
 
-    * For information on how to retrieve scan results by using the IVS name found in the previous step, see [Retrieve scan results](../verify-app-scanning.hbs.md#retrieve-scan-results).
+For information about how to retrieve scan results by using the IVS name, see [Retrieve scan results](../verify-app-scanning.hbs.md#retrieve-scan-results).
