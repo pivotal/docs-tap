@@ -23,14 +23,15 @@ perform the following:
   5. Scanning the image for known vulnerabilities
   6. Applying operator-defined conventions to the container definition
   7. Deploying the application to the same cluster
-     1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
+  8. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git repository.
+  See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 - Using a prebuilt application image:
 
   1. Scanning the image for known vulnerabilities
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
-     1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
+  1. (Beta) Alternatively, outputting a Carvel package containing the application to a Git repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -113,7 +114,7 @@ must exist in the same namespace as the workload. These define:
   For example, allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
-The names of the objects **must** match the names in the example with default installation configurations. This is overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
+The names of the objects **must** match the names in the example with default installation configurations. This is overridden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
 
 - To override by using the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform).
 

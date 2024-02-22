@@ -27,9 +27,8 @@ performs the following:
 - Using a prebuilt application image:
 
   1. Applying operator-defined conventions to the container definition
-  2. Creating a deliverable object for deploying the application to a cluster
-    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
-
+  1. Creating a deliverable object for deploying the application to a cluster
+  1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 ## <a id="prerequisite"></a> Prerequisites
 
@@ -66,8 +65,8 @@ _source-test-to-url_.
 As mentioned in the prerequisites section, this supply chain builds on the
 previous Out of the Box Supply Chain, so only additions are included here.
 
-To make sure you have configured the namespace correctly, it is important that
-the namespace has the following objects in it (including the ones marked with
+To make sure you have configured the namespace correctly,
+the namespace must have the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
 - **registries secrets**: Kubernetes secrets of type
@@ -111,7 +110,7 @@ Chain Basic section, you need to include one more:
 By default, the workload is matched to the corresponding pipeline to run using
 labels.  Pipelines must have the label `apps.tanzu.vmware.com/pipeline: test` at
 a minimum, but you can add additional labels for granularity.  This provides a
-default match in the event that no other labels are provided. The pipeline
+default match if no other labels are provided. The pipeline
 expects two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
@@ -185,7 +184,7 @@ will be submitted to, you can submit your Workload.
 
 Regardless of the workflow being targeted (local development or gitops), the
 Workload configuration details are the same as in Out of the Box Supply Chain
-Basic, except that you mark the workload with tests enabled by means of the
+Basic, except that you mark the workload with tests enabled using the
 `has-tests` label.
 
 For example:
