@@ -62,10 +62,10 @@ enabled and a signing key is attached to the service account of the workload.
 
 Before you can configure Tanzu Build Service to sign your image builds, you must:
 
-- Install Tanzu Application Platform with either the Full, Iterate, or Build profile.
-  If you have not installed Tanzu Application Platform, see [Installing Tanzu Build Service](install-tbs.md).
-  <!-- is this essentially referring to TBS being installed whether via profile or package install or do you have to have these particular profiles? -->
-  <!-- If particular profiles, link to multicluster install page. If TAP with TBS, list install TAP and install TBS via profile or package install instructions. -->
+- [Install Tanzu Application Platform](../install-intro.hbs.md).
+
+- If you did not install Tanzu Application Platform by using the Full, Iterate, or Build profile,
+  install the Tanzu Build Service package. See [Installing Tanzu Build Service](install-tbs.md).
 
 - Install jq. For instructions, see the [jq documentation](https://jqlang.github.io/jq)
 
