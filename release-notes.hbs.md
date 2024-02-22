@@ -229,7 +229,7 @@ This release includes the following changes, listed by component and area.
   to install the Grype package to developer namespaces. For instructions, see
   [Apply ScanTemplate overlays in air-gapped environments in Namespace Provisioner](./namespace-provisioner/use-case6.hbs.md).
 
-### <a id="1-8-0-tbs-bc"></a> v1.8.0 Breaking changes: Tanzu Build Service
+#### <a id="1-8-0-tbs-bc"></a> v1.8.0 Breaking changes: Tanzu Build Service
 
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format has been removed.
 
