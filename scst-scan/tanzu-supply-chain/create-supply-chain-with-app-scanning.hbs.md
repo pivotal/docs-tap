@@ -7,7 +7,7 @@ solution for Supply Chains Choreographer for Tanzu.
 
 This section describes what dependencies are needed to create and run a Tanzu Supply Chain Workload.
 
-[Tanzu Cartographer CLI Plug-in](../../install-tanzu-cli.hbs.md)
+- [Tanzu Cartographer CLI Plug-in](../../install-tanzu-cli.hbs.md)
 
 The following installed packages are required:
 
