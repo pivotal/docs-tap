@@ -114,14 +114,13 @@ dependencies:
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
 
-
 #### <a id='1-8-0-contour'></a> v1.8.0 Features: Contour
 
 - Updates Contour to v1.26.1. For more information, see the [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.26.1) in GitHub.
 
 #### <a id='1-8-0-cnr'></a> v1.8.0 Features: Cloud Native Runtimes
 
-- Updates Knative Serving to v1.13.1. For more information, see the [Knative release notes](https://github.com/knative/serving/releases/tag/knative-v1.13.0) in GitHub.
+- Updates Knative Serving to v1.13.1. For more information, see the [Knative release notes](https://github.com/knative/serving/releases/tag/knative-v1.13.1) in GitHub.
 
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
@@ -206,6 +205,7 @@ opt-in basis, except in the following situations:
   action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
   when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
   type of workloads) from the Tanzu panel.
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes

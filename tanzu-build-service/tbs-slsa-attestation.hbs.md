@@ -109,7 +109,6 @@ Tanzu Build Service does not generate SLSA attestation by default. To enable thi
 
 If Tanzu Build Service has SLSA attestation enabled, every app image built by TBS generates a second
 image where the attestation is stored.
-<!-- if SLSA attestation is enabled, would this also be L1 according to the level descriptions above? -->
 
 ### <a id="build-image-l0"></a> Build the image
 
@@ -135,7 +134,6 @@ For an example of expected output, see the [kpack documentation](https://github.
 
 If the service account of the workload has a secret with a signing key attached, Tanzu Build Service
 automatically signs the generated attestation.
-<!-- does this also describe L2 according to the level descriptions above? -->
 
 ### <a id="configure-signing-key"></a> Generate and save the signing key
 
