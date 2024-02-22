@@ -26,8 +26,11 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 ## <a id='deprecated-features'></a> Deprecated Features
 
-- **Automatic dependency updates:** For more information, see [Configure automatic dependency updates](#auto-updates-config).
-- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see [Deactivate the CNB BOM format](#deactivate-cnb-bom).
+- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** This legacy format is
+   deprecated, and is now deactivated by default in Tanzu Application Platform.
+
+   You can still manually activate the format, using `include_legacy_bom=true` in your values file.
+   The feature will be removed in Tanzu Application Platform v1.8.
 
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
 
@@ -298,9 +301,3 @@ To install `full` Tanzu Build Service dependencies:
 
     Where `VALUES-FILE` is the path to your Tanzu Build Service or Tanzu Application Platform values YAML file.
 
-## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
-
-The legacy CNB BOM format is deprecated, but is enabled by default in Tanzu Application Platform.
-
-To manually deactivate the format, add `include_legacy_bom=false` to either the `tbs-values.yaml` file,
-or to the `tap-values.yaml` file under the `buildservice` section.

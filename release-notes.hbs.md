@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-9'></a> v1.6.9 
- 
-**Release Date**: 12 March 2024 
- 
-### <a id='1-6-9-security-fixes'></a> v1.6.9 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-6-9'></a> v1.6.9
+
+**Release Date**: 12 March 2024
+
+### <a id='1-6-9-security-fixes'></a> v1.6.9 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-9-COMPONENT-NAME-fixes'></a> v1.6.9 Security fixes: COMPONENT-NAME
- 
+
 - [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
+
 OR add HTML table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,34 +33,34 @@ OR add HTML table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-6-9-resolved-issues'></a> v1.6.9 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-9-resolved-issues'></a> v1.6.9 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-9-COMPONENT-NAME-ri'></a> v1.6.9 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-9-known-issues'></a> v1.6.9 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-9-known-issues'></a> v1.6.9 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-9-COMPONENT-NAME-ki'></a> v1.6.9 Known issues: COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.  
- 
+
 ---
- 
+
 ### <a id='1-6-9-components'></a> v1.6.9 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                                   | Version        |
 | ---------------------------------------------------------------- | -------------- |
 | API Auto Registration                                            |                |
@@ -3652,7 +3652,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
   VMware plans to deactivate this format by default in Tanzu Application Platform v1.6.1 and remove
   support in Tanzu Application Platform v1.8.
-  To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
 ### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in deprecations
 
