@@ -20,7 +20,7 @@ And the following component packages if you're authoring a supply chain:
 To install these, run the following script:
 
 ```shell
-export SUPPLY_CHAIN_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "supply-chain.apps.tanzu.vmware.com").spec.version')
+export SUPPLY_CHAIN_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="supply-chain.apps.tanzu.vmware.com")].spec.version}')
 echo $SUPPLY_CHAIN_VERSION
 
 tanzu package install supply-chain \
@@ -28,7 +28,7 @@ tanzu package install supply-chain \
   --version $SUPPLY_CHAIN_VERSION \
   --namespace tap-install
 
-export SUPPLY_CHAIN_CATALOG_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "supply-chain-catalog.apps.tanzu.vmware.com").spec.version')
+export SUPPLY_CHAIN_CATALOG_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="supply-chain-catalog.apps.tanzu.vmware.com")].spec.version}')
 echo $SUPPLY_CHAIN_CATALOG_VERSION
 
 tanzu package install supply-chain-catalog \
@@ -36,7 +36,7 @@ tanzu package install supply-chain-catalog \
   --version $SUPPLY_CHAIN_CATALOG_VERSION \
   --namespace tap-install
 
-export MANAGED_RESOURCE_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "managed-resource-controller.apps.tanzu.vmware.com").spec.version')
+export MANAGED_RESOURCE_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="managed-resource-controller.apps.tanzu.vmware.com")].spec.version}')
 echo $MANAGED_RESOURCE_VERSION
 
 tanzu package install managed-resource-controller \
@@ -44,7 +44,7 @@ tanzu package install managed-resource-controller \
   --version $MANAGED_RESOURCE_VERSION \
   --namespace tap-install
 
-export SOURCE_COMPONENT_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "source.component.apps.tanzu.vmware.com").spec.version')
+export SOURCE_COMPONENT_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="source.component.apps.tanzu.vmware.com")].spec.version}')
 echo $SOURCE_COMPONENT_VERSION
 
 tanzu package install source-component \
@@ -52,7 +52,7 @@ tanzu package install source-component \
   --version $SOURCE_COMPONENT_VERSION \
   --namespace tap-install 
 
-export CONVENTIONS_COMPONENT_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "conventions.component.apps.tanzu.vmware.com").spec.version')
+export CONVENTIONS_COMPONENT_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="conventions.component.apps.tanzu.vmware.com")].spec.version}')
 echo $CONVENTIONS_COMPONENT_VERSION
 
 tanzu package install conventions-component \
@@ -60,7 +60,7 @@ tanzu package install conventions-component \
   --version $CONVENTIONS_COMPONENT_VERSION \
   --namespace tap-install  
   
-export BUILDPACK_COMPONENT_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "buildpack-build.component.apps.tanzu.vmware.com").spec.version')
+export BUILDPACK_COMPONENT_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="buildpack-build.component.apps.tanzu.vmware.com")].spec.version}')
 echo $BUILDPACK_COMPONENT_VERSION
 
 tanzu package install buildpack-build-component \
@@ -68,7 +68,7 @@ tanzu package install buildpack-build-component \
   --version $BUILDPACK_COMPONENT_VERSION \
   --namespace tap-install
   
-export ALM_CATALOG_COMPONENT_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "alm-catalog.component.apps.tanzu.vmware.com").spec.version')
+export ALM_CATALOG_COMPONENT_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="alm-catalog.component.apps.tanzu.vmware.com")].spec.version}')
 echo $ALM_CATALOG_COMPONENT_VERSION
 
 tanzu package install alm-catalog-component \
@@ -76,7 +76,7 @@ tanzu package install alm-catalog-component \
   --version $ALM_CATALOG_COMPONENT_VERSION \
   --namespace tap-install 
 
-export GIT_WRITER_COMPONENT_VERSION=$(kubectl get package -n tap-install -oyaml | yq '.items[] | select(.spec.refName == "git-writer.component.apps.tanzu.vmware.com").spec.version')
+export GIT_WRITER_COMPONENT_VERSION=$(kubectl get package -n tap-install -o=jsonpath='{.items[?(@.spec.refName=="git-writer.component.apps.tanzu.vmware.com")].spec.version}')
 echo $GIT_WRITER_COMPONENT_VERSION
 
 tanzu package install git-writer-component \
