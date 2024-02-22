@@ -208,8 +208,8 @@ For more information about the credentials and setting up the Kubernetes secret,
 
 #### <a id="https-ca-cert"></a>HTTPS with a Custom CA Certificate
 
-For git repositories hosted with a custom Certificate Authority, please follow documentation to setup
-[kubernetes secret with Custom CA](git-auth.hbs.md#https-with-a-custom-ca-certificate)
+For Git repositories hosted with a custom CA, setup a Kubernetes secret with a
+custom CA. For more information, see [HTTPS with a Custom CA Certificate](git-auth.hbs.md#https-with-a-custom-ca-certificate).
 
 #### <a id="ssh-auth"></a>SSH authentication
 
