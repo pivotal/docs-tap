@@ -716,7 +716,7 @@ Developer Portal might be inaccurate.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
-- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
+- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in a future release.
 
 #### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
 
