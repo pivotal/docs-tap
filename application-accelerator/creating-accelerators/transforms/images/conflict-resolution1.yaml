@@ -1,0 +1,9 @@
+engine:
+  type: Combo    
+  merge:
+    - type: T1
+    - type: T2
+    - type: T3
+  chain:
+    - type: T4
+  onConflict: UseLast 

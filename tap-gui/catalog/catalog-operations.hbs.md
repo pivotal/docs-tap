@@ -17,8 +17,8 @@ For information about all types of entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
 You can use the example blank catalog described in the Tanzu Developer Portal
-[prerequisites](../../prerequisites.hbs.md#tap-gui) as a foundation for creating user, group, system, and
-main component YAML files.
+[prerequisites](../../prerequisites.hbs.md#tap-gui) as a foundation for creating user, group, system,
+and main component YAML files.
 
 The organization contains Group 1, and Group 1 contains Users 1 and 2. System contains Components 1
 and 2. User 1 owns Component 2. Group 1 owns System.
@@ -184,7 +184,7 @@ Use static configuration
                   target: EXTRA-CATALOG-LOCATION
         ```
 
-      When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
+      When targeting GitHub, don't write the raw URL. Instead, use the URL that appears when you
       navigate to the file in the browser. The catalog processor cannot set up the files properly if
       you use the raw URL.
 
@@ -249,6 +249,8 @@ Backstage components.
 
 #### <a id='install-yelb'></a> Install Yelb
 
+To install Yelb:
+
 1. Download the necessary file for running the Yelb application itself from
    [GitHub](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml).
 2. Install the application on the Kubernetes cluster that you used for Tanzu Application Platform.
@@ -256,7 +258,13 @@ Backstage components.
 
 #### <a id='install-yelb-cat'></a> Install the Yelb catalog
 
-1. From the
-   [Tanzu Application Platform downloads](https://network.tanzu.vmware.com/products/tanzu-application-platform)
-   page, click **tanzu-developer-portal-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
-1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
+To install the Yelb catalog:
+
+1. In [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform), select
+   your release from the drop-down menu.
+1. Click **tanzu-developer-portal-catalogs-latest** >
+   **Tanzu Application Platform Developer Portal Yelb Catalog** and download the catalog.
+1. Unpack the downloaded TAR archive to a local drive.
+1. Follow the earlier steps for [Register components](#register-comp) to register the
+   `catalog-info.yaml` in the root of the unpacked archive and register all the catalog entities
+   that constitute the Yelb system.

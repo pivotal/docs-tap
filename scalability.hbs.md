@@ -73,7 +73,7 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- AMR Observer | 100&nbsp;m/500&nbsp;m | 256&nbsp;Mi/**1&nbsp;Gi** |n/a| Yes | Yes | No | `tap-values.yaml` |
+ AMR Observer | 200&nbsp;m/1000&nbsp;m | 2&nbsp;Gi/**3&nbsp;Gi** |n/a| Yes | Yes | No | `tap-values.yaml` |
 | Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** |n/a| Yes | No | Yes | `tap-values.yaml` |
 | Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800*| Yes | No | No | `tap-values.yaml` |
 | Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | `tap-values.yaml` |
