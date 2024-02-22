@@ -123,7 +123,6 @@ dependencies:
 
 - Updates Knative Serving to v1.13.1. For more information, see the [Knative release notes](https://github.com/knative/serving/releases/tag/knative-v1.13.0) in GitHub.
 
-
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
 - Updates [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
@@ -748,10 +747,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Carbon Black Scanner for SCST - Scan (beta)        |         |
 | Cartographer Conventions                           |         |
 | cert-manager                                       |         |
-| Cloud Native Runtimes                              |         |
-| Contour                                            | Contour 1.26.1 / Contour Package 2.2.0 |
 | Cloud Native Runtimes                              |  2.5.1  |
-| Contour                                            |         |
+| Contour                                            |  2.2.0  |
 | Crossplane                                         |         |
 | Default Roles                                      |         |
 | Developer Conventions                              |         |
