@@ -3,81 +3,104 @@
 This topic covers how to create and apply a workload from a Tanzu Supply Chain, how to observe a
 workload, and how to verify the scanning performed in a workload.
 
-## <a id="create-and-apply-workload"></a> Create and apply workload
+## <a id="define-and-create-workload"></a> Define and create workload
 
 This section covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
 either the Trivy Supply Chain Component or Customized Scanning Component.
+See [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md) for more details on how to create a workload.
 
-1. Use the Tanzu Cartographer plug-in to create a workload from a specific supply chain:
+A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
 
-    ```console
-    tanzu cartographer workload generate
-    ```
+### <a id="define-workload"></a> Define a workload
 
-    Example output:
+Define a `workload.yaml` to run:
 
-    ```console
-    $ tanzu cartographer workload generate
-
-    ? Select the supply chain:   [Use arrows to move, type to filter]
-    > SCANNER-supply-chain-1.0.0 (11h)
-      trivy-supply-chain-1.0.0 (3d)
-    kind: Sample
-    apiVersion: sample.com/v1alpha1
+    ```yaml
+    kind: KIND
+    apiVersion: example.com/v1alpha1
     metadata:
-      name: example-sample
+      name: WORKLOAD-NAME
     spec:
       registry:
-        ...
-      scanning:
-        ...
+        repository: REGISTRY-REPOSITORY
+        server: REGISTRY-SERVER
+      source:
+        git:
+          branch: main
+          url: GIT-URL
+        subPath: ""
     ```
+    Where:
 
-    Here the user can create a supply chain workload from the:
+    * `KIND` is the kind defined in the [previous section](./create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-that-uses-scst---scan-20-with-a-component) about creating Tanzu Supply Chains
+    * `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
+    * `REGISTRY-SERVER` is the registry repository used for the scan results location.
+    * `GIT-URL` is the git repo URL to clone from for the source component.
+    * `GIT-BRANCH` is the git branch ref to watch for the new source.
+    * `GIT-SUBPATH` is the path inside the bundle to lcoate source code.
+    * For the above `GIT-*` values, see [Source Git Provider](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider) for more details
 
-    - [Trivy Supply Chain](./create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component)
-    - [Supply Chain with Customized Scanning Component](./create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component)
+### <a id="generate-workload"></a> Generate workload
+Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
+  ```console
+  tanzu workload generate NAME --kind KIND
+  ```
+  Where `KIND` is the kind api resource defined in the previous [section](./create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-that-uses-scst---scan-20-with-a-component)
 
-    This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
+  See [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md) for more details from Tanzu Supply Chain docs.
 
-2. Apply workload:
+  This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
-    ```console
-    kubectl apply -f workload.yaml -n DEV-NAMESPACE
-    ```
+### <a id="create-workload"></a> Create workload
+
+   Using the `workload.yaml` created in the previous section, create the workload:
+   ```console
+   tanzu workload create --file workload.yaml --namespace DEV-NAMESPACE
+   ```
 
 ## <a id="observe-workload"></a> Observe workload
 
-This section shows how to use the Tanzu Cartographer CLI to observe a workload.
+This section shows how to use the Tanzu Workload CLI to observe a workload.
 
 1. List workloads in cluster:
 
     ```console
-    tanzu cartographer workload list
+    tanzu workload list -n DEV-NAMESPACE
     ```
 
     Example output:
 
     ```console
-    $ tanzu cartographer workload list
+    $ tanzu workload list -n grype-app-scanning-catalog
 
-    NAME                           NAMESPACE                   SUPPLY CHAIN                LATEST RUN                                  READY        AGE   MESSAGE                                     PROGRESS
-    Sample/golang-app-test-123     grype-app-scanning-catalog  sample-supply-chain-1.0.0   SampleRun/golang-app-test-123-run-ccmrq     Running      2m4s  waiting for stage buildpack-build & 1 more  ##-
-    Example/golang-app-test-456    grype-app-scanning-catalog  example-supply-chain-1.0.0  ExampleRun/golang-app-test-456-run-m4vb9    Not          33h                      ...
+    Listing workloads from all namespaces
+
+      NAMESPACE                   NAME                         KIND                  VERSION   AGE
+      grype-app-scanning-catalog  golang-app-grype-test  grypescs.example.com  v1alpha1  35m
+
+    🔎 To see more details about a workload, use 'tanzu workload get workload-name --kind workload-kind'
     ```
 
-2. View logs for a specific workload:
+2. View workload details:
 
     ```console
-    tanzu cartographer workload tail Sample WORKLOAD-NAME
+    tanzu workload get Sample WORKLOAD-NAME
     ```
 
-    Where `WORKLOAD-NAME` is the name of the workload for a specific Kind defined from the supply chain.
-
-3. View workload details:
-
+    Example output:
     ```console
-    tanzu cartographer workload get Sample WORKLOAD-NAME
+    $ tanzu workload get golang-app-grype-test  -n grype-app-scanning-catalog
+    📡 Overview
+      name:       golang-app-grype-test
+      kind:       grypescs.example.com/golang-app-grype-test
+      namespace:  grype-app-scanning-catalog
+      age:        37m
+
+    🏃 Runs:
+      ID                                     STATUS     DURATION  AGE
+      golang-app-grype-test-run-btlvx  Succeeded  4m13s     37m
+
+    🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
 
     For more information, [How to observe the Runs of your Workload](../../supply-chain/development/how-to/observe-runs.hbs.md).
