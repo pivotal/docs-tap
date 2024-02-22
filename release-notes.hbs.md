@@ -114,9 +114,15 @@ dependencies:
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
 
+
+#### <a id='1-8-0-contour'></a> v1.8.0 Features: Contour
+
+- Updates Contour to v1.26.1. For more information, see the [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.26.1) in GitHub.
+
 #### <a id='1-8-0-cnr'></a> v1.8.0 Features: Cloud Native Runtimes
 
 - Updates Knative Serving to v1.13.1. For more information, see the [Knative release notes](https://github.com/knative/serving/releases/tag/knative-v1.13.0) in GitHub.
+
 
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
@@ -742,6 +748,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Carbon Black Scanner for SCST - Scan (beta)        |         |
 | Cartographer Conventions                           |         |
 | cert-manager                                       |         |
+| Cloud Native Runtimes                              |         |
+| Contour                                            | Contour 1.26.1 / Contour Package 2.2.0 |
 | Cloud Native Runtimes                              |  2.5.1  |
 | Contour                                            |         |
 | Crossplane                                         |         |
