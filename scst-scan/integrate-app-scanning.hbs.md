@@ -32,14 +32,14 @@ To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
 
     >**Note** In Tanzu Application Platform v1.7 there is a known issue that causes the default
     >Trivy scanner image to point to an inaccessible location.
-    >You can resolve this by setting `ootb_supply_chain_testing_scanning.image_scanner_cli` to the correct
+    >You can resolve this by setting `ootb_supply_chain_testing_scanning.image_scanning_cli` to the correct
     >image, for example:
     >
     >```yaml
     >ootb_supply_chain_testing_scanning:
     >  image_scanner_template_name: image-vulnerability-scan-trivy
-    >    image_scanner_cli:
-    >      image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+    >  image_scanning_cli:
+    >    image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     >```
     >
     > For more information, see [v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0](../release-notes.hbs.md#1-7-0-scst-scan-ki).
