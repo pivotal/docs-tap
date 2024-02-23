@@ -17,22 +17,24 @@ The following installed packages are required:
 - [Trivy Scanning](../../supply-chain/reference/catalog/about.hbs.md#trivy-image-scan)
 - [SCST - Scan 2.0](../install-app-scanning.hbs.md)
 - [Tekton](../../tekton/install-tekton.hbs.md)
-- [Tanzu Supply Chain CLI Plugins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md)
+- [Tanzu Supply Chain CLI Plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md)
 
 ## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and Component
 
-This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component)
+This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 ### <a id="scan-2.0-and-trivy"></a> Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
 
-Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using Tanzu Supply Chain CLI Plugin:
+Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using Tanzu Supply Chain CLI plug-in:
 
   Initialize Tanzu Supply Chain:
+
   ```console
   tanzu supplychain init --group example.com
   ```
 
   Example output:
+
   ```console
   $ tanzu supplychain init --group example.com
   Initializing group example.com
@@ -47,6 +49,7 @@ Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Com
   ```
 
   Generate supply chain:
+
   ```console
   tanzu supplychain generate --kind TrivySC \
   --description Trivy \
@@ -56,6 +59,7 @@ Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Com
   ```
 
   Example output:
+
   ```console
   $ tanzu supplychain generate --kind TrivySC \
     --description Trivy \
@@ -79,49 +83,51 @@ Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Com
   Created file tasks/store-content-oci.yaml
   ```
 
-
 ### <a id="scan-2.0-and-custom-scanning"></a> Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component
 
 Create a Supply Chain with SCST - Scan 2.0 and the Custom Scanning Component created in the
-component [page](./setup-supply-chain-component.hbs.md#customize-scan-component).
-See [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md)
-for more details on how to create a Supply Chain.
+component [Customize Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component) topic.
+For more details on how to create a Supply Chain, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
 
-  Initialize Tanzu Supply Chain:
-  ```console
-  tanzu supplychain init --group example.com
-  ```
+Initialize Tanzu Supply Chain:
 
-  Example output:
-  ```console
-  $ tanzu supplychain init --group example.com
-  Initializing group example.com
-  Creating directory structure
-  ├─ supplychains/
-  ├─ components/
-  ├─ pipelines/
-  ├─ tasks/
-  └─ config.yaml
+```console
+tanzu supplychain init --group example.com
+```
 
-  Writing group configuration to config.yaml
-  ```
+Example output:
 
-  Generate supply chain:
-  ```console
-  tanzu supplychain generate --kind <custom Kind workload> \
-  --description <description of scanner> \
-  --component source-git-provider-1.0.0 \
-  --component buildpack-build-1.0.0 \
-  --component SCANNING-COMPONENT-NAME
-  ```
+```console
+$ tanzu supplychain init --group example.com
+Initializing group example.com
+Creating directory structure
+├─ supplychains/
+├─ components/
+├─ pipelines/
+├─ tasks/
+└─ config.yaml
 
-  Where `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
+Writing group configuration to config.yaml
+```
+
+Generate supply chain:
+
+```console
+tanzu supplychain generate --kind <custom Kind workload> \
+--description <description of scanner> \
+--component source-git-provider-1.0.0 \
+--component buildpack-build-1.0.0 \
+--component SCANNING-COMPONENT-NAME
+```
+
+Where `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 **Note** For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
 
 ## <a id="apply-supply-chain"></a> Apply Supply Chain
 
-  The previous step of generating the supply chain created the following directory structure:
+Generating the supply chain created the following directory structure:
+
   ```console
   ├─ supplychains/
   ├─ components/
@@ -129,8 +135,10 @@ for more details on how to create a Supply Chain.
   ├─ tasks/
   ```
 
-  Apply these directories to the DEV-NAMESPACE where the workload will be run.
-  ```console
-  kubectl apply -R -f components -f supplychains -f tasks -f pipelines -n DEV-NAMESPACE
-  ```
-  Where  `DEV-NAMESPACE` is the same namespace where the intended workload will be.
+Apply these directories to the DEV-NAMESPACE where the workload will be run.
+
+```console
+kubectl apply -R -f components -f supplychains -f tasks -f pipelines -n DEV-NAMESPACE
+```
+
+Where  `DEV-NAMESPACE` is the same namespace where the intended workload will be.
