@@ -733,6 +733,10 @@ Developer Portal might be inaccurate.
   for their Carvel Package. This overlay incorrectly replaces all Convention provided environment variables, instead of merging in developer provided environment variables.
   Work around this by supplying all environment variables, both Convention provided and user provided, to the Carvel Package. This issue will be fixed in the next patch.
 
+#### <a id='1-8-0-tap'></a> v1.8.0 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform 1.8.0 installation via TMC is not supported for K8s 1.26.
+  
 ---
 
 ### <a id='1-8-0-components'></a> v1.8.0 Component versions
