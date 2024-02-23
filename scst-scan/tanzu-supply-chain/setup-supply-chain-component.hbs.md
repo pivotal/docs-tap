@@ -32,8 +32,7 @@ This section describes how to install the Trivy Supply Chain Component that uses
 ## <a id="customize-scan-component"></a> Customize Scanning Component
 
 This section describes how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0.
-See [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-component.hbs.md)
-for more details on how to create a Component.
+For more details on how to create a Component, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-component.hbs.md).
 
 1. Customize a component by retrieving the component YAML of the Trivy Supply Chain Component.
 
@@ -41,7 +40,7 @@ for more details on how to create a Component.
       kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
       ```
 
-2. Edit the following lines in the `component.yaml`:
+1. Edit the following lines in the `component.yaml`:
 
     ```yaml
     apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
@@ -62,8 +61,9 @@ for more details on how to create a Component.
           name: trivy-image-scan-v2 # SCANNER-image-scan-v2. Replace with the name of the pipeline created in the next step.
     ```
 
-    * Remove the following fields from the yaml:
-    ```
+1. Remove the following fields from the yaml:
+
+    ```console
     metadata:
       annotations:
         ...
@@ -75,64 +75,69 @@ for more details on how to create a Component.
       uid:
     ```
 
-3. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline.
+1. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline.
 
-    * Retrieve pipeline YAML:
-      ```console
-      kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
-      ```
+    1. Retrieve pipeline YAML:
 
-    * Edit the following lines in the `pipeline.yaml`:
-      ```yaml
-      apiVersion: tekton.dev/v1
-      kind: Pipeline
-      metadata:
-        name: trivy-image-scan-v2 # change to SCANNER-image-scan-v2
-      spec:
-        description: Scans your image for vulnerabilities using Trivy # change Trivy to SCANNER
-      ...
-              resourceSpec:
-                apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-                kind: ImageVulnerabilityScan
-                metadata:
-                  annotations:
-                    app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy # change to SCANNER
-                  ...
-                  steps:
-                  - args:
-                    - # insert array of steps to run for SCANNER
-                  ...
-                    name: trivy-generate-report # change to any SCANNER
-                  ...
+          ```console
+          kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
+          ```
+
+    2. Edit the following lines in the `pipeline.yaml`:
+
+        ```yaml
+        apiVersion: tekton.dev/v1
+        kind: Pipeline
+        metadata:
+          name: trivy-image-scan-v2 # change to SCANNER-image-scan-v2
+        spec:
+          description: Scans your image for vulnerabilities using Trivy # change Trivy to SCANNER
+        ...
+                resourceSpec:
+                  apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+                  kind: ImageVulnerabilityScan
+                  metadata:
+                    annotations:
+                      app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy # change to SCANNER
+                    ...
+                    steps:
+                    - args:
+                      - # insert array of steps to run for SCANNER
+                    ...
+                      name: trivy-generate-report # change to any SCANNER
+                    ...
+          ```
+
+          Where `SCANNER` is the name of the scanner from the scanning component
+
+    3. Remove the following fields from the yaml:
+
+        ```console
+        metadata:
+          annotations:
+            ...
+          creationTimestamp:
+          generation:
+          labels:
+            ...
+          resourceVersion:
+          uid:
         ```
-        Where `SCANNER` is the name of the scanner from the scanning component
 
-    * Remove the following fields from the yaml:
-      ```
-      metadata:
-        annotations:
-          ...
-        creationTimestamp:
-        generation:
-        labels:
-          ...
-        resourceVersion:
-        uid:
-      ```
-
-4. Apply the custom component and pipeline:
+1. Apply the custom component and pipeline:
 
     ```console
     kubectl apply -f component.yaml
     kubectl apply -f pipeline.yaml
     ```
 
-> **Note** If you create your own component, it requires the following label so that it can be observed by Tanzu Supply Chain:
+1. (Optional) If you create your own component, it requires the following label so that it can be
+observed by Tanzu Supply Chain:
 
-  ```console
-  labels:
-    supply-chain.apps.tanzu.vmware.com/catalog: tanzu
-  ```
+    ```console
+    labels:
+      supply-chain.apps.tanzu.vmware.com/catalog: tanzu
+    ```
 
 ## <a id="how-to-view-component"></a> View components
 
