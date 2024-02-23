@@ -246,26 +246,6 @@ To install `full` Tanzu Build Service dependencies:
       exclude_dependencies: true
     ```
 
-    a. (Optional) Install the UBI builder. The UBI builder is a builder based on Red
-       Hat UBI 8 for the build and run image. The only languages supported by this
-       builder is Java and Node.js. If you would like to install the UBI builder,
-       add the key-value pair `enable_ubi_builder: true` to your `tbs-values.yaml`.
-
-        ```yaml
-        ---
-        enable_ubi_builder: true
-        ```
-
-    b. (Optional) Install the Static builder. The Static builder is based on Ubuntu
-       Jammy for the build image and a minimal static run image, the only languages
-       supported is Golang. If you would like to install the Static builder,
-       add the key-value pair `enable_static_builder: true` to your `tbs-values.yaml`.
-
-        ```yaml
-        ---
-        enable_static_builder: true
-        ```
-
 1. If you have not updated your package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
@@ -291,7 +271,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Add the Tanzu Build Service  `full` dependencies package repository by running:
+2. Add the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -305,7 +285,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Install the `full` dependencies package by running:
+3. Install the `full` dependencies package by running:
 
     ```console
     tanzu package install full-tbs-deps \
