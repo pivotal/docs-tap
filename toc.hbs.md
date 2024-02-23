@@ -796,8 +796,8 @@
       - [Reference](./supply-chain/reference/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](supply-chain/reference/catalog/about.hbs.md) for Platform Engineering
               - [Output Types](supply-chain/reference/catalog/output-types.hbs.md) used with Tanzu Supply Chain Components
-          - [Workload CLI Plugin Reference](./supply-chain/reference/workload-cli.hbs.md)
-          - [Supply Chain CLI Plugin Reference](./supply-chain/reference/supply-chain-cli.hbs.md)
+          - [Workload CLI Plugin Reference](./supply-chain/reference/workload-cli/tanzu_workload.md)
+          - [Supply Chain CLI Plugin Reference](./supply-chain/reference/supplychain-cli/tanzu_supplychain.md)
           - [API](supply-chain/reference/api/about.hbs.md)
               - [SupplyChain](supply-chain/reference/api/supplychain.hbs.md)
               - [Component](supply-chain/reference/api/component.hbs.md)
