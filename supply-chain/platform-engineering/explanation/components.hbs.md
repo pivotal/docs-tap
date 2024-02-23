@@ -4,6 +4,8 @@
 
 ![core-concepts-component.jpg](./images/core-concepts-component.jpg)
 
+[Detailed Specification in the API Section](../../reference/api/component.hbs.md)
+
 Components encapsulate "work to be done" in composable and re-usable pieces.
 Components are analogous to steps, stages, jobs and tasks in other CI/CD offerings.
 Components are unique from other CI/CD offerings in three distinct ways:
