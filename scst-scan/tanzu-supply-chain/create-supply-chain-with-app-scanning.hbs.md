@@ -1,7 +1,6 @@
 # Create a Supply Chain that uses SCST - Scan 2.0 with a Component
 
-This topic covers how to create a Tanzu Supply Chain with App Scanning which replaces the previous
-solution for Supply Chains Choreographer for Tanzu.
+This topic covers how to create a Tanzu Supply Chain with SCST - Scan 2.0 which replaces the previous solution for Supply Chains Choreographer for Tanzu.
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -86,7 +85,7 @@ Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./
 ### <a id="scan-2.0-and-custom-scanning"></a> Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component
 
 Create a Supply Chain with SCST - Scan 2.0 and the [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
-For more details on how to create a Supply Chain, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
+For more details on how to create a Supply Chain, see [Tanzu Supply Chain](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
 
 Initialize Tanzu Supply Chain:
 

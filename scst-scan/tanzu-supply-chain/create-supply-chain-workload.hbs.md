@@ -53,9 +53,9 @@ tanzu workload generate NAME --kind KIND
 
 Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
-For more information about how to create a workload, see [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md).
-
 This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
+
+For more information about how to create a workload, see [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md).
 
 ### <a id="create-workload"></a> Create a workload
 
