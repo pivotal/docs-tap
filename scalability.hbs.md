@@ -79,11 +79,12 @@ The following table describes the resource limit changes that are required for c
 | Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | `tap-values.yaml` |
 | Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | n/a | Yes | Yes | Yes | `tap-values.yaml` |
 | Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** |n/a | Yes | Yes | Yes | `tap-values.yaml` |
-| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | `tap-values.yaml` |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi** |n/a | No | Yes | Yes | `tap-values.yaml` |
 | Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | `tap-values.yaml` |
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
-| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
+| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;Mi/**2&nbsp;Gi** | n/a| Yes | No | Yes| `tap-values.yaml` |
+| App SSO/App SSO Controller | 20&nbsp;m/500&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | n/a| No | Yes | Yes| `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
@@ -231,10 +232,10 @@ Edit `values.yaml` to scale resource limits:
 ```console
 amr:
   observer:
-    app_limit_cpu: 1000m
-    app_limit_memory: 3Gi
-    app_req_cpu: 200m
-    app_req_memory: 2Gi
+    app_limit_cpu: 500m
+    app_limit_memory: 1Gi
+    app_req_cpu: 100m
+    app_req_memory: 256Mi
 ```
 
 ### kpack-controller in build service
@@ -314,10 +315,10 @@ cnrs:
   - name: "controller"
     limits:
       cpu: 1000m
-      memory: 2Gi
+      memory: 3Gi
     requests:
       cpu: 100m
-      memory: 512Mi
+      memory: 1Gi
 ```
 
 ### net-contour controller
@@ -433,4 +434,29 @@ Edit `values.yaml` to scale resource limits:
 ```console
 tap_telemetry:
   limit_memory: 2Gi
+```
+
+### Appsso
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 500m
+    memory: 5000Mi
+  requests:
+    cpu: 20m
+    memory: 100Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+appsso:
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      memory: 512Mi
 ```
