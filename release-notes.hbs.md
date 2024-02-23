@@ -139,6 +139,14 @@ This release includes the following changes, listed by component and area.
   immediately reconciling when `status.binding.name` changes on a previously bound service resource.
   For more information, see the [runtime release notes](https://github.com/servicebinding/runtime/releases/tag/v0.7.0).
 
+#### <a id='1-8-0-service-registry'></a> v1.8.0 Features: Service Registry
+
+- Skips TLS verificaton in DiscoveryClient, when mTLS is not enabled
+
+- Enables TLS configuration coniditionally, with server.ssl.enabled flag
+
+- Allows for configuring resource requests and limits for EurekaServers deployed via eureka-controller
+
 #### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
 
 - Updates reconciler-runtime to v0.15.1.
