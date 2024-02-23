@@ -231,10 +231,10 @@ Edit `values.yaml` to scale resource limits:
 ```console
 amr:
   observer:
-    app_limit_cpu: 500m
-    app_limit_memory: 1Gi
-    app_req_cpu: 100m
-    app_req_memory: 256Mi
+    app_limit_cpu: 1000m
+    app_limit_memory: 3Gi
+    app_req_cpu: 200m
+    app_req_memory: 2Gi
 ```
 
 ### kpack-controller in build service
