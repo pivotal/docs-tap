@@ -9,7 +9,7 @@ This section describes what dependencies are needed to create and run a Tanzu Su
 
 The following installed packages are required:
 
-- [Supply Chain](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
+- [Tanzu Supply Chain](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
 - [Supply Chain Catalog](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
 - [Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
 - [Source](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider)
@@ -25,7 +25,7 @@ This section covers how to create a supply chain with SCST - Scan 2.0 with eithe
 
 ### <a id="scan-2.0-and-trivy"></a> Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
 
-Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using Tanzu Supply Chain CLI plug-in:
+Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using the Tanzu Supply Chain CLI plug-in:
 
   Initialize Tanzu Supply Chain:
 
@@ -85,8 +85,7 @@ Create a Supply Chain with SCST - Scan 2.0 and installed [Trivy Supply Chain Com
 
 ### <a id="scan-2.0-and-custom-scanning"></a> Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component
 
-Create a Supply Chain with SCST - Scan 2.0 and the Custom Scanning Component created in the
-component [Customize Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component) topic.
+Create a Supply Chain with SCST - Scan 2.0 and the [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 For more details on how to create a Supply Chain, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
 
 Initialize Tanzu Supply Chain:
@@ -113,8 +112,8 @@ Writing group configuration to config.yaml
 Generate supply chain:
 
 ```console
-tanzu supplychain generate --kind <custom Kind workload> \
---description <description of scanner> \
+tanzu supplychain generate --kind CUSTOM-KIND-WORKLOAD \
+--description DESCRIPTION-OF-SCANNER \
 --component source-git-provider-1.0.0 \
 --component buildpack-build-1.0.0 \
 --component SCANNING-COMPONENT-NAME
