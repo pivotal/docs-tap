@@ -51,8 +51,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
-- The authorization server can auto-discover upstream identity provider
-  configuration from
+- The authorization server can auto-discover upstream identity provider configuration from
   `AuthServer.spec.identityProviders[].openID.configurationURI`.
   For more information, see [Identity providers for Application Single Sign-On](app-sso/how-to-guides/service-operators/identity-providers.hbs.md).
 
@@ -60,8 +59,7 @@ This release includes the following changes, listed by component and area.
   it's known and configured with the scope `openid`. That means user information
   is retrieved for non-standard providers.
 
-- Scopes in the token response are filtered according to the roles filtering
-  defined on the `AuthServer`.
+- Scopes in the token response are filtered according to the roles filtering defined on the `AuthServer`.
 
 - Advertises the Application Single Sign-On version on components:
 
@@ -74,8 +72,7 @@ This release includes the following changes, listed by component and area.
 
 - Shows an error message when attempting unsupported, Relying Party (RP)-Initiated Logout.
 
-- Shows an improved error message when using `localhost` in
-  `ClientRegistration.spec.redirectURIs`.
+- Shows an improved error message when using `localhost` in `ClientRegistration.spec.redirectURIs`.
 
 - Bundles the latest `bitnami/redis:7.2.4`.
 
@@ -101,8 +98,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-buildpacks'></a> v1.8.0 Features: Buildpacks and Stacks
 
-- Adds the following new stacks, along with builders, as part of the [full](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full)
-dependencies:
+- Adds the following new stacks with their associated builders to the [full dependencies](tanzu-build-service/dependencies.hbs.md#lite-vs-full):
 
   - [Tanzu Standard Stack for UBI 8](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks)
   - [Tanzu Static Stack for Ubuntu 22.04](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubuntu-stacks)
@@ -113,6 +109,14 @@ dependencies:
 #### <a id='1-8-0-cert-manager'></a> v1.8.0 Features: cert-manager
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
+
+#### <a id='1-8-0-cnr'></a> v1.8.0 Features: Cloud Native Runtimes
+
+- Updates Knative Serving to v1.13.1. For more information, see the [Knative release notes](https://github.com/knative/serving/releases/tag/knative-v1.13.1) in GitHub.
+
+#### <a id='1-8-0-contour'></a> v1.8.0 Features: Contour
+
+- Updates Contour to v1.26.1. For more information, see the [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.26.1) in GitHub.
 
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
@@ -131,9 +135,9 @@ dependencies:
 
 #### <a id='1-8-0-service-bindings'></a> v1.8.0 Features: Service Bindings
 
-- Updates [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0.
-  This update fixes the issue of `ServiceBinding` not immediately reconciling when `status.binding.name`
-  changes on a previously bound service resource.
+- Updates servicebinding/runtime to v0.7.0. This update fixes the issue of `ServiceBinding` not
+  immediately reconciling when `status.binding.name` changes on a previously bound service resource.
+  For more information, see the [runtime release notes](https://github.com/servicebinding/runtime/releases/tag/v0.7.0)
 
 #### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
 
@@ -141,38 +145,46 @@ dependencies:
 
 #### <a id='1-8-0-spring-boot-conv'></a> v1.8.0 Features: Spring Boot Convention
 
-- You no longer must provide the verbose configuration to enable actuators and the Application Live View
-  features while running Spring Native workloads on Tanzu Application Platform.
+- You no longer need to provide the verbose configuration to enable actuators and the
+  Application Live View features while running Spring Native workloads on Tanzu Application Platform.
   The Spring Boot convention server enhances Tanzu PodIntents with metadata.
   This metadata can include labels, annotations, or properties required to run native workloads in
   Tanzu Application Platform.
   This metadata enables Application Live View to discover and register the app instances so that
   Application Live View can access the actuator data from those workloads.
-  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
+  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
 #### <a id='1-8-0-scc'></a> v1.8.0 Features: Supply Chain Choreographer
 
-- Introduces [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) for the [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.hbs.md) and [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) packages. This feature is in beta.
+- Introduces Carvel Package Supply Chains for the Out of the Box Supply Chain with Testing and
+  Out of the Box Supply Chain with Testing and Scanning packages.
+  This feature is in beta. For more information, see [Carvel Package Supply Chains (beta)](scc/carvel-package-supply-chain.hbs.md).
 
 #### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools (SCST) - Scan
 
-- SCST - Scan 2.0 is now GA. For more information, including guidance on when to use
-SCST - Scan 1.0 versus SCST - Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
+- SCST - Scan 2.0 is now GA. For more information, including guidance about when to use
+  SCST - Scan 1.0 versus SCST - Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
+
 - SCST - Scan 1.0 remains the default scan component, with SCST - Scan 2.0 available on an
-opt-in basis, except in the following situations:
+  opt-in basis, except in the following situations:
   - Air-gapped installs use SCST - Scan 2.0 and Trivy to simplify the installation and configuration
   process.
   - [Tanzu Supply Chain (Beta)](./supply-chain/about.hbs.md) uses the Trivy component based on
   SCST - Scan 2.0.
-- You can scan container images on a periodic interval after the initial build. See [Set up recurring scanning](./scst-scan/recurring-scanning.hbs.md).
-- The SCST - Scan 2.0 scanners are updated to the latest versions to support CycloneDX 1.5 outputs:
+
+- You can scan container images on a periodic interval after the initial build. For more information,
+  see [Set up recurring scanning](./scst-scan/recurring-scanning.hbs.md).
+
+- The SCST - Scan 2.0 scanners are updated to the latest versions to support CycloneDX v1.5 outputs:
   - Aqua Trivy is updated to [v0.48.3](https://github.com/aquasecurity/trivy/releases/tag/v0.48.3).
   - Anchore Grype is updated to [v0.74.1](https://github.com/anchore/grype/releases/tag/v0.74.1).
 
 #### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
 
-- Adds support for ingesting SBOMs in CycloneDX v1.5 format.
-- Better error messaging for ingestion errors.
+- Adds support for ingesting Software Bill of Materials (SBOMs) in CycloneDX v1.5 format.
+
+- Includes better error messaging for ingestion errors.
+
 - To enable DORA metrics functionality, if you configured the `environment` label, rename it
   to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
@@ -188,15 +200,16 @@ opt-in basis, except in the following situations:
 
 - You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
   action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
-  when iterating locally from a local URL (via **Tanzu: Portforward**) or a Knative URL (for the web
-  type of workloads) from the Tanzu panel.
+  when iterating locally from a local URL by using **Tanzu: Portforward** or by using a Knative URL
+  for web type workloads from the Tanzu panel.
 
 #### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
 
 - You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
   action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
-  when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
-  type of workloads) from the Tanzu panel.
+  when iterating locally from a local URL by using **Tanzu: Portforward** or by using a Knative URL
+  for web type workloads from the Tanzu panel.
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
@@ -214,11 +227,15 @@ This release includes the following changes, listed by component and area.
 - Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
   This tool has been officially deprecated since 2020.
 
-#### <a id='1-8-0-scst-scan'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-8-0-scst-scan-bc'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
 
-- Grype scanner has been removed from the `build` and `full` installation profiles. Use Namespace Provisioner
+- Grype scanner has been removed from the Build and Full installation profiles. Use Namespace Provisioner
   to install the Grype package to developer namespaces. For instructions, see
   [Apply ScanTemplate overlays in air-gapped environments in Namespace Provisioner](./namespace-provisioner/use-case6.hbs.md).
+
+#### <a id="1-8-0-tbs-bc"></a> v1.8.0 Breaking changes: Tanzu Build Service
+
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format has been removed.
 
 ---
 
@@ -654,19 +671,21 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: Service Bindings
+#### <a id='1-8-0-service-bindings-ri'></a> v1.8.0 Resolved issues: Service Bindings
 
 - Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name`
   changes on a previously bound service resource.
 
 #### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
 
-- This release fixes the issue with expired certificates where you must restart the metadata-store pods when the internal database certificate is rotated by cert-manager.
-You will no longer see this issue with the default internal database, but the solution does not cover the case of an external database.
+- Resolved the issue with expired certificates where you must restart the metadata-store pods when
+  the internal database certificate is rotated by cert-manager.
+  This issue no longer occurs with the default internal database, but the solution does not cover
+  external databases.
 
-- Artifact Metadata Repository now properly sets the `hasNextPage` to `false` when there are
-no more items to be retrieved during a paginated query. This fixes the issue
-where the last page always returns an empty list.
+- Artifact Metadata Repository now properly sets the `hasNextPage` to `false` when there are no more
+  items to be retrieved during a paginated query.
+  This fixes the issue where the last page always returns an empty list.
 
 ---
 
@@ -689,21 +708,28 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
-is in a failed state due to an invalid date, wait approximately 10 hours and the workload
-automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk GitHub repository.
+  is in a failed state due to an invalid date, wait approximately 10 hours and the workload
+  automatically goes into the ready state.
+  For more about this issue information, see the
+  [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
+
 - Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-To work around, create a Docker config secret for the registry.
-- Recurring Scan has a maximum of approximately 5000 container images that can be scanned at a
-single time due to size limits configMaps.
-- Recurring Scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-This is cosmetic and does not have any impact on the vulnerabilities shown.
+  To work around, create a Docker config secret for the registry.
+
+- Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
+  single time due to size limits configMaps.
+
+- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
+  This is cosmetic and does not have any impact on the vulnerabilities shown.
+
 - If the supply chain container image scanning is configured to use a different scanner or scanner
-version than the recurring scanning, the vulnerabilities displayed in Tanzu
-Developer Portal might be inaccurate.
+  version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
+  be inaccurate.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
-- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
+- When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
+  This issue is planned to be fixed in a future release.
 
 #### <a id='1-8-0-tdp-ki'></a> v1.8.0 Known issues: Tanzu Developer Portal
 
@@ -711,62 +737,75 @@ Developer Portal might be inaccurate.
   in Tanzu Application Platform v1.8. This version jump enables future versions of
   Tanzu Developer Portal and Tanzu Developer Portal Configurator to sync going forward.
 
+#### <a id='1-8-0-alm'></a> v1.8.0 Known issues: App Last Mile Catalog
+
+- The app-config-web, app-config-server, and app-config-worker components do not allow developers to override the default application ports.
+  This means that applications that use non-standard ports will not work out of the box. To work around this, ports can be configured by providing
+  values to the resulting Carvel Package. This issue will be fixed in a future release.
+- The app-config-web, app-config-server, and app-config-worker components output a YTT overlay that allow developers to configure the environment variables
+  for their Carvel Package. This overlay incorrectly replaces all Convention provided environment variables, instead of merging in developer provided environment variables.
+  Work around this by supplying all environment variables, both Convention provided and user provided, to the Carvel Package. This issue will be fixed in the next patch.
+
+#### <a id='1-8-0-tap'></a> v1.8.0 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform 1.8.0 installation via TMC is not supported for K8s 1.26.
+
 ---
 
 ### <a id='1-8-0-components'></a> v1.8.0 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                     | Version |
-| -------------------------------------------------- | ------- |
-| API Auto Registration                              |         |
-| API portal                                         |         |
-| Application Accelerator                            |         |
-| Application Configuration Service                  |         |
-| Application Live View APIServer                    |         |
-| Application Live View back end                     |         |
-| Application Live View connector                    |         |
-| Application Live View conventions                  |         |
-| Application Single Sign-On                         |         |
-| Artifact Metadata Repository Observer              |         |
-| AWS Services                                       |         |
-| Bitnami Services                                   |         |
-| Carbon Black Scanner for SCST - Scan (beta)        |         |
-| Cartographer Conventions                           |         |
-| cert-manager                                       |         |
-| Cloud Native Runtimes                              |         |
-| Contour                                            |         |
-| Crossplane                                         |         |
-| Default Roles                                      |         |
-| Developer Conventions                              |         |
-| External Secrets Operator                          |         |
-| Flux CD Source Controller                          |         |
-| Grype Scanner for SCST - Scan                      |         |
-| Local Source Proxy                                 |         |
-| Namespace Provisioner                              |         |
-| Out of the Box Delivery - Basic                    |         |
-| Out of the Box Supply Chain - Basic                |         |
-| Out of the Box Supply Chain - Testing              |         |
-| Out of the Box Supply Chain - Testing and Scanning |         |
-| Out of the Box Templates                           |         |
-| Service Bindings                                   |         |
-| Service Registry                                   |         |
-| Services Toolkit                                   |         |
-| Snyk Scanner for SCST - Scan (beta)                |         |
-| Source Controller                                  |         |
-| Spring Boot conventions                            |         |
-| Spring Cloud Gateway                               |         |
-| Supply Chain Choreographer                         |         |
-| Supply Chain Security Tools - Policy Controller    |         |
-| Supply Chain Security Tools - Scan                 |         |
-| Supply Chain Security Tools - Scan 2.0             |         |
-| Supply Chain Security Tools - Store                |         |
-| Tanzu Developer Portal                             |         |
-| Tanzu Developer Portal Configurator                |         |
-| Tanzu Application Platform Telemetry               |         |
-| Tanzu Build Service                                |         |
-| Tanzu CLI                                          |         |
-| Tekton Pipelines                                   |         |
+| Component Name                                     | Version        |
+| -------------------------------------------------- | -------------- |
+| API Auto Registration                              | 0.4.2          |
+| API portal                                         | 1.5.0          |
+| Application Accelerator                            | 1.8.1          |
+| Application Configuration Service                  | 2.3.0          |
+| Application Live View APIServer                    | 1.8.0          |
+| Application Live View back end                     | 1.8.0          |
+| Application Live View connector                    | 1.8.0          |
+| Application Live View conventions                  | 1.8.0          |
+| Application Single Sign-On                         | 5.1.1          |
+| Artifact Metadata Repository Observer              | 0.4.1          |
+| AWS Services                                       | 0.2.0          |
+| Bitnami Services                                   | 0.4.0          |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.3.2          |
+| Cartographer Conventions                           | 0.8.10         |
+| cert-manager                                       | 2.7.0          |
+| Cloud Native Runtimes                              | 2.5.1          |
+| Contour                                            | 2.2.0          |
+| Crossplane                                         | 0.4.1          |
+| Default Roles                                      | 1.1.0          |
+| Developer Conventions                              | 0.16.1         |
+| External Secrets Operator                          | 0.9.4+tanzu.2  |
+| Flux CD Source Controller                          | 0.36.1+tanzu.2 |
+| Grype Scanner for SCST - Scan                      | 1.8.2          |
+| Local Source Proxy                                 | 0.2.1          |
+| Namespace Provisioner                              | 0.6.2          |
+| Out of the Box Delivery - Basic                    | 0.15.6         |
+| Out of the Box Supply Chain - Basic                | 0.15.6         |
+| Out of the Box Supply Chain - Testing              | 0.15.6         |
+| Out of the Box Supply Chain - Testing and Scanning | 0.15.6         |
+| Out of the Box Templates                           | 0.15.6         |
+| Service Bindings                                   | 0.11.0         |
+| Service Registry                                   | 1.3.1          |
+| Services Toolkit                                   | 0.13.0         |
+| Snyk Scanner for SCST - Scan (beta)                | 1.2.2          |
+| Source Controller                                  | 0.8.3          |
+| Spring Boot conventions                            | 1.8.0          |
+| Spring Cloud Gateway                               | 2.1.7          |
+| Supply Chain Choreographer                         | 0.8.10         |
+| Supply Chain Security Tools - Policy Controller    | 1.6.3          |
+| Supply Chain Security Tools - Scan                 | 1.8.2          |
+| Supply Chain Security Tools - Scan 2.0             | 0.3.2          |
+| Supply Chain Security Tools - Store                | 1.8.1          |
+| Tanzu Application Platform Telemetry               | 0.7.0          |
+| Tanzu Build Service                                | 1.13.0         |
+| Tanzu CLI                                          | 1.1.0          |
+| Tanzu Developer Portal                             | 1.8.1          |
+| Tanzu Developer Portal Configurator                | 1.8.1          |
+| Tekton Pipelines                                   | 0.50.3+tanzu.4 |
 
 ---
 
@@ -775,13 +814,52 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
-### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
+### <a id='cnrs-deprecations'></a> Cloud Native Runtimes deprecations
 
-- Deprecation description including the release when the feature will be removed.
+- **`default_tls_secret` config option**: After changes in this release, this config option is moved
+  to `contour.default_tls_secret`. `default_tls_secret` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.default_tls_secret` takes precedence over
+  `default_tls_secret`.
+
+- **`ingress.[internal/external].namespace` config options**: After changes in this release, these
+  config options are moved to `contour.[internal/external].namespace`.
+  `ingress.[internal/external].namespace` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.[internal/external].namespace` takes
+  precedence over `ingress.[internal/external].namespace`.
+
+### <a id="flux-cd-deprecations"></a> Flux CD Source Controller deprecations
+
+- Deprecations for the `GitRepository` API:
+  - `spec.gitImplementation` is deprecated.
+  `GitImplementation` defines the Git client library implementation.
+  `go-git` is the default and only supported implementation. `libgit2`
+  is no longer supported.
+  - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
+  Control List for enabling cross-namespace references to this object, was never
+  implemented.
+  - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+  defined in the observed artifact content config within the status.
+  - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+  - `status.url` is deprecated in favor of `status.artifact.url`.
+
+- Deprecations for the `OCIRepository` API:
+  - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+  defined in the observed artifact content config within the status.
 
 ### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
 
-- The following experimental APIs are marked as deprecated and will be removed in
+- The `tanzu services claims` CLI plug-in command is deprecated and is marked for removal in
+  Tanzu Application Platform v1.9.
+  It is hidden from help text output, but it will continue to work until it is removed.
+  The new `tanzu services resource-claims` command provides the same function.
+
+- The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1` are deprecated
+  and marked for removal in Tanzu Application Platform v1.9.
+
+- The experimental `kubectl-scp` plug-in is deprecated and marked for removal in Tanzu
+  Application Platform v1.9.
+
+- The following experimental APIs are deprecated and are marked for removal in
   Tanzu Application Platform v1.9:
 
   - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
@@ -795,5 +873,29 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+
+### <a id="sc-deprecations"></a> Source Controller deprecations
+
+- The Source Controller `ImageRepository` API is deprecated and is marked for
+  removal. Use the `OCIRepository` API instead.
+  The Flux Source Controller installation includes the `OCIRepository` API.
+  For more information about the `OCIRepository` API, see the
+  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
+
+### <a id='scc-deprecations'></a> Supply Chain Choreographer deprecations
+
+- Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
+  now assumes that `libgit2` is not supported.
+  - Flux CD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
+  see the [fluxcd/source-controller Changelog](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330).
+  - Existing references to the `git_implementation` field are ignored and references to `libgit2`
+    do not cause failures. This is assured up to Tanzu Application Platform v1.9.
+  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.8.
+
+### <a id="tekton-deprecations"></a> Tekton Pipelines deprecations
+
+- Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application Platform v1.9.
+  Use the `Task` API instead. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
 
 ---

@@ -416,6 +416,7 @@
     - [Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)
       - [Flux CD Source Controller overview](fluxcd-source-controller/about.hbs.md)
       - [Install Flux CD Source Controller](fluxcd-source-controller/install.hbs.md)
+      - [Use Flux CD Source Controller](fluxcd-source-controller/use-flux-sc.hbs.md)
     - [Learning Center](learning-center/about.hbs.md)
     - [Local Source Proxy](local-source-proxy/about.hbs.md)
       - [Overview](local-source-proxy/about.hbs.md)

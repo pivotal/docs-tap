@@ -84,3 +84,10 @@ An OCI image containing the source code retrieved from a git repository.
 * Name: git
 * URL: The source code git repository URL
 * Digest: The source code git commit sha
+
+## Buildpack Build
+
+An OCI image containing the app built with kpack.
+
+* Name: image
+* URL: OCI image URL for the image built with kpack

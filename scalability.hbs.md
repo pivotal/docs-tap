@@ -1,4 +1,4 @@
-# Scale workloads 
+# Scale workloads
 
 This topic describes the best practices required to build and deploy workloads at scale.
 
@@ -73,17 +73,18 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- AMR Observer | 100&nbsp;m/500&nbsp;m | 256&nbsp;Mi/**1&nbsp;Gi** |n/a| Yes | Yes | No | `tap-values.yaml` |
+ AMR Observer | 200&nbsp;m/1000&nbsp;m | 2&nbsp;Gi/**3&nbsp;Gi** |n/a| Yes | Yes | No | `tap-values.yaml` |
 | Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** |n/a| Yes | No | Yes | `tap-values.yaml` |
 | Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800*| Yes | No | No | `tap-values.yaml` |
 | Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | `tap-values.yaml` |
 | Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | n/a | Yes | Yes | Yes | `tap-values.yaml` |
 | Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** |n/a | Yes | Yes | Yes | `tap-values.yaml` |
-| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | `tap-values.yaml` |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi** |n/a | No | Yes | Yes | `tap-values.yaml` |
 | Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | `tap-values.yaml` |
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
-| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
+| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;Mi/**2&nbsp;Gi** | n/a| Yes | No | Yes| `tap-values.yaml` |
+| App SSO/App SSO Controller | 20&nbsp;m/500&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | n/a| No | Yes | Yes| `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
@@ -161,7 +162,7 @@ cartographer:
         memory: 1G
 ```
 
-### Cartographer-conventions
+### Cartographer Conventions
 
 The default resource limits are:
 
@@ -237,7 +238,7 @@ amr:
     app_req_memory: 256Mi
 ```
 
-### kpack-controller in build service
+### kpack-controller in Tanzu Build Service
 
 The default resource limits are:
 
@@ -292,7 +293,7 @@ namespace_provisioner:
         memory: 500Mi
 ```
 
-### CNRS Knative Serving
+### Cloud Native Runtimes Knative Serving
 
 The default resource limits are:
 
@@ -314,10 +315,10 @@ cnrs:
   - name: "controller"
     limits:
       cpu: 1000m
-      memory: 2Gi
+      memory: 3Gi
     requests:
       cpu: 100m
-      memory: 512Mi
+      memory: 1Gi
 ```
 
 ### net-contour controller
@@ -414,7 +415,7 @@ cnrs:
       memory: 5Gi
 ```
 
-### Tap Telemetry
+### Tanzu Application Platform Telemetry
 
 The default resource limits are:
 
@@ -433,4 +434,29 @@ Edit `values.yaml` to scale resource limits:
 ```console
 tap_telemetry:
   limit_memory: 2Gi
+```
+
+### Application Single Sign-On
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 500m
+    memory: 5000Mi
+  requests:
+    cpu: 20m
+    memory: 100Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+appsso:
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      memory: 512Mi
 ```

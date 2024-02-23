@@ -25,7 +25,7 @@ This section describes each of the scanning steps and corresponding observabilit
     kubectl describe imagevulnerabilityscan IMAGE-VULNERABILITY-SCAN-NAME
     ```
 
-    Where `IMAGE-VULNERABILITY-SCAN-NAME` is the name of an ImageVulnerabilityScan resource you want to inspect.
+    Where `IMAGE-VULNERABILITY-SCAN-NAME` is the name of an `ImageVulnerabilityScan` resource you want to inspect.
 
 - List the child resources of a scan:
 

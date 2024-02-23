@@ -62,10 +62,10 @@ enabled and a signing key is attached to the service account of the workload.
 
 Before you can configure Tanzu Build Service to sign your image builds, you must:
 
-- Install Tanzu Application Platform with either the Full, Iterate, or Build profile.
-  If you have not installed Tanzu Application Platform, see [Installing Tanzu Build Service](install-tbs.md).
-  <!-- is this essentially referring to TBS being installed whether via profile or package install or do you have to have these particular profiles? -->
-  <!-- If particular profiles, link to multicluster install page. If TAP with TBS, list install TAP and install TBS via profile or package install instructions. -->
+- [Install Tanzu Application Platform](../install-intro.hbs.md).
+
+- If you did not install Tanzu Application Platform by using the Full, Iterate, or Build profile,
+  install the Tanzu Build Service package. See [Installing Tanzu Build Service](install-tbs.md).
 
 - Install jq. For instructions, see the [jq documentation](https://jqlang.github.io/jq)
 
@@ -103,13 +103,11 @@ Tanzu Build Service does not generate SLSA attestation by default. To enable thi
     ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-    <!-- I assumed that you would need to apply the tap-values.yaml. verify this step is correct. -->
 
 ## <a id="unsigned-attestation"></a> Create unsigned attestations (SLSA L0)
 
 If Tanzu Build Service has SLSA attestation enabled, every app image built by TBS generates a second
 image where the attestation is stored.
-<!-- if SLSA attestation is enabled, would this also be L1 according to the level descriptions above? -->
 
 ### <a id="build-image-l0"></a> Build the image
 
@@ -135,7 +133,6 @@ For an example of expected output, see the [kpack documentation](https://github.
 
 If the service account of the workload has a secret with a signing key attached, Tanzu Build Service
 automatically signs the generated attestation.
-<!-- does this also describe L2 according to the level descriptions above? -->
 
 ### <a id="configure-signing-key"></a> Generate and save the signing key
 
@@ -185,9 +182,8 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
 1. To verify the signature of the attestation, run:
 
     ```console
-    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST 2> /dev/null
+    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST > /dev/null
     ```
-    <!-- should this be ">" instead of "2>"? -->
 
     Where:
 

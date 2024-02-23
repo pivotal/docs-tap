@@ -38,4 +38,4 @@ transformations:
 
 ## See also
 
-* [ReplaceText](replace-text.md)
+- [ReplaceText](replace-text.md)

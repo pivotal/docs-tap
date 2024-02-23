@@ -2,9 +2,9 @@
 
 Get started with Supply Chain Security Tools (SCST) - Scan 2.0 by using the following topics:
 
-[Installing SCST - Scan 2.0](./install-app-scanning.hbs.md)
+[Install Supply Chain Security Tools - Scan 2.0 in a cluster](./install-app-scanning.hbs.md)
 
-[Add App Scanning to Default Test and Scan Supply Chains](./integrate-app-scanning.hbs.md)
+[Enable App Scanning for default Test and Scan supply chains](./integrate-app-scanning.hbs.md)
 
 [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md)
 

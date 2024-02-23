@@ -47,6 +47,67 @@ spec:
   ...
 ```
 
+## Get a Workload Run
+
+Get the details of the specified [Workload Run] within a namespace:
+
+```console
+$ tanzu workload run get my-web-app-run-lxwrm -n build --show-details
+Overview
+   name:        my-web-app
+   kind:        buildwebapps.vmware.com/my-web-app
+   run id:      buildwebappruns.vmware.com/my-web-app-run-lxwrm
+   status:      Running
+   namespace:   build
+   age:         39s
+
+Spec
+      1 + |---
+      2 + |apiVersion: vmware.com/v1
+      3 + |kind: BuildWebApp
+      4 + |metadata:
+      5 + |  name: my-web-app
+      6 + |  namespace: build
+      7 + |spec:
+      8 + |...
+
+Stages
+    ├─ source-git-provider
+    │  ├─ check-source - Success
+    │  │  ├─ Duration: 6s
+    │  │  └─ Results
+    │  │     ├─ message: using git-branch: main
+    │  │     ├─ sha: <image SHA>
+    │  │     └─ url: <image URL>
+    │  └─ pipeline - Success
+    │     ├─ Duration: 1m38s
+    │     └─ Results
+    │        ├─ url: <image URL>
+    │        └─ digest: <image SHA>
+    ├─ buildpack-build
+    │  ├─ check-builders - Success
+    │  │  ├─ Duration: 5s
+    │  │  └─ Results
+    │  │     ├─ builder-image: <image URL>
+    │  │     ├─ message: Builders resolved
+    │  │     └─ run-image: <image URL>
+    │  └─ pipeline - Success
+    │     ├─ Duration: 50s
+    │     └─ Results
+    │        ├─ url: <image URL>
+    │        └─ digest: <image SHA>
+    ├─ conventions
+    │  └─ pipeline - Running
+    │     └─ Duration: 53.693499s
+    ├─ app-config-web
+    │  └─ pipeline - Not Started
+    ├─ carvel-package
+    │  └─ pipeline - Not Started
+    └─ git-writer-pr
+       └─ pipeline - Not Started
+```
+
 [Workload]: ../explanation/workloads.hbs.md
 [Workloads]: ../explanation/workloads.hbs.md
 [Runs]: ../explanation/workload-runs.hbs.md
+[Workload Run]: ../explanation/workload-runs.hbs.md
