@@ -96,7 +96,7 @@ For Tanzu Developer Portal, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v 1.26, v1.27, v1.28 or v1.29 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.26, v1.27, v1.28 or v1.29 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
