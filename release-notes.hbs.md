@@ -226,6 +226,9 @@ This release includes the following changes, listed by component and area.
 - Tanzu UBI and Static builders are now available and can be installed as part
   of the `full` dependencies. For instructions and descriptions, see
   [Installing Install full dependencies](./tanzu-build-service/install-tbs.md#tap-install-full-deps)
+- You can now configure TBS with automatic dependency updates to keep your stacks and buildpacks up
+  to date out of band of TAP releases. For instructions, see
+  [Configure your profile with automatic dependency updates](install-online/profile.md#automatic-dependency-update)
 - Cosign signatures for Builders and ClusterBuilders are now generated.
     - App images were already signed, this release makes it also work for Builders and ClusterBuilders.
 - Builders and ClusterBuilders can now specify additional labels to be attached to the image.

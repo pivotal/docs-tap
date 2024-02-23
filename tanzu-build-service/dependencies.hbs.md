@@ -192,7 +192,7 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports binary workloads | Yes | Yes |
 | Supports web servers buildpack | Yes | Yes |
 
-## <a id="update"></a> Update dependencies
+## <a id="update-tap"></a> Update dependencies in band with Tanzu Application Platform releases
 
 New versions of dependencies such as buildpacks, and stacks are available in new versions of Tanzu Application Platform. To update dependencies, VMware recommends that you update to the latest patch
 version of Tanzu Application Platform.
@@ -202,7 +202,13 @@ version of Tanzu Application Platform.
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-### <a id="upgrade"></a> (Optional) Update buildpacks between Tanzu Application Platform releases
+## <a id="update-out-of-band"></a> Update dependencies out of band with Tanzu Application Platform release
+
+### <a id="update-automatic"></a> Automatic dependency updates
+
+{{> 'partials/auto-deps' initial_steps="" }}
+
+### <a id="update-manual"></a> Manual dependency updates
 
 You can update buildpack dependencies outside of upgrading Tanzu Application Platform, but
 VMware recommends that you upgrade Tanzu Application Platform when possible instead.
