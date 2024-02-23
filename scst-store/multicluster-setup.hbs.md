@@ -246,7 +246,7 @@ metadata:
   name: store-auth-token
   namespace: metadata-store-secrets
 spec:
-  toNamespaces: DEV-NAMESPACES
+  toNamespaces: [DEV-NAMESPACES]
 EOF
 ```
 
