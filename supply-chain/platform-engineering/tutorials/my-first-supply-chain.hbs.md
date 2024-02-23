@@ -151,6 +151,7 @@ Writing group configuration to config.yaml
 ```
 
 The `tanzu supplychain init` command creates:
+
 * `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
 * `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
 * `Makefile` which will has the targets to install/uninstall the SupplyChain and related dependencies on any TAP Build/Full profile clusters.
