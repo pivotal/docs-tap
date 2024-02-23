@@ -121,7 +121,7 @@ tanzu supplychain generate --kind CUSTOM-KIND-WORKLOAD \
 
 Where `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
-**Note** For more details about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
+For more information about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
 
 ## <a id="apply-supply-chain"></a> Apply Supply Chain
 
