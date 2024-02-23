@@ -134,9 +134,12 @@ Our current directory is now initialized, and we can use the SupplyChain authori
 
 ```
 $ tanzu supplychain generate
-? What Kind would you like to use as the developer interface?
 ```
-We will call our Developer interface `AppBuildV1`.
+
+In the prompts that follow, add the following values:
+
+* **What Kind would you like to use as the developer interface?** AppBuildV1
+* **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
 
 ```
 $ tanzu supplychain generate
