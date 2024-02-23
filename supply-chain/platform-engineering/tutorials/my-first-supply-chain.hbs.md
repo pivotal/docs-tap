@@ -14,6 +14,32 @@ You will need the following Packages installed on the Tanzu Application Platform
 
 * [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
+* To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+```
+$ kubectl get pkgi -A
+
+NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
+tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
+...
+tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
+...
+tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
+...
+tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
+...
+tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
+...
+tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
+...
+tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
+...
+tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
+tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
+...
+tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
+...
+```
+
 >**Important**
 > Recommended way to install the Tanzu Supply chain is by using the beta `Authoring` TAP profile. Please refer to the [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md) documentation for installing TAP Authoring profile.
 
@@ -140,14 +166,13 @@ In the prompts that follow, add the following values:
 
 * **What Kind would you like to use as the developer interface?** AppBuildV1
 * **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+* **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
+* **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
+* **Select a component as the next stage of the supply chain?** conventions-1.0.0
+* **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
+* **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
+* **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
 
-```
-$ tanzu supplychain generate
-? What Kind would you like to use as the developer interface? AppBuildV1
-? Give Supply chain a description? 
-```
-
-We will 
 
 [//]: # (Keep this section at the bottom of the doc)
 # Useful links
