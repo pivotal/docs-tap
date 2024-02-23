@@ -204,6 +204,7 @@ Created file tasks/source-git-clone.yaml
 Created file tasks/store-content-oci.yaml
 ```
 
+You have now authored your first SupplyChain! 
 
 [//]: # (Keep this section at the bottom of the doc)
 # Useful links
