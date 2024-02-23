@@ -141,9 +141,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-service-registry'></a> v1.8.0 Features: Service Registry
 
-- Skips TLS verificaton in DiscoveryClient, when mTLS is not enabled
+- Skips TLS verification in DiscoveryClient, when mTLS is not enabled
 
-- Enables TLS configuration coniditionally, with server.ssl.enabled flag
+- Enables TLS configuration conditionally, with server.ssl.enabled flag
 
 - Allows for configuring resource requests and limits for EurekaServers deployed via eureka-controller
 
