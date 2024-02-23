@@ -787,6 +787,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Flux CD Source Controller                          | 0.36.1+tanzu.2 |
 | Grype Scanner for SCST - Scan                      | 1.8.2          |
 | Local Source Proxy                                 | 0.2.1          |
+| Managed Resource Controller (beta)                 | 0.1.2          |
 | Namespace Provisioner                              | 0.6.2          |
 | Out of the Box Delivery - Basic                    | 0.15.6         |
 | Out of the Box Supply Chain - Basic                | 0.15.6         |
@@ -810,6 +811,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI                                          | 1.1.0          |
 | Tanzu Developer Portal                             | 1.8.1          |
 | Tanzu Developer Portal Configurator                | 1.8.1          |
+| Tanzu Supply Chain (beta)                          | 0.1.16         |
 | Tekton Pipelines                                   | 0.50.3+tanzu.4 |
 
 ---
