@@ -63,68 +63,68 @@ that will deploy the same application.
 
 ### Create a config server instance
 
-: TAS/SCS
-Create a service instance by running `cf create-service`, specifying the URI and label (branch) of
-the config repository in the configuration JSON.
+TAS/SCS
+: Create a service instance by running `cf create-service`, specifying the URI and label (branch) of
+  the config repository in the configuration JSON.
 
    ```console
    cf create-service -c '{ "git": { "uri": "https://github.com/spring-cloud-services-samples/cook-config", \
    "label": "main"  } }' p.config-server standard cook-config-server
    ```
 
-: Tanzu Application Platform/ACS
-Create a `ConfigurationSource` resource, specifying the location of the config repository in the
-`spec.backends` property. For detailed options, see the
-[ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-gettingstarted-configuringworkloads.html#create-a-configuration-source).
+Tanzu Application Platform/ACS
+: Create a `ConfigurationSource` resource, specifying the location of the config repository in the
+  `spec.backends` property. For detailed options, see the
+  [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-gettingstarted-configuringworkloads.html#create-a-configuration-source).
 
 ### Specify the application name and Spring profiles
 
-: TAS/SCS
-To specify the application name and Spring profiles:
+TAS/SCS
+: To specify the application name and Spring profiles:
 
-1. Specify the application name is specified in the `spring.application.name` property. In the case of the Cook
-application, this is found in
-[application.yml](https://github.com/spring-cloud-services-samples/cook/blob/main/src/main/resources/application.yml).
+   1. Specify the application name is specified in the `spring.application.name` property. In the
+      case of the Cook application, this is found in
+      [application.yml](https://github.com/spring-cloud-services-samples/cook/blob/main/src/main/resources/application.yml).
 
-1. Set the `SPRING_PROFILES_ACTIVE` environment variable in the `env` key in the application manifest
-   to designate profiles. Multiple entries must be comma-separated.
+   1. Set the `SPRING_PROFILES_ACTIVE` environment variable in the `env` key in the application
+      manifest to designate profiles. Multiple entries must be comma-separated.
 
-: Tanzu Application Platform/ACS
-To specify the application name and Spring profiles:
+Tanzu Application Platform/ACS
+: To specify the application name and Spring profiles:
 
-1. Create a `ConfigurationSlice` resource, specifying the name of the `ConfigurationSource` resource
-   in the `spec.configurationSource` property.
+   1. Create a `ConfigurationSlice` resource, specifying the name of the `ConfigurationSource`
+      resource in the `spec.configurationSource` property.
 
-1. Create one or more entries in the `spec.content` array property of the `ConfigurationSlice`
-   resource with the format `APP-NAME/PROFILE-NAME/OPTIONAL-LABEL` where:
+   1. Create one or more entries in the `spec.content` array property of the `ConfigurationSlice`
+      resource with the format `APP-NAME/PROFILE-NAME/OPTIONAL-LABEL` where:
 
-   - `APP-NAME` is the application name.
-   - `PROFILE-NAME` is the profile name.
-   - `OPTIONAL-LABEL` is an optional comma-separated list of labels from which to retrieve properties.
+      - `APP-NAME` is the application name.
+      - `PROFILE-NAME` is the profile name.
+      - `OPTIONAL-LABEL` is an optional comma-separated list of labels from which to retrieve properties.
 
-   For more information, see the
-   [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-crds-configurationslice.html#configurationslice-content).
+  For more information, see the
+  [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-crds-configurationslice.html#configurationslice-content).
 
 ### Bind the config server to the app
 
-: TAS/SCS
-To bind the config server to the app, add the service instance name in the services key in the
-application manifest. Alternatively, run `cf bind-service` to bind the service to the application.
+TAS/SCS
+: To bind the config server to the app, add the service instance name in the services key in the
+  application manifest. Alternatively, run `cf bind-service` to bind the service to the application.
 
-: Tanzu Application Platform/ACS
-To bind the config server to the app:
+Tanzu Application Platform/ACS
+: To bind the config server to the app:
 
-1. Create a `ResourceClaim` resource, specifying the details of the `ConfigurationSlice` resource in
-   the `spec.ref` section of the configuration.
-1. Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the workload. This
-   mounts the properties to the running pod’s filesystem.
-1. Specify a `SPRING_CONFIG_IMPORT` property in the `spec.env` section of the workload with the
-   value `optional:configtree:${SERVICE_BINDING_ROOT}/CLAIM-NAME/` where `CLAIM-NAME` is the name
-   you specified in the `spec.serviceClaims` list.
+   1. Create a `ResourceClaim` resource, specifying the details of the `ConfigurationSlice` resource in
+      the `spec.ref` section of the configuration.
+   1. Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the workload. This
+      mounts the properties to the running pod’s filesystem.
+   1. Specify a `SPRING_CONFIG_IMPORT` property in the `spec.env` section of the workload with the
+      value `optional:configtree:${SERVICE_BINDING_ROOT}/CLAIM-NAME/` where `CLAIM-NAME` is the name
+      you specified in the `spec.serviceClaims` list.
 
-   This environment variable tells the Spring runtime to pull properties in from the filesystem at
-   the path where the `serviceClaims` mechanism mounted them. For more information, see
-   [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-gettingstarted-configuringworkloads.html#using-configuration-in-a-workload).
+  This environment variable tells the Spring runtime to pull properties in from the filesystem at
+  the path where the `serviceClaims` mechanism mounted them. For more information, see
+  [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-gettingstarted-configuringworkloads.html#using-configuration-in-a-workload).
 
 ## Deploy the Cook application to Tanzu Application Platform
 
