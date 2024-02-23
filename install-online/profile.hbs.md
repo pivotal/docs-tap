@@ -473,18 +473,19 @@ See [Opt out of telemetry collection](../opting-out-telemetry.hbs.md) for more i
 
 ### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
-When you install a profile that includes Tanzu Build Service, Tanzu Application Platform is
-installed with the `lite` set of dependencies. These dependencies consist of
-[buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+When you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
 and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 required for application builds.
 
-The `lite` set of dependencies do not contain all buildpacks and stacks. To use all buildpacks and
-stacks, you must install the `full` dependencies. For more information about the differences between
-`lite` and `full` dependencies, see [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
-To configure `full` dependencies, add the key-value pair `exclude_dependencies: true` to your
-`tap-values.yaml` file under the `buildservice` section.
+To configure `full` dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
 For example:
 
 ```yaml
@@ -500,13 +501,9 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-Tanzu Application Platform v1.6.1 and beyond supports building applications with Ubuntu v22.04 (Jammy).
+Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
 
-### <a id='automatic-dependency-update'></a> (Optional) Configure your profile with automatic dependency updates
-
-{{> 'partials/auto-deps' initial_steps="" }}
-
-### <a id='crossplane-retention-behavior'></a> (Optional) Override the default retention behavior for Crossplane CRDs
+### <a id='full-dependencies'></a> (Optional) Override the default retention behavior for Crossplane CRDs
 
 By default, the `crossplane.tanzu.vmware.com` package is configured to retain all Crossplane CRDs, providers, and managed resources when the package is uninstalled. This is in the interest of caution in relation to accidental deletion of stateful data.
 
