@@ -427,52 +427,7 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 
     >**Important** The package and repository names might differ depending on your installation configurations.
 
-1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
- to your `tap-values.yaml` file under the `buildservice` section. For example:
-
-    ```yaml
-    buildservice:
-    ...
-      exclude_dependencies: true
-    ...
-    ```
-
-1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
-
-    ```console
-    tanzu package installed update tap --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
-    ```
-
-1. Get the latest version of the `tap` package by running:
-
-    ```console
-    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
-    ```
-
-1. Relocate the Tanzu Build Service full dependencies package repository by running:
-
-    ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps
-    ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
-
-1. Add the Tanzu Build Service full dependencies package repository by running:
-
-    ```console
-    tanzu package repository add full-deps \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
-      --namespace tap-install
-    ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved earlier.
-
-1. Install the full dependencies package by running:
-
-    ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
-    ```
+{{> 'partials/full-deps' }}
 
 For more information about the differences between `lite` and `full` dependencies, see
 [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
