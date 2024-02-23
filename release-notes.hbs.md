@@ -753,7 +753,7 @@ This release has the following known issues, listed by component and area.
   be inaccurate.
 
 - Scan 1.0 fails with the error "secrets 'store-ca-cert' not found" when deployed via TMC and using a
-  non-default issuer. It is recommended to use Scan 2.0 in these environments.
+  non-default issuer.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
