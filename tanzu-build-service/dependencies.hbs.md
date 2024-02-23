@@ -91,29 +91,29 @@ The `lite` dependencies contain the following stacks:
 - `default` (identical to `base-jammy`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
-in the VMware Tanzu Buildpacks documentation.
+in the VMware Tanzu Buildpacks documentation
 
 #### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
-The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.7:
+The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.8:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu (Lite) | 9.11.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | 7.8.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 2.8.1 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu (Lite) | 2.3.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu (Lite) | 2.5.1 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu (Lite) | 2.2.1 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu (Lite) | 0.15.3 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu (Lite) | 2.8.1 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu (Lite) | 9.15.2 | Bionic, Jammy, UBI |
+| Java Native Image Buildpack for Tanzu (Lite) | 7.13.2 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 2.10.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu (Lite) | 2.5.0 | Bionic, Jammy, UBI |
+| Python Buildpack for VMware Tanzu (Lite) | 2.7.0 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu (Lite) | 3.1.0 | Bionic, Jammy, Jammy Static  |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.17.1 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu (Lite) | 2.10.1 | Bionic, Jammy |
 
 And the following components:
 
 | Component | Version | Supported Stacks |
 |-----------|---------|------------------|
 | CNB Lifecycle | 0.16.0 | Bionic, Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.58 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.79 | Jammy |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -146,25 +146,27 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu | 9.11.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu | 7.9.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu | 2.8.1 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu | 2.3.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu | 2.5.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu | 2.8.1 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu | 2.2.1 | Bionic, Jammy |
-| PHP Buildpack for VMware Tanzu | 2.6.1 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu | 0.15.3 | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu | 5.6.1 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu | 9.15.2 | Bionic, Jammy, UBI |
+| Java Native Image Buildpack for Tanzu | 7.13.2 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu | 2.10.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu | 2.5.0 | Bionic, Jammy, UBI |
+| Python Buildpack for VMware Tanzu | 2.7.0 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu | 2.10.1 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu | 3.1.0 | Bionic, Jammy, Jammy Static |
+| PHP Buildpack for VMware Tanzu | 2.9.0 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu | 0.17.1 | Bionic, Jammy |
+| Procfile Buildpack for VMware Tanzu | 5.7.0 | Bionic, Jammy |
 
 And the following components:
 
 | Component | Version | Supported Stacks |
 |-----------|---------|------------------|
 | CNB Lifecycle | 0.16.0 | Bionic, Jammy |
-| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.61 | Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.58 | Jammy |
-| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.107 | Jammy |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.86 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.83 | Jammy |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.140 | Jammy |
+| Standard Stack of UBI 8 for VMware Tanzu | 0.0.12 | UBI 8 |
+| Static Stack of Ubuntu Jammy for VMware Tanzu | 0.1.23 | Jammy |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 
