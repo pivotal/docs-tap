@@ -1,4 +1,4 @@
-# Scale workloads 
+# Scale workloads
 
 This topic describes the best practices required to build and deploy workloads at scale.
 
@@ -162,7 +162,7 @@ cartographer:
         memory: 1G
 ```
 
-### Cartographer-conventions
+### Cartographer Conventions
 
 The default resource limits are:
 
@@ -238,7 +238,7 @@ amr:
     app_req_memory: 256Mi
 ```
 
-### kpack-controller in build service
+### kpack-controller in Tanzu Build Service
 
 The default resource limits are:
 
@@ -293,7 +293,7 @@ namespace_provisioner:
         memory: 500Mi
 ```
 
-### CNRS Knative Serving
+### Cloud Native Runtimes Knative Serving
 
 The default resource limits are:
 
@@ -415,7 +415,7 @@ cnrs:
       memory: 5Gi
 ```
 
-### Tap Telemetry
+### Tanzu Application Platform Telemetry
 
 The default resource limits are:
 
@@ -436,7 +436,7 @@ tap_telemetry:
   limit_memory: 2Gi
 ```
 
-### Appsso
+### Application Single Sign-On
 
 The default resource limits are:
 
