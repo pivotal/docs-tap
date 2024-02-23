@@ -137,7 +137,7 @@ This release includes the following changes, listed by component and area.
 
 - Updates servicebinding/runtime to v0.7.0. This update fixes the issue of `ServiceBinding` not
   immediately reconciling when `status.binding.name` changes on a previously bound service resource.
-  For more information, see the [runtime release notes](https://github.com/servicebinding/runtime/releases/tag/v0.7.0)
+  For more information, see the [runtime release notes](https://github.com/servicebinding/runtime/releases/tag/v0.7.0).
 
 #### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
 
@@ -693,11 +693,29 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-8-0-app-live-view-ki'></a> v1.8.0 Known issues: Tanzu Application Platform
+#### <a id='1-8-0-tap-ki'></a> v1.8.0 Known issues: Tanzu Application Platform
+
+- Installing this Tanzu Application Platform release using Tanzu Mission Control is not supported for
+  Kubernetes v1.26.
 
 - On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
+
+#### <a id='1-8-0-alm-ki'></a> v1.8.0 Known issues: App Last Mile Catalog
+
+- The app-config-web, app-config-server, and app-config-worker components do not allow developers to
+  override the default application ports.
+  This means that applications that use non-standard ports do not work. To work around this, you can
+  configure ports by providing values to the resulting Carvel package.
+  This issue is planned to be fixed in a future release.
+
+- The app-config-web, app-config-server, and app-config-worker components output a YTT overlay that
+  allows developers to configure the environment variables for their Carvel package.
+  This overlay incorrectly replaces all Convention provided environment variables, instead of merging
+  developer provided environment variables.
+  To work around this, supply all environment variables, both Convention provided and user provided,
+  to the Carvel package. This issue is planned to be fixed in a future release.
 
 #### <a id='1-8-0-cnr-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
 
@@ -736,19 +754,6 @@ This release has the following known issues, listed by component and area.
 - Tanzu Developer Portal Configurator jumps from v1.0.x in Tanzu Application Platform v1.7 to v1.8.x
   in Tanzu Application Platform v1.8. This version jump enables future versions of
   Tanzu Developer Portal and Tanzu Developer Portal Configurator to sync going forward.
-
-#### <a id='1-8-0-alm'></a> v1.8.0 Known issues: App Last Mile Catalog
-
-- The app-config-web, app-config-server, and app-config-worker components do not allow developers to override the default application ports.
-  This means that applications that use non-standard ports will not work out of the box. To work around this, ports can be configured by providing
-  values to the resulting Carvel Package. This issue will be fixed in a future release.
-- The app-config-web, app-config-server, and app-config-worker components output a YTT overlay that allow developers to configure the environment variables
-  for their Carvel Package. This overlay incorrectly replaces all Convention provided environment variables, instead of merging in developer provided environment variables.
-  Work around this by supplying all environment variables, both Convention provided and user provided, to the Carvel Package. This issue will be fixed in the next patch.
-
-#### <a id='1-8-0-tap'></a> v1.8.0 Known issues: Tanzu Application Platform
-
-- Tanzu Application Platform 1.8.0 installation via TMC is not supported for K8s 1.26.
 
 ---
 
