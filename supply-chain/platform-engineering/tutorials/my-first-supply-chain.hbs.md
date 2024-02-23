@@ -204,7 +204,41 @@ Created file tasks/source-git-clone.yaml
 Created file tasks/store-content-oci.yaml
 ```
 
-You have now authored your first SupplyChain! 
+You have now authored your first SupplyChain! you can view the SupplyChain definition created by the wizard by viewing the manifest created in the `supplychains/` folder as follows:
+```
+$ cat supplychains/appbuildv1.yaml
+
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
+kind: SupplyChain
+metadata:
+    name: appbuildv1
+spec:
+    defines:
+        group: supplychains.tanzu.vmware.com
+        kind: AppBuildV1
+        plural: appbuildv1s
+        version: v1alpha1
+    description: Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+    stages:
+        - componentRef:
+            name: source-git-provider-1.0.0
+          name: source-git-provider
+        - componentRef:
+            name: buildpack-build-1.0.0
+          name: buildpack-build
+        - componentRef:
+            name: conventions-1.0.0
+          name: conventions
+        - componentRef:
+            name: app-config-server-1.0.0
+          name: app-config-server
+        - componentRef:
+            name: carvel-package-1.0.0
+          name: carvel-package
+        - componentRef:
+            name: git-writer-pr-1.0.0
+          name: git-writer-pr
+```
 
 [//]: # (Keep this section at the bottom of the doc)
 # Useful links
