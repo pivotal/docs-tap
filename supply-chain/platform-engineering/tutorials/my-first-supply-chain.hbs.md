@@ -6,10 +6,12 @@ In this section, we will be using the `supplychain` CLI plugin to create our fir
 
 ## Prequisites
 You will need the following CLI tools installed on your local machine:
+
 * [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
 * [**supplychain** Tanzu CLI plugin](../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
+
 * [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
 >**Important**
@@ -141,6 +143,8 @@ $ tanzu supplychain generate
 ? What Kind would you like to use as the developer interface? AppBuildV1
 ? Give Supply chain a description? 
 ```
+
+We will 
 
 [//]: # (Keep this section at the bottom of the doc)
 # Useful links
