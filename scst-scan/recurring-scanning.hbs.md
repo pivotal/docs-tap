@@ -104,12 +104,8 @@ to execute a scan daily at 3:00 AM, the value is `0 3 * * *`
 - `RESULTS-REPOSITORY`: The registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `STEPS-FROM-IVS-TEMPLATE`: The steps to execute to scan the list of the container images.  See [ImageVulnerabilityScan samples](ivs-custom-samples.hbs.md#overview) for commonly used samples. To pass `spec.image` and `scanResults.location` to `args`, you can use `{image}` and `{output}` respectively. These interpolation variables differ from the ones currently used in the `ImageVulnerabilityScan` (`$(params.image)` and `$(params.scan-results-path)`).
 
->**Note** The scan step should be the last step in the `steps` property
-
-> **Note** Pay special attention to the scanning runtime, the scan frequency, and the configured deadline.
-Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days can increase the number of images scanned, and in turn, the scanning runtime. If the
-scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans start to queue up. VMware recommends
-running the scan once every 24 hours at a time when your cluster load is low.
+>**Note** The scan step should be the last step in the `steps` property.
+>**Note** Pay special attention to the scanning runtime, the scan frequency, and the configured deadline. Setting `RAN-INTERVAL` and `CREATED-INTERVAL` to a large number of days can increase the number of images scanned, and in turn, the scanning runtime. If the scan runtime is greater than the `CRON-SCHEDULE` frequency, the scans start to queue up. VMware recommends running the scan once every 24 hours at a time when your cluster load is low.
 
 ### <a id="grype-rivs-template"></a>Grype RecurringImageVulnerabilityScan template
 
