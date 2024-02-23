@@ -56,7 +56,7 @@ If migrating from the internal database to an external database, back up the dat
    ```
 
 3. (Optional) If you are migrating from the internal database to an external database, the
-reconciliation above might fail. To ensure success, you must manually delete the secret that cert-manager created and cycle the Artifict Metadata Repository and Metadata Store  Services so that the new secret can be picked up.
+reconciliation above might fail. To ensure success, you must manually delete the secret that cert-manager created and cycle the AMR and MDS Services so that the new secret can be picked up.
 
    ```console
    kubectl delete secret -n metadata-store postgres-db-tls-cert
