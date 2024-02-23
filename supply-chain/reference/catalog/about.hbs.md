@@ -504,6 +504,3 @@ spec:
     active-keychains:
     service-account-publisher:
 ```
-
-
-Exiting.
