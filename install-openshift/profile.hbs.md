@@ -475,7 +475,7 @@ For more information about the differences between `lite` and `full` dependencie
 
 To install the `full` dependencies package:
 
-{{> 'partials/full-deps }}
+{{> 'partials/full-deps' }}
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
