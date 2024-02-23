@@ -1,13 +1,8 @@
-API server listening at: 127.0.0.1:56247
-debugserver-@(#)PROGRAM:LLDB  PROJECT:lldb-1500.0.22.8
-for arm64.
-Got a connection, launched process /Users/rabdulaziz/Library/Caches/JetBrains/GoLand2023.3/tmp/GoLand/___1go_build_gitlab_eng_vmware_com_tanzu_application_platform_cartographer_experimental_component_docs (pid = 203).
 # Catalog of Tanzu Supply Chain Components
 
 {{> 'partials/supply-chain/beta-banner' }}
 
 This section introduces the catalog of components shipped with TAP. You will find all of these components in the "authoring" profile.
-
 
 ## app-config-server
 
@@ -509,6 +504,3 @@ spec:
     active-keychains:
     service-account-publisher:
 ```
-
-
-Exiting.
