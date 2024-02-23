@@ -14,7 +14,7 @@ You will need the following Packages installed on the Tanzu Application Platform
 
 * [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
-* To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
 ```
 $ kubectl get pkgi -A
 
@@ -130,7 +130,7 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
 
 ```
-Now that we know what all components are available to create our SupplyChain, lets start the authoring process. First step would be to scaffold the current directory using the `tanzu supplychain init` command as follows:
+Now that we know what all components are available to create our SupplyChain, let's start the authoring process. First step would be to scaffold the current directory using the `tanzu supplychain init` command as follows:
 
 ```
 $ mkdir myfirstsupplychaingroup
@@ -172,6 +172,36 @@ In the prompts that follow, add the following values:
 * **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
 * **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
 * **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
+* **Select a component as the next stage of the supply chain?** Done
+
+After you have selected the components for your chain, the wizard should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
+```
+✓ Successfully fetched all component dependencies
+Created file supplychains/appbuildv1.yaml
+Created file components/app-config-server-1.0.0.yaml
+Created file components/buildpack-build-1.0.0.yaml
+Created file components/carvel-package-1.0.0.yaml
+Created file components/conventions-1.0.0.yaml
+Created file components/git-writer-pr-1.0.0.yaml
+Created file components/source-git-provider-1.0.0.yaml
+Created file pipelines/app-config-server.yaml
+Created file pipelines/buildpack-build.yaml
+Created file pipelines/carvel-package.yaml
+Created file pipelines/conventions.yaml
+Created file pipelines/git-writer.yaml
+Created file pipelines/source-git-provider.yaml
+Created file tasks/calculate-digest.yaml
+Created file tasks/carvel-package-git-clone.yaml
+Created file tasks/carvel-package.yaml
+Created file tasks/check-builders.yaml
+Created file tasks/fetch-tgz-content-oci.yaml
+Created file tasks/git-writer.yaml
+Created file tasks/gitops-git-clone.yaml
+Created file tasks/prepare-build.yaml
+Created file tasks/source-git-check.yaml
+Created file tasks/source-git-clone.yaml
+Created file tasks/store-content-oci.yaml
+```
 
 
 [//]: # (Keep this section at the bottom of the doc)
