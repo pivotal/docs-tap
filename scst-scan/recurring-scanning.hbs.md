@@ -196,7 +196,7 @@ To apply this configuration, save it to a file and apply it to the namespace cre
 scans:
 
 ```console
-kubectl apply -f trype-recurring-scan.yaml --namespace <namespace>
+kubectl apply -f trivy-recurring-scan.yaml --namespace <namespace>
 ```
 
 ```yaml
