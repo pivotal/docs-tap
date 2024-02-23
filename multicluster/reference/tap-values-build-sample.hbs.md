@@ -48,7 +48,7 @@ tap_telemetry:
 
 app-scanning:
   amr:
-    url: http://amr-graphql.VIEW-CLUSTER-INGRESS-DOMAIN # AMR GraphQL location at the View profile cluster.
+    url: https://amr-graphql.VIEW-CLUSTER-INGRESS-DOMAIN # AMR GraphQL location at the View profile cluster.
     accessToken: "AMR-GRAPHQL-READ-ACCESS-TOKEN"
 
 amr:
