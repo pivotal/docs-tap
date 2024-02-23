@@ -34,7 +34,7 @@ spec:
 
 Where:
 
-* `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning)(create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
+* `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 * `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
 * `REGISTRY-SERVER` is the registry repository used for the scan results location.
 * `GIT-URL` is the Fit repository URL to clone from for the source component.
