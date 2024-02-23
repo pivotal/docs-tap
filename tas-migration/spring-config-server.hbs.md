@@ -1,9 +1,9 @@
 # Migrate Spring Config Server applications from TAS to Tanzu Application Platform
 
-Tanzu Application Service (TAS) and Tanzu Application Platform (TAP) both provide the ability to
-load java properties into an application from a configuration repository, and it is possible to
-migrate an application running on TAS with Spring Configuration Service (SCS) to Tanzu Application
-Platform with Application Configuration Service (ACS).
+Tanzu Application Service (TAS) and Tanzu Application Platform (commonly known as TAP) both provide
+the ability to load Java properties into an application from a configuration repository, and it is
+possible to migrate an application running on TAS with Spring Configuration Service (SCS) to Tanzu
+Application Platform with Application Configuration Service (ACS).
 
 Although this migration does not require changes to either the application code or the configuration
 repository where properties are stored, the mechanism used to load properties into a Tanzu
@@ -114,8 +114,8 @@ TAS/SCS
 Tanzu Application Platform/ACS
 : To bind the config server to the app:
 
-   1. Create a `ResourceClaim` resource, specifying the details of the `ConfigurationSlice` resource in
-      the `spec.ref` section of the configuration.
+   1. Create a `ResourceClaim` resource, specifying the details of the `ConfigurationSlice` resource
+      in the `spec.ref` section of the configuration.
    1. Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the workload. This
       mounts the properties to the running pod’s filesystem.
    1. Specify a `SPRING_CONFIG_IMPORT` property in the `spec.env` section of the workload with the
