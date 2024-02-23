@@ -702,7 +702,7 @@ This release has the following known issues, listed by component and area.
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
 
-#### <a id='1-8-0-alm'></a> v1.8.0 Known issues: App Last Mile Catalog
+#### <a id='1-8-0-alm-ki'></a> v1.8.0 Known issues: App Last Mile Catalog
 
 - The app-config-web, app-config-server, and app-config-worker components do not allow developers to
   override the default application ports.
