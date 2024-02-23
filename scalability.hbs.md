@@ -84,6 +84,7 @@ The following table describes the resource limit changes that are required for c
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
+| appsso/controller | 20&nbsp;m/500&nbsp;m | 100&nbsp;Mi/**1&nbsp;Gi** | n/a | No | Yes | Yes | `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
@@ -433,4 +434,27 @@ Edit `values.yaml` to scale resource limits:
 ```console
 tap_telemetry:
   limit_memory: 2Gi
+```
+
+### AppSSO
+
+The default resource requests and limits are:
+
+```console
+resources:
+  requests:
+    cpu: 20m
+    memory: 100Mi
+  limits:
+    cpu: 500m
+    memory: 500Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+appsso:
+  resources:
+    limits:
+      memory: 1Gi
 ```
