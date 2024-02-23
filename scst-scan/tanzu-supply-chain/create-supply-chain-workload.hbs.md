@@ -3,11 +3,12 @@
 This topic covers how to create and apply a workload from a Tanzu Supply Chain, how to observe a
 workload, and how to verify the scanning performed in a workload.
 
-## <a id="define-and-create-workload"></a> Define and create workload
+## <a id="define-and-create-workload"></a> Define and create a workload
 
-This section covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
-either the Trivy Supply Chain Component or Customized Scanning Component.
-For more details on how to create a workload, see [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md).
+This section covers how to create a workload from an existing supply chain that was created using
+SCST - Scan 2.0 and either the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+
+For more information about how to create a workload, see [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md).
 
 A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
 
@@ -33,7 +34,7 @@ spec:
 
 Where:
 
-* `KIND` is the kind defined in [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
+* `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning)(create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
 * `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
 * `REGISTRY-SERVER` is the registry repository used for the scan results location.
 * `GIT-URL` is the Fit repository URL to clone from for the source component.
@@ -42,7 +43,7 @@ Where:
 
 For more information about any of the `GIT-*` values, see [Source Git Provider](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider).
 
-### <a id="generate-workload"></a> Generate workload
+### <a id="generate-workload"></a> Generate a workload
 
 Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
 
@@ -50,13 +51,13 @@ Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
 tanzu workload generate NAME --kind KIND
 ```
 
-Where `KIND` is the kind api resource defined  [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
+Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
 For more information about how to create a workload, see [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md).
 
 This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
-### <a id="create-workload"></a> Create workload
+### <a id="create-workload"></a> Create a workload
 
 Using the `workload.yaml` created in the previous section, create the workload:
 
