@@ -756,56 +756,56 @@ This release has the following known issues, listed by component and area.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                     | Version |
-| -------------------------------------------------- | ------- |
-| API Auto Registration                              |         |
-| API portal                                         |         |
-| Application Accelerator                            |         |
-| Application Configuration Service                  |         |
-| Application Live View APIServer                    |         |
-| Application Live View back end                     |         |
-| Application Live View connector                    |         |
-| Application Live View conventions                  |         |
-| Application Single Sign-On                         |         |
-| Artifact Metadata Repository Observer              |         |
-| AWS Services                                       |         |
-| Bitnami Services                                   |         |
-| Carbon Black Scanner for SCST - Scan (beta)        |         |
-| Cartographer Conventions                           |         |
-| cert-manager                                       |         |
-| Cloud Native Runtimes                              |  2.5.1  |
-| Contour                                            |  2.2.0  |
-| Crossplane                                         |         |
-| Default Roles                                      |         |
-| Developer Conventions                              |         |
-| External Secrets Operator                          |         |
-| Flux CD Source Controller                          |         |
-| Grype Scanner for SCST - Scan                      |         |
-| Local Source Proxy                                 |         |
-| Namespace Provisioner                              |         |
-| Out of the Box Delivery - Basic                    |         |
-| Out of the Box Supply Chain - Basic                |         |
-| Out of the Box Supply Chain - Testing              |         |
-| Out of the Box Supply Chain - Testing and Scanning |         |
-| Out of the Box Templates                           |         |
-| Service Bindings                                   |         |
-| Service Registry                                   |         |
-| Services Toolkit                                   |         |
-| Snyk Scanner for SCST - Scan (beta)                |         |
-| Source Controller                                  |         |
-| Spring Boot conventions                            |         |
-| Spring Cloud Gateway                               |         |
-| Supply Chain Choreographer                         |         |
-| Supply Chain Security Tools - Policy Controller    |         |
-| Supply Chain Security Tools - Scan                 |         |
-| Supply Chain Security Tools - Scan 2.0             |         |
-| Supply Chain Security Tools - Store                |         |
-| Tanzu Developer Portal                             |         |
-| Tanzu Developer Portal Configurator                |         |
-| Tanzu Application Platform Telemetry               |         |
-| Tanzu Build Service                                |         |
-| Tanzu CLI                                          |         |
-| Tekton Pipelines                                   |         |
+| Component Name                                     | Version        |
+| -------------------------------------------------- | -------------- |
+| API Auto Registration                              | 0.4.2          |
+| API portal                                         | 1.5.0          |
+| Application Accelerator                            | 1.8.1          |
+| Application Configuration Service                  | 2.3.0          |
+| Application Live View APIServer                    | 1.8.0          |
+| Application Live View back end                     | 1.8.0          |
+| Application Live View connector                    | 1.8.0          |
+| Application Live View conventions                  | 1.8.0          |
+| Application Single Sign-On                         | 5.1.1          |
+| Artifact Metadata Repository Observer              | 0.4.1          |
+| AWS Services                                       | 0.2.0          |
+| Bitnami Services                                   | 0.4.0          |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.3.2          |
+| Cartographer Conventions                           | 0.8.10         |
+| cert-manager                                       | 2.7.0          |
+| Cloud Native Runtimes                              | 2.5.1          |
+| Contour                                            | 2.2.0          |
+| Crossplane                                         | 0.4.1          |
+| Default Roles                                      | 1.1.0          |
+| Developer Conventions                              | 0.16.1         |
+| External Secrets Operator                          | 0.9.4+tanzu.2  |
+| Flux CD Source Controller                          | 0.36.1+tanzu.2 |
+| Grype Scanner for SCST - Scan                      | 1.8.2          |
+| Local Source Proxy                                 | 0.2.1          |
+| Namespace Provisioner                              | 0.6.2          |
+| Out of the Box Delivery - Basic                    | 0.15.6         |
+| Out of the Box Supply Chain - Basic                | 0.15.6         |
+| Out of the Box Supply Chain - Testing              | 0.15.6         |
+| Out of the Box Supply Chain - Testing and Scanning | 0.15.6         |
+| Out of the Box Templates                           | 0.15.6         |
+| Service Bindings                                   | 0.11.0         |
+| Service Registry                                   | 1.3.1          |
+| Services Toolkit                                   | 0.13.0         |
+| Snyk Scanner for SCST - Scan (beta)                | 1.2.2          |
+| Source Controller                                  | 0.8.3          |
+| Spring Boot conventions                            | 1.8.0          |
+| Spring Cloud Gateway                               | 2.1.7          |
+| Supply Chain Choreographer                         | 0.8.10         |
+| Supply Chain Security Tools - Policy Controller    | 1.6.3          |
+| Supply Chain Security Tools - Scan                 | 1.8.2          |
+| Supply Chain Security Tools - Scan 2.0             | 0.3.2          |
+| Supply Chain Security Tools - Store                | 1.8.1          |
+| Tanzu Application Platform Telemetry               | 0.7.0          |
+| Tanzu Build Service                                | 1.13.0         |
+| Tanzu CLI                                          | 1.1.0          |
+| Tanzu Developer Portal                             | 1.8.1          |
+| Tanzu Developer Portal Configurator                | 1.8.1          |
+| Tekton Pipelines                                   | 0.50.3+tanzu.4 |
 
 ---
 
