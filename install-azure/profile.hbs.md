@@ -382,45 +382,7 @@ For more information about the differences between `lite` and `full` dependencie
 
 To install the `full` dependencies package:
 
-1. To execute a clean install of the full dependencies, you must exclude the default dependencies by adding the key-value pair `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section. For example:
-
-    ```yaml
-    buildservice:
-      kp_default_repository: ${KP_REGISTRY_HOSTNAME}.azurecr.io/{$REPOSITORY_NAME}
-      exclude_dependencies: true
-    ...
-    ```
-
-1. Get the latest version of the `tap` package by running:
-
-    ```console
-    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
-    ```
-
-1. Relocate the Tanzu Build Service full dependencies package repository by running:
-
-    ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps-package-repo
-    ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
-
-1. Add the Tanzu Build Service full dependencies package repository by running:
-
-    ```console
-    tanzu package repository add full-deps-package-repo \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:VERSION \
-      --namespace tap-install
-    ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved earlier.
-
-1. Install the full dependencies package by running:
-
-    ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
-    ```
+{{> 'partials/full-deps' }}
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 

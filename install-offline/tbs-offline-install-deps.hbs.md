@@ -3,13 +3,17 @@
 This topic tells you how to install the Tanzu Build Service (TBS) full dependencies
 on Tanzu Application Platform (commonly known as TAP).
 
+By default, Tanzu Build Service is installed with `lite` dependencies.
+
+When installing Tanzu Build Service on an air-gapped environment, the `lite` dependencies
+cannot be used as they require Internet access.
+You must install the `full` dependencies.
+
+To install `full` dependencies:
+
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/full-deps' find_tap_version="1. Get the latest version of the Tanzu Application Platform package by running:
-
-    ```console
-    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
-    ```" }}
+{{> 'partials/full-deps' }}
 
 ## <a id='next-steps'></a>Next steps
 
