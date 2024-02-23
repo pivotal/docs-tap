@@ -7,7 +7,7 @@ workload, and how to verify the scanning performed in a workload.
 
 This section covers how to create a workload from an existing [supply chain created in the previous page](./create-supply-chain-with-app-scanning.hbs.md) that was created using SCST - Scan 2.0 and with
 either the Trivy Supply Chain Component or Customized Scanning Component.
-See [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md) for more details on how to create a workload.
+For more details on how to create a workload, see [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md).
 
 A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
 
@@ -15,48 +15,54 @@ A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to 
 
 Define a `workload.yaml` to run:
 
-    ```yaml
-    kind: KIND
-    apiVersion: example.com/v1alpha1
-    metadata:
-      name: WORKLOAD-NAME
-    spec:
-      registry:
-        repository: REGISTRY-REPOSITORY
-        server: REGISTRY-SERVER
-      source:
-        git:
-          branch: main
-          url: GIT-URL
-        subPath: ""
-    ```
-    Where:
+```yaml
+kind: KIND
+apiVersion: example.com/v1alpha1
+metadata:
+  name: WORKLOAD-NAME
+spec:
+  registry:
+    repository: REGISTRY-REPOSITORY
+    server: REGISTRY-SERVER
+  source:
+    git:
+      branch: main
+      url: GIT-URL
+    subPath: ""
+```
 
-    * `KIND` is the kind defined in the [previous section](./create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-that-uses-scst---scan-20-with-a-component) about creating Tanzu Supply Chains
-    * `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
-    * `REGISTRY-SERVER` is the registry repository used for the scan results location.
-    * `GIT-URL` is the git repo URL to clone from for the source component.
-    * `GIT-BRANCH` is the git branch ref to watch for the new source.
-    * `GIT-SUBPATH` is the path inside the bundle to lcoate source code.
-    * For the above `GIT-*` values, see [Source Git Provider](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider) for more details
+Where:
+
+* `KIND` is the kind defined in [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
+* `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
+* `REGISTRY-SERVER` is the registry repository used for the scan results location.
+* `GIT-URL` is the Fit repository URL to clone from for the source component.
+* `GIT-BRANCH` is the Git branch ref to watch for the new source.
+* `GIT-SUBPATH` is the path inside the bundle to locate source code.
+
+For more information about any of the `GIT-*` values, see [Source Git Provider](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider).
 
 ### <a id="generate-workload"></a> Generate workload
+
 Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
-  ```console
-  tanzu workload generate NAME --kind KIND
-  ```
-  Where `KIND` is the kind api resource defined in the previous [section](./create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-that-uses-scst---scan-20-with-a-component)
 
-  See [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md) for more details from Tanzu Supply Chain docs.
+```console
+tanzu workload generate NAME --kind KIND
+```
 
-  This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
+Where `KIND` is the kind api resource defined  [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scannin).
+
+For more information about how to create a workload, see [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md).
+
+This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
 ### <a id="create-workload"></a> Create workload
 
-   Using the `workload.yaml` created in the previous section, create the workload:
-   ```console
-   tanzu workload create --file workload.yaml --namespace DEV-NAMESPACE
-   ```
+Using the `workload.yaml` created in the previous section, create the workload:
+
+```console
+tanzu workload create --file workload.yaml --namespace DEV-NAMESPACE
+```
 
 ## <a id="observe-workload"></a> Observe workload
 
@@ -88,6 +94,7 @@ This section shows how to use the Tanzu Workload CLI to observe a workload.
     ```
 
     Example output:
+
     ```console
     $ tanzu workload get golang-app-grype-test  -n grype-app-scanning-catalog
     📡 Overview
@@ -107,7 +114,7 @@ This section shows how to use the Tanzu Workload CLI to observe a workload.
 
 ## <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
-Get the ivs name by looking for the IVS in the namespace it was created in:
+Get the IVS name by looking in the namespace it was created in:
 
 ```console
 $ kubectl get ivs -n DEV-NAMESPACE
