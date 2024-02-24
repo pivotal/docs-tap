@@ -818,6 +818,7 @@
               - [Component](supply-chain/reference/api/component.hbs.md)
               - [Workload](supply-chain/reference/api/workload.hbs.md)
               - [WorkloadRun](supply-chain/reference/api/workloadrun.hbs.md)
+      - [Known Issues](./supply-chain/known-issues.md)
     - [Tekton Pipelines](tekton/tekton-about.hbs.md)
         - [Tekton overview](tekton/tekton-about.hbs.md)
         - [Install Tekton Pipelines](tekton/install-tekton.hbs.md)
