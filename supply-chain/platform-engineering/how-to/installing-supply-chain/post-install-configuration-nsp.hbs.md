@@ -1,4 +1,4 @@
-## Post Install Configuration
+# Post Install Configuration with Namespace Provisioner
 
 {{> 'partials/supply-chain/beta-banner' }}
 
