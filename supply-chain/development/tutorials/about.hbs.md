@@ -2,4 +2,5 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-- [Deploy your first Workload](./deploy-your-first-workload.hbs.md)
+## Getting Started with Tutorials
+* [Deploy your first Workload](./deploy-your-first-workload.hbs.md)
