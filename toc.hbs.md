@@ -767,6 +767,7 @@
                   - [Installing via profile (recommended)](./supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md)
                   - [Installing manually](./supply-chain/platform-engineering/how-to/installing-supply-chain/installing-manually.hbs)
                   - [Post-install configuration](./supply-chain/platform-engineering/how-to/installing-supply-chain/post-install-configuration.hbs.md)
+                  - [Post-install configuration using Namespace Provisioner](./supply-chain/platform-engineering/how-to/installing-supply-chain/post-install-configuration-nsp.hbs.md)
               - [Supply Chain Authoring](./supply-chain/platform-engineering/how-to/supply-chain-authoring/about.hbs.md)
                   - [Construct a Supply Chain using the CLI](./supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
                   - [Ensure Supply Chains are managed via GitOps](./supply-chain/platform-engineering/how-to/supply-chain-authoring/gitops.hbs.md)
