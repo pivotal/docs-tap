@@ -1,4 +1,4 @@
-# How To install a Supply Chain
+# How to install a Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
@@ -26,8 +26,7 @@ Next step is to use the `Makefile` generated as part of the `SupplyChain` author
 ```bash
 $ NAMESPACE=mysupplychains make install
 
-kapp deploy -n mysupplychains -a components.supplychains.tanzu.vmware.com -f components -f pipelines -f tasks -y --dangerous-allow-empty-list-of-resources
-Target cluster 'https://34.123.121.2' (nodes: gke-downstream-adhol-default-pool-418a2a37-9o76, 1+)
+...
 
 Changes
 
@@ -111,8 +110,8 @@ Wait to: 23 reconcile, 0 delete, 0 noop
 1:47:23PM: ---- waiting complete [23/23 done] ----
 
 Succeeded
-kapp deploy -n mysupplychains -a supplychain.supplychains.tanzu.vmware.com -f supplychains -y --dangerous-allow-empty-list-of-resources
-Target cluster 'https://34.123.121.2' (nodes: gke-downstream-adhol-default-pool-418a2a37-9o76, 1+)
+
+...
 
 Changes
 
@@ -136,3 +135,5 @@ Succeeded
 >By default, the `make install` command, installs to the default namespace in your kubeconfig.
 
 ## Installing via GitOps
+
+Please refer to the [GitOps managed SupplyChains](./../../explanation/gitops-managed.hbs.md) guide for guidance on how to manage/install Supply Chains in your build/full clusters.
