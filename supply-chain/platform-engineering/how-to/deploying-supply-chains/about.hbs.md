@@ -2,4 +2,4 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-- [Install a Supply Chain](./install.hbs.md)
+- [Install an authored SupplyChain](./install.hbs.md)

@@ -2,11 +2,11 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-[Workloads] and their [Runs] can be observed using the Tanzu `workload` CLI plugin.
+`Workloads` and their `WorkloadRuns` can be observed using the Tanzu `workload` CLI plugin.
 
 ## List Workloads
 
-Lists all [Workloads]:
+Lists all `Workloads` on the cluster:
 
 ```console
 $ tanzu workload list --namespace build
@@ -18,7 +18,7 @@ Listing workloads from the build namespace
 
 ## Get a Workload
 
-Get the details of the specified [Workload] within a namespace:
+Get the details of the specified `Workload` within a namespace:
 
 ```console
 $ tanzu workload get my-web-app --namespace build
@@ -107,7 +107,7 @@ Stages
        └─ pipeline - Not Started
 ```
 
-[Workload]: ../explanation/workloads.hbs.md
-[Workloads]: ../explanation/workloads.hbs.md
-[Runs]: ../explanation/workload-runs.hbs.md
-[Workload Run]: ../explanation/workload-runs.hbs.md
+## References
+
+* [Understand Workloads](../explanation/workloads.hbs.md)
+* [Understand WorkloadRuns](../explanation/workloads.hbs.md)

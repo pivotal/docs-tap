@@ -2,11 +2,11 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-The Tanzu `workload` CLI plugin provides commands that allow a Developer to generate a [Workload] manifest, apply it to a cluster, and delete it from a cluster.
+The Tanzu `workload` CLI plugin provides commands that allow a Developer to generate a `Workload` manifest, apply it to a cluster, and delete it from a cluster.
 
 ## Generate a Workload manifest
 
-Generate a [Workload] manifest with default configuration:
+Generate a `Workload` manifest with default configuration:
 
 ```console
 $ tanzu workload generate my-web-app --kind buildwebapps.vmware.com
@@ -35,7 +35,7 @@ spec:
 #! other configuration
 ```
 
-This [Workload] manifest can be stored in a file for use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload get` commands:
+This `Workload` manifest can be stored in a file for use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload get` commands:
 
 ```console
 $ tanzu workload generate my-web-app --kind buildwebapps.vmware.com > workload.yaml
@@ -43,7 +43,7 @@ $ tanzu workload generate my-web-app --kind buildwebapps.vmware.com > workload.y
 
 ## Create a Workload
 
-Create a [Workload] on the cluster from a [Workload] manifest:
+Create a `Workload` on the cluster from a the manifest:
 
 ```console
 $ tanzu workload create --file workload.yaml --namespace build
@@ -67,17 +67,19 @@ Create workload my-web-app from workload.yaml? [yN]: y
 Successfully created workload my-web-app
 ```
 
-The [Workload] name provided in the manifest can be overridden by providing a name as an argument:
+The `Workload` name provided in the manifest can be overridden by providing a name as an argument:
 
 ```console
 tanzu workload create my-web-app-2 --file workload.yaml --namespace build
 ```
 
->> **Note** the `tanzu workload create` command can only be used to create a [Workload] that does not already exist. To update an existing [Workload], use `tanzu workload apply`.
+>**Note**
+>The `tanzu workload create` command can only be used to create a `Workload` that does not already exist. To update an existing `Workload`, use `tanzu workload apply`.
+
 
 ## Apply a Workload
 
-Apply a [Workload] manifest to the cluster.
+Apply a `Workload` manifest to the cluster.
 
 This command 
 
@@ -103,17 +105,20 @@ Create workload my-web-app from workload.yaml? [yN]: y
 Successfully created workload my-web-app
 ```
 
-The [Workload] name provided in the manifest can be overridden by providing a name as an argument:
+The `Workload` name provided in the manifest can be overridden by providing a name as an argument:
 
 ```console
 tanzu workload apply my-web-app-2 --file workload.yaml --namespace build
 ```
 
->> **Note** the `tanzu workload apply` command can used to create **or** update a [Workload].
+>**Note**
+>The `tanzu workload apply` command can used to create **or** update a `Workload`.
+
+You can use the `tanzu workload` CLI plugin to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
 
 ## Delete a Workload
 
-Delete a [Workload] by name within a namespace.
+Delete a `Workload` by name within a namespace.
 
 ```console
 $ tanzu workload delete --file /tmp/workload.yaml --namespace build
@@ -121,7 +126,10 @@ Really delete the workload my-web-app of kind buildwebapps.vmware.com from the b
 Successfully deleted workload my-web-app
 ```
 
->> **Note** Deleting a [Workload] prevents new builds while preserving built images in the registry.
+>**Note**
+>Deleting a `Workload` prevents new builds while preserving built images in the registry.
 
-[Workload]: ../explanation/workloads.hbs.md
-[Workloads]: ../explanation/workloads.hbs.md
+## References
+
+* [Understand Workloads](../explanation/workloads.hbs.md)
+* [Understand WorkloadRuns](../explanation/workloads.hbs.md)
