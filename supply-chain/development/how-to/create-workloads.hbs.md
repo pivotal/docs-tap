@@ -114,6 +114,8 @@ tanzu workload apply my-web-app-2 --file workload.yaml --namespace build
 >**Note**
 >The `tanzu workload apply` command can used to create **or** update a `Workload`.
 
+You can use the `tanzu workload` CLI plugin to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
+
 ## Delete a Workload
 
 Delete a `Workload` by name within a namespace.
@@ -129,5 +131,5 @@ Successfully deleted workload my-web-app
 
 ## References
 
-[Understand Workloads](../explanation/workloads.hbs.md)
-[Understand WorkloadRuns](../explanation/workloads.hbs.md)
+* [Understand Workloads](../explanation/workloads.hbs.md)
+* [Understand WorkloadRuns](../explanation/workloads.hbs.md)

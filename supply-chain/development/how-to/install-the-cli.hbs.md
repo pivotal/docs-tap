@@ -33,5 +33,5 @@ tanzu plugin delete workload
 
 ## References
 
-[Understand Workloads](../explanation/workloads.hbs.md)
-[Understand WorkloadRuns](../explanation/workloads.hbs.md)
+* [Understand Workloads](../explanation/workloads.hbs.md)
+* [Understand WorkloadRuns](../explanation/workloads.hbs.md)
