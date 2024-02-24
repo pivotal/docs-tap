@@ -7,7 +7,7 @@ This section details the Developer focused features of the Tanzu Supply Chains.
 ## Prerequisites
 Start using the Tanzu Supply Chains by installing these CLI tools:
 
-* [Install the `tanzu` CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
+* [Install the `tanzu` CLI](../../install-tanzu-cli.hbs.md#install-the-tanzu-cli)
 * [Install the `tanzu workload` CLI plugin for Developers](./how-to/install-the-cli.hbs.md)
 
 ## Getting Started with Tutorials
