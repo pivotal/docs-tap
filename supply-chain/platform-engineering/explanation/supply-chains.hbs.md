@@ -8,6 +8,41 @@ This topic introduces the SupplyChain resource which unifies the Tanzu Supply Ch
 
 [Detailed Specification in the API Section](../../reference/api/supplychain.hbs.md)
 
+## Supply Chains cannot change an API once it is on-cluster
+
+The version of your SupplyChain, as embedded in the name, must follow the following rules.
+
+A patch bump is required to update the supply chain without an API change.
+The controller will ensure this rule cannot be broken when comparing supply chains on cluster.
+
+For example, imagine you apply to a cluster:
+
+* a SupplyChain with the name `serverapps.example.com-1.0.0` with kind `ServerAppsV1`
+* a SupplyChain with the name `serverapps.example.com-1.0.1` with kind `ServerAppsV1`
+
+If the generated API for the kind is unchanged, then the higher version is accepted.
+If there is a change, the first applied supply chain wins, and the others reflect the error in their status.
+This ensures that **you can't accidentally break the running kind API**.
+
+These rules ensure that potentially thousands of Workloads and Runs on the cluster do not suddenly break.
+
+**Recommended** version guidelines:
+
+* If the API and general behavior is unchanged by a change to the [`spec.stages`](tbd link):
+  * Use a patch bump such as `1.2.5` to `1.2.6`
+  * Keep the same kind, such as `ServerAppV1`
+* If the API is unchanged, but something significantly different occurs because of changes to the [`spec.stages`](tbd link), consider:
+  * a bump to the minor or major version, such as `1.2.5` to `1.3.0`
+  * a bump to the kind, such as `ServerAppV2`
+  * or a change of kind, such as `ServerAppWithApprovalV1`
+* If the API changes:
+  * a bump to the minor or major version, such as `1.2.5` to `1.3.0`
+  * a bump to the kind, such as `ServerAppV2`
+
+This ensures clear communication to your users. New kind versions typically indicate that the user
+needs to migrate their resources to the new API.
+
+
 ## SupplyChain `defines` a configuration resource
 
 A SupplyChain brings together the API for an end user to apply to the cluster by:
@@ -53,6 +88,17 @@ Typical stages included in this process are:
 ### Describe a release process
 
 <!-- tbd -->
+
+## Integrity validation
+
+A SupplyChain is **not valid** if:
+
+* A required field is missing
+* The [Components] referenced are not in the same namespace
+* The [Components] referenced contain inputs that are not satisfied by their position in the [`spec.stages`](#specstages)
+* The name does not match the [`spec.defines`](#specdefines) section
+* The SupplyChain breaks the [versioning rules](#supply-chains-cannot-change-an-api-once-it-is-on-cluster).
+
 
 [Components]: ./components.hbs.md
 [Workload]: ./workloads.hbs.md
