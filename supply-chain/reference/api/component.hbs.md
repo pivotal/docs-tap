@@ -192,7 +192,33 @@ The available references for templating references are:
 
 ### Status
 
-<tbd>
+#### `status.conditions`
+Every `status.conditions` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
+
+Components are "Living" resources, however they are _resistant_ to changes in their spec, They're designed to be immutable
+on production servers, so that accidental spec changes do not break the API delivered to end users.
+
+If a Component's top level condition "Ready" is ever something other than `status: "True"` then the `reason` field should describe the problem with the component.
+
+#### `status.details`
+
+`status.details` describe some of the observations that Tanzu Supply Chains made about this component.
+These fields are used to improve the output of `kubernetes get component <name> -owide`, and they summarize the component for platform engineers when they author a SupplyChain.
+
+```yaml
+status:
+  conditions:
+  - lastTransitionTime: "2024-02-25T00:40:46Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  details:
+    hasResumptions: "False"
+    inputs: conventions[conventions[]
+    outputs: oci-yaml-files[oci-yaml-files[], oci-ytt-files[oci-ytt-files[]
+  observedGeneration: 1
+```
 
 [SupplyChain]: supplychain.hbs.md
 [Workload]: workload.hbs.md
