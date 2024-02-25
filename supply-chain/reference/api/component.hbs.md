@@ -192,8 +192,8 @@ The available references for templating references are:
 
 ### Status
 
-#### `status.conditions`
-Every `status.conditions` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
+#### `status.conditions[]`
+Every `status.conditions[]` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
 
 Components are "Living" resources, however they are _resistant_ to changes in their spec, They're designed to be immutable
 on production servers, so that accidental spec changes do not break the API delivered to end users.
