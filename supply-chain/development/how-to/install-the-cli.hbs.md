@@ -11,7 +11,7 @@ The `workload` plugin CLI helps you discover Workload Kinds, deploy workloads, a
 ## Prerequisites
 Ensure that you installed or updated the core Tanzu CLI. For more information, see [Install Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-cli).
 
-## Install Tanzu Supplychain and Workload CLI plugins
+## Install Tanzu Workload CLI plugin
 
 Run:
 ```
@@ -24,7 +24,7 @@ tanzu plugin install workload
 tanzu workload version
 ```
 
-## Uninstall Tanzu Supplychain and Workload CLI plugins
+## Uninstall Tanzu Workload CLI plugins
 
 Run:
 ```
