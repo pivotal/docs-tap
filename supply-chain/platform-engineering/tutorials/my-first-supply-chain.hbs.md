@@ -240,7 +240,10 @@ spec:
           name: git-writer-pr
 ```
 
-[//]: # (Keep this section at the bottom of the doc)
+## Next Steps
+
+Now we need to deploy this `SupplyChain` to your TAP clusters where your developers will be creating the `Workloads`. See the [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md) guide for instructions.
+
 # Useful links
 
 * [Supply Chain API Reference](../../reference/api/supplychain.hbs.md)
