@@ -19,7 +19,7 @@ kind: Component
 Changes to the config section [(described below)](#specconfig) should coincide with a bump to major or minor versions.
 Reserve patch increments for changes that do not alter the API, or the behavior significantly.
 
-```
+```yaml
 metadata:
   name: source-1.0.0
 ```
@@ -95,7 +95,7 @@ This field is an array of workspace definitions, and is identical to the [Tekton
 `spec.pipelineRun.params` are the same as [Tekton PipelineRun Parameters] with one major difference: you can populate
 them using templates.
 
-The available references for template references are:
+The available references for templating are:
 
 | reference                                     | source                                  | examples                                                   |
 |-----------------------------------------------|-----------------------------------------|------------------------------------------------------------|
@@ -135,10 +135,43 @@ spec:
       type: source
 ```
 
-### `spec.resumptions`
+### `spec.resumptions[]`
+`spec.resumptions[]` define [Tekton TaskRuns]. They are optional, but useful to describe small, fast tasks that check for dependency changes, such as new source, or new base images.
 
-<tbd>
+For a detailed explanation of resumptions, see [Core Concepts: Resumptions](../../platform-engineering/explanation/resumptions.hbs.md).
 
+#### `spec.resumptions[].name`
+`spec.resumptions[].name` is visible to end users, so make sure it's suitably meaningful. 
+It's recommended that it's in the form: `check-<resource type>` where `<resource type>` is the kind of resource being polled, such as `source` or `base-image` etc.
+
+#### `spec.resumptions[].trigger.runaAfter`
+`spec.resumptions[].trigger.runaAfter` describes the rerun period for the task. The task is executed, and after it completes (successfully or otherwise), Tanzu Supply Chain waits the `runaAfter` period and then executes the task again.
+This continues indefinitely.
+
+`runAfter` can be specified using the [`time.ParseDuration()`](https://pkg.go.dev/maze.io/x/duration#ParseDuration) specification.
+
+#### `spec.resumptions[].taskRef`
+
+The `spec.resumptions[].taskRef` has one field `name` that **must** refer to the `metadata.name`
+of a [Tekton Task] that resides in the same namespace as the Component and SupplyChain.
+
+This is the task that run's on the resumptions `spec.resumptions[].trigger`
+
+#### `spec.resumptions[].params`
+
+`spec.resumptions[].params` are the same as [Tekton TaskRun Parameters] with one major difference: you can populate
+them using templates.
+
+The available references for templating references are:
+
+| reference                                     | source                                  | examples                                                   |
+|-----------------------------------------------|-----------------------------------------|------------------------------------------------------------|
+| `$(workload.spec...)`                         | The workload spec                       | `$(workload.spec.source.git.url)`                          |
+| `$(workload.metadata...)`                     | The workload metadata                   | `$(workload.metadata.labels)`, `$(workload.metadata.name)` |
+| `$(inputs.<input-name>.[url\|digest])`        | An input url or digest                  | `$(inputs.image.url)`, `$(inputs.image.digest)`            |
+
+
+#### Example
 ```yaml
   resumptions:
     - name: check-source
@@ -157,44 +190,22 @@ spec:
           value: $(workload.spec.source.git.tag)
 ```
 
-[//]: # (Components:)
-
-[//]: # ()
-
-[//]: # (1. Specify the work to do for the stage)
-
-[//]: # (    * as a Tekton PipelineRun &#40;*line 44*&#41;)
-
-[//]: # (3. Optionally specify small tasks used to check for dependency changes, such as new source, base images)
-
-[//]: # (    * as Tekton TaskRuns &#40;*line 29*&#41;)
-
-[//]: # (4. Are used to specify the work to be done in a [SupplyChain] `stage`)
-
 ### Status
 
 <tbd>
 
 [SupplyChain]: supplychain.hbs.md
-
 [Workload]: workload.hbs.md
-
 [Component]: ./component.hbs.md
-
 [Components]: ./component.hbs.md
-
 [WorkloadRun]: workloadrun.hbs.md
-
 [OpenAPI Structural Schema]: https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#specifying-a-structural-schema
-
 [Tekton PipelineRun]: https://tekton.dev/docs/pipelines/pipelineruns/
-
 [Tekton PipelineRuns]: https://tekton.dev/docs/pipelines/pipelineruns/
-
 [Tekton Pipeline]: https://tekton.dev/docs/pipelines/pipelines/
-
 [Tekton Pipelines]: https://tekton.dev/docs/pipelines/pipelines/
-
 [Tekton Workspaces]: https://tekton.dev/docs/pipelines/pipelineruns/#specifying-workspaces
-
 [Tekton PipelineRun Parameters]: https://tekton.dev/docs/pipelines/pipelineruns/#specifying-parameters
+[Tekton TaskRun Parameters]: https://tekton.dev/docs/pipelines/taskruns/#specifying-parameters
+[Tekton Taskruns]: https://tekton.dev/docs/pipelines/taskruns/
+[Tekton Task]: https://tekton.dev/docs/pipelines/tasks/
