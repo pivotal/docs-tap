@@ -52,9 +52,6 @@ spec:
 >**Note**
 >When you run the `tanzu workload generate` command, the `workload` CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
 
-
->**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command will also show the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides features is available, a Platform Engineer will be able to set Platform level values like the registry details, and those entries will not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This will result in a `Workload` spec that is much smaller, and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear seperation of concern between the Platform Engieering role and the Developer role.
-
 We can pipe the output of the generate command into a `workload.yaml` file as follows:
 ```
 $ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
@@ -86,6 +83,42 @@ spec:
     packageName: "tanzu-java-web-app"
     packageDomain: "tanzu.vmware.com"
 ```
+>**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command will also show the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides features is available, a Platform Engineer will be able to set Platform level values like the registry details, and those entries will not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This will result in a `Workload` spec that is much smaller, and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear seperation of concern between the Platform Engieering role and the Developer role.
+
 
 After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
+We will use the following to command to apply our `AppBuildV1` workload to the cluster. 
+
+>**Note**
+>`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, you can specify the `-f` flag to point to it.
+
+```
+$ tanzu workload apply
+
+🔎 Creating workload:
+      1 + |---
+      2 + |apiVersion: supplychains.tanzu.vmware.com/v1alpha1
+      3 + |kind: AppBuildV1
+      4 + |metadata:
+      5 + |  name: tanzu-java-web-app
+      6 + |  namespace: dev
+      7 + |spec:
+      8 + |  carvel:
+      9 + |    packageDomain: tanzu.vmware.com
+     10 + |    packageName: tanzu-java-web-app
+     11 + |  gitOps:
+     12 + |    baseBranch: main
+     13 + |    subPath: packages
+     14 + |    url: <gitops-repo-path>
+     15 + |  registry:
+     16 + |    repository: <repository-path>
+     17 + |    server: <registry-server>
+     18 + |  source:
+     19 + |    git:
+     20 + |      branch: main
+     21 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+     22 + |    subPath: tanzu-java-web-app
+Create workload tanzu-java-web-app from workload.yaml? [yN]: y
+✓ Successfully created workload tanzu-java-web-app
+```
 
