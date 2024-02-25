@@ -17,7 +17,7 @@ As a developer, the first thing we want to know is what `SupplyChain` are availa
 ```
 $ tanzu workload kind list
 
- KIND                                       VERSION   DESCRIPTION                                                                       
+  KIND                                       VERSION   DESCRIPTION                                                                       
   appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  Supply chain that pulls the source code from git repo, builds it using            
                                                        buildpacks and package the output as Carvel package.                              
 
@@ -52,5 +52,13 @@ spec:
 >**Note**
 >When you run the `tanzu workload generate` command, the `workload` CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
 
+
 >**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command will also show the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides features is available, a Platform Engineer will be able to set Platform level values like the registry details, and those entries will not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This will result in a `Workload` spec that is much smaller, and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear seperation of concern between the Platform Engieering role and the Developer role.
+
+We can pipe the output of the generate command into a `workload.yaml` file as follows:
+```
+$ tanzu workload generate tanzu-java-web-app > workload.yaml
+```
+>**Note**
+>If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file.
 
