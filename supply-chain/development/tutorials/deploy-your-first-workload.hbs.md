@@ -24,7 +24,7 @@ $ tanzu workload kind list
 🔎 To generate a workload for one of these kinds, use 'tanzu workload generate'
 ```
 
-The command output shows that we have a kind `appbuildv1s.supplychains.tanzu.vmware.com` that we can use to generate our workload. The CLI also shows a hint on the next command to use in the process. Let's use the `tanzu workload generate` command to build our workload. We will be using the sample app [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) for this tutorial.
+The command output shows that we have a kind `appbuildv1s.supplychains.tanzu.vmware.com` that we can use to generate our workload. The CLI also shows a hint on the next command to use in the process. Let's use the `tanzu workload generate` command to build our workload. We will be using the sample app [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) for this tutorial. Run the following command to create a `Workload` of kind `AppBuildV1`:
 
 ```yaml
 $ tanzu workload generate tanzu-java-web-app
@@ -57,8 +57,35 @@ spec:
 
 We can pipe the output of the generate command into a `workload.yaml` file as follows:
 ```
-$ tanzu workload generate tanzu-java-web-app > workload.yaml
+$ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
 ```
 >**Note**
->If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file.
+>If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier to choose for a developer.
+
+Next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entries. Here is what our sample `workload.yaml` looks like:
+
+```yaml
+apiVersion: supplychains.tanzu.vmware.com/v1alpha1
+kind: AppBuildV1
+metadata:
+  name: tanzu-java-web-app
+spec:
+  gitOps:
+    baseBranch: "main"
+    subPath: "packages"
+    url: <gitops-repo-path>
+  registry:
+    repository: <repository-path>
+    server: <registry-server>
+  source:
+    git:
+      branch: "main"
+      url: "https://github.com/vmware-tanzu/application-accelerator-samples.git"
+    subPath: "tanzu-java-web-app"
+  carvel:
+    packageName: "tanzu-java-web-app"
+    packageDomain: "tanzu.vmware.com"
+```
+
+After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
 
