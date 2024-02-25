@@ -244,3 +244,111 @@ $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
 
 >**Note**
 >`--show-details` is an optional flag that shows the verbose output of the `tanzu workload run get` command. The default output only shows the `stages` and their `status`.
+
+Once your `WorkloadRun` has successfully gone through the Supply Chain, the output of the `Workload` and `WorkloadRun` will look as follows:
+
+Workload Run Output
+: **tanzu workload run get tanzu-java-web-app-run-454m5 --show-details**
+
+    ```
+    📡 Overview
+        name:        tanzu-java-web-app
+        kind:        appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app
+        run id:      appbuildv1runs.supplychains.tanzu.vmware.com/tanzu-java-web-app-run-454m5
+        status:      Succeeded
+        namespace:   dev
+        age:         68m
+
+    📓 Spec
+        1 + |---
+        2 + |apiVersion: supplychains.tanzu.vmware.com/v1alpha1
+        3 + |kind: AppBuildV1
+        4 + |metadata:
+        5 + |  name: tanzu-java-web-app
+        6 + |  namespace: dev
+        7 + |spec:
+        8 + |  carvel:
+        9 + |    packageDomain: tanzu.vmware.com
+        10 + |    packageName: tanzu-java-web-app
+        11 + |  gitOps:
+        12 + |    baseBranch: main
+        13 + |    subPath: packages
+        14 + |    url: <gitops-repo-path>
+        15 + |  registry:
+        16 + |    repository: <repository-path>
+        17 + |    server: <registry-server>
+        18 + |  source:
+        19 + |    git:
+        20 + |      branch: main
+        21 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        22 + |    subPath: tanzu-java-web-app
+
+    🏃 Stages   
+        ├─ source-git-provider
+        │  ├─ 📋 check-source - Success
+        │  │  ├─ Duration: 31s
+        │  │  └─ Results
+        │  │     ├─ message: using git-branch: main
+        │  │     ├─ sha: e4e23867bcffcbf7a165e2fefe3c48dc28b076d6
+        │  │     └─ url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        │  └─ 📋 pipeline - Success
+        │     ├─ Duration: 1m28s
+        │     └─ Results
+        │        ├─ url: <image-url>
+        │        └─ digest: <image-sha>
+        ├─ buildpack-build
+        │  ├─ 📋 check-builders - Success
+        │  │  ├─ Duration: 26s
+        │  │  └─ Results
+        │  │     ├─ builder-image: <builder-image-used>
+        │  │     ├─ message: Builders resolved
+        │  │     └─ run-image: <run-image-used>
+        │  └─ 📋 pipeline - Success
+        │     ├─ Duration: 2m59s
+        │     └─ Results
+        │        ├─ url: <image-url>
+        │        └─ digest: <image-sha>
+        ├─ conventions
+        │  └─ 📋 pipeline - Success
+        │     ├─ Duration: 33s
+        │     └─ Results
+        │        ├─ url: <image-url>
+        │        └─ digest: <image-sha>
+        ├─ app-config-server
+        │  └─ 📋 pipeline - Success
+        │     ├─ Duration: 1m12s
+        │     └─ Results
+        │        ├─ url: <image-url>
+        │        ├─ digest: <image-sha>
+        │        ├─ url-overlay: <image-url>
+        │        └─ digest-overlay: <image-sha>
+        ├─ carvel-package
+        │  └─ 📋 pipeline - Success
+        │     ├─ Duration: 49s
+        │     └─ Results
+        │        ├─ url: <image-url>
+        │        └─ digest: <image-sha>
+        └─ git-writer-pr
+        └─ 📋 pipeline - Success
+            ├─ Duration: 34s
+            └─ Results
+                ├─ url: <pull-request-url-to-gitops-repo>
+                └─ digest: <image-sha>
+    ```
+
+Workload Get Output
+: **tanzu workload get tanzu-java-web-app**
+
+    ```
+    📡 Overview
+       name:       tanzu-java-web-app
+       kind:       appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app
+       namespace:  dev
+       age:        74m
+
+    🏃 Runs:
+       ID                            STATUS     DURATION  AGE  
+       tanzu-java-web-app-run-454m5  Succeeded  16m       72m  
+
+    🔎 To view a run information, use 'tanzu workload run get run-id'
+    ```
