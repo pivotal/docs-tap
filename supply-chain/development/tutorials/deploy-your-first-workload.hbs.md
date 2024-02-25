@@ -157,3 +157,90 @@ $ tanzu workload get tanzu-java-web-app
 
 From the output, we see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when we applied our `AppBuildV1` workload using the apply command, and its in the `Running` state. There are multiple reasons why a new `WorkloadRun` will be created for your `Workload`, but few are developer triggered. Updates to your `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster will create a new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images. Other activities like pushing new commits to your Source code repository that is referred by the `Workload` can also cause a new run of the `Workload` to build the latest source from your Git repository.
 
+The `tanzu workload get` command shows you:
+
+* Overview of your workload like `name`, `kind` and `namespace`.
+* Last 2 successful `WorkloadRuns`
+* Last 1 failed `WorkloadRun`
+* All running `WorkloadRuns`
+* Error section from the last failed `WorkloadRun`
+
+To see more information about what stages your workload is going through, output, duration and result of each stage, run the `tanzu workload run get` command as follows:
+
+```
+$ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
+
+📡 Overview
+   name:        tanzu-java-web-app
+   kind:        appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app
+   run id:      appbuildv1runs.supplychains.tanzu.vmware.com/tanzu-java-web-app-run-454m5
+   status:      Running
+   namespace:   dev
+   age:         14m
+
+📓 Spec
+      1 + |---
+      2 + |apiVersion: supplychains.tanzu.vmware.com/v1alpha1
+      3 + |kind: AppBuildV1
+      4 + |metadata:
+      5 + |  name: tanzu-java-web-app
+      6 + |  namespace: dev
+      7 + |spec:
+      8 + |  carvel:
+      9 + |    packageDomain: tanzu.vmware.com
+     10 + |    packageName: tanzu-java-web-app
+     11 + |  gitOps:
+     12 + |    baseBranch: main
+     13 + |    subPath: packages
+     14 + |    url: <gitops-repo-path>
+     15 + |  registry:
+     16 + |    repository: <repository-path>
+     17 + |    server: <registry-server>
+     18 + |  source:
+     19 + |    git:
+     20 + |      branch: main
+     21 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+     22 + |    subPath: tanzu-java-web-app
+
+🏃 Stages   
+    ├─ source-git-provider
+    │  ├─ 📋 check-source - Success
+    │  │  ├─ Duration: 31s
+    │  │  └─ Results
+    │  │     ├─ message: using git-branch: main
+    │  │     ├─ sha: e4e23867bcffcbf7a165e2fefe3c48dc28b076d6
+    │  │     └─ url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    │  └─ 📋 pipeline - Success
+    │     ├─ Duration: 1m28s
+    │     └─ Results
+    │        ├─ url: <image-url>
+    │        └─ digest: <image-sha>
+    ├─ buildpack-build
+    │  ├─ 📋 check-builders - Success
+    │  │  ├─ Duration: 26s
+    │  │  └─ Results
+    │  │     ├─ builder-image: <builder-image-used>
+    │  │     ├─ message: Builders resolved
+    │  │     └─ run-image: <run-image-used>
+    │  └─ 📋 pipeline - Success
+    │     ├─ Duration: 2m59s
+    │     └─ Results
+    │        ├─ url: <image-url>
+    │        └─ digest: <image-sha>
+    ├─ conventions
+    │  └─ 📋 pipeline - Success
+    │     ├─ Duration: 33s
+    │     └─ Results
+    │        ├─ url: <image-url>
+    │        └─ digest: <image-sha>
+    ├─ app-config-server
+    │  └─ 📋 pipeline - Running
+    │     └─ Duration: 22.37089s
+    ├─ carvel-package
+    │  └─ 📋 pipeline - Not Started
+    └─ git-writer-pr
+       └─ 📋 pipeline - Not Started
+```
+
+>**Note**
+>`--show-details` is an optional flag that shows the verbose output of the `tanzu workload run get` command. The default output only shows the `stages` and their `status`.
