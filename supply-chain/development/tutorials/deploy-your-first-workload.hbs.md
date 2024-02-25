@@ -352,3 +352,17 @@ Workload Get Output
 
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
+
+
+As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from git repo, builds it using buildpacks and package the output as Carvel package. That output should then be shipped to the GitOps repo that is configured by the Platform Engineer. In our Supply Chain, once the `WorkloadRun` succeeds, we should be able to see the URL to the Pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
+
+You have successfully deployed your first workload using Tanzu Supply Chains!
+
+## Next Steps
+
+Check out these [How to Guides](./../how-to/about.hbs.md) for developers for learning more about Tanzu Supply Chains.
+
+## References
+
+* [Understand Workloads](../explanation/workloads.hbs.md)
+* [Understand WorkloadRuns](../explanation/workloads.hbs.md)
