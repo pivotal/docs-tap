@@ -16,13 +16,16 @@ kind: CustomResourceDefinition
 
 ### `metadata.labels`
 
-Workload CRDs always have the following labels. These labels reference the location of the [SupplyChain] resource on cluster.  
+Workload CRDs always have the following labels. 
+The `chain-name` and `chain-namespace` labels reference the location of the [SupplyChain]  resource that created this Workload.
+The `chain-role` identifies this as a Workload. The other possible value is `workload-run`.
 
 ```yaml
 metadata:
   labels:
-    supply-chain.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
-    supply-chain.tanzu.vmware.com/chain-namespace: app-sc
+    supply-chain.apps.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
+    supply-chain.apps.tanzu.vmware.com/chain-namespace: app-sc
+    supply-chain.apps.tanzu.vmware.com/chain-role: workload
 ```
 
 ### `metadata.name`
@@ -33,7 +36,7 @@ The name of the resource is always in the form `<plural>.<group>` from the [Supp
 
 ```yaml
 metadata:
-  name: hostedapps.widget.com
+  name: appv1s.widget.com
 ```
 
 ### `spec.group`, `spec.names` and `spec.versions`
@@ -52,10 +55,10 @@ spec:
   names:
     categories:
       - all-workloads
-    kind: App
-    listKind: AppList
-    plural: packageruns
-    singular: packagerun
+    kind: AppV1
+    listKind: AppV1List
+    plural: appv1s
+    singular: appv1
   scope: Namespaced
   versions:
       name: v1alpha1
@@ -66,9 +69,16 @@ spec:
 
 ## Static Workload API
 
-> **Note** 
-> Currently, the Workload API does not have any static content. This will change in TAP 1.9
+### `metadata.labels`
 
+Workloads always have the following labels. These labels reference the location of the [SupplyChain] resource on cluster.
+
+```yaml
+metadata:
+  labels:
+    supply-chain.apps.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
+    supply-chain.apps.tanzu.vmware.com/chain-namespace: app-sc
+```
 ## Dynamic Workload API
 
 ### `spec`

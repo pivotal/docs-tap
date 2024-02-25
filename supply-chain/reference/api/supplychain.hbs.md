@@ -7,7 +7,7 @@ The supply chain defines the [Object Kind] of the [Workload], the [Components] u
 ## Type and Object Metadata
 
 ```yaml
-apiVersion: supply-chain.tanzu.vmware.com/v1alpha1
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: SupplyChain
 ```
 

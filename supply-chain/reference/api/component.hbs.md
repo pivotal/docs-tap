@@ -9,7 +9,7 @@ Components define the work to be done in one [Stage](./supplychain.hbs.md#specst
 ## Type and Object Metadata
 
 ```yaml
-apiVersion: supply-chain.tanzu.vmware.com/v1alpha1
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: Component
 ```
 

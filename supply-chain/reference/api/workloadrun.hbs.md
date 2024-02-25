@@ -14,112 +14,90 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 ```
 
-
-
-
 ### `metadata.labels`
 
-Workloads always have the following labels. These labels reference the location of the [SupplyChain] resource on cluster.
+Workload CRDs always have the following labels.
+The `chain-name` and `chain-namespace` labels reference the location of the [SupplyChain] resource that created this WorkloadRun.
+The `chain-role` identifies this as a WorkloadRun. The other possible value is `workload`.
 
 ```yaml
 metadata:
   labels:
-    supply-chain.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
-    supply-chain.tanzu.vmware.com/chain-namespace: app-sc
+    supply-chain.apps.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
+    supply-chain.apps.tanzu.vmware.com/chain-namespace: app-sc
+    supply-chain.apps.tanzu.vmware.com/chain-role: workload-run
 ```
 
 ### `metadata.name`
 
-The name of the resource is always in the form `<plural>.<group>` from the [Supply Chain Defines API](./supplychain.hbs.md#specdefines)
+The name of the resource is always in the form `<singular>runs.<group>` from the [Supply Chain Defines API](./supplychain.hbs.md#specdefines)
 
 #### Example
 
 ```yaml
 metadata:
-  name: hostedapps.widget.com
+  name: appv1runs.widget.com
 ```
 
-## Dynamic API
+### `spec.group`, `spec.names` and `spec.versions`
 
-### `spec`
+The CRD's `group`, `names` and `versions` is filled in with the details found in the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
+However most names have the word "run" appended.
 
-The `spec` of a Workload is dynamic, however it is immutable once applied.
-The spec is derived by combining the [Component configurations](./component.hbs.md#specconfig) of all the [SupplyChain Stages](./supplychain.hbs.md#specstages)
+Additionally, the `spec.names[].categories[]` array includes a category of `all-runs`. This ensures that
+commands such as `kubectl get all-runs` will find all the [SupplyChain] defined WorkloadRuns a user can access.
 
-------
-
+#### Example
 ```yaml
-apiVersion: <defined in supply chain>/v1alpha1
-kind: <defined in supply chain>
-metadata:
-  generateName: <workload-name>-run-
-  labels:
-    supply-chain.apps.tanzu.vmware.com/workload-generation: "1"
-    supply-chain.apps.tanzu.vmware.com/workload-group: <workload-group>
-    supply-chain.apps.tanzu.vmware.com/workload-name: <workload-name>
-  ownerReferences:
-    - apiVersion: <workload-apiversion>
-      controller: true
-      kind: <workload-kind>
-      name: <workload-name>
 spec:
-  stages: [ ]
-  workload: { <workload-resource> }
-status:
-  conditions:
-    - type: StagesSucceeded
-      reason: Succeeded
-      status: "True"
-      message: Run was successful
-    - type: Succeeded
-      reason: Succeeded
-      status: "True"
-      message: ""
-  observedGeneration: 1
-  workloadRun:
-    apiVersion: <defined in supply chain>/v1alpha1
-    kind: <defined in supply chain>
-    metadata:
-      generateName: <workload-name>-run-
-      labels:
-        supply-chain.apps.tanzu.vmware.com/workload-generation: "1"
-        supply-chain.apps.tanzu.vmware.com/workload-group: <workload-group>
-        supply-chain.apps.tanzu.vmware.com/workload-name: <workload-name>
-      ownerReferences:
-        - apiVersion: <workload-apiversion>
-          controller: true
-          kind: <workload-kind>
-          name: <workload-name>
-    spec:
-      stages:
-        - componentRef:
-            name: source-1.0.0
-          name: source
-          resumptions:
-            - name: control
-              key: gjmjkasdhh42shkx2jqtiunhjrudv1irvbvvaldauem6uugs
-              resultDigest: suy5avkukenkk64cktlwtstousgjn4k5rigavcu3dwjma3mm
-              started: "2024-02-02T00:30:31Z"
-              completed: "2024-02-02T00:30:34Z"
-              passed: true
-              message: |
-                complete
-              results:
-                - name: message
-                  value: |
-                    complete
-                - name: value
-                  value: |
-                    r0-value-second-time-around
-          pipeline:
-            started: "2024-02-02T00:30:35Z"
-            completed: "2024-02-02T00:30:38Z"
-            passed: true
-            message: 'Tasks Completed: 1 (Failed: 0, Cancelled 0), Skipped: 0'
-      workload: { <workload-resource> }
+  conversion:
+    strategy: None
+  group: example.com
+  names:
+    categories:
+      - all-runs
+    kind: AppV1Run
+    listKind: AppV1RunList
+    plural: appv1runs
+    singular: appv1run
+  scope: Namespaced
+  versions:
+      name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          ...
 ```
 
-[//]: # (TODO: details about sections of the record.)
+## Self-Replicating State
+
+WorkloadRuns have a complex self-referencing status, that is described in detail in [Core Concepts: WorkloadRuns](../../platform-engineering/explanation/workload-runs.hbs.md). 
+The majority of the WorloadRun specification appears again in `status.workloadRun`. In this document we'll not repeat the definition, just take it as given, that they're essentially the same.
+
+This image shows the static and dynamic sections of a WorkloadRun. 
+
+![duck-type.png](images%2Fduck-type.png)
+
+> **Note**
+> The duplication of the WorkloadRun `spec` into `spec.status.workloadRun.spec` is shown here.
+
+> **Note**
+> The `status` **is not** duplicated again into the `status.workloadRun` field.
+
+## Static Workload API
+
+
+
+## Dynamic Workload API
+
+
+
+
+
+
+
+------------
+
+
 
 ## Conditions
 
