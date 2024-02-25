@@ -79,7 +79,7 @@ metadata:
     supply-chain.apps.tanzu.vmware.com/chain-name: apps.example.com-1.0.0
     supply-chain.apps.tanzu.vmware.com/chain-namespace: app-sc
 ```
-## Dynamic Workload API
+`## Dynamic Workload API`
 
 ### `spec`
 
