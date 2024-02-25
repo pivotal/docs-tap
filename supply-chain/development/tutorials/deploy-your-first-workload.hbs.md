@@ -57,7 +57,7 @@ We can pipe the output of the generate command into a `workload.yaml` file as fo
 $ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
 ```
 >**Note**
->If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier to choose for a developer.
+>If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
 
 Next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entries. Here is what our sample `workload.yaml` looks like:
 
@@ -89,9 +89,6 @@ spec:
 After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
 We will use the following to command to apply our `AppBuildV1` workload to the cluster. 
 
->**Note**
->`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, you can specify the `-f` flag to point to it.
-
 ```
 $ tanzu workload apply
 
@@ -121,4 +118,42 @@ $ tanzu workload apply
 Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 ✓ Successfully created workload tanzu-java-web-app
 ```
+
+>**Note**
+>`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, you can specify the `-f` flag to point to it.
+
+Our `AppBuildV1` workload is applied to the cluster. For the purpose of this tutorial, we are using the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
+
+```
+$ tanzu workload list
+
+Listing workloads from the dev namespace
+
+  NAME                KIND                                       VERSION   AGE  
+  tanzu-java-web-app  appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  30m  
+
+🔎 To see more details about a workload, use 'tanzu workload get workload-name --kind workload-kind'
+```
+
+To see all the workloads running in all namespaces, run the `tanzu workload list -A`.
+
+Now that we see our `tanzu-java-web-app` workload in the workload list, Let's see how its progressing through the Supply chain. Run the following command to get more information about your workload:
+
+```
+$ tanzu workload get tanzu-java-web-app
+
+📡 Overview
+   name:       tanzu-java-web-app
+   kind:       appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app
+   namespace:  dev
+   age:        15m
+
+🏃 Runs:
+  ID                            STATUS   DURATION  AGE  
+  tanzu-java-web-app-run-454m5  Running  2m        2m  
+
+🔎 To view a run information, use 'tanzu workload run get run-id'
+```
+
+From the output, we see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when we applied our `AppBuildV1` workload using the apply command, and its in the `Running` state. There are multiple reasons why a new `WorkloadRun` will be created for your `Workload`, but few are developer triggered. Updates to your `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster will create a new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images. Other activities like pushing new commits to your Source code repository that is referred by the `Workload` can also cause a new run of the `Workload` to build the latest source from your Git repository.
 
