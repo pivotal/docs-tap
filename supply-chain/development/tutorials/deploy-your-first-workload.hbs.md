@@ -88,7 +88,6 @@ spec:
 ```
 >**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command will also show the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer will be able to set Platform level values like the registry details, and those entries will not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This will result in a `Workload` spec that is much smaller and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear separation of concern between the Platform Engieering role and the Developer role.
 
-
 After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
 We will use the following to command to apply our `AppBuildV1` workload to the cluster. 
 
@@ -356,10 +355,9 @@ Workload Get Output
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
 
+As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from Git repository, build it using buildpacks and package the output as Carvel package. That output should then be shipped to the GitOps repository that is configured by the Platform Engineer. In our Supply Chain, once the `WorkloadRun` succeeds, we should be able to see the URL to the Pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
 
-As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from git repo, builds it using buildpacks and package the output as Carvel package. That output should then be shipped to the GitOps repo that is configured by the Platform Engineer. In our Supply Chain, once the `WorkloadRun` succeeds, we should be able to see the URL to the Pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
-
-You have successfully deployed your first workload using Tanzu Supply Chains!
+You have successfully deployed your first workload using Tanzu Supply Chains.
 
 ## Next Steps
 
