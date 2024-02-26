@@ -53,7 +53,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-9-COMPONENT-NAME-ki'></a> v1.6.9 Known issues: COMPONENT-NAME
 
-- Known issue description with link to workaround.  
+- Known issue description with link to workaround.
 
 ---
 
@@ -326,10 +326,9 @@ automatically goes into the ready state. For more information, see this [issue](
 
 #### <a id='1-6-8-supply-chain-security-tools-store-ki'></a> v1.6.8 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-8-tap-gui-ki'></a> v1.6.8 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -674,10 +673,9 @@ automatically goes into the ready state. For more information, see this [issue](
 
 #### <a id='1-6-7-supply-chain-security-tools-store-ki'></a> v1.6.7 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-7-tap-gui-ki'></a> v1.6.7 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -1085,10 +1083,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-6-supply-chain-security-tools-store-ki'></a> v1.6.6 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-6-tap-gui-ki'></a> v1.6.6 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -1395,10 +1392,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-5-supply-chain-security-tools-store-ki'></a> v1.6.5 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-5-tap-gui-ki'></a> v1.6.5 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -1793,10 +1789,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-4-supply-chain-security-tools-store-ki'></a> v1.6.4 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-4-tap-gui-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -2216,7 +2211,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-3-supply-chain-security-tools-store-ki'></a> v1.6.3 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-3-tap-gui-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -2551,7 +2548,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-2-supply-chain-security-tools-store-ki'></a> v1.6.2 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-2-tap-gui-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -3419,7 +3418,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-1-supply-chain-security-tools-store-ki'></a> v1.6.1 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-1-tap-gui-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
