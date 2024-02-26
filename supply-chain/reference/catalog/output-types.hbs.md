@@ -1,4 +1,4 @@
-# Output Types
+# Output types for catalog components
 
 {{> 'partials/supply-chain/beta-banner' }}
 

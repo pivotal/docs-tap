@@ -1,4 +1,4 @@
-# How to install the Tanzu Supply Chain CLI plug-ins
+# Install the Tanzu Supply Chain CLI plug-ins
 
 {{> 'partials/supply-chain/beta-banner' }} 
 

@@ -13,8 +13,8 @@ Install these CLI tools:
 
 ## Install and Configure Tanzu Supply Chain
 
-* [How To Install Tanzu Supply Chain](./how-to/installing-supply-chain/about.hbs.md)
-* [Post-install configuration](./how-to/installing-supply-chain/post-install-configuration.hbs.md)
+* [Install Tanzu Supply Chain](./how-to/installing-supply-chain/about.hbs.md)
+* [Configure Tanzu Supply Chain](./how-to/installing-supply-chain/post-install-configuration.hbs.md)
 
 ## Tutorial
 
@@ -32,7 +32,7 @@ Install these CLI tools:
 ## Out of the Box Catalog of Components
 
 * [Catalog of Tanzu Supply Chain Components](./../reference/catalog/about.hbs.md)
-* [Output Types for Catalog Components](./../reference/catalog/output-types.hbs.md)
+* [Output types for catalog components](./../reference/catalog/output-types.hbs.md)
 
 ## Reference Guides
 

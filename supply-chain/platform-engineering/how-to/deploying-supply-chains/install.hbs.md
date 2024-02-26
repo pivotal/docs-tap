@@ -1,4 +1,4 @@
-# How to install a Supply Chain
+# Install an authored Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 

@@ -1,4 +1,4 @@
-# Post Install Configuration
+# Configure Tanzu Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 

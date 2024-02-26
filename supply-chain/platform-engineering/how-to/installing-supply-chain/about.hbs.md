@@ -1,4 +1,4 @@
-# Installing Tanzu Supply Chain
+# Installl Tanzu Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 

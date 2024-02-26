@@ -7,7 +7,7 @@
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [Tanzu CLI supplychainplug-in](../../how-to/install-the-cli.hbs.md)
+* [Tanzu Supplychain CLI plug-in](../../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
 
