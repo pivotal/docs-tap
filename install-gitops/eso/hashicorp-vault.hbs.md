@@ -662,7 +662,7 @@ the Vault secret created in the [Review and store Tanzu Application Platform ins
            server: "SERVER-NAME"
            repository: "REPO-NAME"
          gitops:
-           ssh_secret: "SSH-SECRET-KEY"   # Sensitive value. Do not commit to Git repository.
+           ssh_secret: "SSH-SECRET-KEY"
        ...
     ```
 
