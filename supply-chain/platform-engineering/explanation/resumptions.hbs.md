@@ -13,10 +13,10 @@ Resumptions are focused on **reasons to run again**.
 
 Resumptions are executed on a timer, specified in the component's `resumptions` array. 
 When they trigger, they execute a Tekton TaskRun to discover new values. These are very common for discovering
-changes to source repositories, image repositories and new versions of binaries.
+changes to source repositories, image repositories, and new versions of binaries.
 
 When a run is executing and it reaches a stage with a resumption, a `resumptionKey` is generated based on the value of the parameters being passed to the resumption.
-If a resumption has already executed with the same parameters, then the result of that resumption is used.
+If a resumption has already been executed with the same parameters, then the result of that resumption is used.
 This allows hundreds/thousands of workloads to reuse the same common inputs from resumptions without needing to run another resumption.
 
 Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last _completion_ of a resumption TaskRun, before executing it again.
