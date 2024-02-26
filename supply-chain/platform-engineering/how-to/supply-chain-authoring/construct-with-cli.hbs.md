@@ -7,56 +7,51 @@
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [**supplychain** Tanzu CLI plug-in](../../how-to/install-the-cli.hbs.md)
+* [Tanzu CLI supplychainplug-in](../../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
 
-* [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
+* [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages. To confirm if the correct packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
 
-To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+    ```console
+    $ kubectl get pkgi -A
 
-```console
-$ kubectl get pkgi -A
+    NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
+    tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
+    ...
+    tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
+    ...
+    tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
+    ...
+    tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
+    ...
+    tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
+    ...
+    tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
+    ...
+    tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
+    ...
+    tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
+    tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
+    ...
+    tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
+    ...
+    ```
 
-NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
-tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
-...
-tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
-...
-tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
-...
-tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
-...
-tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
-...
-tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
-...
-tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
-...
-tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
-tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
-...
-tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
-...
-```
-
->**Important**
-> VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile.
-For more information, see [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
+>**Important** VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile. For more information, see [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## SupplyChain authoring
 
-SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies, are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. This is where the `tanzu supplychain` CLI plug-in becomes invaluable. Platform Engineers can leverage the `tanzu supplychain` CLI plug-in to streamline the authoring process for `SupplyChains` tailored to their developers.
+SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies, are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. Platform Engineers can leverage the The Tanzu CLI `supplychain` plug-into streamline the authoring process for `SupplyChains` tailored to their developers.
 
-The `supplychain` CLI plug-in supports 2 modes of operation for generating SupplyChains.
+The `supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
 
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
 
-Before you use modes, you must use the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using.
+Before you use modes, you must use the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command.
 
->**Important**
-> Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
+>**Important** Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
 
 ### Initialize the local directory
 

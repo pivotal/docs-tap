@@ -762,7 +762,7 @@
           - [Tutorials](supply-chain/platform-engineering/tutorials/about.hbs.md)
               - [Build your first supply chain](supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md)
           - [How To](./supply-chain/platform-engineering/how-to/about.hbs.md)
-              - [Install the Tanzu CLI Plugins](./supply-chain/platform-engineering/how-to/install-the-cli.hbs.md)
+              - [Install the Tanzu CLI Plug-ins](./supply-chain/platform-engineering/how-to/install-the-cli.hbs.md)
               - [Installing Tanzu Supply Chain](./supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
                   - [Installing via profile (recommended)](./supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md)
                   - [Installing manually](./supply-chain/platform-engineering/how-to/installing-supply-chain/installing-manually.hbs)
