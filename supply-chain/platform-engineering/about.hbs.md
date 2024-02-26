@@ -22,12 +22,11 @@ Start using the Tanzu Supply Chains by installing these CLI tools:
 ## How to Guides: SupplyChain Authoring
 
 * [Construct a Supply Chain using the CLI](./how-to/supply-chain-authoring/construct-with-cli.hbs.md)
-* [Ensure Supply Chains are managed via GitOps](./how-to/supply-chain-authoring/gitops.hbs.md)
-* [Ensure your Components and Supply Chains adhere to version constraints](./how-to/supply-chain-authoring/version-control.hbs.md)
 
 ## How to Guides: Deploying and Managing SupplyChains
 
 * [Install an authored SupplyChain](./how-to/deploying-supply-chains/install.hbs.md)
+* [GitOps Managed SupplyChains](./how-to/deploying-supply-chains/gitops-managed.hbs.md)
 
 ## Out of the Box Catalog of Components
 
