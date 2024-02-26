@@ -1,6 +1,6 @@
 # GitOps managed SupplyChains
 
-SupplyChains, especially the authoring resources ([SupplyChain], [Component] and Tekton Pipeline/Task), are designed to
+SupplyChains, especially the authoring resources ([SupplyChain], [Component] and [Tekton Pipeline]/[Tekton Task]), are designed to
 be delivered to clusters via a Git repository and GitOps source promotion style.
 
 The expected flow is as follows:
@@ -13,3 +13,8 @@ The expected flow is as follows:
 
 Note: Both the integration and deployment of your SupplyChains should be managed by SupplyChains. Tanzu plans on releasing
 examples of integration and delivery SupplyChains _for_ SupplyChains in coming releases.
+
+[Component]: ./components.hbs.md
+[SupplyChain]: ./supply-chains.hbs.md
+[Tekton Pipeline]: https://tekton.dev/docs/pipelines/pipelines/
+[Tekton Task]: https://tekton.dev/docs/pipelines/tasks/
