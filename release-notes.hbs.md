@@ -453,13 +453,8 @@ automatically goes into the ready state. For more information, see this [issue](
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - Using a custom issuer such as Let's Encrypt breaks the Tanzu Mission Control orchestration
   that pushes the AMR Observer credentials from the view cluster to the non-view cluster.
@@ -963,13 +958,8 @@ Github repository.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-3-tbs-ki'></a> v1.7.3 Known issues: Tanzu Build Service
 
@@ -1499,13 +1489,8 @@ This release has the following known issues, listed by component and area.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-2-tbs-ki'></a> v1.7.2 Known issues: Tanzu Build Service
 
@@ -1933,13 +1918,8 @@ This release has the following known issues, listed by component and area.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-1-tbs-ki'></a> v1.7.1 Known issues: Tanzu Build Service
 
@@ -3380,13 +3360,8 @@ to ensure that they are correctly created.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
 
