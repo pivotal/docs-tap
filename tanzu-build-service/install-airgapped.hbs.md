@@ -105,7 +105,7 @@ To install the Tanzu Build Service package on an air-gapped environment:
 
 ## <a id='tbs-offline-install-deps'></a> Install the Tanzu Build Service dependencies
 
-By default, Tanzu Build Service is installed with the `lite` dependencies.
+>**Important** By default, Tanzu Build Service is installed with the `lite` dependencies.
 
 When installing Tanzu Build Service in an air-gapped environment, the `lite` dependencies
 are not available because they require Internet access.

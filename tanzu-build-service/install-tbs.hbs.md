@@ -225,9 +225,8 @@ ARN configured earlier by running:
 ## <a id="tap-install-full-deps"></a> Install full dependencies
 
 If you configured `full` dependencies in your `tbs-values.yaml` file, you must
-install the `full` dependencies package.
-
-For a more information about `lite` and `full` dependencies, see [About lite and full dependencies](dependencies.md#lite-vs-full).
+install the `full` dependencies package. For a more information about `lite` and 
+`full` dependencies, see [About lite and full dependencies](dependencies.md#lite-vs-full).
 
 To install `full` Tanzu Build Service dependencies:
 
