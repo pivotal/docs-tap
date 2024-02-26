@@ -8,19 +8,18 @@ This section details how to install the SupplyChain authored using the tanzu `su
 
 ### Prerequisite
 
-You created a SupplyChain by following the tutorial [Build your first SupplyChain](./../../tutorials/my-first-supply-chain.hbs.md).
+- Ensure you created a SupplyChain by following the tutorial [Build your first SupplyChain](./../../tutorials/my-first-supply-chain.hbs.md).
+- The `make install` command requires `kapp` CLI to be installed on the local machine. Install [kapp CLI](https://carvel.dev/kapp/docs/latest/install/).
 
 ### Installation
 
-First step in installing a `SupplyChain` is to create a namespace where it should be installed.
+1. Create a namespace where you want to install the `SupplyChain`:
 
 ```bash
 $ kubectl create namespace mysupplychains 
 ```
 
->**Note** The `make install` command requires `kapp` CLI to be installed on the local machine. To install the `kapp` CLI, see the  [Carvel](https://carvel.dev/kapp/docs/latest/install/) documentation.
-
-Next step is to use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
+2. Use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
 
 ```bash
 $ NAMESPACE=mysupplychains make install
