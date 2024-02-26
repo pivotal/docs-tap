@@ -12,7 +12,7 @@ For more information about available supply chains, see [Supply chains on Tanzu 
 - Install OOTB Supply Chain with Testing and Scanning.
 - Update the workload to point to the Tekton pipeline and resolve errors.
 - Query for vulnerabilities and dependencies.
-- Optionally enable recurring scanning for post build scans
+- (Optional) Enable recurring scanning for post-build scans.
 
 ## <a id="overview"></a> Overview
 
@@ -373,11 +373,17 @@ Congratulations! You have successfully added testing and security scanning to yo
 
 Take the next steps to learn about recommended supply chain security best practices and gain a powerful services journey experience on the Tanzu Application Platform by enabling several advanced use cases.
 
-### <a id="enable-scan-post-build"></a> Scan for Vulnerabilities After Builds
+### <a id="enable-scan-post-build"></a> (Optional) Scan for Vulnerabilities After Builds
 
-Adding the capability to scan image containers to your supply chain will enable you to detect vulnerabilities at build time.  However, as new vulnerabilities are discovered and reported daily, it is important to frequently scan the container images so that newly reported vulnerabilities are detected.
+When you add the capability to scan image containers to your supply chain, you can detect
+vulnerabilities at build time. However, as new vulnerabilities are discovered and reported daily,
+it is important to frequently scan the container images so that newly reported vulnerabilities are detected.
 
-Enabling [recurring scanning](../scst-scan/recurring-scanning.hbs.md) will allow you to schedule periodic scans of images built by workloads and containers running in TAP Clusters.  When recurring scans are enabled, an option to "View Latest Scan Results" is visible on the Supply Chain Choreographer plugin.
+You can enable recurring scanning to schedule periodic scans of images built by workloads and containers
+running in Tanzu Application Platform clusters.
+When you enable recurring scanning, an option to **View Latest Scan Results** becomes available on the
+Supply Chain Choreographer plug-in.
+For how to enable recurring scanning, see [Set up recurring scanning](../scst-scan/recurring-scanning.hbs.md).
 
 ## Next steps
 
