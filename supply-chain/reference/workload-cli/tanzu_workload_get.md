@@ -11,13 +11,13 @@ workload get configuration options include:
 - Specify the kind of the workload
 - Output the workload formatted
 
-```
+```console
 tanzu workload get <NAME> [flags]
 ```
 
 ### Examples
 
-```
+```console
 tanzu workload get NAME
   tanzu workload get NAME --kind kindname
   tanzu workload get NAME --kind kindname --namespace default
@@ -25,7 +25,7 @@ tanzu workload get NAME
 
 ### Options
 
-```
+```console
   -h, --help             help for get
   -k, --kind string      kind of the workload specification
   -n, --namespace name   kubernetes namespace (defaulted from kube config)
@@ -34,7 +34,7 @@ tanzu workload get NAME
 
 ### Options inherited from parent commands
 
-```
+```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          deactivate color, bold, animations, and emoji output
   -v, --verbose int32     number for the log level verbosity (default 1)

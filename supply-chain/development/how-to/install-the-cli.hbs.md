@@ -14,20 +14,22 @@ Ensure that you installed or updated the core Tanzu CLI. For more information, s
 ## Install Tanzu Workload CLI plugin
 
 Run:
-```
+
+```console
 tanzu plugin install workload
 ```
 
 ## Verify that the plug-in is installed correctly:
 
-```
+```console
 tanzu workload version
 ```
 
 ## Uninstall Tanzu Workload CLI plugins
 
 Run:
-```
+
+```console
 tanzu plugin delete workload
 ```
 

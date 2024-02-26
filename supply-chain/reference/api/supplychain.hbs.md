@@ -33,7 +33,7 @@ metadata:
 
 The `spec.description` field is visible to an app developer when they use the CLI to discover available workload kinds:
 
-```
+```console
 tanzu workload kind list --wide
 
 KIND                      VERSION     AGE   DESCRIPTION
@@ -79,7 +79,7 @@ These are great to simplify `kubectl` commands.
 
 ##### Example:
 
-```
+```console
 kind: ServerAppV1
 plural: serverappv1s
 shortnames:
@@ -97,7 +97,7 @@ instances of all kinds in the category.
 
 Using `kubectl get apps` would include this kind in the listing
 
-```
+```console
 kind: ServerAppV1
 plural: serverappv1s
 categories:
@@ -106,7 +106,7 @@ categories:
 
 #### Complete Example
 
-```
+```console
 spec:
   defines: # Describes the workload
     kind: HostedApp

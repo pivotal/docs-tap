@@ -12,13 +12,13 @@ list configuration options include:
 - Output the list for a specific kind
 - Output the list formatted
 
-```
+```console
 tanzu workload list [flags]
 ```
 
 ### Examples
 
-```
+```console
 tanzu workload list
   tanzu workload list --all-namespaces,
   tanzu workload list --namespace my-namepsace,		
@@ -28,7 +28,7 @@ tanzu workload list
 
 ### Options
 
-```
+```console
   -A, --all-namespaces   use all kubernetes namespaces
   -h, --help             help for list
   -k, --kind string      list workloads from the specified workload kind
@@ -38,7 +38,7 @@ tanzu workload list
 
 ### Options inherited from parent commands
 
-```
+```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
       --no-color          deactivate color, bold, animations, and emoji output
   -v, --verbose int32     number for the log level verbosity (default 1)

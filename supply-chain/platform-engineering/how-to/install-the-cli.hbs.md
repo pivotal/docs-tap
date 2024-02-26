@@ -16,14 +16,15 @@ Ensure that you installed or updated the core Tanzu CLI. For more information, s
 ## Install Tanzu Supplychain and Workload CLI plugins
 
 Run:
-```
+
+```console
 tanzu plugin install supplychain
 tanzu plugin install workload
 ```
 
 ## Verify that the plug-in is installed correctly:
 
-```
+```console
 tanzu supplychain version
 tanzu workload version
 ```
@@ -31,7 +32,7 @@ tanzu workload version
 ## Uninstall Tanzu Supplychain and Workload CLI plugins
 
 Run:
-```
+```console
 tanzu plugin delete supplychain
 tanzu plugin delete workload
 ```

@@ -14,7 +14,7 @@ You will need the following CLI tools installed on your local machine:
 
 As a developer, the first thing we want to know is what `SupplyChain` are available to us, and what kinds of `Workloads` we can create, that would trigger those `SupplyChain`. You can run the following `tanzu workload` command to get the list:
 
-```
+```console
 $ tanzu workload kind list
 
   KIND                                       VERSION   DESCRIPTION                                                                       
@@ -53,9 +53,11 @@ spec:
 >When you run the `tanzu workload generate` command, the `workload` CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
 
 We can pipe the output of the generate command into a `workload.yaml` file as follows:
-```
+
+```console
 $ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
 ```
+
 >**Note**
 >If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
 
@@ -89,7 +91,7 @@ spec:
 After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
 We will use the following to command to apply our `AppBuildV1` workload to the cluster. 
 
-```
+```console
 $ tanzu workload apply
 
 🔎 Creating workload:
@@ -124,7 +126,7 @@ Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 
 Our `AppBuildV1` workload is applied to the cluster. For the purpose of this tutorial, we are using the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
 
-```
+```console
 $ tanzu workload list
 
 Listing workloads from the dev namespace
@@ -139,7 +141,7 @@ To see all the workloads running in all namespaces, run the `tanzu workload list
 
 Now that we see our `tanzu-java-web-app` workload in the workload list, Let's see how its progressing through the Supply chain. Run the following command to get more information about your workload:
 
-```
+```console
 $ tanzu workload get tanzu-java-web-app
 
 📡 Overview
@@ -167,7 +169,7 @@ The `tanzu workload get` command shows you:
 
 To see more information about what stages your workload is going through, output, duration and result of each stage, run the `tanzu workload run get` command as follows:
 
-```
+```console
 $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
 
 📡 Overview
@@ -250,7 +252,7 @@ Once your `WorkloadRun` has successfully gone through the Supply Chain, the outp
 Workload Run Output
 : **tanzu workload run get tanzu-java-web-app-run-454m5 --show-details**
 
-    ```
+    ```console
     📡 Overview
         name:        tanzu-java-web-app
         kind:        appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app
@@ -339,7 +341,7 @@ Workload Run Output
 Workload Get Output
 : **tanzu workload get tanzu-java-web-app**
 
-    ```
+    ```console
     📡 Overview
        name:       tanzu-java-web-app
        kind:       appbuildv1s.supplychains.tanzu.vmware.com/tanzu-java-web-app

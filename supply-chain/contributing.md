@@ -5,10 +5,12 @@ Guide for teams contributing docs to the Supply Chain component section.
 ## Top section
 
 * Beneath the title, start with an `In this section` paragraph such as:
-  ```
+
+  ```console
   The section introduces...
   The topics in this section explain...
   ```
+
 * Try to use a product name where practical
 
 This helps with SEO.

@@ -18,7 +18,7 @@ Recommended way is to use the Namespace provisioner for the entire setup:
 
 **Step 1**: is to create a `Secret` in the `tap-install` namespace that has the location and credentials for the `oci-store` as follows:
 
-```
+```console
 cat << EOF | kubectl apply -f -
 apiVersion: v1
 kind: Secret
@@ -39,7 +39,7 @@ EOF
 
 **Step 2**: Configure Namespace Provisioner to use the accelerator sample that will help with creation of all required resources for configuring `oci-store` as well as `buildpack-build` permissions.
 
-```
+```console
 namespace_provisioner:
   additional_sources:
   - git:
@@ -57,17 +57,19 @@ namespace_provisioner:
 ```
 
 ## Create Developer Namespaces
-```
+
+```console
 $ kubectl create namespace dev
 $ kubectl label namespaces dev apps.tanzu.vmware.com/tap-ns=""
 ```
 
 ## Configure Namespace Provisioner to support custom Supply Chains
+
 If there is a requirement for injecting additional secrets to the Service Account like the `git-secret`, they can be added as follows:
 
 * For all Developer namespaces managed by Namespace provisioner, update the `namespace_provisioner` section of the `tap-values.yaml`:
 
-```
+```console
 namespace_provisioner:
   ...
   default_parameters:
@@ -79,7 +81,7 @@ namespace_provisioner:
 
 * Single Namespace using annotation:
 
-```
+```console
 kubectl annotate ns <developer-namespace> param.nsp.tap/delivery_service_account.secrets='["git-secret"]'
 ```
 

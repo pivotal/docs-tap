@@ -15,7 +15,8 @@ You will need the following Packages installed on the Tanzu Application Platform
 * [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
 To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
-```
+
+```console
 $ kubectl get pkgi -A
 
 NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
@@ -47,7 +48,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 
 We now have a TAP `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller and Component packages installed on the cluster and we are ready to build our first SupplyChain. As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
 
-```
+```console
 $ tanzu supplychain component list
 
 Listing components from the catalog
@@ -73,7 +74,7 @@ You can use the `-w/--wide` flag on the list command to see a more verbose outpu
 
 To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
 
-```
+```console
 $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
 
 📡 Overview
@@ -132,7 +133,7 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 ```
 Now that we know what all components are available to create our SupplyChain, let's start the authoring process. First step would be to scaffold the current directory using the `tanzu supplychain init` command as follows:
 
-```
+```console
 $ mkdir myfirstsupplychaingroup
 $ cd myfirstsupplychaingroup
 $ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
@@ -159,7 +160,7 @@ The `tanzu supplychain init` command creates:
 
 Our current directory is now initialized, and we can use the SupplyChain authoring wizard to generate our first SupplyChain. To kick off the wizard, use the following command:
 
-```
+```console
 $ tanzu supplychain generate
 ```
 
@@ -176,7 +177,8 @@ In the prompts that follow, add the following values:
 * **Select a component as the next stage of the supply chain?** Done
 
 After you have selected the components for your chain, the wizard should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
-```
+
+```console
 ✓ Successfully fetched all component dependencies
 Created file supplychains/appbuildv1.yaml
 Created file components/app-config-server-1.0.0.yaml
@@ -205,7 +207,8 @@ Created file tasks/store-content-oci.yaml
 ```
 
 You have now authored your first SupplyChain! you can view the SupplyChain definition created by the wizard by viewing the manifest created in the `supplychains/` folder as follows:
-```
+
+```console
 $ cat supplychains/appbuildv1.yaml
 
 apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1

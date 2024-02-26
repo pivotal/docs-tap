@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-The Tanzu `workload` CLI plugin provides commands that allow a Developer to generate a `Workload` manifest, apply it to a cluster, and delete it from a cluster.
+The Tanzu `workload` CLI plug-in provides commands that allow a Developer to generate a `Workload` manifest, apply it to a cluster, and delete it from a cluster.
 
 ## Generate a Workload manifest
 
@@ -17,7 +17,7 @@ metadata:
 spec:
   source:
     #! Use this object to retrieve source from a git repository.
-    #! The tag, commit and branch fields are mutually exclusive, use only one.
+    #! The tag, commit, and branch fields are mutually exclusive, use only one.
     #! Required
     git:
       #! A git branch ref to watch for new source
@@ -43,7 +43,7 @@ $ tanzu workload generate my-web-app --kind buildwebapps.vmware.com > workload.y
 
 ## Create a Workload
 
-Create a `Workload` on the cluster from a the manifest:
+Create a `Workload` on the cluster from a manifest:
 
 ```console
 $ tanzu workload create --file workload.yaml --namespace build
@@ -114,7 +114,7 @@ tanzu workload apply my-web-app-2 --file workload.yaml --namespace build
 >**Note**
 >The `tanzu workload apply` command can used to create **or** update a `Workload`.
 
-You can use the `tanzu workload` CLI plugin to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
+You can use the `tanzu workload` CLI plug-in to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
 
 ## Delete a Workload
 
