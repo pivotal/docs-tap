@@ -650,7 +650,7 @@ the AWS Secrets Store secret created in the [Review and store Tanzu Application 
            server: "SERVER-NAME"
            repository: "REPO-NAME"
          gitops:
-           ssh_secret: "SSH-SECRET-KEY"   # Sensitive value. Do not commit to the Git repository.
+           ssh_secret: "SSH-SECRET-KEY"
        ...
     ```
 
