@@ -771,7 +771,7 @@
                   - [Construct a Supply Chain using the CLI](./supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
               - [Deploying and Managing Supply Chains](./supply-chain/platform-engineering/how-to/deploying-supply-chains/about.hbs.md)
                   - [Install a Supply Chain](./supply-chain/platform-engineering/how-to/deploying-supply-chains/install.hbs.md)
-                  - [GitOps Managed Supply Chains](./supply-chain/platform-engineering/explanation/gitops-managed.hbs.md)
+                  - [GitOps Managed Supply Chains](./supply-chain/platform-engineering/how-to/deploying-supply-chains/gitops-managed.hbs.md)
           - [Explanations](./supply-chain/platform-engineering/explanation/about.hbs.md)
               - [Core Concepts: Supply Chains](./supply-chain/platform-engineering/explanation/supply-chains.hbs.md)
               - [Core Concepts: Workloads](./supply-chain/platform-engineering/explanation/workloads.hbs.md)
