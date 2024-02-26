@@ -377,7 +377,7 @@ Take the next steps to learn about recommended supply chain security best practi
 
 When you add the capability to scan image containers to your supply chain, you can detect
 vulnerabilities at build time. However, as new vulnerabilities are discovered and reported daily,
-it is important to frequently scan the container images so that newly reported vulnerabilities are detected.
+it is important to frequently scan the container images to detect newly reported vulnerabilities.
 
 You can enable recurring scanning to schedule periodic scans of images built by workloads and containers
 running in Tanzu Application Platform clusters.
