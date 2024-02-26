@@ -8,13 +8,13 @@ In this section, we will be using the `supplychain` CLI plug-in to create our fi
 
 Install on your local machine:
 
-* [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [supplychain Tanzu CLI plug-in](../how-to/install-the-cli.hbs.md)
+- [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
+- [Tanzu Supplychain CLI plug-in](../how-to/install-the-cli.hbs.md)
 
 Install the following Packages on the Tanzu Application Platform cluster that you are using to
 author your first supply chain:
 
-* [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box
+- [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box
 catalog component packages.
 
 To confirm if the required packages are installed and reconciled successfully. Run:
@@ -159,10 +159,10 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
 
   The `tanzu supplychain init` command creates:
 
-  * `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-  * `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
-  * `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
-  * `README.md` file which has instructions on how to use the targets in the `Makefile`.
+  - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
+  - `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
+  - `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
+  - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 1. Your current directory is now initialized, and you can use the SupplyChain authoring wizard to generate your first SupplyChain. Start the wizard:
 
@@ -172,15 +172,15 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
 
 In the prompts that follow, add the following values:
 
-* **What Kind would you like to use as the developer interface?** AppBuildV1
-* **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
-* **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
-* **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
-* **Select a component as the next stage of the supply chain?** conventions-1.0.0
-* **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
-* **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
-* **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
-* **Select a component as the next stage of the supply chain?** Done
+- **What Kind would you like to use as the developer interface?** AppBuildV1
+- **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+- **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
+- **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
+- **Select a component as the next stage of the supply chain?** conventions-1.0.0
+- **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
+- **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
+- **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
+- **Select a component as the next stage of the supply chain?** Done
 
 After you have selected the components for your chain, the wizard creates the required files to deploy your SupplyChain in the current directory. Example output:
 
@@ -255,5 +255,5 @@ Deploy this `SupplyChain` to your Tanzu Application Platform clusters where your
 
 ### Useful links
 
-* [Supply Chain API Reference](../../reference/api/supplychain.hbs.md)
-* [Component Catalog](../../reference/catalog/about.hbs.md)
+- [Supply Chain API Reference](../../reference/api/supplychain.hbs.md)
+- [Component Catalog](../../reference/catalog/about.hbs.md)

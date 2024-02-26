@@ -2,4 +2,4 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-* [Build your first SupplyChain](./my-first-supply-chain.hbs.md)
+- [Build your first SupplyChain](./my-first-supply-chain.hbs.md)
