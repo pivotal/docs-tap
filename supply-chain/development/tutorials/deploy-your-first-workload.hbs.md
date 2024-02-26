@@ -4,7 +4,8 @@
 
 In this section, we will be using the `workload` CLI plug-in for developers to create our first `Workload`. Our Platform Engineer has created some Supply Chains for us to use, which can pull the source code from our source repository, build it and the built artifact will be shipped to a GitOps repository of Platform Engineer's choice.
 
-## Prequisites
+## Prerequisites
+
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
@@ -167,7 +168,7 @@ The `tanzu workload get` command shows you:
 * All running `WorkloadRuns`
 * Error section from the last failed `WorkloadRun`
 
-To see more information about what stages your workload is going through, output, duration and result of each stage, run the `tanzu workload run get` command as follows:
+To see more information about what stages your workload is going through, output, duration, and result of each stage, run the `tanzu workload run get` command as follows:
 
 ```console
 $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details

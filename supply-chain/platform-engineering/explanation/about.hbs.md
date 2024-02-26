@@ -6,7 +6,7 @@ This section ties together the core architectural concepts of Tanzu Supply Chain
 It focuses on authoring a platform for application development.
 
 At its core, the Tanzu Supply Chain enables platform engineers to author a seamless experience for 
-development work; an experience that does not require an understanding of kubernetes.
+development work; an experience that does not require an understanding of Kubernetes.
 
 ![core-concepts-about.jpg](./images/core-concepts-about.jpg)
 

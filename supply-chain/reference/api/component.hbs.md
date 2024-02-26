@@ -44,7 +44,7 @@ operate
 `spec.config` is an array with three fields:
 
 * `path:` describes the path in the workload where this configuration is appended/merged. It must start with `spec.`
-* `schema` and `required` define a property. See the [OpenAPI Structural Schema] kubernetes docs for more details.
+* `schema` and `required` define a property. See the [OpenAPI Structural Schema] Kubernetes docs for more details.
 
 #### Example
 

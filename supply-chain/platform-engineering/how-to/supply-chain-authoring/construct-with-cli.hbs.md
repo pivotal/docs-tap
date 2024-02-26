@@ -2,7 +2,8 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-## Prequisites
+## Prerequisites
+
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)

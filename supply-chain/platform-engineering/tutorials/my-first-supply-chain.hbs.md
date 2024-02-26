@@ -4,7 +4,8 @@
 
 In this section, we will be using the `supplychain` CLI plug-in to create our first SupplyChain for our developers. This SupplyChain will be able to pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
-## Prequisites
+## Prerequisites
+
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
