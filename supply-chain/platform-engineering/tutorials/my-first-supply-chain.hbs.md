@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-In this section, we will be using the `supplychain` CLI plug-in to create our first SupplyChain for developers. This SupplyChain will pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+In this section, you will use the Tanzu Supplychain CLI plug-in to create your first SupplyChain for developers. This SupplyChain will pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
