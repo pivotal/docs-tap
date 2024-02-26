@@ -181,6 +181,80 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 
 ```
 
+## Generate the SupplyChain
+
+As mentioned earlier, the `tanzu supplychain` CLI plugin supports 2 modes of operation for generating SupplyChains.
+
+* **Interactive** way using the guided wizard
+* **Non-Interactive** way using flags
+
+Interactive
+: To kick off the wizard, use the following command:
+
+    ```
+    $ tanzu supplychain generate
+    ```
+
+    The wizard prompt for the following:
+    
+    * Name of the Developer Interface
+      * This value is used for auto populating `spec.defines` section of the [SupplyChain API](../../../reference/api/supplychain.hbs.md)
+    * Description of the `SupplyChain`
+    * Stages of your `SupplyChain`
+      * The `tanzu supplychain` CLI knows what stages are already part of the `SupplyChain` and removes them from the list of stages to add.
+
+    Here are the example values for the prompts for the wizard workflow that will generate a functioning `SupplyChain`:
+
+    * **What Kind would you like to use as the developer interface?** AppBuildV1
+    * **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+    * **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
+    * **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
+    * **Select a component as the next stage of the supply chain?** conventions-1.0.0
+    * **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
+    * **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
+    * **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
+    * **Select a component as the next stage of the supply chain?** Done
+
+Non-Interactive
+: To generate the Supply chain using Flags, use the following command:
+
+    ```
+    $ tanzu supplychain generate 
+    ```
+
+After you have selected the components for your chain, the `tanzu supplychain` CLI should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
+```
+✓ Successfully fetched all component dependencies
+Created file supplychains/appbuildv1.yaml
+Created file components/app-config-server-1.0.0.yaml
+Created file components/buildpack-build-1.0.0.yaml
+Created file components/carvel-package-1.0.0.yaml
+Created file components/conventions-1.0.0.yaml
+Created file components/git-writer-pr-1.0.0.yaml
+Created file components/source-git-provider-1.0.0.yaml
+Created file pipelines/app-config-server.yaml
+Created file pipelines/buildpack-build.yaml
+Created file pipelines/carvel-package.yaml
+Created file pipelines/conventions.yaml
+Created file pipelines/git-writer.yaml
+Created file pipelines/source-git-provider.yaml
+Created file tasks/calculate-digest.yaml
+Created file tasks/carvel-package-git-clone.yaml
+Created file tasks/carvel-package.yaml
+Created file tasks/check-builders.yaml
+Created file tasks/fetch-tgz-content-oci.yaml
+Created file tasks/git-writer.yaml
+Created file tasks/gitops-git-clone.yaml
+Created file tasks/prepare-build.yaml
+Created file tasks/source-git-check.yaml
+Created file tasks/source-git-clone.yaml
+Created file tasks/store-content-oci.yaml
+```
+
+
+## Enforce proper ordering of Components in the SupplyChain
+
+
 
 ## Ensure your Components and Supply Chains adhere to version constraints
 
