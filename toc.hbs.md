@@ -769,7 +769,6 @@
                   - [Post-install configuration](./supply-chain/platform-engineering/how-to/installing-supply-chain/post-install-configuration.hbs.md)
               - [Supply Chain Authoring](./supply-chain/platform-engineering/how-to/supply-chain-authoring/about.hbs.md)
                   - [Construct a Supply Chain using the CLI](./supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
-                  - [Ensure your Components and Supply Chains adhere to version constraints](./supply-chain/platform-engineering/how-to/supply-chain-authoring/version-control.hbs.md)
               - [Deploying and Managing Supply Chains](./supply-chain/platform-engineering/how-to/deploying-supply-chains/about.hbs.md)
                   - [Install a Supply Chain](./supply-chain/platform-engineering/how-to/deploying-supply-chains/install.hbs.md)
                   - [GitOps Managed Supply Chains](./supply-chain/platform-engineering/explanation/gitops-managed.hbs.md)
