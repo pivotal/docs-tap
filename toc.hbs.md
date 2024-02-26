@@ -786,9 +786,7 @@
               - [Find the kinds of Workloads I can use](./supply-chain/development/how-to/discover-workloads.hbs.md)
               - [Create a Workload](./supply-chain/development/how-to/create-workloads.hbs.md)
               - [Observe runs for your Workloads](./supply-chain/development/how-to/observe-runs.hbs.md)
-          - [Explanation](./supply-chain/development/explanation/about.hbs.md)
-              - [Core Concepts: Workloads](./supply-chain/development/explanation/workloads.hbs.md)
-              - [Core Concepts: Workload Runs](./supply-chain/development/explanation/workload-runs.hbs.md)
+              - [Troubleshoot a run](./supply-chain/development/how-to/troubleshooting.hbs.md)
       - [Reference](./supply-chain/reference/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](supply-chain/reference/catalog/about.hbs.md) for Platform Engineering
               - [Output Types](supply-chain/reference/catalog/output-types.hbs.md) used with Tanzu Supply Chain Components
@@ -816,6 +814,8 @@
               - [Component](supply-chain/reference/api/component.hbs.md)
               - [Workload](supply-chain/reference/api/workload.hbs.md)
               - [WorkloadRun](supply-chain/reference/api/workloadrun.hbs.md)
+              - [Statuses and Conditions](supply-chain/reference/api/statuses.hbs.md)
+              - [Duck Typed Resources](supply-chain/reference/api/duck-types.hbs.md)
       - [Known Issues](./supply-chain/known-issues.hbs.md)
     - [Tekton Pipelines](tekton/tekton-about.hbs.md)
         - [Tekton overview](tekton/tekton-about.hbs.md)

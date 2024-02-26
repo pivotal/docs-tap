@@ -7,7 +7,7 @@ The supply chain defines the [Object Kind] of the [Workload], the [Components] u
 ## Type and Object Metadata
 
 ```yaml
-apiVersion: supply-chain.tanzu.vmware.com/v1alpha1
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: SupplyChain
 ```
 
@@ -158,9 +158,9 @@ spec:
         name: commit-writer-1.0.0
 ```
 
-### Status
+## Status
 
-#### `status.conditions[]`
+### `status.conditions[]`
 
 Every `status.conditions[]` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
 
@@ -168,7 +168,7 @@ The top-level condition type is `Ready` as SupplyChain is a "living" resource.
 
 The sub-types are:
 
-##### RBACDefined
+#### RBACDefined
 
 | Reason        | Meaning                                                                                                                                                  |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -176,7 +176,7 @@ The sub-types are:
 | AlreadyExists | The RoleBinding record already exists.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |                                                                                                       
 | UnknownError  | The RoleBinding record failed due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                         |                                                                                                       
 
-##### APIsDefined
+#### APIsDefined
 
 | Reason        | Meaning                                                                                                                                                                         |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -185,7 +185,7 @@ The sub-types are:
 | Invalid       | The CRD is invalid</br>Most common cause of this is an illegal OpenAPIV3Schema in the [Component].                                                                              |                                                                                                       
 | Unknown error | The CRD could not be created due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                                                 |                                                                                                       
 
-##### StageMapping
+#### StageMapping
 
 | Reason                      | Meaning                                                                                                                                      |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|

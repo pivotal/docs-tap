@@ -22,8 +22,7 @@ This allows hundreds/thousands of workloads to reuse the same common inputs from
 Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last _completion_ of a resumption TaskRun, before executing it again.
 
 When any of a resumption's results change, all the [WorkloadRuns] with the same `resumptionKey` will be cloned, truncated back to the stage of the resumption, and will progress from there.
-
-This is how resumptions trigger a new [WorkloadRun].
+This is the mechanism for resumptions triggering a new [WorkloadRun].
 
 [SupplyChain]: ./supply-chains.hbs.md
 [SupplyChains]: ./supply-chains.hbs.md
