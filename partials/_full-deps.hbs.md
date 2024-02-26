@@ -25,30 +25,30 @@ you must perform the update by running:
 
 1. Relocate the Tanzu Build Service `full` dependencies package repository by either:
 
-    1. Relocating the images directly for online installation:
+     1. Relocating the images directly for online installation:
 
-        ```console
-        imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps:VERSION \
-           --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps
-        ```
+         ```console
+         imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps:VERSION \
+            --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps
+         ```
 
-        Where `VERSION` is the version of the Tanzu Application Platform package you retrieved earlier.
+         Where `VERSION` is the version of the Tanzu Application Platform package you retrieved earlier.
 
-    1. Relocating to an external storage device and then to the registry in the air-gapped environments:
+     1. Relocating to an external storage device and then to the registry in the air-gapped environments:
 
-        ```console
-        imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
-          --to-tar=full-deps-package-repo.tar
-        # move full-deps-package-repo.tar to environment with registry access
-        imgpkg copy --tar full-deps-package-repo.tar \
-          --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/full-deps-package-repo
-        ```
+         ```console
+         imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+           --to-tar=full-deps-package-repo.tar
+         # move full-deps-package-repo.tar to environment with registry access
+         imgpkg copy --tar full-deps-package-repo.tar \
+           --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/full-deps-package-repo
+         ```
 
-        Where:
+         Where:
 
-        - `VERSION` is the version of the Tanzu Application Platform package you retrieved earlier.
-        - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-        - `TARGET-REPOSITORY` is your target repository.
+         - `VERSION` is the version of the Tanzu Application Platform package you retrieved earlier.
+         - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+         - `TARGET-REPOSITORY` is your target repository.
 
 
 1. Add the Tanzu Build Service `full` dependencies package repository by running:
@@ -79,12 +79,12 @@ you must perform the update by running:
     Where `REPO-NAME` is copied from the `buildservice.kp_default_repository` field in your
     `tap-values.yaml` or `tbs-values.yaml`.
 
-    1. (Optional) Install the UBI builder. 
+    1. (Optional) Install the UBI builder.
 
-        The UBI builder is uses Red Hat Universal Base Image (UBI) v8 
-        for both build and run images. 
-        This builder only supports Java and Node.js. 
-        To install the UBI builder, add the key-value pair `enable_ubi_builder: true` 
+        The UBI builder is uses Red Hat Universal Base Image (UBI) v8
+        for both build and run images.
+        This builder only supports Java and Node.js.
+        To install the UBI builder, add the key-value pair `enable_ubi_builder: true`
         to your `tbs-full-deps-values.yaml`.
 
         ```yaml
@@ -92,11 +92,11 @@ you must perform the update by running:
         enable_ubi_builder: true
         ```
 
-    1. (Optional) Install the Static builder. 
+    1. (Optional) Install the Static builder.
 
-      The Static builder uses Ubuntu Jammy for both build images and a minimal static run image. 
-      This builder only supports Golang. To install the Static builder,
-      add the key-value pair `enable_static_builder: true` to your `tbs-full-deps-values.yaml`.
+        The Static builder uses Ubuntu Jammy for both build images and a minimal static run image.
+        This builder only supports Golang. To install the Static builder,
+        add the key-value pair `enable_static_builder: true` to your `tbs-full-deps-values.yaml`.
 
         ```yaml
         ---
