@@ -5,7 +5,7 @@ on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='full-deps'></a> Install full dependencies
 
-By default, Tanzu Build Service is installed with `lite` dependencies.
+>**Important** By default, Tanzu Build Service is installed with `lite` dependencies.
 
 When installing Tanzu Build Service in an air-gapped environment, the `lite` dependencies
 are not available because they require Internet access.
