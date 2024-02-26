@@ -9,7 +9,7 @@ Components define the work to be done in one [Stage](./supplychain.hbs.md#specst
 ## Type and Object Metadata
 
 ```yaml
-apiVersion: supply-chain.tanzu.vmware.com/v1alpha1
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: Component
 ```
 
@@ -190,9 +190,9 @@ The available references for templating references are:
           value: $(workload.spec.source.git.tag)
 ```
 
-### Status
+## Status
 
-#### `status.conditions[]`
+### `status.conditions[]`
 Every `status.conditions[]` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
 
 Components are "Living" resources, however they are _resistant_ to changes in their spec, They're designed to be immutable
@@ -200,7 +200,7 @@ on production servers, so that accidental spec changes do not break the API deli
 
 If a Component's top level condition "Ready" is ever something other than `status: "True"` then the `reason` field should describe the problem with the component.
 
-#### `status.details`
+### `status.details`
 
 `status.details` describe some of the observations that Tanzu Supply Chains made about this component.
 These fields are used to improve the output of `kubernetes get component <name> -owide`, and they summarize the component for platform engineers when they author a SupplyChain.

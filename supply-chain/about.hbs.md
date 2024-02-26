@@ -24,3 +24,4 @@ compliant, secure delivery of source to production.
 - [Developing software with Supply Chain](./development/about.hbs.md) - For developers that want
 to deliver their software following team and organization standards.
 - [Technical Reference](reference/about.hbs.md)
+- [Known Issues](./known-issues.hbs.md) in the version of Supply Chain shipped with TAP 1.8.0
