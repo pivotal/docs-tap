@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-`Workloads` and their `WorkloadRuns` can be observed using the Tanzu `workload` CLI plugin.
+`Workloads` and their `WorkloadRuns` can be observed using the Tanzu `workload` CLI plug-in.
 
 ## List Workloads
 

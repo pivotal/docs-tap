@@ -29,7 +29,7 @@ tanzu supplychain version
 tanzu workload version
 ```
 
-## Uninstall Tanzu Supplychain and Workload CLI plugins
+## Uninstall Tanzu Supplychain and Workload CLI plug-ins
 
 Run:
 ```console

@@ -9,7 +9,7 @@ Lists all workload kinds
 kind list configuration options include:
 - Output the kind list formatted
 
-```console
+```
 tanzu workload kind list [flags]
 ```
 

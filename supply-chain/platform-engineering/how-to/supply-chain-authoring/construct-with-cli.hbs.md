@@ -6,7 +6,7 @@
 You will need the following CLI tools installed on your local machine:
 
 * [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [**supplychain** Tanzu CLI plugin](../../how-to/install-the-cli.hbs.md)
+* [**supplychain** Tanzu CLI plug-in](../../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
 
@@ -43,9 +43,9 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 
 ## SupplyChain authoring
 
-SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies, are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. This is where the `tanzu supplychain` CLI plugin becomes invaluable. Platform Engineers can leverage the `tanzu supplychain` CLI plugin to streamline the authoring process for `SupplyChains` tailored to their developers.
+SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies, are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. This is where the `tanzu supplychain` CLI plug-in becomes invaluable. Platform Engineers can leverage the `tanzu supplychain` CLI plug-in to streamline the authoring process for `SupplyChains` tailored to their developers.
 
-The `supplychain` CLI plugin supports 2 modes of operation for generating SupplyChains.
+The `supplychain` CLI plug-in supports 2 modes of operation for generating SupplyChains.
 
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
@@ -53,7 +53,7 @@ The `supplychain` CLI plugin supports 2 modes of operation for generating Supply
 But before you get to either of those options, you are required to initialize the local directory you are working on for the `supplychain` CLI generate command. You can do that using the `tanzu supplychain init` command.
 
 >**Important**
-> Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plugin commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
+> Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
 
 ### Initialize the local directory
 
@@ -183,7 +183,7 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 
 ## Generate the SupplyChain
 
-As mentioned earlier, the `tanzu supplychain` CLI plugin supports 2 modes of operation for generating SupplyChains.
+As mentioned earlier, the `tanzu supplychain` CLI plug-in supports 2 modes of operation for generating SupplyChains.
 
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags

@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Available `Workload` kinds can be discovered using the Tanzu `workload` CLI plugin.
+Available `Workload` kinds can be discovered using the Tanzu `workload` CLI plug-in.
 
 To discover available `Workload` kinds:
 
