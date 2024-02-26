@@ -76,7 +76,6 @@ tanzu workload create my-web-app-2 --file workload.yaml --namespace build
 >**Note**
 >The `tanzu workload create` command can only be used to create a `Workload` that does not already exist. To update an existing `Workload`, use `tanzu workload apply`.
 
-
 ## Apply a Workload
 
 Apply a `Workload` manifest to the cluster.
