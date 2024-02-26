@@ -194,19 +194,26 @@ The following table compares the contents of the `lite` and `full` dependencies.
 
 ## <a id="update-tap"></a> Update dependencies in band with Tanzu Application Platform releases
 
-New versions of dependencies such as buildpacks, and stacks are available in new versions of Tanzu Application Platform. To update dependencies, VMware recommends that you update to the latest patch
+New versions of dependencies such as buildpacks, and stacks are available in new versions of
+Tanzu Application Platform. To update dependencies, VMware recommends that you update to the latest patch
 version of Tanzu Application Platform.
 
-- If you are using `lite` or `full` dependencies, upgrade to the latest patch version of Tanzu Application Platform to update your dependencies.
-- If you are using `full` dependencies, you must complete some extra steps after you upgrade to the latest patch. For more information, see [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
+- If you are using `lite` or `full` dependencies, upgrade to the latest patch version of
+  Tanzu Application Platform to update your dependencies.
+
+- If you are using `full` dependencies, you must complete some extra steps after you upgrade to the
+  latest patch. For more information, see [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-## <a id="update-out-of-band"></a> Update dependencies out of band with Tanzu Application Platform release
+## <a id="update-out-of-band"></a> Update dependencies out of band with Tanzu Application Platform releases
+
+To update dependencies between Tanzu Application Platform releases, you can either use automatic
+dependency updates or you can update dependencies manually.
 
 ### <a id="update-automatic"></a> Automatic dependency updates
 
-{{> 'partials/auto-deps' initial_steps="" }}
+{{> 'partials/tanzu-build-service/auto-deps' initial_steps="" }}
 
 ### <a id="update-manual"></a> Manual dependency updates
 
@@ -220,7 +227,7 @@ the image can be retrieved from the registry.
 
 1. Select the required buildpack in the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html). Select `full` or `lite` dependencies. Scroll to the Docker command, and copy the buildpack image URL for use in the next step.
 
-2. Run:
+1. Run:
 
     ```console
     imgpkg copy -b BUILDPACK-IMAGE-URL --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/BUILDPACK-LANGUAGE
@@ -228,7 +235,7 @@ the image can be retrieved from the registry.
 
     Where `BUILDPACK-IMAGE-URL` is the buildpack image URL copied from the Docker command in the previous step
 
-3. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
+1. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
 
     ```console
     apiVersion: kpack.io/v1alpha2
@@ -248,7 +255,7 @@ the image can be retrieved from the registry.
     can follow any convention that allows the Cluster Operator to distinguish this `ClusterBuildpack`
     from others installed by Tanzu Application Platform.
 
-4. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
+1. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
 
     ```console
     kubectl apply -f FILE-FROM-PREVIOUS-STEP

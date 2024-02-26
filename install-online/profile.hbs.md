@@ -500,11 +500,11 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-Tanzu Application Platform v1.6.1 and beyond supports building applications with Ubuntu v22.04 (Jammy).
+Tanzu Application Platform v1.6.1 and later supports building applications with Ubuntu v22.04 (Jammy).
 
 ### <a id='automatic-dependency-update'></a> (Optional) Configure your profile with automatic dependency updates
 
-{{> 'partials/auto-deps' initial_steps="" }}
+{{> 'partials/tanzu-build-service/auto-deps' initial_steps="" }}
 
 ### <a id='crossplane-retention-behavior'></a> (Optional) Override the default retention behavior for Crossplane CRDs
 
