@@ -18,8 +18,7 @@ First step in installing a `SupplyChain` is to create a namespace where it shoul
 $ kubectl create namespace mysupplychains 
 ```
 
->**Note**
->The `make install` command requires `kapp` CLI to be installed on the local machine. To install the `kapp` CLI, see the  [Carvel](https://carvel.dev/kapp/docs/latest/install/) documentation.
+>**Note** The `make install` command requires `kapp` CLI to be installed on the local machine. To install the `kapp` CLI, see the  [Carvel](https://carvel.dev/kapp/docs/latest/install/) documentation.
 
 Next step is to use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
 
@@ -131,8 +130,7 @@ Wait to: 1 reconcile, 0 delete, 0 noop
 Succeeded
 ```
 
->**Note**
->By default, the `make install` command, installs to the default namespace in your kubeconfig.
+>**Note** By default, the `make install` command, installs to the default namespace in your kubeconfig.
 
 ## Installing via GitOps
 

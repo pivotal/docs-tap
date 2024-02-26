@@ -18,34 +18,34 @@ Listing workloads from the build namespace
 
 ## Get a Workload
 
-Get the details of the specified `Workload` within a namespace:
+1. Get the details of the specified `Workload` within a namespace:
 
-```console
-$ tanzu workload get my-web-app --namespace build
-Overview
-   name:       my-web-app
-   kind:       buildwebapps.vmware.com/my-web-app
-   namespace:  build
-   age:        17s
+    ```console
+    $ tanzu workload get my-web-app --namespace build
+    Overview
+      name:       my-web-app
+      kind:       buildwebapps.vmware.com/my-web-app
+      namespace:  build
+      age:        17s
 
-Runs:
-  ID                    STATUS   DURATION  AGE
-  my-web-app-run-lxwrm  Running  0s        17s
-```
+    Runs:
+      ID                    STATUS   DURATION  AGE
+      my-web-app-run-lxwrm  Running  0s        17s
+    ```
 
-You can also get the [Workload] output as YAML or JSON for programmatic use:
+1. Get the [Workload] output as YAML or JSON for programmatic use:
 
-```console
-$ tanzu workload get my-web-app --namespace build -o yaml
----
-apiVersion: vmware.com/v1
-kind: BuildWebApp
-metadata:
-  name: my-web-app
-  namespace: build
-spec:
-  ...
-```
+    ```console
+    $ tanzu workload get my-web-app --namespace build -o yaml
+    ---
+    apiVersion: vmware.com/v1
+    kind: BuildWebApp
+    metadata:
+      name: my-web-app
+      namespace: build
+    spec:
+      ...
+    ```
 
 ## Get a Workload Run
 

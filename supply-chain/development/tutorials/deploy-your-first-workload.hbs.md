@@ -13,7 +13,7 @@ You will need the following CLI tools installed on your local machine:
 
 ## Getting Started
 
-As a developer, the first thing we want to know is what `SupplyChain` are available to us, and what kinds of `Workloads` we can create, that would trigger those `SupplyChain`. You can run the following `tanzu workload` command to get the list:
+As a developer, the first thing we want to know is what `SupplyChain` are available to us, and what kinds of `Workloads` we can create, that would trigger those `SupplyChain`. Run the following `tanzu workload` command to get the list:
 
 ```console
 $ tanzu workload kind list

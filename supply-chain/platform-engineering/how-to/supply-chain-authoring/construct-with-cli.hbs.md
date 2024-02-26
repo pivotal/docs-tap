@@ -115,11 +115,10 @@ Listing components from the catalog
 🔎 To view the details of a component, use 'tanzu supplychain component get'
 ```
 
-You can use the `-w/--wide` flag on the list command to see a more detailed output including a
+Use the `-w/--wide` flag on the list command to see a more detailed output including a
 description of each component.
 
->**Important**
-> The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the Tanzu CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
+>**Important** The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the Tanzu CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
 
 To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get information about the `source-git-provider` component, run:
 

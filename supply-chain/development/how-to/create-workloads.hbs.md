@@ -109,9 +109,9 @@ The `Workload` name provided in the manifest can be overridden by providing a na
 tanzu workload apply my-web-app-2 --file workload.yaml --namespace build
 ```
 
->**Note** The `tanzu workload apply` command can used to create **or** update a `Workload`.
+>**Note** Use the `tanzu workload apply` command to create or update a `Workload`.
 
-You can use the `tanzu workload` CLI plug-in to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
+Use the `tanzu workload` CLI plug-in to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
 
 ## Delete a Workload
 

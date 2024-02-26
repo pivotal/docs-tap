@@ -44,8 +44,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ...
 ```
 
->**Important**
-> VMware recommends that you install the Tanzu Supply Chain using the beta `Authoring` profile.
+>**Important** VMware recommends that you install the Tanzu Supply Chain using the beta `Authoring` profile.
 For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## Getting Started
@@ -76,7 +75,7 @@ We now have an `Authoring` profile cluster that has the Tanzu Supply Chain contr
   🔎 To view the details of a component, use 'tanzu supplychain component get'
   ```
 
-You can use the `-w/--wide` flag on the list command to see a more detailed output including a description of each component.
+Use the `-w/--wide` flag on the list command to see a more detailed output including a description of each component.
 
 1. To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run:
 
