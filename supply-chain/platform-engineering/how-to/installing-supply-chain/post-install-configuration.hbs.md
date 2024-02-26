@@ -2,11 +2,12 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure you have a functioning installation.
+Once you have Tanzu Supply Chain installed, there are a number of steps you must complete to ensure you have a functioning installation.
 
 ## Namespace Provisioner
 
-The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the Namespace Provisioner.
+The recommended way of configuring service accounts and permissions on Tanzu Application Platform is
+to use the Namespace Provisioner.
 
 ```shell
 ❯ kubectl create namespace my-supply-chains
@@ -28,8 +29,9 @@ namespace_provisioner:
 
 ## OCI Store
 
-Supply Chains persist data between stages by reading and writing to an OCI repository.  The location of the OCI 
-repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace.
+Supply Chains persist data between stages by reading and writing to an OCI repository.  The location
+of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within
+the developer namespace.
 
 An example of the structure of this secret is shown below:
 
