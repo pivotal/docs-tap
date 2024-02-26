@@ -799,12 +799,6 @@ This release has the following known issues, listed by component and area.
   servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
   see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
 
-#### <a id='1-8-0-cnr-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
-
-- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
-  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
-  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
-
 #### <a id='1-8-0-crossplane-ki'></a> v1.8.0 Known issues: Crossplane
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
