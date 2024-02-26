@@ -53,7 +53,7 @@ The `supplychain` CLI plug-in supports 2 modes of operation for generating Suppl
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
 
-Before you use modes, you must use the the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using.
+Before you use modes, you must use the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using.
 
 >**Important**
 > Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.

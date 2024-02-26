@@ -346,7 +346,7 @@
     - [Cloud Native Runtimes](cloud-native-runtimes/about.hbs.md)
         - [Cloud Native Runtimes overview](cloud-native-runtimes/about.hbs.md)
         - [How-to guides](./cloud-native-runtimes/how-to-guides/index.hbs.md)
-            - [Cloud Native Runtimes for for app operators](./cloud-native-runtimes/how-to-guides/app-operators/index.hbs.md)
+            - [Cloud Native Runtimes for app operators](./cloud-native-runtimes/how-to-guides/app-operators/index.hbs.md)
                 - [Install Cloud Native Runtimes](./cloud-native-runtimes/how-to-guides/app-operators/install.hbs.md)
                 - [Verify Installation](./cloud-native-runtimes/how-to-guides/app-operators/verify-installation.hbs.md)
                 - [Verify Knative Serving](./cloud-native-runtimes/how-to-guides/app-operators/verifying-serving.hbs.md)
