@@ -43,17 +43,19 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 
 ## SupplyChain authoring
 
-The `tanzu supplychain` CLI plugin can be used by Platform Engineers to author `SupplyChains` for their developers. The `supplychain` CLI plugin supports 2 modes of operation.
+SupplyChains, especially the authoring resources `SupplyChain`, `Component` and dependent Tekton `Pipeline`/`Task`, are designed to be delivered to clusters via a Git repository and GitOps source promotion style. As a Platform Engineers, you should author the `SupplyChain` as a collection of yaml files in a file system backed by Git, and test and debug by pushing all the files to a single namespace on the `authoring` profile cluster. When you are happy with the new or modified `SupplyChain`, commit it to Git and create a pull/merge request. This could result in a large number of YAML manifests, and the manual way is error prone. This is where `tanzu supplychain` CLI plugin comes into action. The `tanzu supplychain` CLI plugin can be used by Platform Engineers to author `SupplyChains` for their developers. 
 
-* Interactive way using the guided wizard
-* Non-Interactive way using Flags
+The `supplychain` CLI plugin supports 2 modes of operation for generating SupplyChains.
+
+* **Interactive** way using the guided wizard
+* **Non-Interactive** way using flags
 
 But before you get to either of those options, you are required to initialize the local directory you are working on for the `supplychain` CLI generate command. You can do that using the `tanzu supplychain init` command.
 
-### Initialize the local directory
-
 >**Important**
-> SupplyChains, especially the authoring resources `SupplyChain`, `Component` and dependent Tekton `Pipeline`/`Task`, are designed to be delivered to clusters via a Git repository and GitOps source promotion style. As a Platform Engineers, you should author the `SupplyChain` as a collection of yaml files in a file system backed by Git, and test and debug by pushing all the files to a single namespace on the `authoring` profile cluster. When you are happy with the new or modified `SupplyChain`, commit it to Git and create a pull/merge request.
+> Ideally, a Platform Engineers should run the `tanzu supplychain init/generate` commands on the local copy of their GitOps repository that they plan to use for delivering the SupplyChains to their Build clusters. The `tanzu supplychain` CLI plugin commands are built to help Platform Engineers scaffold and populate the local directory with their desired state of SupplyChains they want to install in their Build clusters.
+
+### Initialize the local directory
 
 The `tanzu supplychain init` command creates:
 
