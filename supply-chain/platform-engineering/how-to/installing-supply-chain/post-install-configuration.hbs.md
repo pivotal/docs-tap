@@ -2,20 +2,18 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure 
-you have a functioning installation.
+Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure you have a functioning installation.
 
 ## Namespace Provisioner
 
-The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the namespace-provisioner.
+The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the Namespace Provisioner.
 
 ```shell
 ❯ kubectl create namespace my-supply-chains
 ❯ kubectl label namespaces my-supply-chains apps.tanzu.vmware.com/tap-ns=""
 ```
 
-If namespace provisioner is not enabled in your environment, you can enable it via your `tap-values.yaml` by
-adding the following section:
+If Namespace Provisioner is not enabled in your environment, add the following section in `tap-values.yaml` to enable it:
 
 ```yaml
 namespace_provisioner:
@@ -64,7 +62,7 @@ type: kubernetes.io/dockerconfigjson
 ## Additional Permissions for Buildpacks Cluster Builders
 
 If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders`
-then there are some additional permissions that need to be added that can't yet be configured by namespace provisioner.
+then there are some additional permissions that need to be added that can't yet be configured by Namespace Provisioner.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1

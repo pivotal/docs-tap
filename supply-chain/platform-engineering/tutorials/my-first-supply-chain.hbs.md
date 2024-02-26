@@ -74,7 +74,7 @@ Listing components from the catalog
 
 You can use the `-w/--wide` flag on the list command to see a more verbose output including a description of each component.
 
-To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
+To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run the following command:
 
 ```console
 $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details

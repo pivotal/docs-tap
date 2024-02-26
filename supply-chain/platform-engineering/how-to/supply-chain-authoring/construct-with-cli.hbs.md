@@ -14,6 +14,7 @@ You will need the following Packages installed on the Tanzu Application Platform
 * [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
 To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+
 ```
 $ kubectl get pkgi -A
 
@@ -52,7 +53,7 @@ The `supplychain` CLI plug-in supports 2 modes of operation for generating Suppl
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
 
-But before you get to either of those options, you are required to initialize the local directory you are working on for the `supplychain` CLI generate command. You can do that using the `tanzu supplychain init` command.
+Before you use modes, you must use the the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using .
 
 >**Important**
 > Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
@@ -73,11 +74,11 @@ The `tanzu supplychain init` command take 2 optional flags:
 * `--description`: Description of the Group. **(default "")**
 
 >**Important**
-> After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. It's important to note that within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
+> After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
 Here is an example on how to execute the `tanzu supplychain init` command:
 
-```
+```console
 $ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
 
 Initializing group supplychains.tanzu.vmware.com
@@ -97,7 +98,7 @@ Writing group configuration to config.yaml
 
 As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
 
-```
+```console
 $ tanzu supplychain component list
 
 Listing components from the catalog
@@ -118,12 +119,13 @@ Listing components from the catalog
 
 🔎 To view the details of a component, use 'tanzu supplychain component get'
 ```
+
 You can use the `-w/--wide` flag on the list command to see a more verbose output including description of each components.
 
 >**Important**
 > The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
 
-To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
+To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run the following command:
 
 ```
 $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
