@@ -68,8 +68,7 @@ The `tanzu supplychain init` command takes two optional flags:
   * Group is used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
 * `--description`: Description of the Group. **(default "")**
 
->**Important**
-> After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
+>**Important** After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
 Here is an example of how to execute the `tanzu supplychain init` command:
 
@@ -120,7 +119,7 @@ You can use the `-w/--wide` flag on the list command to see a more detailed outp
 description of each component.
 
 >**Important**
-> The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
+> The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the Tanzu CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
 
 To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get information about the `source-git-provider` component, run:
 
@@ -184,7 +183,7 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 
 ## Generate the SupplyChain
 
-As mentioned earlier, the `tanzu supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
+The `tanzu supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
 
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
@@ -223,7 +222,7 @@ Non-Interactive
     $ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "source-git-provider-1.0.0" --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
     ```
 
-After you have selected the components for your chain, the `tanzu supplychain` CLI should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
+When you have selected the components for your chain, the `tanzu supplychain` CLI should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
 
 ```console
 ✓ Successfully fetched all component dependencies

@@ -73,8 +73,7 @@ The `Workload` name provided in the manifest can be overridden by providing a na
 tanzu workload create my-web-app-2 --file workload.yaml --namespace build
 ```
 
->**Note**
->The `tanzu workload create` command can only be used to create a `Workload` that does not already exist. To update an existing `Workload`, use `tanzu workload apply`.
+>**Note** The `tanzu workload create` command can only be used to create a `Workload` that does not already exist. To update an existing `Workload`, use `tanzu workload apply`.
 
 ## Apply a Workload
 
@@ -110,8 +109,7 @@ The `Workload` name provided in the manifest can be overridden by providing a na
 tanzu workload apply my-web-app-2 --file workload.yaml --namespace build
 ```
 
->**Note**
->The `tanzu workload apply` command can used to create **or** update a `Workload`.
+>**Note** The `tanzu workload apply` command can used to create **or** update a `Workload`.
 
 You can use the `tanzu workload` CLI plug-in to observe the `Workload` and the `WorkloadRuns` created by the `SupplyChain`. Follow the [Observe the Runs of your Workload](./observe-runs.hbs.md) how to guide for instructions.
 
@@ -125,8 +123,7 @@ Really delete the workload my-web-app of kind buildwebapps.vmware.com from the b
 Successfully deleted workload my-web-app
 ```
 
->**Note**
->Deleting a `Workload` prevents new builds while preserving built images in the registry.
+>**Note** Deleting a `Workload` prevents new builds while preserving built images in the registry.
 
 ## References
 

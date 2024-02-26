@@ -50,8 +50,7 @@ spec:
     ...
 ```
 
->**Note**
->When you run the `tanzu workload generate` command, the `workload` CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
+>**Note** When you run the `tanzu workload generate` command, the `workload` CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
 
 We can pipe the output of the generate command into a `workload.yaml` file as follows:
 
@@ -59,8 +58,7 @@ We can pipe the output of the generate command into a `workload.yaml` file as fo
 $ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
 ```
 
->**Note**
->If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
+>**Note** If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
 
 Next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entries. Here is what our sample `workload.yaml` looks like:
 
@@ -121,8 +119,7 @@ Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 ✓ Successfully created workload tanzu-java-web-app
 ```
 
->**Note**
->`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point to it.
+>**Note** `tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point to it.
 
 Our `AppBuildV1` workload is applied to the cluster. For the purpose of this tutorial, we are using the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
 
@@ -244,8 +241,7 @@ $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
        └─ 📋 pipeline - Not Started
 ```
 
->**Note**
->`--show-details` is an optional flag that shows the verbose output of the `tanzu workload run get` command. The default output only shows the `stages` and their `status`.
+>**Note** `--show-details` is an optional flag that shows the verbose output of the `tanzu workload run get` command. The default output only shows the `stages` and their `status`.
 
 Once your `WorkloadRun` has successfully gone through the Supply Chain, the output of the `Workload` and `WorkloadRun` will look as follows:
 
