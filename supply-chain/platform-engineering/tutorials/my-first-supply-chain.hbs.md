@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-In this section, we will be using the `supplychain` CLI plug-in to create our first SupplyChain for our developers. This SupplyChain will be able to pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+In this section, we will be using the `supplychain` CLI plug-in to create our first SupplyChain for developers. This SupplyChain will pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ You will need the following Packages installed on the Tanzu Application Platform
 
 * [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
-To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+To confirm if the required packages are installed and reconciled successfully.
 
 ```console
 $ kubectl get pkgi -A
@@ -48,7 +48,7 @@ For more information, see [Installing with the 'authoring' profile](../how-to/in
 
 ## Getting Started
 
-We now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and we are ready to build our first SupplyChain. As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
+We now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build you first SupplyChain. As a Platform Engineer, you want to know which components are available to use in you SupplyChain. Run:
 
 ```console
 $ tanzu supplychain component list
@@ -72,7 +72,7 @@ Listing components from the catalog
 🔎 To view the details of a component, use 'tanzu supplychain component get'
 ```
 
-You can use the `-w/--wide` flag on the list command to see a more verbose output including a description of each component.
+You can use the `-w/--wide` flag on the list command to see a more detailed output including a description of each component.
 
 To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run the following command:
 
@@ -160,7 +160,7 @@ The `tanzu supplychain init` command creates:
 * `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 * `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
-Our current directory is now initialized, and we can use the SupplyChain authoring wizard to generate our first SupplyChain. To kick off the wizard, use the following command:
+Your current directory is now initialized, and you can use the SupplyChain authoring wizard to generate your first SupplyChain. Start the wizard:
 
 ```console
 $ tanzu supplychain generate
@@ -178,7 +178,7 @@ In the prompts that follow, add the following values:
 * **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
 * **Select a component as the next stage of the supply chain?** Done
 
-After you have selected the components for your chain, the wizard should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
+After you have selected the components for your chain, the wizard creates the required files to deploy your SupplyChain in the current directory. Example output:
 
 ```console
 ✓ Successfully fetched all component dependencies
@@ -247,7 +247,7 @@ spec:
 
 ## Next Steps
 
-Now we need to deploy this `SupplyChain` to your Tanzu Application Platform clusters where your developers will be creating the `Workloads`. For instructions, see [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
+Deploy this `SupplyChain` to your Tanzu Application Platform clusters where your developers will be creating the `Workloads`. For instructions, see [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
 
 # Useful links
 
