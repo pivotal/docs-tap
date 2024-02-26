@@ -790,9 +790,6 @@
               - [Create a Workload](./supply-chain/development/how-to/create-workloads.hbs.md)
               - [Observe runs for your Workloads](./supply-chain/development/how-to/observe-runs.hbs.md)
               - [Troubleshoot a run](./supply-chain/development/how-to/troubleshooting.hbs.md)
-          - [Explanation](./supply-chain/development/explanation/about.hbs.md)
-              - [Core Concepts: Workloads](./supply-chain/development/explanation/workloads.hbs.md)
-              - [Core Concepts: Workload Runs](./supply-chain/development/explanation/workload-runs.hbs.md)
       - [Reference](./supply-chain/reference/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](supply-chain/reference/catalog/about.hbs.md) for Platform Engineering
               - [Output Types](supply-chain/reference/catalog/output-types.hbs.md) used with Tanzu Supply Chain Components
