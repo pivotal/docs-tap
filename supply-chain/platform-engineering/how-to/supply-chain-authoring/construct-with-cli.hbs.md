@@ -40,7 +40,8 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> Recommended way to install the Tanzu Supply chain is by using the beta `Authoring` TAP profile. Please refer to the [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md) documentation for installing TAP Authoring profile.
+> VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile.
+For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## SupplyChain authoring
 
@@ -62,7 +63,7 @@ The `tanzu supplychain init` command creates:
 
 * `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
 * `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
-* `Makefile` which will has the targets to install/uninstall the SupplyChain and related dependencies on any TAP Build/Full profile clusters.
+* `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 * `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 The `tanzu supplychain init` command take 2 optional flags:
@@ -267,7 +268,7 @@ Error: unable to find the component buildpack-build-1.0.0 or the component build
 
 ## Ensure your Components and Supply Chains adhere to version constraints
 
-Please refer to the reference doc on [Understanding SupplyChains](./../../explanation/supply-chains.hbs.md#supply-chains-cannot-change-an-api-once-it-is-on-cluster), specifically the section labelled `Supply Chains cannot change an API once it is on-cluster` for information on how `SupplyChains` and `Components` should be versioned in order to avoid delivery failures of your `Supplychain` resources to your Build clusters.
+For information about versioning `SupplyChains` and `Components` to avoid delivery failures of your `Supplychain` resources to your Build clusters, see [Supply Chains cannot change an API once it is on-cluster](./../../explanation/supply-chains.hbs.md#not-change-api).
 
 ## Reference Guides
 

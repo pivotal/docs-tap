@@ -136,4 +136,4 @@ Succeeded
 
 ## Installing via GitOps
 
-Please refer to the [GitOps managed SupplyChains](./../deploying-supply-chains/gitops-managed.hbs.md) guide for guidance on how to manage/install Supply Chains in your build/full clusters.
+For information about how to manage and install Supply Chains in your build or full clusters, see [GitOps managed SupplyChains](./../deploying-supply-chains/gitops-managed.hbs.md).

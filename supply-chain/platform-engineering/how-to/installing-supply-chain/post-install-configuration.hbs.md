@@ -7,7 +7,7 @@ you have a functioning installation.
 
 ## Namespace Provisioner
 
-The recommended way of configuring service accounts/permissions on TAP is to use the namespace-provisioner.
+The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the namespace-provisioner.
 
 ```shell
 ❯ kubectl create namespace my-supply-chains

@@ -8,9 +8,10 @@ To start working with Tanzu Supply Chain, there are two tanzu cli plugins that y
 2. The `workload` CLI, which developers use to discover and use the Workloads you authored with the `supplychain` CLI
 
 >**Note**
->The Tanzu Supply Chain's initial beta release does not include the installation of the workload and supply chain CLI plugins as part of the TAP Plugin group. To install them, follow the instructions provided on this page separately.
+>The Tanzu Supply Chain's initial beta release does not include the installation of the workload and supply chain CLI plug-ins as part of the plug-in group. To install them, follow the instructions provided on this page separately.
 
 ## Prerequisites
+
 Ensure that you installed or updated the core Tanzu CLI. For more information, see [Install Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-cli).
 
 ## Install Tanzu Supplychain and Workload CLI plugins

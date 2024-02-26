@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-The recommended way of installing TAP with Tanzu Supply Chain support is to use the `authoring` beta profile, this will install all the
+The recommended way of installing Tanzu Application Platform with Tanzu Supply Chain support is to use the `authoring` beta profile, this installs all the
 required packages for you. The `authoring` profile has the following additional packages over the `iterate` profile: 
 
 * Tanzu Supply Chain Packages
@@ -30,4 +30,4 @@ profile: authoring
 >**Note**
 >As the `authoring` profile adds the above mentioned packages to what gets installed in the `iterate` profile, the tap-values.yaml file for both profile can look exactly same except for the `profile` value.
 
-After the installation of the `authoring` TAP profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure the Tanzu Supply Chain installation.
+After the installation of the `authoring` profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure the Tanzu Supply Chain installation.

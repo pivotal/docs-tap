@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-There are three additional packages you'll need to install that are bundled with the TAP release, but not part of any profile.
+There are three additional packages you'll need to install that are bundled with the Tanzu Application Platform release, but not part of any profile.
 
 * `supply-chain.apps.tanzu.vmware.com`
 * `supply-chain-catalog.apps.tanzu.vmware.com`

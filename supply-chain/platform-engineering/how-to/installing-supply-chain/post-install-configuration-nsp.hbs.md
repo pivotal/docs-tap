@@ -3,7 +3,7 @@
 {{> 'partials/supply-chain/beta-banner' }}
 
 Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure 
-you have a functioning installation. The recommended way of configuring service accounts/permissions on TAP is to use the namespace-provisioner.
+you have a functioning installation. The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the Namespace Provsioner.
 
 ## Things to configure
 

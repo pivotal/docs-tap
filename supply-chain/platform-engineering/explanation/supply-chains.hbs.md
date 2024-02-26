@@ -8,7 +8,7 @@ This topic introduces the SupplyChain resource which unifies the Tanzu Supply Ch
 
 [Detailed Specification in the API Section](../../reference/api/supplychain.hbs.md)
 
-## Supply Chains cannot change an API once it is on-cluster
+## <a id="not-change-api"></a> Supply Chains cannot change an API once it is on-cluster
 
 The version of your SupplyChain, as embedded in the name, must follow the following rules.
 
@@ -54,7 +54,7 @@ By selecting components, the supply chain aggregates each component's configurat
 
 > **A Note on this Beta:**
 > 
-> * It's quite likely that Workload will be named something else by TAP 1.9
+> * It's quite likely that Workload will be named something else by Tanzu Application Platform v1.9
 > * Additional support for overriding configuration within a SupplyChain will be released in 1.9, allowing Platform Engineers to configure values developers don't need to know about.
 
 ## SupplyChain describes a process with `stages`

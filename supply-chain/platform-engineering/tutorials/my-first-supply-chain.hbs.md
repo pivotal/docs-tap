@@ -43,11 +43,12 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> Recommended way to install the Tanzu Supply chain is by using the beta `Authoring` TAP profile. Please refer to the [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md) documentation for installing TAP Authoring profile.
+> VMware recommend that you install the Tanzu Supply Chain using the beta `Authoring` profile.
+For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## Getting Started
 
-We now have a TAP `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller and Component packages installed on the cluster and we are ready to build our first SupplyChain. As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
+We now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and we are ready to build our first SupplyChain. As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
 
 ```console
 $ tanzu supplychain component list
@@ -70,10 +71,10 @@ Listing components from the catalog
 
 🔎 To view the details of a component, use 'tanzu supplychain component get'
 ```
-You can use the `-w/--wide` flag on the list command to see a more verbose output including description of each components.
 
+You can use the `-w/--wide` flag on the list command to see a more verbose output including a description of each component.
 
-To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
+To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
 
 ```console
 $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
@@ -131,8 +132,8 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 
 🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
 
-```
-Now that we know what all components are available to create our SupplyChain, let's start the authoring process. First step would be to scaffold the current directory using the `tanzu supplychain init` command as follows:
+```console
+Now that we know what components are available to create our SupplyChain, let's start the authoring process. The first step is to scaffold the current directory using the `tanzu supplychain init` command as follows:
 
 ```console
 $ mkdir myfirstsupplychaingroup
@@ -156,7 +157,7 @@ The `tanzu supplychain init` command creates:
 
 * `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
 * `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
-* `Makefile` which will has the targets to install/uninstall the SupplyChain and related dependencies on any TAP Build/Full profile clusters.
+* `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 * `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 Our current directory is now initialized, and we can use the SupplyChain authoring wizard to generate our first SupplyChain. To kick off the wizard, use the following command:
@@ -246,7 +247,7 @@ spec:
 
 ## Next Steps
 
-Now we need to deploy this `SupplyChain` to your TAP clusters where your developers will be creating the `Workloads`. See the [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md) guide for instructions.
+Now we need to deploy this `SupplyChain` to your Tanzu Application Platform clusters where your developers will be creating the `Workloads`. For instructions, see [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
 
 # Useful links
 
