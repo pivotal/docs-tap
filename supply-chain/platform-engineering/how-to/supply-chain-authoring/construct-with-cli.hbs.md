@@ -4,12 +4,12 @@
 
 ## Prerequisites
 
-You will need the following CLI tools installed on your local machine:
+Istall the following CLI tools on your local machine:
 
 - [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
 - [Tanzu Supplychain CLI plug-in](../../how-to/install-the-cli.hbs.md)
 
-You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
+You need the following Packages installed on the Tanzu Application Platform cluster that you use to author your first supply chain:
 
 - [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages. To confirm if the correct packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
 
@@ -58,7 +58,7 @@ Before you use modes, you must use the `tanzu supplychain init` command to initi
 The `tanzu supplychain init` command creates:
 
 - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-- `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
+- `supplychains`, `components`, `pipelines` and `tasks` directories which are auto populated by the authoring wizard later in this tutorial.
 - `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
@@ -202,7 +202,7 @@ Interactive
     * Stages of your `SupplyChain`
       * The `tanzu supplychain` CLI knows what stages are already part of the `SupplyChain` and removes them from the list of stages to add.
 
-    Here are the example values for the prompts for the wizard workflow that will generate a functioning `SupplyChain`:
+    Here are the example values for the prompts for the wizard workflow that generate a functioning `SupplyChain`:
 
     - **What Kind would you like to use as the developer interface?** AppBuildV1
     - **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
@@ -253,7 +253,7 @@ Created file tasks/store-content-oci.yaml
 
 ## Enforce proper ordering of Components in the SupplyChain
 
-`Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that precedes it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain will return an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, see the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
+`Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that precedes it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain returns an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, see the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
 
 - If you are authoring the CLI in an interactive manner, the entries that get populated for `stage` selection already take this logic into account. The CLI only shows you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
 - If you are authoring using the non-interactive manner, the CLI will throw an error. See example below:

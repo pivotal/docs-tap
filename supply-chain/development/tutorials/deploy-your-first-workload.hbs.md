@@ -2,11 +2,11 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-In this section, you will use the Tanzu Workload CLI plug-in to create your first `Workload`. The Platform Engineer has already created some Supply Chains for you to use, which can pull the source code from the source repository and build it. The built artifact will be shipped to a GitOps repository determined by the  Platform Engineer.
+In this section, you will use the Tanzu Workload CLI plug-in to create your first `Workload`. The Platform Engineer has already created some Supply Chains for you to use, which can pull the source code from the source repository and build it. The built artifact are shipped to a GitOps repository determined by the  Platform Engineer.
 
 ## Prerequisites
 
-You will need the following CLI tools installed on your local machine:
+Install the following CLI tools installed on your local machine:
 
 - [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
 - [Tanzu Workload CLI plug-in](../how-to/install-the-cli.hbs.md)
@@ -85,7 +85,7 @@ spec:
     packageDomain: "tanzu.vmware.com"
 ```
 
->**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command will also show the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer will be able to set Platform level values like the registry details, and those entries will not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This will result in a `Workload` spec that is much smaller and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear separation of concern between the Platform Engieering role and the Developer role.
+>**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command also shows the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer is able to set Platform level values like the registry details, and those entries are not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This results in a `Workload` spec that is much smaller and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear separation of concern between the Platform Engieering role and the Developer role.
 
 After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
 Use the following to command to apply your `AppBuildV1` workload to the cluster. 
@@ -155,7 +155,7 @@ $ tanzu workload get tanzu-java-web-app
 🔎 To view a run information, use 'tanzu workload run get run-id'
 ```
 
-From the output, you see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when you applied the `AppBuildV1` workload and its in the `Running` state. There are multiple reasons why a new `WorkloadRun` will be created for your `Workload`, but few are developer triggered. Updates to your `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster will create a new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images. Other activities like pushing new commits to your Source code repository that is referred by the `Workload` can also cause a new run of the `Workload` to build the latest source from your Git repository.
+From the output, you see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when you applied the `AppBuildV1` workload and its in the `Running` state. There are multiple reasons why a new `WorkloadRun` is created for your `Workload`, but few are developer triggered. Updates to your `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster creates a new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images. Other activities like pushing new commits to your Source code repository that is referred by the `Workload` can also cause a new run of the `Workload` to build the latest source from your Git repository.
 
 The `tanzu workload get` command shows you:
 

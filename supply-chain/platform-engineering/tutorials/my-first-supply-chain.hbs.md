@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-In this section, you will use the Tanzu Supplychain CLI plug-in to create your first SupplyChain for developers. This SupplyChain will pull the source code from the Git Repository, build it and package it as a Carvel package. The SupplyChain will then PR the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+In this section, you will use the Tanzu Supplychain CLI plug-in to create your first SupplyChain for developers. This SupplyChain pulls the source code from the Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
@@ -160,7 +160,7 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
   The `tanzu supplychain init` command creates:
 
   - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-  - `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
+  - `supplychains`, `components`, `pipelines` and `tasks` directories which are auto populated by the authoring wizard later in this tutorial.
   - `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
   - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 

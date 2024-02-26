@@ -48,7 +48,7 @@ the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 However most names have the word "run" appended.
 
 Additionally, the `spec.names[].categories[]` array includes a category of `all-runs`. This ensures that
-commands such as `kubectl get all-runs` will find all the [SupplyChain] defined WorkloadRuns a user can access.
+commands such as `kubectl get all-runs` find all the [SupplyChain] defined WorkloadRuns a user can access.
 
 #### Example
 

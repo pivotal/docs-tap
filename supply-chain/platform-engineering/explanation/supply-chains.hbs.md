@@ -59,7 +59,7 @@ By selecting components, the supply chain aggregates each component's configurat
 The version of your SupplyChain, as embedded in the name, must follow the following rules.
 
 A patch bump is required to update the supply chain without an API change.
-The controller will ensure this rule cannot be broken when comparing supply chains on cluster.
+The controller ensures this rule cannot be broken when comparing supply chains on cluster.
 
 For example, imagine you apply to a cluster:
 
