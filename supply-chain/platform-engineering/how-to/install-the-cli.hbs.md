@@ -1,13 +1,13 @@
-# How to install the Supply Chain CLI plug-ins
+# How to install the Tanzu Supply Chain CLI plug-ins
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
 To start working with Tanzu Supply Chain, there are two Tanzu CLI plug-ins that you must install.
 
-1. The `supplychain` CLI plug-in is used to author and manage SupplyChains and Components.
-2. The `workload` CLI plug-in use by developers to discover and use the Workloads you authored with the `supplychain` CLI plug-in.
+1. The Tazu Supplychain CLI plug-in is used to author and manage SupplyChains and Components.
+2. The Tanzu Workload CLI plug-in is used by developers to discover and use the Workloads you authored with the Tazu Supplychain CLI plug-in.
 
-The Tanzu Supply Chain's initial beta release does not include the installation of the `workload` and `supplychain` CLI plug-ins as part of the plug-in group.
+**Important** The Tanzu Supply Chain beta release does not include the installation of the Workload and Supplychain` CLI plug-ins as part of the plug-in group.
 
 ## Prerequisites
 

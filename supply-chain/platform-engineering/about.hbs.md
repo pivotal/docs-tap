@@ -6,12 +6,12 @@ This section details the Platform Engineering focused features of the Tanzu Supp
 
 ## Prerequisites
 
-Start using the Tanzu Supply Chains by installing these CLI tools:
+Install these CLI tools:
 
-* [Install the `tanzu` CLI](../../install-tanzu-cli.hbs.md#install-the-tanzu-cli)
-* [Install the `tanzu workload` and `tanzu supplychain` CLI plugins for Platform Engineers](./how-to/install-the-cli.hbs.md)
+* [Install the Tanzu CLI](../../install-tanzu-cli.hbs.md#install-cli).
+* [Install the Tanzu Supply Chain CLI plug-ins](./how-to/install-the-cli.hbs.md).
 
-## Installing and Configuring Tanzu Supply Chains
+## Install and Configure Tanzu Supply Chain
 
 * [How To Install Tanzu Supply Chain](./how-to/installing-supply-chain/about.hbs.md)
 * [Post-install configuration](./how-to/installing-supply-chain/post-install-configuration.hbs.md)
