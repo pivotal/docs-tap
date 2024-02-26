@@ -5,12 +5,12 @@
 ## Prequisites
 You will need the following CLI tools installed on your local machine:
 
-* [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [**supplychain** Tanzu CLI plugin](../how-to/install-the-cli.hbs.md)
+* [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
+* [**supplychain** Tanzu CLI plugin](../../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
 
-* [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
+* [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages.
 
 To confirm if all the right packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
 ```
@@ -39,7 +39,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> Recommended way to install the Tanzu Supply chain is by using the beta `Authoring` TAP profile. Please refer to the [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md) documentation for installing TAP Authoring profile.
+> Recommended way to install the Tanzu Supply chain is by using the beta `Authoring` TAP profile. Please refer to the [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md) documentation for installing TAP Authoring profile.
 
 ## SupplyChain authoring
 
