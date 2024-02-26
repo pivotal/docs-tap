@@ -43,7 +43,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 
 ## SupplyChain authoring
 
-SupplyChains, especially the authoring resources `SupplyChain`, `Component` and dependent Tekton `Pipeline`/`Task`, are designed to be delivered to clusters via a Git repository and GitOps source promotion style. As a Platform Engineers, you should author the `SupplyChain` as a collection of yaml files in a file system backed by Git, and test and debug by pushing all the files to a single namespace on the `authoring` profile cluster. When you are happy with the new or modified `SupplyChain`, commit it to Git and create a pull/merge request. This could result in a large number of YAML manifests, and the manual way is error prone. This is where `tanzu supplychain` CLI plugin comes into action. The `tanzu supplychain` CLI plugin can be used by Platform Engineers to author `SupplyChains` for their developers. 
+SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies, are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. This is where the `tanzu supplychain` CLI plugin becomes invaluable. Platform Engineers can leverage the `tanzu supplychain` CLI plugin to streamline the authoring process for `SupplyChains` tailored to their developers.
 
 The `supplychain` CLI plugin supports 2 modes of operation for generating SupplyChains.
 
@@ -53,7 +53,7 @@ The `supplychain` CLI plugin supports 2 modes of operation for generating Supply
 But before you get to either of those options, you are required to initialize the local directory you are working on for the `supplychain` CLI generate command. You can do that using the `tanzu supplychain init` command.
 
 >**Important**
-> Ideally, a Platform Engineers should run the `tanzu supplychain init/generate` commands on the local copy of their GitOps repository that they plan to use for delivering the SupplyChains to their Build clusters. The `tanzu supplychain` CLI plugin commands are built to help Platform Engineers scaffold and populate the local directory with their desired state of SupplyChains they want to install in their Build clusters.
+> Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plugin commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
 
 ### Initialize the local directory
 
@@ -67,7 +67,119 @@ The `tanzu supplychain init` command creates:
 The `tanzu supplychain init` command take 2 optional flags:
 
 * `--group`: Group of the supplychains **(default "supplychains.tanzu.vmware.com")**
+  * Group is used for auto populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
 * `--description`: Description of the Group. **(default "")**
+
+>**Important**
+> After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. It's important to note that within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
+
+Here is an example on how to execute the `tanzu supplychain init` command:
+
+```
+$ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+
+Initializing group supplychains.tanzu.vmware.com
+Creating directory structure
+ ├─ supplychains/
+ ├─ components/
+ ├─ pipelines/
+ ├─ tasks/
+ ├─ Makefile
+ ├─ README.md
+ └─ config.yaml
+
+Writing group configuration to config.yaml
+```
+
+### Inspecting Components available to author Supply Chains
+
+As a Platform Engineer, I want to know which components are available for me to use in my SupplyChain. I can do that by running the following command:
+
+```
+$ tanzu supplychain component list
+
+Listing components from the catalog
+  NAME                             INPUTS                                                        OUTPUTS                                                       AGE  
+  app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
+  app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
+  app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
+  carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d  
+  deployer-1.0.0                   package[package]                                              <none>                                                        14d  
+  source-package-translator-1.0.0  source[source]                                                package[package]                                              14d  
+  conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d  
+  app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d   
+  git-writer-1.0.0                 package[package]                                              <none>                                                        14d  
+  git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d  
+  source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d  
+  buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d  
+  trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d  
+
+🔎 To view the details of a component, use 'tanzu supplychain component get'
+```
+You can use the `-w/--wide` flag on the list command to see a more verbose output including description of each components.
+
+>**Important**
+> The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
+
+To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the infomation about the `source-git-provider` component, run the following command:
+
+```
+$ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
+
+📡 Overview
+   name:         source-git-provider-1.0.0
+   namespace:    source-provider
+   age:          14d
+   status:       True
+   reason:       Ready
+   description:  Monitors a git repository
+
+📝 Configuration
+   source:
+     #! Use this object to retrieve source from a git repository.
+     #! The tag, commit and branch fields are mutually exclusive, use only one.
+     #! Required
+     git:
+       #! A git branch ref to watch for new source
+       branch: "main"
+       #! A git commit sha to use
+       commit: ""
+       #! A git tag ref to watch for new source
+       tag: "v1.0.0"
+       #! The url to the git source repository
+       #! Required
+       url: "https://github.com/acme/my-workload.git"
+     #! The sub path in the bundle to locate source code
+     subPath: ""
+
+📤 Outputs
+   git
+    ├─ digest: $(resumptions.check-source.results.sha)
+    ├─ type: git
+    └─ url: $(resumptions.check-source.results.url)
+   source
+    ├─ digest: $(pipeline.results.digest)
+    ├─ type: source
+    └─ url: $(pipeline.results.url)
+
+🏃 Pipeline   
+    ├─ name: source-git-provider
+    └─ 📋 parameters
+       ├─ git-url: $(workload.spec.source.git.url)
+       ├─ sha: $(resumptions.check-source.results.sha)
+       └─ workload-name: $(workload.metadata.name)
+
+🔁 Resumptions
+   - check-source runs source-git-check task every 300s
+     📋 Parameters
+      ├─ git-branch: $(workload.spec.source.git.branch)
+      ├─ git-commit: $(workload.spec.source.git.commit)
+      ├─ git-tag: $(workload.spec.source.git.tag)
+      └─ git-url: $(workload.spec.source.git.url)
+
+🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
+
+```
 
 
 ## Ensure your Components and Supply Chains adhere to version constraints
