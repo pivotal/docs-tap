@@ -21,5 +21,5 @@ To create a `Workload` of a kind, see [Creating a Workload](./create-workloads.h
 
 ## References
 
-* [Understand Workloads](../explanation/workloads.hbs.md)
-* [Understand WorkloadRuns](../explanation/workloads.hbs.md)
+- [Understand Workloads](../explanation/workloads.hbs.md)
+- [Understand WorkloadRuns](../explanation/workloads.hbs.md)

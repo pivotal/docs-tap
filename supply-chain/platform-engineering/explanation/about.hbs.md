@@ -16,9 +16,9 @@ Each [SupplyChain] resource combines multiple [Components] in `stages`.
 [SupplyChains] define a process for converting configuration [Workloads] into final artifacts.
 They are very similar to pipelines in other CI/CD systems, with some key differences:
 
-* The [SupplyChain] defines a [Workload] CRD, which becomes the interface that end users (typically developers) consume to have work done.
-* End users are typically unaware of the inner-workings of the [SupplyChain] and [Components].
-* [Components] are designed to encapsulate the work of generating a final or intermediate artifact, _and quite importantly_, the work of discovering new work to be done.
+- The [SupplyChain] defines a [Workload] CRD, which becomes the interface that end users (typically developers) consume to have work done.
+- End users are typically unaware of the inner-workings of the [SupplyChain] and [Components].
+- [Components] are designed to encapsulate the work of generating a final or intermediate artifact, _and quite importantly_, the work of discovering new work to be done.
 
 The flow of operations is as follows:
 

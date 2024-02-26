@@ -8,8 +8,8 @@ In this section, we will be using the `workload` CLI plug-in for developers to c
 
 You will need the following CLI tools installed on your local machine:
 
-* [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [**workload** Tanzu CLI plug-in](../how-to/install-the-cli.hbs.md)
+- [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
+- [**workload** Tanzu CLI plug-in](../how-to/install-the-cli.hbs.md)
 
 ## Getting Started
 

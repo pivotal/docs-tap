@@ -127,5 +127,5 @@ Successfully deleted workload my-web-app
 
 ## References
 
-* [Understand Workloads](../explanation/workloads.hbs.md)
-* [Understand WorkloadRuns](../explanation/workloads.hbs.md)
+- [Understand Workloads](../explanation/workloads.hbs.md)
+- [Understand WorkloadRuns](../explanation/workloads.hbs.md)
