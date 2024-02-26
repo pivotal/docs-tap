@@ -706,6 +706,10 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
 
+- Resolved the issue where using a custom issuer such as Let's Encrypt would break the Tanzu Mission
+  Control orchestration that pushes the AMR Observer credentials from the view cluster to the
+  non-view cluster.
+
 - Resolved the issue with expired certificates where you must restart the metadata-store pods when
   the internal database certificate is rotated by cert-manager.
   This issue no longer occurs with the default internal database, but the solution does not cover
@@ -896,10 +900,6 @@ This release has the following known issues, listed by component and area.
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- Using a custom issuer such as Let's Encrypt breaks the Tanzu Mission Control orchestration
-  that pushes the AMR Observer credentials from the view cluster to the non-view cluster.
-  There is currently no remediation for this issue.
 
 #### <a id='1-8-0-tbs-ki'></a> v1.8.0 Known issues: Tanzu Build Service
 
