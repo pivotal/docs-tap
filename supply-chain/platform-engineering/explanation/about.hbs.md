@@ -37,7 +37,7 @@ The flow of operations is as follows:
 SupplyChains, especially the authoring resources ([SupplyChain], [Component] and Tekton Pipeline/Task), are designed to
 be delivered to clusters via a Git repository and GitOps source promotion style.
 
-See [GitOps Managed SupplyChains](./gitops-managed.hbs.md) for details.
+See [GitOps Managed SupplyChains](./../how-to/deploying-supply-chains/gitops-managed.hbs.md) for details.
 
 ## Discover the primitives of a Tanzu Supply Chain
 

@@ -1,4 +1,4 @@
-# How To author a Supply Chain
+# How to Author a Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 
