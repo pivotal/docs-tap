@@ -10,12 +10,12 @@ This topic introduces the SupplyChain resource which unifies the Tanzu Supply Ch
 
 ## <a id="not-change-api"></a> Supply Chains cannot change an API once it is on-cluster
 
-The version of your SupplyChain, as embedded in the name, must follow the following rules.
+The version of your SupplyChain, as embedded in the name, must follow these rules.
 
 A patch bump is required to update the supply chain without an API change.
 The controller will ensure this rule cannot be broken when comparing supply chains on cluster.
 
-For example, imagine you apply to a cluster:
+For example, you apply to a cluster:
 
 * a SupplyChain with the name `serverapps.example.com-1.0.0` with kind `ServerAppsV1`
 * a SupplyChain with the name `serverapps.example.com-1.0.1` with kind `ServerAppsV1`
@@ -41,7 +41,6 @@ These rules ensure that potentially thousands of Workloads and Runs on the clust
 
 This ensures clear communication to your users. New kind versions typically indicate that the user
 needs to migrate their resources to the new API.
-
 
 ## SupplyChain `defines` a configuration resource
 

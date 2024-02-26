@@ -5,7 +5,7 @@
 This section ties together the core architectural concepts of Tanzu Supply Chain.
 It focuses on authoring a platform for application development.
 
-At its core, the Tanzu Supply Chain enables platform engineers to author a seamless experience for 
+The Tanzu Supply Chain enables platform engineers to author a seamless experience for
 development work; an experience that does not require an understanding of Kubernetes.
 
 ![core-concepts-about.jpg](./images/core-concepts-about.jpg)
@@ -34,7 +34,7 @@ The flow of operations is as follows:
 
 ## GitOps management of SupplyChains
 
-SupplyChains, especially the authoring resources ([SupplyChain], [Component] and Tekton Pipeline/Task), are designed to
+SupplyChains, especially the authoring resources [SupplyChain], [Component], and Tekton Pipeline/Task), are designed to
 be delivered to clusters via a Git repository and GitOps source promotion style.
 
 See [GitOps Managed SupplyChains](./../how-to/deploying-supply-chains/gitops-managed.hbs.md) for details.
