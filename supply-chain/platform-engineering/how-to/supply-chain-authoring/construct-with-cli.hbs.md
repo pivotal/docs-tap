@@ -41,8 +41,8 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile.
-For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
+> VMware recommend that you install the Tanzu Supply chain using the beta `Authoring` profile.
+For more information, see [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## SupplyChain authoring
 
