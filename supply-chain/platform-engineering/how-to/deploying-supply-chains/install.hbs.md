@@ -1,6 +1,6 @@
 # How to install a Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }} 
+{{> 'partials/supply-chain/beta-banner' }}
 
 This section details how to install the SupplyChain authored using the tanzu `supplychain` CLI. 
 
