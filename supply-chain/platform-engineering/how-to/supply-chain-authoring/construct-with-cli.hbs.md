@@ -219,7 +219,7 @@ Non-Interactive
 : To generate the Supply chain using Flags, use the following command:
 
     ```
-    $ tanzu supplychain generate 
+    $ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "source-git-provider-1.0.0" --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
     ```
 
 After you have selected the components for your chain, the `tanzu supplychain` CLI should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
@@ -250,7 +250,6 @@ Created file tasks/source-git-check.yaml
 Created file tasks/source-git-clone.yaml
 Created file tasks/store-content-oci.yaml
 ```
-
 
 ## Enforce proper ordering of Components in the SupplyChain
 
