@@ -52,8 +52,8 @@ The `spec.defines` object defines the Workload [CustomResourceDefinition].
 
 `spec.defines.group` (**required**) is used to fill in the `group` field in the [CustomResourceDefinitionSpec].
 
-`spec.defines.group` is the classic domain-formatted group of any kubernetes object.
-We recommend using, at least, your organization's top level domain, or a departmental domain.
+`spec.defines.group` is the classic domain-formatted group of any Kubernetes object.
+Use your organization's top level domain, or a departmental domain.
 
 #### `spec.defines.kind`
 

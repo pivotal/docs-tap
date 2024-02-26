@@ -49,7 +49,7 @@ For more information, see [Installing with the 'authoring' profile](../how-to/in
 
 ## Getting Started
 
-We now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build you first SupplyChain.
+You now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build you first SupplyChain.
 
 1. As a Platform Engineer, you want to know which components are available to use in you SupplyChain. Run:
 
