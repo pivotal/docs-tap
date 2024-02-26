@@ -8,7 +8,7 @@ This section details how to install the SupplyChain authored using the tanzu `su
 
 ### Prerequisite
 
-* You created a SupplyChain by following the tutorial [Build your first SupplyChain](./../../tutorials/my-first-supply-chain.hbs.md).
+You created a SupplyChain by following the tutorial [Build your first SupplyChain](./../../tutorials/my-first-supply-chain.hbs.md).
 
 ### Installation
 

@@ -7,11 +7,11 @@ you have a functioning installation. The recommended way of configuring service 
 
 ## Things to configure
 
-* OCI Store Configuration
-  * Supply Chains persist data between stages by reading and writing to an OCI repository.  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace. 
-  * Access to this repository is controlled by a tekton annotated secret which can have any name as long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
-* Permissions for Buildpacks Cluster Builders for buildpack-build component
-  * If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` then there are some additional permissions that need to be added.
+- OCI Store Configuration
+  - Supply Chains persist data between stages by reading and writing to an OCI repository.  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace. 
+  - Access to this repository is controlled by a tekton annotated secret which can have any name as long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
+- Permissions for Buildpacks Cluster Builders for buildpack-build component
+  - If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` then there are some additional permissions that need to be added.
 
 ## Setup using Namespace Provisioner
 Recommended way is to use the Namespace provisioner for the entire setup:
@@ -67,7 +67,7 @@ $ kubectl label namespaces dev apps.tanzu.vmware.com/tap-ns=""
 
 If there is a requirement for injecting additional secrets to the Service Account like the `git-secret`, they can be added as follows:
 
-* For all Developer namespaces managed by Namespace provisioner, update the `namespace_provisioner` section of the `tap-values.yaml`:
+- For all Developer namespaces managed by Namespace provisioner, update the `namespace_provisioner` section of the `tap-values.yaml`:
 
 ```console
 namespace_provisioner:
@@ -79,7 +79,7 @@ namespace_provisioner:
       - git-secret
 ```
 
-* Single Namespace using annotation:
+- Single Namespace using annotation:
 
 ```console
 kubectl annotate ns <developer-namespace> param.nsp.tap/delivery_service_account.secrets='["git-secret"]'

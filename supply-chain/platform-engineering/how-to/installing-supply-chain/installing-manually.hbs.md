@@ -4,18 +4,18 @@
 
 There are three additional packages you'll need to install that are bundled with the Tanzu Application Platform release, but not part of any profile.
 
-* `supply-chain.apps.tanzu.vmware.com`
-* `supply-chain-catalog.apps.tanzu.vmware.com`
-* `managed-resource-controller.apps.tanzu.vmware.com`
+- `supply-chain.apps.tanzu.vmware.com`
+- `supply-chain-catalog.apps.tanzu.vmware.com`
+- `managed-resource-controller.apps.tanzu.vmware.com`
 
 The following component packages are required if you're authoring a supply chain:
 
-* `source.component.apps.tanzu.vmware.com`
-* `conventions.component.apps.tanzu.vmware.com`
-* `buildpack-build.component.apps.tanzu.vmware.com`
-* `alm-catalog.component.apps.tanzu.vmware.com`
-* `git-writer.component.apps.tanzu.vmware.com`
-* `trivy-scanning.component.apps.tanzu.vmware.com`
+- `source.component.apps.tanzu.vmware.com`
+- `conventions.component.apps.tanzu.vmware.com`
+- `buildpack-build.component.apps.tanzu.vmware.com`
+- `alm-catalog.component.apps.tanzu.vmware.com`
+- `git-writer.component.apps.tanzu.vmware.com`
+- `trivy-scanning.component.apps.tanzu.vmware.com`
 
 To install these, run the following script:
 

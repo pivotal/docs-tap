@@ -6,12 +6,12 @@
 
 You will need the following CLI tools installed on your local machine:
 
-* [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-* [Tanzu Supplychain CLI plug-in](../../how-to/install-the-cli.hbs.md)
+- [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
+- [Tanzu Supplychain CLI plug-in](../../how-to/install-the-cli.hbs.md)
 
 You will need the following Packages installed on the Tanzu Application Platform cluster that you will be using to author your first supply chain:
 
-* [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages. To confirm if the correct packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
+- [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages. To confirm if the correct packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
 
     ```console
     $ kubectl get pkgi -A
@@ -46,8 +46,8 @@ SupplyChains, particularly the authoring resources such as `SupplyChain`, `Compo
 
 The `supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
 
-* **Interactive** way using the guided wizard
-* **Non-Interactive** way using flags
+- **Interactive** way using the guided wizard
+- **Non-Interactive** way using flags
 
 Before you use modes, you must use the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command.
 
@@ -57,16 +57,16 @@ Before you use modes, you must use the `tanzu supplychain init` command to initi
 
 The `tanzu supplychain init` command creates:
 
-* `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-* `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
-* `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
-* `README.md` file which has instructions on how to use the targets in the `Makefile`.
+- `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
+- `supplychains`, `components`, `pipelines` and `tasks` directories which will be auto populated by the authoring wizard later in this tutorial.
+- `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
+- `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 The `tanzu supplychain init` command takes two optional flags:
 
-* `--group`: Group of the supplychains **(default "supplychains.tanzu.vmware.com")**
-  * Group is used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
-* `--description`: Description of the Group. **(default "")**
+- `--group`: Group of the supplychains **(default "supplychains.tanzu.vmware.com")**
+  - Group is used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
+- `--description`: Description of the Group. **(default "")**
 
 >**Important** After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
@@ -184,8 +184,8 @@ $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider -
 
 The `tanzu supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
 
-* **Interactive** way using the guided wizard
-* **Non-Interactive** way using flags
+- **Interactive** way using the guided wizard
+- **Non-Interactive** way using flags
 
 Interactive
 : To kick off the wizard, use the following command:
@@ -204,15 +204,15 @@ Interactive
 
     Here are the example values for the prompts for the wizard workflow that will generate a functioning `SupplyChain`:
 
-    * **What Kind would you like to use as the developer interface?** AppBuildV1
-    * **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
-    * **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
-    * **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
-    * **Select a component as the next stage of the supply chain?** conventions-1.0.0
-    * **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
-    * **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
-    * **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
-    * **Select a component as the next stage of the supply chain?** Done
+    - **What Kind would you like to use as the developer interface?** AppBuildV1
+    - **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+    - **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
+    - **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
+    - **Select a component as the next stage of the supply chain?** conventions-1.0.0
+    - **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
+    - **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
+    - **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
+    - **Select a component as the next stage of the supply chain?** Done
 
 Non-Interactive
 : To generate the Supply chain using Flags, use the following command:
@@ -255,8 +255,8 @@ Created file tasks/store-content-oci.yaml
 
 `Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that precedes it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain will return an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, see the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
 
-* If you are authoring the CLI in an interactive manner, the entries that get populated for `stage` selection already take this logic into account. The CLI only shows you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
-* If you are authoring using the non-interactive manner, the CLI will throw an error. See example below:
+- If you are authoring the CLI in an interactive manner, the entries that get populated for `stage` selection already take this logic into account. The CLI only shows you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
+- If you are authoring using the non-interactive manner, the CLI will throw an error. See example below:
 
 ```console
 $ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
@@ -272,13 +272,13 @@ For information about versioning `SupplyChains` and `Components` to avoid delive
 
 ### Out of the Box Catalog of Components
 
-* [Catalog of Tanzu Supply Chain Components](./../../../reference/catalog/about.hbs.md)
-* [Output Types for Catalog Components](./../../../reference/catalog/output-types.hbs.md)
+- [Catalog of Tanzu Supply Chain Components](./../../../reference/catalog/about.hbs.md)
+- [Output Types for Catalog Components](./../../../reference/catalog/output-types.hbs.md)
 
 ### Reference Guides
 
-* [Understand SupplyChains](./../../explanation/supply-chains.hbs.md)
-* [Understand Components](./../../explanation/components.hbs.md)
-* [Understand Resumptions](./../../explanation/resumptions.hbs.md)
-* [Understand Workloads](./../../explanation/workloads.hbs.md)
-* [Understand WorkloadRuns](./../../explanation/workload-runs.hbs.md)
+- [Understand SupplyChains](./../../explanation/supply-chains.hbs.md)
+- [Understand Components](./../../explanation/components.hbs.md)
+- [Understand Resumptions](./../../explanation/resumptions.hbs.md)
+- [Understand Workloads](./../../explanation/workloads.hbs.md)
+- [Understand WorkloadRuns](./../../explanation/workload-runs.hbs.md)

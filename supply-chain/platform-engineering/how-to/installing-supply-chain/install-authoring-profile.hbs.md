@@ -5,23 +5,23 @@
 The recommended way to install Tanzu Supply Chain is to use the `authoring` beta profile. This installs all the
 required packages. The `authoring` profile has the following additional packages that the `iterate` profile does not have:
 
-* Tanzu Supply Chain Packages
-  * supply-chain.apps.tanzu.vmware.com
-  * supply-chain-catalog.apps.tanzu.vmware.com
-  * managed-resource-controller.apps.tanzu.vmware.com
+- Tanzu Supply Chain Packages
+  - supply-chain.apps.tanzu.vmware.com
+  - supply-chain-catalog.apps.tanzu.vmware.com
+  - managed-resource-controller.apps.tanzu.vmware.com
 
-* Catalog Component Packages
-  * alm-catalog.component.apps.tanzu.vmware.com
-  * buildpack-build.component.apps.tanzu.vmware.com
-  * conventions.component.apps.tanzu.vmware.com
-  * git-writer.component.apps.tanzu.vmware.com
-  * source.component.apps.tanzu.vmware.com
-  * trivy.app-scanning.component.apps.tanzu.vmware.com
+- Catalog Component Packages
+  - alm-catalog.component.apps.tanzu.vmware.com
+  - buildpack-build.component.apps.tanzu.vmware.com
+  - conventions.component.apps.tanzu.vmware.com
+  - git-writer.component.apps.tanzu.vmware.com
+  - source.component.apps.tanzu.vmware.com
+  - trivy.app-scanning.component.apps.tanzu.vmware.com
 
-* App Scanning
-  * app-scanning.apps.tanzu.vmware.com
+- App Scanning
+  - app-scanning.apps.tanzu.vmware.com
 
-
+-
 ## Install Tanzu Supply Chain
 
 Update your `tap-values.yaml` file to contain:

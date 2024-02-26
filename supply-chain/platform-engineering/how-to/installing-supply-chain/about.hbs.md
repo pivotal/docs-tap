@@ -1,12 +1,12 @@
-# Installl Tanzu Supply Chain
+# Instal Tanzu Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 
 Tanzu Supply Chain is included in Tanzu Application Platform v1.8.0 and there are two ways to install it.
 
-* [Install with the 'authoring' profile (Recommended)](./install-authoring-profile.hbs.md)
-* [Installing manually on a 'full' or 'build' profile](./installing-manually.hbs)
+- [Install with the 'authoring' profile (Recommended)](./install-authoring-profile.hbs.md)
+- [Installing manually on a 'full' or 'build' profile](./installing-manually.hbs)
 
 Once you have installed Tanzu Supply Chain, you must configure your system.
 
-* [Post-install configuration](./post-install-configuration.hbs.md)
+- [Post-install configuration](./post-install-configuration.hbs.md)
