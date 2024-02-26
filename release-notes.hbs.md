@@ -45,6 +45,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-7-4-cnr-ri'></a> v1.7.5 Known issues: Cloud Native Runtimes
+
+- Resolved issue with web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
 ---
 
 ### <a id='1-7-5-known-issues'></a> v1.7.5 Known issues

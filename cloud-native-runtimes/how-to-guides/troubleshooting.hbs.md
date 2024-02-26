@@ -4,6 +4,8 @@ This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known a
 
 ## <a id='updates-fail'></a> Updates fail with error annotation value is immutable
 
+****Note**: This has been resolved in TAP 1.8.0, 1.7.5 and 1.6.9. Upgrading to these versions will resolve the issue without the procedure described below.
+
 ### Symptom
 
 After upgrading to Tanzu Application Platform v1.6.4 or later, if you attempt to update a web workload
