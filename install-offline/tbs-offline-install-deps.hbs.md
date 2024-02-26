@@ -37,37 +37,38 @@ To install `full` dependencies:
             - Docker Hub has the form `MY-REGISTRY/tbs-dep-updater`.
             - Google Cloud Registry has the form `MY-REGISTRY/MY-PROJECT/REPO-NAME/tbs-dep-updater`.
 
-    - If the data you can only transfer the data using a physical external storage device, you can copy the
-    images into a `.tar` file from VMware Tanzu Network by running:
+    - If you can only transfer the data using a physical external storage device:
 
-        ```console
-        imgpkg copy \
-          -b registry.tanzu.vmware.com/build-service-dependency-updater/package-repo:VERSION-CONSTRAINT \
-          --to-tar dependency-updater-$VERSION-CONSTRAINT.tar \
-          --include-non-distributable-layers
-        ```
+        1. Copy the images into a `.tar` file from VMware Tanzu Network by running:
 
-        Where `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
-        For example, `1.8.x`.
+            ```console
+            imgpkg copy \
+              -b registry.tanzu.vmware.com/build-service-dependency-updater/package-repo:VERSION-CONSTRAINT \
+              --to-tar dependency-updater-$VERSION-CONSTRAINT.tar \
+              --include-non-distributable-layers
+            ```
 
-        The `.tar` files can be imported into the air-gapped container image registry by running:
+            Where `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
+            For example, `1.8.x`.
 
-        ```console
-        imgpkg copy \
-          --tar dependency-updater-$VERSION-CONSTRAINT.tar \
-          --to-repo $INTERNAL-REPO \
-          --include-non-distributable-layers \
-          --registry-ca-cert-path $REGISTRY_CA_PATH
-        ```
+        1. Import the `.tar` files into the air-gapped container image registry by running:
 
-        Where:
+            ```console
+            imgpkg copy \
+              --tar dependency-updater-$VERSION-CONSTRAINT.tar \
+              --to-repo $INTERNAL-REPO \
+              --include-non-distributable-layers \
+              --registry-ca-cert-path $REGISTRY_CA_PATH
+            ```
 
-        - `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
-          For example, `1.8.x`.
-        - `INTERNAL-REPO` is your repository in the air-gapped container image registry. Examples:
-            - Harbor has the form `MY-REGISTRY/REPO-NAME/tbs-dep-updater`.
-            - Docker Hub has the form `MY-REGISTRY/tbs-dep-updater`.
-            - Google Cloud Registry has the form `MY-REGISTRY/MY-PROJECT/REPO-NAME/tbs-dep-updater`.
+            Where:
+
+            - `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
+              For example, `1.8.x`.
+            - `INTERNAL-REPO` is your repository in the air-gapped container image registry. Examples:
+                - Harbor has the form `MY-REGISTRY/REPO-NAME/tbs-dep-updater`.
+                - Docker Hub has the form `MY-REGISTRY/tbs-dep-updater`.
+                - Google Cloud Registry has the form `MY-REGISTRY/MY-PROJECT/REPO-NAME/tbs-dep-updater`.
     " }}
 
 ## <a id='next-steps'></a>Next steps
