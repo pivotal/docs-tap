@@ -693,6 +693,11 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
+#### <a id='1-8-0-cnr-ri'></a> v1.8.0 Resolved issues: Cloud Native Runtimes
+
+- Resolved issue with web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
+  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
+
 #### <a id='1-8-0-service-bindings-ri'></a> v1.8.0 Resolved issues: Service Bindings
 
 - Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name`
@@ -738,12 +743,6 @@ This release has the following known issues, listed by component and area.
   developer provided environment variables.
   To work around this, supply all environment variables, both Convention provided and user provided,
   to the Carvel package. This issue is planned to be fixed in a future release.
-
-#### <a id='1-8-0-cnr-ki'></a> v1.8.0 Known issues: Cloud Native Runtimes
-
-- Web workloads created with Tanzu Application Platform v1.6.3 and earlier fail to update with the error
-  `API server says: admission webhook "validation.webhook.serving.knative.dev" denied the request: validation failed: annotation value is immutable`.
-  For a workaround, see [Troubleshoot Cloud Native Runtimes for Tanzu](cloud-native-runtimes/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
