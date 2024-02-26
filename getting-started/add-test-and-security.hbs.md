@@ -373,7 +373,7 @@ Congratulations! You have successfully added testing and security scanning to yo
 
 Take the next steps to learn about recommended supply chain security best practices and gain a powerful services journey experience on the Tanzu Application Platform by enabling several advanced use cases.
 
-### <a id="enable-scan-post-build"></a> (Optional) Scan for Vulnerabilities After Builds
+### <a id="enable-scan-post-build"></a> (Optional) Scan for vulnerabilities after build time
 
 When you add the capability to scan image containers to your supply chain, you can detect
 vulnerabilities at build time. However, as new vulnerabilities are discovered and reported daily,
