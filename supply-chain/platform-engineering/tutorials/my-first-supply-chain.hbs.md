@@ -43,7 +43,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> VMware recommend that you install the Tanzu Supply Chain using the beta `Authoring` profile.
+> VMware recommends that you install the Tanzu Supply Chain using the beta `Authoring` profile.
 For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## Getting Started
@@ -208,7 +208,7 @@ Created file tasks/source-git-clone.yaml
 Created file tasks/store-content-oci.yaml
 ```
 
-You have now authored your first SupplyChain! you can view the SupplyChain definition created by the wizard by viewing the manifest created in the `supplychains/` folder as follows:
+You have now authored your first SupplyChain. View the SupplyChain definition created by the wizard by viewing the manifest created in the `supplychains/` folder as follows:
 
 ```console
 $ cat supplychains/appbuildv1.yaml

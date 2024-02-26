@@ -123,7 +123,7 @@ Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 ```
 
 >**Note**
->`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, you can specify the `-f` flag to point to it.
+>`tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point to it.
 
 Our `AppBuildV1` workload is applied to the cluster. For the purpose of this tutorial, we are using the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
 

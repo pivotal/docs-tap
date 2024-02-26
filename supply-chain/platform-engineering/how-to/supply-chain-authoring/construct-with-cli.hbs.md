@@ -1,6 +1,6 @@
 # Construct a Supply Chain using the CLI
 
-{{> 'partials/supply-chain/beta-banner' }} 
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ tap-install   trivy-app-scanning-component       trivy.app-scanning.component.ap
 ```
 
 >**Important**
-> VMware recommend that you install the Tanzu Supply chain using the beta `Authoring` profile.
+> VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile.
 For more information, see [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
 
 ## SupplyChain authoring
@@ -53,7 +53,7 @@ The `supplychain` CLI plug-in supports 2 modes of operation for generating Suppl
 * **Interactive** way using the guided wizard
 * **Non-Interactive** way using flags
 
-Before you use modes, you must use the the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using .
+Before you use modes, you must use the the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command. You can do that using.
 
 >**Important**
 > Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
@@ -67,16 +67,16 @@ The `tanzu supplychain init` command creates:
 * `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 * `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
-The `tanzu supplychain init` command take 2 optional flags:
+The `tanzu supplychain init` command takes two optional flags:
 
 * `--group`: Group of the supplychains **(default "supplychains.tanzu.vmware.com")**
-  * Group is used for auto populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
+  * Group is used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
 * `--description`: Description of the Group. **(default "")**
 
 >**Important**
 > After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
-Here is an example on how to execute the `tanzu supplychain init` command:
+Here is an example of how to execute the `tanzu supplychain init` command:
 
 ```console
 $ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
@@ -125,9 +125,9 @@ You can use the `-w/--wide` flag on the list command to see a more verbose outpu
 >**Important**
 > The `tanzu supplychain component list` command scans for `Component` custom resources labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources possessing this label are the ones taken into account for authoring `SupplyChains` with the CLI. Notably, the `Components` installed during the SupplyChain installation lack this label. This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
 
-To get more information about what each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run the following command:
+To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get information about the `source-git-provider` component, run the following command:
 
-```
+```console
 $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
 
 📡 Overview
@@ -202,7 +202,7 @@ Interactive
     The wizard prompt for the following:
     
     * Name of the Developer Interface
-      * This value is used for auto populating `spec.defines` section of the [SupplyChain API](../../../reference/api/supplychain.hbs.md)
+      * This value is used for auto-populating `spec.defines` section of the [SupplyChain API](../../../reference/api/supplychain.hbs.md)
     * Description of the `SupplyChain`
     * Stages of your `SupplyChain`
       * The `tanzu supplychain` CLI knows what stages are already part of the `SupplyChain` and removes them from the list of stages to add.
@@ -227,6 +227,7 @@ Non-Interactive
     ```
 
 After you have selected the components for your chain, the `tanzu supplychain` CLI should create the required files to deploy your SupplyChain in the current directory and the output should look as follows:
+
 ```
 ✓ Successfully fetched all component dependencies
 Created file supplychains/appbuildv1.yaml
@@ -257,12 +258,12 @@ Created file tasks/store-content-oci.yaml
 
 ## Enforce proper ordering of Components in the SupplyChain
 
-`Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that preceeds it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain will return an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, refer to the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
+`Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that precedes it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain will return an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, refer to the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
 
-* If you are authoring the CLI in an interactive manner, the entries that gets populated for `stage` selection already takes this logic into account. The CLI will only show you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
+* If you are authoring the CLI in an interactive manner, the entries that get populated for `stage` selection already take this logic into account. The CLI will only show you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
 * If you are authoring using the non-interactive manner, the CLI will throw an error. See example below:
 
-```
+```console
 $ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
 
 Error: unable to find the component buildpack-build-1.0.0 or the component buildpack-build-1.0.0 does not match expected input value
