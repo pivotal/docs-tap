@@ -253,7 +253,16 @@ Created file tasks/store-content-oci.yaml
 
 ## Enforce proper ordering of Components in the SupplyChain
 
+`Components` have zero or more `inputs` and `outputs`. The `inputs` of a `Component` should be fulfilled by another `Component` in the `SupplyChain` that preceeds it. If not, you have a Component at a stage in a `SupplyChain` that will never run. Due to the strong typing nature of the Tanzu Supply Chains design, the Supply chain will return an error if a component expects an [input] that has not been [output] by a previous stage. For detailed information on the API specification for `Supplychain`, refer to the [SupplyChain API](./../../../reference/api/supplychain.hbs.md) reference documentation.
 
+* If you are authoring the CLI in an interactive manner, the entries that gets populated for `stage` selection already takes this logic into account. The CLI will only show you components if all the inputs for that component are already satisfied by some other component in the `SupplyChain`.
+* If you are authoring using the non-interactive manner, the CLI will throw an error. See example below:
+
+```
+$ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
+
+Error: unable to find the component buildpack-build-1.0.0 or the component buildpack-build-1.0.0 does not match expected input value
+```
 
 ## Ensure your Components and Supply Chains adhere to version constraints
 
