@@ -64,4 +64,5 @@ The Authoring profile has the following additional packages that the Iterate pro
 
   >**Note** As the `authoring` profile adds the above mentioned packages to what is installed with the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
 
-1. After the installation of the `authoring` profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.
+1. After the installation of the `authoring` profile is complete and all packages are successfully
+reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.

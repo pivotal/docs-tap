@@ -31,7 +31,7 @@ namespace_provisioner:
 
 ## OCI Store
 
-Supply Chains persist data between stages by reading and writing to an OCI repository.  The location
+Supply Chains persist data between stages by reading and writing to an OCI repository. The location
 of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within
 the developer namespace.
 
@@ -49,7 +49,7 @@ stringData:
 type: Opaque
 ```
 
-Access to this repository is controlled by a tekton annotated secret:
+Access to this repository is controlled by a Tekton annotated secret:
 
 ```yaml
 apiVersion: v1
@@ -65,8 +65,7 @@ type: kubernetes.io/dockerconfigjson
 
 ## Additional Permissions for Buildpacks Cluster Builders
 
-If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders`
-then there are some additional permissions that need to be added that can't yet be configured by Namespace Provisioner.
+If you plan to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` then there are some additional permissions that need to be added that can't yet be configured by Namespace Provisioner.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
