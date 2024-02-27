@@ -262,11 +262,13 @@ profile: full # Can take iterate, build, run, view.
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
+  source:
+    credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
     server: "SERVER-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
     repository: "REPO-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
+    credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
 
 contour:
   envoy:
@@ -347,8 +349,11 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
   `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
+- `GIT-SOURCE-CREDENTIAL-SECRET-NAME` is the name of the kubernetes secret in the developer namespace that supplies the
+  git credentials for the supply chain to fetch source code from. This field is only required if you use a private
+  repository. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
+- `GITOPS-CREDENTIAL-SECRET-NAME` is the name of the kubernetes secret in the developer namespace that supplies the
+  git credentials for the supply chain to push configuration to. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
