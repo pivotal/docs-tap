@@ -154,6 +154,9 @@ To set up a Service Account to view resources on a cluster:
     - apiGroups: ['apiextensions.k8s.io']
       resources: ['customresourcedefinitions']
       verbs: ['get', 'watch', 'list']
+    - apiGroups: [data.packaging.carvel.dev]
+      resources: [packages]
+      verbs: ['get', 'watch', 'list']
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
