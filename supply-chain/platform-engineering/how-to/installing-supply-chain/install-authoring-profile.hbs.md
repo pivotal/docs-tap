@@ -29,7 +29,7 @@ required packages. The `authoring` profile has the following additional packages
   profile: authoring
   ```
 
-1. To confirm if the required packages are installed and reconciled successfully. Run:
+1. Confirm if the required packages are installed and reconciled successfully. Run:
 
   ```console
   kubectl get pkgi -A
@@ -60,6 +60,6 @@ required packages. The `authoring` profile has the following additional packages
   ...
   ```
 
-  >**Note** As the `authoring` profile adds the above mentioned packages to what gets installed in the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
+  >**Note** As the `authoring` profile adds the above mentioned packages to what is installed with the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
 
 1. After the installation of the `authoring` profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.
