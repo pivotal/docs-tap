@@ -100,7 +100,7 @@ This release includes the following changes, listed by component and area.
 
 - Adds the following new stacks with their associated builders to the [full dependencies](tanzu-build-service/dependencies.hbs.md#lite-vs-full):
 
-  - [Tanzu Standard Stack for UBI 8](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks)
+  - [Tanzu Standard Stack for Universal Base Image (UBI) 8](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks)
   - [Tanzu Static Stack for Ubuntu 22.04](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubuntu-stacks)
 
 - Adds support for [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8) in the

@@ -75,13 +75,13 @@ Before you can configure Tanzu Build Service to sign your image builds, you must
 - To view unsigned attestations, install Crane. For instructions, see the
   [Crane documentation](https://github.com/google/go-containerregistry/blob/main/cmd/crane/README.md).
 
-- Ensure you have access to the `base64` and `awk` commands. These commands are pre-installed on every
+- Ensure that you have access to the `base64` and `awk` commands. These commands are pre-installed on every
   macOS and Linux machine.
 
 - Have a Builder or ClusterBuilder resource configured. For instructions, see
-  [Manage builders for Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-builders.html).
+  [Manage builders for Tanzu Build Service](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-builders.html).
 
-## <a id="enable-slsa"></a> Enabling SLSA attestation
+## <a id="enable-slsa"></a> Enable SLSA attestation
 
 Tanzu Build Service does not generate SLSA attestation by default. To enable this behavior:
 
@@ -111,8 +111,8 @@ image where the attestation is stored.
 
 ### <a id="build-image-l0"></a> Build the image
 
-No action is required to configure the Image or Workload resource. To learn how to create an app,
-see the [Configure Tanzu Build Service properties on a workload](tbs-workload-config.hbs.md).
+No action is required to configure the Image or Workload resource. To learn how to create an app, see
+[Configure Tanzu Build Service properties on a workload](tbs-workload-config.hbs.md).
 
 ### <a id="view-attestation"></a> View the attestation
 
@@ -170,8 +170,8 @@ To generate and save the signing key:
 
 ### <a id="build-image-l3"></a> Build the image
 
-No action is required to configure the Image or Workload resource. To learn how to create an app,
-see the [Workload configuration documentation](tbs-workload-config.md)
+No action is required to configure the Image or Workload resource. To learn how to create an app, see
+[Configure Tanzu Build Service properties on a workload](tbs-workload-config.md).
 
 ### <a id="verify-signature"></a> Verify the attestation signature
 
@@ -182,16 +182,20 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
 1. To verify the signature of the attestation, run:
 
     ```console
-    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST > /dev/null
+    cosign verify-attestation \
+      --insecure-ignore-tlog=true \
+      --key PUBLIC-KEY \
+      --type=slsaprovenance1 APP-IMAGE-DIGEST > /dev/null
     ```
 
     Where:
 
-    - `PUBLIC-KEY` is either k8s://NAMESPACE/COSIGN-KEYPAIR-NAME from [configuring the signing key](#configure-signing-key),
-    or the path to the cosign.pub that was generated.
-    - `APP_IMAGE_DIGEST` is digest of the image built by the Workload.
+    - `PUBLIC-KEY` is either `k8s://NAMESPACE/COSIGN-KEYPAIR-NAME` from
+      [Generate and save the signing key](#configure-signing-key) earlier, or the path to the `cosign.pub`
+      that was generated.
+    - `APP-IMAGE-DIGEST` is digest of the image that the workload built.
 
-    The expected output is similar to the following:
+    Example output:
 
     ```console
     Verification for index.docker.io/your-project/app@sha256:1234... --
@@ -203,8 +207,19 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
 1. (Optional) To view the generated attestation, run:
 
     ```console
-    cosign verify-attestation --insecure-ignore-tlog=true --key PUBLIC-KEY --type=slsaprovenance1 APP_IMAGE_DIGEST | jq --raw-output '.payload' | base64 --decode | jq
+    cosign verify-attestation \
+      --insecure-ignore-tlog=true \
+      --key PUBLIC-KEY \
+      --type=slsaprovenance1 APP-IMAGE-DIGEST | jq \
+      --raw-output '.payload' | base64 --decode | jq
     ```
+
+    Where:
+
+    - `PUBLIC-KEY` is either `k8s://NAMESPACE/COSIGN-KEYPAIR-NAME` from
+      [Generate and save the signing key](#configure-signing-key) earlier, or the path to the `cosign.pub`
+      that was generated.
+    - `APP-IMAGE-DIGEST` is digest of the image that the workload built.
 
     For more information about the attestation, see the [kpack documentation](https://github.com/buildpacks-community/kpack/blob/main/docs/slsa_build.md).
 

@@ -1,9 +1,9 @@
-The dependencies that Tanzu Build Service uses might be upgraded between Tanzu Application Platform
+Tanzu Build Service dependencies might be upgraded between Tanzu Application Platform
 releases, for example, if a CVE is discovered in the OS (stack update) or language (buildpack update).
+
 Automatic dependency updates enable your cluster to consume the stack and buildpack updates immediately
 instead of waiting for the next Tanzu Application Platform patch release to pull in the updated
 dependencies.
-
 These updates are provided through a separate package repository with available version lines for
 all supported Tanzu Application Platform minor versions.
 Within a version line, only patch versions are incremented to avoid breaking changes.
@@ -11,7 +11,7 @@ You can customize the packages that you want the automatic dependency updater to
 `tap-values.yaml` file or your full dependencies values.
 
 **Prerequisites:** These steps assume a registry secret already exists in the cluster for accessing
-`registry.tanzu.vmware.com` and the your registry.
+`registry.tanzu.vmware.com` and your registry.
 
 To enable automatic dependency updates:
 
