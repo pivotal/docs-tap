@@ -6,56 +6,25 @@ In this section, you will use the Tanzu Supplychain CLI plug-in to create your f
 
 ## Prerequisites
 
-Install on your local machine:
+1. Ensure [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
 
-- [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-- [Tanzu Supplychain CLI plug-in](../how-to/install-the-cli.hbs.md)
-
-Install the following Packages on the Tanzu Application Platform cluster that you are using to
-author your first supply chain:
-
-- [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) and the out of the box
-catalog component packages.
-
-To confirm if the required packages are installed and reconciled successfully. Run:
-
-```console
-$ kubectl get pkgi -A
-
-NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
-tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
-...
-tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
-...
-tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
-...
-tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
-...
-tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
-...
-tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
-...
-tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
-...
-tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
-tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
-...
-tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
-...
-```
-
->**Important** VMware recommends that you install the Tanzu Supply Chain using the beta `Authoring` profile.
-For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
+2. Ensure [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
 ## Getting Started
 
-You now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build you first SupplyChain.
+When you have completed the prerequisites, you have an `Authoring` profile cluster that has the
+Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the
+cluster and you are ready to build you first SupplyChain.
 
 1. As a Platform Engineer, you want to know which components are available to use in you SupplyChain. Run:
 
   ```console
-  $ tanzu supplychain component list
+  tanzu supplychain component list
+  ```
 
+  Example output:
+
+  ```console
   Listing components from the catalog
     NAME                             INPUTS                                                        OUTPUTS                                                       AGE  
     app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
@@ -80,8 +49,10 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
 1. To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run:
 
   ```console
-  $ tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
+  tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
+  ```
 
+  ```console
   📡 Overview
     name:         source-git-provider-1.0.0
     namespace:    source-provider
@@ -137,13 +108,18 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
 
   ```
 
-1. Now that you know what components are available to create your SupplyChain, start the authoring process. The first step is to scaffold the current directory using the `tanzu supplychain init` command as follows:
+1. Now that you know what components are available to create your SupplyChain, start the
+authoring process. The first step is to scaffold the current directory using the `tanzu supplychain init` command. Run:
 
   ```console
-  $ mkdir myfirstsupplychaingroup
-  $ cd myfirstsupplychaingroup
-  $ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+  mkdir myfirstsupplychaingroup
+  cd myfirstsupplychaingroup
+  tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+  ```
 
+  Example output:
+
+  ```console
   Initializing group supplychains.tanzu.vmware.com
   Creating directory structure
   ├─ supplychains/
@@ -164,13 +140,14 @@ Use the `-w/--wide` flag on the list command to see a more detailed output inclu
   - `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
   - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
-1. Your current directory is now initialized, and you can use the SupplyChain authoring wizard to generate your first SupplyChain. Start the wizard:
+1. Your current directory is now initialized, and you can use the SupplyChain authoring wizard to
+generate your first SupplyChain. Start the wizard:
 
   ```console
-  $ tanzu supplychain generate
+  tanzu supplychain generate
   ```
 
-In the prompts that follow, add the following values:
+1. In the wizard prompts that follow, add the following values:
 
 - **What Kind would you like to use as the developer interface?** AppBuildV1
 - **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
@@ -182,7 +159,8 @@ In the prompts that follow, add the following values:
 - **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
 - **Select a component as the next stage of the supply chain?** Done
 
-After you have selected the components for your chain, the wizard creates the required files to deploy your SupplyChain in the current directory. Example output:
+After you have selected the components for your chain, the wizard creates the required files to
+deploy your SupplyChain in the current directory. Example output:
 
   ```console
   ✓ Successfully fetched all component dependencies
@@ -212,11 +190,16 @@ After you have selected the components for your chain, the wizard creates the re
   Created file tasks/store-content-oci.yaml
   ```
 
-You have now authored your first SupplyChain. View the SupplyChain definition created by the wizard by viewing the manifest created in the `supplychains/` folder as follows:
+1. You have now authored your first SupplyChain. View the SupplyChain definition created by the wizard
+by viewing the manifest created in the `supplychains/` folder. Run:
 
   ```console
-  $ cat supplychains/appbuildv1.yaml
+  cat supplychains/appbuildv1.yaml
+  ```
 
+  Example output
+
+  ```console
   apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
   kind: SupplyChain
   metadata:
