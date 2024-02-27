@@ -188,7 +188,11 @@ source code or image, including vulnerabilities from past scans.
 > **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
 > `log4shell` package.
 
-### <a id="triage-vul"></a> Triage vulnerabilities
+### <a id="triage-vul"></a> Triage vulnerabilities (alpha)
+
+> **Important** The capability to triage scan results in TAP GUI is in the alpha stage, which
+> means that it is still in early development and is subject to change at any point. You might
+> encounter unexpected behavior from it.
 
 This feature enables you to store analysis data for each of the vulnerabilities found in the scan.
 
