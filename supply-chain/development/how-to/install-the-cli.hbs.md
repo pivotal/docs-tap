@@ -35,5 +35,3 @@ Run:
 ```console
 tanzu plugin delete workload
 ```
-
-
