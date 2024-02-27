@@ -55,7 +55,7 @@ Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Compone
 
 This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
-For more information about how to create a workload, see [How to create a Workload](../../supply-chain/development/how-to/create-workloads.hbs.md).
+For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
 ### <a id="create-workload"></a> Create a workload
 
