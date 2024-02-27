@@ -5,7 +5,7 @@
 To start working with the Workloads provided by platform engineering, install the Tanzu Workload CLI plug-in.
 This plug-in helps you discover Workload kinds, deploy workloads, and monitor the workloads. The
 Tanzu Supply Chain beta release does not include the installation of the Tanzu Workload CLI plug-in
-as part of the plug-in group.
+as part of the plug-in group. The Tanzu `workload` CLI plug-in provides commands that allow a Developer to generate a `Workload` manifest, apply it to a cluster, and delete it from a cluster.
 
 ## Prerequisites
 

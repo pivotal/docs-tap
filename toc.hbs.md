@@ -782,7 +782,7 @@
           - [Tutorials](supply-chain/development/tutorials/about.hbs.md)
               - [Deploy your first Workload](./supply-chain/development/tutorials/deploy-your-first-workload.hbs.md)
           - [How To](./supply-chain/development/how-to/about.hbs.md)
-              - [Install the Tanzu CLI Plugins](./supply-chain/development/how-to/install-the-cli.hbs.md)
+              - [Install the Tanzu Workload CLI plug-in](./supply-chain/development/how-to/install-the-cli.hbs.md)
               - [Find the kinds of Workloads I can use](./supply-chain/development/how-to/discover-workloads.hbs.md)
               - [Create a Workload](./supply-chain/development/how-to/create-workloads.hbs.md)
               - [Observe runs for your Workloads](./supply-chain/development/how-to/observe-runs.hbs.md)

@@ -43,7 +43,7 @@ what kinds of `Workloads` you can create using those `SupplyChain`. Run:
 [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 sample application. Use the `tanzu workload generate` command to create a `Workload` of kind
 `AppBuildV1`. A selector is displayed if multiple kinds are available. If a single kind is
-available, this is used to generate the scaffold of the `Workload`. Run
+available, this is used to generate the scaffold of the `Workload`. Run:
 
     ```console
     tanzu workload generate tanzu-java-web-app
@@ -172,7 +172,7 @@ to it. Run:
     🔎 To see more details about a workload, use 'tanzu workload get workload-name --kind workload-kind'
     ```
 
-1. To see all the workloads running in all namespaces:run 
+1. To see all the workloads running in all namespaces, run: 
 
     ```console
     tanzu workload list -A`
@@ -202,7 +202,7 @@ to it. Run:
     ```
 
     From the output, you see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when
-    you applied the `AppBuildV1` workload and its in the `Running` state. There are multiple reasons why
+    you applied the `AppBuildV1` workload and it's in the `Running` state. There are multiple reasons why
     a new `WorkloadRun` is created for your `Workload`, but few are developer triggered. Updates to your
     `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster creates a
     new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can
