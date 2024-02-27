@@ -16,7 +16,14 @@ Install the following CLI tools installed on your local machine:
 
 ## Getting Started
 
-As a developer, the first thing you want to know is what `SupplyChain` are available to you, and what kinds of `Workloads` you can create, that would trigger those `SupplyChain`. Run the following `tanzu workload` command to get the list:
+1. As a developer, the first thing you want to know is what `SupplyChains` are available to you, and
+what kinds of `Workloads` you can create, that trigger those `SupplyChain`. Run:
+
+```console
+tanzu workload
+```
+
+Example output:
 
 ```console
 $ tanzu workload kind list
@@ -28,7 +35,11 @@ $ tanzu workload kind list
 🔎 To generate a workload for one of these kinds, use 'tanzu workload generate'
 ```
 
-The command output shows that you have a kind `appbuildv1s.supplychains.tanzu.vmware.com` that you can use to generate the workload. The Tanzu CLI also shows a hint on the next command to use in the process. Use the `tanzu workload generate` command to build your workload. Use the sample app [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) for this tutorial. Run the following command to create a `Workload` of kind `AppBuildV1`:
+The command output shows that you have a kind `appbuildv1s.supplychains.tanzu.vmware.com` that you
+can use to generate the workload. The Tanzu CLI also shows a hint on the next command to use in the
+process. 
+
+1. For this tutorial, build your workload using the [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) sample application. Run the following command to create a `Workload` of kind `AppBuildV1`:
 
 ```yaml
 $ tanzu workload generate tanzu-java-web-app
@@ -53,17 +64,22 @@ spec:
     ...
 ```
 
->**Note** When you run the `tanzu workload generate` command, the Tanzu Workload CLI checks what kinds are available and shows a selector if multiple kinds are available. If a single kind is available, it uses that and generates the scaffold of the `Workload` for that kind.
+>**Note** When you run the `tanzu workload generate` command, the Tanzu Workload CLI checks
+what kinds are available and shows a selector if multiple kinds are available. If a single kind is
+available, this is used to generate the scaffold of the `Workload`.
 
-pipe the output of the generate command into a `workload.yaml` file:
+1. Pipe the output of the generate command into a `workload.yaml` file:
 
 ```console
-$ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
+tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tanzu.vmware.com > workload.yaml
 ```
 
->**Note** If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
+>**Note** If you have more than one kind available in the cluster, you must provide a `--kind` flag
+to disambiguate if you are piping the `generate` output to a file.
+The `--kind` flag supports tab auto-completion to make it easier to choose a kind.
 
-The next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entry. For example:
+1. The next step is to edit the `workload.yaml` file and put the appropriate values in the file for
+each required entry. For example:
 
 ```yaml
 apiVersion: supplychains.tanzu.vmware.com/v1alpha1
@@ -88,9 +104,16 @@ spec:
     packageDomain: "tanzu.vmware.com"
 ```
 
->**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command also shows the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer can set Platform level values like the registry details, and those entries are not a part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This results in a much smaller `Workload` spec and one that only has values that a Developer can provide for the `SupplyChain`. As a result, there is a clear separation between the Platform Engieering role and the Developer role.
+>**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level
+overrides and defaults just yet. Therefore, the `Workload` generate command also shows the entries
+that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature
+is available, a Platform Engineer can set Platform level values like the registry details, and those
+entries are not a part of the `generate` command output as that is something a Platform Engineer
+does not want a Developer to override. This results in a much smaller `Workload` spec and one that
+only has values that a Developer can provide for the `SupplyChain`. As a result, there is a clear
+separation between the Platform Engineering role and the Developer role.
 
-After you customize the `workload.yaml` with your setup details, apply the `Workload` of type `AppBuildV1`.
+1. After you customize the `workload.yaml` with your setup details, apply the `Workload` of type `AppBuildV1`.
 Apply your `AppBuildV1` workload to the cluster:
 
 ```console
@@ -123,9 +146,13 @@ Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 ✓ Successfully created workload tanzu-java-web-app
 ```
 
->**Note** The `tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point to it.
+>**Note** The `tanzu workload create/apply` command looks for a file named `workload.yaml` by
+default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point
+to it.
 
-The `AppBuildV1` workload is applied to the cluster. For this tutorial, use the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
+The `AppBuildV1` workload is applied to the cluster. For this tutorial, use the `dev` namespace.
+
+1. To see all the workloads of each kind running in your namespace, run:
 
 ```console
 $ tanzu workload list
@@ -138,9 +165,13 @@ Listing workloads from the dev namespace
 🔎 To see more details about a workload, use 'tanzu workload get workload-name --kind workload-kind'
 ```
 
-To see all the workloads running in all namespaces, run the `tanzu workload list -A`.
+1. To see all the workloads running in all namespaces:run 
 
-Now that you see the `tanzu-java-web-app` workload in the workload list. Run the following to see how it's progressing through the Supply chain command:
+```console
+tanzu workload list -A`
+```
+
+1. To see how the `tanzu-java-web-app` workload in the workload list is progressing, run:
 
 ```console
 $ tanzu workload get tanzu-java-web-app
@@ -158,17 +189,17 @@ $ tanzu workload get tanzu-java-web-app
 🔎 To view a run information, use 'tanzu workload run get run-id'
 ```
 
-From the output, you see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when you applied the `AppBuildV1` workload and its in the `Running` state. There are multiple reasons why a new `WorkloadRun` is created for your `Workload`, but few are developer triggered. Updates to your `Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster creates a new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images. Other activities like pushing new commits to your Source code repository that is referred by the `Workload` can also cause a new run of the `Workload` to build the latest source from your Git repository.
+From the output, you see that a `WorkloadRun` named `tanzu-java-web-app-run-454m5` was created when
+you applied the `AppBuildV1` workload and its in the `Running` state. There are multiple reasons why
+a new `WorkloadRun` is created for your `Workload`, but few are developer triggered. Updates to your
+`Workload`, like changing the values in the `workload.yaml` and reapplying to the cluster creates a
+new `WorkloadRun`. Platform Engineering activities like updating the Buildpack builder images can
+also cause your `Workload` to rebuild, creating a new `WorkloadRun` with newer base images.
+Other activities like pushing new commits to your Source code repository that is referred by the
+`Workload` can also cause a new run of the `Workload` to build the latest source from your Git
+repository.
 
-The `tanzu workload get` command shows you:
-
-- Overview of your workload like `name`, `kind` and `namespace`.
-- Last 2 successful `WorkloadRuns`
-- Last 1 failed `WorkloadRun`
-- All running `WorkloadRuns`
-- Error section from the last failed `WorkloadRun`
-
-To see more information about what stages your workload is going through, output, duration, and result of each stage, run the `tanzu workload run get` command:
+1. To see more information about what stages your workload is going through, output, duration, and result of each stage, run the `tanzu workload run get` command:
 
 ```console
 $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
@@ -244,6 +275,14 @@ $ tanzu workload run get tanzu-java-web-app-run-454m5 --show-details
     └─ git-writer-pr
        └─ 📋 pipeline - Not Started
 ```
+
+The `tanzu workload get` command shows you:
+
+- Overview of your workload like `name`, `kind` and `namespace`.
+- Last 2 successful `WorkloadRuns`
+- Last 1 failed `WorkloadRun`
+- All running `WorkloadRuns`
+- Error section from the last failed `WorkloadRun`
 
 >**Note** `--show-details` is an optional flag that shows the verbose output of the `tanzu workload run get` command. The default output only shows the `stages` and their `status`.
 
@@ -355,7 +394,12 @@ Workload Get Output
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
 
-As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from Git repository, build it using buildpacks, and package the output as a Carvel package. That output should then be shipped to the GitOps repository that is configured by the Platform Engineer. In your Supply Chain, once the `WorkloadRun` succeeds, you can see the URL for the pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
+As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command,
+the Supply chain should pull the source code from Git repository, build it using buildpacks,
+and package the output as a Carvel package. That output should then be shipped to the GitOps
+repository that is configured by the Platform Engineer. In your Supply Chain, once the `WorkloadRun`
+succeeds, you can see the URL for the pull request to the GitOps repository in the
+`tanzu workload run get --show-details` output in the `gitops-pr` stage results.
 
 You have successfully deployed your first workload using Tanzu Supply Chains.
 
