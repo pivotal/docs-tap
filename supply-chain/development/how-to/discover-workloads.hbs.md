@@ -2,10 +2,10 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-In this topic, you will:
+This topic describes how to:
 
 - Find the kinds of Workloads you can use
-- Create a Workload
+- Create and delete a Workload
 - Observe runs of your workloads
 
 ## Find the kinds of Workloads you can use
