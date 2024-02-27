@@ -12,7 +12,7 @@ development work; an experience that does not require an understanding of Kubern
 
 ## System overview
 
-Each [SupplyChain] resource combines multiple [Components] in `stages`. 
+Each [SupplyChain] resource combines multiple [Components] in `stages`.
 [SupplyChains] define a process for converting configuration [Workloads] into final artifacts.
 They are very similar to pipelines in other CI/CD systems, with some key differences:
 

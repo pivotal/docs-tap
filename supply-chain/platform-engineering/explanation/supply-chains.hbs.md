@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic introduces the SupplyChain resource which unifies the Tanzu Supply Chain operation.
+This topic introduces the SupplyChain resource, which unifies the Tanzu Supply Chain operation.
 
 ![core-concepts-supplychains.jpg](./images/core-concepts-supplychains.jpg)
 

@@ -2,7 +2,10 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-In this section, you will use the Tanzu Supplychain CLI plug-in to create your first SupplyChain for developers. This SupplyChain pulls the source code from the Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+This topic tells you how to use the Tanzu Supply Chain CLI plug-in to create a SupplyChain
+for developers to use.
+
+This SupplyChain pulls the source code from the Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
@@ -27,20 +30,20 @@ Run:
 
   ```console
   Listing components from the catalog
-    NAME                             INPUTS                                                        OUTPUTS                                                       AGE  
-    app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
-    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
-    app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d  
-    carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d  
-    deployer-1.0.0                   package[package]                                              <none>                                                        14d  
-    source-package-translator-1.0.0  source[source]                                                package[package]                                              14d  
-    conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d  
-    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d   
-    git-writer-1.0.0                 package[package]                                              <none>                                                        14d  
-    git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d  
-    source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d  
-    buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d  
-    trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d  
+    NAME                             INPUTS                                                        OUTPUTS                                                       AGE
+    app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+    app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+    carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d
+    deployer-1.0.0                   package[package]                                              <none>                                                        14d
+    source-package-translator-1.0.0  source[source]                                                package[package]                                              14d
+    conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d
+    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+    git-writer-1.0.0                 package[package]                                              <none>                                                        14d
+    git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d
+    source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d
+    buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d
+    trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d
 
   🔎 To view the details of a component, use 'tanzu supplychain component get'
   ```
@@ -92,7 +95,7 @@ Example output:
       ├─ type: source
       └─ url: $(pipeline.results.url)
 
-  🏃 Pipeline   
+  🏃 Pipeline
       ├─ name: source-git-provider
       └─ 📋 parameters
         ├─ git-url: $(workload.spec.source.git.url)

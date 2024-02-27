@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This section details how to install the SupplyChain authored using the tanzu `supplychain` CLI. 
+This topic tells you how to install a SupplyChain authored using the Tanzu Supply Chain CLI plug-in.
 
 ## Installing from a local machine
 
@@ -16,7 +16,7 @@ This section details how to install the SupplyChain authored using the tanzu `su
 1. Create a namespace where you want to install the `SupplyChain`:
 
 ```bash
-$ kubectl create namespace mysupplychains 
+$ kubectl create namespace mysupplychains
 ```
 
 2. Use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
@@ -28,30 +28,30 @@ $ NAMESPACE=mysupplychains make install
 
 Changes
 
-Namespace       Name                       Kind       Age  Op      Op st.  Wait to    Rs  Ri  
-mysupplychains  app-config-server          Pipeline   -    create  -       reconcile  -   -  
-^               app-config-server-1.0.0    Component  -    create  -       reconcile  -   -  
-^               buildpack-build            Pipeline   -    create  -       reconcile  -   -  
-^               buildpack-build-1.0.0      Component  -    create  -       reconcile  -   -  
-^               calculate-digest           Task       -    create  -       reconcile  -   -  
-^               carvel-package             Pipeline   -    create  -       reconcile  -   -  
-^               carvel-package             Task       -    create  -       reconcile  -   -  
-^               carvel-package-1.0.0       Component  -    create  -       reconcile  -   -  
-^               carvel-package-git-clone   Task       -    create  -       reconcile  -   -  
-^               check-builders             Task       -    create  -       reconcile  -   -  
-^               conventions                Pipeline   -    create  -       reconcile  -   -  
-^               conventions-1.0.0          Component  -    create  -       reconcile  -   -  
-^               fetch-tgz-content-oci      Task       -    create  -       reconcile  -   -  
-^               git-writer                 Pipeline   -    create  -       reconcile  -   -  
-^               git-writer                 Task       -    create  -       reconcile  -   -  
-^               git-writer-pr-1.0.0        Component  -    create  -       reconcile  -   -  
-^               gitops-git-clone           Task       -    create  -       reconcile  -   -  
-^               prepare-build              Task       -    create  -       reconcile  -   -  
-^               source-git-check           Task       -    create  -       reconcile  -   -  
-^               source-git-clone           Task       -    create  -       reconcile  -   -  
-^               source-git-provider        Pipeline   -    create  -       reconcile  -   -  
-^               source-git-provider-1.0.0  Component  -    create  -       reconcile  -   -  
-^               store-content-oci          Task       -    create  -       reconcile  -   -  
+Namespace       Name                       Kind       Age  Op      Op st.  Wait to    Rs  Ri
+mysupplychains  app-config-server          Pipeline   -    create  -       reconcile  -   -
+^               app-config-server-1.0.0    Component  -    create  -       reconcile  -   -
+^               buildpack-build            Pipeline   -    create  -       reconcile  -   -
+^               buildpack-build-1.0.0      Component  -    create  -       reconcile  -   -
+^               calculate-digest           Task       -    create  -       reconcile  -   -
+^               carvel-package             Pipeline   -    create  -       reconcile  -   -
+^               carvel-package             Task       -    create  -       reconcile  -   -
+^               carvel-package-1.0.0       Component  -    create  -       reconcile  -   -
+^               carvel-package-git-clone   Task       -    create  -       reconcile  -   -
+^               check-builders             Task       -    create  -       reconcile  -   -
+^               conventions                Pipeline   -    create  -       reconcile  -   -
+^               conventions-1.0.0          Component  -    create  -       reconcile  -   -
+^               fetch-tgz-content-oci      Task       -    create  -       reconcile  -   -
+^               git-writer                 Pipeline   -    create  -       reconcile  -   -
+^               git-writer                 Task       -    create  -       reconcile  -   -
+^               git-writer-pr-1.0.0        Component  -    create  -       reconcile  -   -
+^               gitops-git-clone           Task       -    create  -       reconcile  -   -
+^               prepare-build              Task       -    create  -       reconcile  -   -
+^               source-git-check           Task       -    create  -       reconcile  -   -
+^               source-git-clone           Task       -    create  -       reconcile  -   -
+^               source-git-provider        Pipeline   -    create  -       reconcile  -   -
+^               source-git-provider-1.0.0  Component  -    create  -       reconcile  -   -
+^               store-content-oci          Task       -    create  -       reconcile  -   -
 
 Op:      23 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 23 reconcile, 0 delete, 0 noop
@@ -113,8 +113,8 @@ Succeeded
 
 Changes
 
-Namespace       Name        Kind         Age  Op      Op st.  Wait to    Rs  Ri  
-mysupplychains  appbuildv1  SupplyChain  -    create  -       reconcile  -   -  
+Namespace       Name        Kind         Age  Op      Op st.  Wait to    Rs  Ri
+mysupplychains  appbuildv1  SupplyChain  -    create  -       reconcile  -   -
 
 Op:      1 create, 0 delete, 0 update, 0 noop, 0 exists
 Wait to: 1 reconcile, 0 delete, 0 noop

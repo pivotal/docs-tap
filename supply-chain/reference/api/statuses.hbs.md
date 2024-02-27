@@ -1,6 +1,8 @@
 # Resource Statuses
 
-Every status in Tanzu Supply Chain resources adhere to the same set of rules, starting with those set out by [Kubernetes API Conventions].
+This topic describes the statuses for Tanzu Supply Chain resources.
+
+Every status in Tanzu Supply Chain resources adheres to the same set of rules, starting with those set out by [Kubernetes API Conventions].
 
 The `spec.conditions` array is referred to as a Condition Set.
 

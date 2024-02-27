@@ -2,6 +2,8 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
+This topic describes the SupplyChain resource of Tanzu Supply Chain.
+
 The supply chain defines the [Object Kind] of the [Workload], the [Components] used, and their order.
 
 ## Type and Object Metadata
@@ -37,7 +39,7 @@ The `spec.description` field is visible to an app developer when they use the CL
 tanzu workload kind list --wide
 
 KIND                      VERSION     AGE   DESCRIPTION
-serverappv2.example.com   v1alpha1    12m   Server application supply chain   
+serverappv2.example.com   v1alpha1    12m   Server application supply chain
 ```
 
 **Recommendation:** embed complete documentation in the description.
@@ -173,17 +175,17 @@ The sub-types are:
 | Reason        | Meaning                                                                                                                                                  |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Ready         | The RoleBindings for the kind declared in [`spec.defines`](#specdefines) was created on cluster                                                          |
-| AlreadyExists | The RoleBinding record already exists.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |                                                                                                       
-| UnknownError  | The RoleBinding record failed due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                         |                                                                                                       
+| AlreadyExists | The RoleBinding record already exists.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
+| UnknownError  | The RoleBinding record failed due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                         |
 
 #### APIsDefined
 
 | Reason        | Meaning                                                                                                                                                                         |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Ready         | The CRD for the kind declared in [`spec.defines`](#specdefines) was created on cluster                                                                                          |
-| Conflict      | The CRD already exists and is managed by another SupplyChain.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |                                                                                                       
-| Invalid       | The CRD is invalid</br>Most common cause of this is an illegal OpenAPIV3Schema in the [Component].                                                                              |                                                                                                       
-| Unknown error | The CRD could not be created due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                                                 |                                                                                                       
+| Conflict      | The CRD already exists and is managed by another SupplyChain.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
+| Invalid       | The CRD is invalid</br>Most common cause of this is an illegal OpenAPIV3Schema in the [Component].                                                                              |
+| Unknown error | The CRD could not be created due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                                                 |
 
 #### StageMapping
 

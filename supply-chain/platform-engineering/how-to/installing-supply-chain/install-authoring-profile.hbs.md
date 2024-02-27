@@ -1,9 +1,11 @@
 # Install with the 'authoring' profile (Recommended)
 
-{{> 'partials/supply-chain/beta-banner' }} 
+{{> 'partials/supply-chain/beta-banner' }}
 
-The recommended way to install Tanzu Supply Chain is to use the `authoring` beta profile. This installs all the
-required packages. The `authoring` profile has the following additional packages that the `iterate` profile does not have:
+This topic describes the recommended method for installing Tanzu Supply Chain, which is using the
+Authoring profile (beta). This profile installs all the required packages.
+
+The Authoring profile has the following additional packages that the Iterate profile does not have:
 
 - Tanzu Supply Chain Packages
   - supply-chain.apps.tanzu.vmware.com

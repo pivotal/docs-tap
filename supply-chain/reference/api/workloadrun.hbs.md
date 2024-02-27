@@ -2,6 +2,8 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
+This topic describes the WorkloadRun resource of Tanzu Supply Chain.
+
 WorkloadRuns are [Custom Kubernetes Resources (CRDs)][CRD] created by [SupplyChains].
 They are also one of the two [Duck Typed Resources] in Tanzu Supply chain
 
@@ -182,10 +184,10 @@ The sub-types are:
 
 | Reason         | Meaning                                                                                                                                                  |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Succeeded      | All [Tekton PipelineRuns] are complete                                                                                                                   |                                                                                                       
+| Succeeded      | All [Tekton PipelineRuns] are complete                                                                                                                   |
 | Running        | [Tekton PipelineRuns] are not all complete.                                                                                                              |
-| Failed         | A [Tekton PipelineRun] failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                        |                                                                                                       
-| PlatformFailed | A [Tekton PipelineRun]  failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |                                                                                                       
+| Failed         | A [Tekton PipelineRun] failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                        |
+| PlatformFailed | A [Tekton PipelineRun]  failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |
 
 `Message` contains processing information and error messages produced in the pipeline. This information must be
 specifically appended to the Tekton result named `message` to appear here.
@@ -194,10 +196,10 @@ specifically appended to the Tekton result named `message` to appear here.
 
 | Reason         | Meaning                                                                                                                                                              |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Succeeded      | All [Tekton TaskRuns] for all resumptions are complete.                                                                                                              |                                                                                                       
+| Succeeded      | All [Tekton TaskRuns] for all resumptions are complete.                                                                                                              |
 | Running        | A [Tekton TaskRun] for a resumption is incomplete.                                                                                                                   |
-| Failed         | A [Tekton TaskRun] for a resumption failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                       |                                                                                                       
-| PlatformFailed | A [Tekton TaskRun] for a resumption failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |                                                                                                       
+| Failed         | A [Tekton TaskRun] for a resumption failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                       |
+| PlatformFailed | A [Tekton TaskRun] for a resumption failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |
 
 `Message` contains processing information and error messages produced in the taskRun. This information must be
 specifically appended to the Tekton result named `message` to appear here.

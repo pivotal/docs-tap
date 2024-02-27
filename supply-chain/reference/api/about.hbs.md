@@ -2,8 +2,9 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Tanzu Supply Chain introduces two concrete resources and two *Duck-typed resources* to your Kubernetes cluster.
+This section gives you reference information about Tanzu Supply Chain APIs.
 
+Tanzu Supply Chain introduces two concrete resources and two Duck-typed resources to your Kubernetes cluster.
 The concrete resources are:
 
 * [SupplyChain] - used to describe a path to production, and describe the [Workload] resource that users can

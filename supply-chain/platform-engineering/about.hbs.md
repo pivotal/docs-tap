@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This section details the Platform Engineering focused features of the Tanzu Supply Chains.
+This section contains the platform engineering focused features of Tanzu Supply Chain.
 
 ## Prerequisites
 

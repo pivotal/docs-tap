@@ -1,5 +1,7 @@
 # GitOps managed SupplyChains
 
+This topic tells you how to manage SupplyChains using GitOps.
+
 SupplyChains, especially the authoring resources ([SupplyChain], [Component] and [Tekton Pipeline]/[Tekton Task]), are designed to
 be delivered to clusters via a Git repository and GitOps source promotion style.
 

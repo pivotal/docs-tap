@@ -2,7 +2,9 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Workloads are [Custom Kubernetes Resources (CRDs)][CRD] created by [SupplyChains]. 
+This topic describes the Workload resource of Tanzu Supply Chain.
+
+Workloads are [Custom Kubernetes Resources (CRDs)][CRD] created by [SupplyChains].
 They are also one of the two [Duck Typed Resources] in Tanzu Supply chain
 
 ## Static CustomResourceDefinitions API
@@ -16,7 +18,7 @@ kind: CustomResourceDefinition
 
 ### `metadata.labels`
 
-Workload CRDs always have the following labels. 
+Workload CRDs always have the following labels.
 The `chain-name` and `chain-namespace` labels reference the location of the [SupplyChain]  resource that created this Workload.
 The `chain-role` identifies this as a Workload. The other possible value is `workload-run`.
 
@@ -44,7 +46,7 @@ metadata:
 The CRD's `group`, `names` and `versions` is filled in with the details found in the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 
 Additionally, the `spec.names[].categories[]` array includes a category of `all-workloads`. This ensures that
-commands such as `kubectl get all-workloads` will find all the [SupplyChain] defined Workloads a user can access.   
+commands such as `kubectl get all-workloads` will find all the [SupplyChain] defined Workloads a user can access.
 
 #### Example
 ```yaml
@@ -84,7 +86,7 @@ metadata:
 
 ### `spec`
 
-The `spec` of a Workload is dynamic, however it is immutable once applied. 
+The `spec` of a Workload is dynamic, however it is immutable once applied.
 The spec is derived by combining the [Component configurations](./component.hbs.md#specconfig) of all the [SupplyChain Stages](./supplychain.hbs.md#specstages)
 
 [Duck Typed Resources]: ./duck-types.hbs.md

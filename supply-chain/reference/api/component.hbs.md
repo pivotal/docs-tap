@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This section describes the Component resource of Tanzu Supply Chains.
+This topic describes the Component resource of Tanzu Supply Chain.
 
 Components define the work to be done in one [Stage](./supplychain.hbs.md#specstages) of the [SupplyChain]
 
@@ -33,7 +33,7 @@ TBD two commands here Users will see this description in `tanzu workload run lis
 
 ```yaml
 spec:
-  description: Gets the latest source and stores it in an OCI Image 
+  description: Gets the latest source and stores it in an OCI Image
 ```
 
 ### `spec.config`
@@ -55,7 +55,7 @@ operate
         type: object
         description: |
           Fill this object in if you want your source to come from git.
-          The tag, commit and branch fields are mutually exclusive, 
+          The tag, commit and branch fields are mutually exclusive,
           use only one.
         properties:
           tag:
@@ -141,7 +141,7 @@ spec:
 For a detailed explanation of resumptions, see [Core Concepts: Resumptions](../../platform-engineering/explanation/resumptions.hbs.md).
 
 #### `spec.resumptions[].name`
-`spec.resumptions[].name` is visible to end users, so make sure it's suitably meaningful. 
+`spec.resumptions[].name` is visible to end users, so make sure it's suitably meaningful.
 It's recommended that it's in the form: `check-<resource type>` where `<resource type>` is the kind of resource being polled, such as `source` or `base-image` etc.
 
 #### `spec.resumptions[].trigger.runaAfter`
