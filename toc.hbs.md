@@ -784,7 +784,6 @@
           - [How To](./supply-chain/development/how-to/about.hbs.md)
               - [Install the Tanzu Workload CLI plug-in](./supply-chain/development/how-to/install-the-cli.hbs.md)
               - [Work with Workloads](./supply-chain/development/how-to/discover-workloads.hbs.md)
-              - [Troubleshoot a run](./supply-chain/development/how-to/troubleshooting.hbs.md)
       - [Reference](./supply-chain/reference/about.hbs.md)
           - [Catalog of Tanzu Supply Chain Components](supply-chain/reference/catalog/about.hbs.md) for Platform Engineering
               - [Output Types](supply-chain/reference/catalog/output-types.hbs.md) used with Tanzu Supply Chain Components
