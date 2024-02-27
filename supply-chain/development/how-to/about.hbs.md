@@ -4,4 +4,3 @@
 
 - [Install the `workload` CLI plug-in](./install-the-cli.hbs.md)
 - [Work with Workloads](./discover-workloads.hbs.md)
-- [Troubleshoot a run](./troubleshooting.hbs.md)
