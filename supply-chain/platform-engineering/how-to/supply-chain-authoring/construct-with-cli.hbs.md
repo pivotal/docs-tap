@@ -29,26 +29,28 @@ Use the `tanzu supplychain init` command to initialize the local directory for t
 
 ### Initialize the local directory
 
-The `tanzu supplychain init` command creates:
 
-- `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-- `supplychains`, `components`, `pipelines` and `tasks` directories which are auto populated by the authoring wizard later in this tutorial.
-- `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
-- `README.md` file which has instructions on how to use the targets in the `Makefile`.
-
-The `tanzu supplychain init` command takes two optional flags:
-
-- `--group`: Group of the supplychains **(default "supplychains.tanzu.vmware.com")**
-  - Group is used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
-- `--description`: Description of the Group. **(default "")**
 
 >**Important** After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
 1. Run:
 
 ```console
-tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+tanzu supplychain init --group supplychains.tanzu.vmware.com --description "MY-SUPPLYCHAIN-GROUP"
 ```
+
+Where
+
+- `--group`: (Optional) Group of the supplychains. The default is default `supplychains.tanzu.vmware.com`
+Used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
+- `--description`: (Optional) Description of the Group. The default is "".
+
+The `tanzu supplychain init` command creates:
+
+- `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
+- `supplychains`, `components`, `pipelines` and `tasks` directories which are auto populated by the authoring wizard later in this tutorial.
+- `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
+- `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 Example output:
 
