@@ -8,7 +8,7 @@ workload, and how to verify the scanning performed in a workload.
 This section covers how to create a workload from an existing supply chain that was created using
 SCST - Scan 2.0 and either the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
-For more information about how to create a workload, see [Tanzu Supply Chain docs](../../supply-chain/development/how-to/create-workloads.hbs.md).
+For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
 A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
 
@@ -111,7 +111,7 @@ This section shows how to use the Tanzu Workload CLI to observe a workload.
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
 
-    For more information, [How to observe the Runs of your Workload](../../supply-chain/development/how-to/observe-runs.hbs.md).
+    For more information, [How to observe the Runs of your Workload](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
 ## <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 

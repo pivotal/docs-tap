@@ -10,7 +10,7 @@ This topic describes how to:
 
 ## Find the kinds of Workloads you can use
 
- Use the Tanzu Workload CLI plug-in to discover available `Workload` kinds. Run:
+Use the Tanzu Workload CLI plug-in to discover available `Workload` kinds. Run:
 
 ```console
 tanzu workload kinds list
