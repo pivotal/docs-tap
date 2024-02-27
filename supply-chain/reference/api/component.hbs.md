@@ -15,7 +15,7 @@ kind: Component
 
 ### `metadata.name`
 
-`matadata.name:` must have a `-M.m.p` suffix, representing the major, minor and patch of this version of the component.
+`metadata.name:` must have a `-M.m.p` suffix, representing the major, minor and patch of this version of the component.
 Changes to the config section [(described below)](#specconfig) should coincide with a bump to major or minor versions.
 Reserve patch increments for changes that do not alter the API, or the behavior significantly.
 

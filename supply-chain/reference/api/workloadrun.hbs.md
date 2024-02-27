@@ -215,7 +215,7 @@ specifically appended to the Tekton result named `message` to appear here.
 [Duck Typed Resources]: ./duck-types.hbs.md
 [SupplyChain]: ./supplychain.hbs.md
 [SupplyChains]: supplychain.hbs.md
-[Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kebernetes documentation for Objects"
+[Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kubernetes documentation for Objects"
 [Tekton PipelineRun]: https://tekton.dev/docs/pipelines/pipelineruns/
 [Tekton PipelineRuns]: https://tekton.dev/docs/pipelines/pipelineruns/
 [Tekton Pipeline]: https://tekton.dev/docs/pipelines/pipelines/

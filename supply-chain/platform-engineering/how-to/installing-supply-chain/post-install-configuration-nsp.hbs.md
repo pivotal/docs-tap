@@ -2,8 +2,8 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-Once you have Tanzu Supply Chain installed, there are a number of step you'll need to complete to ensure 
-you have a functioning installation. The recommended way of configuring service accounts/permissions on Tanzu Application Platform is to use the Namespace Provsioner.
+Once you have Tanzu Supply Chain installed, there are several step you must complete to ensure
+you have a functioning installation. Use Namespace Provisioner to configure service accounts and permissions.
 
 ## Things to configure
 
@@ -11,9 +11,10 @@ you have a functioning installation. The recommended way of configuring service 
   - Supply Chains persist data between stages by reading and writing to an OCI repository.  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace. 
   - Access to this repository is controlled by a tekton annotated secret which can have any name as long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
 - Permissions for Buildpacks Cluster Builders for buildpack-build component
-  - If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` then there are some additional permissions that need to be added.
+  - If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` you must add some additional permissions.
 
 ## Setup using Namespace Provisioner
+
 Recommended way is to use the Namespace provisioner for the entire setup:
 
 **Step 1**: is to create a `Secret` in the `tap-install` namespace that has the location and credentials for the `oci-store` as follows:
@@ -84,4 +85,3 @@ namespace_provisioner:
 ```console
 kubectl annotate ns <developer-namespace> param.nsp.tap/delivery_service_account.secrets='["git-secret"]'
 ```
-

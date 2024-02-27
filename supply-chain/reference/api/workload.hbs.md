@@ -95,4 +95,4 @@ The spec is derived by combining the [Component configurations](./component.hbs.
 [Components]: component.hbs.md
 [WorkloadRun]: workloadrun.hbs.md
 [CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"
-[Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kebernetes documentation for Objects"
+[Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kubernetes documentation for Objects"

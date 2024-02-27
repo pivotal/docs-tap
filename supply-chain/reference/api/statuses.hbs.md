@@ -16,7 +16,7 @@ However, some Living resources are resistant to changes in their spec. They are 
 
 ## Batch resource
 
-Batch resources complete. They're expected to terminate after they have acheived the desired outcome. Typically their `spec` is immutable, or if it is mutable, the mutation has no effect.
+Batch resources complete. They're expected to terminate after they have achieved the desired outcome. Typically their `spec` is immutable, or if it is mutable, the mutation has no effect.
 
 A batch resource's top-level condition type is *Succeeded*
 
