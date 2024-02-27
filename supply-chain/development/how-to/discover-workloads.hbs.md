@@ -6,7 +6,7 @@ This topic describes how to:
 
 - Find the kinds of Workloads you can use
 - Create and delete a Workload
-- Observe runs of your workloads
+- Observe runs of your Workloads
 
 ## Find the kinds of Workloads you can use
 
@@ -32,7 +32,8 @@ buildworkerapps.vmware.com  v1        Creates a background worker app deployed a
 In this section, you will:
 
 - Generate a Workload manifest
-- Create and apply a Workload
+- Create a Workload
+- Apply a Workload
 - Delete a Workload
 
 ### Generate a Workload manifest
@@ -78,7 +79,7 @@ use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload 
     tanzu workload generate my-web-app --kind buildwebapps.vmware.com > workload.yaml
     ```
 
-### Create and apply a Workload
+### Create a Workload
 
 1. Create a `Workload` on the cluster from a manifest. Run:
 
@@ -115,36 +116,38 @@ use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload 
     tanzu workload create my-web-app-2 --file workload.yaml --namespace build
     ```
 
+### Apply a Workload
+
 1. The `tanzu workload create` command can only be used to create a `Workload` that does not already
 exist. To update an existing `Workload`, use `tanzu workload apply`. Apply a `Workload` manifest to
 the cluster:
 
-```console
-tanzu workload apply --file workload.yaml --namespace build
-```
+    ```console
+    tanzu workload apply --file workload.yaml --namespace build
+    ```
 
-Example output:
+    Example output:
 
-```console
-Creating workload:
-      1 + |---
-      2 + |apiVersion: vmware.com/v1
-      3 + |kind: BuildWebApp
-      4 + |metadata:
-      5 + |  name: my-web-app
-      6 + |  namespace: build
-      7 + |spec:
-      8 + |  source:
-      9 + |    git:
-     10 + |      branch: ""
-     11 + |      commit: ""
-     12 + |      tag: ""
-     13 + |      url: ""
-     14 + |    subPath: ""
-     15 + |  ...
-Create workload my-web-app from workload.yaml? [yN]: y
-Successfully created workload my-web-app
-```
+    ```console
+    Creating workload:
+          1 + |---
+          2 + |apiVersion: vmware.com/v1
+          3 + |kind: BuildWebApp
+          4 + |metadata:
+          5 + |  name: my-web-app
+          6 + |  namespace: build
+          7 + |spec:
+          8 + |  source:
+          9 + |    git:
+        10 + |      branch: ""
+        11 + |      commit: ""
+        12 + |      tag: ""
+        13 + |      url: ""
+        14 + |    subPath: ""
+        15 + |  ...
+    Create workload my-web-app from workload.yaml? [yN]: y
+    Successfully created workload my-web-app
+    ```
 
 1. The `Workload` name provided in the manifest can be overridden by providing a name as an argument:
 
@@ -157,7 +160,12 @@ Successfully created workload my-web-app
 Delete a `Workload` by name within a namespace.
 
 ```console
-$ tanzu workload delete --file /tmp/workload.yaml --namespace build
+tanzu workload delete --file /tmp/workload.yaml --namespace build
+```
+
+Example output:
+
+```console
 Really delete the workload my-web-app of kind buildwebapps.vmware.com from the build namespace? [yN]: y
 Successfully deleted workload my-web-app
 ```
@@ -220,66 +228,66 @@ In this section, you will:
 
 1. Get the details of the specified [Workload Run] within a namespace:
 
-```console
-tanzu workload run get my-web-app-run-lxwrm -n build --show-details
-```
+    ```console
+    tanzu workload run get my-web-app-run-lxwrm -n build --show-details
+    ```
 
-Example output:
+    Example output:
 
-```console
-Overview
-   name:        my-web-app
-   kind:        buildwebapps.vmware.com/my-web-app
-   run id:      buildwebappruns.vmware.com/my-web-app-run-lxwrm
-   status:      Running
-   namespace:   build
-   age:         39s
+    ```console
+    Overview
+      name:        my-web-app
+      kind:        buildwebapps.vmware.com/my-web-app
+      run id:      buildwebappruns.vmware.com/my-web-app-run-lxwrm
+      status:      Running
+      namespace:   build
+      age:         39s
 
-Spec
-      1 + |---
-      2 + |apiVersion: vmware.com/v1
-      3 + |kind: BuildWebApp
-      4 + |metadata:
-      5 + |  name: my-web-app
-      6 + |  namespace: build
-      7 + |spec:
-      8 + |...
+    Spec
+          1 + |---
+          2 + |apiVersion: vmware.com/v1
+          3 + |kind: BuildWebApp
+          4 + |metadata:
+          5 + |  name: my-web-app
+          6 + |  namespace: build
+          7 + |spec:
+          8 + |...
 
-Stages
-    ├─ source-git-provider
-    │  ├─ check-source - Success
-    │  │  ├─ Duration: 6s
-    │  │  └─ Results
-    │  │     ├─ message: using git-branch: main
-    │  │     ├─ sha: <image SHA>
-    │  │     └─ url: <image URL>
-    │  └─ pipeline - Success
-    │     ├─ Duration: 1m38s
-    │     └─ Results
-    │        ├─ url: <image URL>
-    │        └─ digest: <image SHA>
-    ├─ buildpack-build
-    │  ├─ check-builders - Success
-    │  │  ├─ Duration: 5s
-    │  │  └─ Results
-    │  │     ├─ builder-image: <image URL>
-    │  │     ├─ message: Builders resolved
-    │  │     └─ run-image: <image URL>
-    │  └─ pipeline - Success
-    │     ├─ Duration: 50s
-    │     └─ Results
-    │        ├─ url: <image URL>
-    │        └─ digest: <image SHA>
-    ├─ conventions
-    │  └─ pipeline - Running
-    │     └─ Duration: 53.693499s
-    ├─ app-config-web
-    │  └─ pipeline - Not Started
-    ├─ carvel-package
-    │  └─ pipeline - Not Started
-    └─ git-writer-pr
-       └─ pipeline - Not Started
-```
+    Stages
+        ├─ source-git-provider
+        │  ├─ check-source - Success
+        │  │  ├─ Duration: 6s
+        │  │  └─ Results
+        │  │     ├─ message: using git-branch: main
+        │  │     ├─ sha: <image SHA>
+        │  │     └─ url: <image URL>
+        │  └─ pipeline - Success
+        │     ├─ Duration: 1m38s
+        │     └─ Results
+        │        ├─ url: <image URL>
+        │        └─ digest: <image SHA>
+        ├─ buildpack-build
+        │  ├─ check-builders - Success
+        │  │  ├─ Duration: 5s
+        │  │  └─ Results
+        │  │     ├─ builder-image: <image URL>
+        │  │     ├─ message: Builders resolved
+        │  │     └─ run-image: <image URL>
+        │  └─ pipeline - Success
+        │     ├─ Duration: 50s
+        │     └─ Results
+        │        ├─ url: <image URL>
+        │        └─ digest: <image SHA>
+        ├─ conventions
+        │  └─ pipeline - Running
+        │     └─ Duration: 53.693499s
+        ├─ app-config-web
+        │  └─ pipeline - Not Started
+        ├─ carvel-package
+        │  └─ pipeline - Not Started
+        └─ git-writer-pr
+          └─ pipeline - Not Started
+    ```
 
 ## References
 
