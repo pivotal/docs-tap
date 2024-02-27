@@ -7,41 +7,12 @@ Tanzu Supply Chain CLI plug-in.
 
 ## Prerequisites
 
-Install the following CLI tools on your local machine:
+1. Ensure that the [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
 
-- [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli)
-- [Tanzu Supply Chain CLI plug-in](../../how-to/install-the-cli.hbs.md)
+2. Ensure that Tanzu Supply Chain packages and Catalog Component packages are installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
-You need the following Packages installed on the Tanzu Application Platform cluster that you use to author your first supply chain:
-
-- [Tanzu Supply Chain](../../how-to/installing-supply-chain/about.hbs.md) and the out of the box catalog component packages. To confirm if the correct packages are installed, run the following command and see if the following packages are installed and reconciled successfully.
-
-    ```console
-    $ kubectl get pkgi -A
-
-    NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
-    tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
-    ...
-    tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
-    ...
-    tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
-    ...
-    tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
-    ...
-    tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
-    ...
-    tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
-    ...
-    tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
-    ...
-    tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
-    tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
-    ...
-    tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
-    ...
-    ```
-
->**Important** VMware recommends that you install the Tanzu Supply chain using the beta `Authoring` profile. For more information, see [Installing with the 'authoring' profile](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
+- If you [Install TanzuSupply Chain with the authoring profile (recommended)](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md), these packages are automatically installed.
+- If you [Install Tanzu Supply Chain manually (not recommended)](../../how-to/installing-supply-chain/installing-manually.hbs.md), you must install the packages individually.
 
 ## SupplyChain authoring
 

@@ -16,13 +16,13 @@ This topic tells you how to install a SupplyChain authored using the Tanzu Suppl
 1. Create a namespace where you want to install the `SupplyChain`:
 
 ```bash
-$ kubectl create namespace mysupplychains
+kubectl create namespace mysupplychains
 ```
 
-2. Use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
+1. Use the `Makefile` generated as part of the `SupplyChain` authoring process in the tutorial to install the `SupplyChain` along with required `Components` as well as Tekton resources like `Pipelines` and `Tasks` to execute the logic of the components.
 
 ```bash
-$ NAMESPACE=mysupplychains make install
+NAMESPACE=mysupplychains make install
 
 ...
 

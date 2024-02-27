@@ -1,4 +1,4 @@
-# Install with the 'authoring' profile (Recommended)
+# Install Tanzu Supply Chain with the authoring profile (recommended)
 
 {{> 'partials/supply-chain/beta-banner' }}
 
@@ -7,12 +7,12 @@ Authoring profile (beta). This profile installs all the required packages.
 
 The Authoring profile has the following additional packages that the Iterate profile does not have:
 
-- Tanzu Supply Chain Packages
+- Tanzu Supply Chain packages
   - supply-chain.apps.tanzu.vmware.com
   - supply-chain-catalog.apps.tanzu.vmware.com
   - managed-resource-controller.apps.tanzu.vmware.com
 
-- Catalog Component Packages
+- Catalog Component packages
   - alm-catalog.component.apps.tanzu.vmware.com
   - buildpack-build.component.apps.tanzu.vmware.com
   - conventions.component.apps.tanzu.vmware.com
