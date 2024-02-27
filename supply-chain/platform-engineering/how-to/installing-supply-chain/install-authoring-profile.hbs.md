@@ -21,47 +21,45 @@ required packages. The `authoring` profile has the following additional packages
 - App Scanning
   - app-scanning.apps.tanzu.vmware.com
 
--
 ## Install Tanzu Supply Chain
 
 1. Update your `tap-values.yaml` file to contain:
 
-```yaml
-profile: authoring
-```
+  ```yaml
+  profile: authoring
+  ```
 
-2. To confirm if the required packages are installed and reconciled successfully. Run:
+1. To confirm if the required packages are installed and reconciled successfully. Run:
 
-```console
-$ kubectl get pkgi -A
+  ```console
+  kubectl get pkgi -A
+  ```
 
-NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
-tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
-...
-tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
-...
-tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
-...
-tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
-...
-tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
-...
-tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
-...
-tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
-...
-tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
-tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
-...
-tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
-...
-```
+  Example output
 
-You now have an `Authoring` profile cluster that has the Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build you first SupplyChain.
+  ```console
+  NAMESPACE     NAME                               PACKAGE NAME                                          PACKAGE VERSION                       DESCRIPTION           AGE
+  tap-install   alm-catalog-component              alm-catalog.component.apps.tanzu.vmware.com           0.1.4                                 Reconcile succeeded   15d
+  ...
+  tap-install   buildpack-build-component          buildpack-build.component.apps.tanzu.vmware.com       0.0.2                                 Reconcile succeeded   15d
+  ...
+  tap-install   conventions-component              conventions.component.apps.tanzu.vmware.com           0.0.3                                 Reconcile succeeded   15d
+  ...
+  tap-install   git-writer-component               git-writer.component.apps.tanzu.vmware.com            0.1.3                                 Reconcile succeeded   15d
+  ...
+  tap-install   managed-resource-controller        managed-resource-controller.apps.tanzu.vmware.com     0.1.2                                 Reconcile succeeded   15d
+  ...
+  tap-install   namespace-provisioner              namespace-provisioner.apps.tanzu.vmware.com           0.6.2                                 Reconcile succeeded   15d
+  ...
+  tap-install   source-component                   source.component.apps.tanzu.vmware.com                0.0.1                                 Reconcile succeeded   15d
+  ...
+  tap-install   supply-chain                       supply-chain.apps.tanzu.vmware.com                    0.1.16                                Reconcile succeeded   15d
+  tap-install   supply-chain-catalog               supply-chain-catalog.apps.tanzu.vmware.com            0.1.1                                 Reconcile succeeded   15d
+  ...
+  tap-install   trivy-app-scanning-component       trivy.app-scanning.component.apps.tanzu.vmware.com    0.0.1-alpha.build.40376886+b5f4e614   Reconcile succeeded   15d
+  ...
+  ```
 
->**Important** VMware recommends that you install the Tanzu Supply Chain using the beta `Authoring` profile.
-For more information, see [Installing with the 'authoring' profile](../how-to/installing-supply-chain/install-authoring-profile.hbs.md).
+  >**Note** As the `authoring` profile adds the above mentioned packages to what gets installed in the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
 
->**Note** As the `authoring` profile adds the above mentioned packages to what gets installed in the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
-
-After the installation of the `authoring` profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.
+1. After the installation of the `authoring` profile is complete and all packages are successfully reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.

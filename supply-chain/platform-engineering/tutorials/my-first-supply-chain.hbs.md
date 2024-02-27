@@ -6,17 +6,17 @@ In this section, you will use the Tanzu Supplychain CLI plug-in to create your f
 
 ## Prerequisites
 
-1. Ensure [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
+1. Ensure that the [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
 
-2. Ensure [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
+2. Ensure that [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
 ## Getting Started
 
 When you have completed the prerequisites, you have an `Authoring` profile cluster that has the
 Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the
-cluster and you are ready to build you first SupplyChain.
+cluster and you are ready to build your first SupplyChain.
 
-1. As a Platform Engineer, you want to know which components are available to use in you SupplyChain.
+1. As a Platform Engineer, you want to know which components are available to use in your SupplyChain.
 Run:
 
   ```console
@@ -45,7 +45,7 @@ Run:
   🔎 To view the details of a component, use 'tanzu supplychain component get'
   ```
 
-    Use the `-w/--wide` flag on the list command to see a more detailed output including a description of each component.
+    Use the `-w/--wide` flag to see a more detailed output including a description of each component.
 
 1. To get more information about each component on the cluster, use the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run:
 
@@ -140,7 +140,7 @@ authoring process. Scaffold the current directory using the `tanzu supplychain i
 
   - `config.yaml` file that contains the information about the group name, and the description of the
   Supplychain group.
-  - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto populated by
+  - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by
   the authoring wizard later in this tutorial.
   - `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies
   on any Build/Full profile clusters.
