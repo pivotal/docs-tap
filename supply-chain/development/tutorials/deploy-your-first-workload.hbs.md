@@ -2,7 +2,10 @@
 
 {{> 'partials/supply-chain/beta-banner' }} 
 
-In this section, you will use the Tanzu Workload CLI plug-in to create your first `Workload`. The Platform Engineer has already created some Supply Chains for you to use, which can pull the source code from the source repository and build it. The built artifact are shipped to a GitOps repository determined by the  Platform Engineer.
+In this section, you will use the Tanzu Workload CLI plug-in to create your first `Workload`.
+The Platform Engineer has already created some Supply Chains for you to use.
+The Supply Chains can pull the source code from the source repository and build it.
+The built artifact is then pushed to a GitOps repository determined by the Platform Engineer.
 
 ## Prerequisites
 
@@ -60,7 +63,7 @@ $ tanzu workload generate tanzu-java-web-app --kind appbuildv1s.supplychains.tan
 
 >**Note** If you have more than one kind available in the cluster, you must provide a `--kind` flag to disambiguate if you are piping the `generate` output to a file. `--kind` flag supports tab auto-completion to make it easier for developer to choose a kind.
 
-The next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entries. Here is what our sample `workload.yaml` looks like:
+The next step is to edit the `workload.yaml` file and put the appropriate values in the file for each required entry. For example:
 
 ```yaml
 apiVersion: supplychains.tanzu.vmware.com/v1alpha1
@@ -85,10 +88,10 @@ spec:
     packageDomain: "tanzu.vmware.com"
 ```
 
->**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command also shows the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer is able to set Platform level values like the registry details, and those entries are not be part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This results in a `Workload` spec that is much smaller and one that only has values that a Developer should be able to provide for the `SupplyChain` implementing a clear separation of concern between the Platform Engieering role and the Developer role.
+>**Caution** The Beta version of the Tanzu Supply Chain does not support Platform Engineer level overrides and defaults just yet. Therefore, the `Workload` generate command also shows the entries that a Platform Engineer is supposed to set, like the registry details. Once the overrides feature is available, a Platform Engineer can set Platform level values like the registry details, and those entries are not a part of the `generate` command output as that is something a Platform Engineer does not want a Developer to override. This results in a much smaller `Workload` spec and one that only has values that a Developer can provide for the `SupplyChain`. As a result, there is a clear separation between the Platform Engieering role and the Developer role.
 
-After you customize the `workload.yaml` with your setup details, its time to apply the `Workload` of type `AppBuildV1`.
-Use the following to command to apply your `AppBuildV1` workload to the cluster. 
+After you customize the `workload.yaml` with your setup details, apply the `Workload` of type `AppBuildV1`.
+Apply your `AppBuildV1` workload to the cluster:
 
 ```console
 $ tanzu workload apply
@@ -122,7 +125,7 @@ Create workload tanzu-java-web-app from workload.yaml? [yN]: y
 
 >**Note** The `tanzu workload create/apply` command looks for a file named `workload.yaml` by default. If you name your file something other than `workload.yaml`, specify the `-f` flag to point to it.
 
-The `AppBuildV1` workload is applied to the cluster. For the purpose of this tutorial, use the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
+The `AppBuildV1` workload is applied to the cluster. For this tutorial, use the `dev` namespace. To see all the workloads of each kind running in your namespace, use the `tanzu workload list` command as follows:
 
 ```console
 $ tanzu workload list
@@ -137,7 +140,7 @@ Listing workloads from the dev namespace
 
 To see all the workloads running in all namespaces, run the `tanzu workload list -A`.
 
-Now that you see the `tanzu-java-web-app` workload in the workload list. Run the following to see how its progressing through the Supply chain command:
+Now that you see the `tanzu-java-web-app` workload in the workload list. Run the following to see how it's progressing through the Supply chain command:
 
 ```console
 $ tanzu workload get tanzu-java-web-app
@@ -352,13 +355,13 @@ Workload Get Output
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
 
-As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from Git repository, build it using buildpacks and package the output as a Carvel package. That output should then be shipped to the GitOps repository that is configured by the Platform Engineer. In your Supply Chain, once the `WorkloadRun` succeeds, you can see the URL for the pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
+As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command, the Supply chain should pull the source code from Git repository, build it using buildpacks, and package the output as a Carvel package. That output should then be shipped to the GitOps repository that is configured by the Platform Engineer. In your Supply Chain, once the `WorkloadRun` succeeds, you can see the URL for the pull request to the GitOps repository in the `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
 
 You have successfully deployed your first workload using Tanzu Supply Chains.
 
 ## Next Steps
 
-Check out these [How to Guides](./../how-to/about.hbs.md) for developers for learning more about Tanzu Supply Chains.
+Check out these [How to Guides](./../how-to/about.hbs.md) for developers to learn more about Tanzu Supply Chains.
 
 ## References
 
