@@ -11,19 +11,19 @@ Tanzu Supply Chain CLI plug-in.
 
 2. Ensure that Tanzu Supply Chain packages and Catalog Component packages are installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
-- If you [Install TanzuSupply Chain with the authoring profile (recommended)](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md), these packages are automatically installed.
+- If you [Install Tanzu Supply Chain with the authoring profile (recommended)](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md), these packages are automatically installed.
 - If you [Install Tanzu Supply Chain manually (not recommended)](../../how-to/installing-supply-chain/installing-manually.hbs.md), you must install the packages individually.
 
 ## SupplyChain authoring
 
-SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging can be performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it should be committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. Platform Engineers can leverage the The Tanzu CLI `supplychain` plug-into streamline the authoring process for `SupplyChains` tailored to their developers.
+SupplyChains, particularly the authoring resources such as `SupplyChain`, `Component`, and the Tekton `Pipeline`/`Task` dependencies are intended to be deployed to clusters through a Git repository using the GitOps source promotion methodology. As a Platform Engineer, the recommended approach involves authoring the `SupplyChain` using a set of YAML files within a Git-backed file system. Testing and debugging is performed by pushing all files to a single namespace on the `authoring` profile cluster. Once satisfied with the new or modified `SupplyChain`, it is committed to Git, initiating a pull/merge request. However, managing a potentially large number of YAML manifests manually can be error-prone. Platform Engineers can leverage the Tanzu Supplychain CLI plug-in to streamline the authoring process for `SupplyChains` tailored to their developers.
 
-The `supplychain` CLI plug-in supports two modes of operation for generating SupplyChains.
+The Tanzu Supplychain CLI plug-in supports two modes of operation for generating SupplyChains.
 
 - **Interactive** way using the guided wizard
 - **Non-Interactive** way using flags
 
-Before you use modes, you must use the `tanzu supplychain init` command to initialize the local directory for the `supplychain` CLI generate command.
+Use the `tanzu supplychain init` command to initialize the local directory for the `tanzu supplychain generate` command.
 
 >**Important** Ideally, Platform Engineers should execute the `tanzu supplychain init/generate` commands on the local version of their GitOps repository, which they intend to utilize for deploying SupplyChains to their Build clusters. The `tanzu supplychain` CLI plug-in commands are designed to assist Platform Engineers in scaffolding and populating the local directory with the intended configuration of SupplyChains that they plan to deploy in their Build clusters.
 
@@ -44,11 +44,15 @@ The `tanzu supplychain init` command takes two optional flags:
 
 >**Important** After being set up with the designated `group`, the local directory becomes a hub for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should share the same `group`, and this group information is stored in the `config.yaml` file. Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
-Here is an example of how to execute the `tanzu supplychain init` command:
+1. Run:
 
 ```console
-$ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+```
 
+Example output:
+
+```console
 Initializing group supplychains.tanzu.vmware.com
 Creating directory structure
  ├─ supplychains/
