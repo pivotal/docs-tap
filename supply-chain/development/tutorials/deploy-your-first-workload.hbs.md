@@ -423,7 +423,3 @@ You have successfully deployed your first workload using Tanzu Supply Chains.
 
 Check out these [How to Guides](./../how-to/about.hbs.md) for developers to learn more about Tanzu Supply Chains.
 
-## References
-
-- [Understand Workloads](../explanation/workloads.hbs.md)
-- [Understand WorkloadRuns](../explanation/workloads.hbs.md)
