@@ -72,7 +72,7 @@ available, this is used to generate the scaffold of the `Workload`. Run
         ...
     ```
 
-1. Pipe the output of the generate command into a `workload.yaml` file. If you have more than one
+1. Pipe the output into a `workload.yaml` file. If you have more than one
 kind available in the cluster, you must provide a `--kind` flag. The `--kind` flag supports tab
 auto-completion. Run:
 
@@ -92,10 +92,10 @@ each required entry. For example:
       gitOps:
         baseBranch: "main"
         subPath: "packages"
-        url: <gitops-repo-path>
+        url: GITOPS-REPO-PATH
       registry:
-        repository: <repository-path>
-        server: <registry-server>
+        repository: REPOSITORY-PATH
+        server: REGISTRY-SERVER
       source:
         git:
           branch: "main"
@@ -140,10 +140,10 @@ to it. Run:
         11 + |  gitOps:
         12 + |    baseBranch: main
         13 + |    subPath: packages
-        14 + |    url: <gitops-repo-path>
+        14 + |    url: GITOPS-REPO-PATH
         15 + |  registry:
-        16 + |    repository: <repository-path>
-        17 + |    server: <registry-server>
+        16 + |    repository: REPOSITORY-PATH
+        17 + |    server: REGISTRY-SERVER
         18 + |  source:
         19 + |    git:
         20 + |      branch: main
@@ -243,10 +243,10 @@ is going through. Use the optional `--show-details` flag for a more detailed out
         11 + |  gitOps:
         12 + |    baseBranch: main
         13 + |    subPath: packages
-        14 + |    url: <gitops-repo-path>
+        14 + |    url: GITOPS-REPO-PATH
         15 + |  registry:
-        16 + |    repository: <repository-path>
-        17 + |    server: <registry-server>
+        16 + |    repository: REPOSITORY-PATH
+        17 + |    server: REGISTRY-SERVER
         18 + |  source:
         19 + |    git:
         20 + |      branch: main
@@ -264,26 +264,26 @@ is going through. Use the optional `--show-details` flag for a more detailed out
         │  └─ 📋 pipeline - Success
         │     ├─ Duration: 1m28s
         │     └─ Results
-        │        ├─ url: <image-url>
-        │        └─ digest: <image-sha>
+        │        ├─ url: IMAGE-URL
+        │        └─ digest: IMAGE-SHA
         ├─ buildpack-build
         │  ├─ 📋 check-builders - Success
         │  │  ├─ Duration: 26s
         │  │  └─ Results
-        │  │     ├─ builder-image: <builder-image-used>
+        │  │     ├─ builder-image: BUILDER-IMAGE-USED
         │  │     ├─ message: Builders resolved
-        │  │     └─ run-image: <run-image-used>
+        │  │     └─ run-image: RUN-IMAGE-USED
         │  └─ 📋 pipeline - Success
         │     ├─ Duration: 2m59s
         │     └─ Results
-        │        ├─ url: <image-url>
-        │        └─ digest: <image-sha>
+        │        ├─ url: IMAGE-URL
+        │        └─ digest: IMAGE-SHA
         ├─ conventions
         │  └─ 📋 pipeline - Success
         │     ├─ Duration: 33s
         │     └─ Results
-        │        ├─ url: <image-url>
-        │        └─ digest: <image-sha>
+        │        ├─ url: IMAGE-URL
+        │        └─ digest: IMAGE-SHA
         ├─ app-config-server
         │  └─ 📋 pipeline - Running
         │     └─ Duration: 22.37089s
@@ -301,7 +301,8 @@ is going through. Use the optional `--show-details` flag for a more detailed out
     - All running `WorkloadRuns`
     - Error section from the last failed `WorkloadRun`
 
-    Once your `WorkloadRun` has successfully gone through the Supply Chain, the output of the `Workload` and `WorkloadRun` will look as follows:
+    When your `WorkloadRun` has successfully gone through the Supply Chain, the output of the
+    `Workload` and `WorkloadRun` is as follows:
 
     Workload Run Output
     : **tanzu workload run get tanzu-java-web-app-run-454m5 --show-details**
@@ -329,10 +330,10 @@ is going through. Use the optional `--show-details` flag for a more detailed out
             11 + |  gitOps:
             12 + |    baseBranch: main
             13 + |    subPath: packages
-            14 + |    url: <gitops-repo-path>
+            14 + |    url: GITOPS-REPO-PATH
             15 + |  registry:
-            16 + |    repository: <repository-path>
-            17 + |    server: <registry-server>
+            16 + |    repository: REPOSITORY-PATH
+            17 + |    server: REGISTRY-SERVER
             18 + |  source:
             19 + |    git:
             20 + |      branch: main
@@ -350,46 +351,46 @@ is going through. Use the optional `--show-details` flag for a more detailed out
             │  └─ 📋 pipeline - Success
             │     ├─ Duration: 1m28s
             │     └─ Results
-            │        ├─ url: <image-url>
-            │        └─ digest: <image-sha>
+            │        ├─ url: IMAGE-URL
+            │        └─ digest: IMAGE-SHA
             ├─ buildpack-build
             │  ├─ 📋 check-builders - Success
             │  │  ├─ Duration: 26s
             │  │  └─ Results
-            │  │     ├─ builder-image: <builder-image-used>
+            │  │     ├─ builder-image: BUILDER-IMAGE-USED
             │  │     ├─ message: Builders resolved
-            │  │     └─ run-image: <run-image-used>
+            │  │     └─ run-image: RUN-IMAGE-USED
             │  └─ 📋 pipeline - Success
             │     ├─ Duration: 2m59s
             │     └─ Results
-            │        ├─ url: <image-url>
-            │        └─ digest: <image-sha>
+            │        ├─ url: IMAGE-URL
+            │        └─ digest: IMAGE-SHA
             ├─ conventions
             │  └─ 📋 pipeline - Success
             │     ├─ Duration: 33s
             │     └─ Results
-            │        ├─ url: <image-url>
-            │        └─ digest: <image-sha>
+            │        ├─ url: IMAGE-URL
+            │        └─ digest: IMAGE-SHA
             ├─ app-config-server
             │  └─ 📋 pipeline - Success
             │     ├─ Duration: 1m12s
             │     └─ Results
-            │        ├─ url: <image-url>
-            │        ├─ digest: <image-sha>
-            │        ├─ url-overlay: <image-url>
-            │        └─ digest-overlay: <image-sha>
+            │        ├─ url: IMAGE-URL
+            │        ├─ digest: IMAGE-SHA
+            │        ├─ url-overlay: IMAGE-URL
+            │        └─ digest-overlay: IMAGE-SHA
             ├─ carvel-package
             │  └─ 📋 pipeline - Success
             │     ├─ Duration: 49s
             │     └─ Results
-            │        ├─ url: <image-url>
-            │        └─ digest: <image-sha>
+            │        ├─ url: IMAGE-URL
+            │        └─ digest: IMAGE-SHA
             └─ git-writer-pr
             └─ 📋 pipeline - Success
                 ├─ Duration: 34s
                 └─ Results
-                    ├─ url: <pull-request-url-to-gitops-repo>
-                    └─ digest: <image-sha>
+                    ├─ url: PULL-REQUEST-URL-TO-GITOPS-REPO
+                    └─ digest: IMAGE-SHA
         ```
 
     Workload Get Output
@@ -409,10 +410,10 @@ is going through. Use the optional `--show-details` flag for a more detailed out
         🔎 To view a run information, use 'tanzu workload run get run-id'
         ```
 
-As per the description of the `AppBuildV1` kind from the `tanzu workload kind list` command,
-the Supply chain should pull the source code from Git repository, build it using buildpacks,
-and package the output as a Carvel package. That output should then be shipped to the GitOps
-repository that is configured by the Platform Engineer. In your Supply Chain, once the `WorkloadRun`
+Based on the description of the `AppBuildV1` kind from the `tanzu workload kind list` command,
+the Supply chain pulls the source code from Git repository, builds it using buildpacks,
+and packages the output as a Carvel package. That output is then shipped to the GitOps
+repository that is configured by the Platform Engineer. In your Supply Chain, when the `WorkloadRun`
 succeeds, you can see the URL for the pull request to the GitOps repository in the
 `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
 
