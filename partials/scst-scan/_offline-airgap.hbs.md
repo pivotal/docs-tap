@@ -71,7 +71,7 @@ specify the Trivy `ClusterImageTemplate`. For example:
           - name: TRIVY_JAVA_DB_REPOSITORY
             value: CONTAINER-REGISTRY/aquasecurity/trivy-java-db
           - name: TRIVY_OFFLINE_SCAN
-            value: true
+            value: "true"
     ```
 
     Where `CONTAINER-REGISTRY` is the URL for your registry. For example, `harbor.example.com`
