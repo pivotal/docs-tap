@@ -1,4 +1,4 @@
-# Post Install Configuration with Namespace Provisioner
+# Configure Tanzu Supply Chain
 
 {{> 'partials/supply-chain/beta-banner' }}
 
