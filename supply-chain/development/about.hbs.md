@@ -1,8 +1,8 @@
 # Tanzu Supply Chain for Developers
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This section contains the developer focused features of Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Prerequisites
 

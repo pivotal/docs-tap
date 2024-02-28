@@ -1,8 +1,8 @@
 # How To Guides for Developers
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This section contains how to guides for developers using Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 In this section:
 

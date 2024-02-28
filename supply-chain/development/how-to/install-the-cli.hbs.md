@@ -1,9 +1,9 @@
 # How to install the Tanzu Workload CLI Plug-in
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to install the Tanzu Workload CLI plug-in. Use this CLI plug-in to work
 with the workloads provided by platform engineering.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 This plug-in helps you discover workload kinds, deploy workloads, and monitor the workloads. The
 Tanzu Supply Chain beta release does not include the installation of the Tanzu Workload CLI plug-in

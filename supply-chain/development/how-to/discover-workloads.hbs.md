@@ -1,8 +1,8 @@
 # Work with Workloads
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to work with workloads when using Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 This topic explains how to:
 

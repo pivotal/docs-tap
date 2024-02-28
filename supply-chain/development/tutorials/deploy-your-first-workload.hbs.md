@@ -1,8 +1,8 @@
 # Tutorial: Deploy your first Workload
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to use the Tanzu Workload CLI plug-in to create your first `Workload`.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 The Platform Engineer has already created some Supply Chains for you to use.
 The Supply Chains can pull the source code from the source repository and build it.
