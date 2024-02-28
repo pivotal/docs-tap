@@ -4,8 +4,8 @@
 
 This topic describes the WorkloadRun resource of Tanzu Supply Chain.
 
-WorkloadRuns are [Custom Kubernetes Resources (CRDs)][CRD] created by [SupplyChains].
-They are also one of the two [Duck Typed Resources] in Tanzu Supply chain
+WorkloadRuns are Custom Kubernetes Resources (CRDs) created by SupplyChains.
+They are also one of the two Duck Typed Resources in Tanzu Supply chain.
 
 ## Static CustomResourceDefinitions API
 
@@ -19,7 +19,7 @@ kind: CustomResourceDefinition
 ### `metadata.labels`
 
 Workload CRDs always have the following labels.
-The `chain-name` and `chain-namespace` labels reference the location of the [SupplyChain] resource that created this
+The `chain-name` and `chain-namespace` labels reference the location of the SupplyChain resource that created this
 WorkloadRun.
 The `chain-role` identifies this as a WorkloadRun. The other possible value is `workload`.
 
@@ -34,7 +34,7 @@ metadata:
 ### `metadata.name`
 
 The name of the resource is always in the form `<singular>runs.<group>` from
-the [Supply Chain Defines API](./supplychain.hbs.md#specdefines)
+the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 
 #### Example
 
@@ -50,7 +50,7 @@ the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 However most names have the word "run" appended.
 
 Additionally, the `spec.names[].categories[]` array includes a category of `all-runs`. This ensures that
-commands such as `kubectl get all-runs` find all the [SupplyChain] defined WorkloadRuns a user can access.
+commands such as `kubectl get all-runs` find all the SupplyChain defined WorkloadRuns a user can access.
 
 #### Example
 
@@ -84,21 +84,19 @@ This image shows the static and dynamic sections of a WorkloadRun.
 
 ![duck-type.png](./images/duck-type.png)
 
-> **Note**
-> The duplication of the WorkloadRun `spec` into `spec.status.workloadRun.spec` is shown here.
+> **Note** The duplication of the WorkloadRun `spec` into `spec.status.workloadRun.spec` is shown here.
 
-> **Note**
-> The `status` **is not** duplicated again into the `status.workloadRun` field.
+> **Note** The `status` is not duplicated again into the `status.workloadRun` field.
 
 ## Static WorkloadRun API
 
-It's important to understand that `Static` means that the schema of these sections of the WorkloadRun is unchanging.
+`Static` means that the schema of these sections of the WorkloadRun is unchanging.
 This does not mean that these sections do not mutate during the life of the WorkloadRun. They do, because they track
 the progress of the WorkloadRun.
 
 ### `spec.stages[]` and `status.workloadrun.spec.stages[]`
 
-`spec.stages[]` is empty if the run was triggered by a new workload generation, or, if triggered by a [Resumption],
+`spec.stages[]` is empty if the run was triggered by a new workload generation, or, if triggered by a Resumption,
 contains the stages up to
 but excluding the stage containing the resumption trigger.
 
@@ -107,7 +105,7 @@ proceeds, contains the rest of the results for subsequent stages.
 
 ### `spec.stages[].name` and `status.workloadrun.spec.stages[].name`
 
-`name` is the name of this stage as defined in the SupplyChain
+`name` is the name of this stage as defined in the SupplyChain.
 
 ### `spec.stages[].componentRef` and `status.workloadrun.spec.stages[].componentRef`
 
@@ -129,7 +127,7 @@ Each output contains the following fields:
 | `url:`    | The url to the artifact where this output is stored. All outputs are stored as supply chain accessible resources (URLs) |
 | `digest:` | A digest representing the state of the output.                                                                          |
 
-[//]: # (TODO: Explainer has to describe inputs and outputs clearly)
+<!--[//]: # (TODO: Explainer has to describe inputs and outputs clearly)-->
 
 ### `spec.stages[].pipeline` and `status.workloadrun.spec.stages[].pipeline`
 
@@ -162,13 +160,13 @@ pipeline:
 
 ### `spec.workload` and `spec.status.workloadRun.spec.workload`
 
-These are the same. Technically, `spec.workload` is the state of the [Workload] when the run is created, and
-`spec.status.workloadRun.spec.workload` is the state of the [Workload] after the run starts, but they never change, so
+These are the same. Technically, `spec.workload` is the state of the Workload when the run is created, and
+`spec.status.workloadRun.spec.workload` is the state of the Workload after the run starts, but they never change, so
 are in fact identical.
 
 Both contain the `workload.metadata` and `workload.spec` sections of the workload that were used in this run.
-The [WorkloadRun] "closes over" this state so that it cannot be lost. When viewing a run, you can always tell which
-[Workload]'s state was used during the run.
+The WorkloadRun "closes over" this state so that it cannot be lost. When viewing a run, you can always tell which
+Workload's state was used during the run.
 
 ## Status
 
@@ -204,6 +202,7 @@ specifically appended to the Tekton result named `message` to appear here.
 `Message` contains processing information and error messages produced in the taskRun. This information must be
 specifically appended to the Tekton result named `message` to appear here.
 
+<!--
 [Workload]: workload.hbs.md
 [WorkloadRun]: workloadrun.hbs.md
 [Components]: component.hbs.md
@@ -229,3 +228,4 @@ specifically appended to the Tekton result named `message` to appear here.
 [Tekton Taskrun]: https://tekton.dev/docs/pipelines/taskruns/
 [Tekton Task]: https://tekton.dev/docs/pipelines/tasks/
 [Tekton PipelineRun results]: https://tekton.dev/docs/pipelines/pipelines/#emitting-results-from-a-pipeline
+-->

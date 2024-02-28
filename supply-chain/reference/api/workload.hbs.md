@@ -4,8 +4,8 @@
 
 This topic describes the Workload resource of Tanzu Supply Chain.
 
-Workloads are [Custom Kubernetes Resources (CRDs)][CRD] created by [SupplyChains].
-They are also one of the two [Duck Typed Resources] in Tanzu Supply chain
+Workloads are Custom Kubernetes Resources (CRDs) created by SupplyChains.
+They are also one of the two Duck Typed Resources in Tanzu Supply chain
 
 ## Static CustomResourceDefinitions API
 
@@ -49,6 +49,7 @@ Additionally, the `spec.names[].categories[]` array includes a category of `all-
 commands such as `kubectl get all-workloads` will find all the SupplyChain defined Workloads a user can access.
 
 #### Example
+
 ```yaml
 spec:
   conversion:
@@ -89,6 +90,7 @@ metadata:
 The `spec` of a Workload is dynamic, however it is immutable once applied.
 The spec is derived by combining the [Component configurations](./component.hbs.md#specconfig) of all the [SupplyChain Stages](./supplychain.hbs.md#specstages)
 
+<!--
 [Duck Typed Resources]: ./duck-types.hbs.md
 [SupplyChain]: ./supplychain.hbs.md
 [SupplyChains]: supplychain.hbs.md
@@ -98,3 +100,4 @@ The spec is derived by combining the [Component configurations](./component.hbs.
 [WorkloadRun]: workloadrun.hbs.md
 [CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"
 [Kind]: https://kubernetes.io/docs/concepts/overview/working-with-objects/ "Kubernetes documentation for Objects"
+-->

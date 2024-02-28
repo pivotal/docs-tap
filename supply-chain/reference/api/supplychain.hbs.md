@@ -4,7 +4,7 @@
 
 This topic describes the SupplyChain resource of Tanzu Supply Chain.
 
-The supply chain defines the [Object Kind] of the [Workload], the [Components] used, and their order.
+The supply chain defines the Object Kind of the Workload, the Components used, and their order.
 
 ## Type and Object Metadata
 
@@ -19,10 +19,10 @@ kind: SupplyChain
 
 `<plural-name>.<group>-<Major>.<minor>.<patch>`
 
-* `plural-name` must match the plural form of `defines.kind`, without the version.
+- `plural-name` must match the plural form of `defines.kind`, without the version.
   For example: `kind: JavaServerAppV3` would have a `plural-name` of `javaserverappv3s`
-* `group` must mach `defines.group` (see [`spec.defines.group`](#specdefines) below )
-* `<Major>.<minor>.<patch>` is the version definition.
+- `group` must mach `defines.group` (see [`spec.defines.group`](#specdefines) below )
+- `<Major>.<minor>.<patch>` is the version definition.
 
 ```yaml
 metadata:
@@ -71,7 +71,7 @@ It must be all lowercase.
 #### `spec.defines.singular`
 
 `spec.defines.singular` is optional and defaults to the lowercase of `kind`, for example `ServerAppv1`
-becomes `serverappv1`
+becomes `serverappv1`.
 
 #### `spec.defines.shortnames`
 
@@ -79,7 +79,7 @@ becomes `serverappv1`
 Use this to specify an array of aliases for your kind.
 These are great to simplify `kubectl` commands.
 
-##### Example:
+##### Example
 
 ```console
 kind: ServerAppV1
@@ -125,7 +125,7 @@ spec:
 ### `spec.stages[]`
 
 `spec.stages` break the work to be done by this supply chain into a serial collection of "stages", each with
-a [component].
+a component.
 
 This is where you define the operations of this SupplyChain.
 
@@ -138,9 +138,9 @@ Each stage has a `name`, which is shown to the user in the CLI and UI.
 
 Each stage also has a `componentRef` with a single field `name`.
 `componentRef.Name` refers to the name of a Tanzu Supply Chain [Component] resource.
-The [Component] **must** exist in the same namespace as the SupplyChain. This will change, see [Known Issue: Workload Creation](../../known-issues.hbs.md#workload-creation).
+The [Component] must exist in the same namespace as the SupplyChain. This will change, see [Known Issue: Workload Creation](../../known-issues.hbs.md#workload-creation).
 
-The supply chain returns an error if a component expects an [input] that has not been [output] by a previous stage.
+The supply chain returns an error if a component expects an input that has not been output by a previous stage.
 
 #### Example
 
@@ -198,6 +198,7 @@ The sub-types are:
 | InputMismatch               | The input matches a previous output by name, however the type does not match.                                                                |
 | OutputRedefined             | The output redefines an existing output. Shadowing of outputs is not supported.                                                              |
 
+<!--
 [Workload]: workload.hbs.md
 [WorkloadRun]: workloadrun.hbs.md
 [Components]: component.hbs.md
@@ -208,3 +209,4 @@ The sub-types are:
 [CRD]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/ "Kubernetes Custom Resource documentation"
 [CustomResourceDefinition]: https://kubernetes.io/docs/reference/kubernetes-api/extend-resources/custom-resource-definition-v1/ "Kuberneted Custom Resource Definition API specification"
 [CustomResourceDefinitionSpec]: https://kubernetes.io/docs/reference/kubernetes-api/extend-resources/custom-resource-definition-v1/#CustomResourceDefinitionSpec "Kuberneted CRD Spec API specification"
+-->
