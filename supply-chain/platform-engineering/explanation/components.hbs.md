@@ -6,7 +6,7 @@ This topic introduces the Component resource in Tanzu Supply Chain.
 
 ![core-concepts-component.jpg](./images/core-concepts-component.jpg)
 
-[Detailed Specification in the API Section](../../reference/api/component.hbs.md)
+For more information, see [Component API](../../reference/api/component.hbs.md).
 
 Components encapsulate "work to be done" in composable and reusable pieces.
 Components are analogous to steps, stages, jobs, and, tasks in other CI/CD offerings.

@@ -1,4 +1,4 @@
-# Understanding SupplyChains
+# Overview of SupplyChains
 
 {{> 'partials/supply-chain/beta-banner' }}
 
@@ -6,7 +6,7 @@ This topic introduces the SupplyChain resource, which unifies the Tanzu Supply C
 
 ![core-concepts-supplychains.jpg](./images/core-concepts-supplychains.jpg)
 
-[Detailed Specification in the API Section](../../reference/api/supplychain.hbs.md)
+For more information, see [SupplyChain](../../reference/api/supplychain.hbs.md).
 
 ## SupplyChain describes a process with `stages`
 
@@ -17,7 +17,7 @@ In software, it's a very similar concept, delivering an operational end product 
 The Tanzu Supply Chain product relies on this metaphor to describe your Golden Path to Production.
 It provides a primitive called SupplyChain, which is a Kubernetes custom resource, that you use to define all, or portions of, your software supply chain.
 
-Typical uses of the Tanzu Supply Chain SupplyChain primitive are described in the topics below.
+Typical uses of the Tanzu Supply Chain SupplyChain primitives are described here.
 
 ### SupplyChain describes a build process
 
@@ -55,7 +55,7 @@ A SupplyChain brings together the API for an end user to apply to the cluster by
 
 By selecting components, the supply chain aggregates each component's configuration as a single API specification for the [Workload].
 
-> **Note** It is likely that Workload will be named to something else in a later Tanzu Application Platform release. Additional support for overriding configuration within a SupplyChain will be also be released, allowing Platform Engineers to configure values developers don't need to know about.
+> **Note** It is likely that Workload will be renamed to something else in a later Tanzu Application Platform release. Additional support for overriding configuration within a SupplyChain will be also be released, allowing Platform Engineers to configure values developers don't need to know about.
 
 ### Supply Chains enforce immutability
 

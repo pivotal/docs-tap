@@ -1,4 +1,4 @@
-# Resumptions
+# Overview of Resumptions
 
 {{> 'partials/supply-chain/beta-banner' }}
 
@@ -6,12 +6,12 @@ This topic explains the concept of resumptions in Tanzu Supply Chain.
 
 ![core-concepts-resumptions.jpg](./images/core-concepts-resumptions.jpg)
 
-[Detailed Specification in the API Section](../../reference/api/component.hbs.md)
+For more information, see [Component API](../../reference/api/component.hbs.md).
 
-Resumptions are an important part of the Tanzu Supply Chain [Component] resource.
+Resumptions are an important part of the Tanzu Supply Chain Component resource.
 
-The rest of Component deals with either the configuration to pass to resumptions and pipelines, or the pipeline to 'run' when the Component is reached in the SupplyChain `stages`.
-Resumptions are focused on **reasons to run again**.
+The rest of Component deal with either the configuration to pass to resumptions and pipelines, or the pipeline to run when the Component is reached in the SupplyChain `stages`.
+Resumptions are focused on reasons to run again.
 
 Resumptions are executed on a timer, specified in the component's `resumptions` array.
 When they trigger, they execute a Tekton TaskRun to discover new values. These are very common for discovering
