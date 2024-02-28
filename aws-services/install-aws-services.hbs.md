@@ -40,7 +40,9 @@ To plan and configure your infrastructure:
     > You must create them manually using the AWS console.
     > This is a one-time manual setup step that you must complete before installing the package.
 
-1. Record the name of the DBSubnetGroup and the IDs of the SecurityGroups you created.
+1. If configuring RabbitMQ, choose an existing Subnet or create one, see the [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html).
+
+1. Record the name of the DBSubnetGroup, IDs of the SecurityGroups and Subnets.
    These are required when installing the package.
 
 1. Complete any remaining configuration tasks listed in [Supported Topologies](reference/supported-topologies.hbs.md).
@@ -123,7 +125,7 @@ To install the AWS Services package:
         name: "PROVIDER-CONFIG-NAME"
       # Infrastructure configuration for the Amazon MQ (RabbitMQ) service
       infrastructure:
-        subnet_id: "SUBNET-NAME"
+        subnet_id: "SUBNET-ID"
         security_groups:
           - id: "SECURITY-GROUP-ID"
       # Instance-level configuration for the Amazon MQ (RabbitMQ) service applied to all service instances
@@ -150,6 +152,8 @@ To install the AWS Services package:
     - `SUBNET-GROUP-NAME` is the name of the DBSubnetGroup you created in
       [Plan and configure your infrastructure](#config-infra) earlier.
     - `SECURITY-GROUP-ID` are the IDs of any security groups you created in
+      [Plan and configure your infrastructure](#config-infra) earlier.
+    - `SUBNET-ID` is the ID of a Subnet used for the Resource that you chose or created in
       [Plan and configure your infrastructure](#config-infra) earlier.
     - `INSTANCE-CLASS` is the instance type of the RDS instance. The default is `db.t3.micro`.
     - `ENGINE-VERSION` is the engine version. For PostgreSQL the default is `13.7`.
