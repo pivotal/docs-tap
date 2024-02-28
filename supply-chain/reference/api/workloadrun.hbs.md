@@ -82,7 +82,7 @@ The majority of the WorkloadRun specification appears again in `status.workloadR
 
 This image shows the static and dynamic sections of a WorkloadRun.
 
-![duck-type.png](images%2Fduck-type.png)
+![duck-type.png](./images/duck-type.png)
 
 > **Note**
 > The duplication of the WorkloadRun `spec` into `spec.status.workloadRun.spec` is shown here.

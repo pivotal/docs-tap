@@ -14,7 +14,7 @@ A supply chain, in the context of physical manufacturing is the process that del
 
 In software, it's a very similar concept, delivering an operational end product to customers, starting with source code (raw materials).
 
-The Tanzu Supply Chain product relies on this metaphor to describe your Golden Path to Production.
+The Tanzu Supply Chain product relies on this metaphor to describe your golden path to production.
 It provides a primitive called SupplyChain, which is a Kubernetes custom resource, that you use to define all, or portions of, your software supply chain.
 
 Typical uses of the Tanzu Supply Chain SupplyChain primitives are described here.
@@ -48,23 +48,23 @@ Typical stages included in this process are:
 
 ## SupplyChain `defines` a configuration resource
 
-A SupplyChain brings together the API for an end user to apply to the cluster by:
+A SupplyChain brings together the API for an end-user to apply to the cluster by:
 
 - [defining](../../reference/api/supplychain.hbs.md#specdefines) a group and kind for a resource, called Workload.
 - specifying components used in the SupplyChain's [stages](../../reference/api/supplychain.hbs.md#specstages).
 
-By selecting components, the supply chain aggregates each component's configuration as a single API specification for the [Workload].
+By selecting components, the supply chain aggregates each component's configuration as a single API specification for the Workload.
 
 > **Note** It is likely that Workload will be renamed to something else in a later Tanzu Application Platform release. Additional support for overriding configuration within a SupplyChain will be also be released, allowing Platform Engineers to configure values developers don't need to know about.
 
 ### Supply Chains enforce immutability
 
-The version of your SupplyChain, as embedded in the name, must follow the following rules.
+The version of your SupplyChain, as embedded in the name, must follow these rules.
 
 A patch bump is required to update the supply chain without an API change.
 The controller ensures this rule cannot be broken when comparing supply chains on cluster.
 
-For example, imagine you apply to a cluster:
+For example, apply to a cluster:
 
 - a SupplyChain with the name `serverappv1s.example.com-1.0.0` with kind `ServerAppV1s`
 - a SupplyChain with the name `serverappv1s.example.com-1.0.1` with kind `ServerAppV1s`

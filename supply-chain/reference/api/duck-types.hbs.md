@@ -7,7 +7,7 @@ The two resource types that are "Duck types" are [Workloads](./workload.hbs.md) 
 
 In short, a duck type resource is a resource with significant commonality, like a "Class" in Object Oriented Design, but without the inheritance.
 
-![duck-type.png](images%2Fduck-type.png)
+![duck-type.png](./images/duck-type.png)
 
 As shown, some sections of a Duck Type API are unchanging (static) and others can and do change (dynamic)
 
