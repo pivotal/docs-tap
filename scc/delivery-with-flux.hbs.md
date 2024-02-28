@@ -26,7 +26,9 @@ To use Gitops Delivery with Flux CD, you must complete the following prerequisit
 
 ## <a id="install-kustomize-controller"></a> Install Kustomize Controller Prerequisite
 
-As mentioned earlier, to use a build cluster to control the deployment on run clusters, you must install Flux CD kustomize-controller. You can do the installation using the flux cli. Use release [v0.41.2](https://github.com/fluxcd/flux2/releases/tag/v0.41.2). (Caution: newer releases of Kustomize Controller are not compatible with TAP 1.7.x)
+As mentioned earlier, to use a build cluster to control the deployment on run clusters, you must install Flux CD kustomize-controller. You can do the installation using the flux cli. Use release [v0.41.2](https://github.com/fluxcd/flux2/releases/tag/v0.41.2). 
+
+> **Caution** Newer releases of Kustomize Controller are not compatible with Tanzu Application Platform v1.7.x and later.
 
 To install Flux CD:
 

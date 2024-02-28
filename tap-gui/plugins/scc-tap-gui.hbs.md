@@ -226,7 +226,7 @@ analysis.
 
 ## <a id="sc-crds"></a> Support for CRDs
 
-Tanzu Developer Portal v1.7.0 introduced support for CRDs. The following example illustrates the
+Tanzu Developer Portal v1.7.0 and later introduced support for CRDs. The following example illustrates the
 creation of a basic custom resource definition (CRD), which is used as part of a supply chain and
 its visualization in the workload:
 

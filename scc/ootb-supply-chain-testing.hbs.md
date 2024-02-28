@@ -142,7 +142,7 @@ spec:
         params:
           - name: source-url
           - name: source-revision
-        # Remove this step template for Tanzu Application Platform v1.7.0 when running on OpenShift.
+        # Remove this step template for Tanzu Application Platform v1.8.0 when running on OpenShift.
         stepTemplate:
           securityContext:
             allowPrivilegeEscalation: false

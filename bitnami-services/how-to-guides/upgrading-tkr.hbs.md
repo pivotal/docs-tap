@@ -7,7 +7,7 @@ Tanzu Kubernetes releases v1.26 and later enforces a [restricted Pod Security St
 for all pods running on the cluster.
 This change affects your running services.
 
-New services claimed on Tanzu Application Platform v1.7 run with no issues in a restricted PSS.
+New services claimed on Tanzu Application Platform v1.7 and later run with no issues in a restricted PSS.
 Existing services claimed on Tanzu Application Platform v1.6 will fail to start.
 To resolve the issue for existing instances, you must update CompositionRevision references for any
 existing Bitnami Services service instances.
