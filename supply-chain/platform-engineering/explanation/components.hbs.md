@@ -1,8 +1,8 @@
 # Overview of Components
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic introduces the Component resource in Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ![core-concepts-component.jpg](./images/core-concepts-component.jpg)
 

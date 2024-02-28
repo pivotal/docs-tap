@@ -1,8 +1,8 @@
 # Overview of Resumptions
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic explains the concept of resumptions in Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ![core-concepts-resumptions.jpg](./images/core-concepts-resumptions.jpg)
 

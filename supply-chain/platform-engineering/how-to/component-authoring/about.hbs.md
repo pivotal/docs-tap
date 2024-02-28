@@ -1,8 +1,8 @@
 # Component Authoring How Tos
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This section contains how to guides for platform engineers about authoring Components.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 In this section:
 

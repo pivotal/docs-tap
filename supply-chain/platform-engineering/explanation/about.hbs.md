@@ -1,9 +1,9 @@
 # Explanations for Platform Engineers
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This section describes the core architectural concepts of Tanzu Supply Chain.
 It focuses on authoring a platform for application development.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 The Tanzu Supply Chain enables platform engineers to author a seamless experience for
 development work; an experience that does not require an understanding of Kubernetes.
