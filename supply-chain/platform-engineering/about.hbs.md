@@ -2,7 +2,7 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This section contains the platform engineering focused features of Tanzu Supply Chain.
+This section contains the platform-engineering focused features of Tanzu Supply Chain.
 
 ## Prerequisites
 
@@ -22,12 +22,12 @@ Install these CLI tools:
 
 ## How to Guides: SupplyChain Authoring
 
-- [Construct a Supply Chain using the CLI](./how-to/supply-chain-authoring/construct-with-cli.hbs.md)
+- [Construct a Supply Chain using the Tanzu CLI](./how-to/supply-chain-authoring/construct-with-cli.hbs.md)
 
 ## How to Guides: Deploying and Managing SupplyChains
 
 - [Install an authored SupplyChain](./how-to/deploying-supply-chains/install.hbs.md)
-- [GitOps Managed SupplyChains](./how-to/deploying-supply-chains/gitops-managed.hbs.md)
+- [Manage SupplyChains with GitOps](./how-to/deploying-supply-chains/gitops-managed.hbs.md)
 
 ## Out of the Box Catalog of Components
 

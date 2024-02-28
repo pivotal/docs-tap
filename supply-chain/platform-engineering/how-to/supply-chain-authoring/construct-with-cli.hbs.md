@@ -1,4 +1,4 @@
-# Construct a Supply Chain using the CLI
+# Construct a Supply Chain using the Tanzu CLI
 
 {{> 'partials/supply-chain/beta-banner' }}
 

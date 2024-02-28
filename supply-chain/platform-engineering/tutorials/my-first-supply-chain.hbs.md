@@ -2,10 +2,10 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic tells you how to use the Tanzu Supply Chain CLI plug-in to create a SupplyChain
+This topic tells you how to use the Tanzu Supplychain CLI plug-in to create a SupplyChain
 for developers to use.
 
-This SupplyChain pulls the source code from the Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+This SupplyChain pulls the source code from a Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
@@ -56,66 +56,66 @@ Run:
   tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
   ```
 
-Example output:
+  Example output:
 
-  ```console
-  📡 Overview
-    name:         source-git-provider-1.0.0
-    namespace:    source-provider
-    age:          14d
-    status:       True
-    reason:       Ready
-    description:  Monitors a git repository
+    ```console
+    📡 Overview
+      name:         source-git-provider-1.0.0
+      namespace:    source-provider
+      age:          14d
+      status:       True
+      reason:       Ready
+      description:  Monitors a git repository
 
-  📝 Configuration
-    source:
-      #! Use this object to retrieve source from a git repository.
-      #! The tag, commit and branch fields are mutually exclusive, use only one.
-      #! Required
-      git:
-        #! A git branch ref to watch for new source
-        branch: "main"
-        #! A git commit sha to use
-        commit: ""
-        #! A git tag ref to watch for new source
-        tag: "v1.0.0"
-        #! The url to the git source repository
+    📝 Configuration
+      source:
+        #! Use this object to retrieve source from a git repository.
+        #! The tag, commit and branch fields are mutually exclusive, use only one.
         #! Required
-        url: "https://github.com/acme/my-workload.git"
-      #! The sub path in the bundle to locate source code
-      subPath: ""
+        git:
+          #! A git branch ref to watch for new source
+          branch: "main"
+          #! A git commit sha to use
+          commit: ""
+          #! A git tag ref to watch for new source
+          tag: "v1.0.0"
+          #! The url to the git source repository
+          #! Required
+          url: "https://github.com/acme/my-workload.git"
+        #! The sub path in the bundle to locate source code
+        subPath: ""
 
-  📤 Outputs
-    git
-      ├─ digest: $(resumptions.check-source.results.sha)
-      ├─ type: git
-      └─ url: $(resumptions.check-source.results.url)
-    source
-      ├─ digest: $(pipeline.results.digest)
-      ├─ type: source
-      └─ url: $(pipeline.results.url)
+    📤 Outputs
+      git
+        ├─ digest: $(resumptions.check-source.results.sha)
+        ├─ type: git
+        └─ url: $(resumptions.check-source.results.url)
+      source
+        ├─ digest: $(pipeline.results.digest)
+        ├─ type: source
+        └─ url: $(pipeline.results.url)
 
-  🏃 Pipeline
-      ├─ name: source-git-provider
-      └─ 📋 parameters
-        ├─ git-url: $(workload.spec.source.git.url)
-        ├─ sha: $(resumptions.check-source.results.sha)
-        └─ workload-name: $(workload.metadata.name)
+    🏃 Pipeline
+        ├─ name: source-git-provider
+        └─ 📋 parameters
+          ├─ git-url: $(workload.spec.source.git.url)
+          ├─ sha: $(resumptions.check-source.results.sha)
+          └─ workload-name: $(workload.metadata.name)
 
-  🔁 Resumptions
-    - check-source runs source-git-check task every 300s
-      📋 Parameters
-        ├─ git-branch: $(workload.spec.source.git.branch)
-        ├─ git-commit: $(workload.spec.source.git.commit)
-        ├─ git-tag: $(workload.spec.source.git.tag)
-        └─ git-url: $(workload.spec.source.git.url)
+    🔁 Resumptions
+      - check-source runs source-git-check task every 300s
+        📋 Parameters
+          ├─ git-branch: $(workload.spec.source.git.branch)
+          ├─ git-commit: $(workload.spec.source.git.commit)
+          ├─ git-tag: $(workload.spec.source.git.tag)
+          └─ git-url: $(workload.spec.source.git.url)
 
-  🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
+    🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
 
-  ```
+    ```
 
 1. Now that you know what components are available to create your SupplyChain, start the
-authoring process. Scaffold the current directory using the `tanzu supplychain init` command. Run:
+authoring process. Use the `tanzu supplychain init` command to scaffold the current directory. Run:
 
   ```console
   mkdir myfirstsupplychaingroup
@@ -159,7 +159,7 @@ generate your first SupplyChain. Start the wizard:
 1. In the wizard prompts that follow, add the following values:
 
    - **What Kind would you like to use as the developer interface?** AppBuildV1
-   - **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+   - **Give Supply chain a description?** Supply chain that pulls the source code from Git repo, builds it using buildpacks and package the output as Carvel package.
    - **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
    - **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
    - **Select a component as the next stage of the supply chain?** conventions-1.0.0
