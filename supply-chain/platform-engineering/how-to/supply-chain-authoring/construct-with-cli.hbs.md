@@ -1,9 +1,9 @@
 # Construct a Supply Chain using the Tanzu CLI
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to construct a SupplyChain resource using the Tanzu CLI with the
 Tanzu Supplychain CLI plug-in.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Prerequisites
 

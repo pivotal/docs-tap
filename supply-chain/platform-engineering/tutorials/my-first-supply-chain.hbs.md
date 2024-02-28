@@ -1,9 +1,9 @@
 # Build your first Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to use the Tanzu Supplychain CLI plug-in to create a SupplyChain
 for developers to use.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 This SupplyChain pulls the source code from a Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 

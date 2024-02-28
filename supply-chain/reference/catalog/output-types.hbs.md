@@ -1,10 +1,9 @@
 # Output types for catalog components
 
+This section describes the common types established in Tanzu Supply Chain Components, their purpose
+and their structure. Use this as a guide to consuming or emitting types from your own custom Components.
+
 {{> 'partials/supply-chain/beta-banner' }}
-
-This section describes the common types established in Tanzu Supply Chain Components, their purpose and their
-structure. Use this as a guide to consuming or emitting types from your own custom Components.
-
 ## conventions
 
 **URL**: OCI image containing the `app-config.yaml` file.<br/>

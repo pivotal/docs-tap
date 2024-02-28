@@ -1,8 +1,8 @@
 # Configure Tanzu Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you what to configure to complete your Tanzu Supply Chain installation.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 After you have installed Tanzu Supply Chain, there are several steps you must complete to ensure
 you have a functioning installation. Use Namespace Provisioner to configure service accounts and permissions.

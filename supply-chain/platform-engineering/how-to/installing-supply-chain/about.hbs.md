@@ -1,8 +1,8 @@
 # Install Tanzu Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This section tells you how to install Tanzu Supply Chain.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 There are two ways to install Tanzu Supply Chain:
 

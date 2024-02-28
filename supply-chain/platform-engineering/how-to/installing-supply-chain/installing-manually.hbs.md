@@ -1,8 +1,8 @@
 # Install Tanzu Supply Chain manually (not recommended)
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to install Tanzu Supply Chain manually. This installation method is not recommended.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 To install Tanzu Supply Chain manually, you must install additional packages that are not bundled with
 existing installation profiles.

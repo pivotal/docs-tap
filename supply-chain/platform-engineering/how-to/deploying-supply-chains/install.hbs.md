@@ -1,8 +1,7 @@
 # Install an authored Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic tells you how to install a SupplyChain authored using the Tanzu Supplychain CLI plug-in.
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Prerequisite
 

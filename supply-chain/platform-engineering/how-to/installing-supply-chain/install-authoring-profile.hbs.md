@@ -1,9 +1,9 @@
 # Install Tanzu Supply Chain with the authoring profile (recommended)
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 This topic describes the recommended method for installing Tanzu Supply Chain using the
 Authoring profile (beta). This profile installs all the required packages.
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 The Authoring profile has the following additional packages that the Iterate profile does not have:
 
