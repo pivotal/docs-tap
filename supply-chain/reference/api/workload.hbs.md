@@ -1,10 +1,10 @@
-# Workload
+# Workload CRD
 
-This topic tells you about the `Workload` resource of Tanzu Supply Chain.
+This topic gives you reference information about the `Workload` resource for Tanzu Supply Chain.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-`Workload` resources are Custom Kubernetes Resources (CRDs) created by `SupplyChain` resources.
+`Workload` resources are custom resource definitions (CRDs) created by `SupplyChain` resources.
 They are also one of the two duck type resources in Tanzu Supply Chain.
 
 ## Static CustomResourceDefinitions API

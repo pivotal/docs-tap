@@ -1,10 +1,10 @@
 # WorkloadRun CRD
 
+This topic gives you reference information about the `WorkloadRun` resource for Tanzu Supply Chain.
+
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic describes the `WorkloadRun` resource of Tanzu Supply Chain.
-
-`WorkloadRun` resources are Custom Kubernetes Resources (CRDs) created by `SupplyChains`.
+`WorkloadRun` resources are custom resource definitions (CRDs) created by `SupplyChains`.
 They are also one of the two duck type resources in Tanzu Supply Chain.
 
 ## Static CustomResourceDefinitions API

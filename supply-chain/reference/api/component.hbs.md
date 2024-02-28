@@ -1,6 +1,6 @@
 # Component API
 
-This topic tells you about the `Component` resource of Tanzu Supply Chain.
+This topic gives you reference information about the `Component` resource for Tanzu Supply Chain.
 
 {{> 'partials/supply-chain/beta-banner' }}
 

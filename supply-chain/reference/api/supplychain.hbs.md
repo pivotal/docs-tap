@@ -1,10 +1,10 @@
 # SupplyChain API
 
-This topic tells you about the `SupplyChain` resource of Tanzu Supply Chain.
+This topic gives you reference information about the `SupplyChain` resource for Tanzu Supply Chain.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-The supply chain defines the Object Kind of the Workload, the Components used, and their order.
+The supply chain defines the object kind of the `Workload`, the `Components` used, and their order.
 
 ## Type and Object Metadata
 
@@ -49,7 +49,7 @@ The description field supports multi-line Plain text or Markdown.
 
 ### `spec.defines`
 
-The `spec.defines` object defines the Workload [CustomResourceDefinition].
+The `spec.defines` object defines the `Workload` custom resource definition (CRD).
 
 #### `spec.defines.group`
 
