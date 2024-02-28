@@ -515,8 +515,11 @@ stringData:
             resources:
               #@overlay/replace
               limits:
-                memory: "2Gi"
+                memory: "1.5Gi"
                 cpu: "200m"
+              requests:
+                memory: "750Mi"
+                cpu: "100m"
 ---
 ```
 
