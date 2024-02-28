@@ -1,4 +1,4 @@
-# Resumptions explained
+# Resumptions
 
 {{> 'partials/supply-chain/beta-banner' }}
 
@@ -10,7 +10,7 @@ This topic explains the concept of resumptions in Tanzu Supply Chain.
 
 Resumptions are an important part of the Tanzu Supply Chain [Component] resource.
 
-The rest of [Component] deals with either the configuration to pass to resumptions and pipelines, or the pipeline to 'run' when the [Component] is reached in the [SupplyChain] `stages`.
+The rest of Component deals with either the configuration to pass to resumptions and pipelines, or the pipeline to 'run' when the Component is reached in the SupplyChain `stages`.
 Resumptions are focused on **reasons to run again**.
 
 Resumptions are executed on a timer, specified in the component's `resumptions` array.
@@ -21,11 +21,12 @@ When a run is executing and it reaches a stage with a resumption, a `resumptionK
 If a resumption has already been executed with the same parameters, then the result of that resumption is used.
 This allows hundreds/thousands of workloads to reuse the same common inputs from resumptions without needing to run another resumption.
 
-Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last _completion_ of a resumption TaskRun, before executing it again.
+Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last completion of a resumption TaskRun, before executing it again.
 
-When any of a resumption's results change, all the [WorkloadRuns] with the same `resumptionKey` are cloned, truncated back to the stage of the resumption, and progress from there.
-This is the mechanism for resumptions triggering a new [WorkloadRun].
+When any of a resumption's results change, all the WorkloadRuns with the same `resumptionKey` are cloned, truncated back to the stage of the resumption, and progress from there.
+This is the mechanism for resumptions triggering a new WorkloadRun.
 
+<!--
 [SupplyChain]: ./supply-chains.hbs.md
 [SupplyChains]: ./supply-chains.hbs.md
 [Component]: ./components.hbs.md
@@ -36,3 +37,4 @@ This is the mechanism for resumptions triggering a new [WorkloadRun].
 [WorkloadRun]: ./workload-runs.hbs.md
 [Resumptions]: ./resumptions.hbs.md
 [Resumption]: ./resumptions.hbs.md
+-->
