@@ -3,14 +3,14 @@
 {{> 'partials/supply-chain/beta-banner' }}
 
 This topic tells you how to construct a SupplyChain resource using the Tanzu CLI with the
-Tanzu Supply Chain CLI plug-in.
+Tanzu Supplychain CLI plug-in.
 
 ## Prerequisites
 
-1. Ensure that the [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../../../platform-engineering/how-to/install-the-cli.hbs.md) are installed on your local machine.
+1. Ensure that the [Tanzu CLI](../../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supplychain CLI plug-ins](../../../platform-engineering/how-to/install-the-cli.hbs.md) are installed on your local machine.
 
 2. Ensure that Tanzu Supply Chain packages and Catalog Component packages are installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
-
+<br>
 - If you [Install Tanzu Supply Chain with the authoring profile (recommended)](../../how-to/installing-supply-chain/install-authoring-profile.hbs.md), these packages are automatically installed.
 - If you [Install Tanzu Supply Chain manually (not recommended)](../../how-to/installing-supply-chain/installing-manually.hbs.md), you must install the packages individually.
 
@@ -38,8 +38,8 @@ tanzu supplychain init --group supplychains.tanzu.vmware.com --description "MY-S
 
 Where
 
-- `--group`: (Optional) Group of the supplychains. The default is default `supplychains.tanzu.vmware.com`
-Used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup)
+- `--group`: (Optional) Group of the supplychains. The default is `supplychains.tanzu.vmware.com`.
+Used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../reference/api/supplychain.hbs.md#specdefinesgroup).
 - `--description`: (Optional) Description of the Group. The default is "".
 
 The `tanzu supplychain init` command creates:
@@ -77,104 +77,104 @@ Writing group configuration to config.yaml
 1. As a Platform Engineer, you want to know which components are available  to use in you SupplyChain.
 Run:
 
-```console
-tanzu supplychain component list
-```
+    ```console
+    tanzu supplychain component list
+    ```
 
-Example output
+    Example output
 
-```console
-Listing components from the catalog
-  NAME                             INPUTS                                                        OUTPUTS                                                       AGE
-  app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-  app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-  app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-  carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d
-  deployer-1.0.0                   package[package]                                              <none>                                                        14d
-  source-package-translator-1.0.0  source[source]                                                package[package]                                              14d
-  conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d
-  app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-  git-writer-1.0.0                 package[package]                                              <none>                                                        14d
-  git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d
-  source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d
-  buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d
-  trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d
+    ```console
+    Listing components from the catalog
+      NAME                             INPUTS                                                        OUTPUTS                                                       AGE
+      app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+      app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+      app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+      carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d
+      deployer-1.0.0                   package[package]                                              <none>                                                        14d
+      source-package-translator-1.0.0  source[source]                                                package[package]                                              14d
+      conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d
+      app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
+      git-writer-1.0.0                 package[package]                                              <none>                                                        14d
+      git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d
+      source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d
+      buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d
+      trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d
 
-🔎 To view the details of a component, use 'tanzu supplychain component get'
-```
+    🔎 To view the details of a component, use 'tanzu supplychain component get'
+    ```
 
-Use the `-w/--wide` flag to see a more detailed output including a
-description of each component.
+    Use the `-w/--wide` flag to see a more detailed output including a
+    description of each component.
 
->**Important** The `tanzu supplychain component list` command scans for `Component` custom resources
-labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources
-possessing this label are the ones taken into account for authoring `SupplyChains` with the Tanzu
-CLI. Notably, the `Components` installed during the SupplyChain installation lack this label.
-This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
+    >**Important** The `tanzu supplychain component list` command scans for `Component` custom resources
+    labeled with `supply-chain.apps.tanzu.vmware.com/catalog`. Those `Component` custom resources
+    possessing this label are the ones taken into account for authoring `SupplyChains` with the Tanzu
+    CLI. Notably, the `Components` installed during the SupplyChain installation lack this label.
+    This labeling distinction serves as the basis for differentiating between "Cataloged" and "Installed" `Components` in the CLI.
 
 1. To get more information about each component on the cluster, run the `tanzu supplychain component get` command. For example, to get information about the `source-git-provider` component, run:
 
-```console
-tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
-```
+    ```console
+    tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
+    ```
 
-Example output
+    Example output
 
-```console
-📡 Overview
-   name:         source-git-provider-1.0.0
-   namespace:    source-provider
-   age:          14d
-   status:       True
-   reason:       Ready
-   description:  Monitors a git repository
+    ```console
+    📡 Overview
+      name:         source-git-provider-1.0.0
+      namespace:    source-provider
+      age:          14d
+      status:       True
+      reason:       Ready
+      description:  Monitors a git repository
 
-📝 Configuration
-   source:
-     #! Use this object to retrieve source from a git repository.
-     #! The tag, commit and branch fields are mutually exclusive, use only one.
-     #! Required
-     git:
-       #! A git branch ref to watch for new source
-       branch: "main"
-       #! A git commit sha to use
-       commit: ""
-       #! A git tag ref to watch for new source
-       tag: "v1.0.0"
-       #! The url to the git source repository
-       #! Required
-       url: "https://github.com/acme/my-workload.git"
-     #! The sub path in the bundle to locate source code
-     subPath: ""
+    📝 Configuration
+      source:
+        #! Use this object to retrieve source from a git repository.
+        #! The tag, commit and branch fields are mutually exclusive, use only one.
+        #! Required
+        git:
+          #! A git branch ref to watch for new source
+          branch: "main"
+          #! A git commit sha to use
+          commit: ""
+          #! A git tag ref to watch for new source
+          tag: "v1.0.0"
+          #! The url to the git source repository
+          #! Required
+          url: "https://github.com/acme/my-workload.git"
+        #! The sub path in the bundle to locate source code
+        subPath: ""
 
-📤 Outputs
-   git
-    ├─ digest: $(resumptions.check-source.results.sha)
-    ├─ type: git
-    └─ url: $(resumptions.check-source.results.url)
-   source
-    ├─ digest: $(pipeline.results.digest)
-    ├─ type: source
-    └─ url: $(pipeline.results.url)
+    📤 Outputs
+      git
+        ├─ digest: $(resumptions.check-source.results.sha)
+        ├─ type: git
+        └─ url: $(resumptions.check-source.results.url)
+      source
+        ├─ digest: $(pipeline.results.digest)
+        ├─ type: source
+        └─ url: $(pipeline.results.url)
 
-🏃 Pipeline
-    ├─ name: source-git-provider
-    └─ 📋 parameters
-       ├─ git-url: $(workload.spec.source.git.url)
-       ├─ sha: $(resumptions.check-source.results.sha)
-       └─ workload-name: $(workload.metadata.name)
+    🏃 Pipeline
+        ├─ name: source-git-provider
+        └─ 📋 parameters
+          ├─ git-url: $(workload.spec.source.git.url)
+          ├─ sha: $(resumptions.check-source.results.sha)
+          └─ workload-name: $(workload.metadata.name)
 
-🔁 Resumptions
-   - check-source runs source-git-check task every 300s
-     📋 Parameters
-      ├─ git-branch: $(workload.spec.source.git.branch)
-      ├─ git-commit: $(workload.spec.source.git.commit)
-      ├─ git-tag: $(workload.spec.source.git.tag)
-      └─ git-url: $(workload.spec.source.git.url)
+    🔁 Resumptions
+      - check-source runs source-git-check task every 300s
+        📋 Parameters
+          ├─ git-branch: $(workload.spec.source.git.branch)
+          ├─ git-commit: $(workload.spec.source.git.commit)
+          ├─ git-tag: $(workload.spec.source.git.tag)
+          └─ git-url: $(workload.spec.source.git.url)
 
-🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
+    🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
 
-```
+    ```
 
 ## Generate the SupplyChain
 
@@ -285,8 +285,8 @@ For information about versioning `SupplyChains` and `Components` to avoid delive
 
 ### Reference Guides
 
-- [Understand SupplyChains](./../../explanation/supply-chains.hbs.md)
-- [Understand Components](./../../explanation/components.hbs.md)
-- [Understand Resumptions](./../../explanation/resumptions.hbs.md)
-- [Understand Workloads](./../../explanation/workloads.hbs.md)
-- [Understand WorkloadRuns](./../../explanation/workload-runs.hbs.md)
+- [Overview of SupplyChains](./../../explanation/supply-chains.hbs.md)
+- [Overview of Components](./../../explanation/components.hbs.md)
+- [Overview of Resumptions](./../../explanation/resumptions.hbs.md)
+- [Overview of Workloads](./../../explanation/workloads.hbs.md)
+- [Overview of WorkloadRuns](./../../explanation/workload-runs.hbs.md)
