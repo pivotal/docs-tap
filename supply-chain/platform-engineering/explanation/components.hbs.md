@@ -1,4 +1,4 @@
-# Components explained
+# Overview of Components
 
 {{> 'partials/supply-chain/beta-banner' }}
 

@@ -36,8 +36,8 @@ Install these CLI tools:
 
 ## Reference Guides
 
-- [Understand SupplyChains](./explanation/supply-chains.hbs.md)
-- [Understand Components](./explanation/components.hbs.md)
-- [Understand Resumptions](./explanation/resumptions.hbs.md)
-- [Understand Workloads](./explanation/workloads.hbs.md)
-- [Understand WorkloadRuns](./explanation/workload-runs.hbs.md)
+- [Overview of SupplyChains](./explanation/supply-chains.hbs.md)
+- [Overview of Components](./explanation/components.hbs.md)
+- [Overview of Resumptions](./explanation/resumptions.hbs.md)
+- [Overview of Workloads](./explanation/workloads.hbs.md)
+- [Overview of WorkloadRuns](./explanation/workload-runs.hbs.md)
