@@ -190,11 +190,11 @@ source code or image, including vulnerabilities from past scans.
 
 ### <a id="triage-vul"></a> Triage vulnerabilities (alpha)
 
-> **Important** The capability to triage scan results in TAP GUI is in the alpha stage, which
-> means that it is still in early development and is subject to change at any point. You might
-> encounter unexpected behavior from it.
-
 This feature enables you to store analysis data for each of the vulnerabilities found in the scan.
+
+> **Caution** The capability to triage scan results in Tanzu Developer Portal is in the alpha
+> stage, which means that it is still in early development and is subject to change at any point.
+> You might encounter unexpected behavior from it.
 
 The feature is turned off by default in Tanzu Developer Portal. To enable the feature, add the
 following YAML to your configuration section within the `tap-values.yaml` file:
