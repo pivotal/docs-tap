@@ -1,8 +1,8 @@
 # SupplyChain API
 
-{{> 'partials/supply-chain/beta-banner' }}
+This topic tells you about the `SupplyChain` resource of Tanzu Supply Chain.
 
-This topic describes the SupplyChain resource of Tanzu Supply Chain.
+{{> 'partials/supply-chain/beta-banner' }}
 
 The supply chain defines the Object Kind of the Workload, the Components used, and their order.
 
@@ -33,7 +33,8 @@ metadata:
 
 ### `spec.description`
 
-The `spec.description` field is visible to an app developer when they use the CLI to discover available workload kinds:
+The `spec.description` field is visible to an app developer when they use the CLI to discover
+available workload kinds:
 
 ```console
 tanzu workload kind list --wide
@@ -52,7 +53,8 @@ The `spec.defines` object defines the Workload [CustomResourceDefinition].
 
 #### `spec.defines.group`
 
-`spec.defines.group` (**required**) is used to fill in the `group` field in the [CustomResourceDefinitionSpec].
+`spec.defines.group` (**required**) is used to fill in the `group` field in the
+[CustomResourceDefinitionSpec].
 
 `spec.defines.group` is the classic domain-formatted group of any Kubernetes object.
 Use your organization's top level domain, or a departmental domain.
@@ -75,9 +77,8 @@ becomes `serverappv1`.
 
 #### `spec.defines.shortnames`
 
-`spec.defines.shortnames` is a list and defaults to empty.
-Use this to specify an array of aliases for your kind.
-These are great to simplify `kubectl` commands.
+`spec.defines.shortnames` is a list and defaults to empty. Use this to specify an array of aliases
+for your kind. These are great to simplify `kubectl` commands.
 
 ##### Example
 
@@ -91,9 +92,9 @@ shortnames:
 
 #### `spec.defines.categories`
 
-`spec.defines.categories` is a list and defaults to empty.
-`spec.defines.categories` specify a collection term for a group of kinds, so that `kubectl get <category>` returns
-instances of all kinds in the category.
+`spec.defines.categories` is a list and defaults to empty. `spec.defines.categories` specify a
+collection term for a group of kinds, so that `kubectl get <category>` returns instances of all
+kinds in the category.
 
 ##### Example
 
@@ -124,10 +125,10 @@ spec:
 
 ### `spec.stages[]`
 
-`spec.stages` break the work to be done by this supply chain into a serial collection of "stages", each with
-a component.
+`spec.stages` break the work to be done by this supply chain into a serial collection of "stages",
+each with a component.
 
-This is where you define the operations of this SupplyChain.
+This is where you define the operations of this `SupplyChain`.
 
 ### `spec.stages[].name`
 
@@ -138,9 +139,11 @@ Each stage has a `name`, which is shown to the user in the CLI and UI.
 
 Each stage also has a `componentRef` with a single field `name`.
 `componentRef.Name` refers to the name of a Tanzu Supply Chain [Component] resource.
-The [Component] must exist in the same namespace as the SupplyChain. This will change, see [Known Issue: Workload Creation](../../known-issues.hbs.md#workload-creation).
+The [Component] must exist in the same namespace as the `SupplyChain`. This will change, see
+[Known Issue: Workload Creation](../../known-issues.hbs.md#workload-creation).
 
-The supply chain returns an error if a component expects an input that has not been output by a previous stage.
+The supply chain returns an error if a component expects an input that has not been output by a
+previous stage.
 
 #### Example
 
@@ -164,7 +167,8 @@ spec:
 
 ### `status.conditions[]`
 
-Every `status.conditions[]` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
+Every `status.conditions[]` in Tanzu Supply Chain resources follows a
+[strict set of conventions](statuses.hbs.md).
 
 The top-level condition type is `Ready` as SupplyChain is a "living" resource.
 
@@ -175,7 +179,7 @@ The sub-types are:
 | Reason        | Meaning                                                                                                                                                  |
 |---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Ready         | The RoleBindings for the kind declared in [`spec.defines`](#specdefines) was created on cluster                                                          |
-| AlreadyExists | The RoleBinding record already exists.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
+| AlreadyExists | The RoleBinding record already exists.<br/>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
 | UnknownError  | The RoleBinding record failed due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                         |
 
 #### APIsDefined
@@ -183,8 +187,8 @@ The sub-types are:
 | Reason        | Meaning                                                                                                                                                                         |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Ready         | The CRD for the kind declared in [`spec.defines`](#specdefines) was created on cluster                                                                                          |
-| Conflict      | The CRD already exists and is managed by another SupplyChain.</br>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
-| Invalid       | The CRD is invalid</br>Most common cause of this is an illegal OpenAPIV3Schema in the [Component].                                                                              |
+| Conflict      | The CRD already exists and is managed by another SupplyChain.<br/>Most common cause of this issue is another Supply Chain with the same [`spec.defines`](#specdefines) section. |
+| Invalid       | The CRD is invalid<br/>Most common cause of this is an illegal OpenAPIV3Schema in the [Component].                                                                              |
 | Unknown error | The CRD could not be created due to an exceptional error. Look at the reconciler logs and contact Tanzu Support                                                                 |
 
 #### StageMapping

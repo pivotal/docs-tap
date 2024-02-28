@@ -2,14 +2,14 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic describes the WorkloadRun resource of Tanzu Supply Chain.
+This topic describes the `WorkloadRun` resource of Tanzu Supply Chain.
 
-WorkloadRuns are Custom Kubernetes Resources (CRDs) created by SupplyChains.
-They are also one of the two Duck Typed Resources in Tanzu Supply chain.
+`WorkloadRun` resources are Custom Kubernetes Resources (CRDs) created by `SupplyChains`.
+They are also one of the two duck type resources in Tanzu Supply Chain.
 
 ## Static CustomResourceDefinitions API
 
-All WorkloadRuns are defined as CustomResourceDefinitions:
+Every `WorkloadRun` resource is defined as a `CustomResourceDefinition`:
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -18,10 +18,9 @@ kind: CustomResourceDefinition
 
 ### `metadata.labels`
 
-Workload CRDs always have the following labels.
-The `chain-name` and `chain-namespace` labels reference the location of the SupplyChain resource that created this
-WorkloadRun.
-The `chain-role` identifies this as a WorkloadRun. The other possible value is `workload`.
+Workload CRDs always have the following labels. The `chain-name` and `chain-namespace` labels
+reference the location of the SupplyChain resource that created this WorkloadRun. The `chain-role`
+identifies this as a WorkloadRun. The other possible value is `workload`.
 
 ```yaml
 metadata:
@@ -33,8 +32,8 @@ metadata:
 
 ### `metadata.name`
 
-The name of the resource is always in the form `<singular>runs.<group>` from
-the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
+The name of the resource is always in the form `<singular>runs.<group>` from the
+[Supply Chain Defines API](supplychain.hbs.md#specdefines).
 
 #### Example
 
@@ -45,12 +44,13 @@ metadata:
 
 ### `spec.group`, `spec.names` and `spec.versions`
 
-The CRD's `group`, `names` and `versions` is filled in with the details found in
-the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
-However most names have the word "run" appended.
+The CRD's `group`, `names` and `versions` is filled in with the details found in the
+[Supply Chain Defines API](supplychain.hbs.md#specdefines). However, most names have the word `run`
+appended.
 
-Additionally, the `spec.names[].categories[]` array includes a category of `all-runs`. This ensures that
-commands such as `kubectl get all-runs` find all the SupplyChain defined WorkloadRuns a user can access.
+Additionally, the `spec.names[].categories[]` array includes a category of `all-runs`. This ensures
+that commands such as `kubectl get all-runs` find all the `SupplyChain` defined `WorkloadRuns` a user
+can access.
 
 #### Example
 
@@ -76,32 +76,31 @@ spec:
 
 ## Self-Replicating State
 
-WorkloadRuns have a complex self-referencing status, that is described in detail
+`WorkloadRuns` have a complex self-referencing status, that is described in detail
 in [Core Concepts: WorkloadRuns](../../platform-engineering/explanation/workload-runs.hbs.md).
-The majority of the WorkloadRun specification appears again in `status.workloadRun`.
+The majority of the `WorkloadRun` specification appears again in `status.workloadRun`.
 
 This image shows the static and dynamic sections of a WorkloadRun.
 
-![duck-type.png](./images/duck-type.png)
+![duck-type.png](images/duck-type.png)
 
-> **Note** The duplication of the WorkloadRun `spec` into `spec.status.workloadRun.spec` is shown here.
+> **Note** The duplication of the `WorkloadRun` `spec` into `spec.status.workloadRun.spec` is shown here.
 
 > **Note** The `status` is not duplicated again into the `status.workloadRun` field.
 
 ## Static WorkloadRun API
 
-`Static` means that the schema of these sections of the WorkloadRun is unchanging.
-This does not mean that these sections do not mutate during the life of the WorkloadRun. They do, because they track
-the progress of the WorkloadRun.
+`Static` means that the schema of these sections of the `WorkloadRun` is unchanging. This does not
+mean that these sections do not mutate during the life of the `WorkloadRun`. They do, because they
+track the progress of the `WorkloadRun`.
 
 ### `spec.stages[]` and `status.workloadrun.spec.stages[]`
 
-`spec.stages[]` is empty if the run was triggered by a new workload generation, or, if triggered by a Resumption,
-contains the stages up to
-but excluding the stage containing the resumption trigger.
+`spec.stages[]` is empty if the run was triggered by a new workload generation, or, if triggered by
+a Resumption, contains the stages up to but excluding the stage containing the resumption trigger.
 
-`spec.workloadrun.spec.stages[]` initially contains a copy of `spec.stages[]` (if any exist), and as the WorkloadRun
-proceeds, contains the rest of the results for subsequent stages.
+`spec.workloadrun.spec.stages[]` initially contains a copy of `spec.stages[]` (if any exist), and as
+the `WorkloadRun` proceeds, contains the rest of the results for subsequent stages.
 
 ### `spec.stages[].name` and `status.workloadrun.spec.stages[].name`
 
@@ -160,21 +159,22 @@ pipeline:
 
 ### `spec.workload` and `spec.status.workloadRun.spec.workload`
 
-These are the same. Technically, `spec.workload` is the state of the Workload when the run is created, and
-`spec.status.workloadRun.spec.workload` is the state of the Workload after the run starts, but they never change, so
-are in fact identical.
+These are the same. Technically, `spec.workload` is the state of the `Workload` when the run is
+created, and `spec.status.workloadRun.spec.workload` is the state of the `Workload` after the run
+starts, but they never change, so are in fact identical.
 
-Both contain the `workload.metadata` and `workload.spec` sections of the workload that were used in this run.
-The WorkloadRun "closes over" this state so that it cannot be lost. When viewing a run, you can always tell which
-Workload's state was used during the run.
+Both contain the `workload.metadata` and `workload.spec` sections of the workload that were used in
+this run. The `WorkloadRun` "closes over" this state so that it cannot be lost. When viewing a run,
+you can always tell which `Workload` resource's state was used during the run.
 
 ## Status
 
 ### `status.conditions[]`
 
-Every `status.conditions[]` in Tanzu Supply Chain resources follows a [strict set of conventions](./statuses.hbs.md)
+Every `status.conditions[]` in Tanzu Supply Chain resources follows a
+[strict set of conventions](statuses.hbs.md)
 
-The top-level condition type is `Succeeded` as Workload is a "batch" resource.
+The top-level condition type is `Succeeded` because `Workload` is a batch resource.
 
 The sub-types are:
 
@@ -187,8 +187,8 @@ The sub-types are:
 | Failed         | A [Tekton PipelineRun] failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                        |
 | PlatformFailed | A [Tekton PipelineRun]  failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |
 
-`Message` contains processing information and error messages produced in the pipeline. This information must be
-specifically appended to the Tekton result named `message` to appear here.
+`Message` contains processing information and error messages produced in the pipeline. This
+information must be specifically appended to the Tekton result named `message` to appear here.
 
 #### ResumptionsSucceeded
 
@@ -199,8 +199,8 @@ specifically appended to the Tekton result named `message` to appear here.
 | Failed         | A [Tekton TaskRun] for a resumption failed, and it's likely that the developer can remedy any issues by following the guidance in the message.                       |
 | PlatformFailed | A [Tekton TaskRun] for a resumption failed, and it's unlikely the problem can be remedied with changes to the workload or developer provided input (such as source). |
 
-`Message` contains processing information and error messages produced in the taskRun. This information must be
-specifically appended to the Tekton result named `message` to appear here.
+`Message` contains processing information and error messages produced in the taskRun. This
+information must be specifically appended to the Tekton result named `message` to appear here.
 
 <!--
 [Workload]: workload.hbs.md

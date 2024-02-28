@@ -1,15 +1,15 @@
 # Workload
 
+This topic tells you about the `Workload` resource of Tanzu Supply Chain.
+
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic describes the Workload resource of Tanzu Supply Chain.
-
-Workloads are Custom Kubernetes Resources (CRDs) created by SupplyChains.
-They are also one of the two Duck Typed Resources in Tanzu Supply chain
+`Workload` resources are Custom Kubernetes Resources (CRDs) created by `SupplyChain` resources.
+They are also one of the two duck type resources in Tanzu Supply Chain.
 
 ## Static CustomResourceDefinitions API
 
-All Workloads are defined as CustomResourceDefinitions:
+Every `Workload` resource is defined as a `CustomResourceDefinition`:
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -18,9 +18,9 @@ kind: CustomResourceDefinition
 
 ### `metadata.labels`
 
-Workload CRDs always have the following labels.
-The `chain-name` and `chain-namespace` labels reference the location of the SupplyChain  resource that created this Workload.
-The `chain-role` identifies this as a Workload. The other possible value is `workload-run`.
+`Workload` resources always have the following labels. The `chain-name` and `chain-namespace` labels
+reference the location of the SupplyChain resource that created this `Workload`. The `chain-role`
+identifies this as a Workload. The other possible value is `workload-run`.
 
 ```yaml
 metadata:
@@ -32,7 +32,8 @@ metadata:
 
 ### `metadata.name`
 
-The name of the resource is always in the form `<plural>.<group>` from the [Supply Chain Defines API](./supplychain.hbs.md#specdefines)
+The name of the resource is always in the form `<plural>.<group>` from the
+[Supply Chain Defines API](supplychain.hbs.md#specdefines).
 
 #### Example
 
@@ -43,10 +44,12 @@ metadata:
 
 ### `spec.group`, `spec.names` and `spec.versions`
 
-The CRD's `group`, `names` and `versions` is filled in with the details found in the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
+The CRD `group`, `names`, and `versions` are filled with the details found in the
+[Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 
-Additionally, the `spec.names[].categories[]` array includes a category of `all-workloads`. This ensures that
-commands such as `kubectl get all-workloads` will find all the SupplyChain defined Workloads a user can access.
+Additionally, the `spec.names[].categories[]` array includes a category of `all-workloads`. This
+ensures that commands such as `kubectl get all-workloads` find all the `SupplyChain`-defined
+`Workload` resources a user can access.
 
 #### Example
 
@@ -74,7 +77,8 @@ spec:
 
 ### `metadata.labels`
 
-Workloads always have the following labels. These labels reference the location of the SupplyChain resource on cluster.
+`Workload` resources always have the following labels. These labels reference the location of the
+`SupplyChain` resource on cluster.
 
 ```yaml
 metadata:
@@ -83,12 +87,13 @@ metadata:
     supply-chain.apps.tanzu.vmware.com/chain-namespace: app-sc
 ```
 
-## Dynamic Workload API`
+## Dynamic Workload API
 
 ### `spec`
 
-The `spec` of a Workload is dynamic, however it is immutable once applied.
-The spec is derived by combining the [Component configurations](./component.hbs.md#specconfig) of all the [SupplyChain Stages](./supplychain.hbs.md#specstages)
+The `spec` of a `Workload` resource is dynamic, however it is immutable after it is applied. The
+`spec` is derived by combining the [Component configurations](component.hbs.md#specconfig) of all
+the [SupplyChain Stages](supplychain.hbs.md#specstages).
 
 <!--
 [Duck Typed Resources]: ./duck-types.hbs.md
