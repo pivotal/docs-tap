@@ -21,4 +21,4 @@ Start using Tanzu Supply Chain by installing these CLI tools:
 
 ## Known issues
 
-- [Known issues](known-issues.hbs.md)
+- [Known issues](../known-issues.hbs.md)
