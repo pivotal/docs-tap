@@ -42,5 +42,5 @@ tanzu workload delete NAME
 
 ## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
 

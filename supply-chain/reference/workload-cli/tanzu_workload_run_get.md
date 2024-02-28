@@ -42,5 +42,5 @@ tanzu workload run get NAME
 
 ## SEE ALSO
 
-* [tanzu workload run](tanzu_workload_run.md)	 - View workload runs
+* [tanzu workload run](tanzu_workload_run.hbs.md)	 - View workload runs
 

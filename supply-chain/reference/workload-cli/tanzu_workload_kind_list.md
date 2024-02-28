@@ -35,5 +35,5 @@ tanzu workload kind list
 
 ## SEE ALSO
 
-* [tanzu workload kind](tanzu_workload_kind.md)	 - View supported workload types (kinds)
+* [tanzu workload kind](tanzu_workload_kind.hbs.md)	 - View supported workload types (kinds)
 

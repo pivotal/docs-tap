@@ -18,6 +18,6 @@ View supported workload types (kinds)
 
 ## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
-* [tanzu workload kind list](tanzu_workload_kind_list.md)	 - Lists all workload kinds
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload kind list](tanzu_workload_kind_list.hbs.md)	 - Lists all workload kinds
 
