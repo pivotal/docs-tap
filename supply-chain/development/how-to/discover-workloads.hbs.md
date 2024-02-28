@@ -178,13 +178,6 @@ Successfully deleted workload my-web-app
 
 Use the Tanzu Workload CLI plug-in to observe `Workloads` and their `WorkloadRuns`.
 
-In this section, you will:
-
-- List Workloads
-- Get a Workload
-- Get a Workload run
-<br>
-
 1. Lists all `Workloads` on the cluster:
 
     ```console
