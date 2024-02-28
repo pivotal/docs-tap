@@ -93,13 +93,13 @@ needs to migrate their resources to the new API.
 A SupplyChain is **not valid** if:
 
 - A required field is missing
-- The [Components] referenced are not in the same namespace
-- The [Components] referenced contain inputs that are not satisfied by their position in the [`spec.stages`](#specstages)
+- The Components referenced are not in the same namespace
+- The Components referenced contain inputs that are not satisfied by their position in the [`spec.stages`](#specstages)
 - The name does not match the [`spec.defines`](#specdefines) section
 - The SupplyChain breaks the [versioning rules](#supply-chains-cannot-change-an-api-once-it-is-on-cluster).
 
 The [SupplyChain Status](../../reference/api/supplychain.hbs.md#statusconditions) describes when these rules are broken.
 
 <!--
-[Components]: ./components.hbs.md
+Components: ./components.hbs.md
 [Workload]: ./workloads.hbs.md -->

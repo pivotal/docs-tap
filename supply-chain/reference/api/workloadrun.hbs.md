@@ -107,7 +107,7 @@ proceeds, contains the rest of the results for subsequent stages.
 
 ### `spec.stages[].name` and `status.workloadrun.spec.stages[].name`
 
-`name` is the name of this stage as defined in the [SupplyChain]
+`name` is the name of this stage as defined in the SupplyChain
 
 ### `spec.stages[].componentRef` and `status.workloadrun.spec.stages[].componentRef`
 

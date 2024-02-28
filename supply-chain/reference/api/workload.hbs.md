@@ -19,7 +19,7 @@ kind: CustomResourceDefinition
 ### `metadata.labels`
 
 Workload CRDs always have the following labels.
-The `chain-name` and `chain-namespace` labels reference the location of the [SupplyChain]  resource that created this Workload.
+The `chain-name` and `chain-namespace` labels reference the location of the SupplyChain  resource that created this Workload.
 The `chain-role` identifies this as a Workload. The other possible value is `workload-run`.
 
 ```yaml
@@ -46,7 +46,7 @@ metadata:
 The CRD's `group`, `names` and `versions` is filled in with the details found in the [Supply Chain Defines API](./supplychain.hbs.md#specdefines).
 
 Additionally, the `spec.names[].categories[]` array includes a category of `all-workloads`. This ensures that
-commands such as `kubectl get all-workloads` will find all the [SupplyChain] defined Workloads a user can access.
+commands such as `kubectl get all-workloads` will find all the SupplyChain defined Workloads a user can access.
 
 #### Example
 ```yaml
@@ -73,7 +73,7 @@ spec:
 
 ### `metadata.labels`
 
-Workloads always have the following labels. These labels reference the location of the [SupplyChain] resource on cluster.
+Workloads always have the following labels. These labels reference the location of the SupplyChain resource on cluster.
 
 ```yaml
 metadata:

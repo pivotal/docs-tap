@@ -4,7 +4,7 @@
 
 This topic describes the Component resource of Tanzu Supply Chain.
 
-Components define the work to be done in one [Stage](./supplychain.hbs.md#specstages) of the [SupplyChain]
+Components define the work to be done in one [Stage](./supplychain.hbs.md#specstages) of the SupplyChain
 
 ## Type and Object Metadata
 
