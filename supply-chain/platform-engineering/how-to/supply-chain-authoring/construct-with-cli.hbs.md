@@ -74,7 +74,7 @@ Writing group configuration to config.yaml
 
 ### Inspecting Components available to author Supply Chains
 
-1. As a Platform Engineer, you want to know which components are available  to use in you SupplyChain.
+1. As a Platform Engineer, you want to know which components are available  to use in your SupplyChain.
 Run:
 
     ```console
@@ -132,7 +132,7 @@ Run:
     📝 Configuration
       source:
         #! Use this object to retrieve source from a git repository.
-        #! The tag, commit and branch fields are mutually exclusive, use only one.
+        #! The tag, commit, and branch fields are mutually exclusive, use only one.
         #! Required
         git:
           #! A git branch ref to watch for new source

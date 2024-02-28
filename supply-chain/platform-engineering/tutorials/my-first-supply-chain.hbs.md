@@ -70,7 +70,7 @@ Run:
     📝 Configuration
       source:
         #! Use this object to retrieve source from a git repository.
-        #! The tag, commit and branch fields are mutually exclusive, use only one.
+        #! The tag, commit, and branch fields are mutually exclusive, use only one.
         #! Required
         git:
           #! A git branch ref to watch for new source
