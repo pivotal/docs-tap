@@ -41,3 +41,5 @@ Install these CLI tools:
 - [Overview of Resumptions](./explanation/resumptions.hbs.md)
 - [Overview of Workloads](./explanation/workloads.hbs.md)
 - [Overview of WorkloadRuns](./explanation/workload-runs.hbs.md)
+
+## [Known issues](known-issues.hbs.md)

@@ -24,3 +24,4 @@ compliant, secure delivery of source to production.
 - [Developing software with Supply Chain](./development/about.hbs.md): For developers that want
 to deliver their software following team and organization standards.
 - [Reference](reference/about.hbs.md)
+- [Known issues](known-issues.hbs.md)

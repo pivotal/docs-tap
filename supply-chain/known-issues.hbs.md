@@ -15,7 +15,7 @@ This topic lists known issues for Tanzu Supply Chains.
 
 ## Component Authoring
 
-* Components cannot have more than one resumption defined. When there are multiple resumptions, the `WorkloadRuns` are not being correctly created upon changes trigger by these resumptions. The current workaround is to assess all triggers in a single resumption.
+* Components cannot have more than one resumption defined. When there are multiple resumptions, the `WorkloadRuns` are not being correctly created upon changes triggered by these resumptions. The current workaround is to assess all triggers in a single resumption.
 
 ## Security
 
@@ -23,4 +23,4 @@ This topic lists known issues for Tanzu Supply Chains.
 
 ## Kubernetes Distribution Support
 
-* The Beta release of Tanzu Supply Chains does not include support for Openshift. However, this support is planned to be integrated into upcoming versions. Presently, attempting to individually install components for Tanzu Supply Chains and Managed Resource Controller, as well as installing the 'authoring' profile that comes with those components out of the box, results in failure due to the absence of this support.
+* The Beta release of Tanzu Supply Chains does not include support for Openshift. However, this support is planned to be integrated into upcoming versions. Presently, attempting to individually install components for Tanzu Supply Chains and Managed Resource Controller, as well as installing the Authoring profile that comes with those components out of the box, results in failure due to the absence of this support.

@@ -18,3 +18,7 @@ Start using Tanzu Supply Chain by installing these CLI tools:
 ## How to Guides
 
 - [Work with Workloads](./how-to/discover-workloads.hbs.md)
+
+## Known issues
+
+- [Known issues](known-issues.hbs.md)
