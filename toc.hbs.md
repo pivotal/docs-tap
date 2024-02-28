@@ -758,6 +758,7 @@
       - [Use Memory View in Spring Boot Dashboard](vscode-extension/memory-view.hbs.md)
       - [Troubleshoot Tanzu Developer Tools for VS Code](vscode-extension/troubleshooting.hbs.md)
     - [Tanzu Supply Chain](supply-chain/about.hbs.md)
+      - [Tanzu Supply Chain overview](supply-chain/about.hbs.md)
       - [Platform Engineering with Supply Chain](./supply-chain/platform-engineering/about.hbs.md)
           - [Tutorials](supply-chain/platform-engineering/tutorials/about.hbs.md)
               - [Build your first supply chain](supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md)
