@@ -2,23 +2,23 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic describes the recommended method for installing Tanzu Supply Chain, which is using the
+This topic describes the recommended method for installing Tanzu Supply Chain using the
 Authoring profile (beta). This profile installs all the required packages.
 
 The Authoring profile has the following additional packages that the Iterate profile does not have:
 
 - Tanzu Supply Chain packages
-  - supply-chain.apps.tanzu.vmware.com
-  - supply-chain-catalog.apps.tanzu.vmware.com
-  - managed-resource-controller.apps.tanzu.vmware.com
+  - `supply-chain.apps.tanzu.vmware.com`
+  - `supply-chain-catalog.apps.tanzu.vmware.com`
+  - `managed-resource-controller.apps.tanzu.vmware.com`
 
 - Catalog Component packages
-  - alm-catalog.component.apps.tanzu.vmware.com
-  - buildpack-build.component.apps.tanzu.vmware.com
-  - conventions.component.apps.tanzu.vmware.com
-  - git-writer.component.apps.tanzu.vmware.com
-  - source.component.apps.tanzu.vmware.com
-  - trivy.app-scanning.component.apps.tanzu.vmware.com
+  - `alm-catalog.component.apps.tanzu.vmware.com`
+  - `buildpack-build.component.apps.tanzu.vmware.com`
+  - `conventions.component.apps.tanzu.vmware.com`
+  - `git-writer.component.apps.tanzu.vmware.com`
+  - `source.component.apps.tanzu.vmware.com`
+  - `trivy.app-scanning.component.apps.tanzu.vmware.com`
 
 - App Scanning
   - app-scanning.apps.tanzu.vmware.com
@@ -62,7 +62,10 @@ The Authoring profile has the following additional packages that the Iterate pro
   ...
   ```
 
-  >**Note** As the `authoring` profile adds the above mentioned packages to what is installed with the `iterate` profile, the `tap-values.yaml` file for both profiles can look the same except for the `profile` value.
+  >**Note** As the Authoring profile adds additional packages in addition to what is already
+  installed with the Iterate profile, the `tap-values.yaml` file for both profiles can look the
+  same except for the `profile` value.
 
-1. After the installation of the `authoring` profile is complete and all packages are successfully
-reconciled, follow the [Post Installation Configuration](./post-install-configuration.hbs.md) documentation to configure Tanzu Supply Chain.
+## Next step
+
+[Configure Tanzu Supply Chain](./post-install-configuration.hbs.md).

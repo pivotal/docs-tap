@@ -22,6 +22,8 @@ The following Component packages are required if you're authoring a supply chain
 - `git-writer.component.apps.tanzu.vmware.com`
 - `trivy-scanning.component.apps.tanzu.vmware.com`
 
+<br>
+
 1. To install these packages, run the following script:
 
   ```shell
