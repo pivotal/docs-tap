@@ -1,10 +1,10 @@
 # Overview of Tanzu Supply Chain
 
-{{> 'partials/supply-chain/beta-banner' }}
-
 Tanzu Supply Chain is a tool that provides a golden path to production for your teams.
 It replaces the existing supply chain solution [Supply Chain Choreographer](../scc/about.hbs.md)
 which is based on [Cartographer](https://cartographer.sh).
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Beta status
 
