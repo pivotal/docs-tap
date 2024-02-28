@@ -110,12 +110,12 @@ providers:
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
     regional cluster with three control-plane nodes right from the start.
-- Red Hat OpenShift Container Platform v4.13, v4.14 and v4.15
+- Red Hat OpenShift Container Platform v4.13 and v4.14.
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 - vSphere with Tanzu v8.0.2 or later and v7.0.3p or later.
-- Tanzu Kubernetes Grid Integrated Edition (commonly called TKGi) v1.17 and later.
+- Tanzu Kubernetes Grid Integrated Edition with vSphere (commonly called TKGi) v1.17 and later.
     - For TKGi with NSX, the total number of Kubernetes object labels and other tags created by both TKGi and Tanzu Application Platform can exceed the number allowed by NSX. Create or update your network profile by setting the `cni_configurations` parameter `extensions.ncp.k8s.label_filtering_regex_list`. For more information, see the [VMware Tanzu Kubernetes Grid Integrated Edition documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.18/tkgi/GUID-network-profiles-define.html#cni-extensions).
 
 For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).

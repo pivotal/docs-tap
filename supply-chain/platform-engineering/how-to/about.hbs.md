@@ -1,8 +1,10 @@
 # How to Guides for Platform Engineers
 
-{{> 'partials/supply-chain/beta-banner' }} 
+{{> 'partials/supply-chain/beta-banner' }}
 
-In this section we provide how-to guides for:
+This section contains how to guides for platform engineers using Tanzu Supply Chain.
+
+In this section:
 
 ## How to Guides: Installing Tanzu Supply Chain
 

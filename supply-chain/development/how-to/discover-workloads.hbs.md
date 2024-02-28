@@ -2,7 +2,9 @@
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This topic describes how to:
+This topic tells you how to work with workloads when using Tanzu Supply Chain.
+
+This topic explains how to:
 
 - Find the kinds of Workloads you can use
 - Create and delete a Workload
@@ -23,7 +25,7 @@ KIND                        VERSION   DESCRIPTION
 buildserverapps.vmware.com  v1        Builds a Kubernetes deployment app exposed using a Service using Buildpacks.
 buildwebapps.vmware.com     v1        Pulls the source code from a Git repository and builds a Knative Service app using Buildpacks.
 buildworkerapps.vmware.com  v1        Creates a background worker app deployed as Kubernetes deployment using Buildpacks.
-  
+
 🔎 To generate a workload for one of these kinds, use 'tanzu workload generate'
 ```
 
@@ -54,7 +56,7 @@ In this section, you will:
     spec:
       source:
         #! Use this object to retrieve source from a git repository.
-        #! The tag, commit, and branch fields are mutually exclusive, use only one.
+        #! The tag, commit, and, branch fields are mutually exclusive, use only one.
         #! Required
         git:
           #! A git branch ref to watch for new source

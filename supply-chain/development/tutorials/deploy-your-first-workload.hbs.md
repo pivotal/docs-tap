@@ -1,8 +1,9 @@
 # Tutorial: Deploy your first Workload
 
-{{> 'partials/supply-chain/beta-banner' }} 
+{{> 'partials/supply-chain/beta-banner' }}
 
-In this section, you will use the Tanzu Workload CLI plug-in to create your first `Workload`.
+This topic tells you how to use the Tanzu Workload CLI plug-in to create your first `Workload`.
+
 The Platform Engineer has already created some Supply Chains for you to use.
 The Supply Chains can pull the source code from the source repository and build it.
 The built artifact is then pushed to a GitOps repository determined by the Platform Engineer.
@@ -28,9 +29,9 @@ what kinds of `Workloads` you can create using those `SupplyChain`. Run:
     ```console
     $ tanzu workload kind list
 
-      KIND                                       VERSION   DESCRIPTION                                                                       
-      appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  Supply chain that pulls the source code from git repo, builds it using            
-                                                          buildpacks and package the output as Carvel package.                              
+      KIND                                       VERSION   DESCRIPTION
+      appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  Supply chain that pulls the source code from git repo, builds it using
+                                                          buildpacks and package the output as Carvel package.
 
     🔎 To generate a workload for one of these kinds, use 'tanzu workload generate'
     ```
@@ -166,13 +167,13 @@ to it. Run:
     ```console
     Listing workloads from the dev namespace
 
-      NAME                KIND                                       VERSION   AGE  
-      tanzu-java-web-app  appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  30m  
+      NAME                KIND                                       VERSION   AGE
+      tanzu-java-web-app  appbuildv1s.supplychains.tanzu.vmware.com  v1alpha1  30m
 
     🔎 To see more details about a workload, use 'tanzu workload get workload-name --kind workload-kind'
     ```
 
-1. To see all the workloads running in all namespaces, run: 
+1. To see all the workloads running in all namespaces, run:
 
     ```console
     tanzu workload list -A`
@@ -195,8 +196,8 @@ to it. Run:
       age:        15m
 
     🏃 Runs:
-      ID                            STATUS   DURATION  AGE  
-      tanzu-java-web-app-run-454m5  Running  2m        2m  
+      ID                            STATUS   DURATION  AGE
+      tanzu-java-web-app-run-454m5  Running  2m        2m
 
     🔎 To view a run information, use 'tanzu workload run get run-id'
     ```
@@ -253,7 +254,7 @@ is going through. Use the optional `--show-details` flag for a more detailed out
         21 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
         22 + |    subPath: tanzu-java-web-app
 
-    🏃 Stages   
+    🏃 Stages
         ├─ source-git-provider
         │  ├─ 📋 check-source - Success
         │  │  ├─ Duration: 31s
@@ -340,7 +341,7 @@ is going through. Use the optional `--show-details` flag for a more detailed out
             21 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
             22 + |    subPath: tanzu-java-web-app
 
-        🏃 Stages   
+        🏃 Stages
             ├─ source-git-provider
             │  ├─ 📋 check-source - Success
             │  │  ├─ Duration: 31s
@@ -404,8 +405,8 @@ is going through. Use the optional `--show-details` flag for a more detailed out
           age:        74m
 
         🏃 Runs:
-          ID                            STATUS     DURATION  AGE  
-          tanzu-java-web-app-run-454m5  Succeeded  16m       72m  
+          ID                            STATUS     DURATION  AGE
+          tanzu-java-web-app-run-454m5  Succeeded  16m       72m
 
         🔎 To view a run information, use 'tanzu workload run get run-id'
         ```
