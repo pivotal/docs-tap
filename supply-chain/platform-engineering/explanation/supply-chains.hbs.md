@@ -2,10 +2,9 @@
 
 This topic tells you about the `SupplyChain` resource in Tanzu Supply Chain.
 The `SupplyChain` resource unifies the Tanzu Supply Chain operation.
+For reference information, see [SupplyChain](../../reference/api/supplychain.hbs.md).
 
 {{> 'partials/supply-chain/beta-banner' }}
-
-For reference information, see [SupplyChain](../../reference/api/supplychain.hbs.md).
 
 ![core-concepts-supplychains.jpg](./images/core-concepts-supplychains.jpg)
 
