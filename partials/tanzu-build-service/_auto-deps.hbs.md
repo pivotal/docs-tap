@@ -4,10 +4,11 @@ releases, for example, if a CVE is discovered in the OS (stack update) or langua
 Automatic dependency updates enable your cluster to consume the stack and buildpack updates immediately
 instead of waiting for the next Tanzu Application Platform patch release to pull in the updated
 dependencies.
-These updates are provided through a separate package repository with available version lines for
+
+- Updates are provided through a separate package repository with available version lines for
 all supported Tanzu Application Platform minor versions.
-Within a version line, only patch versions are incremented to avoid breaking changes.
-You can customize the packages that you want the automatic dependency updater to update through your
+- Within a version line, only patch versions are incremented to avoid breaking changes.
+- You can customize the packages that you want the automatic dependency updater to update through your
 `tap-values.yaml` file or your full dependencies values.
 
 **Prerequisites:** These steps assume a registry secret already exists in the cluster for accessing
@@ -54,7 +55,7 @@ To enable automatic dependency updates:
       spec:
         fetch:
           imgpkgBundle:
-            image: registry.tanzu.vmware.com/build-service-dependency-updater/package-repo
+            image: DEPENDENCY-UPDATER-PACKAGE-REPO
             tagSelection:
               semver:
                 constraints: VERSION-CONSTRAINT
@@ -63,11 +64,11 @@ To enable automatic dependency updates:
 
     Where:
 
-    - `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
-      For example, `1.8.x`.
     - `DEPENDENCY-UPDATER-PACKAGE-REPO` is the location of the package repository. This is
       `registry.tanzu.vmware.com/build-service-dependency-updater/package-repo` for online installs
       and the internal container image registry for air-gapped installs.
+    - `VERSION-CONSTRAINT` is the Tanzu Application Platform version in the form of `MAJOR.MINOR.x`.
+      For example, `1.8.x`.
 
 After completing this configuration, the repository you set with `DEPENDENCY-UPDATER-PACKAGE-REPO` will be
 polled for updates and any new releases will automatically be made available to the cluster.
