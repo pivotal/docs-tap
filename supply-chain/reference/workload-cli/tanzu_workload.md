@@ -1,8 +1,8 @@
-## tanzu workload
+# tanzu workload
 
 create, update, view and list Tanzu Workloads.
 
-### Options
+## Options
 
 ```console
   -h, --help              help for workload
@@ -11,7 +11,7 @@ create, update, view and list Tanzu Workloads.
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu workload apply](tanzu_workload_apply.md)	 - Apply a workload of specific kind on the cluster from the file
 * [tanzu workload create](tanzu_workload_create.md)	 - Create a workload of specific kind on the cluster from the file

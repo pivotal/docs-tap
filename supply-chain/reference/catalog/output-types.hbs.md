@@ -16,7 +16,7 @@ configurations `spec.env` into the Pod template's `env` field.
 
 ## git
 
-**URL**: The source code git repository URL.</br>
+**URL**: The source code Git repository URL.</br>
 **Digest**: The source code git commit sha.</br>
 
 ## git-pr
@@ -57,13 +57,13 @@ If a Supply Chain author wanted to create a Supply Chain that simply deploys the
 **URL**: An OCI image containing a Carvel Package, PackageInstall, and Values YAML file.</br>
 **Digest**: OCI image digest.</br>
 
-The resources in this OCI image can either be deployed to a cluster, or written to a git repository for use in a GitOps workflow.
+The resources in this OCI image can either be deployed to a cluster, or written to a Git repository for use in a GitOps workflow.
 
 The purpose of this OCI image type is to contain a single version of an application as a Carvel Package, as well as the PackageInstall and Values YAML necessary to deploy the Package.
 
 ## source
 
-**URL**: OCI image containing the git repository source code.</br>
+**URL**: OCI image containing the Git repository source code.</br>
 **Digest**: OCI image digest.</br>
 
-An OCI image containing the source code retrieved from a git repository.
+An OCI image containing the source code retrieved from a Git repository.

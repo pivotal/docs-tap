@@ -1,8 +1,8 @@
-## tanzu supplychain generate
+# tanzu supplychain generate
 
 Generate a supplychain scaffold
 
-### Synopsis
+## Synopsis
 
 Generate a supplychain scaffold
 		
@@ -13,13 +13,13 @@ Generate configuration options include:
 tanzu supplychain generate [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain generate --kind ServerAppV1 --description DESCRIPTION
 ```
 
-### Options
+## Options
 
 ```console
   -c, --component strings    add a component to the supplychain scaffold. This flag can be specified multiple times and the order on the command-line will be reflected on the generated scaffold output
@@ -28,7 +28,7 @@ tanzu supplychain generate --kind ServerAppV1 --description DESCRIPTION
   -k, --kind string          kind to use as the developer interface
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -36,7 +36,7 @@ tanzu supplychain generate --kind ServerAppV1 --description DESCRIPTION
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain](tanzu_supplychain.md)	 - supplychain management
 

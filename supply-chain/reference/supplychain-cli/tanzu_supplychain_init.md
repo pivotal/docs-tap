@@ -1,8 +1,8 @@
-## tanzu supplychain init
+# tanzu supplychain init
 
 Initialize supplychain
 
-### Synopsis
+## Synopsis
 
 Initialize supplychain
 		
@@ -13,13 +13,13 @@ Initialize configuration options include:
 tanzu supplychain init [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain init --group supplychains.tanzu.vmware.com --description DESCRIPTION
 ```
 
-### Options
+## Options
 
 ```console
   -d, --description string   description of the group

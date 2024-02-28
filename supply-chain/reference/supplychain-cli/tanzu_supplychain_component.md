@@ -1,14 +1,14 @@
-## tanzu supplychain component
+# tanzu supplychain component
 
 Interacting with supplychain components
 
-### Options
+## Options
 
 ```console
   -h, --help   help for component
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -16,7 +16,7 @@ Interacting with supplychain components
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain](tanzu_supplychain.md)	 - supplychain management
 * [tanzu supplychain component get](tanzu_supplychain_component_get.md)	 - Get details of a component

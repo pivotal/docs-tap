@@ -1,4 +1,4 @@
-## tanzu workload create
+# tanzu workload create
 
 Create a workload of specific kind on the cluster from the file
 
@@ -6,14 +6,14 @@ Create a workload of specific kind on the cluster from the file
 tanzu workload create [NAME] [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload create --file workload.yaml
   tanzu workload create my-workload --file workload.yaml --namespace my-namespace
 ```
 
-### Options
+## Options
 
 ```console
   -f, --file string      file that contains the workload manifest. Can also be a URL (default "workload.yaml")
@@ -23,7 +23,7 @@ tanzu workload create --file workload.yaml
   -y, --yes              accept all prompts
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -31,7 +31,7 @@ tanzu workload create --file workload.yaml
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
 

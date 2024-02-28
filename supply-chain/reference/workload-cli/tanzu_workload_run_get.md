@@ -1,8 +1,8 @@
-## tanzu workload run get
+# tanzu workload run get
 
 Get workload run
 
-### Synopsis
+## Synopsis
 
 Get the details of the specified workload run within a namespace.
 
@@ -15,7 +15,7 @@ workload run get configuration options include:
 tanzu workload run get <NAME> [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload run get NAME
@@ -23,7 +23,7 @@ tanzu workload run get NAME
   tanzu workload run get NAME --namespace namespace --show-details
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help             help for get
@@ -32,7 +32,7 @@ tanzu workload run get NAME
       --show-details     show more details of the workload run
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -40,7 +40,7 @@ tanzu workload run get NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu workload run](tanzu_workload_run.md)	 - View workload runs
 
