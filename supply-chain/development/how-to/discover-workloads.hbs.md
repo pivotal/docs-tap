@@ -183,7 +183,7 @@ In this section, you will:
 - List Workloads
 - Get a Workload
 - Get a Workload run
-
+<br>
 1. Lists all `Workloads` on the cluster:
 
     ```console
@@ -290,5 +290,3 @@ In this section, you will:
         └─ git-writer-pr
           └─ pipeline - Not Started
     ```
-
-
