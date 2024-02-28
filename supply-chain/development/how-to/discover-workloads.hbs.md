@@ -215,7 +215,7 @@ In this section, you will:
       my-web-app-run-lxwrm  Running  0s        17s
     ```
 
-1. Get the [Workload] output as YAML or JSON for programmatic use:
+1. Get the Workload output as YAML or JSON for programmatic use:
 
     ```console
     $ tanzu workload get my-web-app --namespace build -o yaml
@@ -229,7 +229,7 @@ In this section, you will:
       ...
     ```
 
-1. Get the details of the specified [Workload Run] within a namespace:
+1. Get the details of the specified Workload Run within a namespace:
 
     ```console
     tanzu workload run get my-web-app-run-lxwrm -n build --show-details
