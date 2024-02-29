@@ -188,9 +188,13 @@ source code or image, including vulnerabilities from past scans.
 > **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
 > `log4shell` package.
 
-### <a id="triage-vul"></a> Triage vulnerabilities
+### <a id="triage-vul"></a> Triage vulnerabilities (alpha)
 
 This feature enables you to store analysis data for each of the vulnerabilities found in the scan.
+
+> **Caution** The capability to triage scan results in Tanzu Developer Portal is in the alpha
+> stage, which means that it is still in early development and is subject to change at any point.
+> You might encounter unexpected behavior from it.
 
 The feature is turned off by default in Tanzu Developer Portal. To enable the feature, add the
 following YAML to your configuration section within the `tap-values.yaml` file:
@@ -222,7 +226,7 @@ analysis.
 
 ## <a id="sc-crds"></a> Support for CRDs
 
-Tanzu Developer Portal v1.7.0 introduced support for CRDs. The following example illustrates the
+Tanzu Developer Portal v1.7.0 and later introduced support for CRDs. The following example illustrates the
 creation of a basic custom resource definition (CRD), which is used as part of a supply chain and
 its visualization in the workload:
 

@@ -1,8 +1,8 @@
-## tanzu workload list
+# tanzu workload list
 
 Lists all workloads
 
-### Synopsis
+## Synopsis
 
 Lists all workloads
 		
@@ -16,7 +16,7 @@ list configuration options include:
 tanzu workload list [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload list
@@ -26,7 +26,7 @@ tanzu workload list
   tanzu workload list --output yaml
 ```
 
-### Options
+## Options
 
 ```console
   -A, --all-namespaces   use all kubernetes namespaces
@@ -36,7 +36,7 @@ tanzu workload list
   -o, --output string    output the workloads formatted. Supported formats: "json", "yaml", "yml"
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -44,7 +44,7 @@ tanzu workload list
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
 

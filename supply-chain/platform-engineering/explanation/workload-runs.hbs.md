@@ -1,9 +1,10 @@
-# WorkloadRuns explained
+# Overview of WorkloadRuns
+
+This topic tells you about the `WorkloadRun` resource in Tanzu Supply Chain.
+For reference information, see [WorkloadRun CRD](../../reference/api/workloadrun.hbs.md).
 
 {{> 'partials/supply-chain/beta-banner' }}
 
 ![core-concepts-workloadruns.jpg](./images/core-concepts-workloadruns.jpg)
 
-[//]: # (TODO: much more detail here)
-
-A workloadRun CRD is defined by a [SupplyChain Resource](./supply-chains.hbs.md). See the [API Reference for more details](../../reference/api/workloadrun.hbs.md)
+The SupplyChain resource defines the WorkloadRun custom resource definition (CRD).

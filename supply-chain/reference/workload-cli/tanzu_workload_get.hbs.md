@@ -1,8 +1,8 @@
-## tanzu workload get
+# tanzu workload get
 
 Get details of a workload
 
-### Synopsis
+## Synopsis
 
 Get the details of the specified workload within a namespace.
 
@@ -15,7 +15,7 @@ workload get configuration options include:
 tanzu workload get <NAME> [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload get NAME
@@ -23,7 +23,7 @@ tanzu workload get NAME
   tanzu workload get NAME --kind kindname --namespace default
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help             help for get
@@ -32,7 +32,7 @@ tanzu workload get NAME
   -o, --output string    output the workload details formatted. Supported formats: "json", "yaml", "yml"
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -40,7 +40,7 @@ tanzu workload get NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
 

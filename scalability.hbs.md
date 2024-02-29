@@ -83,6 +83,7 @@ The following table describes the resource limit changes that are required for c
 | Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | `tap-values.yaml` |
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
+| Services Toolkit Controller | 100&nbsp;m/200&nbsp;m | **750&nbsp;Mi/1.5&nbsp;Gi** | n/a| No | Yes | Yes| overlay |
 | tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;Mi/**2&nbsp;Gi** | n/a| Yes | No | Yes| `tap-values.yaml` |
 | App SSO/App SSO Controller | 20&nbsp;m/500&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | n/a| No | Yes | Yes| `tap-values.yaml` |
 
@@ -459,4 +460,71 @@ appsso:
       memory: 1Gi
     requests:
       memory: 512Mi
+```
+
+### Services Toolkit Controller
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 200m
+    memory: 5000Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+```
+
+Use an overlay to make the following resource limit changes:
+
+```console
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: stk-patch
+  namespace: tap-install
+stringData:
+  patch-stk-pkgi.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"PackageInstall", "metadata":{"name":"services-toolkit"}}),expects=1
+    ---
+    metadata:
+      annotations:
+        #@overlay/match missing_ok=True
+        ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: stk-memory-patch
+
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: stk-memory-patch
+  namespace: tap-install
+stringData:
+  services-toolkit.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"services-toolkit-controller-manager"}}),expects=1
+    ---
+    spec:
+      template:
+        spec:
+          containers:
+          #@overlay/match by="name"
+          - name: manager
+            resources:
+              #@overlay/replace
+              limits:
+                memory: "1.5Gi"
+                cpu: "200m"
+              requests:
+                memory: "750Mi"
+                cpu: "100m"
+---
+```
+
+Run the following command to make the change:
+
+```console
+kubectl annotate pkgi/tap ext.packaging.carvel.dev/ytt-paths-from-secret-name.0=stk-patch  -n <tap-install-namespace>
 ```

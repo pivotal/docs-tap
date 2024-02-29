@@ -1,29 +1,37 @@
-# Resumptions explained
+# Overview of Resumptions
+
+This topic explains the concept of resumptions in Tanzu Supply Chain.
+For reference information about resumptions, see [Component API](../../reference/api/component.hbs.md).
 
 {{> 'partials/supply-chain/beta-banner' }}
 
 ![core-concepts-resumptions.jpg](./images/core-concepts-resumptions.jpg)
 
-[Detailed Specification in the API Section](../../reference/api/component.hbs.md)
+Resumptions are an important part of the Tanzu Supply Chain `Component` resource.
 
-Resumptions are an important part of the Tanzu Supply Chain [Component] resource.
+The `Component` resource deals with the configuration to pass to resumptions and pipelines, or
+the pipeline to run when the `Component` stage is reached in the supply chain.
+Resumptions are focused on the reasons to run again.
 
-The rest of [Component] deals with either the configuration to pass to resumptions and pipelines, or the pipeline to 'run' when the [Component] is reached in the [SupplyChain] `stages`.
-Resumptions are focused on **reasons to run again**.
+Resumptions are executed on a timer that is specified in the `resumptions` array of the component.
+When they trigger, they execute a Tekton `TaskRun` to discover new values.
+These are common for discovering changes to source repositories, image repositories, and new versions
+of binaries.
 
-Resumptions are executed on a timer, specified in the component's `resumptions` array. 
-When they trigger, they execute a Tekton TaskRun to discover new values. These are very common for discovering
-changes to source repositories, image repositories, and new versions of binaries.
+If a run reaches a stage with a resumption, the system generates a `resumptionKey` based on the value
+of the parameters that are passed to the resumption.
+If a resumption has already been executed with the same parameters, the result of that resumption is used.
+This allows hundreds or thousands of workloads to reuse the same common inputs from resumptions without
+needing to run another resumption.
 
-When a run is executing and it reaches a stage with a resumption, a `resumptionKey` is generated based on the value of the parameters being passed to the resumption.
-If a resumption has already been executed with the same parameters, then the result of that resumption is used.
-This allows hundreds/thousands of workloads to reuse the same common inputs from resumptions without needing to run another resumption.
+Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last
+completion of a resumption `TaskRun`, before running it again.
 
-Resumptions wait for the period of time specified in `resumptions[].trigger.runAfter`, after the last _completion_ of a resumption TaskRun, before executing it again.
+When a result for a resumption changes, all the `WorkloadRuns` with the same `resumptionKey` are cloned,
+truncated back to the stage of the resumption, and progress starts from there.
+This is the mechanism for resumptions triggering a new `WorkloadRun`.
 
-When any of a resumption's results change, all the [WorkloadRuns] with the same `resumptionKey` are cloned, truncated back to the stage of the resumption, and progress from there.
-This is the mechanism for resumptions triggering a new [WorkloadRun].
-
+<!--
 [SupplyChain]: ./supply-chains.hbs.md
 [SupplyChains]: ./supply-chains.hbs.md
 [Component]: ./components.hbs.md
@@ -34,3 +42,4 @@ This is the mechanism for resumptions triggering a new [WorkloadRun].
 [WorkloadRun]: ./workload-runs.hbs.md
 [Resumptions]: ./resumptions.hbs.md
 [Resumption]: ./resumptions.hbs.md
+-->

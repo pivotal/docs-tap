@@ -2,9 +2,9 @@
 
 This topic tells you how to upgrade Supply Chain Security Tools (SCST) - Store and how to troubleshoot upgrade issues.
 
-## <a id="upgrading-1-7"></a>Upgrading to 1.7
+## <a id="upgrading-1-7"></a>Upgrading to 1.7 and later
 
-In Tanzu Application Platform v1.7, VMware introduces Artifact Metadata Repository (AMR) to SCST - Store.
+In Tanzu Application Platform v1.7 and later, VMware introduces Artifact Metadata Repository (AMR) to SCST - Store.
 Tanzu Application Platform installs AMR components by default after upgrading.
 
 How you must configure AMR depends on if:
@@ -27,7 +27,7 @@ cluster.
 
 Read [SCST - Store multicluster setup](multicluster-setup.hbs.md) for the new
 configuration in detail. The documentation includes instructions for configuring both the
-new AMR and the existing Metadata Store. The new configurations for 1.7 are:
+new AMR and the existing Metadata Store. The new configurations for 1.7 and later are:
 
 1. [Copy AMR CloudEvent Handler CA certificate data from the View
    cluster](multicluster-setup.hbs.md#copy-ceh-ca)
@@ -36,9 +36,9 @@ new AMR and the existing Metadata Store. The new configurations for 1.7 are:
 3. [Apply the CloudEvent Handler CA certificate data and edit token to the Build
    and Run clusters](multicluster-setup.hbs.md#apply-ceh-ca-token)
 
-## <a id="upgrading-1-7"></a>Upgrading AMR Beta to 1.7
+## <a id="upgrading-1-7"></a>Upgrading AMR Beta to 1.7 and later
 
-This topic is about a special upgrade scenario for AMR: Upgrading from Tanzu Application Platform 1.6 with AMR beta enabled to Tanzu Application Platform 1.7. Because AMR was not enabled by default in Tanzu Application Platform 1.6, most users will not encounter this scenario. See [Upgrading from AMR Beta to AMR GA release](./upgrading-amr-beta.hbs.md).
+This topic is about a special upgrade scenario for AMR: Upgrading from Tanzu Application Platform 1.6 with AMR beta enabled to Tanzu Application Platform v1.7 and later. Because AMR was not enabled by default in Tanzu Application Platform 1.6, most users will not encounter this scenario. See [Upgrading from AMR Beta to AMR GA release](./upgrading-amr-beta.hbs.md).
 
 ## <a id="troubleshoot"></a>Troubleshoot upgrading
 

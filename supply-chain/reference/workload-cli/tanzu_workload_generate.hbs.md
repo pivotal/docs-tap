@@ -1,8 +1,8 @@
-## tanzu workload generate
+# tanzu workload generate
 
 Generate a workload manifest with specified configuration
 
-### Synopsis
+## Synopsis
 
 Generate a workload manifest with specified configuration.
 
@@ -13,21 +13,21 @@ workload configuration options include:
 tanzu workload generate [NAME] [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload generate NAME
   tanzu workload generate NAME --kind kindname
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help          help for generate
   -k, --kind string   kind of the workload specification.
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -35,7 +35,7 @@ tanzu workload generate NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
 

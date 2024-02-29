@@ -15,7 +15,7 @@ To install `full` dependencies:
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
 
 ## <a id='auto-deps-update'></a> (Optional) Update dependencies out of band of Tanzu Application Platform releases
 
@@ -25,7 +25,9 @@ To install `full` dependencies:
     copy the images directly by running:
 
         ```console
-        imgpkg copy -b registry.tanzu.vmware.com/build-service-dependency-updater/package-repo:VERSION_CONSTRAINT --to-repo $INTERNAL-REPO
+        imgpkg copy \
+          -b registry.tanzu.vmware.com/build-service-dependency-updater/package-repo:VERSION-CONSTRAINT \
+          --to-repo INTERNAL-REPO
         ```
 
         Where:
@@ -44,7 +46,7 @@ To install `full` dependencies:
             ```console
             imgpkg copy \
               -b registry.tanzu.vmware.com/build-service-dependency-updater/package-repo:VERSION-CONSTRAINT \
-              --to-tar dependency-updater-$VERSION-CONSTRAINT.tar \
+              --to-tar dependency-updater-VERSION-CONSTRAINT.tar \
               --include-non-distributable-layers
             ```
 
@@ -55,8 +57,8 @@ To install `full` dependencies:
 
             ```console
             imgpkg copy \
-              --tar dependency-updater-$VERSION-CONSTRAINT.tar \
-              --to-repo $INTERNAL-REPO \
+              --tar dependency-updater-VERSION-CONSTRAINT.tar \
+              --to-repo INTERNAL-REPO \
               --include-non-distributable-layers \
               --registry-ca-cert-path $REGISTRY_CA_PATH
             ```

@@ -1,8 +1,8 @@
-## tanzu supplychain list
+# tanzu supplychain list
 
 Lists all supplychains
 
-### Synopsis
+## Synopsis
 
 Lists all supplychains
 		
@@ -15,14 +15,14 @@ list configuration options include:
 tanzu supplychain list [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain list
   tanzu supplychain list --all-namespaces
 ```
 
-### Options
+## Options
 
 ```console
   -A, --all-namespaces   use all kubernetes namespaces

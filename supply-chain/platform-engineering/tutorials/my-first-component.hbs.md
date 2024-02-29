@@ -1,10 +1,10 @@
 # Build your first Component
 
+This topic tells you how to build a Component using Tanzu Supply Chain.
+
 {{> 'partials/supply-chain/beta-banner' }}
 
-
-[//]: # (Keep this section at the bottom of the doc)
-# Useful links
+## Useful links
 
 - [Component API Reference](../../reference/api/component.hbs.md)
 - [Component Catalog](../../reference/catalog/about.hbs.md)

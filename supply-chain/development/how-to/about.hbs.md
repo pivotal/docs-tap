@@ -1,9 +1,10 @@
 # How To Guides for Developers
 
+This section contains how to guides for developers using Tanzu Supply Chain.
+
 {{> 'partials/supply-chain/beta-banner' }}
 
+In this section:
+
 - [Install the `workload` CLI plug-in](./install-the-cli.hbs.md)
-- [Find the kinds of Workloads I can use](./discover-workloads.hbs.md)
-- [Create a Workload](./create-workloads.hbs.md)
-- [Observe runs for your Workloads](./observe-runs.hbs.md)
-- [Troubleshoot a run](./troubleshooting.hbs.md)
+- [Work with Workloads](./discover-workloads.hbs.md)

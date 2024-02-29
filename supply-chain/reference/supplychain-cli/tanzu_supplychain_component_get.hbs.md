@@ -1,8 +1,8 @@
-## tanzu supplychain component get
+# tanzu supplychain component get
 
 Get details of a component
 
-### Synopsis
+## Synopsis
 
 Get the details of the specified component within a namespace.
 
@@ -15,7 +15,7 @@ component get configuration options include:
 tanzu supplychain component get <NAME> [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain component get NAME
@@ -23,7 +23,7 @@ tanzu supplychain component get NAME
   tanzu supplychain component get NAME --namespace default --show-details
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help             help for get
@@ -32,7 +32,7 @@ tanzu supplychain component get NAME
       --show-details     show more details of the component
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -40,7 +40,7 @@ tanzu supplychain component get NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain component](tanzu_supplychain_component.md)	 - Interacting with supplychain components
 

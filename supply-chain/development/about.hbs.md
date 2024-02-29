@@ -1,8 +1,8 @@
 # Tanzu Supply Chain for Developers
 
-{{> 'partials/supply-chain/beta-banner' }}
+This section contains the developer focused features of Tanzu Supply Chain.
 
-This section details the Developer focused features of the Tanzu Supply Chains.
+{{> 'partials/supply-chain/beta-banner' }}
 
 ## Prerequisites
 
@@ -17,12 +17,8 @@ Start using Tanzu Supply Chain by installing these CLI tools:
 
 ## How to Guides
 
-- [Find the kinds of Workloads I can use](./how-to/discover-workloads.hbs.md)
-- [Create a Workload](./how-to/create-workloads.hbs.md)
-- [Observe runs for your Workloads](./how-to/observe-runs.hbs.md)
-- [Troubleshoot a run](./how-to/troubleshooting.hbs.md)
+- [Work with Workloads](./how-to/discover-workloads.hbs.md)
 
-## Reference Guides
+## Known issues
 
-- [Understanding Workloads](./explanation/workloads.hbs.md)
-- [Understanding WorkloadRuns](./explanation/workload-runs.hbs.md)
+- [Known issues](../known-issues.hbs.md)

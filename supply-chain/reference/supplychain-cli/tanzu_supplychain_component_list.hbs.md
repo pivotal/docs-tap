@@ -1,8 +1,8 @@
-## tanzu supplychain component list
+# tanzu supplychain component list
 
 Lists all supplychain components
 
-### Synopsis
+## Synopsis
 
 Lists all available supplychain components
 		
@@ -13,7 +13,7 @@ component list configuration options include:
 tanzu supplychain component list [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain component list
@@ -21,7 +21,7 @@ tanzu supplychain component list
   tanzu supplychain component list --wide
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help            help for list
@@ -29,7 +29,7 @@ tanzu supplychain component list
   -w, --wide            output the supplychain component list with additional information
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -37,7 +37,7 @@ tanzu supplychain component list
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain component](tanzu_supplychain_component.md)	 - Interacting with supplychain components
 

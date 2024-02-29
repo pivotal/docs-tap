@@ -297,7 +297,7 @@ is assigned random ports, which are not accessible through your Kind cluster.
 
 ## <a id='servicebinding-error'></a> Service binding package fails to reconcile
 
-You receive the following error message when deploying or upgrading to Tanzu Application Platform v1.7:
+You receive the following error message when deploying or upgrading to Tanzu Application Platform v1.8:
 
 ```console
 ValidationError(Package.spec.template.spec.template[0].ytt.valuesFrom[0]): unknown field "downwardAPI"
@@ -315,7 +315,7 @@ Upgrade to Cluster Essentials v{{ vars.url_version }}. For more information abou
 
 ## <a id='scst-scan-fail'></a> Reconciliation fails with Supply Chain Security Tools - Scan 2.0 upgrade
 
-When deploying Supply Chain Security Tools - Scan 2.0 `app-scanning.apps.tanzu.vmware.com` to a cluster and upgrading Tanzu Application Platform from v1.6 to v1.7, you might encounter a reconciliation error as follows:
+When deploying Supply Chain Security Tools - Scan 2.0 `app-scanning.apps.tanzu.vmware.com` to a cluster and upgrading Tanzu Application Platform from v1.6 to v1.7 or later, you might encounter a reconciliation error as follows:
 
 ```console
 Expected to find at least one version, but did not (details: all=1 ->
@@ -324,7 +324,7 @@ Expected to find at least one version, but did not (details: all=1 ->
 
 **Explanation**
 
-The upgrade instructions overwrite the Tanzu Application Platform v1.6 repository with the 1.7 version, which leads to a reconciliation error.
+The upgrade instructions overwrite the Tanzu Application Platform v1.6 repository with the 1.7 version or later, which leads to a reconciliation error.
 
 **Solution**
 

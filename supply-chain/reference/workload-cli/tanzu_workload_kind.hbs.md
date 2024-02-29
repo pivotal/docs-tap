@@ -1,14 +1,14 @@
-## tanzu workload kind
+# tanzu workload kind
 
 View supported workload types (kinds)
 
-### Options
+## Options
 
 ```console
   -h, --help   help for kind
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -16,8 +16,8 @@ View supported workload types (kinds)
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
-* [tanzu workload kind list](tanzu_workload_kind_list.md)	 - Lists all workload kinds
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload kind list](tanzu_workload_kind_list.hbs.md)	 - Lists all workload kinds
 

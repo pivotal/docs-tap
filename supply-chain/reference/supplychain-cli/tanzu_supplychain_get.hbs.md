@@ -1,8 +1,8 @@
-## tanzu supplychain get
+# tanzu supplychain get
 
 Get supplychain
 
-### Synopsis
+## Synopsis
 
 Get the details of the specified supplychain within a namespace.
 
@@ -14,13 +14,13 @@ supplychain get configuration options include:
 tanzu supplychain get <NAME> [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu supplychain get NAME
 ```
 
-### Options
+## Options
 
 ```console
   -h, --help             help for get
@@ -28,7 +28,7 @@ tanzu supplychain get NAME
   -o, --output string    output the supplychains formatted. Supported formats: "json", "yaml", "yml"
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -36,7 +36,7 @@ tanzu supplychain get NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain](tanzu_supplychain.md)	 - supplychain management
 

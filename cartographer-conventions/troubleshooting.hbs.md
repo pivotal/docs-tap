@@ -275,7 +275,7 @@ To increase the memory limit:
 1. Update Tanzu Application Platform by running:
 
   ```console
-  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.8.0  --values-file tap-values.yaml -n tap-install
   ```
 
 For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).
@@ -375,7 +375,7 @@ Use this procedure to increase the memory limit:
 1. Update Tanzu Application Platform by running:
 
   ```console
-  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.8.0  --values-file tap-values.yaml -n tap-install
   ```
 
 For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).

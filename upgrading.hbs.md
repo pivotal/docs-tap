@@ -23,8 +23,8 @@ Before you upgrade Tanzu Application Platform:
   [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials
   v{{ vars.url_version }}. For more information about the upgrade procedures, see the
   [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
-- The previously deprecated field `scanning.metadataStore.url` is removed from the values for installing or upgrading Tanzu Application Platform v1.7. This field must not present in the `tap-non-sensitive-values.yaml` file when performing the upgrade.
-- Note that this upgrade will update all workloads and pods that are using service bindings. This is done automatically after upgrading to 1.7 and requires no user action.
+- The previously deprecated field `scanning.metadataStore.url` is removed from the values for installing or upgrading Tanzu Application Platform v1.7 and later. This field must not present in the `tap-non-sensitive-values.yaml` file when performing the upgrade.
+- Note that this upgrade will update all workloads and pods that are using service bindings. This is done automatically after upgrading to 1.7 or later and requires no user action.
 - All pods with service bindings are recreated concurrently at the time of the upgrade. You must have sufficient Kubernetes resources in your clusters to support the pod rollout.
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
@@ -72,12 +72,11 @@ The following changes affect the upgrade procedures:
 
 - **Introduced Artifact Metadata Repository**
 
-    In Tanzu Application Platform v1.7.0, the [Artifact Metadata
+    In Tanzu Application Platform v1.7.0 and later, the [Artifact Metadata
     Repository](scst-store/overview.hbs.md) component is introduced into the
     Supply Chain Security Tools (SCST) - Store package. In a multicluster
     deployment, this component requires additional configuration during upgrade.
-    For more information, see [SCST - Store upgrade to 1.7
-    instructions](scst-store/upgrading.hbs.md#upgrading-1-7).
+    For more information, see [Upgrading from AMR Beta to AMR GA release](scst-store/upgrading.hbs.md#upgrading-1-7).
 
 - **Keyless support deactivated by default**
 

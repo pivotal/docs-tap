@@ -8,7 +8,9 @@ This repo contains the content for Tanzu Application Platform docs.
 
 | Branch | Staging | Production |
 |--------|---------|------------|
-| main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.8/tap/overview.html) (Pre-release v1.8 docs) | n/a |
+| main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.9/tap/overview.html) (Pre-release v1.9 docs) | n/a |
+| 1-8-1  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.8.1/tap/overview.html) (Pre-release v1.8.1 docs) | n/a |
+| 1-8-0  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/overview.html) |
 | 1-7-5  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7.5/tap/overview.html) (Pre-release v1.7.5 docs) | n/a |
 | 1-7-4  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) |
 | 1-7-3  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |

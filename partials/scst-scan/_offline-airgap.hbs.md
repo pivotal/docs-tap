@@ -536,4 +536,4 @@ to troubleshoot inside the container:
 
 If you used the Namespace Provisioner to provision a new developer namespace and
 want to apply a package overlay for Grype, see [Import overlay
-secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/namespace-provisioner-customize-installation.html)[Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md#import-overlay-secrets).
+secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/namespace-provisioner-customize-installation.html)[Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md#import-overlay-secrets).

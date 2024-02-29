@@ -22,7 +22,7 @@ The current default merge strategy intents to prevent unintentional deletions of
 properties from existing workloads.
 
 >**Note** The default value for the `--update-strategy flag` will change from merge to replace
-> in Tanzu Application Platform v1.7.0.
+> in Tanzu Application Platform v1.7.0 and later.
 
 Examples of the outcomes of both the `merge` and `replace` values are provided in the
 following examples:

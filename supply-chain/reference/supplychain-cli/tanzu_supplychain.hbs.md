@@ -1,8 +1,8 @@
-## tanzu supplychain
+# tanzu supplychain
 
 supplychain management
 
-### Options
+## Options
 
 ```
   -h, --help              help for supplychain
@@ -11,7 +11,7 @@ supplychain management
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu supplychain component](tanzu_supplychain_component.md)	 - Interacting with supplychain components
 * [tanzu supplychain generate](tanzu_supplychain_generate.md)	 - Generate a supplychain scaffold

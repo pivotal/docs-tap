@@ -1,9 +1,10 @@
-# Workloads explained
+# Overview of Workloads
 
-{{> 'partials/supply-chain/beta-banner' }} 
+This topic tells you about the `Workload` resource in Tanzu Supply Chain.
+For reference information, see [Workload CRD](../../reference/api/workload.hbs.md).
+
+{{> 'partials/supply-chain/beta-banner' }}
 
 ![core-concepts-workloads.jpg](./images/core-concepts-workloads.jpg)
 
-[//]: # (TODO: much more detail here)
-
-A Workload CRD is defined by a [SupplyChain Resource](./supply-chains.hbs.md). See the [API Reference for more details](../../reference/api/workload.hbs.md)
+The SupplyChain resource defines the Workload custom resource definition (CRD).

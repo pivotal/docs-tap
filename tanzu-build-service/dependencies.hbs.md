@@ -10,7 +10,7 @@ This topic tells you about Tanzu Build Service dependencies.
 To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
-and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 
@@ -172,25 +172,25 @@ And the following components:
 
 The following table compares the contents of the `lite` and `full` dependencies.
 
-|   | lite | full |
-|---|---|---|
-| Faster installation time | Yes | No |
-| Dependencies pre-packaged (faster builds) | No | Yes |
-| Supports air-gapped installation | No | Yes |
-| Contains base stack | Yes | Yes |
-| Contains full stack | No | Yes |
-| Contains tiny stack | No | Yes |
-| Contains Jammy stack | Yes | Yes |
-| Supports Java workloads | Yes | Yes |
-| Supports Node.js workloads | Yes | Yes |
-| Supports Go workloads | Yes | Yes |
-| Supports Python workloads | Yes | Yes |
-| Supports Ruby workloads | Yes | Yes |
-| Supports .NET Core workloads | Yes | Yes |
-| Supports PHP workloads | No | Yes |
-| Supports static workloads | Yes | Yes |
-| Supports binary workloads | Yes | Yes |
-| Supports web servers buildpack | Yes | Yes |
+| Feature                                   | lite | full |
+| ----------------------------------------- | ---- | ---- |
+| Faster installation time                  | Yes  | No   |
+| Dependencies pre-packaged (faster builds) | No   | Yes  |
+| Supports air-gapped installation          | No   | Yes  |
+| Contains base stack                       | Yes  | Yes  |
+| Contains full stack                       | No   | Yes  |
+| Contains tiny stack                       | No   | Yes  |
+| Contains Jammy stack                      | Yes  | Yes  |
+| Supports Java workloads                   | Yes  | Yes  |
+| Supports Node.js workloads                | Yes  | Yes  |
+| Supports Go workloads                     | Yes  | Yes  |
+| Supports Python workloads                 | Yes  | Yes  |
+| Supports Ruby workloads                   | Yes  | Yes  |
+| Supports .NET Core workloads              | Yes  | Yes  |
+| Supports PHP workloads                    | No   | Yes  |
+| Supports static workloads                 | Yes  | Yes  |
+| Supports binary workloads                 | Yes  | Yes  |
+| Supports web servers buildpack            | Yes  | Yes  |
 
 ## <a id="update-tap"></a> Update dependencies in band with Tanzu Application Platform releases
 

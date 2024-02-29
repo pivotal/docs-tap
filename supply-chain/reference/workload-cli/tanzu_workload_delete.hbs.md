@@ -1,8 +1,8 @@
-## tanzu workload delete
+# tanzu workload delete
 
 Delete workload
 
-### Synopsis
+## Synopsis
 
 Delete a workload by name within a namespace.
 
@@ -13,7 +13,7 @@ registry.
 tanzu workload delete [NAME] [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu workload delete NAME
@@ -22,7 +22,7 @@ tanzu workload delete NAME
   tanzu workload delete --file workload.yaml
 ```
 
-### Options
+## Options
 
 ```console
   -f, --file file path   file path containing the description of a single workload, other flags are layered on top of this resource. Use value "-" to read from stdin
@@ -32,7 +32,7 @@ tanzu workload delete NAME
   -y, --yes              accept all prompts
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
@@ -40,7 +40,7 @@ tanzu workload delete NAME
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu workload](tanzu_workload.md)	 - create, update, view and list Tanzu Workloads.
+* [tanzu workload](tanzu_workload.hbs.md)	 - create, update, view and list Tanzu Workloads.
 
