@@ -75,8 +75,9 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
       cosign.pub: PUBLIC-KEY-DATA
     ```
 
-    For more information about configuring Cosign key pairs, see the
-    [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-images.html#image-signing-with-cosign).
+    For more information about configuring Cosign key pairs, see
+    [Image signing with cosign](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-images.html#cosign)
+    in the Tanzu Build Service documentation.
 
 1. To enable Cosign signing, create or edit the service account resource that is
 referenced in the image resource so that it includes the Cosign keypair secret created earlier. The
