@@ -14,10 +14,10 @@ see [Installing Tanzu Build Service](install-tbs.md).
 
 - Install Cosign. For instructions, see the [Cosign documentation](https://github.com/sigstore/cosign#installation).
 
-- Have a [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-builders.html)
+- Have a [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-builders.html)
 resource configured.
 
-- Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-images.html)
+- Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-images.html)
 resource configured.
 
 - Review the [kpack tutorial](https://github.com/buildpacks-community/kpack/blob/main/docs/tutorial.md). This topic builds upon the steps in this tutorial.
@@ -75,8 +75,9 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
       cosign.pub: PUBLIC-KEY-DATA
     ```
 
-    For more information about configuring Cosign key pairs, see the
-    [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-images.html#image-signing-with-cosign).
+    For more information about configuring Cosign key pairs, see
+    [Image signing with cosign](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-images.html#cosign)
+    in the Tanzu Build Service documentation.
 
 1. To enable Cosign signing, create or edit the service account resource that is
 referenced in the image resource so that it includes the Cosign keypair secret created earlier. The

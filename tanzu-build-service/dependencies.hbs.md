@@ -10,7 +10,7 @@ This topic tells you about Tanzu Build Service dependencies.
 To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
-and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.13/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 
