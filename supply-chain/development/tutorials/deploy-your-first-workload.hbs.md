@@ -44,7 +44,7 @@ what kinds of `Workloads` you can create using those `SupplyChain`. Run:
 [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 sample application. Use the `tanzu workload generate` command to create a `Workload` of kind
 `AppBuildV1`. A selector is displayed if multiple kinds are available. If a single kind is
-available, this is used to generate the scaffold of the `Workload`. Run:
+available, it is used to generate the scaffold of the `Workload`. Run:
 
     ```console
     tanzu workload generate tanzu-java-web-app
@@ -296,13 +296,13 @@ is going through. Use the optional `--show-details` flag for a more detailed out
 
     The output shows you:
 
-    - Overview of your workload like `name`, `kind` and `namespace`.
+    - Overview of your workload like `name`, `kind`, and `namespace`.
     - Last 2 successful `WorkloadRuns`
     - Last 1 failed `WorkloadRun`
     - All running `WorkloadRuns`
     - Error section from the last failed `WorkloadRun`
 
-    When your `WorkloadRun` has successfully gone through the Supply Chain, the output of the
+    When your `WorkloadRun` has gone through the Supply Chain, the output of the
     `Workload` and `WorkloadRun` is as follows:
 
     Workload Run Output
@@ -418,7 +418,7 @@ repository that is configured by the Platform Engineer. In your Supply Chain, wh
 succeeds, you can see the URL for the pull request to the GitOps repository in the
 `tanzu workload run get --show-details` output in the `gitops-pr` stage results.
 
-You have successfully deployed your first workload using Tanzu Supply Chains.
+You have deployed your first workload using Tanzu Supply Chains.
 
 ## Next Steps
 

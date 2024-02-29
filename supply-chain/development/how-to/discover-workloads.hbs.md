@@ -74,8 +74,9 @@ In this section, you will:
     #! other configuration
     ```
 
-1. Pipe the output into a `workload.yaml` file. This `Workload` manifest can be stored in a file for
-use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload get` commands:
+1. Store the `Workload` manifest in a file for use by the `tanzu workload create`,
+`tanzu workload apply`, and `tanzu workload get` commands. Pipe the output into a `workload.yaml`
+file:
 
     ```console
     tanzu workload generate my-web-app --kind buildwebapps.vmware.com > workload.yaml
@@ -112,7 +113,7 @@ use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload 
     Successfully created workload my-web-app
     ```
 
-1. The `Workload` name provided in the manifest can be overridden by providing a name as an argument:
+1. Override the `Workload` name provided in the manifest by providing a name as an argument:
 
     ```console
     tanzu workload create my-web-app-2 --file workload.yaml --namespace build
@@ -120,7 +121,7 @@ use by the `tanzu workload create`, `tanzu workload apply`, and `tanzu workload 
 
 ### Apply a Workload
 
-1. The `tanzu workload create` command can only be used to create a `Workload` that does not already
+1. The `tanzu workload create` command is only used to create a `Workload` that does not already
 exist. To update an existing `Workload`, use `tanzu workload apply`. Apply a `Workload` manifest to
 the cluster:
 
@@ -151,7 +152,7 @@ the cluster:
     Successfully created workload my-web-app
     ```
 
-1. The `Workload` name provided in the manifest can be overridden by providing a name as an argument:
+1. Override the `Workload` name provided in the manifest by providing a name as an argument:
 
     ```console
     tanzu workload apply my-web-app-2 --file workload.yaml --namespace build

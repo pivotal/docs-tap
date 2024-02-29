@@ -92,7 +92,7 @@ The following Component packages are required if you're authoring a supply chain
     --namespace tap-install
   ```
 
-1. Confirm if the required packages are installed and reconciled successfully. Run:
+1. Confirm that the required packages are installed and reconciled successfully. Run:
 
   ```console
   kubectl get pkgi -A

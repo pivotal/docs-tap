@@ -5,7 +5,7 @@ for developers to use.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This SupplyChain pulls the source code from a Git Repository, builds and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+This SupplyChain pulls the source code from a Git repository, builds, and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
 
 ## Prerequisites
 
@@ -159,7 +159,7 @@ generate your first SupplyChain. Start the wizard:
 1. In the wizard prompts that follow, add the following values:
 
    - **What Kind would you like to use as the developer interface?** AppBuildV1
-   - **Give Supply chain a description?** Supply chain that pulls the source code from Git repo, builds it using buildpacks and package the output as Carvel package.
+   - **Give Supply chain a description?** Supply chain that pulls the source code from Git repository, builds it using buildpacks and package the output as Carvel package.
    - **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
    - **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
    - **Select a component as the next stage of the supply chain?** conventions-1.0.0
@@ -200,7 +200,7 @@ generate your first SupplyChain. Start the wizard:
     ```
 
 1. You have now authored your first SupplyChain. View the SupplyChain definition created by the wizard
-by viewing the manifest created in the `supplychains/` folder. Run:
+by viewing the manifest created in the `supplychains/` directory. Run:
 
   ```console
   cat supplychains/appbuildv1.yaml
@@ -243,7 +243,7 @@ by viewing the manifest created in the `supplychains/` folder. Run:
 
 ## Next Steps
 
-Deploy this `SupplyChain` to your Tanzu Application Platform clusters where your developers will be creating the `Workloads`. For instructions, see [How To install a Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
+Deploy the `SupplyChain` to your Tanzu Application Platform clusters where your developers are creating the `Workloads`. For instructions, see [Install an authored Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
 
 ### Useful links
 

@@ -31,7 +31,7 @@ The Authoring profile has the following additional packages that the Iterate pro
   profile: authoring
   ```
 
-1. Confirm if the required packages are installed and reconciled successfully. Run:
+1. Confirm that the required packages are installed and reconciled successfully. Run:
 
   ```console
   kubectl get pkgi -A
