@@ -427,7 +427,7 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 
     >**Important** The package and repository names might differ depending on your installation configurations.
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
 
 For more information about the differences between `lite` and `full` dependencies, see
 [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
