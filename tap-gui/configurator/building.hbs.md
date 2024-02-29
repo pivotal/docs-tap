@@ -97,30 +97,63 @@ foundation that is ready to pass through the supplychain. Depending on how you i
 could either be on `registry.tanzu.vmware.com` or on the local image registry (`imgpkg`) that you
 moved the installation packages to.
 
-1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
+## <a id="prep-ident-image"></a> Identify your Configurator image
 
-   ```console
-   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tpb.tanzu.vmware.com.0.1.2 -o \
-   "jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}")
-   ```
+To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass
+through the supply chain. Depending on your choices during installation, this is on either
+`registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
+packages to.
 
-2. Log in to your image registry by running:
+Using imgpkg version 0.39.0 or lower
+:
 
-   ```console
-   docker login REGISTRY-SERVER-NAME
-   ```
+  1. Using the `imgpkg` tool, retrieve the image location by running:
 
-3. Pull the image from your registry and extract it to a local directory:
+    ```console
+    imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+    --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+    jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o yaml --tty=true | grep -A 1 \
+    "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
+    ```
+
+    Output similar to the following appears:
+
+    ```console
+    IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+    ```
+
+  2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
+    workload definition.
+
+Using imgpkg version 0.40.0 or higher
+:
+
+  1. Using the `imgpkg` tool, download the bundle by running:
+
+    ```console
+    imgpkg pull -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+    --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+    jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o bundle
+    ```
+
+  2. Retrieve the image location by running:
+
+    ```console
+    cat bundle/.imgpkg/images.yml | grep -A 1 "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | \
+    grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
+    ```
+
+    Output similar to the following appears:
+
+    ```console
+    IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+    ```
+
+  3. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
+    workload definition.
 
    ```console
    imgpkg pull -b ${OUTPUT_IMAGE} -o tpb-package
-   ```
-
-4. Using the yq tool, retrieve the `TDP-IMAGE-LOCATION` that you will supply in your workload
-   definition by running:
-
-   ```console
-   yq -r ".images[0].image" <tpb-package/.imgpkg/images.yml
    ```
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
