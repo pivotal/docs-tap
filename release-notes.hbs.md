@@ -14,20 +14,6 @@ In release notes, this condition hides content that describes an unreleased patc
 
 **Release Date**: 29 February 2024
 
-### <a id='1-8-0-whats-new'></a> What's new in Tanzu Application Platform v1.8
-
-This release includes the following platform-wide enhancements.
-
-#### <a id='1-8-0-new-platform-features'></a> New platform-wide features
-
-- Feature Description.
-
-#### <a id='1-8-0-new-components'></a> New components
-
-- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
-
----
-
 ### <a id='1-8-0-new-features'></a> v1.8.0 New features by component and area
 
 This release includes the following changes, listed by component and area.
@@ -169,10 +155,11 @@ This release includes the following changes, listed by component and area.
   Out of the Box Supply Chain with Testing and Scanning packages.
   This feature is in beta. For more information, see [Carvel Package Supply Chains (beta)](scc/carvel-package-supply-chain.hbs.md).
 
-#### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-8-0-scst-scan'></a> v1.8.0 Features: Supply Chain Security Tools - Scan
 
-- SCST - Scan 2.0 is now GA. For more information, including guidance about when to use
-  SCST - Scan 1.0 versus SCST - Scan 2.0, see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
+- Supply Chain Security Tools (SCST) - Scan 2.0 is now GA.
+  For more information, including guidance about when to use SCST - Scan 1.0 versus SCST - Scan 2.0,
+  see [SCST - Scan Overview](./scst-scan/overview.hbs.md).
 
 - SCST - Scan 1.0 remains the default scan component, with SCST - Scan 2.0 available on an
   opt-in basis, except in the following situations:
@@ -224,16 +211,16 @@ This release includes the following changes, listed by component and area.
   - An Environments drop-down menu, which includes the filters **All Environments (default)** and
     any available individual environment
 
-#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
+#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
 
-- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
   action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
   when iterating locally from a local URL by using **Tanzu: Portforward** or by using a Knative URL
   for web type workloads from the Tanzu panel.
 
-#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
+#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
 
-- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
   action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
   when iterating locally from a local URL by using **Tanzu: Portforward** or by using a Knative URL
   for web type workloads from the Tanzu panel.
@@ -255,7 +242,7 @@ This release includes the following changes, listed by component and area.
 - Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep).
   This tool has been officially deprecated since 2020.
 
-#### <a id='1-8-0-scst-scan-bc'></a> v1.8.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-8-0-scst-scan-bc'></a> v1.8.0 Breaking changes: Supply Chain Security Tools - Scan
 
 - Grype scanner has been removed from the Build and Full installation profiles. Use Namespace Provisioner
   to install the Grype package to developer namespaces. For instructions, see
@@ -853,11 +840,11 @@ This release has the following known issues, listed by component and area.
   [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
   [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
-#### <a id='1-8-0-scst-scan-2-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+#### <a id='1-8-0-scst-scan-2-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan 2.0
 
-- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
-  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
-  `tap-values.yaml` file.
+- When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
+  the scanning image is overwritten with an incorrect default value from
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
   For example, for the Trivy image packaged with Tanzu Application Platform:
 
