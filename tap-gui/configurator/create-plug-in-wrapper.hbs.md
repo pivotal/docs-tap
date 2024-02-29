@@ -114,12 +114,10 @@ To remove unnecessary dependencies you must:
 1. Install the dependencies by running:
 
    ```console
-   yarn install --ignore-engines
+   yarn install
    ```
 
-   This command installs `backstage-cli` and a few other dependencies. The `--ignore-engines` flag
-   is needed because a transitive dependency is expecting Node v18, but this Tanzu Developer Portal
-   version currently only supports Node v16.
+   This command installs `backstage-cli` and a few other dependencies.
 
 ## <a id="tech-insights-frntnd-plgn"></a> Create the Tech Insights front-end Tanzu Developer Portal plug-in
 
