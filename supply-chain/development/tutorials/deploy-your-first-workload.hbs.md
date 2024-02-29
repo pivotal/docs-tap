@@ -21,7 +21,7 @@ Install the following CLI tools on your local machine:
 what kinds of `Workloads` you can create using those `SupplyChain`. Run:
 
     ```console
-    tanzu workload
+    tanzu workload kind list
     ```
 
     Example output:
