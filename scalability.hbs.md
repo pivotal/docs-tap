@@ -523,7 +523,7 @@ stringData:
 ---
 ```
 
-run the following command to make the change 
+Run the following command to make the change:
 
 ```console
 kubectl annotate pkgi/tap ext.packaging.carvel.dev/ytt-paths-from-secret-name.0=stk-patch  -n <tap-install-namespace>
