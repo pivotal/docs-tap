@@ -15,7 +15,7 @@ To install `full` dependencies:
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
 
 ## <a id='auto-deps-update'></a> (Optional) Update dependencies out of band of Tanzu Application Platform releases
 

@@ -113,4 +113,4 @@ You must install the `full` dependencies.
 
 To install `full` dependencies:
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
