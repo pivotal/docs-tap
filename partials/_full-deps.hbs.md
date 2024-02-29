@@ -28,8 +28,8 @@ you must perform the update by running:
      1. Relocating the images directly for online installation:
 
          ```console
-         imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps:VERSION \
-            --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps
+         imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+            --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps-package-repo
          ```
 
          Where `VERSION` is the version of the Tanzu Application Platform package you retrieved earlier.
