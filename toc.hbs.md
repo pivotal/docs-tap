@@ -493,6 +493,7 @@
       - [Configure liveness, readiness, and startup probes for Spring Boot apps (alpha)](spring-boot-conventions/config-probes.hbs.md)
       - [Enable Application Live View for Spring Boot apps](spring-boot-conventions/enabling-app-live-view.hbs.md)
       - [Enable Application Live View for Spring Native apps](spring-boot-conventions/enable-spring-native-apps.hbs.md)
+      - [Enable Prometheus Scraping for Spring Boot apps](spring-boot-conventions/enable-prometheus-scraping.md)
       - [Conventions](spring-boot-conventions/reference/conventions.hbs.md)
       - [Troubleshoot Spring Boot conventions](spring-boot-conventions/troubleshooting.hbs.md)
     - [Spring Cloud Gateway](spring-cloud-gateway/about.hbs.md)
