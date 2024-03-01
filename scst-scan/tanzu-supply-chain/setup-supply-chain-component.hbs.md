@@ -1,4 +1,4 @@
-# Set up the Supply Chain Component
+# Setup the Supply Chain Component
 
 This topic describes how to install the Trivy Supply Chain Component, create a custom Supply Chain Component using the SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
 
@@ -15,7 +15,7 @@ This section describes how to install the Trivy Supply Chain Component that uses
     For example:
 
     ```console
-    tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
+    $ tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
 
     NAME                                                VERSION                              RELEASED-AT
     trivy.app-scanning.component.apps.tanzu.vmware.com  TRIVY-COMPONENT-VERSION              2024-01-26 12:35:39 -0500 EST
@@ -127,8 +127,8 @@ For more details on how to create a Component, see [Tanzu Supply Chain docs](../
 1. Apply the custom component and pipeline:
 
     ```console
-    kubectl apply -f component.yaml
-    kubectl apply -f pipeline.yaml
+    kubectl apply -f component.yaml -n DEV-NAMESPACE
+    kubectl apply -f pipeline.yaml -n DEV-NAMESPACE
     ```
 
 1. (Optional) If you create your own component, it requires the following label so that it can be

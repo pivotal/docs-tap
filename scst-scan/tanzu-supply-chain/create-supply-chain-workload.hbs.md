@@ -18,7 +18,7 @@ Define a `workload.yaml` to run:
 
 ```yaml
 kind: KIND
-apiVersion: example.com/v1alpha1
+apiVersion: API-VERSION
 metadata:
   name: WORKLOAD-NAME
 spec:
@@ -27,14 +27,15 @@ spec:
     server: REGISTRY-SERVER
   source:
     git:
-      branch: main
+      branch: GIT-BRANCH
       url: GIT-URL
-    subPath: ""
+    subPath: GIT-SUBPATH
 ```
 
 Where:
 
-- `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+- `KIND` is the kind defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). The kind can be found in the supplychain yaml in the supplychains directory.
+- `API-VERSION` is defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). `API-VERSION` is the `group` and `version` found in the supplychain yaml in the supplychains directory.
 - `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
 - `REGISTRY-SERVER` is the registry repository used for the scan results location.
 - `GIT-URL` is the Git repository URL to clone from for the source component.
