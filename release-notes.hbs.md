@@ -41,7 +41,7 @@ OR add HTML table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-9-cnr-ri'></a> v1.6.9 Known issues: Cloud Native Runtimes
+#### <a id='1-6-9-cnr-ri'></a> v1.6.9 Resolved issues: Cloud Native Runtimes
 
 - Resolved the issue where web workloads created with Tanzu Application Platform v1.6.3 and earlier
   failed to update with the error
