@@ -102,7 +102,7 @@ produced by the supply chain. See [ScanTemplate section](#scan-template).
 The following section includes details about the new objects, compared to Out of the Box
 Supply Chain With Testing.
 
-### <a id="updates-to-developer-namespace"></a> Updates to the developer namespace
+### <a id="updates-to-developer-ns"></a> Updates to the developer namespace
 
 For source and image scans, scan templates and scan policies
 must exist in the same namespace as the workload. These define:
@@ -131,8 +131,7 @@ The names of the objects **must** match the names in the example with default in
 
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
 
-- To override through workload parameters, use the following commands.
-  For more information, see [Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
+- To override through workload parameters, use the these commands.
 
     ```console
     tanzu apps workload apply WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE
@@ -144,6 +143,8 @@ The names of the objects **must** match the names in the example with default in
     - `WORKLOAD` is the name of the workload.
     - `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
     - `DEV-NAMESPACE` is the developer namespace.
+
+    For more information, see [Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 #### <a id="scan-policy"></a> ScanPolicy
 
@@ -237,9 +238,9 @@ SCST - Store CA certificate and authentication token to the developer namespace.
 ## <a id="developer-workload"></a> Developer workload
 
 With the ScanPolicy and ScanTemplate objects, with the required names set,
-submitted to the same namespace where the workload are submitted, you are ready to submit your workload.
+submitted to the same namespace where the workload is submitted, you are ready to submit your workload.
 
-Regardless of the workflow being targeted, such as local development or gitops, the
+Regardless of the workflow being targeted, such as local development or GitOps, the
 workload configuration details are the same as in Out of the Box Supply Chain
 Basic, except that you mark the workload as having tests enabled.
 
@@ -281,6 +282,6 @@ Create workload:
 The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from building or images deploying that contain vulnerabilities that are in violation of the user-defined scan policy.
 For information about learning how to handle these vulnerabilities and unblock your Supply Chain, see [Triaging and Remediating CVEs](../scst-scan/triaging-and-remediating-cves.hbs.md).
 
-## <a id="scan-images-using-different-scanner"></a> Scan Images using a different scanner
+## <a id="scan-diff-scanner"></a> Scan Images using a different scanner
 
 [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black.
