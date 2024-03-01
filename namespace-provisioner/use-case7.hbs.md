@@ -403,18 +403,18 @@ Set up the service account to interact with Git repositories:
    the secret named `git` is present in all provisioned namespaces and is also
    added to the default service account of those namespaces.
 
-4. In your `tap-values.yaml` file, in the `ootb_supply_chain_*.gitops.credentials_secret` and
-   `ootb_supply_chain_*.source.credentials_secret` section,
-   specify the name of the Git secret containing the credentials. This is necessary for
+4. In the `ootb_supply_chain_*.gitops.credentials_secret` and
+   `ootb_supply_chain_*.source.credentials_secret` section of your `tap-values.yaml` file,
+   edit the name of the Git secret containing the credentials. This is necessary for
    the supply chain to include the `secretRef` when creating the Flux `GitRepository` resource.
    For example:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
     gitops:
-      credentials_secret: git  # Replace with the actual name of your gitops Git secret for the workload, if different
+      credentials_secret: git  # Replace with the actual name of your GitOps Git secret for the workload, if different.
     source:
-      credentials_secret: git  # Replace with the actual name of your source Git secret for the workload, if different
+      credentials_secret: git  # Replace with the actual name of your source Git secret for the workload, if different.
     ```
 
     By providing this configuration, the supply chain associates the created `GitRepository`
