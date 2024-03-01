@@ -4,17 +4,15 @@ This topic tells you what to configure to complete your Tanzu Supply Chain insta
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-After you have installed Tanzu Supply Chain, there are several steps you must complete to ensure
+After you have installed Tanzu Supply Chain, there are several steps you must complete to ensure that
 you have a functioning installation. Use Namespace Provisioner to configure service accounts and permissions.
 
 ## Things to configure
 
 - OCI Store Configuration
-  - Supply Chains persist data between stages by reading and writing to an OCI repository. 
-  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that
-  exists within the developer namespace.
-  - Access to this repository is controlled by a tekton annotated secret which can have any name as
-  long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
+  - Supply Chains persist data between stages by reading and writing to an OCI repository.
+  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace.
+  - Access to this repository is controlled by a Tekton annotated secret which can have any name as long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
 - Permissions for Buildpacks Cluster Builders for buildpack-build component
   - If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` you must add some additional permissions.
 
@@ -36,10 +34,10 @@ VMware recommended you use Namespace Provisioner for the entire setup:
       ocistore.yaml: |
         tanzusupplychain:
           ocistore:
-            username: <registry-username>
-            password: <registry-password>
-            server: <registry-server>
-            repository: <registry-repo>
+            username: REGISTRY-USERNAME
+            password: REGISTRY-PASSWORD
+            server: RESISTRY-SERVER
+            repository: REGISTRY-REPO
     EOF
     ```
 

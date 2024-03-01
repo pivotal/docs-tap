@@ -66,12 +66,29 @@ cluster. Other resources in the supply chain can then access that code.
   </tr>
 
   <tr>
-    <td><code>gitops_ssh_secret<code></td>
+    <td><code>source_credentials_secret<code></td>
     <td>
       Name of the secret used to provide credentials for the Git repository.
       The secret with this name must exist in the same namespace as the <code>Workload</code>.
       The credentials must be sufficient to read the repository.
-      If not provided, Tanzu Application Platform defaults to look for a secret named <code>git-ssh</code>.
+      See <a href="git-auth.html">Git authentication</a>.
+    </td>
+    <td>
+      <pre>
+      - name: source_credentials_secret
+        value: git-credentials
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Deprecated
+      Only used if provided and source_credentials_secret is not provided.
+      Name of the secret used to provide credentials for the Git repository.
+      The secret with this name must exist in the same namespace as the <code>Workload</code>.
+      The credentials must be sufficient to read the repository.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
@@ -1513,16 +1530,33 @@ preconfigured with reference to a repository or registry from which to fetch Kub
   </tr>
 
   <tr>
-    <td><code>gitops_ssh_secret<code></td>
+    <td><code>gitops_credentials_secret<code></td>
     <td>
       Name of the secret where credentials exist for fetching the configuration
+      from a Git repository. Populates the Deliverable's source_credentials_secret parameter
+      (The Workload's gitops repo is the Deliverable's source repo).
+      The secret must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_credentials_secret
+        value: git-secret
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Deprecated. Use gitops_credentials_secret instead.
+      Name of the secret where credentials exist for fetching the configuration
       from a Git repository. Populates the Deliverable's gitops_ssh_secret parameter.
-      The service account must be in the same namespace as the Deliverable.
+      The secret must be in the same namespace as the Deliverable.
     </td>
     <td>
       <pre>
       - name: gitops_ssh_secret
-        value: ssh-secret
+        value: git-secret
       </pre>
     </td>
   </tr>
@@ -1693,7 +1727,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
     <td>
       Name of the secret where credentials exist for fetching the configuration
       from a Git repository. Populates the Deliverable's gitops_ssh_secret parameter.
-      The service account must be in the same namespace as the Deliverable.
+      The secret must be in the same namespace as the Deliverable.
     </td>
     <td>
       <pre>
@@ -1860,17 +1894,16 @@ cluster. Other resources in the supply chain can then access that code.
   </tr>
 
   <tr>
-    <td><code>gitops_ssh_secret<code></td>
+    <td><code>source_credentials_secret<code></td>
     <td>
       Name of the secret used to provide credentials for the Git repository.
       The secret with this name must exist in the same namespace as the <code>Deliverable</code>.
       The credentials must be sufficient to read the repository.
-      If not provided, Tanzu Application Platform defaults to look for a secret named <code>git-ssh</code>.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
       <pre>
-      - name: gitops_ssh_secret
+      - name: source_credentials_secret
         value: git-credentials
       </pre>
     </td>

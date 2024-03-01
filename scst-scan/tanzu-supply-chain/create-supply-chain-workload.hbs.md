@@ -34,13 +34,13 @@ spec:
 
 Where:
 
-* `KIND` is the kind defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). The kind can be found in the supplychain yaml in the supplychains directory.
-* `API-VERSION` is defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). `API-VERSION` is the `group` and `version` found in the supplychain yaml in the supplychains directory.
-* `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
-* `REGISTRY-SERVER` is the registry repository used for the scan results location.
-* `GIT-URL` is the Fit repository URL to clone from for the source component.
-* `GIT-BRANCH` is the Git branch ref to watch for the new source.
-* `GIT-SUBPATH` is the path inside the bundle to locate source code.
+- `KIND` is the kind defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). The kind can be found in the supplychain yaml in the supplychains directory.
+- `API-VERSION` is defined in the [Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#create-a-supply-chain-with-scst---scan-20-and-trivy-supply-chain-component) or [Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#create-supply-chain-with-scst---scan-20-and-custom-scanning-component). `API-VERSION` is the `group` and `version` found in the supplychain yaml in the supplychains directory.
+- `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
+- `REGISTRY-SERVER` is the registry repository used for the scan results location.
+- `GIT-URL` is the Git repository URL to clone from for the source component.
+- `GIT-BRANCH` is the Git branch ref to watch for the new source.
+- `GIT-SUBPATH` is the path inside the bundle to locate source code.
 
 For more information about any of the `GIT-*` values, see [Source Git Provider](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider).
 

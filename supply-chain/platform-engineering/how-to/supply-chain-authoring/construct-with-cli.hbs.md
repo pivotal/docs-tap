@@ -22,7 +22,7 @@ For a Platform Engineer, the recommended approach is:
 
 -  Author the `SupplyChain` using a set of YAML files within a Git-backed file system.
 - Test and debug by pushing all files to a single namespace on the `authoring` profile cluster.
-- Once satisfied with the new or modified `SupplyChain`, use a pull request to commit to Git.
+- When you are satisfied with the new or modified `SupplyChain`, use a pull request to commit to Git.
 
 Managing a potentially large number of YAML manifests manually can be error-prone.
 Platform Engineers can use the Tanzu Supplychain CLI plug-in to streamline the authoring
@@ -45,16 +45,16 @@ Used for auto-populating `spec.defines.group` of the [SupplyChain API](../../../
 The `tanzu supplychain init` command creates:
 
 - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-- `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto populated by the authoring wizard later in this tutorial.
+- `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by the authoring wizard later in this tutorial.
 - `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
 - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 >**Important** After being set up with the designated `group`, the local directory becomes a hub
-for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` should
-share the same `group`, and this group information is stored in the `config.yaml` file.
-Conversely, in your GitOps repository, multiple folders can exist, each initialized with distinct
+for shipping one or more `SupplyChains`. Within this local directory, every `SupplyChain` 
+shares the same `group`, and this group information is stored in the `config.yaml` file.
+Conversely, in your GitOps repository, multiple directories can exist, each initialized with distinct
 groups such as `hr.supplychains.company.biz`, `finance.supplychains.company.biz`, and so on. Each of
-these folders is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
+these directories is capable of accommodating multiple `SupplyChains` tailored to their respective groups.
 
 Example output from `tanzu supplychain init` command:
 
@@ -201,7 +201,7 @@ Interactive
     Here are the example values for the prompts for the wizard workflow that generate a functioning `SupplyChain`:
 
     - **What Kind would you like to use as the developer interface?** AppBuildV1
-    - **Give Supply chain a description?** Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+    - **Give Supply chain a description?** Supply chain that pulls the source code from Git repository, builds it using buildpacks and package the output as Carvel package.
     - **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
     - **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
     - **Select a component as the next stage of the supply chain?** conventions-1.0.0

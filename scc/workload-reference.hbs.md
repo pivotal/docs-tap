@@ -40,6 +40,8 @@ Each provides the templates that respect the parameter.
 The reference for the template details which supply chains include the template.
 
 - gitImplementation: [source-template](ootb-template-reference.hbs.md#source-template)
+- source_credentials_secret: [source-template](ootb-template-reference.hbs.md#source-template)
+- gitops_credentials_secret: [deliverable-template](ootb-template-reference.hbs.md#deliverable-template)
 - gitops_ssh_secret: [source-template](ootb-template-reference.hbs.md#source-template),
   [deliverable-template](ootb-template-reference.hbs.md#deliverable-template),
   [external-deliverable-template](ootb-template-reference.hbs.md#external-deliverable-template)

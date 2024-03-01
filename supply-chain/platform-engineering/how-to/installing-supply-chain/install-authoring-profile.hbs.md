@@ -7,18 +7,20 @@ Authoring profile (beta). This profile installs all the required packages.
 
 The Authoring profile has the following additional packages that the Iterate profile does not have:
 
-- Tanzu Supply Chain packages
-  - `supply-chain.apps.tanzu.vmware.com`
-  - `supply-chain-catalog.apps.tanzu.vmware.com`
-  - `managed-resource-controller.apps.tanzu.vmware.com`
+## <a id='tsc-packages'></a>Tanzu Supply Chain packages
 
-- Catalog Component packages
-  - `alm-catalog.component.apps.tanzu.vmware.com`
-  - `buildpack-build.component.apps.tanzu.vmware.com`
-  - `conventions.component.apps.tanzu.vmware.com`
-  - `git-writer.component.apps.tanzu.vmware.com`
-  - `source.component.apps.tanzu.vmware.com`
-  - `trivy.app-scanning.component.apps.tanzu.vmware.com`
+- `supply-chain.apps.tanzu.vmware.com`
+- `supply-chain-catalog.apps.tanzu.vmware.com`
+- `managed-resource-controller.apps.tanzu.vmware.com`
+
+## <a id='catalog-packages'></a>Catalog Component packages
+
+- `alm-catalog.component.apps.tanzu.vmware.com`
+- `buildpack-build.component.apps.tanzu.vmware.com`
+- `conventions.component.apps.tanzu.vmware.com`
+- `git-writer.component.apps.tanzu.vmware.com`
+- `source.component.apps.tanzu.vmware.com`
+- `trivy.app-scanning.component.apps.tanzu.vmware.com`
 
 - App Scanning
   - app-scanning.apps.tanzu.vmware.com
@@ -31,7 +33,7 @@ The Authoring profile has the following additional packages that the Iterate pro
   profile: authoring
   ```
 
-1. Confirm if the required packages are installed and reconciled successfully. Run:
+1. Confirm that the required packages are installed and reconciled successfully. Run:
 
   ```console
   kubectl get pkgi -A

@@ -66,21 +66,37 @@ Parameters:
       VMware recommends that you use the underlying<br> library for fetching the source code.
     </td>
     <td>
-      <p align ="left">
+      <p alignment ="left">
       - name: gitImplementation<br>
         value: go-git
       </p>
     </td>
   </tr>
   <tr>
-    <td><code>gitops_ssh_secret</code></td>
+    <td><code>source_credentials_secret</code></td>
     <td>
       The name of the secret in the same namespace as the <code>Workload</code> used for
       providing credentials for fetching source code from the Git repository.
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
-      <p align ="left">
+      <p alignment ="left">
+      - name: source_credentials_secret<br>
+        value: git-credentials
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret</code></td>
+    <td>
+      Deprecated. Use source_credentials_secret instead.
+      The name of the secret in the same namespace as the <code>Workload</code> used for
+      providing credentials for fetching source code from the Git repository.
+      For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
+    </td>
+    <td>
+      <p alignment ="left">
       - name: gitops_ssh_secret<br>
         value: git-credentials
       </p>
@@ -125,7 +141,7 @@ Parameters:
       the container images.
     </td>
     <td>
-      <p align ="left">
+      <p alignment ="left">
       - name: serviceAccount<br>
         value: default
       </p>
@@ -168,7 +184,7 @@ Parameters:
       Points to the maven artifact to fetch and the polling interval.
     </td>
     <td>
-      <p align ="left">
+      <p alignment ="left">
       - name: maven<br>
         value:<br>
           artifactId: springboot-initial<br>
@@ -948,11 +964,27 @@ Parameters:
     </td>
   </tr>
   <tr>
+    <td><code>source_credentials_secret</code></td>
+    <td>
+      The name of the secret in the same namespace as the <code>Deliverable</code> used for
+      providing credentials for fetching build configuration from the Git repository.
+      For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
+    </td>
+    <td>
+      <p alignment ="left">
+      - name: source_credentials_secret<br>
+        value: git-credentials
+      </p>
+    </td>
+  </tr>
+
+  <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      The name of the secret in the same namespace as the <code>deliverable</code> used for
-      providing credentials for fetching Kubernetes configuration files from
-      the Git repository pointed at. See <a href="../scc/git-auth.hbs.md">Git authentication</a>.
+      Deprecated. Use source_credentials_secret instead.
+      The name of the secret in the same namespace as the <code>Deliverable</code> used for
+      providing credentials for fetching build configuration from the Git repository.
+      For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
       <p alignment ="left">

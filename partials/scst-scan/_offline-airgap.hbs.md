@@ -30,7 +30,7 @@ consistent with the GHCR  repository.
 1. Copy the vulnerability database from GHCR to your private registry:
 
     ```console
-    oras cp ghcr.io/aquasecurity/trivy-db:2 CONTAINER-REGISTRY/aquasecurity/trivy-db
+    oras cp ghcr.io/aquasecurity/trivy-db:2 CONTAINER-REGISTRY/aquasecurity/trivy-db:2
     ```
 
     > **Note**  The Trivy scanner is hardcoded to use the `2` tag for the vulnerability database.
@@ -40,7 +40,7 @@ consistent with the GHCR  repository.
 1. Copy the Java index database from GHCR to your private registry:
 
     ```console
-    oras cp ghcr.io/aquasecurity/trivy-java-db:1 harbor.CONTAINER-REGISTRY/aquasecurity/trivy-java-db
+    oras cp ghcr.io/aquasecurity/trivy-java-db:1 harbor.CONTAINER-REGISTRY/aquasecurity/trivy-java-db:1
     ```
 
     Where `CONTAINER-REGISTRY` is the URL for your registry. For example, `harbor.example.com`
@@ -71,7 +71,7 @@ specify the Trivy `ClusterImageTemplate`. For example:
           - name: TRIVY_JAVA_DB_REPOSITORY
             value: CONTAINER-REGISTRY/aquasecurity/trivy-java-db
           - name: TRIVY_OFFLINE_SCAN
-            value: true
+            value: "true"
     ```
 
     Where `CONTAINER-REGISTRY` is the URL for your registry. For example, `harbor.example.com`

@@ -19,14 +19,29 @@ For example:
 ``` shell
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | sort -V
 
-0.1.4-alpha.6
+0.1.0-alpha.19
 0.1.4-alpha.1
 0.1.4-alpha.3
 0.1.4-alpha.5
 0.1.4-alpha.6
+0.1.4-alpha.7
+0.1.4-alpha.9
+0.1.4-alpha.10
+0.1.4-alpha.11
+0.1.5-alpha.1
+0.1.5-alpha.2
+0.1.5-alpha.3
+0.1.6-alpha.1
+0.1.6-alpha.2
+0.1.6-alpha.4
+0.1.6-alpha.6
+0.1.6-alpha.7
+0.1.7-alpha.1
 ```
 
-In this topic, use the latest version returned by the command above.
+Use the latest alpha version available for your version of the Tanzu Application Platform.
+
+For example, given the output above, if you are using TAP 1.4, use `0.1.4-alpha.11`. If you are using TAP 1.7, use `0.1.7-alpha.1`.
 
 ## <a id='relocate'></a> Relocate images to a registry
 

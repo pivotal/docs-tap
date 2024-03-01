@@ -240,7 +240,7 @@ ootb_supply_chain_basic:
     server: ${KP_REGISTRY_HOSTNAME}
     repository: tap-apps
   gitops:
-    ssh_secret: ""
+    credentials_secret: ""
 
 contour:
   envoy:
@@ -382,7 +382,7 @@ For more information about the differences between `lite` and `full` dependencie
 
 To install the `full` dependencies package:
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
