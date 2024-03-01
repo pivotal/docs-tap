@@ -45,9 +45,8 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-4-scst-store-ri'></a> v1.7.4 Resolved issues: Supply Chain Security Tools - Store
 
-- Resolved the issue where using a custom issuer such as Let's Encrypt would break the Tanzu Mission
-  Control orchestration that pushes the AMR Observer credentials from the view cluster to the
-  non-view cluster.
+- Resolved the issue where using a custom issuer such as Let's Encrypt broke the Tanzu Mission Console
+  orchestration that pushes the AMR Observer credentials from the view cluster to the non-view cluster.
 
 #### <a id='1-7-4-cnr-ri'></a> v1.7.5 Known issues: Cloud Native Runtimes
 
