@@ -96,7 +96,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-9-0-COMPONENT-NAME-ki'></a> v1.9.0 Known issues: COMPONENT-NAME
  
 - Known issue description with link to workaround.
- 
+
 ---
  
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions

@@ -80,7 +80,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
         app.tanzu.vmware.com/deliverable-type: web
     spec:
       params:
-      - name: gitops_ssh_secret
+      - name: source_credentials_secret
         value: ""
       source:
         git:
