@@ -424,10 +424,10 @@ Where:
   `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 
 - `GIT-SOURCE-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies 
-  the Git credentials for the supply chain to fetch source code from. This field is only required if you use a private repository. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
+  the Git credentials for the supply chain to fetch source code from. This field is only required if you use a private repository. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 
 - `GITOPS-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies the
-  Git credentials for the supply chain to push configuration to. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
+  Git credentials for the supply chain to push configuration to. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
   either a blank or populated catalog file from the
