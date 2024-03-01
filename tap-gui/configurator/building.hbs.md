@@ -104,53 +104,53 @@ through the supply chain. Depending on your choices during installation, this is
 `registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
 packages to.
 
-Using imgpkg version 0.39.0 or lower
-:
+Using imgpkg v0.39.0 or earlier
+: If using imgpkg v0.39.0 or earlier:
 
   1. Using the `imgpkg` tool, retrieve the image location by running:
 
-    ```console
-    imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
-    --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
-    jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o yaml --tty=true | grep -A 1 \
-    "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
-    ```
+     ```console
+     imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+     --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+     jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o yaml --tty=true | grep -A 1 \
+     "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
+     ```
 
-    Output similar to the following appears:
+     Output similar to the following appears:
 
-    ```console
-    IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
-    ```
+     ```console
+     IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+     ```
 
   2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
-    workload definition.
+     workload definition.
 
-Using imgpkg version 0.40.0 or higher
-:
+Using imgpkg v0.40.0 or later
+: If using imgpkg v0.40.0 or later:
 
   1. Using the `imgpkg` tool, download the bundle by running:
 
-    ```console
-    imgpkg pull -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
-    --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
-    jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o bundle
-    ```
+     ```console
+     imgpkg pull -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+     --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+     jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o bundle
+     ```
 
   2. Retrieve the image location by running:
 
-    ```console
-    cat bundle/.imgpkg/images.yml | grep -A 1 "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | \
-    grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
-    ```
+     ```console
+     cat bundle/.imgpkg/images.yml | grep -A 1 "kbld.carvel.dev/id:[[:blank:]]*[^[:blank:]]*configurator" | \
+     grep "image:" | sed 's/[[:blank:]]*image:[[:blank:]]*//g'
+     ```
 
-    Output similar to the following appears:
+     Output similar to the following appears:
 
-    ```console
-    IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
-    ```
+     ```console
+     IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+     ```
 
   3. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
-    workload definition.
+     workload definition.
 
    ```console
    imgpkg pull -b ${OUTPUT_IMAGE} -o tpb-package
