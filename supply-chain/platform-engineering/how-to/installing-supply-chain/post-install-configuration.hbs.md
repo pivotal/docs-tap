@@ -42,7 +42,9 @@ VMware recommended you use Namespace Provisioner for the entire setup:
     ```
 
 2. Configure Namespace Provisioner to use the accelerator sample that will help with the creation of
-all required resources for configuring `oci-store` as well as `buildpack-build` permissions.
+all required resources for configuring `oci-store` as well as `buildpack-build` permissions. 
+Update the `namespace_provisioner` section of your `tap-values.yaml` file to look like the following snippet and 
+Namespace provisioner will create the required secrets and role bindings in your developer's namespace. 
 
     ```console
     namespace_provisioner:
