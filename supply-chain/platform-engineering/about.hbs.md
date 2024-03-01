@@ -29,6 +29,10 @@ Install these CLI tools:
 - [Install an authored SupplyChain](./how-to/deploying-supply-chains/install.hbs.md)
 - [Manage SupplyChains with GitOps](./how-to/deploying-supply-chains/gitops-managed.hbs.md)
 
+## How to Guides: Starter SupplyChains
+
+- [Create Starter SupplyChains](./starter-supply-chains.hbs.md)
+
 ## Out of the Box Catalog of Components
 
 - [Catalog of Tanzu Supply Chain Components](./../reference/catalog/about.hbs.md)
