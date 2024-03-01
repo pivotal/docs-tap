@@ -89,7 +89,7 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      Deprecated. Use source_credentials_secret instead.
+      Deprecated. Use <code>source_credentials_secret</code> instead.
       The name of the secret in the same namespace as the <code>Workload</code> used for
       providing credentials for fetching source code from the Git repository.
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
@@ -979,7 +979,7 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      Deprecated. Use source_credentials_secret instead.
+      Deprecated. Use <code>source_credentials_secret</code> instead.
       The name of the secret in the same namespace as the <code>Deliverable</code> used for
       providing credentials for fetching build configuration from the Git repository.
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
