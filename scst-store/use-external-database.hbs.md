@@ -45,8 +45,9 @@ If migrating from the internal database to an external database, back up the dat
        ...
    ```
 
-   > **Note** If you initially deployed Tanzu Application Platform with an internal database and are migrating to an external database, be aware that setting `deploy_internal_db` to `false,`  removes the
-   internal instance of PostgreSQL. Back up and migrate your data to the database before
+   > **Note** If you initially deployed Tanzu Application Platform with an internal database and
+   are migrating to an external database, be aware that setting `deploy_internal_db` to `false,`
+   removes the internal instance of PostgreSQL. Back up and migrate your data to the database before
    setting this value to false or it might cause data loss.
 
 2. Apply the new configuration:
@@ -56,7 +57,8 @@ If migrating from the internal database to an external database, back up the dat
    ```
 
 3. (Optional) If you are migrating from the internal database to an external database, the
-reconciliation above might fail. To ensure success, you must manually delete the secret that cert-manager created and cycle the AMR and MDS Services so that the new secret can be picked up.
+reconciliation might fail. You must manually delete the secret the
+cert-manager created and cycle the AMR and MDS Services so that the new secret is picked up.
 
    ```console
    kubectl delete secret -n metadata-store postgres-db-tls-cert
@@ -65,4 +67,4 @@ reconciliation above might fail. To ensure success, you must manually delete the
 
 ## Validation
 
-Verification is done using Bitnami PostgreSQL. For more information, see the  [Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql) documentation.
+Use Bitnami PostgreSQL to verify. For more information, see the  [Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql) documentation.
