@@ -152,10 +152,6 @@ Using imgpkg v0.40.0 or later
   3. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
      workload definition.
 
-   ```console
-   imgpkg pull -b ${OUTPUT_IMAGE} -o tpb-package
-   ```
-
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
 Create a file called `tdp-workload.yaml` with the following content:
