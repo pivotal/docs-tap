@@ -24,7 +24,7 @@ per environment. GitOps tools such as Flux CD and Argo CD can deploy the
 > **Note** The Kubernetes resources created for your `Workload` are the same for Carvel Package
 supply chains, but with additional, optional resources such as `networking.k8s.io/v1 Ingress`.
 
-### <a id="supply-chains-do"></a> What do the Carvel Package Supply Chains Do?
+### <a id="supply-chains-do"></a> What do the Carvel Package Supply Chains do?
 
 There are two Carvel Package Supply Chains per package:
 - Out of the Box Basic Supply Chain contains `source-to-url-package` and `basic-image-to-url-package`.
@@ -217,7 +217,7 @@ In `tap-values`, configure any Out of the Box Supply Chain and the [Out of the B
 
     If the size of the resulting OpenAPIv3 specification exceeds roughly 3 KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-1-tap-gui-ki).
 
-2. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
+1. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
 
   - Packages created by the Carvel Package Supply Chains contain the [YTT
     Schema](https://carvel.dev/ytt/docs/v0.44.0/how-to-write-schema/) and [YTT
