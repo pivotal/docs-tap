@@ -230,4 +230,4 @@ install the `full` dependencies package. For a more information about `lite` and
 
 To install `full` Tanzu Build Service dependencies:
 
-{{> 'partials/full-deps' }}
+{{> 'partials/tanzu-build-service/full-deps' }}
