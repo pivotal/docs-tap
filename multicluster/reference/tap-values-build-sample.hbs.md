@@ -46,7 +46,7 @@ ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys 
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 
-app-scanning:
+app_scanning:
   amr:
     url: https://amr-graphql.VIEW-CLUSTER-INGRESS-DOMAIN # AMR GraphQL location at the View profile cluster.
     accessToken: "AMR-GRAPHQL-READ-ACCESS-TOKEN"
