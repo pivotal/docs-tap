@@ -33,6 +33,9 @@ deliverables are not rebuilt to include it.
 
 To workaround this issue:
 
+> **Note**: This has been resolved in Tanzu Application Platform v1.8.0, v1.7.5, and v1.6.9.
+> Upgrading to any of these versions resolves the issue without this workaround.
+
 1. Deploy the following overlay as a secret to your Tanzu Application Platform installation namespace.
    In the following example, Tanzu Application Platform is installed to the `tap-install` namespace:
 
