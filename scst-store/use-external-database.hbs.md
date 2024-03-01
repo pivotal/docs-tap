@@ -67,4 +67,4 @@ cert-manager created and cycle the AMR and MDS Services so that the new secret i
 
 ## Validation
 
-Use Bitnami PostgreSQL to verify. For more information, see the  [Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql) documentation.
+Use Bitnami PostgreSQL to verify. For more information, see the [Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql) documentation.
