@@ -95,7 +95,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`.
     - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
+- `GIT-SOURCE-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies the Git credentials for the supply chain to fetch source code from. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
+- `GITOPS-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies the Git credentials for the supply chain to push configuration to. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
