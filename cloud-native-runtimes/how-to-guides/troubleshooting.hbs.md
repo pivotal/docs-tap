@@ -108,8 +108,6 @@ To workaround this issue:
 
 After you complete the steps, updates to the application will deploy.
 
-> **Note** VMware plans to include a fix in future releases.
-
 ## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes
 
 ### Symptom
