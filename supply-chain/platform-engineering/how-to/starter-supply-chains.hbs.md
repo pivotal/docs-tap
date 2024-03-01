@@ -15,7 +15,7 @@ It will perform the following actions:
 * Generate a Carvel package to make the application deployable
 * Deploy the application
 
-Run the following command to generate the supply chain. Ensure you have first initialized a working directory using tanzu supplychain init(link to cli command). 
+Run the following command to generate the supply chain. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md). 
 
 ```
 tanzu supplychain generate \
@@ -44,7 +44,7 @@ It will perform the following actions:
 * Generate a Carvel package to make the application deployable
 * Create a PR against a git repository with the Carvel package contents
 
-Run the following command to generate the supply chain. Ensure you have first initialized a working directory using tanzu supplychain init(link to cli command). 
+Run the following command to generate the supply chain. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
 
 ```
 tanzu supplychain generate \
@@ -70,7 +70,7 @@ It will perform the following actions:
 * Translate the Carvel package to a deployable package
 * Deploy the application
 
-Run the following command to generate the supply chain. Ensure you have first initialized a working directory using tanzu supplychain init(link to cli command). 
+Run the following command to generate the supply chain. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
 
 ```
 tanzu supplychain generate \
