@@ -1,10 +1,9 @@
 # Troubleshooting Cloud Native Runtimes
 
-This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
+This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation,
+or configuration.
 
 ## <a id='updates-fail'></a> Updates fail with error annotation value is immutable
-
-****Note**: This has been resolved in TAP 1.8.0, 1.7.5 and 1.6.9. Upgrading to these versions will resolve the issue without the procedure described below.
 
 ### Symptom
 
@@ -34,6 +33,9 @@ deliverables are not rebuilt to include it.
 ### Solution
 
 To workaround this issue:
+
+> **Note**: This has been resolved in Tanzu Application Platform v1.8.0, v1.7.5, and v1.6.9.
+> Upgrading to any of these versions resolves the issue without this workaround.
 
 1. Deploy the following overlay as a secret to your Tanzu Application Platform installation namespace.
    In the following example, Tanzu Application Platform is installed to the `tap-install` namespace:
