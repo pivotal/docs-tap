@@ -22,7 +22,7 @@ performs the following:
   1. Building a container image out of the source code with Buildpacks
   1. Applying operator-defined conventions to the container definition
   1. Deploying the application to the same cluster
-    1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
+  1. (Beta) Alternatively, outputting a Carvel Package containing the application to a Git Repository. See [Carvel Package Supply Chains](carvel-package-supply-chain.hbs.md).
 
 - Using a prebuilt application image:
 
@@ -65,7 +65,7 @@ _source-test-to-url_.
 As mentioned in the prerequisites section, this supply chain builds on the
 previous Out of the Box Supply Chain, so only additions are included here.
 
-To make sure you have configured the namespace correctly,
+To ensure that you have configured the namespace correctly,
 the namespace must have the following objects in it (including the ones marked with
 '_new_' whose explanation and details are provided below):
 
@@ -89,21 +89,21 @@ the namespace must have the following objects in it (including the ones marked w
 - **Tekton pipeline** (_new_): A pipeline runs whenever the supply chain
   hits the stage of testing the source code.
 
-Below you will find details about the new objects compared to Out of the Box
+The following sections provide details about the new objects compared to Out of the Box
 Supply Chain Basic.
 
-### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
+### <a id="updates-to-developer-ns"></a> Updates to the developer Namespace
 
 For source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
 moment, the Tekton PipelineRun object that gets created to run the tests can
 reference such developer-provided Pipeline.
 
-So, aside from the objects previously defined in the Out of the Box Supply
-Chain Basic section, you need to include one more:
+Aside from the objects previously defined in the Out of the Box Supply
+Chain Basic section, you must include one more:
 
 - `tekton/Pipeline`: the definition of a series of tasks to run against the
-  source code that has been found by earlier resources in the Supply Chain.
+  source code that was found by earlier resources in the Supply Chain.
 
 #### <a id="tekton-pipeline"></a> Tekton/Pipeline
 
@@ -114,7 +114,7 @@ default match if no other labels are provided. The pipeline
 expects two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
-  source code to be tested can be found
+  source code to be tested is found
 - `source-revision`, the revision of the commit or image reference (in case of
   `workload.spec.source.image` being set instead of `workload.spec.source.git`)
 
@@ -162,11 +162,10 @@ spec:
               ./mvnw test
 ```
 
-At this point, changes to the developer-provided Tekton Pipeline do
+Currently, changes to the developer-provided Tekton Pipeline do
 not automatically trigger a re-run of the pipeline. That is, a new Tekton
 PipelineRun is not automatically created if a field in the Pipeline object
-is changed. As a workaround, the latest PipelineRun created can be deleted,
-which triggers a re-run.
+is changed. As a workaround, delete the latest PipelineRun to trigger a re-run.
 
 > **Note** If your cluster has Pod Security Admission enabled, you must update all pipeline tasks to
 > adhere to the admission policy. For more information, see

@@ -16,7 +16,7 @@ repository and applies the package to your runtime environments.
 To configure and deploy to multiple environments with custom parameters, ensure
 that your supply chains are compatible with the feature limits.
 
-This feature is in beta and has the following limits:
+This feature is in beta and has the following limitation:
 
 - Innerloop development is not supported.
 
