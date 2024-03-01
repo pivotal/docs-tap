@@ -18,3 +18,7 @@ In this section:
 
 - [Install an authored SupplyChain](./deploying-supply-chains/install.hbs.md)
 - [GitOps Managed SupplyChains](./deploying-supply-chains/gitops-managed.hbs.md)
+
+## How to Guides: Starter SupplyChains
+
+- [Create Starter SupplyChains](./starter-supply-chains.hbs.md)
