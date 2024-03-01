@@ -31,7 +31,7 @@ Install these CLI tools:
 
 ## How to Guides: Starter SupplyChains
 
-- [Create Starter SupplyChains](./starter-supply-chains.hbs.md)
+- [Create Starter SupplyChains](./how-to/starter-supply-chains.hbs.md)
 
 ## Out of the Box Catalog of Components
 
