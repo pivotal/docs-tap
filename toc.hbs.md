@@ -135,6 +135,7 @@
 - [Uninstall by Tanzu CLI](uninstall.hbs.md)
 - [Uninstall by GitOps (beta)](install-gitops/uninstall.hbs.md)
 - [Migrate TAS applications](tas-migration/overview.hbs.md)
+  - [Migrate Single Sign-On for TAS](tas-migration/sso-for-tas.hbs.md)
   - [Migrate Spring Cloud Gateway apps](tas-migration/spring-cloud-gateway.hbs.md)
   - [Migrate Spring Config Server apps](tas-migration/spring-config-server.hbs.md)
 - [Glossary](glossary.hbs.md)
