@@ -296,11 +296,13 @@ profile: full # Can take iterate, build, run, view.
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
+  source:
+    credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
     server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
     repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
+    credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
 
 contour:
   envoy:
@@ -421,10 +423,11 @@ Where:
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
   `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch
-  source code from and push configuration to. This field is only required if you use a private
-  repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more
-  information.
+- `GIT-SOURCE-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies 
+  the Git credentials for the supply chain to fetch source code from. This field is only required if you use a private repository. See [Git authentication](../scc/git-auth.hbs.md) for more information.
+
+- `GITOPS-CREDENTIAL-SECRET-NAME` is the name of the Kubernetes secret in the developer namespace that supplies the
+  Git credentials for the supply chain to push configuration to. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
   either a blank or populated catalog file from the
