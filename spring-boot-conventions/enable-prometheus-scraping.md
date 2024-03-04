@@ -1,32 +1,53 @@
-# Enable Prometheus scraping for Spring Boot Applications on TAP workloads
+# Enable Prometheus scraping for Spring Boot applications on workloads
 
+This topic tells you how to enable Prometheus to get metrics for your Spring Boot applications on
+Tanzu Application Platform (commonly known as TAP) workloads.
 
-To enable prometheus to scrape metrics from HTTP endpoints of a Spring Boot Application, we need to add the Micrometer registry dependency for Prometheus support in the POM dependencies section:
+## <a id="about"></a> About Prometheus scraping for Spring Boot applications
 
-```
+Spring Boot conventions recognizes PodIntents and automatically adds Prometheus annotations on the
+Tanzu Application Platform workload PodSpec.
+This means that you do not need to manually add the annotations in your workload YAML.
+The pods with these Prometheus annotations are considered for scraping of metrics.
+
+The following annotations are added:
+
+- `prometheus.io/scrape: "true"`: Enables the Prometheus scrape feature. This identifies which pods
+  to scrape for metrics.
+- `prometheus.io/path: "/actuator/prometheus"`: Sets the Prometheus scrape path to the endpoint where
+  Prometheus exposes metrics.
+- `prometheus.io/port: "8080"`: Sets the Prometheus port to the default server port of a Spring Boot
+  application. This ensures that the right port is used for the scrape job for each pod.
+
+> **Note** If any of these annotations are added manually, the manual annotation setting takes precedence
+> over the automatic setting.
+
+Spring Boot conventions allows you to activate or deactivate the automatic configuration of
+actuators on Tanzu Application Platform and on individual workloads.
+If the label `apps.tanzu.vmware.com/auto-configure-actuators` on the workload is set to `true`,
+<!-- Spring Boot conventions? --> activates automatic configuration of actuators.
+The default label setting on the workload is `apps.tanzu.vmware.com/auto-configure-actuators: "false"`.
+
+If `apps.tanzu.vmware.com/auto-configure-actuators` label is set to `true` on the workload YAML,
+then the management server port is also switched to 8081 and <!-- Spring Boot conventions? --> uses
+that port to access the actuators instead of the default app port.
+Therefore, the Prometheus port is also set to 8081 automatically on the PodSpec so that the metrics
+can be scraped using that port.
+All the other native Prometheus annotations remain the same as the `false` case.
+
+For more information, see [Configuring and accessing Spring Boot actuators in Tanzu Application Platform](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
+
+## <a id="enable"></a> Enable Prometheus to scrape metrics
+
+To enable Prometheus to scrape metrics from HTTP endpoints of a Spring Boot application, add the
+Micrometer registry dependency for Prometheus support in the POM dependencies section:
+
+```xml
 <dependency>
    <groupId>io.micrometer</groupId>
    <artifactId>micrometer-registry-prometheus</artifactId>
 </dependency>
 ```
-
-The Spring Boot conventions recognizes PodIntents and automatically adds the following Prometheus native annotations on the TAP workload PodSpec:
-
-- `prometheus.io/scrape: "true"`: Enables the prometheus scrape feature. This is being used to clarify which pods should be scraped for metrics
-- `prometheus.io/path: "/actuator/prometheus"`: Sets the prometheus scrape path to the endpoint where prometheus exposes metrics
-- `prometheus.io/port: "8080"`: Sets the prometheus port to the default server port of a Spring Boot application. This is to ensure that the right port is used for the scrape job for each pod
-
-The pods with the above native Prometheus annotations are considered for scraping the metrics. The intent of this feature is that you do not need to manually add the above annotations in workload yaml. 
-> **Note** If any of these annotations are added manually, that annotation setting takes precedence over the automatic setting.
-
-Spring Boot conventions allows users to activate or deactivate the automatic configuration of actuators on Tanzu Application Platform and on individual workloads.
-If the label `apps.tanzu.vmware.com/auto-configure-actuators` on the workload is set to `true` , we activate automatic configuration of actuators.
-> **Note** The default label setting on the workload is `apps.tanzu.vmware.com/auto-configure-actuators: "false"`. 
-
-If `apps.tanzu.vmware.com/auto-configure-actuators: "true"` label is set to `true` on the workload yaml, then the management server port is also switched to 8081 and we use that port to access the actuators instead of the default app port. Therefore, the prometheus port will also be set to 8081 automatically on the PodSpec so that the metrics can be scraped using that port. All the other native Prometheus annotations remain the same as the `false` case. 
-
- For more information, see [Configuring and accessing Spring Boot actuators in Tanzu Application Platform](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
-
 
 ## <a id="verify"></a> Verify the applied annotations
 
@@ -38,7 +59,7 @@ kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
 
 Where `WORKLOAD-NAME` is the name of the deployed workload. For example: `tanzu-java-web-app`.
 
-Expected output of Spring Boot workload podintent:
+Example output of a Spring Boot workload PodIntent:
 
 ```console
 apiVersion: conventions.carto.run/v1alpha1
@@ -183,7 +204,8 @@ status:
       serviceAccountName: default
 ```
 
-If `apps.tanzu.vmware.com/auto-configure-actuators: "true"` label is set to `true` on the workload yaml, then the expected output of Spring Boot workload podintent below:
+Example output of a Spring Boot workload PodIntent if the `apps.tanzu.vmware.com/auto-configure-actuators`
+label is set to `true` on the workload YAML:
 
 ```console
 apiVersion: conventions.carto.run/v1alpha1
@@ -332,7 +354,3 @@ status:
             scheme: HTTP
       serviceAccountName: default
 ```
-
-
-
-

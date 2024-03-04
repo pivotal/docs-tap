@@ -37,7 +37,7 @@ compiler source and target compatibility-level from information in the Maven POM
 
 For example, in the `tanzu-java-web-app` sample application the POM contains the following:
 
-```java
+```xml
 <properties>
         <java.version>11</java.version>
         ...

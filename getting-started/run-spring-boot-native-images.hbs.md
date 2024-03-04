@@ -56,7 +56,7 @@ You must include the GraalVM native plug-in in your Maven POM file or Gradle bui
 
 - Example for Maven:
 
-    ```starlark
+    ```xml
     <build>
       <plugins>
         <plugin>
@@ -72,7 +72,7 @@ You must include the GraalVM native plug-in in your Maven POM file or Gradle bui
 
 - Example for Gradle:
 
-    ```starlark
+    ```kotlin
     plugins {
       id("org.graalvm.buildtools.native") version "0.9.20"
       .
@@ -219,7 +219,7 @@ Configure your application to include the actuator library:
 
 - Example for Maven:
 
-    ```starlark
+    ```xml
     <dependencies>
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -233,7 +233,7 @@ Configure your application to include the actuator library:
 
 - Example for Gradle:
 
-    ```starlark
+    ```kotlin
     dependencies {
       implementation("org.springframework.boot:spring-boot-starter-actuator")
       .
