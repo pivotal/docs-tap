@@ -120,7 +120,7 @@ Next, create your basic supply chain workload.
 To pass the CA certificate in when you create the workload, run:
 
 ```console
-tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca"
+tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "source_credentials_secret=git-ca" --param "gitops_credentials_secret=git-ca"
 ```
 
 ## <a id="create-test-wkload"></a>Create a testing supply chain workload
@@ -167,7 +167,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRAN
 To instead pass the CA certificate when you create the workload, run:
 
 ```console
-tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca"
+tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "source_credentials_secret=git-ca" --param "gitops_credentials_secret=git-ca"
 ```
 
 ## <a id="create-test-scan-wkload"></a>Create a testing scanning supply chain workload
@@ -181,5 +181,5 @@ tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRAN
 To instead pass the CA certificate when you create the workload, run:
 
 ```console
-tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca"
+tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "source_credentials_secret=git-ca" --param "gitops_credentials_secret=git-ca"
 ```
