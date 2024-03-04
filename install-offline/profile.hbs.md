@@ -252,11 +252,13 @@ contour:
           service.kubernetes.io/aws-load-balancer-internal: "true"
 
 ootb_supply_chain_basic:
+  source:
+      credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
       server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
       repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
-      ssh_secret: "SSH-SECRET"
+      credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   maven:
       repository:
          url: https://MAVEN-URL

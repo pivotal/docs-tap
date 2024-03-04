@@ -240,7 +240,7 @@ ootb_supply_chain_basic:
     server: ${KP_REGISTRY_HOSTNAME}
     repository: tap-apps
   gitops:
-    ssh_secret: ""
+    credentials_secret: ""
 
 contour:
   envoy:
