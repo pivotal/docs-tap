@@ -554,55 +554,31 @@ namespace, with name “example-cr”. Credentials are in this secret, in the fi
 
 ### Spring Boot application
 
-**With Spring Cloud Bindings**
+With Spring Cloud Bindings
+: Spring Boot applications deployed to TAS likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In TAP, `java-cfenv` is not applicable. You may remove it from your dependencies.
 
-Spring Boot applications deployed to TAS likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library
-to read service bindings data from `VCAP_SERVICES`. In TAP, `java-cfenv` is not applicable. You may remove it from your
-dependencies.
+    If your Spring Boot app is built using buildpacks, such as with Tanzu Build Service, TAP Supply Chains, or Spring Boot maven or gradle plugins, [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings/) will be added to your path and should do the binding automatically -see [official documentation](../app-sso/how-to-guides/app-operators/secure-spring-boot-workload.hbs.md). For this to work, it is recommended your application uses Spring Boot 2.7, so that `ClientRegistration.spec.client_authentication_method` maps to a value known to Spring Boot (`client_secret_basic` or `client_secret_post`). Older versions of Spring Boot expect the value to be either `basic` or `post`.
 
-If your Spring Boot app is built using buildpacks, such as with Tanzu Build Service, TAP Supply Chains, or Spring Boot
-maven or gradle plugins, [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings/) will be added
-to your path and should do the binding automatically -
-see [official documentation](../app-sso/how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
-For this to work, it is recommended your application uses Spring Boot 2.7, so
-that `ClientRegistration.spec.client_authentication_method` maps to a value known to Spring Boot (`client_secret_basic`
-or `client_secret_post`). Older versions of Spring Boot expect the value to be either `basic` or `post`.
+    Note that Spring Cloud Bindings is not intended to be used with existing configuration values in `spring.security.oauth2.client`, but as an alternative mechanism that will populate those values automatically. The recommended approach is to create a `local` or similar profile for local development, targeting whatever authorization server you may use in dev. In your regular `application.yaml`, do not populate `spring.security.oauth2.client`. Note that having default values in your `application.yaml` may lead to inconsistent behavior, with Spring Cloud Bindings overriding some of the values. For a complete example, see the [appsso-starter-java accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/209d88570e3be6045e2633dfdd1c2ccda1fe441e/appsso-starter-java).
 
-Note that Spring Cloud Bindings is not intended to be used with existing configuration values
-in `spring.security.oauth2.client`, but as an alternative mechanism that will populate those values automatically. The
-recommended approach is to create a `local` or similar profile for local development, targeting whatever authorization
-server you may use in dev. In your regular `application.yaml`, do not populate `spring.security.oauth2.client`. Note
-that having default values in your `application.yaml` may lead to inconsistent behavior, with Spring Cloud Bindings
-overriding some of the values.
-For a complete example, see
-the [appsso-starter-java accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/209d88570e3be6045e2633dfdd1c2ccda1fe441e/appsso-starter-java).
+Without Spring Cloud Bindings
+: If you cannot or do not wish to rely on Spring Cloud Bindings, please follow the guidance from the [official documentation](../app-sso/how-to-guides/app-operators/secure-workload.hbs.md) explaining how credentials are exposed to the underlying application.
 
-**Advanced use-cases / Without Spring Cloud Bindings**
+    This may be the case if you want to use multiple `ClientRegistration`s in a single app, or a `ClientRegistration` with multiple grant types, such as `authorization_code` + `client_credentials`. In that case, it is recommended to turn off the Spring Cloud Bindings integration, by setting the following configuration property: `org.springframework.cloud.bindings.boot.oauth2.enable=false`. To access the bindings, you can either load the Secret values in environment variables, or read the files populated by the Secret in the pod. For ease of use, you may still use the Spring Cloud Bindings library to access the files, e.g. by doing:
 
-If you cannot or do not wish to rely on Spring Cloud Bindings, please follow the guidance from
-the [official documentation](../app-sso/how-to-guides/app-operators/secure-workload.hbs.md)
-explaining how credentials are exposed to the underlying application.
+    ```java
+    class Example {
 
-This may be the case if you want to use multiple `ClientRegistration`s in a single app, or a `ClientRegistration` with
-multiple grant types, such as `authorization_code` + `client_credentials`. In that case, it is recommended to turn off
-the Spring Cloud Bindings integration, by setting the following configuration
-property: `org.springframework.cloud.bindings.boot.oauth2.enable=false`. To access the bindings, you can either load the
-Secret values in environment variables, or read the files populated by the Secret in the pod. For ease of use, you may
-still use the Spring Cloud Bindings library to access the files, e.g. by doing:
+       public void exampleMethod() {
+           // ...
+           var binding = new Bindings().findBinding("MY-BINDING-NAME");
+           String issuerUri = binding.get("issuer-uri");
+           String clientId = binding.get("client-id");
 
-```java
-class Example {
+           // or
+           var binding = new Bindings().filterBindings("oauth2");
+           // ...
+       }
 
-    public void exampleMethod() {
-        // ...
-        var binding = new Bindings().findBinding("MY-BINDING-NAME");
-        String issuerUri = binding.get("issuer-uri");
-        String clientId = binding.get("client-id");
-
-        // or
-        var binding = new Bindings().filterBindings("oauth2");
-        // ...
     }
-
-}
-```
+    ```
