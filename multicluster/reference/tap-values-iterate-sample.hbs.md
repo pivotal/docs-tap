@@ -31,11 +31,13 @@ buildservice: # Optional if the corresponding shared keys are provided.
 
 supply_chain: basic
 ootb_supply_chain_basic: # Optional if the shared above mentioned shared keys are provided.
+  source:
+    credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
+    credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
 
 image_policy_webhook:
   allow_unmatched_tags: true

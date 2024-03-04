@@ -296,11 +296,13 @@ profile: full # Can take iterate, build, run, view.
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
+  source:
+    credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
     server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
     repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
+    credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
 
 contour:
   envoy:

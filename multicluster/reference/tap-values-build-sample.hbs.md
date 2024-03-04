@@ -38,11 +38,13 @@ buildservice:
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 supply_chain: testing_scanning
 ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys are provided.
+  source:
+    credentials_secret: "GIT-SOURCE-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
+    credentials_secret: "GITOPS-CREDENTIAL-SECRET-NAME" # (Optional) Defaults to "".
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 
