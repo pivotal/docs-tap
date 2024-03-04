@@ -1052,10 +1052,6 @@ This release has the following known issues, listed by component and area.
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
-- When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
-  does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
-  planned for the future. The zoom function was removed because of user feedback.
-
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
