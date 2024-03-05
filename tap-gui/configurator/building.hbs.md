@@ -90,13 +90,6 @@ To prepare your Configurator configuration file:
    base64 -i tpb-config.yaml
    ```
 
-## <a id="prep-ident-image"></a> Identify your Configurator foundation image
-
-To build a customized Tanzu Developer Portal, you must identify the image that contains the
-foundation that is ready to pass through the supplychain. Depending on how you installed things, this
-could either be on `registry.tanzu.vmware.com` or on the local image registry (`imgpkg`) that you
-moved the installation packages to.
-
 ## <a id="prep-ident-image"></a> Identify your Configurator image
 
 To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass
