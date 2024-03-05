@@ -57,12 +57,9 @@ DORA plug-in. Support for more metrics is planned for later DORA plug-in version
 
 To use the DORA plug-in:
 
-1. Use an authentication provider to log in to Tanzu Developer Portal. You cannot see DORA metrics
-   if you use guest access.
+1. Select the component you want to view DORA metrics for.
 
-2. Select the component you want to view DORA metrics for.
-
-3. Click the **DORA** tab in the navigation list.
+2. Click the **DORA** tab in the navigation list.
 
 ## <a id="dora-metric-calc"></a> DORA metric calculation
 
