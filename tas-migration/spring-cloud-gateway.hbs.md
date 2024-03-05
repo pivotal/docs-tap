@@ -1,9 +1,9 @@
-# Migrating applications bound to Spring Cloud Gateway from TAS to TAP
+# Migrate apps bound to Spring Cloud Gateway from TAS to Tanzu Application Platform
 
-Gateway migration documentation details points to consider before migrating from either OSS
-implementation of Gateway or TAS service offering of Gateway to Gateway on Kubernetes.
+This topic tells you how to migrate to Gateway on Kubernetes from a TAS offering of Gateway or an
+open-source implementation of Gateway.
 
-## Deploying the `animal-rescue` application to TAS
+## <a id="deploy-app-to-tas"></a> Deploying the `animal-rescue` app to TAS
 
 Documentation for deploying a gateway service to TAS can be found here. At a high level, steps for
 deploying the `animal-rescue` app and configuring gateway on TAS are as below.
@@ -23,34 +23,43 @@ For more information, see
 [app-gateway-config.json](https://github.com/spring-cloud-services-samples/animal-rescue/blob/main/gateway/api-gateway-config.json)
 on GitHub.
 
-To bind the gateway service to your application you have 2 choices. More details can be found
+To bind the gateway service to your app you have two choices. More details can be found
 here.
 
-Binding
-: To bind the gateway service to your applications:
+Bind
+: To bind the gateway service to your app:
 
-Bind the gateway service to your applications by running `cf bind-service` and restart your application
-for changes to effect. `$GATEWAY_NAME` is the name of the gateway instance created in the previous step
-`$ROUTE_CONFIG_FILE` is the route configuration file used for configuring routes of the application.
+  1. Bind the gateway service to your app by running:
+
+     ```console
+     cf bind-service $APP_NAME $GATEWAY_NAME -c $ROUTE_CONFIG_FILE
+     ```
+
+     Where:
+
+     - `$GATEWAY_NAME` is the name of the gateway instance created in the previous step
+     - `$ROUTE_CONFIG_FILE` is the route configuration file used for configuring routes of the app
+
+  1. Restart your app by running:
+
+     ```console
+     cf restart $APP_NAME
+     ```
+
 For reference here and here are the configuration files used for configuring frontend and backend
-routes with gateway service in the `animal-rescue` application.
+routes with gateway service in the `animal-rescue` app.
 
-```console
-cf bind-service $APP_NAME $GATEWAY_NAME -c $ROUTE_CONFIG_FILE
-cf restart $APP_NAME
-```
-
-Using curl
+Update routes
 : To use curl to dynamically update route configurations with the Service Broker API:
 
-  1. Retrieve the GUID representing the animals app.
+  1. Retrieve the GUID representing the `animals` app. <!-- `animal-rescue`? -->
 
      ```console
      $ cf app animals --guid
      6e41a492-a17c-4b27-83b0-78635baa54b4
      ```
 
-  1. Obtain the URL of a service instance's backing app for `my-gateway` by running
+  1. Obtain the URL of a service instance's backing app for `my-gateway` by running:
 
      ```console
      cf service my-gateway
@@ -74,7 +83,7 @@ Using curl
   1. Copy the URL given for dashboard and remove the `/scg-dashboard` path. This is the URL of the
      service instance's backing app. For example, `https://my-gateway.apps.example.com`.
 
-  1. Update route configuration for the app animals via the routes actuator endpoint on the
+  1. Update route configuration for the app animals <!-- `animal-rescue`? --> via the routes actuator endpoint on the
      `my-gateway` service instance by running:
 
      ```console
@@ -85,13 +94,15 @@ Using curl
      ...
      ```
 
-## Deploy the `animal-rescue` application to TAP
+## <a id="deploy-app-to-tap"></a> Deploy the `animal-rescue` app to Tanzu Application Platform
 
-Documentation for deploying a gateway service to TAP can be found here. For deploying an
-`animal-rescue` app and configuring the gateway on TAP, see documentation on repo here. The easy minimal
-configuration required would be as below
+Documentation for deploying a gateway service to Tanzu Application Platform can be found here. For
+deploying an `animal-rescue` app and configuring the gateway on Tanzu Application Platform, see
+documentation on repo here. The easy minimal configuration required would be as below
 
-### Create a gateway instance
+### <a id="create-gateway-instance"></a> Create a gateway instance
+
+To create a gateway instance:
 
 1. Create a file called `gateway-config.yaml` containing the following YAML definition:
 
@@ -119,7 +130,7 @@ configuration required would be as below
    my-gateway         True    Created
    ```
 
-### Create a route configuration
+### <a id="create-route-config"></a> Create a route configuration
 
 The Spring Cloud Gateway tile service has a JSON-based API route configuration approach. There are
 many similarities in terms of the configuration options available to those in Spring Cloud Gateway
@@ -149,11 +160,11 @@ for Kubernetes.
    kubectl apply --filename animal-rescue-backend-route-config.yaml
    ```
 
-### Create a gateway mapping
+### <a id="create-gateway-mapping"></a> Create a gateway mapping
 
 In Tanzu Application Service, Spring Cloud Gateway tile services leverage the Service Broker API and
-service binding approach for applications to set up container-network routing of requests to a
-service instance.
+service binding approach for apps to set up container-network routing of requests to a service
+instance.
 
 Spring Cloud Gateway for Kubernetes provides a `SpringCloudGatewayMapping` resource definition to
 expose API routes on to an API gateway instance.
@@ -161,36 +172,36 @@ expose API routes on to an API gateway instance.
 For more information, see the
 [Spring Cloud Gateway for Kubernetes documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html).
 
-# Create another file called animal-rescue-backend-mapping.yaml with the following definition
+1. Create another file called `animal-rescue-backend-mapping.yaml` with the following definition:
 
-```yaml
----
-apiVersion: "tanzu.vmware.com/v1"
-kind: SpringCloudGatewayMapping
-metadata:
-  name: animal-rescue-backend-mapping
-spec:
-  gatewayRef:
-    name: my-gateway
-  routeConfigRef:
-    name: animal-rescue-backend-route-config
-```
+   ```yaml
+   ---
+   apiVersion: "tanzu.vmware.com/v1"
+   kind: SpringCloudGatewayMapping
+   metadata:
+     name: animal-rescue-backend-mapping
+   spec:
+     gatewayRef:
+       name: my-gateway
+     routeConfigRef:
+       name: animal-rescue-backend-route-config
+   ```
 
-# Apply this definition to your Kubernetes cluster
+1. Apply `animal-rescue-backend-mapping.yaml` to your Kubernetes cluster by running:
 
-```console
-kubectl apply --filename animal-rescue-backend-mapping.yaml
-```
+   ```console
+   kubectl apply --filename animal-rescue-backend-mapping.yaml
+   ```
 
-If your cluster has an ingress configured, then assuming that `my-gateway` is accessible via the
-ingress with a fully-qualified domain name of `my-gateway.my-example-domain.com`, the Animal Rescue
-backend API will be available under the path `my-gateway.my-example-domain.com/api/...`.
+   If your cluster has an ingress configured, then assuming that `my-gateway` is accessible via the
+   ingress with a fully-qualified domain name of `my-gateway.my-example-domain.com`, the Animal Rescue
+   backend API will be available under the path `my-gateway.my-example-domain.com/api/...`.
 
-One of the endpoints available in the sample application is `GET /api/animals`, which lists all of
-the animals available for adoption. This endpoint should now be accessible using the following
-command:
+   One of the endpoints available in the sample app is `GET /api/animals`, which lists all of the
+   animals available for adoption.
 
-```console
-# Using curl:
-curl my-gateway.my-example-domain.com/api/animals
-```
+1. From curl, verify that this endpoint is accessible by running:
+
+   ```console
+   curl my-gateway.my-example-domain.com/api/animals
+   ```
