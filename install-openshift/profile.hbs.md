@@ -326,6 +326,7 @@ service's External IP address.
 - `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.26.3` or `1.27.x`, where `x` stands for the patch version. Examples:
     - Red Hat OpenShift Container Platform v4.13 uses the Kubernetes version `1.26.3`.
     - Red Hat OpenShift Container Platform v4.14 uses the Kubernetes version `1.27.6`.
+    - Red Hat OpenShift Container Platform v4.15 uses the Kubernetes version `1.28.5`.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
