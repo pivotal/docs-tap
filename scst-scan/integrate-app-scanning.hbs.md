@@ -31,8 +31,8 @@ To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
     ```
 
     >**Note** In Tanzu Application Platform v1.8 if you are using a vulnerability scanner other than Trivy,
-    >you need to specificy the registry location of the container image to use for scanning.  For example,
-    >if you are using the included Grype template, you would set `ootb_supply_chain_testing_scanning.image_scanning_cli` 
+    >you must specify the registry location of the container image to use for scanning. For example,
+    >if you are using the Grype template, set `ootb_supply_chain_testing_scanning.image_scanning_cli`
     >to the Grype image, for example:
     >
     >```yaml
@@ -42,7 +42,7 @@ To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
     >    image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     >```
     > 
-    >This example uses the packaged Grype image, but you could also use images from public repositories such as `anchore/grype:lastest`
+    >This example uses the packaged Grype image, but you can also use images from public repositories such as `anchore/grype:lastest`.
 
 1. Update your Tanzu Application Platform installation by running:
 
