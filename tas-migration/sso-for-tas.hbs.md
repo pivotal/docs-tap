@@ -1,13 +1,16 @@
 # Migrating from Single Sign-On for VMware Tanzu Application Service
 
-Application Single Sign-On for VMware Tanzu® (AppSSO) provides single-sign on services for VMware Tanzu Application
+This topic tells you how to migrate single-sign on services from Tanzu Application Service (TAS) to Tanzu Application
 Platform (TAP).
-A similar product exists for VMwate Tanzu Application Service (TAS):
-[Single Sign-On for VMware Tanzu Application Service](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html)
 
-This guide describes migration paths from TAS to TAP for single-sign on services.
+Application Single Sign-On for VMware Tanzu provides single sign-on services for VMware Tanzu Application
+Platform. There is a comparable offering available for VMwate Tanzu Application Service (TAS). 
+For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html).
 
-## Concepts in both products
+## <a id="concept"></a> Concept comparison
+
+The following table outlines the essential concepts, highlighting the key differences between Single Sign-On for VMware Tanzu Application Service (SSO for TAS) and Application Single Sign-On for VMware Tanzu Application
+Platform (AppSSO for TAP).
 
 | SSO for TAS                                                                                                                                           | AppSSO for TAP                                                                                                                                                                 | Comments                                                                                                                                                                                                                                                                                                                                                                 |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -24,107 +27,112 @@ This guide describes migration paths from TAS to TAP for single-sign on services
 | Service Key                                                                                                                                           | `ClientRegistration` resource                                                                                                                                                  | AppSSO generates a `Secret` for the given `ClientRegistration`                                                                                                                                                                                                                                                                                                           |
 | UAA (one per CF foundation)                                                                                                                           | The running `AuthServer` Deployment. One per `AuthServer` resource == one per “Service Plan” == one per Identity Zone.                                                         | The UAA is multi-tenant. The AuthServer is single-tenant, and one AuthServer is used per UAA tenant                                                                                                                                                                                                                                                                      |
 
-## Unsupported features in AppSSO for TAP
+## <a id="unsupported"></a> Unsupported features in Application Single Sign-On for VMware Tanzu Application Platform
 
-Some features from SSO for TAS are not supported in SSO for TAP:
+The following features available in Single Sign-On for VMware Tanzu Application Service (SSO for TAS) are not supported in Application Single Sign-On for VMware Tanzu Application Platform (AppSSO for TAP):
 
-- [UAA Internal user store](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-internal-us.html):
-  AppSSO does not support creating and managing users in an internal user database.
-- [SAML identity providers](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-external-id.html#add-a-saml-provider-1):
-  AppSSO does not support SAML external identity providers. It only supports OpenID Connect and LDAP.
+- [User Account and Authentication (UAA) Internal user store](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-internal-us.html):
+
+    AppSSO does not support creating and managing users in an internal user database.
+
+- [Security Assertion Markup Language (SAML) identity providers](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-external-id.html#add-a-saml-provider-1):
+
+    AppSSO does not support SAML external identity providers. It only supports OpenID Connect and Lightweight Directory Access Protocol (LDAP).
+
 - [User management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-users.html):
-  AppSSO does not support managing individual users. In SSO for TAS, users from an external Identity Provider are synced
-  to the user database when they first log in. Permissions (scopes) can be assigned to each user. This is not possible
-  in AppSSO, all scopes come
-  from [roles to scopes mapping](../app-sso/how-to-guides/service-operators/configure-authorization.hbs.md#individual-roles).
-  Users cannot manage their own accounts in AppSSO. When allowed, they can manage their account in the External Identity
-  Provider.
-- Single-log out: AppSSO does not support single-log out.
-- OAuth2 grant types: as
-  per [OAuth 2 Security best practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-24#name-best-practices),
-  AppSSO does not support the `password` or `implicit` grant types. Consider migrating your
-  application to the `authorization_code` grant type.
-- Selective auto-approval of scopes: a Client may require consent, or not require it, but it applies to all scopes
-  except `openid`.
-- ["Resource" management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):
-  there is no concept of "permissions" or "resources" in AppSSO, only OAuth2 scopes.
-    - In SSO for TAS, operators manage which scopes are available for a given Service Plan in a given
-      Space, [through the
-      Developer Dashboard](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html).
-      When an App is bound through a Service Binding, an OAuth2 Client is created for that App in
-      UAA. The Client is only allowed to request scopes that match the “permissions” that were pre-configured by
-      operators.
-    - In AppSSO, when the Developer creates a `ClientRegistration` or a `ClassClaim`, they can specify any OAuth2 scope
-      they want available. Note that roles to manage are aggregated in
-      the [TAP well-known roles](../app-sso/reference/rbac.hbs.md)
-- Unsecured LDAP. LDAP traffic must happen over TLS, using the `ldaps://` protocol.
 
-## Migration pre-requisites
+    AppSSO does not support managing individual users. In SSO for TAS, users from an external Identity Provider are synchronized to the user database when they first log in. Permissions or scopes can be assigned to each user. This is not supported in AppSSO, all scopes come from roles to scopes mapping. For more information, see [Mapping individual roles into authorization scopes](../app-sso/how-to-guides/service-operators/configure-authorization.hbs.md#individual-roles).
 
-The migration scripts here use:
+    Users cannot manage their own accounts in AppSSO. When allowed, they can manage their accounts in the External Identity Provider.
 
-- [ytt](https://carvel.dev/ytt/) for templating kubernetes resources
-- [uaac](https://github.com/cloudfoundry/cf-uaac) for extracting data from the UAA
-- python 3.9+ for migrating data
-- several utilities, such as kubectl, jq, etc
+- Single logout: 
 
-You will need to create
-an [UAA Admin client](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-clients-api.html#creating)
-first.
+    AppSSO does not support single logout.
 
-## Migrating Service Plans to AuthServer custom resources
+- OAuth2 grant types: 
 
-First, locate your service plan. You may list all service plans by subdomain with:
+    According to [OAuth 2 Security best practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-24#name-best-practices), AppSSO does not support the `password` or `implicit` grant types. You can migrate  your application to the `authorization_code` grant type.
+
+- Selective auto-approval of scopes: 
+
+    Consent is optional for all scopes except `openid`.
+
+- [Resource management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):
+
+    AppSSO operates solely on OAuth2 scopes, without using the concepts of "permissions" or "resources."
+
+    - In SSO for TAS, Operators control the availability of scopes for a specific Service Plan in a space using the Developer Dashboard. For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html). 
+
+        When an app is bound by using a Service Binding, an OAuth2 Client is created for that app in User Account and Authentication (UAA). The client can only request scopes that match the permissions pre-configured by operators.
+      
+    - In AppSSO, Developers can specify OAuth2 scopes when creating a `ClientRegistration` or a `ClassClaim`, with role management aggregated in the well-known roles of the Tanzu Application Platform. For more information, see [RBAC for AppSSO](../app-sso/reference/rbac.hbs.md).
+
+- Unsecured Lightweight Directory Access Protocol (LDAP): 
+
+    LDAP traffic must be secured with TLS by using the `ldaps://` protocol.
+
+## <a id="prereqs"></a> Migration pre-requisites
+
+The migration scripts use:
+
+- [ytt](https://carvel.dev/ytt/) for templating Kubernetes resources.
+- [uaac](https://github.com/cloudfoundry/cf-uaac) for extracting data from the UAA.
+- python v3.9 and later for migrating data.
+- several utilities, such as kubectl and jq.
+
+If you do not already have an admin client for your UAA Identity Zone, you must create an UAA Admin client first. 
+For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-clients-api.html#creating)
+
+## <a id="service-plans"></a> Migrate Service Plans to AuthServer custom resources
+
+List all service plans by subdomain:
 
 ```bash
 uaac curl "/identity-zones" -b | jq -r ".[].subdomain"
 export SUBDOMAIN=<your-subdomain>
 ```
 
-### Identity-Zone level configuration
+### <a id="identity-zone-config"></a> Identity-zone level configuration
 
-The only configurable entries that have an equivalent in the `AuthServer` spec are:
+The `AuthServer` specification only includes equivalents for the following configurable entries:
 
-1. Token expiration times
-2. CORS configuration
+- Token expiration times.
+- Cross-origin resource sharing (CORS) configuration.
 
 By default, they are configured in the UAA Service Plan, and can be overridden in each individual plan.
 
-In the `AuthServer` definition, there are default values as well. Unless you wish to port the settings exactly as-is,
-you may skip this section entirely.
+The AuthServer definition includes default values. You can skip this section if you don't want to replicate the exact  settings.
 
-### CORS configuration
+### <a id="cors-config"></a> Cross-origin resource sharing (CORS) configuration
 
-CORS configuration can be found under `config.corsPolicy` in the UAA, like so:
+Cross-origin resource sharing (CORS) configuration is available under `config.corsPolicy` in the UAA as follows:
 
 ```bash
 uaac curl "/identity-zones" -b | jq ".[] | select(.subdomain == \"$SUBDOMAIN\") | .config.corsPolicy"
 ```
 
-Values may be ported into AppSSO's AuthServer through `AuthServer.spec.cors`, see the [official
-documentation](../app-sso/how-to-guides/service-operators/cors.hbs.md),
-or the API docs with `kubectl explain AuthServer.spec.cors`.
+You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.cors`. 
+For more information, see [Public clients and CORS for AppSSO](../app-sso/how-to-guides/service-operators/cors.hbs.md),
+or the `kubectl explain AuthServer.spec.cors` API documentation.
 
-### Token configuration
+### <a id="token-config"></a> Token configuration
 
-Token configuration can be found under `config.tokenPolicy` in the UAA, like so:
+Token configuration is available under `config.tokenPolicy` in the UAA as follows:
 
 ```bash
 uaac curl "/identity-zones" -b | jq ".[] | select(.subdomain == \"$SUBDOMAIN\") | .config.tokenPolicy"
 ```
 
-It is possible that the fields are null or equal to -1. This means they are configured at the UAA level. In that case
-you can obtain the configuration with:
+Fields can be `null` or equal to `-1`, indicating configuration at the UAA level. In such cases, you can retrieve the configuration by using:
 
 ```bash
 uaac curl "/identity-zones" -b | jq ".[] | select(.subdomain == \"\") | .config.tokenPolicy"
 ```
 
-Values may be ported into AppSSO's AuthServer through `AuthServer.spec.token`, see the [official
-documentation](../app-sso/how-to-guides/service-operators/token-settings.hbs.md),
-or the API docs with `kubectl explain AuthServer.spec.token`.
+You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.token`. 
+For more information, see [Token settings for Application Single Sign-On](../app-sso/how-to-guides/service-operators/token-settings.hbs.md), or the `kubectl explain AuthServer.spec.token` API documentation.
 
-### Migrating Identity Providers
+### <a id="identity-providers"></a> Migrate Identity Providers
 
 Most of the configuration for identity providers of type OIDC or LDAP can be ported automatically.
 
@@ -478,7 +486,7 @@ stringData:
   clientSecret: MY-CLIENT-SECRET
 ```
 
-## Migrating Service Bindings, Service Keys, and "SSO Applications"
+## <a id="migrate-misc"></a> Migrating Service Bindings, Service Keys, and "SSO Applications"
 
 Migrating OAuth2 Clients (Service Bindings, Service Keys, Applications created in the SSO dashboard) is more difficult
 to automate, as the configuration model is quite different. It is likely that the domains in the clients `redirect_uri`s
@@ -540,7 +548,7 @@ Then you can use YTT to convert clients into placeholders for `ClientRegistratio
 ytt -f client-registration-template.yaml --data-value-yaml clients="$(./get-clients.sh)" 
 ```
 
-### Service-to-Service flows
+### <a id="service-to-service"></a> Service-to-Service flows
 
 In SSO for TAS, some applications can be registered to use a Service-to-Service flow. This corresponds to the OAuth2
 `client_credentials` grant, where no human interaction is required to obtain tokens.
@@ -552,7 +560,7 @@ be used just like a Service-to-Service app would use them in TAP.
 When creating a `ClientRegistration` name “example-cr”, a corresponding Kubernetes `Secret` will be created in the same
 namespace, with name “example-cr”. Credentials are in this secret, in the fields `client-id` and `client-secret`.
 
-### Spring Boot application
+### <a id="spring-boot-app"></a> Spring Boot application
 
 With Spring Cloud Bindings
 : Spring Boot applications deployed to TAS likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In TAP, `java-cfenv` is not applicable. You may remove it from your dependencies.
