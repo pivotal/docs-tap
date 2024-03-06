@@ -546,6 +546,8 @@ namespace, with the name “example-cr”. The credentials are available in this
 
 ### <a id="spring-boot-app"></a> Spring Boot application
 
+You have the option to deploy your Spring Boot application with or without Spring Cloud Bindings:
+
 With Spring Cloud Bindings
 : Spring Boot applications deployed to Tanzu Application Service likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In Tanzu Application Platform, `java-cfenv` is not applicable. You can remove it from your dependencies.
 
