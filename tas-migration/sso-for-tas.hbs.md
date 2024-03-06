@@ -457,14 +457,10 @@ Most of the configuration for OpenID Connect (OIDC) or LDAP-type identity provid
       --file authserver-template.yaml
     ```
 
-    There will be one piece of information missing: the credentials for connecting to the upstream identity providers (bind
-    password for LDAP, client_secret for OIDC). You will need to add those in manually, as the UAA does not expose those
-    secrets. You may need to re-create similar OIDC clients; or update your existing OIDC clients, to add the AuthServer
-    redirect uris. Please refer to the [official documentation]() to find out about configuration properties for AppSSO
-    identity providers. The Secrets have the following format:
+    You must manually input the credentials for connecting to the upstream identity providers, including the bind password for LDAP and the client secret for OIDC, because the UAA does not expose such secrets. You can either create new OIDC clients or edit existing ones to include the `AuthServer` redirect URIs. For more information about configuring properties for AppSSO identity providers, see [Identity providers for AppSSO](../app-sso/how-to-guides/service-operators/identity-providers.hbs.md). The secrets adhere to the following format:
 
     ```yaml
-    #! If there is an identity provider of type LDAP
+    #! For LDAP-type identity provider:
     ---
     apiVersion: v1
     kind: Secret
@@ -474,7 +470,7 @@ Most of the configuration for OpenID Connect (OIDC) or LDAP-type identity provid
     stringData:
       password: MY-PASSWORD
 
-    #! One secret per openID identity provider ; must match clientSecretRef.name
+    #! One secret per openID identity provider and it must match clientSecretRef.name:
     ---
     apiVersion: v1
     kind: Secret
@@ -485,24 +481,15 @@ Most of the configuration for OpenID Connect (OIDC) or LDAP-type identity provid
       clientSecret: MY-CLIENT-SECRET
     ```
 
-## <a id="migrate-misc"></a> Migrating Service Bindings, Service Keys, and "SSO Applications"
+## <a id="migrate-misc"></a> Migrate OAuth2 Clients
 
-Migrating OAuth2 Clients (Service Bindings, Service Keys, Applications created in the SSO dashboard) is more difficult
-to automate, as the configuration model is quite different. It is likely that the domains in the clients `redirect_uri`s
-will differ from platform to platform.
+Migrating OAuth2 Clients, including Service Bindings, Service Keys, Applications created in the SSO dashboard, are more difficult to automate, because the configuration model is very different. It is likely that the domains in the clients `redirect_uri`s differ from platform to platform.
 
-The recommended approach to use Service Bindings in TAP is to use an AppSSO `ClassClaim`, see
-the [official documentation](../app-sso/how-to-guides/app-operators/claim-credentials.hbs.md).
-The `ClassClaim` is bound to a workload, but a UAA client is not bound to anything the UAA, only through a layer in CF
-itself.
+The recommended approach to use Service Bindings in Tanzu Application Platform is to use an AppSSO `ClassClaim`. For more information, see [Claim credentials for an Application Single Sign-On service offering](../app-sso/how-to-guides/app-operators/claim-credentials.hbs.md). The `ClassClaim` is bound to a workload, but a UAA client lacks a direct binding to the UAA. The connection is established solely through a layer in Cloud Foundry.
 
-For Service Keys or Applications created in the dashboard, the usual use-case is to copy the credentials returned in the
-“create service key” call, and then use them elsewhere (either in CF apps or even off-platform). For those use-cases,
-you may want to use a `ClientRegistration` instead of a `ClassClaim`,
-see  [official documentation](../app-sso/reference/api/clientregistration.hbs.md)
+For Service Keys or Applications created in the dashboard, the common use case is to copy the credentials returned in the create service key call, and then use them either in Cloud Foundry apps or off-platform. For those use cases, you can use a `ClientRegistration` instead of a `ClassClaim`. For more information, see [ClientRegistration API for AppSSO](../app-sso/reference/api/clientregistration.hbs.md).
 
-This can be automated to some degree, but will require manual intervention. You can list all clients for your Identity
-Zone using the following command:
+Automation is possible to a certain extent, but manual intervention is required. The following script retrieves a list of all clients for your Identity Zone. You can save the script as `get-clients.sh`:
 
 ```bash
 uaac curl "/oauth/clients" -H"X-Identity-Zone-Subdomain: $SUBDOMAIN" -b |
@@ -528,8 +515,7 @@ uaac curl "/oauth/clients" -H"X-Identity-Zone-Subdomain: $SUBDOMAIN" -b |
 "
 ```
 
-Provided that you have stored this command in `get-clients.sh`, and you save the following
-to `client-registration-template.yaml`:
+Store the following content in `client-registration-template.yaml`:
 
 ```yaml
 #@ load("@ytt:data", "data")
@@ -541,7 +527,7 @@ _: #@ template.replace(client)
 #@ end
 ```
 
-Then you can use YTT to convert clients into placeholders for `ClientRegistration`s like so:
+Use YTT to convert clients into placeholders for `ClientRegistration`s:
 
 ```bash
 ytt -f client-registration-template.yaml --data-value-yaml clients="$(./get-clients.sh)" 
@@ -549,29 +535,28 @@ ytt -f client-registration-template.yaml --data-value-yaml clients="$(./get-clie
 
 ### <a id="service-to-service"></a> Service-to-Service flows
 
-In SSO for TAS, some applications can be registered to use a Service-to-Service flow. This corresponds to the OAuth2
+In SSO for TAS, you can register some applications to use a Service-to-Service flow. This corresponds to the OAuth2
 `client_credentials` grant, where no human interaction is required to obtain tokens.
 
-In this case, you must use a `ClientRegistration` as showcased in the section above, with
-`ClientRegistration.spec.authorizationGrantTypes=["client_credentials"]` . The resulting client id and client secret can
-be used just like a Service-to-Service app would use them in TAP.
+In this case, you must use a `ClientRegistration` described in [Migrate OAuth2 Clients](#migrate-misc), with
+`ClientRegistration.spec.authorizationGrantTypes=["client_credentials"]`. You can use the resulting client id and client secret such as a Service-to-Service app uses them in Tanzu Application Platform.
 
-When creating a `ClientRegistration` name “example-cr”, a corresponding Kubernetes `Secret` will be created in the same
-namespace, with name “example-cr”. Credentials are in this secret, in the fields `client-id` and `client-secret`.
+When creating a `ClientRegistration` name “example-cr”, a corresponding Kubernetes `Secret` is created in the same
+namespace, with the name “example-cr”. The credentials are available in this secret under the fields `client-id` and `client-secret`.
 
 ### <a id="spring-boot-app"></a> Spring Boot application
 
 With Spring Cloud Bindings
-: Spring Boot applications deployed to TAS likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In TAP, `java-cfenv` is not applicable. You may remove it from your dependencies.
+: Spring Boot applications deployed to Tanzu Application Service likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In Tanzu Application Platform, `java-cfenv` is not applicable. You can remove it from your dependencies.
 
-    If your Spring Boot app is built using buildpacks, such as with Tanzu Build Service, TAP Supply Chains, or Spring Boot maven or gradle plugins, [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings/) will be added to your path and should do the binding automatically -see [official documentation](../app-sso/how-to-guides/app-operators/secure-spring-boot-workload.hbs.md). For this to work, it is recommended your application uses Spring Boot 2.7, so that `ClientRegistration.spec.client_authentication_method` maps to a value known to Spring Boot (`client_secret_basic` or `client_secret_post`). Older versions of Spring Boot expect the value to be either `basic` or `post`.
+    If you build your Spring Boot app by using buildpacks, such as Tanzu Build Service, Tanzu Application Platform Supply Chains, Spring Boot maven, or gradle plugins, [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings/) are added to your path and perform the binding automatically. For more information, see [Secure a Spring Boot workload](../app-sso/how-to-guides/app-operators/secure-spring-boot-workload.hbs.md). VMware recommends that your application uses Spring Boot v2.7, so that `ClientRegistration.spec.client_authentication_method` maps to a value known to Spring Boot, such as `client_secret_basic` or `client_secret_post`. Older versions of Spring Boot expect the value to be either `basic` or `post`.
 
-    Note that Spring Cloud Bindings is not intended to be used with existing configuration values in `spring.security.oauth2.client`, but as an alternative mechanism that will populate those values automatically. The recommended approach is to create a `local` or similar profile for local development, targeting whatever authorization server you may use in dev. In your regular `application.yaml`, do not populate `spring.security.oauth2.client`. Note that having default values in your `application.yaml` may lead to inconsistent behavior, with Spring Cloud Bindings overriding some of the values. For a complete example, see the [appsso-starter-java accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/209d88570e3be6045e2633dfdd1c2ccda1fe441e/appsso-starter-java).
+    Spring Cloud Bindings is not intended to work with existing configuration values in `spring.security.oauth2.client`. Instead, it serves as an alternative mechanism for automatic population of these values. The recommended approach is to create a `local` or similar profile for local development, tailored to the authorization server used in the development environment. In your standard application.yaml, refrain from populating `spring.security.oauth2.client`. Including default values in your `application.yaml` might cause inconsistent behavior, because Spring Cloud Bindings can override some of the values. For more information, see the [appsso-starter-java accelerator documentation](https://github.com/vmware-tanzu/application-accelerator-samples/tree/209d88570e3be6045e2633dfdd1c2ccda1fe441e/appsso-starter-java) in GitHub.
 
 Without Spring Cloud Bindings
-: If you cannot or do not wish to rely on Spring Cloud Bindings, please follow the guidance from the [official documentation](../app-sso/how-to-guides/app-operators/secure-workload.hbs.md) explaining how credentials are exposed to the underlying application.
+: If you are unable or prefer not to depend on Spring Cloud Bindings, see [Secure a workload with Application Single Sign-On](../app-sso/how-to-guides/app-operators/secure-workload.hbs.md), which explains how credentials are exposed to the underlying application.
 
-    This may be the case if you want to use multiple `ClientRegistration`s in a single app, or a `ClientRegistration` with multiple grant types, such as `authorization_code` + `client_credentials`. In that case, it is recommended to turn off the Spring Cloud Bindings integration, by setting the following configuration property: `org.springframework.cloud.bindings.boot.oauth2.enable=false`. To access the bindings, you can either load the Secret values in environment variables, or read the files populated by the Secret in the pod. For ease of use, you may still use the Spring Cloud Bindings library to access the files, e.g. by doing:
+    To use multiple `ClientRegistration`s in a single app, or a `ClientRegistration` with multiple grant types, such as `authorization_code` and `client_credentials`, you can turn off the Spring Cloud Bindings integration by setting the following configuration property: `org.springframework.cloud.bindings.boot.oauth2.enable=false`. To access the bindings, you can either load the Secret values in environment variables, or read the files populated by the Secret in the pod. You can still use the Spring Cloud Bindings library to access the files as follows:
 
     ```java
     class Example {
