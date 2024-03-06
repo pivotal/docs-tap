@@ -16,7 +16,7 @@ SCST - Scan 2.0 includes two integrations for container image scanners:
 VMware recommends using Aqua Trivy scanner with Tanzu Application Platform for
 container image scanning. If you want to remain consistent with the default scanner
 in SCST - Scan 1.0, Anchore Grype is included as an open-source
-alternative.  Additionally, you can build an integration for additional
+alternative. Additionally, you can build an integration for additional
 scanners. For more information, see  [Bring your own scanner with Supply Chain Security Tools - Scan 2.0](./bring-your-own-scanner.hbs.md).
 
 ## <a id="enable-supply-chain"></a> Enable with OOTB supply chain
@@ -30,19 +30,18 @@ To enable SCST - Scan 2.0 with an OOTB supply chain using the Trivy scanner:
       image_scanner_template_name: image-vulnerability-scan-trivy
     ```
 
-    >**Note** In Tanzu Application Platform v1.8 if you are using a vulnerability scanner other than Trivy,
-    >you must specify the registry location of the container image to use for scanning. For example,
-    >if you are using the Grype template, set `ootb_supply_chain_testing_scanning.image_scanning_cli`
-    >to the Grype image, for example:
-    >
-    >```yaml
-    >ootb_supply_chain_testing_scanning:
-    >  image_scanner_template_name: image-vulnerability-scan-grype
-    >  image_scanning_cli:
-    >    image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
-    >```
-    > 
-    >This example uses the packaged Grype image, but you can also use images from public repositories such as `anchore/grype:lastest`.
+1. (Optional) In Tanzu Application Platform v1.8 if you are using a vulnerability scanner other than Trivy, you must specify the registry location of the container image to use for scanning. For example,
+if you are using the Grype template, set `ootb_supply_chain_testing_scanning.image_scanning_cli`
+to the Grype image, for example,
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      image_scanner_template_name: image-vulnerability-scan-grype
+      image_scanning_cli:
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
+    ```
+
+This example uses the packaged Grype image, but you can also use images from public repositories such as `anchore/grype:latest`.
 
 1. Update your Tanzu Application Platform installation by running:
 
