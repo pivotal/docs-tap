@@ -1,12 +1,12 @@
 # Set up the Supply Chain Component
 
-This topic describes how to install the Trivy Supply Chain Component, create a custom Supply Chain Component using the SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
+This topic describes how to install the Trivy Supply Chain Component, create a Custom Supply Chain Component using SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
 
 ## <a id="install-trivy-sc"></a> Install Trivy Supply Chain Component
 
 This section describes how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
-1. List version information for the Trivy Supply Chain Component package by running:
+1. List version information for the Trivy Supply Chain Component package. Run:
 
     ```console
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
@@ -21,7 +21,7 @@ This section describes how to install the Trivy Supply Chain Component that uses
     trivy.app-scanning.component.apps.tanzu.vmware.com  TRIVY-COMPONENT-VERSION              2024-01-26 12:35:39 -0500 EST
     ```
 
-2. Install Trivy Supply Chain Component package.
+2. Install the Trivy Supply Chain Component package.
 
     ```console
     tanzu package install trivy-app-scanning-component -p trivy.app-scanning.component.apps.tanzu.vmware.com \
@@ -29,12 +29,12 @@ This section describes how to install the Trivy Supply Chain Component that uses
         --namespace tap-install
     ```
 
-## <a id="customize-scan-component"></a> Customize Scanning Component
+## <a id="customize-scan-component"></a> Create a Custom Scanning Component
 
-This section describes how to create a custom Scanning Supply Chain Component that uses SCST - Scan 2.0.
-For more details on how to create a Component, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-component.hbs.md).
+This section describes how to create a Custom Scanning Supply Chain Component that uses SCST - Scan 2.0.
+For more details about how to create a Component, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-component.hbs.md).
 
-1. Customize a component by retrieving the component YAML of the Trivy Supply Chain Component.
+1. Retrieve the component YAML of the Trivy Supply Chain Component.
 
       ```console
       kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
@@ -61,7 +61,7 @@ For more details on how to create a Component, see [Tanzu Supply Chain docs](../
           name: trivy-image-scan-v2 # SCANNER-image-scan-v2. Replace with the name of the pipeline created in the next step.
     ```
 
-1. Remove the following fields from the yaml:
+1. Remove the following fields from the `component.yaml`:
 
     ```console
     metadata:
@@ -110,7 +110,7 @@ For more details on how to create a Component, see [Tanzu Supply Chain docs](../
 
           Where `SCANNER` is the name of the scanner from the scanning component
 
-    3. Remove the following fields from the yaml:
+    3. Remove the following fields from the `pipeline.yaml`:
 
         ```console
         metadata:
@@ -131,8 +131,7 @@ For more details on how to create a Component, see [Tanzu Supply Chain docs](../
     kubectl apply -f pipeline.yaml
     ```
 
-1. (Optional) If you create your own component, it requires the following label so that it can be
-observed by Tanzu Supply Chain:
+1. (Optional) If you create your own component, it requires the following label so that it can be observed by Tanzu Supply Chain:
 
     ```console
     labels:
@@ -141,7 +140,7 @@ observed by Tanzu Supply Chain:
 
 ## <a id="how-to-view-component"></a> View components
 
-This section covers how to view the available components that were installed or applied.
+This section tells you how to view the available components that were installed or applied.
 
   ```console
   kubectl get components -A -l "supply-chain.apps.tanzu.vmware.com/catalog=tanzu"
