@@ -59,7 +59,7 @@ The following features available in Single Sign-On for VMware Tanzu Application 
 
 - [Resource management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):
 
-    AppSSO operates solely on OAuth2 scopes, without using the concepts of "permissions" or "resources."
+    AppSSO operates solely on OAuth2 scopes, without using the concepts of permissions or resources.
 
     - In SSO for TAS, Operators control the availability of scopes for a specific Service Plan in a space using the Developer Dashboard. For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html). 
 
@@ -134,357 +134,356 @@ For more information, see [Token settings for Application Single Sign-On](../app
 
 ### <a id="identity-providers"></a> Migrate Identity Providers
 
-Most of the configuration for identity providers of type OIDC or LDAP can be ported automatically.
+Most of the configuration for OpenID Connect (OIDC) or LDAP-type identity providers can be ported automatically.
 
-First, using `uaac`, login into the UAA and get a token for the admin client.
+1. Log into the UAA and get a token for the admin client by using `uaac`.
 
-Then, copy the UAA url and the access token. They can be found with `uaac context`:
+1. Copy the UAA URL and the access token from `uaac context`:
 
-```
-$ uaac context
+    ```console
+    $ uaac context
 
-[1]*[➡️ UAA_URL]
+    [1]*[➡️ UAA_URL]
 
-  [0]*[...]
-      client_id: ...
-      access_token: ➡️ ACCESS_TOKEN
-      token_type: ...
-      expires_in: ...
-      scope: ...
-      jti: ...
-```
+      [0]*[...]
+          client_id: ...
+          access_token: ➡️ ACCESS_TOKEN
+          token_type: ...
+          expires_in: ...
+          scope: ...
+          jti: ...
+    ```
 
-Using those, and the `SUBDOMAIN` you captured earlier, you can run the script below. Save it to `migration.py`:
+1. Save the following script as `migration.py`. 
 
-```python
-#!/usr/bin/env python3
+    ```python
+    #!/usr/bin/env python3
 
-import getopt
-import json
-import sys
-from urllib.request import Request, urlopen
+    import getopt
+    import json
+    import sys
+    from urllib.request import Request, urlopen
 
 
-def transform_ldap_providers(providers, external_group_mappings=[]):
-    def to_ldap(provider):
-        config = provider["config"]
-        result = {
-            "name": "ldap",
-            "ldap": {
-                "url": config["baseUrl"],
-                "bind": {
-                    "dn": config["bindUserDn"],
-                    "passwordRef": {"name": "ldap-password"},
+    def transform_ldap_providers(providers, external_group_mappings=[]):
+        def to_ldap(provider):
+            config = provider["config"]
+            result = {
+                "name": "ldap",
+                "ldap": {
+                    "url": config["baseUrl"],
+                    "bind": {
+                        "dn": config["bindUserDn"],
+                        "passwordRef": {"name": "ldap-password"},
+                    },
+                    "user": {
+                        "searchBase": config["userSearchBase"],
+                        "searchFilter": config["userSearchFilter"],
+                    },
                 },
-                "user": {
-                    "searchBase": config["userSearchBase"],
-                    "searchFilter": config["userSearchFilter"],
-                },
-            },
-        }
-
-        roles_config = __extract_ldap_roles_config(config)
-        if roles_config:
-            result["ldap"]["roles"] = roles_config
-
-        id_token_config = __extract_id_token_config(config)
-        if id_token_config:
-            result["ldap"]["idToken"] = id_token_config
-        access_token_config = __extract_access_token_config(
-            provider["originKey"], external_group_mappings
-        )
-        if access_token_config:
-            result["ldap"]["accessToken"] = access_token_config
-
-        return result
-
-    return [to_ldap(provider) for provider in providers if provider["type"] == "ldap"]
-
-
-def transform_openid_providers(providers, external_group_mappings=[]):
-    """
-    Transform UAA openID providers identity providers into
-    AuthServer.spec.identityProviders.openID
-    """
-
-    def to_openid(provider):
-        """
-        Map an individual provider
-        """
-        config = provider["config"]
-        result = {
-            "name": provider["originKey"],
-            "openID": {
-                "clientID": config["relyingPartyId"],
-                "scopes": config["scopes"],
-                "displayName": config["providerDescription"],
-                "clientSecretRef": {"name": provider["originKey"] + "-credentials"},
-            },
-        }
-        openId = result["openID"]
-        if config["discoveryUrl"] is not None:
-            openId["configurationURI"] = config["discoveryUrl"]
-        if config["authUrl"] is not None:
-            openId["authorizationUri"] = config["authUrl"]
-        if config["tokenUrl"] is not None:
-            openId["tokenUri"] = config["tokenUrl"]
-        if config["userInfoUrl"] is not None:
-            openId["userinfoUri"] = config["userInfoUrl"]
-        if config["tokenKeyUrl"] is not None:
-            openId["jwksUri"] = config["tokenKeyUrl"]
-
-        roles_config = __extract_openid_roles_config(config)
-        if roles_config:
-            openId["roles"] = roles_config
-
-        id_token_config = __extract_id_token_config(config)
-        if id_token_config:
-            openId["idToken"] = id_token_config
-
-        access_token_config = __extract_access_token_config(
-            provider["originKey"], external_group_mappings
-        )
-        if access_token_config:
-            openId["accessToken"] = access_token_config
-
-        return result
-
-    return [to_openid(p) for p in providers if p["type"] == "oidc1.0"]
-
-
-def __extract_group_filters(config):
-    def to_group_filter(group):
-        """
-        Helper function for filters
-        """
-        if "*" in group:
-            return {"regex": group.replace("*", ".*")}
-        else:
-            return {"exactMatch": group}
-
-    if (
-        config["externalGroupsWhitelist"] == ["*"]
-        or not config["externalGroupsWhitelist"]
-    ):
-        return None
-    return [to_group_filter(group) for group in config["externalGroupsWhitelist"]]
-
-
-def __extract_openid_roles_config(config):
-    """
-    Extracts the UAA external groups and filtering rules,
-    and modify them to match AuthServer.spec.identityProviders.openID.roles
-    """
-    if "external_groups" not in config["attributeMappings"]:
-        return None
-    result = {"fromUpstream": {"claim": config["attributeMappings"]["external_groups"]}}
-    group_filter = __extract_group_filters(config)
-    if group_filter:
-        result["filterBy"] = group_filter
-
-    return result
-
-
-def __extract_ldap_roles_config(config):
-    if not config["groupSearchBase"]:
-        return None
-    if config["groupSearchBase"] == "memberOf":
-        return {"fromUpstream": {"attribute": "memberOf"}}
-
-    result = {
-        "fromUpstream": {
-            "search": {
-                "base": config["groupSearchBase"],
-                "filter": config["groupSearchFilter"],
-            },
-        }
-    }
-    group_filter = __extract_group_filters(config)
-    if group_filter:
-        result["filterBy"] = group_filter
-
-    return result
-
-
-def __extract_id_token_config(config):
-    """
-    Extracts the UAA attributes mapping, and modify them
-    to match AuthServer.spec.identityProviders.*.idToken
-    """
-    claims_mapping = [
-        {"toClaim": key.replace("user.attribute.", ""), "fromUpstream": value}
-        for key, value in config["attributeMappings"].items()
-        if key.startswith("user.attribute")
-    ]
-    if len(claims_mapping) == 0:
-        return None
-
-    return {"claims": claims_mapping}
-
-
-def __extract_access_token_config(originKey, group_mappings):
-    """
-    Filter the UAA /Groups/External by Identity Provider "originKey",
-    group them by "external group name", and merge them into
-    AuthServer.spec.identityProviders.*.accessToken
-    """
-    roles_to_groups = {}
-    for mapping in group_mappings:
-        if mapping["origin"] != originKey:
-            continue
-        external_group = mapping["externalGroup"]
-        if not external_group in roles_to_groups:
-            roles_to_groups[external_group] = {
-                "fromRole": external_group,
-                "toScopes": [],
             }
-        roles_to_groups[external_group]["toScopes"].append(mapping["displayName"])
-    if len(roles_to_groups) == 0:
-        return None
-    return {"scope": {"rolesToScopes": list(roles_to_groups.values())}}
+
+            roles_config = __extract_ldap_roles_config(config)
+            if roles_config:
+                result["ldap"]["roles"] = roles_config
+
+            id_token_config = __extract_id_token_config(config)
+            if id_token_config:
+                result["ldap"]["idToken"] = id_token_config
+            access_token_config = __extract_access_token_config(
+                provider["originKey"], external_group_mappings
+            )
+            if access_token_config:
+                result["ldap"]["accessToken"] = access_token_config
+
+            return result
+
+        return [to_ldap(provider) for provider in providers if provider["type"] == "ldap"]
 
 
-class UaaClient:
-    def __init__(self, url, token, subdomain):
-        self.url = url
-        self.token = token
-        self.subdomain = subdomain
+    def transform_openid_providers(providers, external_group_mappings=[]):
+        """
+        Transform UAA openID providers identity providers into
+        AuthServer.spec.identityProviders.openID
+        """
 
-    def get_idp(self):
-        r = Request(
-            f"{self.url}/identity-providers?rawConfig=true",
-            headers={
-                "Authorization": f"Bearer {self.token}",
-                "X-Identity-Zone-Subdomain": self.subdomain,
-            },
-        )
-        with urlopen(r) as response:
-            return json.loads(response.read())
+        def to_openid(provider):
+            """
+            Map an individual provider
+            """
+            config = provider["config"]
+            result = {
+                "name": provider["originKey"],
+                "openID": {
+                    "clientID": config["relyingPartyId"],
+                    "scopes": config["scopes"],
+                    "displayName": config["providerDescription"],
+                    "clientSecretRef": {"name": provider["originKey"] + "-credentials"},
+                },
+            }
+            openId = result["openID"]
+            if config["discoveryUrl"] is not None:
+                openId["configurationURI"] = config["discoveryUrl"]
+            if config["authUrl"] is not None:
+                openId["authorizationUri"] = config["authUrl"]
+            if config["tokenUrl"] is not None:
+                openId["tokenUri"] = config["tokenUrl"]
+            if config["userInfoUrl"] is not None:
+                openId["userinfoUri"] = config["userInfoUrl"]
+            if config["tokenKeyUrl"] is not None:
+                openId["jwksUri"] = config["tokenKeyUrl"]
 
-    def get_groups(self):
-        r = Request(
-            f"{self.url}/Groups/External?count=500",
-            headers={
-                "Authorization": f"Bearer {self.token}",
-                "X-Identity-Zone-Subdomain": self.subdomain,
-            },
-        )
-        with urlopen(r) as response:
-            return json.loads(response.read())["resources"]
+            roles_config = __extract_openid_roles_config(config)
+            if roles_config:
+                openId["roles"] = roles_config
+
+            id_token_config = __extract_id_token_config(config)
+            if id_token_config:
+                openId["idToken"] = id_token_config
+
+            access_token_config = __extract_access_token_config(
+                provider["originKey"], external_group_mappings
+            )
+            if access_token_config:
+                openId["accessToken"] = access_token_config
+
+            return result
+
+        return [to_openid(p) for p in providers if p["type"] == "oidc1.0"]
 
 
-def extract_cli_args(argv):
-    subdomain = None
-    token = None
-    url = None
-    try:
-        opts, _ = getopt.getopt(argv[1:], "hu:s:t:", ["url=", "subdomain=", "token="])
-    except getopt.GetoptError:
-        print("idzone-to-authserver.py -u <uaa url> -t <uaa token> -s <subdomain>")
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == "-h":
+    def __extract_group_filters(config):
+        def to_group_filter(group):
+            """
+            Helper function for filters
+            """
+            if "*" in group:
+                return {"regex": group.replace("*", ".*")}
+            else:
+                return {"exactMatch": group}
+
+        if (
+            config["externalGroupsWhitelist"] == ["*"]
+            or not config["externalGroupsWhitelist"]
+        ):
+            return None
+        return [to_group_filter(group) for group in config["externalGroupsWhitelist"]]
+
+
+    def __extract_openid_roles_config(config):
+        """
+        Extracts the UAA external groups and filtering rules,
+        and modify them to match AuthServer.spec.identityProviders.openID.roles
+        """
+        if "external_groups" not in config["attributeMappings"]:
+            return None
+        result = {"fromUpstream": {"claim": config["attributeMappings"]["external_groups"]}}
+        group_filter = __extract_group_filters(config)
+        if group_filter:
+            result["filterBy"] = group_filter
+
+        return result
+
+
+    def __extract_ldap_roles_config(config):
+        if not config["groupSearchBase"]:
+            return None
+        if config["groupSearchBase"] == "memberOf":
+            return {"fromUpstream": {"attribute": "memberOf"}}
+
+        result = {
+            "fromUpstream": {
+                "search": {
+                    "base": config["groupSearchBase"],
+                    "filter": config["groupSearchFilter"],
+                },
+            }
+        }
+        group_filter = __extract_group_filters(config)
+        if group_filter:
+            result["filterBy"] = group_filter
+
+        return result
+
+
+    def __extract_id_token_config(config):
+        """
+        Extracts the UAA attributes mapping, and modify them
+        to match AuthServer.spec.identityProviders.*.idToken
+        """
+        claims_mapping = [
+            {"toClaim": key.replace("user.attribute.", ""), "fromUpstream": value}
+            for key, value in config["attributeMappings"].items()
+            if key.startswith("user.attribute")
+        ]
+        if len(claims_mapping) == 0:
+            return None
+
+        return {"claims": claims_mapping}
+
+
+    def __extract_access_token_config(originKey, group_mappings):
+        """
+        Filter the UAA /Groups/External by Identity Provider "originKey",
+        group them by "external group name", and merge them into
+        AuthServer.spec.identityProviders.*.accessToken
+        """
+        roles_to_groups = {}
+        for mapping in group_mappings:
+            if mapping["origin"] != originKey:
+                continue
+            external_group = mapping["externalGroup"]
+            if not external_group in roles_to_groups:
+                roles_to_groups[external_group] = {
+                    "fromRole": external_group,
+                    "toScopes": [],
+                }
+            roles_to_groups[external_group]["toScopes"].append(mapping["displayName"])
+        if len(roles_to_groups) == 0:
+            return None
+        return {"scope": {"rolesToScopes": list(roles_to_groups.values())}}
+
+
+    class UaaClient:
+        def __init__(self, url, token, subdomain):
+            self.url = url
+            self.token = token
+            self.subdomain = subdomain
+
+        def get_idp(self):
+            r = Request(
+                f"{self.url}/identity-providers?rawConfig=true",
+                headers={
+                    "Authorization": f"Bearer {self.token}",
+                    "X-Identity-Zone-Subdomain": self.subdomain,
+                },
+            )
+            with urlopen(r) as response:
+                return json.loads(response.read())
+
+        def get_groups(self):
+            r = Request(
+                f"{self.url}/Groups/External?count=500",
+                headers={
+                    "Authorization": f"Bearer {self.token}",
+                    "X-Identity-Zone-Subdomain": self.subdomain,
+                },
+            )
+            with urlopen(r) as response:
+                return json.loads(response.read())["resources"]
+
+
+    def extract_cli_args(argv):
+        subdomain = None
+        token = None
+        url = None
+        try:
+            opts, _ = getopt.getopt(argv[1:], "hu:s:t:", ["url=", "subdomain=", "token="])
+        except getopt.GetoptError:
             print("idzone-to-authserver.py -u <uaa url> -t <uaa token> -s <subdomain>")
-            sys.exit()
-        elif opt in ("-s", "--subdomain"):
-            subdomain = arg
-        elif opt in ("-t", "--token"):
-            token = arg
-        elif opt in ("-u", "--url"):
-            url = arg
-    return url, token, subdomain
+            sys.exit(2)
+        for opt, arg in opts:
+            if opt == "-h":
+                print("idzone-to-authserver.py -u <uaa url> -t <uaa token> -s <subdomain>")
+                sys.exit()
+            elif opt in ("-s", "--subdomain"):
+                subdomain = arg
+            elif opt in ("-t", "--token"):
+                token = arg
+            elif opt in ("-u", "--url"):
+                url = arg
+        return url, token, subdomain
 
 
-if __name__ == "__main__":
-    uaa = UaaClient(*extract_cli_args(sys.argv))
-    uaa_idps = uaa.get_idp()
-    uaa_groups = uaa.get_groups()
-    idps = [
-        *transform_openid_providers(uaa_idps, uaa_groups),
-        *transform_ldap_providers(uaa_idps, uaa_groups),
-    ]
-    print(json.dumps(idps))
-```
+    if __name__ == "__main__":
+        uaa = UaaClient(*extract_cli_args(sys.argv))
+        uaa_idps = uaa.get_idp()
+        uaa_groups = uaa.get_groups()
+        idps = [
+            *transform_openid_providers(uaa_idps, uaa_groups),
+            *transform_ldap_providers(uaa_idps, uaa_groups),
+        ]
+        print(json.dumps(idps))
+    ```
 
-This command can be run with:
+1. Run the script with the UAA URL, access token, and the previously captured `SUBDOMAIN`.
 
-```bash
-python3 migration.py -u $UAA_URL -t $TOKEN -s $SUBDOMAIN
-```
+    ```bash
+    python3 migration.py -u $UAA_URL -t $TOKEN -s $SUBDOMAIN
+    ```
 
-This output is a JSON structure that can be templated into an AuthServer, for example using YTT. It is almost sufficient
-to have a running authorization server with identity providers migrated. Given the following structure:
+    The following JSON output can be templated into an `AuthServer` by using tools such as YTT. This structure is nearly complete for establishing a functioning authorization server with migrated identity providers.
 
-```yaml
-#@ load("@ytt:data", "data")
----
-apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
-kind: AuthServer
-metadata:
-  name: MY-AUTH-SERVER
-  namespace: MY-NAMESPACE
-  labels:
-    name: MY-AUTH-SERVER
-spec:
-  #! Token signature keys are a managed in the UAA Config, not accessible through
-  #! the API. These are UAA-level config options, not id-zone level.
-  #! The signing key is REQUIRED.
-  tokenSignature:
-    signAndVerifyKeyRef:
+    ```yaml
+    #@ load("@ytt:data", "data")
+    ---
+    apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
+    kind: AuthServer
+    metadata:
+      name: MY-AUTH-SERVER
+      namespace: MY-NAMESPACE
+      labels:
+        name: MY-AUTH-SERVER
+    spec:
+      #! Token signature keys are managed in the UAA Config and not accessible through
+      #! the API. These are UAA-level, not id-zone level config options.
+      #! The signing key is required.
+      tokenSignature:
+        signAndVerifyKeyRef:
+          name: my-token-signing-key
+      identityProviders: #@ data.values.identityProviders
+
+      #! All other properties are omitted, because they are optional. You can update them as needed.
+
+    ---
+    apiVersion: secretgen.k14s.io/v1alpha1
+    kind: RSAKey
+    metadata:
       name: my-token-signing-key
-  identityProviders: #@ data.values.identityProviders
+      namespace: MY-NAMESPACE
+    spec:
+      secretTemplate:
+        type: Opaque
+        stringData:
+          key.pem: $(privateKey)
+          pub.pem: $(publicKey)
+    ```
 
-  #! All other properties omitted, they are not REQUIRED to function, but you MAY update them.
+1. Chain the migration script into YTT and obtain an `AuthServer` configuration.
 
----
-apiVersion: secretgen.k14s.io/v1alpha1
-kind: RSAKey
-metadata:
-  name: my-token-signing-key
-  namespace: MY-NAMESPACE
-spec:
-  secretTemplate:
-    type: Opaque
+    ```bash
+    ytt \
+      --data-value-yaml identityProviders="$(python3 migration.py -u "$UAA_URL" -s "$SUBDOMAIN" -t "$ACCESS_TOKEN")" \
+      --file authserver-template.yaml
+    ```
+
+    There will be one piece of information missing: the credentials for connecting to the upstream identity providers (bind
+    password for LDAP, client_secret for OIDC). You will need to add those in manually, as the UAA does not expose those
+    secrets. You may need to re-create similar OIDC clients; or update your existing OIDC clients, to add the AuthServer
+    redirect uris. Please refer to the [official documentation]() to find out about configuration properties for AppSSO
+    identity providers. The Secrets have the following format:
+
+    ```yaml
+    #! If there is an identity provider of type LDAP
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: ldap-password
+      namespace: MY-NAMESPACE
     stringData:
-      key.pem: $(privateKey)
-      pub.pem: $(publicKey)
-```
+      password: MY-PASSWORD
 
-You can chain the migration script into YTT and obtain an `AuthServer` configuration, e.g. through:
-
-```bash
-ytt \
-  --data-value-yaml identityProviders="$(python3 migration.py -u "$UAA_URL" -s "$SUBDOMAIN" -t "$ACCESS_TOKEN")" \
-  --file authserver-template.yaml
-```
-
-There will be one piece of information missing: the credentials for connecting to the upstream identity providers (bind
-password for LDAP, client_secret for OIDC). You will need to add those in manually, as the UAA does not expose those
-secrets. You may need to re-create similar OIDC clients; or update your existing OIDC clients, to add the AuthServer
-redirect uris. Please refer to the [official documentation]() to find out about configuration properties for AppSSO
-identity providers. The Secrets have the following format:
-
-```yaml
-#! If there is an identity provider of type LDAP
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ldap-password
-  namespace: MY-NAMESPACE
-stringData:
-  password: MY-PASSWORD
-
-#! One secret per openID identity provider ; must match clientSecretRef.name
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: MY-OIDC-IDENTITY-PROVIDER
-  namespace: MY-NAMESPACE
-stringData:
-  clientSecret: MY-CLIENT-SECRET
-```
+    #! One secret per openID identity provider ; must match clientSecretRef.name
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: MY-OIDC-IDENTITY-PROVIDER
+      namespace: MY-NAMESPACE
+    stringData:
+      clientSecret: MY-CLIENT-SECRET
+    ```
 
 ## <a id="migrate-misc"></a> Migrating Service Bindings, Service Keys, and "SSO Applications"
 
