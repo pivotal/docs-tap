@@ -41,7 +41,7 @@ to the Grype image, for example,
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-This example uses the packaged Grype image, but you can also use images from public repositories such as `anchore/grype:latest`.
+    This example uses the packaged Grype image, but you can also use images from public repositories such as `anchore/grype:latest`.
 
 1. Update your Tanzu Application Platform installation by running:
 
