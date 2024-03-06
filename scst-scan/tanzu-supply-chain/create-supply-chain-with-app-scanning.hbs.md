@@ -1,17 +1,13 @@
 # Create a Supply Chain that uses SCST - Scan 2.0 with a Component
 
-This topic covers how to create a Tanzu Supply Chain with SCST - Scan 2.0 which replaces the previous solution for Supply Chains Choreographer for Tanzu.
+This topic tels you how to create a Tanzu Supply Chain with SCST - Scan 2.0 which replaces the previous solution for Supply Chains Choreographer for Tanzu.
 
 ## <a id="prerequisites"></a> Prerequisites
-
-This section describes what dependencies are needed to create and run a Tanzu Supply Chain Workload.
-
-The following packages are required:
 
 Tanzu Supply Chain packages
 
 - [Tanzu Supply Chain packages](../../supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md#tsc-packages)
--[Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
+- [Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
 
 Tanzu Supply Chain components
 
@@ -28,17 +24,18 @@ Tanzu CLI plug-ins
 
 - Tanzu Workload CLI plug-in
 - Tanzu Supplychain CLI plug-in
+
 See, [Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md).
 
-## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and Component
+## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and a Component
 
-This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
+This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 ### <a id="scan-2.0-and-trivy"></a> Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
 
-Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using the Tanzu Supply Chain CLI plug-in:
+Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) using the Tanzu Supplychain CLI plug-in:
 
-  Initialize Tanzu Supply Chain:
+1. Initialize Tanzu Supply Chain:
 
   ```console
   tanzu supplychain init --group example.com
@@ -59,7 +56,7 @@ Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./
   Writing group configuration to config.yaml
   ```
 
-  Generate supply chain:
+1. Generate Supply Chain:
 
   ```console
   tanzu supplychain generate --kind TrivySC \
@@ -97,7 +94,6 @@ Create a Supply Chain with SCST - Scan 2.0 and [Trivy Supply Chain Component](./
 ### <a id="scan-2.0-and-custom-scanning"></a> Create Supply Chain with SCST - Scan 2.0 and Custom Scanning Component
 
 Create a Supply Chain with SCST - Scan 2.0 and the [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
-For more details on how to create a Supply Chain, see [Tanzu Supply Chain](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
 
 Initialize Tanzu Supply Chain:
 
@@ -133,6 +129,8 @@ tanzu supplychain generate --kind CUSTOM-KIND-WORKLOAD \
 Where `SCANNING-COMPONENT-NAME` is the name of the [Customized Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 For more information about how to construct a Supply Chain using the Tanzu CLI, see [Construct a Supply Chain using the CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
+
+For more details about how to create a Supply Chain, see [Tanzu Supply Chain](../../supply-chain/platform-engineering/tutorials/my-first-supply-chain.hbs.md).
 
 ## <a id="apply-supply-chain"></a> Apply Supply Chain
 

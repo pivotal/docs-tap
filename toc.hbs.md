@@ -596,7 +596,7 @@
             - [Set up recurring scanning](scst-scan/recurring-scanning.hbs.md)
             - [Observing](scst-scan/app-scanning-observing.hbs.md)
             - [Troubleshooting](scst-scan/app-scanning-troubleshooting.hbs.md)
-        - [Tanzu Supply Chains Scan 2.0 Components (Beta)](scst-scan/tanzu-supply-chain/scan-2-0-with-tanzu-supply-chain-overview.hbs.md)
+        - [Tanzu Supply Chain Scan 2.0 Components (Beta)](scst-scan/tanzu-supply-chain/scan-2-0-with-tanzu-supply-chain-overview.hbs.md)
             - [Getting Started](scst-scan/tanzu-supply-chain/create-tanzu-supply-chain.hbs.md)
                 - [Installing SCST - Scan 2.0](scst-scan/install-app-scanning.hbs.md)
                 - [Setup the Supply Chain Component](scst-scan/tanzu-supply-chain/setup-supply-chain-component.hbs.md)
