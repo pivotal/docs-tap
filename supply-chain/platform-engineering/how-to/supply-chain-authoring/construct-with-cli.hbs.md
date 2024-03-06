@@ -20,7 +20,7 @@ Deploy SupplyChain authoring resources such as `SupplyChain`, `Component`, and t
 
 For a Platform Engineer, the recommended approach is:
 
--  Author the `SupplyChain` using a set of YAML files within a Git-backed file system.
+- Author the `SupplyChain` using a set of YAML files within a Git-backed file system.
 - Test and debug by pushing all files to a single namespace on the `authoring` profile cluster.
 - When you are satisfied with the new or modified `SupplyChain`, use a pull request to commit to Git.
 
