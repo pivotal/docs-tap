@@ -8,15 +8,27 @@ This section describes what dependencies are needed to create and run a Tanzu Su
 
 The following packages are required:
 
+Tanzu Supply Chain packages
+
 - [Tanzu Supply Chain packages](../../supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md#tsc-packages)
-- [Supply Chain Catalog Component packages](../../supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md#catalog-packages)
-- [Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
+-[Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
+
+Tanzu Supply Chain components
+
 - [Source](../../supply-chain/reference/catalog/about.hbs.md#source-git-provider)
 - [Buildpack](../../supply-chain/reference/catalog/about.hbs.md#buildpack-build)
 - [Trivy Scanning](../../supply-chain/reference/catalog/about.hbs.md#trivy-image-scan)
+
+Tanzu Application Platform packages
+
 - [SCST - Scan 2.0](../install-app-scanning.hbs.md)
 - [Tekton](../../tekton/install-tekton.hbs.md)
-- [Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md)
+
+Tanzu CLI plug-ins
+
+- Tanzu Workload CLI plug-in
+- Tanzu Supplychain CLI plug-in
+See, [Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md).
 
 ## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and Component
 
