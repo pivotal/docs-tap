@@ -46,7 +46,8 @@ The following table lists configuration that applies to all services.
 |globals.helm_chart.container_pull_secret_ref.name          |`""`                                  |string   |Name of the secret. Can be overridden by individual services.|
 |globals.helm_chart.container_pull_secret_ref.namespace     |`""`                                  |string   |Namespace of the secret. Can be overridden by individual services.|
 |globals.helm_chart.repo                                    |`https://charts.bitnami.com/bitnami`  |string   |Optional: Repository hosting the Helm charts used to provision the instances of all services. Can be overridden by individual services.|
-|globals.shared_namespace                                   |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned instances of all services. By default, each instance is provisioned in its own dedicated namespace. Can be overridden by individual services.|
+|globals.shared_namespace                                   |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned instances of all services. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set if claim_namespace is configured. Can be overridden by individual services.|
+|globals.claim_namespace                                    |`false`                               |boolean  |Optional: Specifies whether to create the Service resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured. Can be overridden by individual services.|
 
 ## <a id="mysql"></a>MySQL
 
@@ -64,7 +65,9 @@ The following table lists configuration that applies to the `mysql` service.
 |mysql.helm_chart.container_pull_secret_ref.namespace       |`""`                                  |string   |Namespace of the secret. Can be overridden by individual services.|
 |mysql.instance_class.description                           |`MySQL by Bitnami`                    |string   |Optional: Description of the ClusterInstanceClass that developers use to provision and claim MySQL instances.|
 |mysql.instance_class.name                                  |`mysql-unmanaged`                     |string   |Optional: Name of the ClusterInstanceClass that developers use to provision and claim MySQL instances.|
-|mysql.shared_namespace                                     |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned MySQL instances. By default, each instance is provisioned in its own dedicated namespace.|
+|mysql.shared_namespace                                     |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned MySQL instances. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set if claim_namespace is configured.|
+|mysql.claim_namespace                                      |`false`                               |boolean  |Optional: Optional: Specifies whether to create the MySQL resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
+
 
 ## <a id="postgresql"></a> PostgreSQL
 
@@ -82,6 +85,7 @@ The following table lists configuration that applies to the `postgresql` service
 |postgresql.instance_class.description                      |`PostgreSQL by Bitnami`               |string   |Optional: Description of the ClusterInstanceClass that developers use to provision and claim PostgreSQL instances.|
 |postgresql.instance_class.name                             |`postgresql-unmanaged`                |string   |Optional: Name of the ClusterInstanceClass that developers use to provision and claim PostgreSQL instances.|
 |postgresql.shared_namespace                                |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned PostgreSQL instances. By default, each instance will be provisioned in its own dedicated namespace.|
+|postgresql.claim_namespace                                 |`false`                               |boolean  |Optional: Optional: Specifies whether to create the PostgreSQL resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
 |postgresql.defaults.storage_size_gb                        |`1`                                   |integer  |Optional: The amount of storage to give each PostgreSQL instance by default, in Gigabytes.|
 
 ## <a id="rabbitmq"></a> RabbitMQ
@@ -100,6 +104,7 @@ The following table lists configuration that applies to the `rabbitmq` service.
 |rabbitmq.instance_class.description                        |`RabbitMQ by Bitnami`                 |string   |Optional: Description of the ClusterInstanceClass that developers use to provision and claim RabbitMQ instances.|
 |rabbitmq.instance_class.name                               |`rabbitmq-unmanaged`                  |string   |Optional: Name of the ClusterInstanceClass that developers use to provision and claim RabbitMQ instances.|
 |rabbitmq.shared_namespace                                  |`""`                                  |string   |Optional: Name of the namespace that is shared by all provisioned RabbitMQ instances. By default, each instance will be provisioned in its own dedicated namespace.|
+|rabbitmq.claim_namespace                                   |`false`                               |boolean  |Optional: Optional: Specifies whether to create the RabbitMQ resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
 |rabbitmq.defaults.replica_count                            |`1`                                   |integer  |Optional: The number of replicas to create for each RabbitMQ instance by default.|
 |rabbitmq.defaults.storage_size_gb                          |`1`                                   |integer  |Optional: The amount of storage to give each RabbitMQ instance by default, in Gigabytes.|
 
@@ -112,6 +117,7 @@ The following table lists configuration that applies to the `redis` service.
 |redis.instance_class.description                           |`Redis by Bitnami`                  |string   |Optional: Description of the ClusterInstanceClass that is used by developers to provision and claim Redis instances.|
 |redis.instance_class.name                                  |`redis-unmanaged`                   |string   |Optional: Name of the ClusterInstanceClass that is used by developers to provision and claim Redis instances.|
 |redis.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned Redis instances. By default, each instance will be provisioned in its own dedicated namespace.|
+|redis.claim_namespace                                      |`false`                               |boolean  |Optional: Optional: Specifies whether to create the Redis resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
 |redis.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage to give each Redis instance by default, in Gigabytes.|
 |redis.enabled                                              |`true`                              |boolean  |Optional: Provide developers an offering for unmanaged Redis instances.|
 |redis.helm_chart.chart_pull_secret_ref.name                |`""`                                |string   |Name of the pull secret.|
@@ -129,7 +135,8 @@ The following table lists configuration that applies to the `mongodb` service.
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
 |mongodb.instance_class.description                           |`MongoDB by Bitnami`                  |string   |Optional: Description of the ClusterInstanceClass that is used by developers to provision and claim MongoDB instances.|
 |mongodb.instance_class.name                                  |`mongodb-unmanaged`                   |string   |Optional: Name of the ClusterInstanceClass that is used by developers to provision and claim MongoDB instances.|
-|mongodb.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned MongoDB instances. By default, each instance is provisioned in its own dedicated namespace.|
+|mongodb.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned MongoDB instances. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set if claim_namespace is configured.|
+|mongodb.claim_namespace                                      |`false`                             |boolean  |Optional: Optional: Specifies whether to create the MongoDB resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
 |mongodb.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage in Gigabytes to give each MongoDB instance by default.|
 |mongodb.enabled                                              |`true`                              |boolean  |Optional: Provide developers an offering for unmanaged MongoDB instances.|
 |mongodb.helm_chart.chart_pull_secret_ref.name                |`""`                                |string   |Name of the pull secret.|
@@ -148,7 +155,8 @@ The following table lists configuration that applies to the `kafka` service.
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
 |kafka.instance_class.description                           |`Kafka by Bitnami`                  |string   |Optional: Description of the ClusterInstanceClass that is used by developers to provision and claim Kafka instances.|
 |kafka.instance_class.name                                  |`kafka-unmanaged`                   |string   |Optional: Name of the ClusterInstanceClass that is used by developers to provision and claim Kafka instances.|
-|kafka.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned Kafka instances. By default, each instance is provisioned in its own dedicated namespace.|
+|kafka.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned Kafka instances. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set if claim_namespace is configured.|
+|kafka.claim_namespace                                      |`false`                               |boolean  |Optional: Optional: Specifies whether to create the Kafka resources inside the same namespace as the claim. By default, each instance will be provisioned in its own dedicated namespace. Cannot be set to True if shared_namespace is configured.|
 |kafka.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage in Gigabytes to give each Kafka instance by default.|
 |kafka.enabled                                              |`true`                              |boolean  |Optional: Provide developers an offering for unmanaged Kafka instances.|
 |kafka.helm_chart.chart_pull_secret_ref.name                |`""`                                |string   |Name of the pull secret.|
