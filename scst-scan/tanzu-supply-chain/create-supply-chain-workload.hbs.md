@@ -1,12 +1,14 @@
 # Create a Workload from the Supply Chain
 
-This topic covers how to create and apply a workload from a Tanzu Supply Chain, how to observe a
+This topic tells you how to create and apply a workload from a Tanzu Supply Chain, how to observe a
 workload, and how to verify the scanning performed in a workload.
 
 ## <a id="define-and-create-workload"></a> Define and create a workload
 
-This section covers how to create a workload from an existing supply chain that was created using
-SCST - Scan 2.0 and either the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+This section tells you how to create a workload from an existing supply chain that was created using SCST - Scan 2.0 and either:
+
+- [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) 
+- [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
 For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
@@ -34,7 +36,7 @@ spec:
 
 Where:
 
-- `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+- `KIND` is the kind defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 - `REGISTRY-REPOSITORY` is the registry server used for the scan results location.
 - `REGISTRY-SERVER` is the registry repository used for the scan results location.
 - `GIT-URL` is the Git repository URL to clone from for the source component.
@@ -51,11 +53,9 @@ Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
 tanzu workload generate NAME --kind KIND
 ```
 
-Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Customized Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
 This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
-
-For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
 ### <a id="create-workload"></a> Create a workload
 
@@ -67,7 +67,7 @@ tanzu workload create --file workload.yaml --namespace DEV-NAMESPACE
 
 ## <a id="observe-workload"></a> Observe workload
 
-This section shows how to use the Tanzu Workload CLI to observe a workload.
+This section shows how to use the Tanzu Workload CLI olyg-in to observe a workload.
 
 1. List workloads in cluster:
 
@@ -115,7 +115,7 @@ This section shows how to use the Tanzu Workload CLI to observe a workload.
 
 ## <a id="verify-workload-scanning"></a>Verify workload performed scanning by checking scan results
 
-Get the IVS name by looking in the namespace it was created in:
+Get the `ImageVulnerabilityScan` name by looking in the namespace it was created in:
 
 ```console
 $ kubectl get ivs -n DEV-NAMESPACE
@@ -124,4 +124,6 @@ NAMESPACE                    NAME                          SUCCEEDED   REASON   
 DEV-NAMESPACE                golang-app-test-123-bbrpz     True        Succeeded   4m52s
 ```
 
-For information about how to retrieve scan results by using the IVS name, see [Retrieve scan results](../verify-app-scanning.hbs.md#retrieve-scan-results).
+For information about how to retrieve scan results by using the `ImageVulnerabilityScan` name, see [Retrieve scan results](../verify-app-scanning.hbs.md#retrieve-scan-results).
+
+For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
