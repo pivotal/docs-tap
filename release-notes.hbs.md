@@ -289,6 +289,8 @@ This release includes the following changes, listed by component and area.
 - To enable DORA metrics functionality, if you configured the `environment` label, rename it
   to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
+- If CA Certificate data is added in the shared TAP values section, do not configure AMR Observer with CA Certificate data.
+
 #### <a id='1-8-0-tbs'></a> v1.8.0 Features: Tanzu Build Service
 
 - Tanzu Build Service can now generate Supply-chain Levels for Software Artifacts (SLSA) attestations.
