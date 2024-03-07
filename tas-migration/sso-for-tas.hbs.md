@@ -21,7 +21,8 @@ Platform (AppSSO for TAP).
 | Operator dashboard                                                                                                                                    | `AuthServer` Custom Resource                                                                                                                                                   | Operators or Service Operators interact with AppSSO by using the `AuthServer` custom resource.                                                                                                                                                                                                                                                                           |
 | [Developer dashboard](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-config-apps.html)                  | `ClientRegistration` Custom Resource                                                                                                                                           | Developers or App Operators interact with AppSSO by using the `ClientRegistration` resource. For more information, see [ClientRegistration API for AppSSO](../app-sso/reference/api/clientregistration.hbs.md).                                                                                                                                               |
 | [Resources](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html)                       | n/a                                                                                                                                                                            | Resources map to OAuth2 scopes and are tied to a Cloud Foundry space. AppSSO does not support the concept of resource. For more information, see [Unsupported features](#unsupported).                                                                                                                                                                                                                                       |
-| Application                                                                                                                                           | Workload                                                                                                                                                                       | This is not AppSSO specific but applicable to both TAS and  TAP                                                                                                                                                                                                                                                                                                       |
+| Application                                                                                                                                           | Workload                                                                                                                                                                       | This is not AppSSO specific but applicable to both Tanzu Application Service and Tanzu Application
+Platform.                                                                                                                                                                                                                                                                                                       |
 | Service Instance                                                                                                                                      | n/a                                                                                                                                                                            | In SSO for TAS, this is the way of making a Service Plan visible in a Cloud Foundry Space. There are no direct equivalents in AppSSO.                                                                                                                                                                                                                                            |
 | [Service Binding](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-config-apps.html)                      | [Service Claim](../app-sso/how-to-guides/app-operators/claim-credentials.hbs.md) by using the `ClassClaim` resource | Service Binding binds an app to a service, creating credentials for this app and injecting those credentials. In Tanzu Application Service, this is done by using the `VCAP_SERVICES` environment variable. In Tanzu Application Platform, this is done by using Kubernetes Service Bindings. AppSSO creates a `ClientRegistration` in the background and a `Secret` holding the credentials.                                                                          |
 | Service Key                                                                                                                                           | `ClientRegistration` resource                                                                                                                                                  | AppSSO generates a `Secret` for the given `ClientRegistration`.                                                                                                                                                                                                                                                                                                           |
@@ -31,35 +32,21 @@ Platform (AppSSO for TAP).
 
 The following features available in Single Sign-On for VMware Tanzu Application Service (SSO for TAS) are not supported in Application Single Sign-On for VMware Tanzu Application Platform (AppSSO for TAP):
 
-- [UAA Internal user store](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-internal-us.html):
+- **[UAA Internal user store](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-internal-us.html):** AppSSO does not support creating and managing users in an internal user database.
 
-    AppSSO does not support creating and managing users in an internal user database.
+- **[Security Assertion Markup Language (SAML) identity providers](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-external-id.html#add-a-saml-provider-1):** AppSSO does not support SAML external identity providers. It only supports OpenID Connect and Lightweight Directory Access Protocol (LDAP).
 
-- [Security Assertion Markup Language (SAML) identity providers](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-configure-external-id.html#add-a-saml-provider-1):
+- **[User management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-users.html):** AppSSO does not support managing individual users. In SSO for TAS, users from an external Identity Provider are synchronized to the user database when they first log in. Permissions or scopes can be assigned to each user. This is not supported in AppSSO, all scopes come from roles to scopes mapping. For more information, see [Mapping individual roles into authorization scopes](../app-sso/how-to-guides/service-operators/configure-authorization.hbs.md#individual-roles).
 
-    AppSSO does not support SAML external identity providers. It only supports OpenID Connect and Lightweight Directory Access Protocol (LDAP).
+    >**Important:** Users cannot manage their own accounts in AppSSO. When allowed, they can manage their accounts in the External Identity Provider.
 
-- [User management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-users.html):
+- **Single logout:** AppSSO does not support single logout.
 
-    AppSSO does not support managing individual users. In SSO for TAS, users from an external Identity Provider are synchronized to the user database when they first log in. Permissions or scopes can be assigned to each user. This is not supported in AppSSO, all scopes come from roles to scopes mapping. For more information, see [Mapping individual roles into authorization scopes](../app-sso/how-to-guides/service-operators/configure-authorization.hbs.md#individual-roles).
+- **OAuth2 grant types:** According to [OAuth 2 Security best practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-24#name-best-practices), AppSSO does not support the `password` or `implicit` grant types. You can migrate  your application to the `authorization_code` grant type.
 
-    Users cannot manage their own accounts in AppSSO. When allowed, they can manage their accounts in the External Identity Provider.
+- **Selective auto-approval of scopes:** Consent is optional for all scopes except `openid`.
 
-- Single logout: 
-
-    AppSSO does not support single logout.
-
-- OAuth2 grant types: 
-
-    According to [OAuth 2 Security best practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-24#name-best-practices), AppSSO does not support the `password` or `implicit` grant types. You can migrate  your application to the `authorization_code` grant type.
-
-- Selective auto-approval of scopes: 
-
-    Consent is optional for all scopes except `openid`.
-
-- [Resource management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):
-
-    AppSSO operates solely on OAuth2 scopes, without using the concepts of permissions or resources.
+- **[Resource management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):** AppSSO operates solely on OAuth2 scopes, without using the concepts of permissions or resources.
 
     - In SSO for TAS, Operators control the availability of scopes for a specific Service Plan in a space using the Developer Dashboard. For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html). 
 
@@ -67,9 +54,7 @@ The following features available in Single Sign-On for VMware Tanzu Application 
       
     - In AppSSO, Developers can specify OAuth2 scopes when creating a `ClientRegistration` or a `ClassClaim`, with role management aggregated in the well-known roles of the Tanzu Application Platform. For more information, see [RBAC for AppSSO](../app-sso/reference/rbac.hbs.md).
 
-- Unsecured Lightweight Directory Access Protocol (LDAP): 
-
-    LDAP traffic must be secured with TLS by using the `ldaps://` protocol.
+- **Unsecured Lightweight Directory Access Protocol (LDAP):** LDAP traffic must be secured with TLS by using the `ldaps://` protocol.
 
 ## <a id="prereqs"></a> Migration pre-requisites
 
@@ -546,7 +531,7 @@ namespace, with the name “example-cr”. The credentials are available in this
 
 ### <a id="spring-boot-app"></a> Spring Boot application
 
-You have the option to deploy your Spring Boot application with or without Spring Cloud Bindings:
+You have the option to deploy your Spring Boot application with or without Spring Cloud Bindings
 
 With Spring Cloud Bindings
 : Spring Boot applications deployed to Tanzu Application Service likely use the [java-cfenv](https://github.com/pivotal-cf/java-cfenv) library to read service bindings data from `VCAP_SERVICES`. In Tanzu Application Platform, `java-cfenv` is not applicable. You can remove it from your dependencies.
