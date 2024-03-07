@@ -31,6 +31,7 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
+- `source_credentials_secret` from tap-value `source.credentials_secret`. Overridable by workload.
 
 #### <a id='source-url-image-provider'></a> image-provider
 
@@ -88,6 +89,7 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
+- `source_credentials_secret` from tap-value `source.credentials_secret`. Overridable by workload.
 
 #### <a id='source-test-source-tester'></a> source-tester
 
@@ -153,6 +155,7 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
+- `source_credentials_secret` from tap-value `source.credentials_secret`. Overridable by workload.
 
 #### <a id='source-test-scan-source-tester'></a> source-tester
 
@@ -360,6 +363,7 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
+- `source_credentials_secret` from tap-value `source.credentials_secret`. Overridable by workload.
 
 #### <a id='source-package-image-provider'></a> image-provider
 
@@ -556,6 +560,7 @@ All of the following parameters are overridable by the workload.
 - `gitops_user_email` from tap-value `gitops.email`
 - `gitops_commit_message` from tap-value `gitops.commit_message`
 - `gitops_ssh_secret` from tap-value `gitops.ssh_secret`
+- `gitops_credentials_secret` from tap-value `gitops.credentials_secret`
 - `gitops_repository_prefix` from tap-value `gitops.repository_prefix` when present.
 - `gitops_server_address` from tap-value `gitops.server_address` when present.
 - `gitops_repository_owner` from tap-value `gitops.repository_owner` when present.
