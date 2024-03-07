@@ -138,6 +138,7 @@
   - [Migrate Single Sign-On for TAS](tas-migration/sso-for-tas.hbs.md)
   - [Migrate Spring Cloud Gateway apps](tas-migration/spring-cloud-gateway.hbs.md)
   - [Migrate Spring Config Server apps](tas-migration/spring-config-server.hbs.md)
+  - [Migrate Spring Service Registry applications](tas-migration/spring-service-registry.hbs.md)
 - [Glossary](glossary.hbs.md)
 - [Component documentation](components.hbs.md)
     - [Components overview](components.hbs.md)
