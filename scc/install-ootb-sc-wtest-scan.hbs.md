@@ -72,7 +72,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 1. Check the values of the package that can be configured by running:
 
     ```console
-    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.7.0 \
+    tanzu package available get ootb-supply-chain-testing-scanning.tanzu.vmware.com/0.15.6 \
       --values-schema \
       -n tap-install
     ```
@@ -87,6 +87,9 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     registry.server                        Name of the registry server where application images should be pushed to
                                            (required).
+
+    source.credentials_secret              Name of a Secret in the developer namespace which provides the credentials to the
+                                           source code repository.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing
                                            Kubernetes configuration produced by the supply chain. This must
@@ -108,7 +111,11 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     gitops.email                           Default user email to be used for the commits produced by the supply chain.
 
-    gitops.ssh_secret                      Name of the default Secret containing SSH credentials to lookup in the
+    gitops.credentials_secret              Name of a Secret in the developer namespace which provides the credentials to the
+                                           GitOps repository.
+
+    gitops.ssh_secret                      DEPRECATED: Use gitops.credentials_secret and source.credentials_secret instead.
+                                           Name of the default Secret containing SSH credentials to lookup in the
                                            developer namespace for the supply chain to fetch source code from and
                                            push configuration to.
 
@@ -147,6 +154,9 @@ To install Out of the Box Supply Chain with Testing and Scanning:
       server: REGISTRY-SERVER
       repository: REGISTRY-REPOSITORY
 
+    source:
+      credentials_secret: source-creds
+
     gitops:
       server_address: https://github.com/
       repository_owner: vmware-tanzu
@@ -154,7 +164,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
       username: supplychain
       email: supplychain
       commit_message: supplychain@cluster.local
-      ssh_secret: git-ssh
+      credentials_secret: gitops-creds
       commit_strategy: direct
 
     cluster_builder: default
@@ -169,7 +179,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
     ```console
     tanzu package install ootb-supply-chain-testing-scanning \
       --package ootb-supply-chain-testing-scanning.tanzu.vmware.com \
-      --version 0.7.0 \
+      --version 0.15.6 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
     ```
