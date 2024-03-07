@@ -65,7 +65,7 @@ To install Out of the Box Supply Chain Basic:
     gitops.email                           Default user email to be used for the commits produced by the supply chain.
 
     gitops.credentials_secret              Name of a Secret in the developer namespace which provides the credentials to the
-                                           gitops repository.
+                                           GitOps repository.
 
     gitops.ssh_secret                      DEPRECATED: Use gitops.credentials_secret and source.credentials_secret instead.
                                            Name of the default Secret containing SSH credentials to lookup in the

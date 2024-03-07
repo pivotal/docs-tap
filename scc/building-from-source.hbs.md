@@ -161,7 +161,7 @@ the secret.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-authentication and Token-based authentication
 
-You can use HTTP(S) transport:
+Use HTTP(S) transport:
 
 1. Ensure that the repository in the `Workload` specification
 uses `http://` or `https://` schemes in any URLs that relate to the repositories.

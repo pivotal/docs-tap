@@ -12,8 +12,8 @@ image scan solution.
 
 To run an `ImageVulnerabilityScan` in a [Tanzu Supply Chain](../../supply-chain/about.hbs.md):
 
-- [Construct a Supply Chain using the Tanzu CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
-- [Create a Workload](../../supply-chain/development/how-to/discover-workloads.hbs.md)
+- [Construct a Supply Chain using the Tanzu CLI](../../supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md).
+- [Create a Workload](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
 ## <a id="getting-started"></a>Getting started with SCST - Scan 2.0 with Tanzu Supply Chain
 

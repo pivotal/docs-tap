@@ -13,7 +13,7 @@ Kubernetes secrets for carrying those credentials forward to the proper resource
 
 ## <a id="pulling-source-code"></a>Pulling Source Code
 
-In order for the supply chain to pull source code it must reference a secret with git credentials.
+For the supply chain to pull source code it must reference a secret with Git credentials.
 This secret must exist in the same namespace as the workload.
 
   ```yaml
@@ -25,16 +25,18 @@ This secret must exist in the same namespace as the workload.
   spec: ...
   ```
 
-You must provide the name of this secret to the supply chain, either as a tap-value or as a workload param.
+You must provide the name of this secret to the supply chain, either as a tap-value or as a workload parameter.
 
-As a tap-value:
+tap-value example:
+
   ```yaml
   ootb_supply_chain_basic:
      source:
         credentials_secret: NAME-OF-THE-SECRET
   ```
 
-Or as a workload param:
+Workload parameter value:
+
   ```yaml
   apiVersion: carto.run/v1alpha1
   kind: Workload
@@ -46,10 +48,10 @@ Or as a workload param:
         value: NAME-OF-THE-SECRET
   ```
 
-## <a id="pushing-build-configuration"></a>Pushing Build Configuration
+## <a id="pushing-build-config"></a>Pushing Build Configuration
 
-In order for the supply chain to push build configuration to a gitops repo, the supply chain must reference a
-service account and this service account must in turn reference a secret with git credentials.
+For the supply chain to push build configuration to a Gitops repository, the supply chain must reference a
+service account and this service account must in turn reference a secret with Git credentials.
 
 The secret can be different from the secret used for pulling source code, with different credentials to a different
 repository.
@@ -82,15 +84,17 @@ referenced by a service account:
     - name: tap-registry
   ```
 
-You must provide the name of this service account to the supply chain, either as a tap-value or as a workload param.
+You must provide the name of this service account to the supply chain, either as a tap-value or as a workload parameter.
 
-As a tap-value:
+tap-value example:
+
   ```yaml
   ootb_supply_chain_basic:
      service_account: SOME-SA-NAME
   ```
 
-Or as a workload param:
+Workload parameter example:
+
   ```yaml
   apiVersion: carto.run/v1alpha1
   kind: Workload
@@ -102,7 +106,7 @@ Or as a workload param:
         value: SOME-SA-NAME
   ```
 
->**Note** If you've used Namespace Provisioner to set up your Developer Namespace where you workload is created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your `tap-values.yaml`. For example:
+>**Note** If you've used Namespace Provisioner to set up your Developer Namespace where your workload is created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your `tap-values.yaml`. For example:
 
     ```yaml
     namespace_provisioner:
@@ -113,12 +117,11 @@ Or as a workload param:
     ```
 Namespace Provisioner manages the service account and manual edits to it do not persist.
 
-## <a id="pulling-build-configuration"></a>Pulling Build Configuration
+## <a id="pulling-build-conf"></a>Pulling Build Configuration
 
-The delivery will need to pull the build configuration that was pushed by the supply chain.
-In order to pull it must reference a secret with git credentials (similar to how the supply chain pulls source code).
-This secret must exist in the same namespace as the deliverable. Of course, the credentials in this secret must be valid
-for the repo to which the supply chain pushed configuration.
+The delivery must pull the build configuration that was pushed by the supply chain.
+It must reference a secret with Git credentials (similar to how the supply chain pulls source code).
+This secret must exist in the same namespace as the deliverable. The credentials in this secret must be valid for the repository to which the supply chain pushed configuration.
 
   ```yaml
   apiVersion: v1
@@ -129,16 +132,18 @@ for the repo to which the supply chain pushed configuration.
   spec: ...
   ```
 
-You must provide the name of this secret, either as a tap-value or as a deliverable param.
+You must provide the name of this secret, either as a tap-value or as a deliverable parameter.
 
-As a tap-value:
+tap-value example:
+
   ```yaml
   ootb_delivery_basic:
      source:
         credentials_secret: NAME-OF-A-SECRET
   ```
 
-Or as a deliverable param:
+Deliverable parameter example:
+
   ```yaml
   apiVersion: carto.run/v1alpha1
   kind: Deliverable

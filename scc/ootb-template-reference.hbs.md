@@ -1533,8 +1533,8 @@ preconfigured with reference to a repository or registry from which to fetch Kub
     <td><code>gitops_credentials_secret<code></td>
     <td>
       Name of the secret where credentials exist for fetching the configuration
-      from a Git repository. Populates the Deliverable's source_credentials_secret parameter
-      (The Workload's gitops repo is the Deliverable's source repo).
+      from a Git repository. Populates the Deliverable's `source_credentials_secret` parameter
+      (The Workload's GitOps repository is the Deliverable's source reposiotor).
       The secret must be in the same namespace as the Deliverable.
     </td>
     <td>

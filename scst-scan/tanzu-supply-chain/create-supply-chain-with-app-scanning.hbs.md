@@ -29,7 +29,7 @@ See, [Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/h
 
 ## <a id="supply-chain-scan-2.0"></a> Create a Supply Chain with SCST - Scan 2.0 and a Component
 
-This section covers how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
+This section tells you how to create a supply chain with SCST - Scan 2.0 with either a [Trivy Supply Chain Component](./setup-supply-chain-component.hbs.md#install-trivy-sc) or a [Custom Scanning Component](./setup-supply-chain-component.hbs.md#customize-scan-component).
 
 ### <a id="scan-2.0-and-trivy"></a> Create a Supply Chain with SCST - Scan 2.0 and Trivy Supply Chain Component
 
