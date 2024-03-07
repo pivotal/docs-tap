@@ -208,7 +208,7 @@ to the workload:
     --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
     --sub-path tanzu-java-web-app \
     --git-branch main \
-    --param gitops_ssh_secret=GIT-SECRET-NAME \
+    --param gitops_credentials_secret=GIT-SECRET-NAME \
     --param gitops_repository=https://github.com/my-org/config-repo
   ```
 
@@ -391,11 +391,10 @@ provide the credentials for that repository as follows:
   apiVersion: v1
   kind: Secret
   metadata:
-    name: GIT-SECRET-NAME  # `git-ssh` is the default name.
-                          #   - operators can change such default by using the
-                          #     `gitops.ssh_secret` property in `tap-values.yaml`
+    name: GIT-SECRET-NAME #   - operators should write this name into the
+                          #   `gitops.credentials_secret` property in `tap-values.yaml`
                           #   - developers can override by using the workload parameter
-                          #     named `gitops_ssh_secret`.
+                          #     named `gitops_credentials_secret`.
     annotations:
       tekton.dev/git-0: GIT-SERVER        # ! required
   type: kubernetes.io/basic-auth          # ! required
@@ -445,11 +444,10 @@ provide the credentials for that repository as follows:
   apiVersion: v1
   kind: Secret
   metadata:
-    name: GIT-SECRET-NAME  # `git-ssh` is the default name.
-                          #   - operators can change such default through the
-                          #     `gitops.ssh_secret` property in `tap-values.yaml`
+    name: GIT-SECRET-NAME #   - operators should write this name into the
+                          #   `gitops.credentials_secret` property in `tap-values.yaml`
                           #   - developers can override by using the workload parameter
-                          #     named `gitops_ssh_secret`.
+                          #     named `gitops_credentials_secret`.
     annotations:
       tekton.dev/git-0: GIT-SERVER
   type: kubernetes.io/ssh-auth
@@ -542,10 +540,15 @@ As a result, the Kubernetes configuration is pushed to
 Regardless of the setup, developers can also manually override the repository
 where configuration is pushed to by tweaking the following parameters:
 
--  `gitops_ssh_secret`: Name of the secret in the same namespace as the
+-  `gitops_credentials_secret`: Name of the secret in the same namespace as the
    workload where SSH credentials exist for pushing the configuration produced
    by the supply chain to a Git repository.
-   Example: `ssh-secret`
+   Example: `git-secret`
+
+-  `gitops_ssh_secret`: Deprecated: Name of the secret in the same namespace as the
+   workload where SSH credentials exist for pushing the configuration produced
+   by the supply chain to a Git repository.
+   Example: `git-secret`
 
 -  `gitops_repository`: SSH URL of the Git repository to push the Kubernetes
    configuration produced by the supply chain to.
