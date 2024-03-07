@@ -1,4 +1,4 @@
-# Comparison of services on Tanzu Application Service and Tanzu Application Platform
+# Compare service management on Tanzu Application Service and Tanzu Application Platform
 
 This topic compares how you manage services on Tanzu Application Service (commonly known as TAS)
 with how you manage services on Tanzu Application Platform (commonly known as TAP).
