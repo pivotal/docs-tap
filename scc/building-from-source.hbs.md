@@ -88,7 +88,7 @@ Workload/tanzu-java-web-app
                    └───────> secretRef: {name: GIT-SECRET-NAME}
                                                    |
                                       either a default from TAP installation or
-                                           gitops_ssh_secret Workload parameter
+                                           source_credentials_secret Workload parameter
 ```
 
 Platform operators who install the Out of the Box Supply Chain packages
@@ -99,8 +99,8 @@ property in the `tap-values.yaml` file:
 
   ```yaml
   ootb_supply_chain_basic:
-    gitops:
-      ssh_secret: GIT-SECRET-NAME
+    source:
+      credentials_secret: GIT-SECRET-NAME
   ```
 
 For platform operators who install the `ootb-supply-chain-*` package individually
@@ -108,12 +108,12 @@ by using `tanzu package install`, they can edit the
 `ootb-supply-chain-*-values.yml` as follows:
 
   ```yaml
-  gitops:
-    ssh_secret: GIT-SECRET-NAME
+  source:
+    credentials_secret: GIT-SECRET-NAME
   ```
 
 You can also override the default secret name directly in the workload by using
-the `gitops_ssh_secret` parameter, regardless of how Tanzu Application Platform
+the `source_credentials_secret` parameter, regardless of how Tanzu Application Platform
 is installed. You can use the `--param` flag in Tanzu CLI. For example:
 
   ```bash
@@ -123,7 +123,7 @@ is installed. You can use the `--param` flag in Tanzu CLI. For example:
     --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
     --sub-path tanzu-java-web-app \
     --git-branch main \
-    --param gitops_ssh_secret=SECRET-NAME
+    --param source_credentials_secret=SECRET-NAME
   ```
 
 Expect to see the following output:
@@ -141,7 +141,7 @@ Expect to see the following output:
         9 + |  namespace: default
       10 + |spec:
       11 + |  params:
-      12 + |  - name: gitops_ssh_secret  #! parameter that overrides the default
+      12 + |  - name: source_credentials_secret  #! parameter that overrides the default
       13 + |    value: GIT-SECRET-NAME     #! secret name
       14 + |  source:
       15 + |    git:
@@ -152,7 +152,7 @@ Expect to see the following output:
   ```
 
 >**Note** A secret reference is only provided to `GitRepository` if
-`gitops_ssh_secret` is set to a non-empty string in some fashion,
+`source_credentials_secret` is set to a non-empty string in some fashion,
 either by a package property or a workload parameter. To force a `GitRepository` to
 not reference a secret, set the value to an empty string (`""`).
 
@@ -161,7 +161,7 @@ the secret.
 
 #### <a id="http-auth"></a>HTTP(S) Basic-authentication and Token-based authentication
 
-Despite both the package value and workload parameter being called `gitops.ssh_secret`, you can use HTTP(S) transports as well:
+Use HTTP(S) transport:
 
 1. Ensure that the repository in the `Workload` specification
 uses `http://` or `https://` schemes in any URLs that relate to the repositories.
@@ -184,27 +184,6 @@ expected by the supply chain. For example:
       username: GIT-USERNAME
       password: GIT-PASSWORD
     ```
-
-1. With the secret created with the name matching the one configured for
-`gitops.ssh_secret`, attach it to the `ServiceAccount` used by the workload. For
-example:
-
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
-    secrets:
-      - name: registry-credentials
-      - name: tap-registry
-      - name: GIT-SECRET-NAME
-    imagePullSecrets:
-      - name: registry-credentials
-      - name: tap-registry
-    ```
-
-For more information about the credentials and setting up the Kubernetes secret, see
-[Git Authentication's HTTP section](git-auth.md#http).
 
 #### <a id="https-ca-cert"></a>HTTPS with a Custom CA Certificate
 
@@ -234,28 +213,6 @@ Aside from using HTTP(S) as a transport, you can also use SSH:
       identity.pub: SSH-PUBLIC-KEY        # public of the `identity` private key
       known_hosts: GIT-SERVER-PUBLIC-KEYS # git server public keys
     ```
-
-1. With the secret created with the name matching the one configured for
-`gitops.ssh_secret`, attach it to the ServiceAccount used by the workload. For
-example:
-
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
-    secrets:
-      - name: registry-credentials
-      - name: tap-registry
-      - name: GIT-SECRET-NAME
-    imagePullSecrets:
-      - name: registry-credentials
-      - name: tap-registry
-    ```
-
-For information about how to generate the keys and set up SSH with the Git server,
-see [Git Authentication's SSH section](git-auth.md#ssh).
-
 
 ### <a id="how-it-works-1"></a>How it works
 
@@ -310,7 +267,7 @@ You can pass the following parameters by using the workload object's
 `GitRepository` object created for keeping track of the changes to a repository:
 
 - `gitImplementation`: name of the Git implementation (`go-git`) to fetch the source code.
-- `gitops_ssh_secret`: name of the secret in the same namespace as the workload
+- `source_credentials_secret`: name of the secret in the same namespace as the workload
   where credentials to fetch the repository are found.
 
 You can also customize the following parameters with defaults for the whole cluster.
@@ -319,7 +276,7 @@ when installing supply chains by using Tanzu Application Platform profiles,
 or `ootb-supply-chain-*-values.yml` when installing the OOTB packages
 individually):
 
-- `gitops.ssh_secret`: the same as `gitops_ssh_secret` workload parameter
+- `source.credentials_secret`: the same as `source_credentials_secret` workload parameter
 
 ## <a id="local-source"></a>Local source
 
