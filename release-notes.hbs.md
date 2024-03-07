@@ -10,29 +10,25 @@ This topic contains release notes for Tanzu Application Platform v{{ vars.url_ve
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-8-1-COMPONENT-NAME-fixes'></a> v1.8.1 Security fixes: COMPONENT-NAME
- 
-- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table
- 
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table> 
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| ruby-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-39326 </li></ul>|
+| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-39326</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-0727</li><li>CVE-2024-22365</li><li>CVE-2020-8908</li><li>GHSA-5mg8-w23w-74h3</li><li>GHSA-7g45-4rm6-3mm3</li><li>GHSA-45x7-px36-x8w8</li><li>CVE-2024-20926</li><li>GHSA-hr8g-6v94-x4m9</li><li>CVE-2024-20918</li><li>CVE-2024-20932</li><li>CVE-2024-20952</li><li>GHSA-r4q3-7g4q-x89m</li><li>CVE-2023-2976 </li></ul>|
+| alm-catalog.component.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641 </li></ul>|
+| app-scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641 </li></ul>|
+| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0727</li><li>CVE-2023-2953</li><li>CVE-2023-32250</li><li>CVE-2023-32252</li><li>CVE-2023-32257</li><li>CVE-2023-34324</li><li>CVE-2023-35827</li><li>CVE-2023-4563</li><li>CVE-2023-46813</li><li>CVE-2023-6039</li><li>CVE-2023-6040</li><li>CVE-2023-6176</li><li>CVE-2023-6606</li><li>CVE-2023-6622</li><li>CVE-2023-6817</li><li>CVE-2023-6931</li><li>CVE-2023-6932</li><li>CVE-2024-0193</li><li>CVE-2024-0641 </li></ul>|
+| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-0727</li><li>CVE-2023-2953 </li></ul>|
+| conventions.component.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-32250</li><li>CVE-2023-32252</li><li>CVE-2023-32257</li><li>CVE-2023-34324</li><li>CVE-2023-35827</li><li>CVE-2023-46813</li><li>CVE-2023-6039</li><li>CVE-2023-6176</li><li>CVE-2023-6622</li><li>CVE-2024-0641 </li></ul>|
+| grype.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-0727 </li></ul>|
+| metadata-store.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0727</li><li>CVE-2023-2953</li><li>CVE-2023-5868</li><li>CVE-2023-5869</li><li>CVE-2023-5870</li><li>CVE-2024-0985 </li></ul>|
+| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0553</li><li>CVE-2024-0567</li><li>CVE-2024-0727</li><li>CVE-2023-2953</li><li>GHSA-c2qf-rxjj-qqgw </li></ul>|
+| supply-chain-catalog.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-32250</li><li>CVE-2023-32252</li><li>CVE-2023-32257</li><li>CVE-2023-34324</li><li>CVE-2023-35827</li><li>CVE-2023-46813</li><li>CVE-2023-6039</li><li>CVE-2023-6176</li><li>CVE-2023-6622</li><li>CVE-2024-0641 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-4408</li><li>CVE-2023-5517</li><li>CVE-2023-5679</li><li>GHSA-xwcq-pm8m-c4vf </li></ul>|
+| trivy.app-scanning.component.apps.tanzu.vmware.com | <ul><li> CVE-2023-4641</li><li>CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0727 </li></ul>|
+| scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0727 </li></ul>|
+| source.component.apps.tanzu.vmware.com | <ul><li> CVE-2023-5678</li><li>CVE-2023-6129</li><li>CVE-2023-6237</li><li>CVE-2024-0727</li><li>CVE-2023-2953</li><li>CVE-2023-32250</li><li>CVE-2023-32252</li><li>CVE-2023-32257</li><li>CVE-2023-34324</li><li>CVE-2023-35827</li><li>CVE-2023-46813</li><li>CVE-2023-6039</li><li>CVE-2023-6040</li><li>CVE-2023-6176</li><li>CVE-2023-6606</li><li>CVE-2023-6622</li><li>CVE-2023-6817</li><li>CVE-2023-6931</li><li>CVE-2023-6932</li><li>CVE-2024-0193</li><li>CVE-2024-0641 </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-7008</li><li>CVE-2024-0553</li><li>CVE-2024-26458</li><li>CVE-2024-26461</li><li>CVE-2024-26462</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2024-20926</li><li>CVE-2021-36084</li><li>CVE-2021-36085</li><li>CVE-2021-36086</li><li>CVE-2021-36087</li><li>CVE-2022-48303 </li></ul>|
+| git-writer.component.apps.tanzu.vmware.com | <ul><li> CVE-2023-32250</li><li>CVE-2023-32252</li><li>CVE-2023-32257</li><li>CVE-2023-34324</li><li>CVE-2023-35827</li><li>CVE-2023-46813</li><li>CVE-2023-6039</li><li>CVE-2023-6176</li><li>CVE-2023-6622</li><li>CVE-2024-0641 </li></ul>|
  
 ---
  
