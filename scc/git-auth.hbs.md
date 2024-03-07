@@ -11,6 +11,150 @@ Kubernetes secrets for carrying those credentials forward to the proper resource
 
 >**Important** For HTTP, HTTPS, and SSH, do not use the same server for multiple secrets to avoid a Tekton error.
 
+## <a id="pulling-source-code"></a>Pulling Source Code
+
+For the supply chain to pull source code it must reference a secret with Git credentials.
+This secret must exist in the same namespace as the workload.
+
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+     name: NAME-OF-THE-SECRET
+     namespace: SOME-NAMESPACE
+  spec: ...
+  ```
+
+You must provide the name of this secret to the supply chain, either as a tap-value or as a workload parameter.
+
+tap-value example:
+
+  ```yaml
+  ootb_supply_chain_basic:
+     source:
+        credentials_secret: NAME-OF-THE-SECRET
+  ```
+
+Workload parameter value:
+
+  ```yaml
+  apiVersion: carto.run/v1alpha1
+  kind: Workload
+  metadata:
+    namespace: SOME-NAMESPACE
+  spec:
+    params:
+      - name: source_credentials_secret
+        value: NAME-OF-THE-SECRET
+  ```
+
+## <a id="pushing-build-config"></a>Pushing Build Configuration
+
+For the supply chain to push build configuration to a Gitops repository, the supply chain must reference a
+service account and this service account must in turn reference a secret with Git credentials.
+
+The secret can be different from the secret used for pulling source code, with different credentials to a different
+repository.
+
+For example, a secret:
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+     name: NAME-OF-A-SECRET
+     namespace: SOME-NAMESPACE
+     annotations:
+       tekton.dev/git-0: GIT-SERVER        # ! required. example: https://github.com
+  spec: ...
+  ```
+
+referenced by a service account:
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: SOME-SA-NAME
+    namespace: SOME-NAMESPACE
+  secrets:
+    - name: registry-credentials
+    - name: tap-registry
+    - name: NAME-OF-A-SECRET
+  imagePullSecrets:
+    - name: registry-credentials
+    - name: tap-registry
+  ```
+
+You must provide the name of this service account to the supply chain, either as a tap-value or as a workload parameter.
+
+tap-value example:
+
+  ```yaml
+  ootb_supply_chain_basic:
+     service_account: SOME-SA-NAME
+  ```
+
+Workload parameter example:
+
+  ```yaml
+  apiVersion: carto.run/v1alpha1
+  kind: Workload
+  metadata:
+    namespace: SOME-NAMESPACE
+  spec:
+    params:
+      - name: serviceAccount
+        value: SOME-SA-NAME
+  ```
+
+>**Note** If you've used Namespace Provisioner to set up your Developer Namespace where your workload is created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your `tap-values.yaml`. For example:
+
+    ```yaml
+    namespace_provisioner:
+      default_parameters:
+        supply_chain_service_account:
+          secrets:
+          - GIT-SECRET-NAME
+    ```
+Namespace Provisioner manages the service account and manual edits to it do not persist.
+
+## <a id="pulling-build-conf"></a>Pulling Build Configuration
+
+The delivery must pull the build configuration that was pushed by the supply chain.
+It must reference a secret with Git credentials (similar to how the supply chain pulls source code).
+This secret must exist in the same namespace as the deliverable. The credentials in this secret must be valid for the repository to which the supply chain pushed configuration.
+
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+     name: NAME-OF-A-SECRET
+     namespace: A-NAMESPACE
+  spec: ...
+  ```
+
+You must provide the name of this secret, either as a tap-value or as a deliverable parameter.
+
+tap-value example:
+
+  ```yaml
+  ootb_delivery_basic:
+     source:
+        credentials_secret: NAME-OF-A-SECRET
+  ```
+
+Deliverable parameter example:
+
+  ```yaml
+  apiVersion: carto.run/v1alpha1
+  kind: Deliverable
+  metadata:
+    namespace: A-NAMESPACE
+  spec:
+    params:
+      - name: source_credentials_secret
+        value: NAME-OF-A-SECRET
+  ```
+
 ## <a id="http"></a>HTTP
 
 For any action upon an HTTP or HTTPS based repository, create a Kubernetes secret
@@ -52,23 +196,6 @@ basic authentication with plain user name and password.
 For more information, see [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 on GitHub.
 
-After you create the secret, attach it to the `ServiceAccount` configured for the
-workload by including it in its set of secrets. For example:
-
-  ```yaml
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: default
-  secrets:
-    - name: registry-credentials
-    - name: tap-registry
-    - name: GIT-SECRET-NAME
-  imagePullSecrets:
-    - name: registry-credentials
-    - name: tap-registry
-  ```
-
 ## <a id="http-custom-cert"></a>HTTPS with a Custom CA Certificate
 
 In addition to the
@@ -95,22 +222,6 @@ You set up the secret similarly to the section above, but the `caFile` field spe
      -----END CERTIFICATE-----
    ```
 
-The secret is associated with the `ServiceAccount`.
-
-  ```yaml
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: default
-  secrets:
-    - name: registry-credentials
-    - name: tap-registry
-    - name: GIT-SECRET-NAME
-  imagePullSecrets:
-    - name: registry-credentials
-    - name: tap-registry
-  ```
-
 ## <a id="ssh"></a>SSH
 
 Aside from using HTTP or HTTPS as a transport, the supply chains also allow you to
@@ -129,7 +240,7 @@ create the Kubernetes secret as follows:
       name: GIT-SECRET-NAME
       annotations:
         tekton.dev/git-0: GIT-SERVER
-    type: kubernetes.io/ssh-auth
+    type: kubernetes.io/ssh-auth          # ! required
     stringData:
       ssh-privatekey: SSH-PRIVATE-KEY     # private key with push-permissions
       identity: SSH-PRIVATE-KEY           # private key with pull permissions
@@ -198,34 +309,6 @@ visit `https://github.com/<repository>/settings/keys/new`.
         -----END OPENSSH PRIVATE KEY-----
       identity.pub: ssh-ed25519 AAAABBBCCCCDDDDeeeeFFFF user@example.com
     ```
-
-1. After you create the secret, attach it to the ServiceAccount configured for the
-workload by including it in its set of secrets. For example:
-
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
-    secrets:
-      - name: registry-credentials
-      - name: tap-registry
-      - name: GIT-SECRET-NAME
-    imagePullSecrets:
-      - name: registry-credentials
-      - name: tap-registry
-    ```
-
->**Note** If you've used Namespace Provisioner to set up your Developer Namespace where you workload is created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your `tap-values.yaml`. For example:
-
-    ```yaml
-    namespace_provisioner:
-      default_parameters:
-        supply_chain_service_account:
-          secrets:
-          - GIT-SECRET-NAME
-    ```
-Namespace Provisioner manages the service account and manual edits to it do not persist.
 
 ## <a id="more-info"></a>More information about Git
 
