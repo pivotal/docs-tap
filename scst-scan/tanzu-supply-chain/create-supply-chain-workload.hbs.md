@@ -3,16 +3,16 @@
 This topic tells you how to create and apply a workload from a Tanzu Supply Chain, how to observe a
 workload, and how to verify the scanning performed in a workload.
 
-## <a id="define-and-create-workload"></a> Define and create a workload
+## <a id="define-and-create-wl"></a> Define and create a workload
 
-This section tells you how to create a workload from an existing supply chain that was created using SCST - Scan 2.0 and either:
+This section tells you how to create a workload from an existing supply chain that was created using SCST - Scan 2.0 and one of the following:
 
 - [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) 
-- [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+- [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning)
 
 For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
 
-A user can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
+You can define a workload in `yaml` or use the Tanzu Workload CLI plug-in to generate a workload manifest.
 
 ### <a id="define-workload"></a> Define a workload
 
@@ -53,7 +53,7 @@ Use the Tanzu Workload CLI plug-in to generate a workload from a configuration:
 tanzu workload generate NAME --kind KIND
 ```
 
-Where `KIND` is the kind api resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
+Where `KIND` is the kind API resource defined in the [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) or [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning).
 
 This renders a sample workload YAML that you can configure and put in a `workload.yaml`.
 
@@ -67,7 +67,7 @@ tanzu workload create --file workload.yaml --namespace DEV-NAMESPACE
 
 ## <a id="observe-workload"></a> Observe workload
 
-This section shows how to use the Tanzu Workload CLI olyg-in to observe a workload.
+This section shows you how to use the Tanzu Workload CLI plug-in to observe a workload.
 
 1. List workloads in cluster:
 
