@@ -559,6 +559,29 @@ This release has the following known issues, listed by component and area.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` when deployed through
+  Tanzu Mission Control and using a non-default issuer. To work around this issue, create a Secret with the appropriate CA certificate for Metadata Store and SecretExport. For example:
+
+    ```yaml
+      ---
+      apiVersion: v1
+      kind: Secret
+      type: Opaque
+      metadata:
+        name: store-ca-cert
+        namespace: metadata-store-secrets
+      data:
+        ca.crt: <CA Certificate for Metadata Store>
+      ---
+      apiVersion: secretgen.carvel.dev/v1alpha1
+      kind: SecretExport
+      metadata:
+        name: store-ca-cert
+        namespace: metadata-store-secrets
+      spec:
+        toNamespace: '*'
+    ```
+
 #### <a id='1-7-4-scst-scan-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
