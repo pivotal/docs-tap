@@ -1,4 +1,4 @@
-# Migrate Spring Service Registry applications from Tanzu Application Service to Tanzu Application Platform
+# Migrate Spring Service Registry applications for Tanzu Application Service
 
 Tanzu Application Service (TAS) and Tanzu Application Platform (TAP) can both provide applications with an implementation of the Service Discovery pattern. You might migrate an application running on Tanzu Application Service with Spring Service Registry (SSR) to Tanzu Application Platform without changes to the application code.
 
