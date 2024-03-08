@@ -521,8 +521,6 @@ This release includes the following changes, listed by component and area.
 - To enable DORA metrics functionality, if you configured the `environment` label, rename it
   to `env`. For more information, see [Configure Artifact Metadata Repository](scst-store/amr/configuration.hbs.md).
 
-- If CA Certificate data is added in the shared TAP values section, do not configure AMR Observer with CA Certificate data.
-
 #### <a id='1-8-0-tbs'></a> v1.8.0 Features: Tanzu Build Service
 
 - Tanzu Build Service can now generate Supply-chain Levels for Software Artifacts (SLSA) attestations.
@@ -1266,6 +1264,8 @@ while installing through Tanzu Mission Control.
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
 #### <a id='1-8-0-tbs-ki'></a> v1.8.0 Known issues: Tanzu Build Service
 
