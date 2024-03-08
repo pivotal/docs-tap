@@ -470,61 +470,51 @@ The default resource limits are:
 resources:
   limits:
     cpu: 200m
-    memory: 5000Mi
+    memory: 500Mi
   requests:
     cpu: 100m
     memory: 100Mi
 ```
 
-Use an overlay to make the following resource limit changes:
+Edit `values.yaml` to scale resource limits:
 
 ```console
----
-kind: Secret
-apiVersion: v1
-metadata:
-  name: stk-patch
-  namespace: tap-install
-stringData:
-  patch-stk-pkgi.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    #@overlay/match by=overlay.subset({"kind":"PackageInstall", "metadata":{"name":"services-toolkit"}}),expects=1
-    ---
-    metadata:
-      annotations:
-        #@overlay/match missing_ok=True
-        ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: stk-memory-patch
-
----
-kind: Secret
-apiVersion: v1
-metadata:
-  name: stk-memory-patch
-  namespace: tap-install
-stringData:
-  services-toolkit.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"services-toolkit-controller-manager"}}),expects=1
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-          #@overlay/match by="name"
-          - name: manager
-            resources:
-              #@overlay/replace
-              limits:
-                memory: "1.5Gi"
-                cpu: "200m"
-              requests:
-                memory: "750Mi"
-                cpu: "100m"
----
+services_toolkit:
+  controller:
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "750Mi"
+      limits:
+        cpu: "200m"
+        memory: "1.5Gi"
 ```
 
-Run the following command to make the change:
+
+### Services Toolkit Resource Claims API Server
+
+The default resource limits are:
 
 ```console
-kubectl annotate pkgi/tap ext.packaging.carvel.dev/ytt-paths-from-secret-name.0=stk-patch  -n <tap-install-namespace>
+resources:
+  limits:
+    cpu: 120m
+    memory: 500Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+services_toolkit:
+  resource_claims_apiserver:
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "750Mi"
+      limits:
+        cpu: "200m"
+        memory: "1.5Gi"
 ```
