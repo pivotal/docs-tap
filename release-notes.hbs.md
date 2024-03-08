@@ -279,7 +279,12 @@ The following issues, listed by component and area, are resolved in this release
  
 ### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues 
  
-This release has the following known issues, listed by component and area. 
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-8-1-alv-ki'></a> v1.8.1 Known issues: Appliveview
+
+- Appliveview on run profile fails to reconcile when a non default cluster issuer is used while installing via TMC
+
  
 #### <a id='1-8-1-COMPONENT-NAME-ki'></a> v1.8.1 Known issues: COMPONENT-NAME
  
