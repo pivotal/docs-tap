@@ -1,36 +1,50 @@
-# Migrate Java buildpack
+# Migrate to Java Cloud Native Buildpack
+
+This topic tells you how to migrate your Java app from using a Cloud Foundry buildpack for Tanzu Application Service
+(commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
 <!-- do users do all these sections in order or do they choose the section for their use case -->
 
-## Use a specific Java version
+## <a id="versions"></a> Use a specific Java version
 
-| Feature (lowest to highest priority)                                        | TAS                                           | TAP                     |
-| --------------------------------------------------------------------------- | --------------------------------------------- | ----------------------- |
-| Buildpack Default                                                           | 8                                             | 11                      |
-| Maven MANIFEST.MF property                                                  | ❌ Not supported                              | ✅                      |
-| Detects version from `.sdkmanrc` file                                       | ❌ Not supported                              | ✅                      |
-| Override app-based version detection (see Using environment variable below) | Using `cf set-env`: `JBP_CONFIG_OPEN_JDK_JRE` | Using `$BP_JVM_VERSION` |
+The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+installing specific versions.
 
-### Using environment variable
+| Feature (lowest to highest priority)                                                            | Tanzu Application Service                   | Tanzu Application Platform |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------- |
+| Buildpack Default                                                                               | 8                                           | 11                         |
+| Maven MANIFEST.MF property                                                                      | ❌ Not supported                            | ✅                         |
+| Detects version from `.sdkmanrc` file                                                           | ❌ Not supported                            | ✅                         |
+| Override app-based version detection (see [Configure the environment variable](#env-var) below) | Use `cf set-env`: `JBP_CONFIG_OPEN_JDK_JRE` | Use `$BP_JVM_VERSION`      |
 
-In TAS, changing from the default JVM v8 requires the following app environment variable key & value:
+### <a id="env-var"></a> Configure the environment variable
+
+This section compares configuring the Tanzu Application Service environment variable to configuring the
+Tanzu Application Platform environment variable.
+
+#### Tanzu Application Service
+
+In Tanzu Application Service, changing from the default JVM v8 requires you to configure the following app
+environment variable key and value:
 
 ```
 JBP_CONFIG_OPEN_JDK_JRE '{ jre: { version: 17.+ }}'
 ```
 
-This will build the app with the version of Java 17 that was bundled with the buildpack,
-currently 8, 11, 17 & 21.
+This builds the app with the version of Java 17 that was bundled with the buildpack,
+currently 8, 11, 17, and 21.
+<!-- why does it mention Java 17 then 8, 11, 17 & 21? -->
 
-In TAP, users can set the `$BP_JVM_VERSION` build-time environment variable to specify which version
-of the JVM should be installed.
-The value can simply be the major version of one of the LTS Java releases included in the buildpack,
-currently also 8, 11, 17 & 21. Patches for these majors are released quarterly along with OpenJDK
-release schedules.
-See the [Java Buildpack Release Notes](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-release-notes.html)
-for the buildpack’s exact versions.
+#### Tanzu Application Platform
 
-Here’s an excerpt from the spec section of a sample `workload.yaml`:
+In Tanzu Application Platform, set the `$BP_JVM_VERSION` build-time environment variable to specify which version
+of the JVM to install.
+The value can be the major version of one of the LTS Java releases included in the buildpack,
+currently 8, 11, 17, and 21.
+Patches for these majors are released quarterly along with OpenJDK release schedules.
+For the buildpack’s exact versions, see the [Java Buildpack Release Notes](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-release-notes.html).
+
+Example `spec` section from a `workload.yaml`:
 
 ```yaml
 ---
@@ -41,169 +55,213 @@ spec:
        value: "17"
 ```
 
-## Maven repository settings
+## <a id="maven"></a> Configure Maven repository settings
 
-| Feature                               | TAS              | TAP                                                      |
-| ------------------------------------- | ---------------- | -------------------------------------------------------- |
-| Connect to a private Maven repository | ❌ Not supported | ✅ Using a binding of type maven with key `settings.xml` |
+The following table compares configuring Maven repository settings in Tanzu Application Service and
+Tanzu Application Platform.
 
-In TAP, if your Maven settings contain sensitive data, you can provide your own `settings.xml` to the
-build without explicitly including the file in the application directory.
+| Feature                               | Tanzu Application Service | Tanzu Application Platform                               |
+| ------------------------------------- | ------------------------- | -------------------------------------------------------- |
+| Connect to a private Maven repository | ❌ Not supported          | ✅ Use a binding of type `maven` with key `settings.xml` |
 
-Create the service binding as a secret like this example:
+### <a id="nuget-config-secret"></a> Configure Maven repository settings with sensitive data
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: settings-xml
-  namespace: my-apps
-type: service.binding/maven
-stringData:
-  type: maven
-  settings.xml: |
-    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-      <servers>
-        <server>
-          <id>myrepo</id>
-          <username>admin</username>
-          <password>changeme</password>
-        </server>
-      </servers>
+In Tanzu Application Platform, if your Maven settings contain sensitive data, you can provide your
+own `settings.xml` to the build without explicitly including the file in the application directory.
 
-      <mirrors>
-        <mirror>
-          <id>myrepo</id>
-          <name>myrepo</name>
-          <url>http://myrepo/</url>
-          <mirrorOf>*</mirrorOf>
-        </mirror>
-      </mirrors>
-    </settings>
-```
+To provide your `settings.xml` without including it in the directory:
 
-Apply the binding in the workload like this example:
+1. Create the service binding as a secret. For example:
 
-```console
-tanzu apps workload apply APP-NAME --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]'
-```
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+      namespace: my-apps
+    type: service.binding/maven
+    stringData:
+      type: maven
+      settings.xml: |
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+          <servers>
+            <server>
+              <id>myrepo</id>
+              <username>admin</username>
+              <password>changeme</password>
+            </server>
+          </servers>
 
-For more details about service bindings, please see TAP documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
+          <mirrors>
+            <mirror>
+              <id>myrepo</id>
+              <name>myrepo</name>
+              <url>http://myrepo/</url>
+              <mirrorOf>*</mirrorOf>
+            </mirror>
+          </mirrors>
+        </settings>
+    ```
 
-## Service Bindings
+1. Apply the binding in the workload by running:
 
-| Feature                           | TAS | TAP |
-| --------------------------------- | --- | --- |
-| Connect an app to a bound service | ✅  | ✅  |
+    ```console
+    tanzu apps workload apply APP-NAME \
+      --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]'
+    ```
 
-In TAS, the Java Buildpack will supply Spring Boot 3 apps with the Java CF Env Library.
-This library parses the `VCAP_SERVICES` variable and allows Spring Boot’s autoconfiguration to set
+    Where `APP-NAME` is the name of your app.
+
+For more information about service bindings, see
+[Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
+
+## <a id="service-bindings"></a> Service bindings
+
+The following table compares service bindings in Tanzu Application Service and Tanzu Application Platform.
+
+| Feature                           | Tanzu Application Service | Tanzu Application Platform |
+| --------------------------------- | ------------------------- | -------------------------- |
+| Connect an app to a bound service | ✅                        | ✅                         |
+
+#### Tanzu Application Service
+
+In Tanzu Application Service, the Java Buildpack supplies Spring Boot v3 apps with the Java CF Env Library.
+This library parses the `VCAP_SERVICES` variable and allows the auto-configuration for Spring Boot to set
 properties and connect to the bound service.
 
-In TAP, Tanzu Buildpacks will supply a similar library, Spring Cloud Bindings, which instead supports
-the Kubernetes-style service bindings, and enable it by default. This does the following:
+#### Tanzu Application Platform
 
-- Adds a PropertySource with a flattened representation (`k8s.bindings.{name}.*`) of the bindings.
+In Tanzu Application Platform, Tanzu Buildpacks supply a similar library, named Spring Cloud Bindings,
+which supports the Kubernetes-style service bindings, and enable it by default.
+<!-- what does "it" mean in this sentence" -->
+This does the following:
+
+- Adds a PropertySource with a flattened representation, `k8s.bindings.{name}.*`, of the bindings.
 - Adds a PropertySource with binding-specific Spring Boot configuration properties.
 
-Spring Boot’s autoconfiguration will configure application configuration properties appropriate for
-the type of binding encountered.
+The auto-configuration for Spring Boot configures application properties appropriate for the type of
+binding encountered.
 
-Once you have applied a ServiceBinding, for example to a PostGres database, [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
-should automatically use the properties from the binding to set the relevant Spring Boot properties:
+After you have applied a service binding, for example to a PostgreSQL database,
+[Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
+automatically uses the properties from the binding to set the relevant Spring Boot properties:
 
 ```console
-tanzu apps workload apply app-name --service-ref "psql=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql"
+tanzu apps workload apply APP-NAME \
+  --service-ref "psql=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql"
 ```
 
-For more details about service bindings, see TAP documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
+<!-- when should users run this command? it says that it's automatic. -->
 
-## Deploy With Tomcat
+For more information about service bindings, see
+[Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
 
-| Feature                  | TAS                                                               | TAP                        |
+## <a id="tomcat"></a> Deploy with Tomcat
+
+The following table compares deploying with Tomcat in Tanzu Application Service and Tanzu Application Platform.
+
+| Feature                  | Tanzu Application Service                                         | Tanzu Application Platform |
 | ------------------------ | ----------------------------------------------------------------- | -------------------------- |
 | Configure Tomcat Version | ❌ Not possible without creating a custom (unsupported) buildpack | ✅ Use `BP_TOMCAT_VERSION` |
 | Use External Tomcat      | ✅                                                                | ✅                         |
 
-In TAP, the Apache Tomcat buildpack includes versions 8, 9 & 10.1. The detection criteria to deploy
-with the buildpack-provided Tomcat remains the same as in TAS - the presence of a WEB-INF directory
-and no Main-Class entry in the Manifest.
+In Tanzu Application Platform, the Apache Tomcat buildpack includes versions 8, 9, and 10.1.
+The detection criteria to deploy with the buildpack-provided Tomcat remains the same as in
+Tanzu Application Service, which is the presence of a WEB-INF directory and no Main-Class entry in the manifest.
 
-Configuring an external Tomcat instance for use is supported by environment variables as in TAS.
-More details on configuration options can be found in the
+You can configure an external Tomcat instance by using environment variables.
+For more information about configuration options, see the
 [Tanzu Java Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-java-java-buildpack.html).
 
-## Choose Java distribution
+## <a id="java-distribution"></a> Choose Java distribution
 
-| Feature                         | TAS                                                               | TAP |
-| ------------------------------- | ----------------------------------------------------------------- | --- |
-| Use an alternative JVM provider | ❌ Not possible without creating a custom (unsupported) buildpack | ✅  |
+The following table compares deploying choosing a Java distribution in Tanzu Application Service and
+Tanzu Application Platform.
 
-## Third Party Integrations
+| Feature                         | Tanzu Application Service                                         | Tanzu Application Platform |
+| ------------------------------- | ----------------------------------------------------------------- | -------------------------- |
+| Use an alternative JVM provider | ❌ Not possible without creating a custom (unsupported) buildpack | ✅                         |
 
-| Partner                              | TAS | TAP        |
-| ------------------------------------ | --- | ---------- |
-| Apache Skywalking                    | ✅  | ✅         |
-| AppDynamics                          | ✅  | ✅         |
-| AppInternals (Aternity/Riverbed)     | ✅  | ✅         |
-| AspectJ                              | ✅  | ✅         |
-| Azure App Insights                   | ✅  | ✅         |
-| Checkmarx                            | ✅  | ✅         |
-| Contrast Security                    | ✅  | ✅         |
-| Datadog                              | ✅  | ✅         |
-| Elastic APM                          | ✅  | ✅         |
-| Dynatrace                            | ✅  | ✅         |
-| Google Stackdriver                   | ✅  | ✅         |
-| Introscope (Broadcom)                | ✅  | ?          |
-| JaCoCo                               | ✅  | ✅         |
-| Java Memory Assistant                | ✅  | ✅         |
-| JProfiler                            | ✅  | ✅         |
-| JRebel                               | ✅  | ✅         |
-| Luna Sec Provider                    | ✅  | ✅         |
-| MariaDB Client</br>PostgreSQL Client | ✅  | *See Notes |
-| Metric Writer                        | ✅  | *See Notes |
-| New Relic                            | ✅  | ✅         |
-| OpenTelemetry Agent                  | ✅  | ✅         |
-| ProtectApp (Thales)                  | ✅  | ❌         |
-| Sealights                            | ✅  | ❌         |
-| Seeker Security/Synopsys             | ✅  | ✅         |
-| Spring Insight                       | ❌* | *See Notes |
-| Takipi                               | ✅  | ✅         |
-| YourKit                              | ✅  | ✅         |
+## <a id="integrations"></a> Compare third-party integrations
 
-Most of the third-party integrations that are supported in TAS are also supported in TAP.
-The detection criteria to trigger enabling the integration (for example, adding a Java Agent to the JVM)
+The following table compares third-party integrations available for Tanzu Application Service and
+Tanzu Application Platform.
+
+| Partner                              | Tanzu Application Service | Tanzu Application Platform |
+| ------------------------------------ | ------------------------- | -------------------------- |
+| Apache Skywalking                    | ✅                        | ✅                         |
+| AppDynamics                          | ✅                        | ✅                         |
+| AppInternals (Aternity/Riverbed)     | ✅                        | ✅                         |
+| AspectJ                              | ✅                        | ✅                         |
+| Azure App Insights                   | ✅                        | ✅                         |
+| Checkmarx                            | ✅                        | ✅                         |
+| Contrast Security                    | ✅                        | ✅                         |
+| Datadog                              | ✅                        | ✅                         |
+| Elastic APM                          | ✅                        | ✅                         |
+| Dynatrace                            | ✅                        | ✅                         |
+| Google Stackdriver                   | ✅                        | ✅                         |
+| Introscope (Broadcom)                | ✅                        | ?                          |
+| JaCoCo                               | ✅                        | ✅                         |
+| Java Memory Assistant                | ✅                        | ✅                         |
+| JProfiler                            | ✅                        | ✅                         |
+| JRebel                               | ✅                        | ✅                         |
+| Luna Sec Provider                    | ✅                        | ✅                         |
+| MariaDB Client</br>PostgreSQL Client | ✅                        | ❌ See Notes               |
+| Metric Writer                        | ✅                        | ❌ See Notes               |
+| New Relic                            | ✅                        | ✅                         |
+| OpenTelemetry Agent                  | ✅                        | ✅                         |
+| ProtectApp (Thales)                  | ✅                        | ❌                         |
+| Sealights                            | ✅                        | ❌                         |
+| Seeker Security/Synopsys             | ✅                        | ✅                         |
+| Spring Insight                       | ❌ See Notes              | ❌ See Notes               |
+| Takipi                               | ✅                        | ✅                         |
+| YourKit                              | ✅                        | ✅                         |
+
+<div class="note">
+  <span class="note__title">Note</span>
+  <p>The following integrations do not have a Tanzu Application Platform equivalent:</p>
+  <ul>
+    <li><strong>MariaDB and PostgreSQL Client Libraries:</strong> The recommended way to include these
+      libraries is as an application dependency rather than supplied by the buildpack.
+      Therefore in Tanzu Application Platform, included in the app, for example, using a <code>pom.xml</code> entry.</li>
+    <li><strong>Metrics Writer:</strong> This integration library provides Cloud Foundry-specific tags
+      for micrometer enabled apps, and so does not have a Tanzu Application Platform equivalent.</li>
+    <li><strong>Spring Insight:</strong> This is no longer supported and is no longer available in
+      Tanzu Application Service or Tanzu Application Platform.</li>
+  </ul>
+</div>
+
+Most of the third-party integrations that are supported in Tanzu Application Service are also supported
+in Tanzu Application Platform.
+The detection criteria to trigger enabling the integration, for example, adding a Java Agent to the JVM,
 is as follows:
 
-- In TAS - binding a TAS service of the relevant type, and/or setting an environment variable
-- In TAP - providing a TAP binding of the relevant type, and/or setting an environment variable
+- **Tanzu Application Service:** Bind a Tanzu Application Service service of the relevant type, or
+  set an environment variable.
+- **Tanzu Application Platform:** Provide a Tanzu Application Platform binding of the relevant type,
+  or setting an environment variable.
 
-Notes:
+### <a id="integrations-tap"></a> Tanzu Application Platform only integrations
 
-The following integrations do not have a TAP equivalent:
+The following integrations are only available in Tanzu Application Platform through Cloud Native Buildpacks:
 
-- Metrics Writer - this integration library provides CloudFoundry-specific tags for micrometer enabled apps, and so does not have a TAP equivalent.
-- MariaDB/Postgres Client Libraries - the recommended way to include these libraries is as an application dependency rather than supplied by the buildpack. Therefore in TAP, these should be included by the app, e.g. via pom.xml entry.
-- Spring Insight - this is no longer supported and is no longer available in TAS
+- **Checkmarx:** Contributes the [Checkmarx](https://checkmarx.com/product/application-security-platform/) CxIAST agent.
+- **Snyk:** Contributes [Snyk](https://snyk.io/) scanning and configures it to connect to the service.
+- **Synopsys:** Contributes [Synopsys](https://www.synopsys.com) scanning and configures it to connect to the service.
 
-### TAP Only Integrations
+## <a id="debug"></a> Configure debugging for your application
 
-The following integrations are only available in TAP via Cloud Native Buildpacks:
+The following table compares configuring debugging for your app in Tanzu Application Service and
+Tanzu Application Platform.
 
-- Checkmarx - contributes the [Checkmarx](https://checkmarx.com/product/application-security-platform/) CxIAST agent
-- Snyk - contributes [Snyk](https://snyk.io/) scanning and configures it to connect to the service
-- Synopsys - contributes [Synopsys](https://www.synopsys.com) scanning and configures it to connect to the service.
+| Feature                 | Tanzu Application Service | Tanzu Application Platform |
+| ----------------------- | ------------------------- | -------------------------- |
+| Enable Remote Debugging | ✅ `$JBP_CONFIG_DEBUG`    | ✅ `$BPL_DEBUG_ENABLED`    |
 
-## Debug your application
-
-| Feature                 | TAS                    | TAP                     |
-| ----------------------- | ---------------------- | ----------------------- |
-| Enable Remote Debugging | ✅ `$JBP_CONFIG_DEBUG` | ✅ `$BPL_DEBUG_ENABLED` |
-
-Enabling remote debugging for Java apps in TAP is similar to in TAS, simply specify a runtime
-environment variable as follows:
+Enabling remote debugging for Java apps in Tanzu Application Platform is similar to Tanzu Application Service.
+Specify a runtime environment variable as follows:
 
 ```yaml
 spec:
@@ -212,31 +270,37 @@ spec:
     value: "true"
 ```
 
-This will add the JVM argument:
+This adds the JVM argument:
 
 ```
 -agentlib:jdwp=transport=dt_socket,server=y,address=*:8000,suspend=n
 ```
 
-You can optionally specify `BPL_DEBUG_PORT` & `BPL_DEBUG_SUSPEND` to change the defaults for these
-options as in TAS.
+(Optional) You can specify `BPL_DEBUG_PORT` & `BPL_DEBUG_SUSPEND` to change the defaults for these
+options.
 
-## APM with Datadog
+## <a id="apm"></a> Enable Application Performance Monitoring (APM) with Datadog
 
-Either using TAS or TAP, triggering the buildpack with an environment variable is not enough.
-It will allow the buildpack to contribute the Datadaog Tracing library to the app classpath, but you also need to install the Datadog Agent on your platform.
-For TAP, you can follow [the instructions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/integrations-external-observability-tools.html#use-datadog-as-your-observability-tool-2)
-to install the Datadog agent.
+To enable Datadog, you must first install the Datadog Agent on your platform.
+After installing Datadog, the environment variable allows the buildpack to contribute the
+Datadaog Tracing library to the app classpath.
+To install the Datadog agent for Tanzu Application Platform, follow the instructions in
+[Use Datadog as your observability tool](../../integrations/external-observability-tools.hbs.md#install-datadog-agent).
 
->**Note** It’s possible your TAP environment is restricted to the
->[baseline pod security standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline),
->in that case you’ll need to lift such restrictions to install the Datadog Agent DaemonSet.
+> **Note** Your Tanzu Application Platform environment might be restricted to the baseline pod security standard
+> For more information about the baseline pod security standard, see the
+> [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline).
+> In that case, you must remove the restriction before you can install the Datadog Agent DaemonSet.
 
-| Feature        | TAS                  | TAP                           |
-| -------------- | -------------------- | ----------------------------- |
-| Enable Datadog | ✅ `$DD_API_KEY=XXX` | ✅ `$BP_DATADOG_ENABLED=true` |
+The following table compares enabling APM in Tanzu Application Service and Tanzu Application Platform.
 
-Supposing you previously deployed this workload to TAP:
+| Feature        | Tanzu Application Service | Tanzu Application Platform    |
+| -------------- | ------------------------- | ----------------------------- |
+| Enable Datadog | ✅ `$DD_API_KEY=XXX`      | ✅ `$BP_DATADOG_ENABLED=true` |
+
+### <a id="example"></a> Example Datadog configuration
+
+If you previously deployed the following workload to Tanzu Application Platform:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -264,7 +328,7 @@ spec:
      url: https://github.com/spring-projects/spring-petclinic
 ```
 
-To enable Datadog with this workload, you’ll need to change it this way:
+To enable Datadog, change the workload as follows:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -306,13 +370,16 @@ spec:
      url: https://github.com/spring-projects/spring-petclinic
 ```
 
-## Buildpack Log Level
+## <a id="log-level"></a> Configure the log level for buildpacks
 
-| Feature              | TAS                       | TAP                      |
-| -------------------- | ------------------------- | ------------------------ |
-| Enable Debug Logging | ✅ `$JBP_LOG_LEVEL=DEBUG` | ✅ `$BP_LOG_LEVEL=DEBUG` |
+The following table compares configuring the log level in Tanzu Application Service and Tanzu Application Platform.
 
-In TAP, changing the log level to DEBUG is similar to in TAS. You can set the following environment variable:
+| Feature              | Tanzu Application Service | Tanzu Application Platform |
+| -------------------- | ------------------------- | -------------------------- |
+| Enable Debug Logging | ✅ `$JBP_LOG_LEVEL=DEBUG` | ✅ `$BP_LOG_LEVEL=DEBUG`   |
+
+In Tanzu Application Platform, changing the log level to DEBUG is similar to Tanzu Application Service.
+Set the environment variable as follows:
 
 ```yaml
 spec:
@@ -322,4 +389,4 @@ spec:
     value: "DEBUG"
 ```
 
-This will show debug level output for buildpacks during the build phase.
+This shows debug level output for buildpacks during the build phase.
