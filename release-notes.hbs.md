@@ -855,7 +855,7 @@ while installing through Tanzu Mission Control.
   [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
   [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
-#### <a id='1-8-0-scst-scan-2-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan 2.0
+#### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
@@ -872,8 +872,6 @@ while installing through Tanzu Mission Control.
 
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
-
-#### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
