@@ -203,7 +203,7 @@ To resolve this issue, you can debug within the scan-task pod by following the i
 
 ### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
 
-As part of compliance with the restricted profile for Kubernetes Pod Security Standards, you must set the `securityContext` of containers and initContainers. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet pod Security Standards, it is not created and vulnerability scanning cannot proceed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+As part of compliance with the restricted profile for Kubernetes Pod Security Standards, you must set the `securityContext` of containers and initContainers.  When a pod does not meet pod Security Standards, it is not created and vulnerability scanning cannot proceed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
 
 You might see an error message similar to the following when describing the TaskRun:
 
@@ -219,10 +219,9 @@ To resolve this issue:
     tekton_pipelines:
         feature_flags:
             set_security_context: "true"
-            disable_affinity_assistant: "true"
     ```
 
-    Setting the `securityContext` resolves the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as Tekton does not have a way to update the `securityContext` in those pods.
+    Setting the `securityContext` resolves the `prepare` initContainer violation.
 
 1. Update your Tanzu Application Platform installation by running:
 
@@ -231,7 +230,5 @@ To resolve this issue:
    ```
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-
-  >**Note** Tekton [affinity assistant](https://tekton.dev/vault/pipelines-main/affinityassistants/) is a feature that can schedule all TaskRun pods within a PipelineRun that share a Workspace on the same node. If deactivated, VMware recommends using an affinity-aware CSI storage class. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes/#csi).
 
 1. Re-run the scan.
