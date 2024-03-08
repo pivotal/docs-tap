@@ -610,7 +610,7 @@ Create a `Secret` with the appropriate CA certificate for Metadata Store and `Se
     name: store-ca-cert
     namespace: metadata-store-secrets
   data:
-    ca.crt: <CA Certificate for Metadata Store>
+    ca.crt: CA-CERTIFICATE-FOR-METADATA-STORE
   ---
   apiVersion: secretgen.carvel.dev/v1alpha1
   kind: SecretExport
