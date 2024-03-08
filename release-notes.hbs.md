@@ -749,43 +749,43 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-7-4-scst-scan-2-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools (SCST)
 
-**Supply Chain Security Tools (SCST) - Scan 2.0**
+    **Supply Chain Security Tools (SCST) - Scan 2.0**
 
-- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
-  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
-  `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Trivy image packaged with Tanzu Application Platform:
+    - When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
+      with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
+      `tap-values.yaml` file.
+      You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
+      For example, for the Trivy image packaged with Tanzu Application Platform:
 
-    ```yaml
-    ootb_supply_chain_testing_scanning:
-      image_scanner_template_name: image-vulnerability-scan-trivy
-      image_scanning_cli:
-        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
-    ```
+        ```yaml
+        ootb_supply_chain_testing_scanning:
+          image_scanner_template_name: image-vulnerability-scan-trivy
+          image_scanning_cli:
+            image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+        ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
+    - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+      the default for later versions of Trivy and is not supported by AMR.
 
-**Supply Chain Security Tools (SCST) - Scan 1.0**
+    **Supply Chain Security Tools (SCST) - Scan 1.0**
 
-- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
-is in a failed state due to an invalid date, wait approximately 10 hours and the workload
-automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk GitHub repository.
+    - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
+    is in a failed state due to an invalid date, wait approximately 10 hours and the workload
+    automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk GitHub repository.
 
-- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+    - SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
-#### <a id='1-7-4-scst-store-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Store
+    #### <a id='1-7-4-scst-store-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Store
 
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+    - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+    - SCST - Store automatically detects PostgreSQL database index corruptions.
+      If SCST - Store finds a PostgresSQL database index corruption issue, it does not reconcile.
+      For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
-- Using a custom issuer such as Let's Encrypt breaks the Tanzu Mission Control orchestration
-  that pushes the AMR Observer credentials from the view cluster to the non-view cluster.
-  There is currently no remediation for this issue.
+    - Using a custom issuer such as Let's Encrypt breaks the Tanzu Mission Control orchestration
+      that pushes the AMR Observer credentials from the view cluster to the non-view cluster.
+      There is currently no remediation for this issue.
 
 #### <a id='1-7-4-tbs-ki'></a> v1.7.4 Known issues: Tanzu Build Service
 
