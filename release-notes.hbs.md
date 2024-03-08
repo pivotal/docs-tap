@@ -257,13 +257,10 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-5-alv-ki'></a> v1.7.5 Known issues: Appliveview
+#### <a id='1-7-5-alv-ki'></a> v1.7.5 Known issues: Application Live View
 
-- Appliveview on `run profile` fails to reconcile when a non default cluster issuer is used while installing via TMC.
-
-#### <a id='1-7-5-COMPONENT-NAME-ki'></a> v1.7.5 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 ---
 
@@ -663,6 +660,11 @@ This release has the following known issues, listed by component and area.
 
 - When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
   incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-7-4-alv-ki'></a> v1.7.4 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 #### <a id='1-7-4-amr-obs-ce-hndlr-ki'></a> v1.7.4 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -1191,6 +1193,11 @@ This release has the following known issues, listed by component and area.
 
 - When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
   incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-7-3-alv-ki'></a> v1.7.3 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 #### <a id='1-7-3-amr-obs-ce-hndlr-ki'></a> v1.7.3 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -1729,6 +1736,11 @@ This release has the following known issues, listed by component and area.
 - When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
   incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
 
+#### <a id='1-7-2-alv-ki'></a> v1.7.2 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
+
 #### <a id='1-7-2-amr-obs-ce-hndlr-ki'></a> v1.7.2 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
@@ -2144,6 +2156,11 @@ This release has the following known issues, listed by component and area.
 
 - When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
   incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-7-1-alv-ki'></a> v1.7.1 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 #### <a id='1-7-1-amr-obs-ce-hndlr-ki'></a> v1.7.1 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -3584,6 +3601,11 @@ This release has the following known issues, listed by component and area.
 
 - When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
   incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-7-0-alv-ki'></a> v1.7.0 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 #### <a id='1-7-0-amr-obs-ce-hndlr-ki'></a> v1.7.0 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
