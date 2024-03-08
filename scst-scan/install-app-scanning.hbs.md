@@ -34,17 +34,6 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 
 >**Note** If the StorageClass you select does not have a node limit but uses the node storage, such as hostpath, the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` indicates how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` indicates how much storage each node needs.
 
-You must deactivate the Tekton Affinity Assistant to reduce the number of pod scheduling issues when using SCST - Scan v2.
-To achieve this, add the following to your `tap-values.yaml`:
-
-```yaml
-tekton_pipelines:
-  feature_flags:
-    disable_affinity_assistant: "true"
-```
-
-In vSphere with Tanzu (TKGs) v1.26 and later, enabling the Affinity Assistant feature on clusters where the Kubernetes Pod Security Admission restricts Pod Security Standards by default, might cause a deadlock, where the affinity pod cannot be scheduled, thereby hindering the scanning process.
-
 ## <a id="install-scst-app-scanning"></a> Install
 
 To install SCST - Scan 2.0:
