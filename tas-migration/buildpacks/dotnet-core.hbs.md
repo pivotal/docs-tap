@@ -17,7 +17,7 @@ installing specific versions.
 | Detects versions from `.fsproj` and `.vbproj.`                                                                        | ❌                        | ✅                                 |
 | Override app-based version detection (see [Migration from buildpack.yml to environment variable](#yml-env-var) below) | Use `builpack.yml`        | Use `$BP_DOTNET_FRAMEWORK_VERSION` |
 
-### <a id="yml-env-var"></a> Migrate from a `buildpack.yml` to environment variable
+### <a id="yml-env-var"></a> Migrate from a `buildpack.yml` to environment variable
 
 This section compares configuring the Tanzu Application Service `buildpack.yml` to configuring the
 Tanzu Application Platform environment variable.
