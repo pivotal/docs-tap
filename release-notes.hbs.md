@@ -774,6 +774,11 @@ This release has the following known issues, listed by component and area.
   To work around this, supply all environment variables, both Convention provided and user provided,
   to the Carvel package. This issue is planned to be fixed in a future release.
 
+#### <a id='1-8-0-alv-ki'></a> v1.8.0 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
+
 #### <a id='1-8-0-amr-obs-ce-hndlr-ki'></a> v1.8.0 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
