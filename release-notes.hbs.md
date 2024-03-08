@@ -928,6 +928,8 @@ while installing through Tanzu Mission Control.
   If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
+- If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
+
 #### <a id='1-8-0-tbs-ki'></a> v1.8.0 Known issues: Tanzu Build Service
 
 - During upgrades a large number of builds might be created due to buildpack and stack updates.
