@@ -43,6 +43,24 @@ This release includes the following changes, listed by component and area.
  
 This release includes the following changes, listed by component and area. 
  
+#### <a id=''></a> v1.9.0 Breaking changes: Services Toolkit
+
+The previously deprecated APIs and tools have now been removed:
+* The experimental kubectl-scp plug-in.
+* The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1`.
+  * `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  * `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+
+
 #### <a id='1-9-0-COMPONENT-NAME-bc'></a> v1.9.0 Breaking changes: COMPONENT-NAME
  
 - Breaking change description.
