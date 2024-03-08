@@ -70,7 +70,9 @@ spec:
 6. Request token
 
    ```shell
-   curl -X POST <AUTH-DOMAIN>/oauth2/token?grant_type=client_credentials -v -u "YOUR_CLIENT_ID:DECODED_CLIENT_SECRET"
+   curl -X POST <AUTH-DOMAIN>/oauth2/token \
+     -d "grant_type=client_credentials" \
+     -u "YOUR_CLIENT_ID:DECODED_CLIENT_SECRET"
    ```
 
 ### Authorization Code Grant Type
