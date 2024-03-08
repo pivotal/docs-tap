@@ -1279,6 +1279,8 @@ while installing through Tanzu Mission Control.
 information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
 Github repository.
 
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+
 #### <a id='1-7-3-scst-store-ki'></a> v1.7.3 Known issues: Supply Chain Security Tools - Store
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
@@ -1815,6 +1817,8 @@ while installing through Tanzu Mission Control.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+
 #### <a id='1-7-2-scst-store-ki'></a> v1.7.2 Known issues: Supply Chain Security Tools - Store
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
@@ -2248,6 +2252,8 @@ while installing through Tanzu Mission Control.
 - When `container.SecurityContext` is not null and the `Capabilities` or `SeccompProfile` field
   is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
+
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
 #### <a id='1-7-1-scst-store-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools - Store
 
@@ -3693,6 +3699,8 @@ to ensure that they are correctly created.
 - When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
   are left empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
+
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
 #### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Store
 
