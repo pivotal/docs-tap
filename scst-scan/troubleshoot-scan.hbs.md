@@ -571,22 +571,52 @@ restricted Pod Security Standard.
 When `container.SecurityContext` is provided and the `Capabilities` or `SeccompProfile` field is
 empty, the controller will panic. For example:
 
-  ```yaml
-  securityContext:
-    privileged: true
-    runAsNonRoot: false
-  ```
+```yaml
+securityContext:
+  privileged: true
+  runAsNonRoot: false
+```
 
 **Solution:**
 
 Provide default values for the `Capabilities` or `SeccompProfile` field:
 
-  ```yaml
-  securityContext:
-    allowPrivilegeEscalation: true
-    capabilities: {}
-    privileged: true
-    runAsNonRoot: false
-    seccompProfile:
-      type: RuntimeDefault
-  ```
+```yaml
+securityContext:
+  allowPrivilegeEscalation: true
+  capabilities: {}
+  privileged: true
+  runAsNonRoot: false
+  seccompProfile:
+    type: RuntimeDefault
+```
+
+### <a id="non-default-issuer"></a> Deployment failure with non-default issuer
+
+**Symptom:**
+
+SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. 
+
+**Solution:**
+
+Create a `Secret` with the appropriate CA certificate for Metadata Store and `SecretExport`. For example:
+
+```yaml
+  ---
+  apiVersion: v1
+  kind: Secret
+  type: Opaque
+  metadata:
+    name: store-ca-cert
+    namespace: metadata-store-secrets
+  data:
+    ca.crt: <CA Certificate for Metadata Store>
+  ---
+  apiVersion: secretgen.carvel.dev/v1alpha1
+  kind: SecretExport
+  metadata:
+    name: store-ca-cert
+    namespace: metadata-store-secrets
+  spec:
+    toNamespace: '*'
+```
