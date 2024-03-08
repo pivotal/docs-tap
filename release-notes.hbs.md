@@ -286,10 +286,6 @@ This release has the following known issues, listed by component and area.
 - On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
 while installing through Tanzu Mission Control.
 
-#### <a id='1-8-1-COMPONENT-NAME-ki'></a> v1.8.1 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
 ---
 
 ### <a id='1-8-1-components'></a> v1.8.1 Component versions
@@ -1116,6 +1112,11 @@ This release has the following known issues, listed by component and area.
   developer provided environment variables.
   To work around this, supply all environment variables, both Convention provided and user provided,
   to the Carvel package. This issue is planned to be fixed in a future release.
+
+#### <a id='1-8-0-alv-ki'></a> v1.8.0 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-amr-obs-ce-hndlr-ki'></a> v1.8.0 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
