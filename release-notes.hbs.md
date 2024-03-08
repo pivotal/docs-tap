@@ -747,7 +747,9 @@ while installing through Tanzu Mission Control.
   [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
   [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
-#### <a id='1-7-4-scst-scan-2-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+#### <a id='1-7-4-scst-scan-2-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools (SCST)
+
+**Supply Chain Security Tools (SCST) - Scan 2.0**
 
 - When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
   with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
@@ -765,34 +767,13 @@ while installing through Tanzu Mission Control.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
-- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` when deployed through
-  Tanzu Mission Control and using a non-default issuer. To work around this issue, create a Secret with the appropriate CA certificate for Metadata Store and SecretExport. For example:
-
-    ```yaml
-      ---
-      apiVersion: v1
-      kind: Secret
-      type: Opaque
-      metadata:
-        name: store-ca-cert
-        namespace: metadata-store-secrets
-      data:
-        ca.crt: <CA Certificate for Metadata Store>
-      ---
-      apiVersion: secretgen.carvel.dev/v1alpha1
-      kind: SecretExport
-      metadata:
-        name: store-ca-cert
-        namespace: metadata-store-secrets
-      spec:
-        toNamespace: '*'
-    ```
-
-#### <a id='1-7-4-scst-scan-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Scan
+**Supply Chain Security Tools (SCST) - Scan 1.0**
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
 is in a failed state due to an invalid date, wait approximately 10 hours and the workload
-automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk Github repository.
+automatically goes into the ready state. For more information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk GitHub repository.
+
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
 #### <a id='1-7-4-scst-store-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Store
 
