@@ -2,14 +2,14 @@
 
 This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
 
-## <a id='1-8-1'></a> v1.8.1 
- 
-**Release Date**: 12 March 2024 
- 
-### <a id='1-8-1-security-fixes'></a> v1.8.1 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-8-1'></a> v1.8.1
+
+**Release Date**: 12 March 2024
+
+### <a id='1-8-1-security-fixes'></a> v1.8.1 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 <table>
 <thead>
 <tr>
@@ -264,38 +264,38 @@ This release has the following security fixes, listed by component and area.
 </tr>
 </tbody>
 </table>
- 
+
 ---
- 
-### <a id='1-8-1-resolved-issues'></a> v1.8.1 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-8-1-resolved-issues'></a> v1.8.1 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-8-1-COMPONENT-NAME-ri'></a> v1.8.1 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues 
- 
+
+### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues
+
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-8-1-alv-ki'></a> v1.8.1 Known issues: Appliveview
+#### <a id='1-8-1-alv-ki'></a> v1.8.1 Known issues: Application Live View
 
-- Appliveview on run profile fails to reconcile when a non default cluster issuer is used while installing via TMC
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
 
- 
 #### <a id='1-8-1-COMPONENT-NAME-ki'></a> v1.8.1 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-8-1-components'></a> v1.8.1 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                     | Version |
 | -------------------------------------------------- | ------- |
 | API Auto Registration                              |         |
@@ -322,7 +322,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Flux CD Source Controller                          |         |
 | Grype Scanner for SCST - Scan                      |         |
 | Local Source Proxy                                 |         |
-| Managed Resource Controller (beta)                 |         | 
+| Managed Resource Controller (beta)                 |         |
 | Namespace Provisioner                              |         |
 | Out of the Box Delivery - Basic                    |         |
 | Out of the Box Supply Chain - Basic                |         |
@@ -348,8 +348,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Developer Portal Configurator                |         |
 | Tanzu Supply Chain (beta)                          |         |
 | Tekton Pipelines                                   |         |
- 
----   
+
+---
 
 ## <a id='1-8-0'></a> v1.8.0
 
