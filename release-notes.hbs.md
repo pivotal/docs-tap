@@ -267,16 +267,6 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-8-1-resolved-issues'></a> v1.8.1 Resolved issues
-
-The following issues, listed by component and area, are resolved in this release.
-
-#### <a id='1-8-1-COMPONENT-NAME-ri'></a> v1.8.1 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
 ### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues
 
 This release has the following known issues, listed by component and area.
