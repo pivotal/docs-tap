@@ -537,3 +537,33 @@ You might see an error message similar to the following when describing the Task
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
 3. Re-run the scan.
+
+### <a id="non-default-issuer"></a> Deployment failure with non-default issuer
+
+**Symptom:**
+
+SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. 
+
+**Solution:**
+
+Create a `Secret` with the appropriate CA certificate for Metadata Store and `SecretExport`. For example:
+
+```yaml
+  ---
+  apiVersion: v1
+  kind: Secret
+  type: Opaque
+  metadata:
+    name: store-ca-cert
+    namespace: metadata-store-secrets
+  data:
+    ca.crt: CA-CERTIFICATE-FOR-METADATA-STORE
+  ---
+  apiVersion: secretgen.carvel.dev/v1alpha1
+  kind: SecretExport
+  metadata:
+    name: store-ca-cert
+    namespace: metadata-store-secrets
+  spec:
+    toNamespace: '*'
+```
