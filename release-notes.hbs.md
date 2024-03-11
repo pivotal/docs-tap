@@ -115,6 +115,15 @@ This release has the following known issues, listed by component and area.
  
 - Known issue description with link to workaround.
 
+#### <a id='1-9-0-scst-policy-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Policy
+
+- Supply Chain Security Tools - Policy is defaulting to TUF enabled. This can cause the package to not reconcile correctly if the additional TUF configuration is not provided.
+To work around this, explicitly configure policy controller in TAP values to not enable TUF
+```yaml
+policy:
+  tuf_enabled: false
+```
+
 ---
  
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
