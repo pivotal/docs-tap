@@ -273,9 +273,6 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-8-1-tap-ki'></a> v1.8.1 Known issues: Tanzu Application Platform
 
-- Installing this Tanzu Application Platform release using Tanzu Mission Control is not supported for
-  Kubernetes v1.26.
-
 - On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
