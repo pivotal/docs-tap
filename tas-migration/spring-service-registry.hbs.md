@@ -80,14 +80,16 @@ To create and bind the Eureka server instance:
 1. Create a Eureka server instance.
 
    TAS
-   : Create a service instance by running:
+   : Create a service instance by
+     running:
 
      ```console
      cf create-service
      ```
 
    Tanzu Application Platform
-   : Create a `EurekaServer` resource.
+   : For Tanzu Application Platform,
+     you must create a `EurekaServer` resource.
 
 1. Bind the Eureka server instance to the app.
 
