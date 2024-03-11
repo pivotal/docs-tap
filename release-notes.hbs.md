@@ -785,6 +785,14 @@ while installing through Tanzu Mission Control.
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical
   ImageVulnerabilityScans you can ignore if the previous submission was successful.
 
+#### <a id='1-8-0-aws-services-ki'></a> v1.8.0 Known issues: AWS Services
+
+- When creating claims for the Amazon MQ (RabbitMQ), one of the key names in the resulting binding Secret
+  is `endpoint`, which does not match the name of the key expected by the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
+  library, which uses `addresses`. As such, when binding spring-based workloads to the Amazon MQ (RabbitMQ)
+  service, the connection will not be established automatically.
+  For a workaround, see [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
+
 #### <a id='1-8-0-bitnami-services-ki'></a> v1.8.0 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
