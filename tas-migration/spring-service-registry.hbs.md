@@ -79,29 +79,27 @@ To create and bind the Eureka server instance:
 
 1. Create a Eureka server instance.
 
-   TAS
-   : Create a service instance by
-     running:
+    TAS
+    : Create a service instance by running:
 
-     ```console
-     cf create-service
-     ```
+      ```console
+      cf create-service
+      ```
 
-   Tanzu Application Platform
-   : For Tanzu Application Platform,
-     you must create a `EurekaServer` resource.
+    Tanzu Application Platform
+    : For Tanzu Application Platform, you must create a `EurekaServer` resource.
 
 1. Bind the Eureka server instance to the app.
 
-   TAS
-   : Include the name of the service instance in the `services` key in the app manifest.
-     Alternatively, use `cf bind-service` to bind the service to the app.
+    TAS
+    : Include the name of the service instance in the `services` key in the app manifest.
+      Alternatively, use `cf bind-service` to bind the service to the app.
 
-   Tanzu Application Platform
-   : Create a `ResourceClaim` resource, specifying the details of the `EurekaServer` resource in the
-     `spec.ref` section of the configuration.
-     Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the `Workload`
-     resource.
+    Tanzu Application Platform
+    : Create a `ResourceClaim` resource, specifying the details of the `EurekaServer` resource in the
+      `spec.ref` section of the configuration.
+      Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the `Workload`
+      resource.
 
 ## <a id="deploy-tap"></a> Deploy the Greeter app to Tanzu Application Platform
 
