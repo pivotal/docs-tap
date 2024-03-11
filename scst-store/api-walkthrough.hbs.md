@@ -1,6 +1,6 @@
 # API walkthrough for Supply Chain Security Tools - Store
 
-This topic tells you how to make an API call that you can use with Supply Chain Security Tools(SCST) - Store.
+This topic tells you how to make an API call that you can use with Supply Chain Security Tools (SCST) - Store.
 For information about using the SCST - Store API, see
 [API reference for Supply Chain Security Tools - Store](api.hbs.md).
 
@@ -8,7 +8,7 @@ For information about using the SCST - Store API, see
 
 This procedure uses Ingress, if Tanzu Application Platform is deployed without Ingress, see
 [Use your NodePort with Supply Chain Security Tools - Store](use-node-port.hbs.md) and
-[Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md).Complete the following steps:
+[Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md). Complete the following steps:
 
 1. Switch to the kubectl context or kubeconfig to target the View cluster.
 
@@ -49,7 +49,7 @@ This procedure uses Ingress, if Tanzu Application Platform is deployed without I
 5. Using the `api/imageReport` endpoint as an example, create a post request:
 
     ```console
-    curl https://metadata-store.INGRESS-DOMAIN/api/IMAGE-REPORT \
+    curl https://metadata-store.INGRESS-DOMAIN/API/IMAGE-REPORT \
         --cacert /tmp/ca.crt \
         -H "Authorization: Bearer ${METADATA_STORE_ACCESS_TOKEN}" \
         -H "Content-Type: application/json" \
