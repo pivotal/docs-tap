@@ -35,7 +35,7 @@ At a high level, SSR on TAS and SSR on Tanzu Application Platform operate as fol
 
 Follow these steps to deploy the Greeter app to TAS:
 
-1. Create an instance of the service registry product from Marketplace.
+1. Create an instance of the service registry product from Marketplace by running:
 
    ```console
    cf create-service p.service-registry standard greeter-service-registry
@@ -80,7 +80,7 @@ To create and bind the Eureka server instance:
 1. Create a Eureka server instance.
 
    TAS
-   : Create a service instance:
+   : Create a service instance by running:
 
      ```console
      cf create-service
@@ -93,13 +93,11 @@ To create and bind the Eureka server instance:
 
    TAS
    : Include the name of the service instance in the `services` key in the app manifest.
-
      Alternatively, use `cf bind-service` to bind the service to the app.
 
    Tanzu Application Platform
    : Create a `ResourceClaim` resource, specifying the details of the `EurekaServer` resource in the
      `spec.ref` section of the configuration.
-
      Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the `Workload`
      resource.
 
