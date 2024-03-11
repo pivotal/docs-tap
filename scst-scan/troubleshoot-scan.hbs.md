@@ -583,10 +583,10 @@ Provide default values for the `Capabilities` or `SeccompProfile` field:
 
 ```yaml
 securityContext:
-  allowPrivilegeEscalation: true
+  allowPrivilegeEscalation: false
   capabilities: {}
-  privileged: true
-  runAsNonRoot: false
+  privileged: false
+  runAsNonRoot: true
   seccompProfile:
     type: RuntimeDefault
 ```
@@ -595,7 +595,7 @@ securityContext:
 
 **Symptom:**
 
-SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. 
+SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer.
 
 **Solution:**
 
