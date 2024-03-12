@@ -1,6 +1,6 @@
-# Migrate Spring Config Server apps from TAS to Tanzu Application Platform
+# Migrate Spring Config Server apps to Tanzu Application Platform
 
-Tanzu Application Service (TAS) and Tanzu Application Platform (commonly known as TAP) both enable
+Tanzu Application Service (commonly known as TAS) and Tanzu Application Platform (commonly known as TAP) both enable
 you to load Java properties into an app from a configuration repository.
 
 You can migrate an app running on TAS with Spring Configuration Service (SCS) to Tanzu Application
@@ -24,9 +24,11 @@ At a high level SCS and ACS operate as follows:
 This topic uses the [cook](https://github.com/spring-cloud-services-samples/cook) sample app to
 demonstrate how to migrate.
 
-## <a id="deploy-to-tas"></a> Deploy the `cook` app to TAS
+## <a id="deploy-app-to-tas"></a> Deploy the `cook` app to Tanzu Application Service
 
-At a high level, the steps to deploy on TAS are:
+This section describes, at a high level, the steps for deploying an example `cook` app on Tanzu Application Service.
+
+To deploy the app:
 
 1. Create an SCS instance that points to the
    [cook-config GitHub repository](https://github.com/spring-cloud-services-samples/cook-config) by
@@ -125,9 +127,9 @@ Tanzu Application Platform/ACS
       the path where the `serviceClaims` mechanism mounted them. For more information, see
       [ACS documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.3/acs/GUID-gettingstarted-configuringworkloads.html#using-configuration-in-a-workload).
 
-## <a id="deploy-cook-to-tap"></a> Deploy the `cook` app to Tanzu Application Platform
+## <a id="deploy-app-to-tap"></a> Deploy the `cook` app to Tanzu Application Platform
 
-Apply the following resources to Tanzu Application Platform in order to run the `cook` sample:
+Apply the following resources to Tanzu Application Platform to run the `cook` sample:
 
 ```yaml
 apiVersion: "config.apps.tanzu.vmware.com/v1alpha4"

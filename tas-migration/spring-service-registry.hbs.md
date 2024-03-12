@@ -1,24 +1,28 @@
 # Migrate Spring Service Registry apps to Tanzu Application Platform
 
-This topic tells you how to migrate Spring Service Registry apps to Tanzu Application Platform
-(commonly known as TAP).
+This topic tells you how to migrate Spring Service Registry apps from Tanzu Application Service
+(commonly known as TAS) to Tanzu Application Platform (commonly known as TAP).
 This topic uses the sample [Greeter app](https://github.com/spring-cloud-services-samples/greeting/tree/main)
 in the procedures to illustrate how migration works.
 
-Tanzu Application Service (TAS) and Tanzu Application Platform can both provide apps with an
+Tanzu Application Service and Tanzu Application Platform can both provide apps with an
 implementation of the Service Discovery pattern. You can migrate an app running on TAS with Spring
 Service Registry (SSR) to Tanzu Application Platform without changing the app code.
 
-At a high level, SSR on TAS and SSR on Tanzu Application Platform operate as follows:
+At a high level, SSR on Tanzu Application Service and SSR on Tanzu Application Platform operate as follows:
 
-- Creating a `service-registry` instance in a TAS space creates a `cf` app running a Eureka server.
+- **For Tanzu Application Service:**
+
+  Creating a `service-registry` instance in a TAS space creates a `cf` app running a Eureka server.
 
   TAS apps bound to this service instance are autowired with a Spring Cloud Netflix Eureka client
   configuration bean. The presence of the `VCAP_APPLICATION` environment variable triggers the bean
   to examine the `VCAP_SERVICES` environment variable to inject `eureka.client.*` properties into
   the app by using connection information in `VCAP_SERVICES`.
 
-- Tanzu Application Platform `EurekaServer` instances are Kubernetes custom resources. Each
+- **For Tanzu Application Platform:**
+
+  `EurekaServer` instances are Kubernetes custom resources. Each
   `EurekaServer` instance is reconciled into a Kubernetes deployment running a Eureka server with a
   bindable `Secret` object containing connection information for that Eureka server.
 
@@ -31,9 +35,12 @@ At a high level, SSR on TAS and SSR on Tanzu Application Platform operate as fol
   Eureka server, based on a binding `type` key in the binding secret, and injects `eureka.client.*`
   properties into the app by using connection information in the mounted secret.
 
-## <a id="deploy-tas"></a> Deploy the Greeter app to TAS
+## <a id="deploy-app-to-tas"></a> Deploy the `greeter` app to Tanzu Application Service
 
-Follow these steps to deploy the Greeter app to TAS:
+This section describes, at a high level, the steps for deploying an example `greeter` app
+on Tanzu Application Service.
+
+To deploy the app:
 
 1. Create an instance of the service registry product from Marketplace by running:
 
@@ -73,40 +80,43 @@ file in GitHub.
 For more information about Service Registry, see the
 [TAS documentation](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.2/spring-cloud-services/GUID-service-registry-index.html).
 
-## <a id="eureka"></a> Create and bind the Eureka server instance
+## <a id="migrate-tas-to-tap"></a> Migrate from Tanzu Application Service to Tanzu Application Platform
 
-To create and bind the Eureka server instance:
+This section describes the areas to translate when creating a Tanzu Application Platform workload
+that deploys the same app.
 
-1. Create a Eureka server instance.
+### <a id="create-db"></a>Create a database instance
 
-    TAS
-    : Create a service instance by running:
+Tanzu Application Service
+: Create a service instance by running:
 
-      ```console
-      cf create-service
-      ```
+  ```console
+  cf create-service
+  ```
 
-    Tanzu Application Platform
-    : For Tanzu Application Platform, you must create a `EurekaServer` resource.
+Tanzu Application Platform
+: For Tanzu Application Platform, you must create a `EurekaServer` resource.
 
-1. Bind the Eureka server instance to the app.
+### <a id="bind-db"></a>Bind the database instance to the app
 
-    TAS
-    : Include the name of the service instance in the `services` key in the app manifest.
-      Alternatively, use `cf bind-service` to bind the service to the app.
+Tanzu Application Service
+: Include the name of the service instance in the `services` key in the app manifest.
+  Alternatively, use `cf bind-service` to bind the service to the app.
 
-    Tanzu Application Platform
-    : Create a `ResourceClaim` resource, specifying the details of the `EurekaServer` resource in the
-      `spec.ref` section of the configuration.
-      Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the `Workload`
+Tanzu Application Platform
+: Create a `ResourceClaim` resource, specifying the details of the `EurekaServer` resource in the
+  `spec.ref` section of the configuration.
+  Specify the `ResourceClaim` resource in the `spec.serviceClaims` section of the `Workload`
       resource.
 
-## <a id="deploy-tap"></a> Deploy the Greeter app to Tanzu Application Platform
+## <a id="deploy-app-to-tap"></a> Deploy the `greeter` app to Tanzu Application Platform
 
+This section describes, at a high level, the steps for deploying an example `greeter` app
+on Tanzu Application Platform.
 For more information about how to deploy a service registry instance and configure workloads, see
 [Overview of Service Registry](../service-registry/overview.hbs.md).
 
-To deploy the Greeter app to Tanzu Application Platform:
+To deploy the app:
 
 1. Install the Eureka Service Registry package by running:
 

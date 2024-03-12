@@ -4,7 +4,7 @@ This topic tells you how to migrate single-sign on services from Tanzu Applicati
 Platform (TAP).
 
 Application Single Sign-On for VMware Tanzu provides single sign-on services for VMware Tanzu Application
-Platform. There is a comparable offering available for VMwate Tanzu Application Service. 
+Platform. There is a comparable offering available for VMwate Tanzu Application Service.
 For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-index.html).
 
 ## <a id="concept"></a> Concept comparison
@@ -47,15 +47,15 @@ The following features available in Single Sign-On for VMware Tanzu Application 
 
 - **[Resource management](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html):** AppSSO operates solely on OAuth2 scopes, without using the concepts of permissions or resources.
 
-    - In SSO for TAS, Operators control the availability of scopes for a specific Service Plan in a space using the Developer Dashboard. For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html). 
+    - In SSO for TAS, Operators control the availability of scopes for a specific Service Plan in a space using the Developer Dashboard. For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-resources.html).
 
         When an app is bound by using a Service Binding, an OAuth2 Client is created for that app in User Account and Authentication (UAA). The client can only request scopes that match the permissions pre-configured by operators.
-      
+
     - In AppSSO, Developers can specify OAuth2 scopes when creating a `ClientRegistration` or a `ClassClaim`, with role management aggregated in the well-known roles of the Tanzu Application Platform. For more information, see [RBAC for AppSSO](../app-sso/reference/rbac.hbs.md).
 
 - **Unsecured Lightweight Directory Access Protocol (LDAP):** LDAP traffic must be secured with TLS by using the `ldaps://` protocol.
 
-## <a id="prereqs"></a> Migration pre-requisites
+## <a id="prereqs"></a> Migration prerequisites
 
 The migration scripts use:
 
@@ -64,7 +64,7 @@ The migration scripts use:
 - python v3.9 and later for migrating data.
 - several utilities, such as kubectl and jq.
 
-If you do not already have an admin client for your UAA Identity Zone, you must create an UAA Admin client first. 
+If you do not already have an admin client for your UAA Identity Zone, you must create an UAA Admin client first.
 For more information, see the [Single Sign-On for VMware Tanzu Application Service documentation](https://docs.vmware.com/en/Single-Sign-On-for-VMware-Tanzu-Application-Service/1.14/sso/GUID-manage-clients-api.html#creating)
 
 ## <a id="service-plans"></a> Migrate Service Plans to AuthServer custom resources
@@ -95,7 +95,7 @@ Cross-origin resource sharing (CORS) configuration is available under `config.co
 uaac curl "/identity-zones" -b | jq ".[] | select(.subdomain == \"$SUBDOMAIN\") | .config.corsPolicy"
 ```
 
-You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.cors`. 
+You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.cors`.
 For more information, see [Public clients and CORS for AppSSO](../app-sso/how-to-guides/service-operators/cors.hbs.md),
 or the `kubectl explain AuthServer.spec.cors` API documentation.
 
@@ -113,7 +113,7 @@ Fields can be `null` or equal to `-1`, indicating configuration at the UAA level
 uaac curl "/identity-zones" -b | jq ".[] | select(.subdomain == \"\") | .config.tokenPolicy"
 ```
 
-You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.token`. 
+You can port the values into AppSSO's `AuthServer` by using `AuthServer.spec.token`.
 For more information, see [Token settings for Application Single Sign-On](../app-sso/how-to-guides/service-operators/token-settings.hbs.md), or the `kubectl explain AuthServer.spec.token` API documentation.
 
 ### <a id="identity-providers"></a> Migrate Identity Providers
@@ -138,7 +138,7 @@ Most of the configuration for OpenID Connect (OIDC) or LDAP-type identity provid
           jti: ...
     ```
 
-1. Save the following script as `migration.py`. 
+1. Save the following script as `migration.py`.
 
     ```python
     #!/usr/bin/env python3
@@ -514,7 +514,7 @@ _: #@ template.replace(client)
 Use YTT to convert clients into placeholders for `ClientRegistration`s:
 
 ```bash
-ytt -f client-registration-template.yaml --data-value-yaml clients="$(./get-clients.sh)" 
+ytt -f client-registration-template.yaml --data-value-yaml clients="$(./get-clients.sh)"
 ```
 
 ### <a id="service-to-service"></a> Service-to-Service flows

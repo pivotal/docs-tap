@@ -1,10 +1,10 @@
-# Migrate apps bound to Spring Cloud Gateway from TAS to Tanzu Application Platform
+# Migrate Spring Cloud Gateway apps to Tanzu Application Platform
 
 This topic tells you how to migrate to Spring Cloud Gateway (SCG) for Kubernetes from a Tanzu
-Application Service (TAS) offering of SCG or an open-source implementation of SCG. An example
+Application Service (commonly known as TAS) offering of SCG or an open-source implementation of SCG. An example
 `animal-rescue` app is used to illustrate the high-level steps.
 
-## <a id="deploy-app-to-tas"></a> Deploy the `animal-rescue` app to TAS
+## <a id="deploy-app-to-tas"></a> Deploy the `animal-rescue` app to Tanzu Application Service
 
 This section describes, at a high level, the steps for deploying an example `animal-rescue` app and
 configuring SCG on TAS. For more detailed instructions, see the
@@ -15,13 +15,13 @@ configuring SCG on TAS. For more detailed instructions, see the
 Create an instance of SCG from Marketplace by running `cf create-service`.
 
 ```console
-cf create-service  p.gateway standard $GATEWAY_NAME -c $GATEWAY_CONFIG_FILE
+cf create-service  p.gateway standard GATEWAY-NAME -c GATEWAY-CONFIG-FILE
 ```
 
 Where:
 
-- `$GATEWAY_NAME` is the name of the SCG instance
-- `$GATEWAY_CONFIG_FILE` is the SCG instance configuration file
+- `GATEWAY-NAME` is the name of the SCG instance
+- `GATEWAY-CONFIG-FILE` is the SCG instance configuration file
 
 For more information, see
 [app-gateway-config.json](https://github.com/spring-cloud-services-samples/animal-rescue/blob/main/gateway/api-gateway-config.json)
@@ -39,14 +39,14 @@ Binding
   1. Bind the SCG service to your app by running:
 
      ```console
-     cf bind-service $APP_NAME $GATEWAY_NAME -c $ROUTE_CONFIG_FILE
+     cf bind-service APP-NAME GATEWAY-NAME -c ROUTE-CONFIG-FILE
      ```
 
      Where:
 
-     - `$APP_NAME` is the app name.
-     - `$GATEWAY_NAME` is the name of the SCG instance created in the previous step
-     - `$ROUTE_CONFIG_FILE` is the route configuration file used for configuring routes of the app
+     - `APP-NAME` is the app name.
+     - `GATEWAY-NAME` is the name of the SCG instance created in the previous step
+     - `ROUTE-CONFIG-FILE` is the route configuration file used for configuring routes of the app
 
   1. Restart your app by running:
 
@@ -170,7 +170,7 @@ in terms of the configuration options available to those in Spring Cloud Gateway
 
 ### <a id="create-gateway-mapping"></a> Create an SCG mapping
 
-In TAS, SCG tile services use the Service Broker API and service-binding approach for apps to
+In TAS, the SCG tile services use the Service Broker API and service-binding approach for apps to
 set up container-network routing of requests to a service instance.
 
 Spring Cloud Gateway for Kubernetes provides a `SpringCloudGatewayMapping` resource definition to
