@@ -170,7 +170,7 @@ For installation and configuration of various data services on Tanzu Application
 For more information about claiming an instance of MySQL using Bitnami services, see the tutorial
 [Working with Bitnami Services](../bitnami-services/tutorials/working-with-bitnami-services.hbs.md).
 
-## <a id="gradle"></a> Using Gradle for building spring applications
+## <a id="gradle"></a> Using Gradle for building Spring applications
 
 By default, when the `bootJar` task is configured, the `jar` task is also configured and uses
 `plain` as the convention for its archive classifier.
@@ -178,7 +178,7 @@ This ensures that `bootJar` and `jar` are executed and causes the executable arc
 archive to be built at the same time. For more information, see the
 [Spring documentation](https://docs.spring.io/spring-boot/docs/2.5.1/gradle-plugin/reference/htmlsingle/#packaging-executable.and-plain-archives).
 
-### <a id="spring-boot-buildpack"></a> Spring-boot buildpack behavior
+### <a id="spring-boot-buildpack"></a> Spring Boot buildpack behavior
 
 The [gradle buildpack](https://github.com/paketo-buildpacks/gradle) produces both `<ARTIFACT_NAME>.jar`
 and `<ARTIFACT_NAME>-plain.jar`.
@@ -201,7 +201,7 @@ jar {
 Alternatively you can set `BP_GRADLE_ADDITIONAL_BUILD_ARGUMENTS="-x jar"` to prevent generating the
 plain JAR without modifying the `build.gradle` file.
 
-## <a id="maven"></a> Using Maven for building spring applications
+## <a id="maven"></a> Using Maven for building Spring applications
 
 - No changes are required.
 - When both Maven and Gradle builds are available, for example, in the case of the [greeting repo](https://github.com/spring-cloud-services-samples/greeting),
