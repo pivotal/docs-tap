@@ -3,7 +3,7 @@ template_variables:
   tap_version: 1.8.2
   url_version: 1.8
   hide_content: true
-  staging_toggle: staging
+  staging_toggle: docs
   app-sso:
     version: 5.0
   tanzu-cli:
