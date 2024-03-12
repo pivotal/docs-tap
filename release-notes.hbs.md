@@ -2,10 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
 
-# Tanzu Application release notes
-
-This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
-
 ## <a id='1-8-2'></a> v1.8.2
 
 **Release Date**: 09 April 2024
