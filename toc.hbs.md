@@ -111,7 +111,7 @@
       - [Supply chains](getting-started/about-supply-chains.hbs.md)
       - [Vulnerability scan and metadata storage](getting-started/about-vulnerability-scan-store.hbs.md)
       - [Consume services](getting-started/about-consuming-services.hbs.md)
-- [Migrate TAS apps](tas-migration/overview.hbs.md)
+- [Migrate apps from TAS](tas-migration/overview.hbs.md)
     - [Overview](tas-migration/overview.hbs.md)
     - [Compare service management](tas-migration/services.hbs.md)
     - [Migrate Single Sign-On](tas-migration/sso-for-tas.hbs.md)
