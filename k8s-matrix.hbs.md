@@ -1,6 +1,6 @@
 # Kubernetes version support for Tanzu Application Platform
 
-The following is a matrix table providing details of the compatible Kubernetes 
+The following is a matrix table providing details of the compatible Kubernetes
 cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
 
 <table>
@@ -17,7 +17,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   </tr>
   <tr>
     <td>VMware Tanzu Kubernetes Grid</td>
-    <td>v2.4.0, v2.3.0</td>
+    <td>v2.5.0, v2.4.0</td>
   </tr>
   <tr>
     <td>VMware Tanzu Kubernetes Grid Integrated Edition with vSphere</td>
@@ -25,7 +25,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   </tr>
   <tr>
     <td>vSphere with Tanzu</td>
-    <td>v8.0.2 or later, v7.0.3p or later</td>
+    <td>v8.0 Update 1c or later, v7.0 Update 3p or later</td>
   </tr>
   <tr>
     <td>OpenShift</td>
