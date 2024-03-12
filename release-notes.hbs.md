@@ -661,7 +661,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Build Service                                              | 1.11.18        |
 | Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.8          |
 | Tanzu Developer Portal Configurator (beta)                       | 0.1.2          |
-| Tanzu CLI                                                        | 1.1.0          |
+| Tanzu CLI                                                        | 1.2.0          |
 | Tekton Pipelines                                                 | 0.41.0+tap.9   |
 
 ---
