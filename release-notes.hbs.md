@@ -528,7 +528,7 @@ enable TUF:
 
 ```yaml
 policy:
-  tuf_enabled: false
+  tuf_enabled: true
 ```
 
 #### <a id='1-8-1-scst-scan-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Scan
