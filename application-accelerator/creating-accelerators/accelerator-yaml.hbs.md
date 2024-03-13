@@ -62,7 +62,7 @@ The following option properties are used by both the UI and the engine.
 - **name**:
   Each option must have a unique, camelCase name. The option value entered by a user is made
   available as a [SPeL](spel-samples.md) variable name. For example, `#deploymentType`.
-  
+
   You can specify your own default name by including:
   ```yaml
   options:
@@ -101,7 +101,7 @@ The following option properties are used by both the UI and the engine.
   anchor it using `^` and `$`.
 
   Finally, backslashes in a YAML string using double quotes must be escaped, so to match a number,
-  write `validationRegex: "\\d+"` or use another string style.
+  write `validationRegex: "\\\\d+"` or use another string style.
 
 The following option properties are for UI purposes only.
 
