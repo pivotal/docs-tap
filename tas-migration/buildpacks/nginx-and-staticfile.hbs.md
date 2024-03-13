@@ -1,26 +1,29 @@
-# Migrate NGINX & Staticfile buildpack
+# Migrate to the NGINX and Staticfile Cloud Native Buildpack
 
-The TAP Web Servers Buildpack provides the functionalities corresponding to the TAS NGINX buildpack and TAS Staticfile Buildpack. See more details below on migration
+This topic tells you how to migrate your NGINX app from using a Cloud Foundry buildpack for Tanzu Application Service
+(commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
+
+The Tanzu Application Platform Web Servers Buildpack provides the functionalities corresponding to the Tanzu Application Service NGINX buildpack and Tanzu Application Service Staticfile Buildpack. See more details below on migration
 
 <!-- do users do all these sections in order or do they choose the section for their use case -->
 
-## Install a specific NGINX version
+## <a id="versions"></a> Install a specific NGINX version
 
-| Feature                                                                                                 | TAS                  | TAP                       |
-| ------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------- |
-| Override app-based version detection (see Migration from `buildpack.yml` to environment variable below) | Using `builpack.yml` | Using `$BP_NGINX_VERSION` |
+| Feature                                                                                                 | Tanzu Application Service | Tanzu Application Platform |
+| ------------------------------------------------------------------------------------------------------- | ------------------------- | -------------------------- |
+| Override app-based version detection (see Migration from `buildpack.yml` to environment variable below) | Using `builpack.yml`      | Using `$BP_NGINX_VERSION`  |
 
-### Migration from buildpack.yml to environment variable
+### <a id="yml-env-var"></a> Migrate from `buildpack.yml` to environment variable
 
-TAS buildpacks allows user to specify an NGINX version (or a version line i.e. mainline or stable)
-using a buildpack.yml, for example:
+Tanzu Application Service buildpacks allows user to specify an NGINX version (or a version line i.e. mainline or stable)
+using a `buildpack.yml`, for example:
 
 ```yaml
 nginx:
   version: mainline
 ```
 
-In TAP, set the `$BP_NGINX_VERSION` environment variable to specify which version (or version line)
+In Tanzu Application Platform, set the `$BP_NGINX_VERSION` environment variable to specify which version (or version line)
 should be installed.
 
 Here’s the spec section from a sample `workload.yaml`:
@@ -33,17 +36,17 @@ spec:
        value: mainline
 ```
 
-## Templating the nginx config
+## <a id="templating"></a> Templating the nginx config
 
-The TAP Web Servers buildpack supports templating in the `nginx.conf` file just like in TAS, such as
+The Tanzu Application Platform Web Servers buildpack supports templating in the `nginx.conf` file just like in TAS, such as
 `\{{port}}`, `\{{env "YOUR-VARIABLE"}}`, `\{{module "module_name"}}`.
 
 The template `\{{nameservers}}` isn’t supported as it was intended just for the Cloud Foundry platform.
 
-## Static Web apps
+## <a id="static-apps"></a> Static Web apps
 
-The TAP Web Servers buildpack can automatically generate an `nginx.conf` for your app when built with
-the environment $BP_WEB_SERVER=nginx. This is useful for apps that run in TAS using the Staticfile Buildpack.
+The Tanzu Application Platform Web Servers buildpack can automatically generate an `nginx.conf` for your app when built with
+the environment $BP_WEB_SERVER=nginx. This is useful for apps that run in Tanzu Application Service using the Staticfile Buildpack.
 It is possible to configure the generated `nginx.conf` in combination with other environment variables
 with like:
 
@@ -70,14 +73,14 @@ spec:
       value: "true"
 ```
 
-## Set up Basic Authentication
+## <a id="basic-auth"></a> Set up Basic Authentication
 
-| Feature                 | TAS                       | TAP                                                       |
+| Feature                 | Tanzu Application Service                       | Tanzu Application Platform                                                       |
 | ----------------------- | ------------------------- | --------------------------------------------------------- |
 | Provide HTTP Basic Auth | Using a `Staticfile.auth` | Using a binding of type `htpasswd` containing `.htpasswd` |
 
-Instead of a file at the root of the app in TAP Staticfile buildpack applications, you would provide
-basic authentication credentials via a service binding with the TAP Web Servers buildpack.
+Instead of a file at the root of the app in Tanzu Application Platform Staticfile buildpack applications, you would provide
+basic authentication credentials via a service binding with the Tanzu Application Platform Web Servers buildpack.
 
 Create the service binding as a secret like this example:
 
@@ -114,4 +117,4 @@ spec:
         apiVersion: v1
 ```
 
-For more details about service bindings, please see TAP documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
+For more details about service bindings, please see Tanzu Application Platform documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
