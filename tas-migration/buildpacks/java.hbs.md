@@ -1,4 +1,4 @@
-# Migrate to Java Cloud Native Buildpack
+# Migrate to the Java Cloud Native Buildpack
 
 This topic tells you how to migrate your Java app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).

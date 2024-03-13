@@ -1,4 +1,7 @@
-# Migrate NGINX & Staticfile buildpack
+# Migrate to the Node.js Cloud Native Buildpack
+
+This topic tells you how to migrate your Node.js app from using a Cloud Foundry buildpack for Tanzu Application Service
+(commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
 <!-- do users do all these sections in order or do they choose the section for their use case -->
 
