@@ -1,7 +1,7 @@
-# Migrate to .NET Core Cloud Native Buildpack
+# Migrate to the .NET Core Cloud Native Buildpack
 
 This topic tells you how to migrate your .NET Core app from using a Cloud Foundry buildpack for Tanzu Application Service
-(commonly known as TAS for VMs) to using a Cloud Native buildpack for Tanzu Application Platform (commonly known as TAP).
+(commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
 <!-- do users do all these sections in order or do they choose the section for their use case -->
 
@@ -15,9 +15,9 @@ installing specific versions.
 | Detects version from `.csproj` </br> `<RuntimeFrameworkVersion>` or `<TargetFramework>`                               | ✅                        | ✅                                 |
 | Detects version from `runtimeconfig.json` </br> `runtimeOptions.framework.version`                                    | ✅                        | ✅                                 |
 | Detects versions from `.fsproj` and `.vbproj.`                                                                        | ❌                        | ✅                                 |
-| Override app-based version detection (see [Migration from buildpack.yml to environment variable](#yml-env-var) below) | Use `builpack.yml`        | Use `$BP_DOTNET_FRAMEWORK_VERSION` |
+| Override app-based version detection (see [Migrate from buildpack.yml to environment variable](#yml-env-var) below) | Use `builpack.yml`        | Use `$BP_DOTNET_FRAMEWORK_VERSION` |
 
-### <a id="yml-env-var"></a> Migrate from a `buildpack.yml` to environment variable
+### <a id="yml-env-var"></a> Migrate from `buildpack.yml` to environment variable
 
 This section compares configuring the Tanzu Application Service `buildpack.yml` to configuring the
 Tanzu Application Platform environment variable.
