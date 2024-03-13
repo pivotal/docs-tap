@@ -36,9 +36,9 @@ spec:
 ## Templating the nginx config
 
 The TAP Web Servers buildpack supports templating in the `nginx.conf` file just like in TAS, such as
-`{{port}}`, `{{env "YOUR-VARIABLE"}}`, `{{module "module_name"}}`.
+`\{{port}}`, `\{{env "YOUR-VARIABLE"}}`, `\{{module "module_name"}}`.
 
-The template `{{nameservers}}` isn’t supported as it was intended just for the Cloud Foundry platform.
+The template `\{{nameservers}}` isn’t supported as it was intended just for the Cloud Foundry platform.
 
 ## Static Web apps
 
