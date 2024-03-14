@@ -1,6 +1,6 @@
 # Set up the Supply Chain Component
 
-This topic describes tells you how to install the Trivy Supply Chain Component, create a Custom Supply Chain Component using SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
+This topic describes tells you how to install the Trivy Supply Chain Component, create a Custom Supply Chain Component using SCST - Scan 2.0, and view the components that are available to use in the Tanzu Supply Chain.
 
 ## <a id="install-trivy-sc"></a> Install Trivy Supply Chain Component
 
