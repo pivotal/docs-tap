@@ -122,10 +122,10 @@ This might cause the package to not reconcile correctly if the default TUF mirro
 To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
 enable TUF:
 
-```yaml
-policy:
-  tuf_enabled: true
-```
+  ```yaml
+  policy:
+    tuf_enabled: true
+  ```
 
 ---
  
