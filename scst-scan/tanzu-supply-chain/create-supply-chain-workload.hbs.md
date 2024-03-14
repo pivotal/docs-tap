@@ -10,8 +10,6 @@ This section tells you how to create a workload from an existing Supply Chain th
 - [Trivy Supply Chain Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-trivy) 
 - [Custom Scanning Component](create-supply-chain-with-app-scanning.hbs.md#scan-2.0-and-custom-scanning)
 
-For more information about how to create a workload, see [Work with Workloads](../../supply-chain/development/how-to/discover-workloads.hbs.md).
-
 You can define a workload in YAML or use the Tanzu Workload CLI plug-in.
 
 Using YAML
