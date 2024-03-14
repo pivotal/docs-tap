@@ -7,22 +7,25 @@ Authoring profile (beta). This profile installs all the required packages.
 
 The Authoring profile has the following additional packages that the Iterate profile does not have:
 
-## <a id='tsc-packages'></a>Tanzu Supply Chain packages
+## <a id='tsc-packages'></a>Packages
 
-- `supply-chain.apps.tanzu.vmware.com`
-- `supply-chain-catalog.apps.tanzu.vmware.com`
-- `managed-resource-controller.apps.tanzu.vmware.com`
+- Tanzu Supply Chain packages
 
-## <a id='catalog-packages'></a>Catalog Component packages
+  - `supply-chain.apps.tanzu.vmware.com`
+  - `supply-chain-catalog.apps.tanzu.vmware.com`
+  - `managed-resource-controller.apps.tanzu.vmware.com`
 
-- `alm-catalog.component.apps.tanzu.vmware.com`
-- `buildpack-build.component.apps.tanzu.vmware.com`
-- `conventions.component.apps.tanzu.vmware.com`
-- `git-writer.component.apps.tanzu.vmware.com`
-- `source.component.apps.tanzu.vmware.com`
-- `trivy.app-scanning.component.apps.tanzu.vmware.com`
+- Catalog Component packages
 
-- App Scanning
+  - `alm-catalog.component.apps.tanzu.vmware.com`
+  - `buildpack-build.component.apps.tanzu.vmware.com`
+  - `conventions.component.apps.tanzu.vmware.com`
+  - `git-writer.component.apps.tanzu.vmware.com`
+  - `source.component.apps.tanzu.vmware.com`
+  - `trivy.app-scanning.component.apps.tanzu.vmware.com`
+
+- App Scanning package
+
   - app-scanning.apps.tanzu.vmware.com
 
 ## Install Tanzu Supply Chain
