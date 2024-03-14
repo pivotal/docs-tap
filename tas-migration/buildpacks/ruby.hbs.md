@@ -5,16 +5,16 @@ This topic tells you how to migrate your Ruby app from using a Cloud Foundry bui
 
 <!-- do users do all these sections in order or do they choose the section for their use case -->
 
-## Specifying Ruby Version to Install
+## <a id="versions"></a> Specifying Ruby Version to Install
 
-| Feature                                                  | TAS | TAP |
+| Feature                                                  | Tanzu Application Service | Tanzu Application Platform |
 | -------------------------------------------------------- | --- | --- |
 | Detects version from `Gemfile`</br>`ruby '~> <version>'` | ✅  | ✅  |
 | Detects version from `$BP_MRI_VERSION` env var           | ❌  | ✅  |
 
 ### Migration to environment variable
 
-In TAP, users set the `$BP_MRI_VERSION` environment variable to specify which version of MRI should be
+In Tanzu Application Platform, users set the `$BP_MRI_VERSION` environment variable to specify which version of MRI should be
 installed, the version can be set to any valid semver version or version constraint (e.g. 2.7.4, 2.7.*).
 The buildpack will automatically install an MRI version that is compatible with the selected version.
 
@@ -37,29 +37,29 @@ spec:
 
 ## Specifying Bundler Version to Install
 
-| Feature                                                         | TAS | TAP |
+| Feature                                                         | Tanzu Application Service | Tanzu Application Platform |
 | --------------------------------------------------------------- | --- | --- |
 | Detects version from Gemfile.lock</br>`BUNDLED_WITH <version>'` | ✅  | ✅  |
 | Detects version from `$BP_BUNDLER_VERSION` env var              | ❌  | ✅  |
 
 ## Specifying Jruby Version to Install
 
-This feature is not supported in TAP.
+This feature is not supported in Tanzu Application Platform.
 
-| Feature                      | TAS | TAP |
+| Feature                      | Tanzu Application Service | Tanzu Application Platform |
 | ---------------------------- | --- | --- |
 | Detects version from Gemfile | ✅  | ❌  |
 
 ## Vendoring App Dependencies Before Build
 
-| Feature                                                           | TAS | TAP |
+| Feature                                                           | Tanzu Application Service | Tanzu Application Platform |
 | ----------------------------------------------------------------- | --- | --- |
 | Packages in the default cache location</br>`bundle package --all` | ✅  | ✅  |
 | Packages in a non-default cache location                          | ❌  | ✅  |
 
 ### Migration to vendoring gems in a non-default cache location
 
-In TAP, users can vendor in their app dependencies prior to a build. To do this, the user should put
+In Tanzu Application Platform, users can vendor in their app dependencies prior to a build. To do this, the user should put
 all `.gem` files into the custom path inside app source code, such as `custom_dir/custom_cache`.
 Then, create a `.bundle/config` file with the `BUNDLE_CACHE_PATH` setting configured:
 <!-- is this ".bundle or .config" or is this ".bundle/config"? -->
@@ -72,14 +72,14 @@ BUNDLE_CACHE_PATH: "custom_dir/custom_cache"
 
 ## Configuring Rake Tasks
 
-| Feature                       | TAS | TAP |
+| Feature                       | Tanzu Application Service | Tanzu Application Platform |
 | ----------------------------- | --- | --- |
 | Non-default Rake task support | ✅  | ✅  |
 | Default Rake task support     | ❌  | ✅  |
 
 ### Migration for Rake tasks
 
-In TAS, users can automatically invoke a Rake task by:
+In Tanzu Application Service, users can automatically invoke a Rake task by:
 Including a `.rake` file containing a Rake task in `lib/tasks`. Example:
 
 ```ruby
@@ -100,7 +100,7 @@ applications:
   command: bundle exec rake cf:on_first_instance db:migrate
 ```
 
-In TAP, users still specify a Rake task, but it goes inside of a Rakefile inside of the root of the
+In Tanzu Application Platform, users still specify a Rake task, but it goes inside of a Rakefile inside of the root of the
 application directory.
 Then, the default Rake task will be automatically set as the start command by the buildpacks.
 
@@ -115,14 +115,14 @@ web: bundle exec rake non_default
 
 ## Building a Rails application
 
-| Feature                      | TAS | TAP |
+| Feature                      | Tanzu Application Service | Tanzu Application Platform |
 | ---------------------------- | --- | --- |
 | Building a Rails application | ✅  | ✅  |
 
-Building Rails applications is supported on both TAS and TAP. In both scenarios, the rails gem
+Building Rails applications is supported on both Tanzu Application Service and Tanzu Application Platform. In both scenarios, the rails gem
 must be specified in the Gemfile.
 
-In TAP, one of the following asset directories must also be present in the application source code:
+In Tanzu Application Platform, one of the following asset directories must also be present in the application source code:
 
 - `app/assets`
 - `lib/assets`
@@ -131,7 +131,7 @@ In TAP, one of the following asset directories must also be present in the appli
 
 ## Supported Web Servers
 
-| Feature      | TAS                                                         | TAP |
+| Feature      | Tanzu Application Service                                                         | Tanzu Application Platform |
 | ------------ | ----------------------------------------------------------- | --- |
 | Rake         | ✅                                                          | ✅  |
 | Thin         | ✅                                                          | ✅  |
@@ -143,7 +143,7 @@ In TAP, one of the following asset directories must also be present in the appli
 
 ## Supported Dependencies
 
-| Feature   | TAS | TAP |
+| Feature   | Tanzu Application Service | Tanzu Application Platform |
 | --------- | --- | --- |
 | Bundler   | ✅  | ✅  |
 | Ruby      | ✅  | ✅  |

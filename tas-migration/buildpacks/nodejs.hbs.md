@@ -3,22 +3,27 @@
 This topic tells you how to migrate your Node.js app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
-<!-- do users do all these sections in order or do they choose the section for their use case -->
+## <a id="versions"></a> Install a specific Node Engine version
 
-## Install a specific Node Engine version
+The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+installing specific versions.
 
-| Feature                                                                     | TAS | TAP                      |
-| --------------------------------------------------------------------------- | --- | ------------------------ |
-| Detects version from package.json </br>Detects version from .nvmrc          | ✅  | ✅                       |
-| Detects version from .node-version                                          | ❌  | ✅                       |
-| Override app-based version detection (see Using environment variable below) | ❌  | Using `$BP_NODE_VERSION` |
+| Feature                                                                | Tanzu Application Service | Tanzu Application Platform |
+| ---------------------------------------------------------------------- | ------------------------- | -------------------------- |
+| Detects version from `package.json `</br>Detects version from `.nvmrc` | ✅                        | ✅                         |
+| Detects version from `.node-version`                                   | ❌                        | ✅                         |
+| Override app-based version detection                                   | ❌                        | Use `$BP_NODE_VERSION`     |
 
-### Using environment variable
+### <a id="override-version-tas"></a> Tanzu Application Service: Override version detection
 
-In TAP, users can set the $`BP_NODE_VERSION` environment variable to specify which version of the
-Node Engine should be installed.
+Specifying the version to install is not supported.
 
-Here’s an excerpt from the spec section of a sample `workload.yaml`:
+### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
+
+In Tanzu Application Platform, users can set the `$BP_NODE_VERSION` environment variable to specify
+which version of the Node Engine to installed.
+
+Example `spec` section from a `workload.yaml`:
 
 ```yaml
 ---
@@ -29,119 +34,139 @@ spec:
        value: "20.*.*"
 ```
 
-## Heap Memory Optimization
+## <a id="heap-memory"></a> Heap memory optimization
 
-| Feature                         | TAS                           | TAP                                   |
-| ------------------------------- | ----------------------------- | ------------------------------------- |
-| Enable Heap Memory Optimization | Using `$OPTIMIZE_MEMORY=true` | Using `$BP_NODE_OPTIMIZE_MEMORY=true` |
+The following table compares how to configure heap memory optimization for Tanzu Application Service
+and Tanzu Application Platform.
 
-## Provide npm Configurations
+| Feature                         | Tanzu Application Service   | Tanzu Application Platform          |
+| ------------------------------- | --------------------------- | ----------------------------------- |
+| Enable Heap Memory Optimization | Use `$OPTIMIZE_MEMORY=true` | Use `$BP_NODE_OPTIMIZE_MEMORY=true` |
 
-| Feature                               | TAS              | TAP                                               |
-| ------------------------------------- | ---------------- | ------------------------------------------------- |
-| Provide a .npmrc with the app         | ✅               | ✅                                                |
-| Provide a .npmrc via service bindings | ❌ Not supported | Using a binding of type npmrc containing `.npmrc` |
+## <a id="npm-config"></a> Provide npm configuration files
 
-In TAP, if your npm config contains sensitive data, you can provide npm config to the build without
-explicitly including the file in the application directory.
+The following table compares how to provide npm configuration files for Tanzu Application Service and
+Tanzu Application Platform.
 
-Create the service binding as a secret like this example:
+| Feature                                      | Tanzu Application Service | Tanzu Application Platform                        |
+| -------------------------------------------- | ------------------------- | ------------------------------------------------- |
+| Provide a `.npmrc` with the app              | ✅                        | ✅                                                |
+| Provide a `.npmrc` by using service bindings | ❌ Not supported          | Use a binding of type npmrc containing `.npmrc` |
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: npmrc-binding
-  namespace: my-apps
-type: service.binding/npmrc
-stringData:
-  type: npmrc
-  .npmrc: |
-    registry=https://registry.npmjs.org/
-    loglevel=warn
-    save-exact=true
-```
+### <a id="npm-config-secret"></a> Configure npm settings with sensitive data
 
-Use the binding in the workload like this example:
+In Tanzu Application Platform, if your npm configuration contains sensitive data, you can provide the npm
+configuration to the build without explicitly including the file in the application directory.
 
-```yaml
----
-kind: Workload
-apiVersion: carto.run/v1alpha1
-metadata:
-name: nodejs-app
-spec:
-# ...
-  params:
-  - name: buildServiceBindings
-    value:
-      - name: npmrc-binding
-        kind: Secret
-        apiVersion: v1
-```
+To provide your npm configuration file without including it in the directory:
 
-For more details about service bindings, see TAP documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
+1. Create the service binding as a secret. For example:
 
-## Provide yarn Configurations
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: npmrc-binding
+      namespace: my-apps
+    type: service.binding/npmrc
+    stringData:
+      type: npmrc
+      .npmrc: |
+        registry=https://registry.npmjs.org/
+        loglevel=warn
+        save-exact=true
+    ```
 
-| Feature                                | TAS              | TAP                                                 |
-| -------------------------------------- | ---------------- | --------------------------------------------------- |
-| Provide a .yarnrc with the app         | ✅               | ✅                                                  |
-| Provide a .yarnrc via service bindings | ❌ Not supported | Using a binding of type yarnrc containing `.yarnrc` |
+1. Use the binding in the `workload.yaml`. For example:
 
-In TAP, if your yarn config contains sensitive data, you can provide yarn config to the build without
-explicitly including the file in the application directory.
+    ```yaml
+    ---
+    kind: Workload
+    apiVersion: carto.run/v1alpha1
+    metadata:
+    name: nodejs-app
+    spec:
+    # ...
+      params:
+      - name: buildServiceBindings
+        value:
+          - name: npmrc-binding
+            kind: Secret
+            apiVersion: v1
+    ```
 
-Create the service binding as a secret like this example:
+For more information about service bindings, see
+[Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: yarnrc-binding
-  namespace: my-apps
-type: service.binding/yarnrc
-stringData:
-  type: yarnrc
-  .yarnrc: |
-    registry "https://registry.yarnpkg.com"
-    flat "true"
-```
+## <a id="yarn-config"></a> Provide yarn Configurations
 
-Use the binding in the workload like this example:
+The following table compares how to provide yarn configuration files for Tanzu Application Service and
+Tanzu Application Platform.
 
-```yaml
----
-kind: Workload
-apiVersion: carto.run/v1alpha1
-metadata:
-name: nodejs-app
-spec:
-# ...
-  params:
-  - name: buildServiceBindings
-    value:
-      - name: yarnc-binding
-        kind: Secret
-        apiVersion: v1
-```
+| Feature                                       | Tanzu Application Service | Tanzu Application Platform                        |
+| --------------------------------------------- | ------------------------- | ------------------------------------------------- |
+| Provide a `.yarnrc` with the app              | ✅                        | ✅                                                |
+| Provide a `.yarnrc` by using service bindings | ❌ Not supported          | Use a binding of type yarnrc containing `.yarnrc` |
 
-For more details about service bindings, see TAP documentation https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-tbs-workload-config.html
+### <a id="yarn-config-secret"></a> Configure yarn settings with sensitive data
 
-## Build and Serve a Frontend Framework App
+In Tanzu Application Platform, if your yarn configuration contains sensitive data, you can provide the npm
+configuration to the build without explicitly including the file in the application directory.
 
-If your app is using a frontend framework that generates static content from JavaScript source code,
-for example, React, Vue, Angular, you have to use the TAP Web Servers buildpack, not the TAP Node.js
-buildpack.
-The TAP Node.js buildpack is designed exclusively for building backend server node applications.
+To provide your yarn configuration file without including it in the directory:
 
-Building frontend apps are accomplished by setting `$BP_NODE_RUN_SCRIPTS` to instruct the TAP Web Servers
-buildpack to run a specific npm/yarn script event during the build.
-For popular frameworks like Angular and React, this is generally the build script.
+1. Create the service binding as a secret. For example:
 
-Here’s an excerpt from the spec section of a sample `workload.yaml`:
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: yarnrc-binding
+      namespace: my-apps
+    type: service.binding/yarnrc
+    stringData:
+      type: yarnrc
+      .yarnrc: |
+        registry "https://registry.yarnpkg.com"
+        flat "true"
+    ```
+
+1. Use the binding in the workload. For example:
+
+    ```yaml
+    ---
+    kind: Workload
+    apiVersion: carto.run/v1alpha1
+    metadata:
+    name: nodejs-app
+    spec:
+    # ...
+      params:
+      - name: buildServiceBindings
+        value:
+          - name: yarnc-binding
+            kind: Secret
+            apiVersion: v1
+    ```
+
+For more information about service bindings, see
+[Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
+
+## <a id="front-end-apps"></a> Build and serve a front end framework app
+
+The Tanzu Application Platform Node.js buildpack is designed exclusively for building back end server
+node applications.
+If your app is using a front end framework that generates static content from JavaScript source code,
+such as React, Vue, Angular, you must use the Tanzu Application Platform Web Servers buildpack instead of
+the Tanzu Application Platform Node.js buildpack.
+
+To build a front end app, set the environment variable `$BP_NODE_RUN_SCRIPTS` to instruct the
+Tanzu Application Platform Web Servers buildpack to run a specific npm or yarn script event during the build.
+For popular frameworks such as Angular and React, this is generally the build script.
+
+Example `spec` section from a `workload.yaml`:
 
 ```yaml
 ---
@@ -156,5 +181,6 @@ spec:
     value: build
 ```
 
-For more details about how to use the TAP Web Server buildpack, see its documentation
-https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-web-servers-web-servers-buildpack.html
+For more information about using the Tanzu Application Platform Web Server buildpack, see
+[Use the Tanzu Web Servers Buildpack](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-web-servers-web-servers-buildpack.html)
+in the Tanzu Buildpacks documentation.

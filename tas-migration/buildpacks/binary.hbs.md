@@ -3,7 +3,8 @@
 This topic tells you how to migrate your binary app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
-The capability provided by the Tanzu Application Service Binary buildpack is provided in Tanzu Application Platform by the Procfile buildpack.
+The Tanzu Application Platform Procfile buildpack provides the capability corresponding to the
+Tanzu Application Service Binary buildpack.
 
 In Tanzu Application Service, Procfile capability is built into the platform. For more information, see the
 [Cloud Foundry documentation](https://docs.cloudfoundry.org/buildpacks/prod-server.html#procfile).
