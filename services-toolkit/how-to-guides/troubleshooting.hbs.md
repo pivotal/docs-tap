@@ -91,7 +91,7 @@ To follow the steps in this section, you must have kubectl access to the cluster
    From the output, check the following:
 
    - Check the status conditions for information that can lead you to the cause of the issue.
-   - Check that the `Synced` condition has status `"True"`. If it doesn't then there was an issue creating
+   - Check if there was an issue creating
    the Managed Resources from which this Composite Resource is composed. Refer to `.spec.resourceRefs`
    in the output and for each:
      - Use the values of `kind`, `apiVersion`, and `name` to inspect the status of the Managed Resource.
