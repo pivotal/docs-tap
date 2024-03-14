@@ -1,6 +1,6 @@
 # Build your first Supply Chain
 
-This topic tells you how to use the Tanzu Supplychain CLI plug-in to create a SupplyChain
+This topic tells you how to use the Tanzu Supply Chain CLI plug-in to create a SupplyChain
 for developers to use.
 
 {{> 'partials/supply-chain/beta-banner' }}
@@ -15,9 +15,8 @@ This SupplyChain pulls the source code from a Git repository, builds, and packag
 
 ## Getting Started
 
-When you have completed the prerequisites, you have an `Authoring` profile cluster that has the
-Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the
-cluster and you are ready to build your first SupplyChain.
+When you have completed the prerequisites, you have the
+Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build your first SupplyChain.
 
 1. As a Platform Engineer, you want to know which components are available to use in your SupplyChain.
 Run:
@@ -139,14 +138,12 @@ authoring process. Use the `tanzu supplychain init` command to scaffold the curr
   Writing group configuration to config.yaml
   ```
 
-  The `tanzu supplychain init` command creates:
+  The `tanzu supplychain init` command creates the following:
 
-  - `config.yaml` file that contains the information about the group name, and the description of the
-  Supplychain group.
+  - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
   - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by
   the authoring wizard later in this tutorial.
-  - `Makefile` which has the targets to install/uninstall the SupplyChain and related dependencies
-  on any Build/Full profile clusters.
+  - `Makefile` which has the targets to install and uninstall the SupplyChain and related dependencies on any build or full profile clusters.
   - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 1. Your current directory is now initialized, and you can use the SupplyChain authoring wizard to
@@ -158,15 +155,17 @@ generate your first SupplyChain. Start the wizard:
 
 1. In the wizard prompts that follow, add the following values:
 
-   - **What Kind would you like to use as the developer interface?** AppBuildV1
-   - **Give Supply chain a description?** Supply chain that pulls the source code from Git repository, builds it using buildpacks and package the output as Carvel package.
-   - **Select a component as the first stage of the supply chain?** source-git-provider-1.0.0
-   - **Select a component as the next stage of the supply chain?** buildpack-build-1.0.0
-   - **Select a component as the next stage of the supply chain?** conventions-1.0.0
-   - **Select a component as the next stage of the supply chain?** app-config-server-1.0.0
-   - **Select a component as the next stage of the supply chain?** carvel-package-1.0.0
-   - **Select a component as the next stage of the supply chain?** git-writer-pr-1.0.0
-   - **Select a component as the next stage of the supply chain?** Done
+    |Prompt|Value|
+    |:--|:--|
+    |What Kind would you like to use as the developer interface?|`AppBuildV1`|
+    |Give Supply chain a description?|`Supply chain that pulls the source code from Git repository, builds it using buildpacks and packages the output as Carvel package.`|
+    |Select a component as the first stage of the supply chain?|`source-git-provider-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`buildpack-build-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`conventions-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`app-config-server-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`carvel-package-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`git-writer-pr-1.0.0`|
+    |Select a component as the next stage of the supply chain?|`Done`|
 
   After you have selected the components for your chain, the wizard creates the required files to
   deploy your SupplyChain in the current directory. Example output:

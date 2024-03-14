@@ -6,8 +6,10 @@ This topic tels you how to create a Tanzu Supply Chain with SCST - Scan 2.0, whi
 
 - Tanzu Supply Chain packages
 
-  - [Tanzu Supply Chain packages](../../supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md#tsc-packages)
-  - [Managed Resource Controller](../../supply-chain/platform-engineering/how-to/installing-supply-chain/about.hbs.md)
+  - Tanzu Supply Chain packages
+  - Managed Resource Controller
+
+    For more information, see [Packages](../../supply-chain/platform-engineering/how-to/installing-supply-chain/install-authoring-profile.hbs.md#tsc-packages).
 
 - Tanzu Supply Chain components
 
@@ -25,7 +27,7 @@ This topic tels you how to create a Tanzu Supply Chain with SCST - Scan 2.0, whi
   - Tanzu Workload CLI plug-in
   - Tanzu Supply Chain CLI plug-in
 
-For more information see, [Install the Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md).
+    For more information see, [Install the Tanzu Supply Chain CLI plug-ins](../../supply-chain/platform-engineering/how-to/install-the-cli.hbs.md).
 
 ## <a id="supply-chain-scan-2-0"></a> Create a Supply Chain with SCST - Scan 2.0 and a Component
 
