@@ -611,7 +611,7 @@
         - [Tanzu Supply Chain Scan 2.0 Components (Beta)](scst-scan/tanzu-supply-chain/scan-2-0-with-tanzu-supply-chain-overview.hbs.md)
             - [Getting Started](scst-scan/tanzu-supply-chain/create-tanzu-supply-chain.hbs.md)
                 - [Installing SCST - Scan 2.0](scst-scan/install-app-scanning.hbs.md)
-                - [Setup the Supply Chain Component](scst-scan/tanzu-supply-chain/setup-supply-chain-component.hbs.md)
+                - [Set up the Supply Chain Component](scst-scan/tanzu-supply-chain/setup-supply-chain-component.hbs.md)
                 - [Create a Supply Chain that uses SCST - Scan 2.0 with a Component](scst-scan/tanzu-supply-chain/create-supply-chain-with-app-scanning.hbs.md)
                 - [Create a workload from the Supply Chain](scst-scan/tanzu-supply-chain/create-supply-chain-workload.hbs.md)
             - [Observing](scst-scan/app-scanning-observing.hbs.md)
