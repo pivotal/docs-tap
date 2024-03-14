@@ -13,7 +13,7 @@ installing specific versions.
 | Feature                                                                                         | Tanzu Application Service | Tanzu Application Platform |
 | ----------------------------------------------------------------------------------------------- | ------------------------- | -------------------------- |
 | Detects version from `runtime.txt`                                                              | ✅                        | ❌                         |
-| Override app-based version detection (see [Configure the environment variable](#env-var) below) | ❌                        | Use `$BP_CPYTHON_VERSION`  |
+| Override app-based version detection. See [Configure the environment variable](#env-var) below. | ❌                        | Use `$BP_CPYTHON_VERSION`  |
 
 ### <a id="env-var"></a> Configure the environment variable
 
