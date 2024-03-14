@@ -3,26 +3,19 @@
 This topic tells you how to migrate your .NET Core app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
-<!-- do users do all these sections in order or do they choose the section for their use case -->
-
 ## <a id="versions"></a> Install specific .NET runtime and ASP.NET versions
 
 The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
 installing specific versions.
 
-| Feature                                                                                                               | Tanzu Application Service | Tanzu Application Platform         |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------- | ---------------------------------- |
-| Detects version from `.csproj` </br> `<RuntimeFrameworkVersion>` or `<TargetFramework>`                               | ✅                        | ✅                                 |
-| Detects version from `runtimeconfig.json` </br> `runtimeOptions.framework.version`                                    | ✅                        | ✅                                 |
-| Detects versions from `.fsproj` and `.vbproj.`                                                                        | ❌                        | ✅                                 |
-| Override app-based version detection (see [Migrate from buildpack.yml to environment variable](#yml-env-var) below) | Use `builpack.yml`        | Use `$BP_DOTNET_FRAMEWORK_VERSION` |
+| Feature                                                                                 | Tanzu Application Service | Tanzu Application Platform         |
+| --------------------------------------------------------------------------------------- | ------------------------- | ---------------------------------- |
+| Detects version from `.csproj` </br> `<RuntimeFrameworkVersion>` or `<TargetFramework>` | ✅                        | ✅                                 |
+| Detects version from `runtimeconfig.json` </br> `runtimeOptions.framework.version`      | ✅                        | ✅                                 |
+| Detects versions from `.fsproj` and `.vbproj.`                                          | ❌                        | ✅                                 |
+| Override app-based version detection.                                                   | Use `builpack.yml`        | Use `$BP_DOTNET_FRAMEWORK_VERSION` |
 
-### <a id="yml-env-var"></a> Migrate from `buildpack.yml` to environment variable
-
-This section compares configuring the Tanzu Application Service `buildpack.yml` to configuring the
-Tanzu Application Platform environment variable.
-
-#### Tanzu Application Service
+### <a id="override-version-tas"></a> Tanzu Application Service: Override version detection
 
 Tanzu Application Service buildpacks allows you to specify a .NET Core SDK version using a `buildpack.yml`.
 
@@ -33,11 +26,12 @@ dotnet-core:
   sdk: 7.0.x
 ```
 
-#### Tanzu Application Platform
+### <a id="override-version-tap"></a> Tanzu Application Service: Override version detection
 
 In Tanzu Application Platform, users set the `$BP_DOTNET_FRAMEWORK_VERSION` environment variable to specify which version
 of the .NET Core runtime to install. The buildpack automatically installs an SDK version that is compatible
 with the runtime version .NET Core runtime you selected.
+
 The Tanzu Application Platform buildpack requires you to provide an exact version unlike in the
 Tanzu Application Service `buildpack.yml` where you can provide version patterns such as `7.x.x`.
 
@@ -68,12 +62,7 @@ multiple projects in an app.
 | Configure multiple projects in one app                            | Use a `.deployment` file  | Use `$BP_DOTNET_PROJECT_PATH` |
 | Projects referenced by the configured main project are also built | ✅                        | ✅                            |
 
-### <a id="deployment-env-var"></a> Migrate from a `.deployment` file to environment variable
-
-This section compares configuring the Tanzu Application Service `.deployment` file to configuring the
-Tanzu Application Platform environment variable.
-
-#### Tanzu Application Service
+### <a id="multiple-projects-tas"></a> Tanzu Application Service: Configure multiple projects
 
 In Tanzu Application Service, users create a `.deployment` file in your app’s root folder to designate
 the main project’s path.
@@ -85,7 +74,7 @@ For example:
 project = src/MyApp.Web/MyApp.Web.csproj
 ```
 
-#### Tanzu Application Platform
+### <a id="multiple-projects-tap"></a> Tanzu Application Platform: Configure multiple projects
 
 In Tanzu Application Platform, you configure the main project’s path with `$BP_DOTNET_PROJECT_PATH`
 as the `spec` shown in this Tanzu Application Platform workload example.
@@ -110,12 +99,14 @@ spec:
 
 ## <a id="config-publish-command"></a> Configure the publish command
 
-The following table compares how you configure the publish command in Tanzu Application Service and
+The following table compares how you configure the publish command for Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                       | Tanzu Application Service | Tanzu Application Platform     |
 | ----------------------------- | ------------------------- | ------------------------------ |
 | Configure the publish command | ❌ Not supported          | Use `$BP_DOTNET_PUBLISH_FLAGS` |
+
+### <a id="config-publish-command"></a> Configure the publish command in Tanzu Application Platform
 
 Example `spec` section from a `workload.yaml`:
 
@@ -130,7 +121,7 @@ spec:
 
 ## <a id="nuget-config"></a> Provide a NuGet configuration
 
-The following table compares how you provide a NuGet configuration in Tanzu Application Service and
+The following table compares how you provide a NuGet configuration for Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                                         | Tanzu Application Service | Tanzu Application Platform                                           |

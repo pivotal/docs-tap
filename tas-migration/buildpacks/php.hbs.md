@@ -1,11 +1,11 @@
-# Migrate PHP buildpack
+# Migrate to the PHP Cloud Native Buildpack
 
 This topic tells you how to migrate your PHP app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
 ## PHP configuration
 
-### Install specific PHP versions
+### <a id="versions"></a> Install specific PHP versions
 
 | Feature                                                                                              | Tanzu Application Service | Tanzu Application Platform |
 | ---------------------------------------------------------------------------------------------------- | ------------------------- | -------------------------- |
@@ -18,7 +18,7 @@ This topic tells you how to migrate your PHP app from using a Cloud Foundry buil
 
 ##### Tanzu Application Service
 
-TAS buildpacks allows user to specify a PHP version using a `options.json`, for example:
+Tanzu Application Service buildpacks allows user to specify a PHP version using a `options.json`, for example:
 
 ```json
 {
@@ -26,12 +26,12 @@ TAS buildpacks allows user to specify a PHP version using a `options.json`, for 
 }
 ```
 
-TAS’s `options.json` supports providing the exact version to use, OR specifying a more general minor
+Tanzu Application Service’s `options.json` supports providing the exact version to use, OR specifying a more general minor
 version line to use such as `PHP_80_LATEST` (instead of 8.0.1).
 
 ##### Tanzu Application Platform
 
-In TAP, users set the `$BP_PHP_VERSION` environment variable to specify which version of the PHP distribution
+In Tanzu Application Platform, users set the `$BP_PHP_VERSION` environment variable to specify which version of the PHP distribution
 should be installed.
 
 Example `spec` section from a `workload.yaml`:
@@ -55,7 +55,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow users to specify the PHP library directory using a `options.json`, For example:
+Tanzu Application Service buildpacks allow users to specify the PHP library directory using a `options.json`, For example:
 
 ```json
 {
@@ -65,7 +65,7 @@ TAS buildpacks allow users to specify the PHP library directory using a `options
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow users to specify the PHP library directory via the $BP_PHP_LIB_DIR environment variable.
+Tanzu Application Platform buildpacks allow users to specify the PHP library directory via the $BP_PHP_LIB_DIR environment variable.
 
 Example `spec` section from a `workload.yaml`:
 
@@ -80,9 +80,9 @@ spec:
 
 ### Configure custom `.ini` file
 
-In TAS and TAP, users can configure custom `.ini` files in addition to the default `php.ini` provided.
-This is achieved by creating an `.ini` file under `.bp-config/php/php.ini.d/FILENAME.ini` in TAS,
-and under `.php.ini.d/FILENAME.ini` in TAP.
+In Tanzu Application Service and Tanzu Application Platform, users can configure custom `.ini` files in addition to the default `php.ini` provided.
+This is achieved by creating an `.ini` file under `.bp-config/php/php.ini.d/FILENAME.ini` in Tanzu Application Service,
+and under `.php.ini.d/FILENAME.ini` in Tanzu Application Platform.
 
 | Feature                               | Tanzu Application Service                              | Tanzu Application Platform               |
 | ------------------------------------- | ------------------------------------------------------ | ---------------------------------------- |
@@ -91,7 +91,7 @@ and under `.php.ini.d/FILENAME.ini` in TAP.
 
 ### Enable PHP extensions
 
-In TAP, the only extensions available for usage at this time are the ones that come with the distribution of PHP.
+In Tanzu Application Platform, the only extensions available for usage at this time are the ones that come with the distribution of PHP.
 
 | Feature                                                                                                                                                                           | Tanzu Application Service                             | Tanzu Application Platform                |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------- |
@@ -103,10 +103,10 @@ In TAP, the only extensions available for usage at this time are the ones that c
 
 ##### Tanzu Application Service
 
-In TAS, extensions can be specified in a custom `.ini` file under `.bp-config/php/php.ini.d/FILENAME.ini`
+In Tanzu Application Service, extensions can be specified in a custom `.ini` file under `.bp-config/php/php.ini.d/FILENAME.ini`
 in the application.
 If an extension was already present and enabled in the compiled PHP, explicitly enabling the extension
-was not required in TAS.
+was not required in Tanzu Application Service.
 
 For example:
 
@@ -118,7 +118,7 @@ zend_extension=opcache.so
 
 ##### Tanzu Application Platform
 
-In TAP, extensions can be enabled via custom `.ini` file snippet. An `.ini` snippet is a valid PHP configuration file.
+In Tanzu Application Platform, extensions can be enabled via custom `.ini` file snippet. An `.ini` snippet is a valid PHP configuration file.
 The buildpacks will look for any user-provided snippets under `APP-ROOT/.php.ini.d/*.ini`.
 
 For example:
@@ -128,7 +128,7 @@ extension=bz2.so
 extension=curl.so
 ```
 
-Alternatively, in both TAS and TAP, if you are using composer as a package manager, you can specify
+Alternatively, in both Tanzu Application Service and Tanzu Application Platform, if you are using composer as a package manager, you can specify
 extensions through the `composer.json` file.
 
 For example:
@@ -149,7 +149,7 @@ For example:
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | -------------------------- |
 | Enable launch-time scripts ([link for more info](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-migration.html#unsupported-workflows)) | ✅ Located in `.profile.d` directory | ❌                         |
 
-A `.profile.d` directory containing scripts to be run just before application launch is not currently supported in TAP.
+A `.profile.d` directory containing scripts to be run just before application launch is not currently supported in Tanzu Application Platform.
 These scripts will be ignored during launch.
 
 
@@ -165,7 +165,7 @@ These scripts will be ignored during launch.
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow users to specify which web server to use via an `options.json`, for example:
+Tanzu Application Service buildpacks allow users to specify which web server to use via an `options.json`, for example:
 
 ```json
 {
@@ -175,7 +175,7 @@ TAS buildpacks allow users to specify which web server to use via an `options.js
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow users to [specify the web server](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#select-a-web-server)
+Tanzu Application Platform buildpacks allow users to [specify the web server](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#select-a-web-server)
 by using the `$BP_WEB_SERVER` environment variable.
 
 Example `spec` section from a `workload.yaml`:
@@ -202,14 +202,14 @@ spec:
 
 ##### Tanzu Application Service
 
-In TAS, [server configuration files](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-config.html#engine-configurations)
+In Tanzu Application Service, [server configuration files](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-config.html#engine-configurations)
 can be added under the `.bp-config` directory to override the buildpack-set configuration options.
 These files should be placed under `.bp-config` in directories named for the relevant component,
 such as `httpd`, `nginx`, and `fpm.d` for HTTPD, NGINX and FPM configuration respectively.
 
 ##### Tanzu Application Platform
 
-TAP buildpacks also support [providing custom settings](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-server-configuration)
+Tanzu Application Platform buildpacks also support [providing custom settings](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-server-configuration)
 for HTTPD, NGINX and FPM that are not supported through the buildpack environment variables using
 specially-named directories:
 
@@ -228,7 +228,7 @@ specially-named directories:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow users to specify the root directory of the files served by the web server
+Tanzu Application Service buildpacks allow users to specify the root directory of the files served by the web server
 (relative to the root of the app) through an `options.json`, for example:
 
 ```json
@@ -239,7 +239,7 @@ TAS buildpacks allow users to specify the root directory of the files served by 
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow users to [specify this directory](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#configure-web-directory)
+Tanzu Application Platform buildpacks allow users to [specify this directory](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#configure-web-directory)
 by using the `$BP_PHP_WEB_DIR` environment variable.
 
 Example `spec` section from a `workload.yaml`:
@@ -264,7 +264,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to specify the start command for your app through an `options.json`, for example:
+Tanzu Application Service buildpacks allow you to specify the start command for your app through an `options.json`, for example:
 
 ```json
 {
@@ -274,7 +274,7 @@ TAS buildpacks allow you to specify the start command for your app through an `o
 
 ##### Tanzu Application Platform
 
-TAP buildpacks support setting a [custom start command](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#additional-configuration)
+Tanzu Application Platform buildpacks support setting a [custom start command](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#additional-configuration)
 for your app by using a Procfile located at the root of the application.
 
 Example Procfile:
@@ -290,7 +290,7 @@ web: php -S 0.0.0.0:"${PORT:-80}" -t htdocs && echo hi
 | Activate or deactivate HTTPS redirect | ❌                        | ✅ Use Procfile            |
 
 
-HTTPS redirect is enabled by default for nginx and httpd. In TAP, you can deactivate this by
+HTTPS redirect is enabled by default for nginx and httpd. In Tanzu Application Platform, you can deactivate this by
 setting the `$BP_PHP_ENABLE_HTTPS_REDIRECT` environment variable to false at build time.
 
 Example `spec` section from a `workload.yaml`:
@@ -316,7 +316,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to specify a composer version using a `options.json`, for example:
+Tanzu Application Service buildpacks allow you to specify a composer version using a `options.json`, for example:
 
 ```json
 {
@@ -326,7 +326,7 @@ TAS buildpacks allow you to specify a composer version using a `options.json`, f
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow you to [specify composer version](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-composer-version)
+Tanzu Application Platform buildpacks allow you to [specify composer version](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-composer-version)
 by using the `$BP_COMPOSER_VERSION` environment variable.
 
 Example `spec` section from a `workload.yaml`:
@@ -351,7 +351,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to specify composer install options by using an `options.json`, for example:
+Tanzu Application Service buildpacks allow you to specify composer install options by using an `options.json`, for example:
 
 ```json
 {
@@ -361,7 +361,7 @@ TAS buildpacks allow you to specify composer install options by using an `option
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow you to [specify composer install options](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-composer-install-options)
+Tanzu Application Platform buildpacks allow you to [specify composer install options](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-composer-install-options)
 by using the `$BP_COMPOSER_INSTALL_OPTIONS` environment variable.
 
 Example `spec` section from a `workload.yaml`:
@@ -386,7 +386,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to [specify a composer.json path](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-composer.html#configuration)
+Tanzu Application Service buildpacks allow you to [specify a composer.json path](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-composer.html#configuration)
 (relative to the project root) using the `$COMPOSER_PATH` environment variable either through the `manifest.yml`
 or the cf CLI, for example:
 
@@ -396,7 +396,7 @@ cf set-env YOUR_APP_NAME COMPOSER_PATH "PATH_TO_COMPOSER_JSON"
 
 ##### Tanzu Application Platform
 
-TAP buildpacks allow you to [specify the composer.json](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-the-composer.json-path)
+Tanzu Application Platform buildpacks allow you to [specify the composer.json](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-the-composer.json-path)
 path (relative to the project root) by using the native `$COMPOSER` environment variable.
 
 Example `spec` section from a `workload.yaml`:
@@ -421,7 +421,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to specify various Composer-native extensions using an `options.json`,
+Tanzu Application Service buildpacks allow you to specify various Composer-native extensions using an `options.json`,
 which is passed through to Composer to override the buildpack-set defaults, for example:
 
 ```json
@@ -432,7 +432,7 @@ which is passed through to Composer to override the buildpack-set defaults, for 
 
 ##### Tanzu Application Platform
 
-TAP buildpacks respect any Composer-native environment variables set at build-time.
+Tanzu Application Platform buildpacks respect any Composer-native environment variables set at build-time.
 
 Example `spec` section from a `workload.yaml`:
 
@@ -460,7 +460,7 @@ spec:
 
 ##### Tanzu Application Service
 
-TAS buildpacks allow you to [supply Composer authentication](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-composer.html)
+Tanzu Application Service buildpacks allow you to [supply Composer authentication](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-composer.html)
 (mainly in the form of a Github token to bypass rate-limiting) by using an environment variable, for example:
 
 ```console
@@ -469,7 +469,7 @@ cf set-env YOUR_APP_NAME COMPOSER_GITHUB_OAUTH_TOKEN "OAUTH_TOKEN_VALUE"
 
 ##### Tanzu Application Platform
 
-TAP buildpacks respect any Composer-native environment variables set at build-time.
+Tanzu Application Platform buildpacks respect any Composer-native environment variables set at build-time.
 Thus, it is possible to supply a GitHub token (or any other authentication supported by Composer) through the
 [native COMPOSER_AUTH environment variable](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#set-composer-authentication).
 
@@ -496,7 +496,7 @@ spec:
 
 ##### Tanzu Application Service
 
-In TAS, a Redis or Memcached instance can be bound to a PHP app [using the cf cli](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-sessions.html),
+In Tanzu Application Service, a Redis or Memcached instance can be bound to a PHP app [using the cf cli](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-sessions.html),
 for example:
 
 ```console
@@ -507,7 +507,7 @@ $ cf restage app
 
 ##### Tanzu Application Platform
 
-In TAP, you can configure session handlers for Redis or Memcached by using [Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#enable-a-session-handler-via-service-bindings):
+In Tanzu Application Platform, you can configure session handlers for Redis or Memcached by using [Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-php-php-buildpack.html#enable-a-session-handler-via-service-bindings):
 
 1. Create the service binding as a secret. For example:
 
@@ -544,7 +544,7 @@ In TAP, you can configure session handlers for Redis or Memcached by using [Serv
             apiVersion: v1
     ```
 
-For more information on using Service Bindings in TAP, see [Configure build-time service bindings](../../tanzu-build-service/tbs-workload-config.hbs.md#service-bindings).
+For more information on using Service Bindings in Tanzu Application Platform, see [Configure build-time service bindings](../../tanzu-build-service/tbs-workload-config.hbs.md#service-bindings).
 
 ## New Relic
 
@@ -558,7 +558,7 @@ For more information on using Service Bindings in TAP, see [Configure build-time
 
 ##### Tanzu Application Service
 
-In TAS, you can configure New Relic for the [PHP buildpack](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-newrelic.html#configuration) either by:
+In Tanzu Application Service, you can configure New Relic for the [PHP buildpack](https://docs.cloudfoundry.org/buildpacks/php/gsg-php-newrelic.html#configuration) either by:
 
 - Using a Cloud Foundry service: Your `VCAP_SERVICES` environment variable must contain a service named `newrelic`,
   the `newrelic` service must contain a key named `credentials`, and the `credentials` key must contain a `licenseKey`.
@@ -572,7 +572,7 @@ $ cf set-env NEWRELIC_LICENSE <NEW-RELIC-LICENSE-KEY>
 
 ##### Tanzu Application Platform
 
-In TAP, the PHP language family buildpack includes the [New Relic buildpack](https://github.com/pivotal-cf/tanzu-new-relic?tab=readme-ov-file#behavior),
+In Tanzu Application Platform, the PHP language family buildpack includes the [New Relic buildpack](https://github.com/pivotal-cf/tanzu-new-relic?tab=readme-ov-file#behavior),
 which participates in a build provided there is a service binding of type `NewRelic`.
 
 To configure Nes Relic:

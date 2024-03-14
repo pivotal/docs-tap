@@ -10,19 +10,14 @@ This topic tells you how to migrate your Java app from using a Cloud Foundry bui
 The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
 installing specific versions.
 
-| Feature (lowest to highest priority)                                                            | Tanzu Application Service                   | Tanzu Application Platform |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------- |
-| Buildpack Default                                                                               | 8                                           | 11                         |
-| Maven MANIFEST.MF property                                                                      | ❌ Not supported                            | ✅                         |
-| Detects version from `.sdkmanrc` file                                                           | ❌ Not supported                            | ✅                         |
-| Override app-based version detection (see [Configure the environment variable](#env-var) below) | Use `cf set-env`: `JBP_CONFIG_OPEN_JDK_JRE` | Use `$BP_JVM_VERSION`      |
+| Feature (lowest to highest priority)  | Tanzu Application Service                   | Tanzu Application Platform |
+| ------------------------------------- | ------------------------------------------- | -------------------------- |
+| Buildpack Default                     | 8                                           | 11                         |
+| Maven MANIFEST.MF property            | ❌ Not supported                            | ✅                         |
+| Detects version from `.sdkmanrc` file | ❌ Not supported                            | ✅                         |
+| Override app-based version detection  | Use `cf set-env`: `JBP_CONFIG_OPEN_JDK_JRE` | Use `$BP_JVM_VERSION`      |
 
-### <a id="env-var"></a> Configure the environment variable
-
-This section compares configuring the Tanzu Application Service environment variable to configuring the
-Tanzu Application Platform environment variable.
-
-#### Tanzu Application Service
+### <a id="override-version-tas"></a> Tanzu Application Service: Override version detection
 
 In Tanzu Application Service, changing from the default JVM v8 requires you to configure the following app
 environment variable key and value:
@@ -35,7 +30,7 @@ This builds the app with the version of Java 17 that was bundled with the buildp
 currently 8, 11, 17, and 21.
 <!-- why does it mention Java 17 then 8, 11, 17 & 21? -->
 
-#### Tanzu Application Platform
+### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
 
 In Tanzu Application Platform, set the `$BP_JVM_VERSION` build-time environment variable to specify which version
 of the JVM to install.
@@ -64,7 +59,7 @@ Tanzu Application Platform.
 | ------------------------------------- | ------------------------- | -------------------------------------------------------- |
 | Connect to a private Maven repository | ❌ Not supported          | ✅ Use a binding of type `maven` with key `settings.xml` |
 
-### <a id="nuget-config-secret"></a> Configure Maven repository settings with sensitive data
+### <a id="maven-config-secret"></a> Configure Maven repository settings with sensitive data
 
 In Tanzu Application Platform, if your Maven settings contain sensitive data, you can provide your
 own `settings.xml` to the build without explicitly including the file in the application directory.
@@ -125,13 +120,13 @@ The following table compares service bindings in Tanzu Application Service and T
 | --------------------------------- | ------------------------- | -------------------------- |
 | Connect an app to a bound service | ✅                        | ✅                         |
 
-#### Tanzu Application Service
+### <a id="service-bindings-tas"></a> Tanzu Application Service: Service bindings
 
 In Tanzu Application Service, the Java Buildpack supplies Spring Boot v3 apps with the Java CF Env Library.
 This library parses the `VCAP_SERVICES` variable and allows the auto-configuration for Spring Boot to set
 properties and connect to the bound service.
 
-#### Tanzu Application Platform
+### <a id="service-bindings-tap"></a> Tanzu Application Platform: Service bindings
 
 In Tanzu Application Platform, Tanzu Buildpacks supply a similar library, named Spring Cloud Bindings,
 which supports the Kubernetes-style service bindings, and enable it by default.
@@ -160,7 +155,7 @@ For more information about service bindings, see
 
 ## <a id="tomcat"></a> Deploy with Tomcat
 
-The following table compares deploying with Tomcat in Tanzu Application Service and Tanzu Application Platform.
+The following table compares deploying with Tomcat for Tanzu Application Service and Tanzu Application Platform.
 
 | Feature                  | Tanzu Application Service                                         | Tanzu Application Platform |
 | ------------------------ | ----------------------------------------------------------------- | -------------------------- |
@@ -177,7 +172,7 @@ For more information about configuration options, see the
 
 ## <a id="java-distribution"></a> Choose Java distribution
 
-The following table compares deploying choosing a Java distribution in Tanzu Application Service and
+The following table compares deploying choosing a Java distribution for Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                         | Tanzu Application Service                                         | Tanzu Application Platform |
@@ -261,7 +256,7 @@ Tanzu Application Platform.
 | Enable Remote Debugging | ✅ `$JBP_CONFIG_DEBUG`    | ✅ `$BPL_DEBUG_ENABLED`    |
 
 Enabling remote debugging for Java apps in Tanzu Application Platform is similar to Tanzu Application Service.
-Specify a runtime environment variable as follows:
+Specify a runtime environment variable in your `workload.yaml` as follows:
 
 ```yaml
 spec:
@@ -276,7 +271,7 @@ This adds the JVM argument:
 -agentlib:jdwp=transport=dt_socket,server=y,address=*:8000,suspend=n
 ```
 
-(Optional) You can specify `BPL_DEBUG_PORT` & `BPL_DEBUG_SUSPEND` to change the defaults for these
+(Optional) You can specify `BPL_DEBUG_PORT` and `BPL_DEBUG_SUSPEND` to change the defaults for these
 options.
 
 ## <a id="apm"></a> Enable Application Performance Monitoring (APM) with Datadog
@@ -300,7 +295,7 @@ The following table compares enabling APM in Tanzu Application Service and Tanzu
 
 ### <a id="example"></a> Example Datadog configuration
 
-If you previously deployed the following workload to Tanzu Application Platform:
+If you previously deployed the following `workload.yaml` to Tanzu Application Platform:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -328,7 +323,7 @@ spec:
      url: https://github.com/spring-projects/spring-petclinic
 ```
 
-To enable Datadog, change the workload as follows:
+To enable Datadog, change the `workload.yaml` as follows:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -379,7 +374,7 @@ The following table compares configuring the log level in Tanzu Application Serv
 | Enable Debug Logging | ✅ `$JBP_LOG_LEVEL=DEBUG` | ✅ `$BP_LOG_LEVEL=DEBUG`   |
 
 In Tanzu Application Platform, changing the log level to DEBUG is similar to Tanzu Application Service.
-Set the environment variable as follows:
+Set the environment variable in your `workload.yaml` as follows:
 
 ```yaml
 spec:
