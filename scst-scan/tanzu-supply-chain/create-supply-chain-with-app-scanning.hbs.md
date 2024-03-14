@@ -114,7 +114,7 @@ Using Custom Scanning Component
         Writing group configuration to config.yaml
         ```
 
-    2. Generate supply chain by running:
+    2. Generate a Supply Chain by running:
 
         ```console
         tanzu supplychain generate --kind CUSTOM-KIND-WORKLOAD \
