@@ -406,7 +406,7 @@ while installing through Tanzu Mission Control.
   [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
   [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
-#### <a id='1-8-1-scst-policy-ki'></a v1.8.1 Known issues: Supply Chain Security Tools - Policy
+#### <a id='1-8-1-scst-policy-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Policy
 
 - Supply Chain Security Tools - Policy is defaulting to TUF enabled due to incorrect logic.
 This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
