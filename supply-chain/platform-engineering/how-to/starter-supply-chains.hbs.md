@@ -87,8 +87,9 @@ tanzu supplychain generate \
 
 ## Coming from Supply Chain Choreographer
 
-The recipes in this topic are analogous to OOTB Supply Chains and Profile experiences in Supply Chain Choreographer. Use this mapping to help decide which recipe you should start with. These recipes do not provide exact parity with OOTB Supply Chains.
+The recipes in this topic are analogous to OOTB Supply Chains and Profile experiences in Supply Chain Choreographer. Use this mapping to help decide which recipe you should start with. These recipes
+do not provide exact parity with OOTB Supply Chains.
 
-- Iterate Profile: use [Build and Deploy an application](#build-and-deploy-an-application)
-- Supply Chain Basic: use [Build an application and store the artifact in Git](#build-an-application-and-store-the-artifact-in-git)
-- Delivery Basic: use [Deploy an application package from Git](#deploy-an-application-package-from-git)
+- Iterate Profile: Use [Build and Deploy an application](#build-and-deploy-an-application).
+- Supply Chain Basic: Use [Build an application and store the artifact in Git](#build-an-application-and-store-the-artifact-in-git).
+- Delivery Basic: Use [Deploy an application package from Git](#deploy-an-application-package-from-git).

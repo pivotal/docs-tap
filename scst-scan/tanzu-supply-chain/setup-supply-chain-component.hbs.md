@@ -1,12 +1,12 @@
-# Setup the Supply Chain Component
+# Set up the Supply Chain Component
 
-This topic describes how to install the Trivy Supply Chain Component, create a Custom Supply Chain Component using SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
+This topic describes tells you how to install the Trivy Supply Chain Component, create a Custom Supply Chain Component using SCST - Scan 2.0, and view the components that are available to be used in the Tanzu Supply Chain.
 
 ## <a id="install-trivy-sc"></a> Install Trivy Supply Chain Component
 
 This section describes how to install the Trivy Supply Chain Component that uses SCST - Scan 2.0.
 
-1. List version information for the Trivy Supply Chain Component package. Run:
+1. List version information for the Trivy Supply Chain Component package by running.
 
     ```console
     tanzu package available list trivy.app-scanning.component.apps.tanzu.vmware.com --namespace tap-install
@@ -21,7 +21,7 @@ This section describes how to install the Trivy Supply Chain Component that uses
     trivy.app-scanning.component.apps.tanzu.vmware.com  TRIVY-COMPONENT-VERSION              2024-01-26 12:35:39 -0500 EST
     ```
 
-2. Install the Trivy Supply Chain Component package.
+2. Install the Trivy Supply Chain Component package by running.
 
     ```console
     tanzu package install trivy-app-scanning-component -p trivy.app-scanning.component.apps.tanzu.vmware.com \
@@ -34,13 +34,13 @@ This section describes how to install the Trivy Supply Chain Component that uses
 This section describes how to create a Custom Scanning Supply Chain Component that uses SCST - Scan 2.0.
 For more details about how to create a Component, see [Tanzu Supply Chain docs](../../supply-chain/platform-engineering/tutorials/my-first-component.hbs.md).
 
-1. Retrieve the component YAML of the Trivy Supply Chain Component.
+1. Retrieve the component YAML of the Trivy Supply Chain Component by running.
 
       ```console
       kubectl get component trivy-image-scan-1.0.0 -n trivy-app-scanning-catalog -o yaml > component.yaml
       ```
 
-1. Edit the following lines in the `component.yaml`:
+1. Edit the following lines in `component.yaml`:
 
     ```yaml
     apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
@@ -61,7 +61,7 @@ For more details about how to create a Component, see [Tanzu Supply Chain docs](
           name: trivy-image-scan-v2 # SCANNER-image-scan-v2. Replace with the name of the pipeline created in the next step.
     ```
 
-1. Remove the following fields from the `component.yaml`:
+1. Remove the following fields from `component.yaml`:
 
     ```console
     metadata:
@@ -77,7 +77,7 @@ For more details about how to create a Component, see [Tanzu Supply Chain docs](
 
 1. Customize a pipeline by retrieving the YAML of the Trivy Supply Chain Component's Pipeline.
 
-    1. Retrieve pipeline YAML:
+    1. Retrieve pipeline YAML by running:
 
           ```console
           kubectl get pipeline trivy-image-scan-v2 -n trivy-app-scanning-catalog -o yaml > pipeline.yaml
@@ -112,7 +112,7 @@ For more details about how to create a Component, see [Tanzu Supply Chain docs](
 
     3. Remove the following fields from the `pipeline.yaml`:
 
-        ```console
+        ```yaml
         metadata:
           annotations:
             ...
@@ -124,16 +124,16 @@ For more details about how to create a Component, see [Tanzu Supply Chain docs](
           uid:
         ```
 
-1. Apply the custom component and pipeline:
+1. Apply the custom component and pipeline by running:
 
     ```console
     kubectl apply -f component.yaml -n DEV-NAMESPACE
     kubectl apply -f pipeline.yaml -n DEV-NAMESPACE
     ```
 
-1. (Optional) If you create your own component, it requires the following label so that it can be observed by Tanzu Supply Chain:
+1. (Optional) If you created your own component, it requires the following label so that it can be observed by Tanzu Supply Chain:
 
-    ```console
+    ```yaml
     labels:
       supply-chain.apps.tanzu.vmware.com/catalog: tanzu
     ```
