@@ -79,7 +79,7 @@ For example, you can apply to a cluster:
 - A SupplyChain with the name `serverappv1s.example.com-1.0.1` with kind `ServerAppV1s`
 
 If the generated API for the kind is unchanged, then the later version is accepted.
-If there is a change, supply chain that was applied first succeeds, and the others reflect the error
+If there is a change, the supply chain that was applied first succeeds, and the others reflect the error
 in their status.
 This ensures that you can't accidentally break the kind API that is running.
 
