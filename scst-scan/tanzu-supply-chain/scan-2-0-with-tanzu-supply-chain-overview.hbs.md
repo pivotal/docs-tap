@@ -5,7 +5,7 @@ This topic provides an overview of using Supply Chain Security Tools (SCST) - Sc
 ## <a id="supply-chain-usage"></a>Integrating into a Tanzu Supply Chain
 
 The SCST - Scan 2.0 component defines how to scan a container image with a scan
-solution using the generic Kubernetes custom resource `ImageVulnerabilityScan`.
+solution by using the generic Kubernetes custom resource `ImageVulnerabilityScan`.
 This provides a generic interface that allows you to declare how Tanzu
 Application Platform executes a scan on a container image for a container
 image scan solution.
