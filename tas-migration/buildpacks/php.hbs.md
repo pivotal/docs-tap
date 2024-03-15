@@ -19,7 +19,7 @@ installing specific versions.
 | Detects version from `composer.json`: </br><pre>"require": {</br>  "php": ">=8.0"</br>}</pre> | ✅                        | ✅                         |
 | Override app-based version detection                                                          | Use `options.json`        | Use `$BP_PHP_VERSION`      |
 
-### <a id="override-version-tas"></a> Tanzu Application Service: Override version detection
+#### <a id="override-version-tas"></a> Tanzu Application Service: Override version detection
 
 Tanzu Application Service buildpacks allows you to specify a PHP version using a `options.json` file.
 
@@ -34,7 +34,7 @@ Example `options.json`:
 The Tanzu Application Service `options.json` supports providing the exact version to use, or specifying
 a more general minor version line to use such as `PHP_80_LATEST` instead of `8.0.1`.
 
-### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
+#### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
 
 In Tanzu Application Platform, set the `$BP_PHP_VERSION` environment variable to specify which version
 of the PHP distribution to install.
