@@ -46,7 +46,7 @@ The `tanzu supplychain init` command creates:
 
 - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
 - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by the authoring wizard later in this tutorial.
-- `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build/Full profile clusters.
+- `Makefile` which has the targets to install or uninstall the SupplyChain and related dependencies on any Build or Full profile clusters.
 - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
 >**Important** After being set up with the designated `group`, the local directory becomes a hub
@@ -192,13 +192,9 @@ Interactive
 
     The wizard prompts for the following:
 
-      - The `tanzu supplychain` CLI knows what stages are already part of the `SupplyChain` and removes them from the list of stages to add.
-
-    Here are the example values for the prompts for the wizard workflow that generate a functioning `SupplyChain`:
-
-    |Prompt|Example value|
+    |**Prompt**|**Example value**|
     |:--|:--|
-    |What Kind would you like to use as the developer interface?|`AppBuildV1` (This value is used for auto-populating the `spec.defines` section of the [SupplyChain API](../../../reference/api/supplychain.hbs.md)).|
+    |What Kind would you like to use as the developer interface?|`AppBuildV1` (This value is used for auto-populating the `spec.defines` section of the [SupplyChain API](../../../reference/api/supplychain.hbs.md))|
     |Give Supply chain a description?|`Supply chain that pulls the source code from Git repository, builds it using buildpacks and package the output as Carvel package.`|
     |Select a component as the first stage of the supply chain?|`source-git-provider-1.0.0`|
     |Select a component as the first stage of the supply chain?|`buildpack-build-1.0.0`|
@@ -207,6 +203,9 @@ Interactive
     |Select a component as the first stage of the supply chain?|`carvel-package-1.0.0`|
     |Select a component as the first stage of the supply chain?|`git-writer-pr-1.0.0`|
     |Select a component as the first stage of the supply chain?|`Done`|
+
+    The Tanzu Supply Chain CLI knows what stages are already part of the SupplyChain and removes
+    them from the list of stages to add.
 
 Non-interactive
 : Generate the Supply chain by using flags:
@@ -250,15 +249,15 @@ Created file tasks/store-content-oci.yaml
 
 ## Enforce proper ordering of Components in the SupplyChain
 
-Components have zero or more inputs and outputs. The inputs for a Component must be
-fulfilled by a preceding Component in the SupplyChain. If not, there will be a Component
+Components have zero or more inputs and outputs. The inputs for a component must be
+fulfilled by a preceding component in the SupplyChain. If not, there will be a component
 at a stage in a SupplyChain that will not run.  Proper ordering is handled
 differently depending on whether you are authoring using the interactive or non-interactive method.
 
 Interactive
 : 
   The entries that get populated for stage selection already take the ordering logic into account.
-  The CLI only shows components for selection if the inputs for that Component are already
+  The CLI only shows components for selection if the inputs for that component are already
   satisfied by another component in the SupplyChain.
 
 Non-interactive
