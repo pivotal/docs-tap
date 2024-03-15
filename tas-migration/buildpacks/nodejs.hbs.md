@@ -5,7 +5,7 @@ This topic tells you how to migrate your Node.js app from using a Cloud Foundry 
 
 ## <a id="versions"></a> Install a specific Node Engine version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                                                                | Tanzu Application Service | Tanzu Application Platform |
@@ -36,7 +36,7 @@ spec:
 
 ## <a id="heap-memory"></a> Heap memory optimization
 
-The following table compares how to configure heap memory optimization for Tanzu Application Service
+The following table compares how to configure heap memory optimization in Tanzu Application Service
 and Tanzu Application Platform.
 
 | Feature                         | Tanzu Application Service   | Tanzu Application Platform          |
@@ -45,7 +45,7 @@ and Tanzu Application Platform.
 
 ## <a id="npm-config"></a> Provide npm configuration files
 
-The following table compares how to provide npm configuration files for Tanzu Application Service and
+The following table compares how to provide npm configuration files in Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                                      | Tanzu Application Service | Tanzu Application Platform                        |
@@ -99,9 +99,9 @@ To provide your npm configuration file without including it in the directory:
 For more information about service bindings, see
 [Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
 
-## <a id="yarn-config"></a> Provide yarn Configurations
+## <a id="yarn-config"></a> Provide yarn configuration files
 
-The following table compares how to provide yarn configuration files for Tanzu Application Service and
+The following table compares how to provide yarn configuration files in Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                                       | Tanzu Application Service | Tanzu Application Platform                        |
@@ -111,7 +111,7 @@ Tanzu Application Platform.
 
 ### <a id="yarn-config-secret"></a> Configure yarn settings with sensitive data
 
-In Tanzu Application Platform, if your yarn configuration contains sensitive data, you can provide the npm
+In Tanzu Application Platform, if your yarn configuration contains sensitive data, you can provide the yarn
 configuration to the build without explicitly including the file in the application directory.
 
 To provide your yarn configuration file without including it in the directory:

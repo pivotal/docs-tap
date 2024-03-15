@@ -5,7 +5,7 @@ This topic tells you how to migrate your Go app from using a Cloud Foundry build
 
 ## <a id="versions"></a>Install a specific Go version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                              | Tanzu Application Service | Tanzu Application Platform |
@@ -100,8 +100,8 @@ stack by default.
 
 ## <a id="non-default-packages"></a> Build non-default packages
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
-installing specific versions.
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
+building non-default packages.
 
 | Feature                                                    | Tanzu Application Service  | Tanzu Application Platform |
 | ---------------------------------------------------------- | -------------------------- | -------------------------- |
