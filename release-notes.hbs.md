@@ -372,6 +372,18 @@ while installing through Tanzu Mission Control.
   [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
   [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
+#### <a id='1-7-5-scst-policy-ki'></a> v1.7.5 Known issues: Supply Chain Security Tools - Policy
+
+- Supply Chain Security Tools - Policy is defaulting to TUF enabled due to incorrect logic.
+This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
+To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
+enable TUF:
+
+  ```yaml
+  policy:
+    tuf_enabled: true
+  ```
+
 #### <a id='1-7-5-scst-scan-ki'></a> v1.7.5 Known issues: Supply Chain Security Tools (SCST) - Scan
 
 - When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
