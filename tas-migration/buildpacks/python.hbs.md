@@ -3,19 +3,18 @@
 This topic tells you how to migrate your Python app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
-<!-- do users do all these sections in order or do they choose the section for their use case -->
-
 ## <a id="versions"></a> Install a specific Python version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
 installing specific versions.
 
-| Feature                                                                                         | Tanzu Application Service | Tanzu Application Platform |
-| ----------------------------------------------------------------------------------------------- | ------------------------- | -------------------------- |
-| Detects version from `runtime.txt`                                                              | ✅                        | ❌                         |
-| Override app-based version detection. See [Configure the environment variable](#env-var) below. | ❌                        | Use `$BP_CPYTHON_VERSION`  |
+| Feature                               | Tanzu Application Service | Tanzu Application Platform |
+| ------------------------------------- | ------------------------- | -------------------------- |
+| Detects version from `runtime.txt`    | ✅                        | ❌                         |
+| Override app-based version detection. | ❌                        | Use `$BP_CPYTHON_VERSION`  |
 
-### <a id="env-var"></a> Configure the environment variable
+
+### <a id="override-version-tap"></a> Tanzu Application Platform: Specify version
 
 In Tanzu Application Platform, set the `$BP_CPYTHON_VERSION` environment variable to specify
 which version of CPython 3 to install.

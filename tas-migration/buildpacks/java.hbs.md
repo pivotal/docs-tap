@@ -3,11 +3,9 @@
 This topic tells you how to migrate your Java app from using a Cloud Foundry buildpack for Tanzu Application Service
 (commonly known as TAS for VMs) to using a Cloud Native Buildpack for Tanzu Application Platform (commonly known as TAP).
 
-<!-- do users do all these sections in order or do they choose the section for their use case -->
-
 ## <a id="versions"></a> Use a specific Java version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature (lowest to highest priority)  | Tanzu Application Service                   | Tanzu Application Platform |
