@@ -26,7 +26,7 @@ The Authoring profile has the following additional packages that the Iterate pro
 
 - App Scanning package
 
-  - app-scanning.apps.tanzu.vmware.com
+  - `app-scanning.apps.tanzu.vmware.com`
 
 ## Install Tanzu Supply Chain
 
