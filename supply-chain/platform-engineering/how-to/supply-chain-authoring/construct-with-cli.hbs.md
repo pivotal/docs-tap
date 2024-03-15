@@ -250,8 +250,8 @@ Created file tasks/store-content-oci.yaml
 
 ## Enforce proper ordering of Components in the SupplyChain
 
-Components have zero or more inputs and outputs. The inputs of a Component must be
-fulfilled by another Component in the SupplyChain that precedes it. If not, there will be a Component
+Components have zero or more inputs and outputs. The inputs for a Component must be
+fulfilled by a preceding Component in the SupplyChain. If not, there will be a Component
 at a stage in a SupplyChain that will not run.  Proper ordering is handled
 differently depending on whether you are authoring using the interactive or non-interactive method.
 
@@ -259,7 +259,7 @@ Interactive
 : 
   The entries that get populated for stage selection already take the ordering logic into account.
   The CLI only shows components for selection if the inputs for that Component are already
-  satisfied by another component in the `SupplyChain`.
+  satisfied by another component in the SupplyChain.
 
 Non-interactive
 : 
@@ -268,8 +268,19 @@ Non-interactive
   component expects an input that has not been output by a previous stage. For example:
 
   ```console
-  $ tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
+  $ tanzu supplychain generate \
+  --kind AppBuildV1 \
+  --description "Supply chain that pulls the source code from Git repository, builds it using buildpacks and packages the output as Carvel package." \
+  --component "buildpack-build-1.0.0" \
+  --component "conventions-1.0.0" \
+  --component "app-config-server-1.0.0" \
+  --component "carvel-package-1.0.0" \
+  --component "git-writer-pr-1.0.0"
+  ```
 
+  Example error output:
+
+  ```console
   Error: unable to find the component buildpack-build-1.0.0 or the component buildpack-build-1.0.0 does not match expected input value
   ```
 
@@ -278,7 +289,7 @@ SupplyChain, see the [SupplyChain API](./../../../reference/api/supplychain.hbs.
 
 ## Ensure that your Components and Supply Chains adhere to version constraints
 
-For information about versioning `SupplyChains` and `Components` to avoid delivery failures of your `Supplychain` resources to your Build clusters, see [Supply Chains cannot change an API once it is on-cluster](./../../explanation/supply-chains.hbs.md#not-change-api).
+For information about versioning SupplyChains and Components to avoid delivery failures of your SupplyChain resources to your Build clusters, see [Supply Chains enforce immutability](./../../explanation/supply-chains.hbs.md#immutability).
 
 ## Reference Guides
 
