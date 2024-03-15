@@ -5,7 +5,7 @@ This topic tells you how to migrate your Ruby app from using a Cloud Foundry bui
 
 ## <a id="versions"></a> Specifying the Ruby version to install
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific Ruby versions.
 
 | Feature                                                  | Tanzu Application Service | Tanzu Application Platform |
@@ -43,7 +43,7 @@ spec:
 
 ## <a id="bundler-versions"></a> Specifying the Bundler version to install
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific Bundler versions.
 
 | Feature                                                         | Tanzu Application Service | Tanzu Application Platform |
