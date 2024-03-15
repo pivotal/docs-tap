@@ -4,21 +4,20 @@ This topic tells you what to configure to complete your Tanzu Supply Chain insta
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-After you have installed Tanzu Supply Chain, there are several steps you must complete to ensure that
-you have a functioning installation. Use Namespace Provisioner to configure service accounts and permissions.
+After you install Tanzu Supply Chain, use Namespace Provisioner to configure service accounts and permissions.
 
-## Things to configure
+VMware recommended that you use Namespace Provisioner to configure the following:
 
-- OCI Store Configuration
-  - Supply Chains persist data between stages by reading and writing to an OCI repository.
-  The location of the OCI repository is configured by a Kubernetes Secret named `oci-store` that exists within the developer namespace.
-  - Access to this repository is controlled by a Tekton annotated secret which can have any name as long as it has the `tekton.dev/docker-0` annotation pointing to the OCI repository.
-- Permissions for Buildpacks Cluster Builders for buildpack-build component
-  - If you are planning to use the `buildpack-build` component to create images using TBS configured with `ClusterBuilders` you must add some additional permissions.
+OCI Store configuration: Supply Chains persist data between stages by reading and writing to an OCI repository. The location of the OCI repository is configured by a Kubernetes Secret named `oci-store`
+that exists within the developer namespace. Access to this repository is controlled by a Tekton
+annotated secret that can have any name with the `tekton.dev/docker-0` annotation
+pointing to the OCI repository.
 
-## Setup using Namespace Provisioner
+Permissions for the `buildpack-build` component and Cluster Builders: You must add some additional
+permissions to use the `buildpack-build`
+component to create images with Tanzu Build Service configured with `ClusterBuilders.
 
-VMware recommended you use Namespace Provisioner for the entire setup:
+## Configure Tanzu Supply Chain using Namespace Provisioner
 
 1. Create a `Secret` in the `tap-install` namespace that has the location and credentials for the `oci-store` as follows:
 
@@ -36,15 +35,14 @@ VMware recommended you use Namespace Provisioner for the entire setup:
           ocistore:
             username: REGISTRY-USERNAME
             password: REGISTRY-PASSWORD
-            server: RESISTRY-SERVER
+            server: REGISTRY-SERVER
             repository: REGISTRY-REPO
     EOF
     ```
 
-2. Configure Namespace Provisioner to use the accelerator sample that will help with the creation of
-all required resources for configuring `oci-store` as well as `buildpack-build` permissions. 
-Update the `namespace_provisioner` section of your `tap-values.yaml` file to look like the following snippet and 
-Namespace provisioner will create the required secrets and role bindings in your developer's namespace. 
+1. Configure Namespace Provisioner to use the accelerator sample. This creates
+the required resources for configuring `oci-store` and `buildpack-build` permissions.
+Update the `namespace_provisioner` section of your `tap-values.yaml` file as follows:
 
     ```console
     namespace_provisioner:
@@ -63,29 +61,30 @@ Namespace provisioner will create the required secrets and role bindings in your
           - oci-store-credentials
     ```
 
+    Namespace Provisioner creates the required secrets and role bindings in your developer namespace.
+
 ## Create Developer Namespaces
 
-```console
-kubectl create namespace dev
-kubectl label namespaces dev apps.tanzu.vmware.com/tap-ns=""
-```
+  ```console
+  kubectl create namespace dev
+  kubectl label namespaces dev apps.tanzu.vmware.com/tap-ns=""
+  ```
 
 ## Configure Namespace Provisioner to support custom Supply Chains
 
-If there is a requirement for injecting additional secrets to the Service Account like the `git-secret`, add as follows:
+If there is a requirement for
+injecting additional secrets to the Service Account such as `git-secret`, for all Developer namespaces managed by Namespace Provisioner, update the `namespace_provisioner`
+section of `tap-values.yaml` as follows:
 
-- For all Developer namespaces managed by Namespace Provisioner, update the `namespace_provisioner`
-section of the `tap-values.yaml`:
-
-```console
-namespace_provisioner:
-  ...
-  default_parameters:
-    supply_chain_service_account:
-      secrets:
-      # Add secrets here
-      - git-secret
-```
+  ```console
+  namespace_provisioner:
+    ...
+    default_parameters:
+      supply_chain_service_account:
+        secrets:
+        # Add secrets here
+        - git-secret
+  ```
 
 - Single Namespace using annotation:
 
