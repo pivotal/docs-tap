@@ -5,7 +5,7 @@ This topic tells you how to migrate your .NET Core app from using a Cloud Foundr
 
 ## <a id="versions"></a> Install specific .NET runtime and ASP.NET versions
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                                                                                 | Tanzu Application Service | Tanzu Application Platform         |
@@ -26,7 +26,7 @@ dotnet-core:
   sdk: 7.0.x
 ```
 
-### <a id="override-version-tap"></a> Tanzu Application Service: Override version detection
+### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
 
 In Tanzu Application Platform, users set the `$BP_DOTNET_FRAMEWORK_VERSION` environment variable to specify which version
 of the .NET Core runtime to install. The buildpack automatically installs an SDK version that is compatible
@@ -99,7 +99,7 @@ spec:
 
 ## <a id="config-publish-command"></a> Configure the publish command
 
-The following table compares how you configure the publish command for Tanzu Application Service and
+The following table compares how you configure the publish command in Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                       | Tanzu Application Service | Tanzu Application Platform     |
@@ -121,7 +121,7 @@ spec:
 
 ## <a id="nuget-config"></a> Provide a NuGet configuration
 
-The following table compares how you provide a NuGet configuration for Tanzu Application Service and
+The following table compares how you provide a NuGet configuration in Tanzu Application Service and
 Tanzu Application Platform.
 
 | Feature                                         | Tanzu Application Service | Tanzu Application Platform                                           |

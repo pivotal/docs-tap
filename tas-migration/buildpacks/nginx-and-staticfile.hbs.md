@@ -9,7 +9,7 @@ Tanzu Application Service NGINX buildpack and Tanzu Application Service Staticfi
 
 ## <a id="versions"></a> Install a specific NGINX version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deals with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                               | Tanzu Application Service | Tanzu Application Platform |
@@ -82,16 +82,20 @@ spec:
       value: "true"
 ```
 
-## <a id="basic-auth"></a> Set up basic authentication
+## <a id="basic-auth"></a> Configure basic authentication
 
-The following table compares how you set up basic authentication for Tanzu Application Service and
+The following table compares how you set up basic authentication in Tanzu Application Service and
 Tanzu Application Platform.
 
-| Feature                 | Tanzu Application Service | Tanzu Application Platform                              |
-| ----------------------- | ------------------------- | ------------------------------------------------------- |
-| Provide HTTP Basic Auth | Use a `Staticfile.auth`   | Use a binding of type `htpasswd` containing `.htpasswd` |
+| Feature                           | Tanzu Application Service | Tanzu Application Platform                              |
+| --------------------------------- | ------------------------- | ------------------------------------------------------- |
+| Provide HTTP basic authentication | Use a `Staticfile.auth`   | Use a binding of type `htpasswd` containing `.htpasswd` |
+
+### <a id="basic-auth-tas"></a> Tanzu Application Service: Set up basic authentication
 
 In Tanzu Application Service Staticfile buildpack applications you use a file at the root of the app.
+
+### <a id="basic-auth-tap"></a> Tanzu Application Platform: Set up basic authentication
 
 For the Tanzu Application Platform Web Server buildpack you provide basic authentication credentials
 by using a service binding as follows:
