@@ -10,7 +10,7 @@ to Tanzu Application Platform.
 
 ### <a id="versions"></a> Install specific PHP versions
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                                                                                       | Tanzu Application Service | Tanzu Application Platform |
@@ -351,7 +351,7 @@ to Tanzu Application Platform.
 
 ### <a id="composer-versions"></a> Install specific Composer versions
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific Composer versions.
 
 | Feature                              | Tanzu Application Service | Tanzu Application Platform    |

@@ -5,7 +5,7 @@ This topic tells you how to migrate your Python app from using a Cloud Foundry b
 
 ## <a id="versions"></a> Install a specific Python version
 
-The following table compares how Tanzu Application Service and Tanzu Application Platform deal with
+The following table compares how Tanzu Application Service and Tanzu Application Platform handle
 installing specific versions.
 
 | Feature                               | Tanzu Application Service | Tanzu Application Platform |
