@@ -12,7 +12,6 @@ For information about how to retrieve the Tanzu Developer Portal URL, see
 
 ## <a id="intellij-install"></a> Installation
 
-
 The VMware Tanzu Application Accelerator plugin for IntelliJ is available from:
 
 - [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/23645-tanzu-application-accelerator) 
@@ -25,6 +24,18 @@ To install from JetBrains Marketplace:
    4. In the search box enter `Tanzu`.
    5. Click **Tanzu Application Accelerator** and then click **Install**.
 
+## <a id="update"></a> Update
+
+To update to a later version, repeat the steps in the [Installation](#intellij-install) section.
+You do not need to uninstall the current version.
+
+## <a id="uninstall"></a> Uninstall
+
+To uninstall the VMware Tanzu Application Accelerator plugin for IntelliJ:
+
+   1. Open the **Preferences** pane and then go to **Plugins**.
+   2. Select the extension, click the gear icon, and then click **Uninstall**.
+   3. Restart IntelliJ.
 
 
 ## <a id="intellij-conf-plugin"></a> Configure the plug-in
