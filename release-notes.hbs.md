@@ -128,6 +128,11 @@ enable TUF:
   ```
 
 ---
+
+#### <a id='1-9-0-scst-store-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Store
+
+- SCST Store returns expired certificate error message when CA certificate expires before the app certificate. More details [here](scst-store/troubleshooting.hbs.md#a-idca-cert-expiresa-ca-cert-expires).
+
  
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
  
