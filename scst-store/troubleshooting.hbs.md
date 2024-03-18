@@ -83,7 +83,45 @@ SCST - Store uses the default storage class which uses EBS volumes by default on
 
 Follow the AWS documentation to install the Amazon EBS CSI Driver before installing SCST - Store or before upgrading to Kubernetes v1.23. For more information, see the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html).
 
-## <a id="cert-expiries"></a> Certificate Expiries
+## <a id="ca-cert-expires"></a> CA Cert expires
+
+### <a id="ca-cert-expires-symptom"></a>Symptom
+
+The Insight CLI or Scan Controller fails to communicate with the SCST - Store and receives an error message containing the following text:
+
+```console
+tls: failed to verify certificate: x509: certificate has expired or is not yet valid
+```
+
+### <a id="ca-cert-expires-explanation"></a>Explanation
+
+The CA certificate expired before the app certificate expires, which causes the error even though the app certificate is still valid. 
+Certmanager will rotate the expired CA certificate, but it doesn't rotate the certificates that were previously created by the expired CA certificate. So this leads to contour being in a bad state and the certificates won't be refreshed properly.
+
+### <a id="ca-cert-expires-solution"></a>Solution
+
+1. Delete the existing expired cacert
+```console
+kubectl delete secret cacert contourcert envoycert -n projectcontour
+```
+2. Delete the contour-certgen job
+```console
+kubectl delete job contour-certgen -n projectcontour
+```
+3. Trigger reconciliation for contour
+```console
+kctrl package installed kick --package-install contour -n tap-install
+```
+4. Restart envoy pods. First find the name of the envoy pod
+```console
+kubectl get pods -n projectcontour
+```
+Find the pod that is named in the format `envoy-<some-random-id>`. Use that name and restart the pods by deleting them:
+```console
+kubectl delete pod <envoy-pod-name> -n projectcontour
+```
+
+## <a id="cert-expiries"></a> Certificate Expires
 
 ### <a id="cert-expiries-symptom"></a>Symptom
 
