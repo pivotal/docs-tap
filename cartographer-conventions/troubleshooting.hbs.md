@@ -199,7 +199,6 @@ For example:
 
 ```console
 NAME                                                          READY   STATUS             RESTARTS          AGE
-cartographer-controller-6996774647-bs98l                      1/1     Running            0                 6d7h
 cartographer-conventions-controller-manager-ff4cdf59d-5nzl5   0/1     CrashLoopBackOff   1292 (109s ago)   5d3h
 ```
 
@@ -228,49 +227,21 @@ pod conventions which can lead to the controller pod crashing.
 
 ### Solution
 
-To increase the Cartographer Convention controller manager memory limit by using a ytt overlay, see one of the following procedures:
+To increase the Cartographer Convention controller manager memory limit via the TAP values.yaml. For example:
 
 - To increase the memory limit for convention server, see [Increase the memory limit for convention server](#increase-server).
 - To increase the memory limit for convention webhook servers, such as app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook, see [Increase the memory limit for convention webhook servers](#increase-webhook).
 
 #### <a id='increase-server'></a> Increase the memory limit for convention server
 
-To increase the memory limit:
+To increase the memory limit, add the desired resource limit under key `cartographer_conventions` in
+the TAP value.yaml:
 
-1. Create a `Secret` with the following ytt overlay:
-
-  ```yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: patch-cartographer-convention-controller
-    namespace: tap-install
-  stringData:
-    patch-conventions-controller.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-      
-      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}}), expects="0+"
-      ---
-      spec:
-        template:
-          spec:
-            containers:
-              #@overlay/match by=overlay.subset({"name": "manager"})
-              - name: manager
-                resources:
-                  limits:
-                    cpu: 100m
-                    memory: 512Mi
-  ```
-
-1. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
-
-  ```yaml
-  package_overlays:
-  - name: cartographer
-    secrets:
-    - name: patch-cartographer-convention-controller
-  ```
+```yaml
+cartographer_conventions:
+  resource:
+    memory: 512Mi
+```
 
 1. Update Tanzu Application Platform by running:
 

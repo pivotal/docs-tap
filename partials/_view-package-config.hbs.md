@@ -61,6 +61,7 @@ The following table summarizes the top-level keys used for package-specific conf
 |Application Live View|`appliveview`|
 |Application Live View connector|`appliveview_connector`|
 |Application Live View conventions|`appliveview-conventions`|
+|Cartographer Conventions|`cartographer_conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|
 |Source Controller|`source_controller`|

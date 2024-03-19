@@ -19,13 +19,13 @@ To install Source Controller:
 
 1. List version information for the package by running:
 
-    ```console
+    ```shell
     tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```console
+    ```shell
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
@@ -33,11 +33,12 @@ To install Source Controller:
       controller.source.apps.tanzu.vmware.com  0.3.2    2022-02-21 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.3    2022-03-03 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.4.1    2022-06-09 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.9.0    2024-03-19 00:00:00 -0500 -05
     ```
 
 2. (Optional) Gather the values schema:
 
-    ```console
+    ```shell
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -45,13 +46,14 @@ To install Source Controller:
 
     For example:
 
-    ```console
-    tanzu package available get controller.source.apps.tanzu.vmware.com/0.4.1 --values-schema --namespace tap-install
+    ```shell
+    tanzu package available get controller.source.apps.tanzu.vmware.com/0.9.0-build.2 --values-schema --namespace tap-install
 
-    Retrieving package details for controller.source.apps.tanzu.vmware.com/0.4.1...
-    KEY               DEFAULT  TYPE    DESCRIPTION
-    aws_iam_role_arn           string  Optional: The AWS IAM Role ARN to attach to the Source Controller service account
-    ca_cert_data               string  Optional: PEM Encoded certificate data for image registries with private CA.
+      KEY               DEFAULT  TYPE    DESCRIPTION
+      resources                          Optional: Tanzu Source Controller resource limit configuration
+      aws_iam_role_arn  ""       string  Optional: Arn role that has access to pull images from ECR container registry
+      ca_cert_data      ""       string  Optional: PEM Encoded certificate data for image registries with private CA.
+
     ```
 
 3. (Optional) Create a file named `source-controller-values.yaml` to override the default installation
@@ -84,9 +86,32 @@ To install Source Controller:
         aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
         ```
 
+    - `resources`: Allows updating the default resource configuration for the Source Controller.
+       By default Source Controller resource configuration is set as following:
+
+       ```yaml
+       resources:
+         limits:
+           cpu: 100m
+           memory: 512Mi
+         requests:
+           cpu: 100m
+           memory: 20Mi
+       ```
+
+         To update the controller's default resource configuration, add the desired configuration to 
+         `source-controller-values.yaml`. For example:
+
+         ```yaml
+         resources:
+           limits:
+              cpu: 100m
+              memory: 1Gi
+         ```
+
 4. Install the package by running:
 
-    ```console
+    ```shell
     tanzu package install source-controller \
       --package controller.source.apps.tanzu.vmware.com \
       --version VERSION-NUMBER \
@@ -101,54 +126,159 @@ To install Source Controller:
 
     For example:
 
-    ```console
+    ```shell
     $ tanzu package install source-controller
         --package controller.source.apps.tanzu.vmware.com
-        --version 0.4.1
+        --version 0.9.0-build.2
         --namespace tap-install
         --values-file source-controller-values.yaml
 
-    \ Installing package 'controller.source.apps.tanzu.vmware.com'
-    | Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
-    | Creating service account 'source-controller-default-sa'
-    | Creating cluster admin role 'source-controller-default-cluster-role'
-    | Creating cluster role binding 'source-controller-default-cluster-rolebinding'
-    | Creating secret 'source-controller-default-values'
-    | Creating package resource
-    - Waiting for 'PackageInstall' reconciliation for 'source-controller'
-    - 'PackageInstall' resource install status: Reconciling
-
-     Added installed package 'source-controller'
+    4:33:18PM: Creating service account 'source-controller-tap-install-sa'
+    4:33:18PM: Creating cluster admin role 'source-controller-tap-install-cluster-role'
+    4:33:18PM: Creating cluster role binding 'source-controller-tap-install-cluster-rolebinding'
+    4:33:18PM: Creating secret 'source-controller-tap-install-values'
+    4:33:18PM: Creating overlay secrets
+    4:33:18PM: Creating package install resource
+    4:33:18PM: Waiting for PackageInstall reconciliation for 'source-controller'
+    4:33:18PM: Fetch started (2s ago)
+    4:33:20PM: Fetching
+          | apiVersion: vendir.k14s.io/v1alpha1
+          | directories:
+          | - contents:
+          |   - imgpkgBundle:
+          |       image: dev.registry.tanzu.vmware.com/tanzu-application-platform/constellation/controller.source.apps.tanzu.vmware.com@sha256:ed0925a9533aae0349107ada38c2a508a6ae4a855b89c3c1c5b4019b706fe1b4
+          |     path: .
+          |   path: "0"
+          | kind: LockConfig
+          |
+    4:33:20PM: Fetch succeeded
+    4:33:20PM: Template succeeded
+    4:33:20PM: Deploy started (2s ago)
+    4:33:22PM: Deploying
+          | Target cluster 'https://10.96.0.1:443' (nodes: tap-local-control-plane)
+          | Changes
+          | Namespace      Name                                            Kind                            Age  Op      Op st.  Wait to    Rs  Ri
+          | (cluster)      imagerepositories.source.apps.tanzu.vmware.com  CustomResourceDefinition        -    create  -       reconcile  -   -
+          | ^              mavenartifacts.source.apps.tanzu.vmware.com     CustomResourceDefinition        -    create  -       reconcile  -   -
+          | ^              source-app-viewer                               ClusterRole                     -    create  -       reconcile  -   -
+          | ^              source-manager-role                             ClusterRole                     -    create  -       reconcile  -   -
+          | ^              source-manager-rolebinding                      ClusterRoleBinding              -    create  -       reconcile  -   -
+          | ^              source-metrics-reader                           ClusterRole                     -    create  -       reconcile  -   -
+          | ^              source-proxy-role                               ClusterRole                     -    create  -       reconcile  -   -
+          | ^              source-proxy-rolebinding                        ClusterRoleBinding              -    create  -       reconcile  -   -
+          | ^              source-system                                   Namespace                       -    create  -       reconcile  -   -
+          | ^              source-validating-webhook-configuration         ValidatingWebhookConfiguration  -    create  -       reconcile  -   -
+          | source-system  reg-creds                                       Secret                          -    create  -       reconcile  -   -
+          | ^              source-ca-certificates                          Secret                          -    create  -       reconcile  -   -
+          | ^              source-controller-manager                       Deployment                      -    create  -       reconcile  -   -
+          | ^              source-controller-manager                       ServiceAccount                  -    create  -       reconcile  -   -
+          | ^              source-controller-manager-artifact-service      Service                         -    create  -       reconcile  -   -
+          | ^              source-controller-manager-metrics-service       Service                         -    create  -       reconcile  -   -
+          | ^              source-leader-election-role                     Role                            -    create  -       reconcile  -   -
+          | ^              source-leader-election-rolebinding              RoleBinding                     -    create  -       reconcile  -   -
+          | ^              source-manager-config                           ConfigMap                       -    create  -       reconcile  -   -
+          | ^              source-selfsigned-issuer                        Issuer                          -    create  -       reconcile  -   -
+          | ^              source-serving-cert                             Certificate                     -    create  -       reconcile  -   -
+          | ^              source-webhook-service                          Service                         -    create  -       reconcile  -   -
+          | Op:      22 create, 0 delete, 0 update, 0 noop, 0 exists
+          | Wait to: 22 reconcile, 0 delete, 0 noop
+          | 8:33:20PM: ---- applying 8 changes [0/22 done] ----
+          | 8:33:20PM: create clusterrole/source-app-viewer (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:21PM: create validatingwebhookconfiguration/source-validating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
+          | 8:33:21PM: create namespace/source-system (v1) cluster
+          | 8:33:21PM: create clusterrole/source-proxy-role (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:21PM: create clusterrole/source-metrics-reader (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:21PM: create clusterrole/source-manager-role (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:22PM: create customresourcedefinition/mavenartifacts.source.apps.tanzu.vmware.com (apiextensions.k8s.io/v1) cluster
+          | 8:33:22PM: create customresourcedefinition/imagerepositories.source.apps.tanzu.vmware.com (apiextensions.k8s.io/v1) cluster
+          | 8:33:22PM: ---- waiting on 8 changes [0/22 done] ----
+          | 8:33:22PM: ok: reconcile clusterrole/source-app-viewer (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile validatingwebhookconfiguration/source-validating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile clusterrole/source-metrics-reader (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile namespace/source-system (v1) cluster
+          | 8:33:22PM: ok: reconcile customresourcedefinition/imagerepositories.source.apps.tanzu.vmware.com (apiextensions.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile clusterrole/source-proxy-role (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile clusterrole/source-manager-role (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:22PM: ok: reconcile customresourcedefinition/mavenartifacts.source.apps.tanzu.vmware.com (apiextensions.k8s.io/v1) cluster
+          | 8:33:22PM: ---- applying 5 changes [8/22 done] ----
+          | 8:33:22PM: create secret/source-ca-certificates (v1) namespace: source-system
+          | 8:33:22PM: create role/source-leader-election-role (rbac.authorization.k8s.io/v1) namespace: source-system
+          | 8:33:22PM: create configmap/source-manager-config (v1) namespace: source-system
+          | 8:33:22PM: create serviceaccount/source-controller-manager (v1) namespace: source-system
+          | 8:33:23PM: create secret/reg-creds (v1) namespace: source-system
+          | 8:33:23PM: ---- waiting on 5 changes [8/22 done] ----
+          | 8:33:23PM: ok: reconcile role/source-leader-election-role (rbac.authorization.k8s.io/v1) namespace: source-system
+          | 8:33:23PM: ok: reconcile serviceaccount/source-controller-manager (v1) namespace: source-system
+          | 8:33:23PM: ok: reconcile secret/source-ca-certificates (v1) namespace: source-system
+          | 8:33:23PM: ok: reconcile secret/reg-creds (v1) namespace: source-system
+          | 8:33:23PM: ok: reconcile configmap/source-manager-config (v1) namespace: source-system
+          | 8:33:23PM: ---- applying 3 changes [13/22 done] ----
+          | 8:33:23PM: create clusterrolebinding/source-proxy-rolebinding (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:23PM: create clusterrolebinding/source-manager-rolebinding (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:23PM: create rolebinding/source-leader-election-rolebinding (rbac.authorization.k8s.io/v1) namespace: source-system
+          | 8:33:23PM: ---- waiting on 3 changes [13/22 done] ----
+          | 8:33:23PM: ok: reconcile clusterrolebinding/source-proxy-rolebinding (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:23PM: ok: reconcile rolebinding/source-leader-election-rolebinding (rbac.authorization.k8s.io/v1) namespace: source-system
+          | 8:33:23PM: ok: reconcile clusterrolebinding/source-manager-rolebinding (rbac.authorization.k8s.io/v1) cluster
+          | 8:33:23PM: ---- applying 6 changes [16/22 done] ----
+          | 8:33:23PM: create service/source-controller-manager-artifact-service (v1) namespace: source-system
+          | 8:33:23PM: create service/source-webhook-service (v1) namespace: source-system
+          | 8:33:23PM: create service/source-controller-manager-metrics-service (v1) namespace: source-system
+          | 8:33:24PM: create deployment/source-controller-manager (apps/v1) namespace: source-system
+          | 8:33:24PM: create issuer/source-selfsigned-issuer (cert-manager.io/v1) namespace: source-system
+          | 8:33:24PM: create certificate/source-serving-cert (cert-manager.io/v1) namespace: source-system
+          | 8:33:24PM: ---- waiting on 6 changes [16/22 done] ----
+          | 8:33:24PM: ok: reconcile issuer/source-selfsigned-issuer (cert-manager.io/v1) namespace: source-system
+          | 8:33:24PM: ok: reconcile certificate/source-serving-cert (cert-manager.io/v1) namespace: source-system
+          | 8:33:24PM: ok: reconcile service/source-controller-manager-metrics-service (v1) namespace: source-system
+          | 8:33:24PM: ok: reconcile service/source-controller-manager-artifact-service (v1) namespace: source-system
+          | 8:33:24PM: ok: reconcile service/source-webhook-service (v1) namespace: source-system
+          | 8:33:24PM: ongoing: reconcile deployment/source-controller-manager (apps/v1) namespace: source-system
+          | 8:33:24PM:  ^ Waiting for 1 unavailable replicas
+          | 8:33:24PM:  L ok: waiting on replicaset/source-controller-manager-5997b587b5 (apps/v1) namespace: source-system
+          | 8:33:24PM:  L ongoing: waiting on pod/source-controller-manager-5997b587b5-8wwf6 (v1) namespace: source-system
+          | 8:33:24PM:     ^ Pending: ContainerCreating
+          | 8:33:24PM: ---- waiting on 1 changes [21/22 done] ----
+          | 8:33:33PM: ongoing: reconcile deployment/source-controller-manager (apps/v1) namespace: source-system
+          | 8:33:33PM:  ^ Waiting for 1 unavailable replicas
+          | 8:33:33PM:  L ok: waiting on replicaset/source-controller-manager-5997b587b5 (apps/v1) namespace: source-system
+          | 8:33:33PM:  L ongoing: waiting on pod/source-controller-manager-5997b587b5-8wwf6 (v1) namespace: source-system
+          | 8:33:33PM:     ^ Condition Ready is not True (False)
+          | 8:33:45PM: ok: reconcile deployment/source-controller-manager (apps/v1) namespace: source-system
+          | 8:33:45PM: ---- applying complete [22/22 done] ----
+          | 8:33:45PM: ---- waiting complete [22/22 done] ----
+          | Succeeded
+    4:33:45PM: Deploy succeeded
     ```
 
 5. Verify the package installation by running:
 
-    ```console
+    ```shell
     tanzu package installed get source-controller -n tap-install
     ```
 
     For example:
 
-    ```console
+    ```shell
     tanzu package installed get source-controller -n tap-install
-   - Retrieving installation details for source-controller...
-    NAME:                    source-controller
-    PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.4.1
-    STATUS:                  Reconcile succeeded
-    CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:
+    NAMESPACE:          tap-install
+    NAME:               source-controller
+    PACKAGE-NAME:       controller.source.apps.tanzu.vmware.com
+    PACKAGE-VERSION:    0.9.0-build.2
+    STATUS:             Reconcile succeeded
+    CONDITIONS:         - status: "True"
+      type: ReconcileSucceeded
     ```
 
     Verify that `STATUS` is `Reconcile succeeded`:
 
-    ```console
+    ```shell
     kubectl get pods -n source-system
     ```
 
     For example:
 
-    ```console
+    ```shell
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          100s
