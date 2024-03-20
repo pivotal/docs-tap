@@ -240,7 +240,7 @@ Tanzu CLI and the apps plug-in are out of date.
 
 ### Solution
 
-1. Install [Tanzu CLI v0.12.0 or later](../install-tanzu-cli.hbs.md).
+1. Install [Tanzu CLI](../install-tanzu-cli.hbs.md).
 2. Upgrade the apps plug-in by running:
 
    ```console

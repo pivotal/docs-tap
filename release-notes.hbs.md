@@ -2673,7 +2673,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-3-cli-ri'></a> v1.6.3 Resolved issues: Tanzu CLI and plugins
 
-- This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
+- This release includes Tanzu CLI v1.2.0 and a set of installable plug-in groups that are versioned
   so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
   information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
@@ -3533,10 +3533,8 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
 
-  > **Note** Tanzu CLI v1.0 will be published soon.
-  > Tanzu CLI v1.0 will provide backward compatibility for all CLI plugins required for
-  > Tanzu Application Platform v1.6.1.
-  > VMware strongly encourages you to upgrade to Tanzu CLI v1.0 when it becomes available.
+  > **Note** Newer versions of Tanzu CLI might be supported when they are released, for more information, see [Product Interoperability Matrix](https://interopmatrix.vmware.com/Interoperability?col=885,&row=0).
+  > VMware strongly encourages you to upgrade to the latest Tanzu CLI version.
 
 - Backward compatibility with earlier versions of Tanzu CLI plug-ins is provided.
 
@@ -3553,9 +3551,6 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   architecture, the centralized plug-in repository, plug-in groups, and Internet-restricted
   environments is available. For more information, see
   [VMware Tanzu CLI documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/index.html).
-
-- For the comprehensive list of what's new in this release of Tanzu CLI, see the
-  [VMware Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/release-notes.html).
 
 - If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or
   issue reports in the open-source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
