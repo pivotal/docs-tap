@@ -64,7 +64,7 @@ To use the DORA plug-in:
 ## <a id="dora-metric-calc"></a> DORA metric calculation
 
 By default, DORA metrics are calculated from the average number of deployments to all environments
-in the last 90 days. Two filtering options are available from drop-down menus:
+in the last 7 days. Two filtering options are available from drop-down menus:
 
 - By date range, based on a predefined set of choices
 - By environment, based on the location labels configured by a platform engineer
@@ -72,6 +72,12 @@ in the last 90 days. Two filtering options are available from drop-down menus:
 For more information about location configuration, see
 [Configure Artifact Metadata Repository](../../scst-store/amr/configuration.hbs.md).
 
-Tanzu workloads have a correlation ID that groups all of the artifacts together.
+DORA Graphs provide visual insights into the trends of Lead Time and Deployment Frequency metrics over time.
+The Lead Time graph displays the average time taken for a code change to go from commit to a running container 
+on a daily basis, represented by individual bars. Alongside, a trend line illustrates a 7-day moving average. 
+Similarly, the Deployment Frequency graph showcases the frequency of code changes being deployed to production, 
+also depicted with daily bars and a corresponding 7-day moving average trend line.
 
-![The DORA tab is selected in Tanzu Developer Portal.](images/dora-tab.png)
+Tanzu workloads have a correlation ID that groups all the artifacts together.
+
+![The DORA tab is selected in Tanzu Developer Portal.](images/dora-tab-graphs.png)
