@@ -323,6 +323,7 @@
             - [Working with AWS Services](aws-services/tutorials/working-with-aws-services.hbs.md)
         - [How-to guides](aws-services/how-to-guides/index.hbs.md)
             - [Configure AWS service endpoint](aws-services/how-to-guides/configure-aws-service-endpoint.hbs.md)
+            - [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md)
         - [Reference](aws-services/reference/index.hbs.md)
             - [Package values](aws-services/reference/package-values.hbs.md)
             - [Supported services](aws-services/reference/supported-services.hbs.md)
