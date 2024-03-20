@@ -482,7 +482,7 @@ while installing through Tanzu Mission Control.
 - After you uninstall the Crossplane package and reinstall it on the same cluster,
   service claims you create never transition to `READY=True`. If you inspect the
   underlying Crossplane managed resource, you see a TLS certificate verification error.
-  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#tls-verification-error-after-reinstallation).
+  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#error-reinstallation).
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
@@ -1513,7 +1513,7 @@ while installing through Tanzu Mission Control.
 - After you uninstall the Crossplane package and reinstall it on the same cluster,
   service claims you create never transition to `READY=True`. If you inspect the
   underlying Crossplane managed resource, you see a TLS certificate verification error.
-  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#tls-verification-error-after-reinstallation).
+  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#error-reinstallation).
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
