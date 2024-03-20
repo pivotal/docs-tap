@@ -200,8 +200,13 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
+### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
+
+- The following APIs are deprecated and are marked for removal in
+  Tanzu Application Platform v1.11:
+  - `clusterexampleusages.services.apps.tanzu.vmware.com/v1alpha1`
+  - `clusterresources.services.apps.tanzu.vmware.com/v1alpha1`
+
 ### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
 
 - Deprecation description including the release when the feature will be removed.
-
----
