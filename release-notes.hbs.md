@@ -354,6 +354,11 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-crossplane-ki'></a> v1.8.1 Known issues: Crossplane
 
+- After you uninstall the Crossplane package and reinstall it on the same cluster,
+  service claims you create never transition to `READY=True`. If you inspect the
+  underlying Crossplane managed resource, you see a TLS certificate verification error.
+  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#tls-verification-error-after-reinstallation).
+
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
@@ -1380,10 +1385,11 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-crossplane-ki'></a> v1.8.0 Known issues: Crossplane
 
-- When uninstalling the Crossplane Package and then reinstalling it again on the same cluster,
-  any tanzu service claim you create will never transition into READY=True. If you inspect the
-  underlying crossplane Managed Resource, you will see a TLS certificate verification error.
-  See [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#tls-verification-error-after-reinstallation) for more information.
+- After you uninstall the Crossplane package and reinstall it on the same cluster,
+  service claims you create never transition to `READY=True`. If you inspect the
+  underlying Crossplane managed resource, you see a TLS certificate verification error.
+  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#tls-verification-error-after-reinstallation).
+
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
