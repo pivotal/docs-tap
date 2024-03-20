@@ -20,7 +20,6 @@ Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Develo
 VMware Tanzu Developer Tools for VS Code is available from:
 
 - [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
-- [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
 Visual Studio Marketplace
 : To install Visual Studio Marketplace:
