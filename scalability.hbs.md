@@ -490,7 +490,6 @@ services_toolkit:
         memory: "1.5Gi"
 ```
 
-
 ### Services Toolkit Resource Claims API Server
 
 The default resource limits are:
