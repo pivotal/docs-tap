@@ -2811,7 +2811,7 @@ AMR has the following new features in v1.7.0:
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI and plug-ins
 
-- This release includes Tanzu CLI v1.1.0 and a set of installable plug-in groups that are versioned
+- This release includes Tanzu CLI v1.2 and a set of installable plug-in groups that are versioned
   so that the CLI is compatible with every supported version of Tanzu Application Platform.
   For more information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
