@@ -45,11 +45,13 @@ kubectl delete validatingwebhookconfiguration crossplane
 
 ---
 
-## <a id="tls-verification-error-after-reinstallation"></a>Claims never transition to READY=True after uninstallation of the Crossplane Package followed by reinstallation to the same cluster
+## <a id="error-reinstallation"></a>Claims never transition to `READY=True` after reinstallation to the same cluster
 
 **Symptom:**
 
-When uninstalling the Crossplane Package and then reinstalling it again on the same cluster, any tanzu service claim you create will never transition into READY=True. If you inspect the underlying crossplane Managed Resource, you will see a TLS certificate verification error similar to the following:
+After you uninstall the Crossplane package and reinstall it on the same cluster,
+service claims you create never transition to `READY=True`. If you inspect the underlying
+Crossplane managed resource, you see a TLS certificate verification error similar to the following:
 
 ```console
 Warning  ComposeResources   39s (x23 over 17m)  defined/compositeresourcedefinition.apiextensions.crossplane.io  cannot compose
@@ -61,11 +63,19 @@ to verify candidate authority certificate \"Crossplane\")"
 
 **Explanation:**
 
-This issue occurs due to the way Crossplane manages the lifecycles of various TLS certificates, in particular the root CA certificate found in the `crossplane-root-ca` Secret in the `crossplane-system` namespace. This cert is used to sign all other certificates used by Crossplane. It gets deleted when Crossplane is uninstalled, however other certificates that have been signed by this root CA do not get deleted. Once Crossplane is reinstalled again, a new root CA certificate is generated meaning that the certificates stored in the `Secrets` that were not deleted are now no longer valid.
+This issue occurs due to the way Crossplane manages the life cycles of TLS certificates, in particular
+the root CA certificate in the `crossplane-root-ca` secret in the `crossplane-system` namespace.
+This certificate signs all other certificates used by Crossplane.
 
-This behaviour is described in [Function: certificate signed by unknown authority "Crossplane" #5456](https://github.com/crossplane/crossplane/issues/5456) in GitHub.
+When you uninstall Crossplane, the root CA certificate is deleted but the certificates that it
+signed are not deleted.
+After Crossplane is reinstalled, a new root CA certificate is generated.
+As a result, the certificates stored in secrets that were not deleted are no longer valid.
+
+This behavior is described in [Function: certificate signed by unknown authority "Crossplane" #5456](https://github.com/crossplane/crossplane/issues/5456) in GitHub.
 
 **Solution:**
 
-As a workaround, you can simply delete all Secrets in the `crossplane-system` namespace whenever uninstalling the Crossplane Package. They will all then be generated anew when reinstalling the Package.
-A fix for this issue is due to be released in TAP 1.8.2.
+As a workaround, delete all secrets in the `crossplane-system` namespace when you uninstall the Crossplane package.
+The certificates are then regenerated when reinstalling the package.
+A fix for this issue is planned for a future Tanzu Application Platform release.
