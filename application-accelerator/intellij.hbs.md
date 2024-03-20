@@ -15,7 +15,7 @@ For information about how to retrieve the Tanzu Developer Portal URL, see
 The VMware Tanzu Application Accelerator plug-in for IntelliJ is available from the
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/23645-tanzu-application-accelerator).
 
-To install the plug-in from JetBrains Marketplace:
+To install the plug-in from the JetBrains Marketplace:
 
 1. Open IntelliJ.
 2. Open the command palette, enter `Plugins`, and click **Plugins**.
