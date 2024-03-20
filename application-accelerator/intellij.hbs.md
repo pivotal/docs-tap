@@ -8,35 +8,25 @@ explore and generate projects from the defined accelerators in Tanzu Application
 
 The plug-in must have access to the Tanzu Developer Portal URL.
 For information about how to retrieve the Tanzu Developer Portal URL, see
-[Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url).
+[Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url) later in this topic.
 
-## <a id="intellij-install"></a> Installation
+## <a id="intellij-install"></a> Install the plug-in
 
-The VMware Tanzu Application Accelerator plugin for IntelliJ is available from:
+The VMware Tanzu Application Accelerator plug-in for IntelliJ is available from the
+[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/23645-tanzu-application-accelerator).
 
-- [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/23645-tanzu-application-accelerator) 
+To install the plug-in from JetBrains Marketplace:
 
-To install from JetBrains Marketplace:
+1. Open IntelliJ.
+2. Open the command palette, enter `Plugins`, and click **Plugins**.
+3. Select the **Marketplace** tab in the **Plugins Settings** dialog box.
+4. In the search box, enter `Tanzu`.
+5. Click **Tanzu Application Accelerator** then click **Install**.
 
-   1. Open IntelliJ.
-   2. Open the command palette, enter `Plugins`, and then click **Plugins**.
-   3. Select the **Marketplace** tab in the **Plugins Settings** dialog box.
-   4. In the search box enter `Tanzu`.
-   5. Click **Tanzu Application Accelerator** and then click **Install**.
+## <a id="update"></a> Update the plug-in
 
-## <a id="update"></a> Update
-
-To update to a later version, repeat the steps in the [Installation](#intellij-install) section.
-You do not need to uninstall the current version.
-
-## <a id="uninstall"></a> Uninstall
-
-To uninstall the VMware Tanzu Application Accelerator plugin for IntelliJ:
-
-   1. Open the **Preferences** pane and then go to **Plugins**.
-   2. Select the extension, click the gear icon, and then click **Uninstall**.
-   3. Restart IntelliJ.
-
+To update to a later version, repeat the steps in [Install the plug-in](#intellij-install).
+You do not need to uninstall your current version.
 
 ## <a id="intellij-conf-plugin"></a> Configure the plug-in
 
@@ -155,3 +145,11 @@ to communicate with the endpoints using TLS.
     4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
     5. Click **Finish**.
     6. A pop-up window stating **The import was successful.** is displayed.
+
+## <a id="uninstall"></a> Uninstall the plug-in
+
+To uninstall the VMware Tanzu Application Accelerator plug-in for IntelliJ:
+
+1. Open the **Preferences** pane and go to **Plugins**.
+2. Select the extension, click the gear icon, and click **Uninstall**.
+3. Restart IntelliJ.
