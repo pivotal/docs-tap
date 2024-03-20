@@ -39,7 +39,7 @@ Application Platform v{{ vars.url_version }}, AMR Observer watches for:
     </tr>
     <tr>
       <td>GitRepository</td>
-      <td>source.toolkit.fluxcd.io/v1beta2</td>
+      <td>source.toolkit.fluxcd.io/v1</td>
     </tr>
     <tr>
       <td>OCIRepository</td>
