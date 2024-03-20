@@ -35,7 +35,6 @@ amr:
         secret:
           ref: "amr-observer-edit-token"
           value: ""
-    deployed_through_tmc: false
     max_concurrent_reconciles:
       image_vulnerability_scans: 1
 ```
