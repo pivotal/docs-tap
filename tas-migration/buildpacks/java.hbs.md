@@ -24,9 +24,8 @@ environment variable key and value:
 JBP_CONFIG_OPEN_JDK_JRE '{ jre: { version: 17.+ }}'
 ```
 
-This builds the app with the version of Java 17 that was bundled with the buildpack,
-currently 8, 11, 17, and 21.
-<!-- why does it mention Java 17 then 8, 11, 17 & 21? -->
+This builds the app with the version of Java v17 that was bundled with the buildpack.
+Currently Java v8, v11, v17, and v21 are supported.
 
 ### <a id="override-version-tap"></a> Tanzu Application Platform: Override version detection
 
@@ -127,8 +126,7 @@ properties and connect to the bound service.
 ### <a id="service-bindings-tap"></a> Tanzu Application Platform: Service bindings
 
 In Tanzu Application Platform, Tanzu Buildpacks supply a similar library, named Spring Cloud Bindings,
-which supports the Kubernetes-style service bindings, and enable it by default.
-<!-- what does "it" mean in this sentence" -->
+which supports the Kubernetes-style service bindings.
 This does the following:
 
 - Adds a PropertySource with a flattened representation, `k8s.bindings.{name}.*`, of the bindings.
@@ -139,14 +137,14 @@ binding encountered.
 
 After you have applied a service binding, for example to a PostgreSQL database,
 [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
-automatically uses the properties from the binding to set the relevant Spring Boot properties:
+automatically uses the properties from the binding to set the relevant Spring Boot properties.
+
+Example command to apply a service binding:
 
 ```console
 tanzu apps workload apply APP-NAME \
   --service-ref "psql=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql"
 ```
-
-<!-- when should users run this command? it says that it's automatic. -->
 
 For more information about service bindings, see
 [Configure Tanzu Build Service properties on a workload](../../tanzu-build-service/tbs-workload-config.hbs.md).
