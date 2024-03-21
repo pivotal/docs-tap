@@ -43,6 +43,11 @@ This release includes the following changes, listed by component and area.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-8-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
+
+- To configure SCST - Scan with the Metadata Store CA Certificate, the secret can no longer be manually created.
+  It must now be configured via TAP values. See [Multicluster setup for Supply Chain Security Tools](scst-store/multicluster-setup.hbs.md#apply-kubernetes) - Store for details.
+
 #### <a id='services-toolkit-bc'></a> v1.9.0 Breaking changes: Services Toolkit
 
 The following APIs and tools have now been removed:

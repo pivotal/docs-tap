@@ -41,21 +41,10 @@ copy the Metadata Store CA certificate and the AMR CloudEvent Handler CA certifi
 ### <a id='copy-metadata'></a>Copy Metadata Store CA certificate from the View cluster
 
 With your kubectl targeted at the View cluster, you can get Metadata Store's TLS
-CA certificate. To copy the CA certificate into a `store_ca.yaml` file:
+CA certificate.
 
 ```console
 MDS_CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-cat <<EOF > store_ca.yaml
----
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-data:
-  ca.crt: $MDS_CA_CERT
-EOF
 ```
 
 ### <a id='copy-ceh-ca'></a>Copy AMR CloudEvent Handler CA certificate data from the View cluster
@@ -109,35 +98,20 @@ Run cluster:
 * CloudEvent Handler CA certificate
 * CloudEvent Handler edit token
 
-### <a id='apply-kubernetes'></a>Apply the Metadata Store CA certificate and authentication token to the Build cluster
+### <a id='apply-kubernetes'></a>Configure SCST - Scan with the Metadata Store CA certificate and authentication token on the Build cluster
 
-Before you deploy the Build profile, apply the Metadata Store CA certificate and
-Metadata Store authentication token from the earlier steps. This gives the Build profile deployment access to these values.
-
-To apply the Metadata Store CA certificate and an authentication token:
-
-1. With your kubectl targeted at the Build cluster, create a namespace for the Metadata Store CA
-certificate and authentication token.
+1. Update the Build profile `values.yaml` file to add the following snippet using the contents of $MDS_CA_CERT and $MDS_AUTH_TOKEN copied in an earlier step. It configures SCST - Scan with the Metadata Store CA certificate and authentication token.
 
     ```console
-    kubectl create ns metadata-store-secrets
+    scanning:
+      metadataStore:
+        exports:
+          ca:
+            pem: |
+              <CONTENTS OF $MDS_CA_CERT>
+          auth:
+            token: <CONTENTS OF $MDS_AUTH_TOKEN>
     ```
-
-1. Apply the Metadata Store CA certificate `store_ca.yaml` secret YAML you generated earlier.
-
-    ```console
-    kubectl apply -f store_ca.yaml
-    ```
-
-2. Create a secret to store the access token. This uses the Metadata Store `MDS_AUTH_TOKEN` environment variable.
-
-    ```console
-    kubectl create secret generic store-auth-token \
-      --from-literal=auth_token=$MDS_AUTH_TOKEN -n metadata-store-secrets
-    ```
-
-The Build cluster now has a Metadata Store CA certificate named  `store-ca-cert` and a Metadata Store authentication
-token named `store-auth-token` in the namespace `metadata-store-secrets`.
 
 ### <a id='apply-ceh-ca-token'></a>Apply the CloudEvent Handler CA certificate data and edit token to the Build and Run clusters
 
