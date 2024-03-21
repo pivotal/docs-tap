@@ -179,6 +179,9 @@ To install Flux CD Source Controller from the Tanzu Application Platform package
 
 ## <a id='resource-limits'></a>Configure resource limits
 
+Each system has its unique resource requirements, and the default resources
+provided by Flux Source Controller might not meet the needs of your specific use case.
+
 Flux Source Controller uses the following resource limits by default:
 
 ```yaml
@@ -191,10 +194,7 @@ resources:
     memory: 64Mi
 ```
 
-Each system has its unique resource requirements, and the default resources
-provided by Flux Source Controller might not meet the needs of your specific use case.
-
-You can increase the resource limits by following these steps:
+You can configure the resource limits by following these steps:
 
 1. Create a `Secret` with the following `ytt` overlay:
 
