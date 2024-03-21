@@ -532,5 +532,5 @@ resources:
     memory: 64Mi
 ```
 
-To change the resource limits for FluxCD Source controller follow the procedure in the
-[FluxCD Source Controller installation document](fluxcd-source-controller/install.hbs.md#resource-limits).
+To change the resource limits for FluxCD Source controller, follow the procedure in
+[Configure resource Limits](fluxcd-source-controller/install.hbs.md#resource-limits).

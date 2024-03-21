@@ -177,7 +177,7 @@ To install Flux CD Source Controller from the Tanzu Application Platform package
 
     For more examples, see the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
 
-## <a id='resource-limits'></a>Resource limits
+## <a id='resource-limits'></a>Configure resource limits
 
 Flux Source Controller uses the following resource limits by default:
 
@@ -192,52 +192,52 @@ resources:
 ```
 
 Every system has different resource demands and it is possible that the defaults
-provided by Flux Source Controller may not be sufficient for your use case.  In
-order to increase the limits you can follow this procedure:
+provided by Flux Source Controller may not be sufficient for your use case.
+To increase the limits:
 
 1. Create a `Secret` with the following ytt overlay.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: fluxcd-source-overlay-secret
-  namespace: tap-install
-stringData:
-  fluxcd-source-overlay.yaml: |
-      #@ load("@ytt:data", "data")
-      #@ load("@ytt:overlay", "overlay")
-      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"fluxcd-source-controller", "namespace": "flux-system"}}), expects="1+"
-      ---
-      spec:
-        template:
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: fluxcd-source-overlay-secret
+      namespace: tap-install
+    stringData:
+      fluxcd-source-overlay.yaml: |
+          #@ load("@ytt:data", "data")
+          #@ load("@ytt:overlay", "overlay")
+          #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"fluxcd-source-controller", "namespace": "flux-system"}}), expects="1+"
+          ---
           spec:
-            containers:
-            #@overlay/match by="name"
-            - name: manager
-              resources:
-                limits:
-                  cpu: "4"
-                  memory: "4Gi"
-                requests:
-                  cpu: "2"
-                  memory: "2Gi"
-```
+            template:
+              spec:
+                containers:
+                #@overlay/match by="name"
+                - name: manager
+                  resources:
+                    limits:
+                      cpu: "4"
+                      memory: "4Gi"
+                    requests:
+                      cpu: "2"
+                      memory: "2Gi"
+    ```
 
 1. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
 
-```yaml
-package_overlays:
-- name: fluxcd-source-controller
-  secrets:
-  - name: fluxcd-source-overlay-secret
-```
+    ```yaml
+    package_overlays:
+    - name: fluxcd-source-controller
+      secrets:
+      - name: fluxcd-source-overlay-secret
+    ```
 
 1. Update Tanzu Application Platform by running:
 
-  ```console
-  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.9.0 --values-file tap-values.yaml -n tap-install
-  ```
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.9.0 --values-file tap-values.yaml -n tap-install
+    ```
 
 For information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
 
