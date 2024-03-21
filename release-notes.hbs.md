@@ -64,7 +64,7 @@ The following APIs and tools have now been removed:
 
 #### <a id='1-9-0-fluxcd-source-controller-deprecations-bc'></a> v1.9.0 Breaking changes: FluxCD Source Controller
 
-- FluxCD Source Controller, as of TAP 1.9.0, no longer supports the the `git_implementation` field in `GitRepository` version `v1`.
+- In Tanzu Application Platform v1.9.0, FluxCD Source Controller no longer supports the the `git_implementation` field in `GitRepository` version `v1`.
 
 #### <a id='1-9-0-COMPONENT-NAME-bc'></a> v1.9.0 Breaking changes: COMPONENT-NAME
 
@@ -212,8 +212,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id='fluxcd-source-controller-deprecations'></a> FluxCD Source Controller deprecations
 
-- FluxCD Source Controller, as of TAP 1.9.0, has promoted the `GitRepository` API from `v1beta2` to `v1`.  The
-  controller will still accept resources with API versions `v1beta1` and `v1beta2` but will save them as `v1`.
+- In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2` and saves them as `v1`.
 
 ### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
 
