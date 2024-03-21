@@ -53,6 +53,14 @@ app_scanning:
     url: https://amr-graphql.VIEW-CLUSTER-INGRESS-DOMAIN # AMR GraphQL location at the View profile cluster.
     accessToken: "AMR-GRAPHQL-READ-ACCESS-TOKEN"
 
+scanning:
+  metadataStore:
+    exports:
+      ca:
+        pem: |
+          "METADATA STORE CA" # (Optional) Defaults to "".
+      auth:
+        token: METADATA STORE AUTHENTICATION TOKEN
 amr:
   observer:
     auth:
