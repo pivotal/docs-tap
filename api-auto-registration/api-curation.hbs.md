@@ -110,17 +110,21 @@ NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED A
 my-apps             petstore     cute-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
 ```
 
-## <a id='viewing-curated-api-descriptor'></a>View the auto-registered API within Tanzu Developer Portal
+## <a id='view-curated-api-desc'></a>View the auto-registered API within Tanzu Developer Portal
 
-Once you see the above CuratedAPIDescriptor in the Ready state, you can navigate to Tanzu Developer Portal to view them
-automatically registered. You will see one new API for the CuratedAPIDescriptor along with the other APIs generated from APIDescriptors.
+After you the CuratedAPIDescriptor you created is in the `Ready` state, navigate to Tanzu Developer Portal
+to view the automatically registered APIs.
+You will see one new API for the CuratedAPIDescriptor and the other APIs generated from APIDescriptors.
 
-Additionally, you will see a component registered for the Curated API. If you chose to use Spring Cloud Gateway as the route
-provider in the above steps, this component has the ability to show under the "Runtime Resources" any gateway resources with
-the matching `app.kubernetes.io/part-of={PART_OF}` label. To make this connection, you will need to add this same label to
-the `SpringCloudGateway` instance you create. For more info, see the [Spring Cloud Gateway docs](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-tap-organization-catalog.html)
+Additionally, you will see a component registered for the curated API. If you chose to use Spring Cloud Gateway
+as the route provider in [Setup Spring Cloud Gateway integration](#setup-scg) earlier,
+this component can show any gateway resources with the matching `app.kubernetes.io/part-of={PART_OF}` label
+under the **Runtime Resources**.
+To make this connection, add the `app.kubernetes.io/part-of={PART_OF}` label to the `SpringCloudGateway`
+instance you create.
+For more information, see the [Spring Cloud Gateway documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-tap-organization-catalog.html).
 
-![Tanzu Developer Portal showing the running Spring Cloud Gateway resources](./images/api-curation-component.png)
+![Tanzu Developer Portal showing the running Spring Cloud Gateway resources.](./images/api-curation-component.png)
 
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
