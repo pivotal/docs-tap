@@ -2739,7 +2739,7 @@ This release includes the following changes, listed by component and area.
 
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
-  external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
+  external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-service-bindings'></a> v1.7.0 Features: Service Bindings
 
@@ -2819,12 +2819,12 @@ AMR has the following new features in v1.7.0:
 
 - You can access reports from each scan to find out what packages and vulnerabilities were discovered
   by using the `tanzu insight report` command. For more information, see the
-  [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html)
+  [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html)
   documentation.
 
 - You can rebase vulnerability triage analyses by using the `tanzu insight triage rebase` command.
   For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses)
-  and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
+  and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-tanzu-dev-portal'></a> v1.7.0 Features: Tanzu Developer Portal
 
@@ -2912,7 +2912,7 @@ see [Configure Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documentation
 
 - The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform
-  documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html)
+  documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html)
   documentation. The following Tanzu CLI plug-ins are impacted: Accelerator, Apps, Build Service,
   External Secrets, Insight, and Tanzu Service.
 
