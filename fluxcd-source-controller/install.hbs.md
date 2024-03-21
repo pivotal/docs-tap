@@ -191,11 +191,12 @@ resources:
     memory: 64Mi
 ```
 
-Every system has different resource demands and it is possible that the defaults
-provided by Flux Source Controller may not be sufficient for your use case.
-To increase the limits:
+Each system has its unique resource requirements, and the default resources
+provided by Flux Source Controller might not meet the needs of your specific use case.
 
-1. Create a `Secret` with the following ytt overlay.
+You can increase the resource limits by following these steps:
+
+1. Create a `Secret` with the following `ytt` overlay:
 
     ```yaml
     apiVersion: v1
@@ -224,7 +225,7 @@ To increase the limits:
                       memory: "2Gi"
     ```
 
-1. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
+1. Update the Tanzu Application Platform values file by including a `package_overlays` field:
 
     ```yaml
     package_overlays:
@@ -239,7 +240,7 @@ To increase the limits:
     tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.9.0 --values-file tap-values.yaml -n tap-install
     ```
 
-For information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
+For more information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
 
 ##  <a id="documentation"></a> Documentation
 
