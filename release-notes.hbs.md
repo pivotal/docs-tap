@@ -4178,7 +4178,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
    The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
    Carbon Black Scanner is not impacted.
    For information about the migration path, see
-   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
+   [Troubleshooting](scst-scan/troubleshoot-scan.hbs.md#unable-pull-scanner-images).
 
 - The profile based installation of Grype to a developer namespace and related
   fields in the values file, such as `grype.namespace` and
