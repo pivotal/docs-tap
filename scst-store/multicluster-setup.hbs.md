@@ -100,7 +100,7 @@ Run cluster:
 
 ### <a id='apply-kubernetes'></a>Configure SCST - Scan with the Metadata Store CA certificate and authentication token on the Build cluster
 
-1. Update the Build profile `values.yaml` file to add the following snippet using the contents of $MDS_CA_CERT and $MDS_AUTH_TOKEN copied in an earlier step. It configures SCST - Scan with the Metadata Store CA certificate and authentication token.
+Update the Build profile `values.yaml` file to add the following snippet using the contents of $MDS_CA_CERT and $MDS_AUTH_TOKEN copied in an earlier step. It configures SCST - Scan with the Metadata Store CA certificate and authentication token.
 
     ```console
     scanning:
