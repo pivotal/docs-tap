@@ -25,11 +25,11 @@ The following annotations are added:
 Spring Boot conventions allows you to activate or deactivate the automatic configuration of
 actuators on Tanzu Application Platform and on individual workloads.
 If the label `apps.tanzu.vmware.com/auto-configure-actuators` on the workload is set to `true`,
-<!-- Spring Boot conventions? --> activates automatic configuration of actuators.
+Spring Boot conventions activates automatic configuration of actuators.
 The default label setting on the workload is `apps.tanzu.vmware.com/auto-configure-actuators: "false"`.
 
 If `apps.tanzu.vmware.com/auto-configure-actuators` label is set to `true` on the workload YAML,
-then the management server port is also switched to 8081 and <!-- Spring Boot conventions? --> uses
+then the management server port is also switched to 8081 and Spring Boot conventions uses
 that port to access the actuators instead of the default app port.
 Therefore, the Prometheus port is also set to 8081 automatically on the PodSpec so that the metrics
 can be scraped using that port.
@@ -59,7 +59,9 @@ kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
 
 Where `WORKLOAD-NAME` is the name of the deployed workload. For example: `tanzu-java-web-app`.
 
-Example output of a Spring Boot workload PodIntent:
+### <a id="output"></a> Example output
+
+Example output for a Spring Boot workload PodIntent:
 
 ```console
 apiVersion: conventions.carto.run/v1alpha1
@@ -204,7 +206,9 @@ status:
       serviceAccountName: default
 ```
 
-Example output of a Spring Boot workload PodIntent if the `apps.tanzu.vmware.com/auto-configure-actuators`
+### <a id="output-auto-config"></a> Example output if automatic configuration of actuators is `true`
+
+Example output for a Spring Boot workload PodIntent if the `apps.tanzu.vmware.com/auto-configure-actuators`
 label is set to `true` on the workload YAML:
 
 ```console
