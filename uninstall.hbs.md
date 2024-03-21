@@ -132,7 +132,7 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
 
 ## <a id='remove-ce'></a> Remove Cluster Essentials
 
-To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#uninstall).
+To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html#uninstall).
 
 ## <a id='remove-crd'></a> Remove Crossplane resources
 
