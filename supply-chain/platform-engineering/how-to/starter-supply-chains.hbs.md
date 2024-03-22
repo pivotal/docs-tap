@@ -50,7 +50,7 @@ It performs the following actions:
 
 Complete the following steps:
 
-1. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
+1. Ensure that you have initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
 2. Run the following command to generate the supply chain.
 
     ```console
@@ -79,7 +79,7 @@ It performs the following actions:
 
 Complete the following steps:
 
-1. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
+1. Ensure that you have initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
 2. Run the following command to generate the supply chain.
 
     ```console
@@ -93,7 +93,7 @@ Complete the following steps:
 
 ## Supply Chain Choreographer
 
-The recipes in this topic are analogous to OOTB Supply Chains and Profile experiences in Supply Chain Choreographer. Use this mapping to help decide which recipe you should start with. These recipes
+The recipes in this topic are analogous to OOTB Supply Chains and Profile experiences in Supply Chain Choreographer. Use this mapping to help decide which recipe to start with. These recipes
 do not provide exact parity with OOTB Supply Chains.
 
 - Iterate Profile: Use [Build and Deploy an application](#build-and-deploy-an-application).
