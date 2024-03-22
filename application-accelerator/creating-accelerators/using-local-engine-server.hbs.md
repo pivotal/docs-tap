@@ -10,7 +10,7 @@ files. This enables you to verify that the accelerator provides the defined opti
 the correct set of files.
 
 With the local engine server, you can serve your accelerators with their fragments on `localhost`,
-including any changes you have locally, and use the VS Code Tanzu App Accelerator extension or the
+including any changes you have locally. You can use the VS Code Tanzu App Accelerator extension or the
 Tanzu CLI Accelerator plug-in to generate new projects based on these local files.
 After you are satisfied with the new or modified accelerators and fragments, you can commit them to
 a Git repository and then publish them to a cluster to give others access.
