@@ -792,7 +792,7 @@
               - [Deploy and Manage Supply Chains](./supply-chain/platform-engineering/how-to/deploying-supply-chains/about.hbs.md)
                   - [Install a Supply Chain](./supply-chain/platform-engineering/how-to/deploying-supply-chains/install.hbs.md)
                   - [Manage SupplyChains with GitOps](./supply-chain/platform-engineering/how-to/deploying-supply-chains/gitops-managed.hbs.md)
-              - [Create Starter SupplyChains](./supply-chain/platform-engineering/how-to/starter-supply-chains.hbs.md)
+              - [Create starter SupplyChains](./supply-chain/platform-engineering/how-to/starter-supply-chains.hbs.md)
           - [Explanations](./supply-chain/platform-engineering/explanation/about.hbs.md)
               - [Supply Chains overview](./supply-chain/platform-engineering/explanation/supply-chains.hbs.md)
               - [Workloads overview](./supply-chain/platform-engineering/explanation/workloads.hbs.md)

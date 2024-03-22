@@ -15,7 +15,9 @@ It will perform the following actions:
 * Generate a Carvel package to make the application deployable
 * Deploy the application
 
-Run the following command to generate the supply chain. Ensure you have first initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md). 
+Complete the following steps:
+
+1. Ensure that you have initialized a working directory using [tanzu supplychain init](../../reference/supplychain-cli/tanzu_supplychain_init.hbs.md).
 
 1. Run the following command to generate the supply chain.
 
