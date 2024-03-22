@@ -227,7 +227,7 @@ pod conventions which can lead to the controller pod crashing.
 
 ### Solution
 
-To increase the Cartographer Convention controller manager memory limit via the TAP values.yaml. For example:
+To increase the Cartographer Convention controller manager memory, use the `values.yaml` file. For example:
 
 - To increase the memory limit for convention server, see [Increase the memory limit for convention server](#increase-server).
 - To increase the memory limit for convention webhook servers, such as app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook, see [Increase the memory limit for convention webhook servers](#increase-webhook).
