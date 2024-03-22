@@ -21,4 +21,4 @@ In this section:
 
 ## How to Guides: Starter SupplyChains
 
-- [Create Starter SupplyChains](./starter-supply-chains.hbs.md)
+- [Create starter SupplyChains](./starter-supply-chains.hbs.md)
