@@ -29,11 +29,14 @@ Application Live View includes the following components as shown in the architec
 
   You can deploy Application Live View connector in three modes:
 
-    * `Deployment`: Deploy as a Kubernetes Deployment to discover apps running across all the namespaces in the cluster of a Kubernetes cluster. This is the default mode of Application Live View connector.
+    - `Deployment`: Deploy as a Kubernetes Deployment to discover apps running across all namespaces
+      of a Kubernetes cluster. This is the default mode of Application Live View connector.
 
-    * `Cluster access`: Deploy as a Kubernetes DaemonSet to discover apps across all the namespaces running in a worker node of a Kubernetes cluster. 
+    - `Cluster access`: Deploy as a Kubernetes DaemonSet to discover apps across all namespaces running
+      in a worker node of a Kubernetes cluster.
 
-    * `Namespace scoped`: Deploy as a Kubernetes Deployment to discover apps running within a namespace across worker nodes of Kubernetes cluster.
+    - `Namespace scoped`: Deploy as a Kubernetes Deployment to discover apps running within a namespace
+      across worker nodes of Kubernetes cluster.
 
 - **Application Live View convention server**
 
