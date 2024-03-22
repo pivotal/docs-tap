@@ -105,7 +105,7 @@ For information about installing and configuring data services on Tanzu Applicat
 **Prerequisites:** To follow this example, you must first deploy Service Registry and Spring Config Server instances.
 To do so, apply the following YAML files in the [fortune-teller repo](https://github.com/akrishna90/fortune-teller/tree/main/tap):
 
-- Install Service Registry: Apply the file [eureka-server.yaml)](https://github.com/akrishna90/fortune-teller/blob/main/tap/eureka-server.yaml).
+- Install Service Registry: Apply the file [eureka-server.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/eureka-server.yaml).
 - Install Spring Config Server: Apply the file [configuration-source.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-source.yaml).
 - ConfigureSpring Config Server: Apply the file [configuration-slice.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-slice.yaml).
 - Setup the `forture-teller` app to use Service Registry and Spring Config Server: Apply the file [resource-claim.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/resource-claim.yaml).
