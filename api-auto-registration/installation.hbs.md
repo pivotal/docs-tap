@@ -53,7 +53,7 @@ To install the API Auto Registration package:
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
+    Where `VERSION-NUMBER` is the version of the package you retrieved.
 
     For example:
 
@@ -120,9 +120,11 @@ To install the API Auto Registration package:
     tanzu package install api-auto-registration
     --package apis.apps.tanzu.vmware.com
     --namespace tap-install
-    --version $VERSION
+    --version VERSION-NUMBER
     --values-file api-auto-registration-values.yaml
     ```
+
+    Where `VERSION-NUMBER` is the version of the package you retrieved in the earlier step.
 
 5. Verify the package installation by running:
 
