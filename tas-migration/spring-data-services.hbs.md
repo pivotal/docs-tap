@@ -102,9 +102,7 @@ on Tanzu Application Platform.
 For information about installing and configuring data services on Tanzu Application Platform, see the
 [Services Toolkit documentation](../services-toolkit/about.hbs.md).
 
-**Prerequisites:**
-
-To follow this example, you must first deploy Service Registry and Spring Config Server instances.
+**Prerequisites:** To follow this example, you must first deploy Service Registry and Spring Config Server instances.
 To do so, apply the following YAML files in the [fortune-teller repo](https://github.com/akrishna90/fortune-teller/tree/main/tap):
 
 - Install Service Registry: Apply the file [eureka-server.yaml)](https://github.com/akrishna90/fortune-teller/blob/main/tap/eureka-server.yaml).
