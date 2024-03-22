@@ -3,18 +3,18 @@
 This topic tells you about the different ways in which you can deploy the connector in
 Tanzu Application Platform (commonly known as TAP).
 
-## <a id='connector-as-daemonset'></a> Deploy the connector as a Kubernetes DaemonSet
-
-This is the default mode of Application Live View connector in Tanzu Application Platform.
-When deployed as a Kubernetes DaemonSet the connector discovers applications across all the namespaces
-running in a worker node of a Kubernetes cluster.
-
 ## <a id='connector-as-deployment'></a> Deploy the connector as a regular deployment
 
+This is the default mode of Application Live View connector in Tanzu Application Platform.
 When the connector is running as a regular deployment, it observes all the applications across
 all the namespaces in the cluster and registers with the back end.
 
-To run the connector as a regular deployment:
+## <a id='connector-as-daemonset'></a> Deploy the connector as a Kubernetes DaemonSet
+
+When deployed as a Kubernetes DaemonSet the connector discovers applications across all the namespaces
+running in a worker node of a Kubernetes cluster.
+
+To run the connector as a DaemonSet:
 
 1. Change the default installation settings for Application Live View connector by running:
 
@@ -22,12 +22,12 @@ To run the connector as a regular deployment:
    tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
    ```
 
-   Where `VERSION-NUMBER` is the version of the package listed. For example, `1.8.0`.
+   Where `VERSION-NUMBER` is the version of the package listed. For example, `1.9.0`.
 
    For example:
 
    ```console
-   $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
+   $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.9.0 --values-schema --namespace tap-install
      KEY                                   DEFAULT             TYPE        DESCRIPTION
      kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
 
@@ -39,7 +39,7 @@ To run the connector as a regular deployment:
      backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on back end.
 
      backend.port                          <nil>               number      Port to reach the Application Live View back end.
-     connector.deployment.enabled          false               boolean     Flag for the connector to run in deployment mode
+     connector.deployment.enabled          true                boolean      Flag for the connector to run in deployment mode
      connector.deployment.replicas           1                 number      Number of replicas of connector pods at any given time
      connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope.
      connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
@@ -58,11 +58,11 @@ To run the connector as a regular deployment:
     appliveview_connector:
       connector:
         deployment:
-          enabled: true
+          enabled: false
           replicas: 1
     ```
 
-   By default, `connector.deployment.enabled` is set to `false`.
+   By default, `connector.deployment.enabled` is set to `true`.
 
    The `connector.deployment.replicas` key specifies the number of replicas of connector pods
    running at any given time.

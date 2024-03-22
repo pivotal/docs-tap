@@ -27,9 +27,11 @@ Application Live View includes the following components as shown in the architec
   The actuator data is then displayed in the Application Live View UI plug-in as part of
   Tanzu Developer Portal.
 
-  You can deploy Application Live View connector in two modes:
+  You can deploy Application Live View connector in three modes:
 
-    * `Cluster access`: Deploy as a Kubernetes DaemonSet to discover apps across all the namespaces running in a worker node of a Kubernetes cluster. This is the default mode of Application Live View connector.
+    * `Deployment`: Deploy as a Kubernetes Deployment to discover apps running across all the namespaces in the cluster of a Kubernetes cluster. This is the default mode of Application Live View connector.
+
+    * `Cluster access`: Deploy as a Kubernetes DaemonSet to discover apps across all the namespaces running in a worker node of a Kubernetes cluster. 
 
     * `Namespace scoped`: Deploy as a Kubernetes Deployment to discover apps running within a namespace across worker nodes of Kubernetes cluster.
 
@@ -58,6 +60,6 @@ Application Live View connector communicates with the Kubernetes API server requ
 registers the filtered app instances with Application Live View back end.
 
 Application Live View back end and Application Live View connector communicate through a bidirectional RSocket channel. Application Live View connector is implemented as a
-Java/Spring Boot application and runs as a native executable file (Spring Native using GraalVM). Application Live View connector runs as a DaemonSet by default on every node in the cluster.
+Java/Spring Boot application and runs as a native executable file (Spring Native using GraalVM). Application Live View connector runs as a Deployment by default in the cluster.
 
 Application Live View conventions identifies PodIntents for pods that can serve actuator data and annotates the PodSpec with application-specific labels. Those labels are used by the Application Live View connector to identify running pods that can serve actuator data. Application Live View conventions reads the image metadata to determine the application-specific labels applied on the PodSpec.
