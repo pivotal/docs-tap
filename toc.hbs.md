@@ -206,6 +206,7 @@
         - [Create accelerators](application-accelerator/creating-accelerators/creating-accelerators.hbs.md)
             - [Create an accelerator](application-accelerator/creating-accelerators/creating-accelerators.hbs.md)
             - [Create an accelerator.yaml file in Application Accelerator](application-accelerator/creating-accelerators/accelerator-yaml.hbs.md)
+            - [Sample accelerator.yaml file](application-accelerator/creating-accelerators/accelerator-yaml-sample.hbs.md)
             - [Use transforms in Application Accelerator](application-accelerator/creating-accelerators/transform-intro.hbs.md)
             - [Use custom types in Application Accelerator](application-accelerator/creating-accelerators/custom-types.hbs.md)
             - [Use fragments in Application Accelerator](application-accelerator/creating-accelerators/composition.hbs.md)
