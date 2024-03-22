@@ -18,27 +18,14 @@ For more information, see [Create an Application Accelerator Git repository duri
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
-Use the following steps to install the Application Accelerator Visual Studio extension:
+Use the following steps to install the Application Accelerator Visual Studio Code extension:
 
-1. Sign in to VMware Tanzu Network and download the "Tanzu App Accelerator Extension for Visual
-   Studio Code" file from the product page for [VMware Tanzu Application
-   Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-
-2. Open VS Code.
-
-    **Option 1:**
-
-    1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
-
-    2. Select the extension file **tanzu-app-accelerator-<EXTENSION_VERSION>.vsix**.
-
-    **Option 2:**
-
-    3. Select the **Extensions** tab: ![Shows the extensions tab icon.](../images/vscode-install2.png)
-
-    4. Select `Install from VSIX…` from the overflow menu.
-
-        ![The VS Code interface extensions page overflow menu is open with Install from VSIX... highlighted.](../images/vscode-install3v2.png)
+1. Open Visual Studio Code.
+2. Open the command palette.
+3. In the search box enter `Extension`.
+4. Click **Extensions: Install Extensions**.
+5. The **Extensions** view opens on the left side of your screen. In the search box enter `Tanzu`.
+6. Click **Tanzu App Accelerator** and then click **Install**.
 
 ## <a id="configure-the-extension"></a> Configure the extension
 
