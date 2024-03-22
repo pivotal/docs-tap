@@ -38,8 +38,9 @@ Terms beginning with "A".
         bootstrap applications.</td>
     </tr>
     <tr>
-        <td>Application Accelerator Engine</td>
-        <td>The component that will perform the file transformations specified in an accelerator's `accelerator.yaml` file.</td>
+        <td>Application Accelerator engine</td>
+        <td>The component that performs the file transformations specified in an accelerator's
+        <code>accelerator.yaml</code> file.</td>
     </tr>
     <tr>
         <td>Application Configuration Service</td>
@@ -296,6 +297,13 @@ Terms beginning with "L".
     </tr>
   </thead>
   <tbody>
+    <tr>
+        <td>Local Application Accelerator engine server</td>
+        <td>Also known as the local engine server. The local engine server allows you to serve your
+        accelerators with their fragments on <code>localhost</code>, including any changes you have locally.
+        You can use the VS Code Tanzu App Accelerator extension or the Tanzu CLI Accelerator plug-in to
+        generate new projects based on these local files. </td>
+    </tr>
     <tr>
         <td>Local Source Proxy (LSP)</td>
         <td>This Tanzu Application Platform component serves as a proxy registry server with
