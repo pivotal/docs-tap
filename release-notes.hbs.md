@@ -48,7 +48,7 @@ This release includes the following changes, listed by component and area.
 - To configure SCST - Scan with the Metadata Store CA Certificate, the secret can no longer be manually created.
   It must now be configured via TAP values. See [Multicluster setup for Supply Chain Security Tools](scst-store/multicluster-setup.hbs.md#apply-kubernetes) - Store for details.
 
-#### <a id='services-toolkit-bc'></a> v1.9.0 Breaking changes: Services Toolkit
+#### <a id='svc-toolkit-bc'></a> v1.9.0 Breaking changes: Services Toolkit
 
 The following APIs and tools have now been removed:
 
@@ -67,13 +67,9 @@ The following APIs and tools have now been removed:
   * `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   * `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
 
-#### <a id='1-9-0-fluxcd-source-controller-deprecations-bc'></a> v1.9.0 Breaking changes: FluxCD Source Controller
+#### <a id='1-9-0-fluxcd-sc-bc'></a> v1.9.0 Breaking changes: FluxCD Source Controller
 
 - In Tanzu Application Platform v1.9.0, FluxCD Source Controller no longer supports the `git_implementation` field in `GitRepository` version `v1`.
-
-#### <a id='1-9-0-COMPONENT-NAME-bc'></a> v1.9.0 Breaking changes: COMPONENT-NAME
-
-- Breaking change description.
 
 ---
 
@@ -121,10 +117,6 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-9-0-COMPONENT-NAME-ki'></a> v1.9.0 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
 #### <a id='1-9-0-scst-policy-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Policy
 
 - Supply Chain Security Tools - Policy is defaulting to TUF enabled due to incorrect logic.
@@ -137,12 +129,11 @@ enable TUF:
     tuf_enabled: true
   ```
 
----
-
 #### <a id='1-9-0-scst-store-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Store
 
 - SCST - Store returns an expired certificate error message when a CA certificate expires before the app certificate. For more information, see [CA Cert expires](scst-store/troubleshooting.hbs.md#ca-cert-expires).
 
+---
 
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
 
@@ -208,17 +199,13 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
-### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
+### <a id='svc-toolkit-deprecations'></a> Services Toolkit deprecations
 
 - The following APIs are deprecated and are marked for removal in
   Tanzu Application Platform v1.11:
   - `clusterexampleusages.services.apps.tanzu.vmware.com/v1alpha1`
   - `clusterresources.services.apps.tanzu.vmware.com/v1alpha1`
 
-### <a id='fluxcd-source-controller-deprecations'></a> FluxCD Source Controller deprecations
+### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
 
 - In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
-
-### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
-
-- Deprecation description including the release when the feature will be removed.
