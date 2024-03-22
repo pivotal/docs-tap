@@ -99,15 +99,22 @@ Tanzu Application Platform
 This section describes, at a high level, the steps for deploying an example `fortune-teller` app
 on Tanzu Application Platform.
 
-For how to deploy service registry and spring config server instances for workloads, see
-[Migrate Spring Service Registry apps to Tanzu Application Platform](./spring-service-registry.hbs.md#deploy-app-to-tap) and
-[Migrate Spring Config Server apps to Tanzu Application Platform](./spring-config-server.hbs.md#deploy-app-to-tap).
-<!-- should these be steps? -->
-
-Alternatively, you can use YAML files in the
-[fortune-teller repo](https://github.com/akrishna90/fortune-teller/tree/main/tap).
-For installation and configuration of various data services on Tanzu Application Platform, see the
+For information about installing and configuring data services on Tanzu Application Platform, see the
 [Services Toolkit documentation](../services-toolkit/about.hbs.md).
+
+**Prerequisites:**
+
+To follow this example, you must first deploy Service Registry and Spring Config Server instances.
+To do so, apply the following YAML files in the [fortune-teller repo](https://github.com/akrishna90/fortune-teller/tree/main/tap):
+
+- Install Service Registry: Apply the file [eureka-server.yaml)](https://github.com/akrishna90/fortune-teller/blob/main/tap/eureka-server.yaml).
+- Install Spring Config Server: Apply the file [configuration-source.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-source.yaml).
+- ConfigureSpring Config Server: Apply the file [configuration-slice.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-slice.yaml).
+- Setup the `forture-teller` app to use Service Registry and Spring Config Server: Apply the file [resource-claim.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/resource-claim.yaml).
+
+> **Note** This prerequisite is not required for all Spring Data Services apps.
+
+To deploy the app:
 
 1. Claim MySQL service from Bitnami services by running:
 
@@ -116,7 +123,7 @@ For installation and configuration of various data services on Tanzu Application
     tanzu services class-claims get fortune-database --namespace my-apps
     ```
 
-1. Bind the service to the workload. Bind the MySQL service by adding `ClassClaim` under
+1. Bind the service to your workload. Bind the MySQL service by adding `ClassClaim` under the
    `spec.serviceClaims` section as follows:
 
     ```yaml
