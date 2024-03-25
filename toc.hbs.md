@@ -785,7 +785,7 @@ docs.vmware.com is built.
       - [Troubleshoot Tanzu Developer Tools for Visual Studio](vs-extension/troubleshooting.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.hbs.md)
       - [Tanzu Developer Tools for VS Code overview](vscode-extension/about.hbs.md)
-      - [Install Tanzu Developer Tools for your VS Code](vscode-extension/install.hbs.md)
+      - [Install Tanzu Developer Tools for VS Code](vscode-extension/install.hbs.md)
       - [Get started with Tanzu Developer Tools for VS Code](vscode-extension/getting-started.hbs.md)
       - [Use Tanzu Developer Tools for VS Code](vscode-extension/using-the-extension.hbs.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.hbs.md)
