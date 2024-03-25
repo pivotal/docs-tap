@@ -19,13 +19,13 @@ To install Source Controller:
 
 1. List version information for the package by running:
 
-    ```shell
+    ```console
     tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```shell
+    ```console
     $ tanzu package available list controller.source.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for controller.source.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
@@ -38,7 +38,7 @@ To install Source Controller:
 
 2. (Optional) Gather the values schema:
 
-    ```shell
+    ```console
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -46,7 +46,7 @@ To install Source Controller:
 
     For example:
 
-    ```shell
+    ```console
     tanzu package available get controller.source.apps.tanzu.vmware.com/0.9.0-build.2 --values-schema --namespace tap-install
 
       KEY               DEFAULT  TYPE    DESCRIPTION
@@ -86,32 +86,32 @@ To install Source Controller:
         aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
         ```
 
-    - `resources`: Allows updating the default resource configuration for the Source Controller.
-       By default Source Controller resource configuration is set as following:
+    - `resources`: Allows you to update the default resource configuration for the Source Controller.
+       By default, the Source Controller resource configuration is set as follows:
 
-       ```yaml
-       resources:
-         limits:
-           cpu: 100m
-           memory: 512Mi
-         requests:
-           cpu: 100m
-           memory: 20Mi
-       ```
+        ```yaml
+        resources:
+          limits:
+            cpu: 100m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+        ```
 
-         To update the controller's default resource configuration, add the desired configuration to 
-         `source-controller-values.yaml`. For example:
+        To update the default resource configuration, add the configuration you require to
+        `source-controller-values.yaml`. For example:
 
-         ```yaml
-         resources:
-           limits:
-              cpu: 100m
-              memory: 1Gi
-         ```
+        ```yaml
+        resources:
+          limits:
+            cpu: 100m
+            memory: 1Gi
+        ```
 
 4. Install the package by running:
 
-    ```shell
+    ```console
     tanzu package install source-controller \
       --package controller.source.apps.tanzu.vmware.com \
       --version VERSION-NUMBER \
@@ -126,7 +126,7 @@ To install Source Controller:
 
     For example:
 
-    ```shell
+    ```console
     $ tanzu package install source-controller
         --package controller.source.apps.tanzu.vmware.com
         --version 0.9.0-build.2
@@ -253,13 +253,13 @@ To install Source Controller:
 
 5. Verify the package installation by running:
 
-    ```shell
+    ```console
     tanzu package installed get source-controller -n tap-install
     ```
 
     For example:
 
-    ```shell
+    ```console
     tanzu package installed get source-controller -n tap-install
     NAMESPACE:          tap-install
     NAME:               source-controller
@@ -272,13 +272,13 @@ To install Source Controller:
 
     Verify that `STATUS` is `Reconcile succeeded`:
 
-    ```shell
+    ```console
     kubectl get pods -n source-system
     ```
 
     For example:
 
-    ```shell
+    ```console
     $ kubectl get pods -n source-system
     NAME                                        READY   STATUS    RESTARTS   AGE
     source-controller-manager-f68dc7bb6-4lrn6   1/1     Running   0          100s
