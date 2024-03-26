@@ -44,7 +44,7 @@ With your kubectl targeted at the View cluster, you can get Metadata Store's TLS
 CA certificate.
 
 ```console
-MDS_CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
+MDS_CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"" | base64 -d)
 ```
 
 ### <a id='copy-ceh-ca'></a>Copy AMR CloudEvent Handler CA certificate data from the View cluster
