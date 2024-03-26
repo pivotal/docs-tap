@@ -74,9 +74,9 @@ For more information about location configuration, see
 
 DORA Graphs provide visual insights into the trends of Lead Time and Deployment Frequency metrics over time.
 The Lead Time graph displays the average time taken for a code change to go from commit to a running container 
-on a daily basis, represented by individual bars. Alongside, a trend line illustrates a 7-day moving average. 
-Similarly, the Deployment Frequency graph showcases the frequency of code changes being deployed to production, 
-also depicted with daily bars and a corresponding 7-day moving average trend line.
+on a daily basis, represented by individual bars. Alongside, a trend line illustrates the average lead time for 
+deployments made in the last 7 days. The Deployment Frequency graph showcases the frequency of code changes 
+being deployed to production, depicted with daily bars and a corresponding 7-day moving average trend line.
 
 Tanzu workloads have a correlation ID that groups all the artifacts together.
 
