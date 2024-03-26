@@ -37,6 +37,16 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-9-0-tanzu-developer-portal'></a> v1.9.0 Features: Tanzu Developer Portal
+
+- The Dora plug-in now has:
+  - New Date Range drop-down filters, Last 7 Days and Last 30 Days
+  - Default for date range filter is updated to be Last 7 Days from Last 90 Days
+  - Improved Naming on existing filters: This Week is now Week to Date, This Month is now Month to Date, and This Quarter is now Quarter to Date
+  - Added percentage values to indicate improvements or declines in metrics in comparison with previous time period
+  - Added graphs to visualize changes in Lead Time and Deployment Frequency metrics over time
+  - Performance improvements
+
 ---
 
 ### <a id='1-9-0-breaking-changes'></a> v1.9.0 Breaking changes
