@@ -176,61 +176,7 @@ To install Source Controller:
             | Op:      19 create, 0 delete, 0 update, 0 noop, 0 exists
             | Wait to: 19 reconcile, 0 delete, 0 noop
             | 8:16:48PM: ---- applying 7 changes [0/19 done] ----
-            | 8:16:48PM: create namespace/conventions-system (v1) cluster
-            | 8:16:48PM: create clusterrole/cartographer-conventions-proxy-role (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:48PM: create validatingwebhookconfiguration/cartographer-conventions-validating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
-            | 8:16:48PM: create clusterrole/cartographer-conventions-manager-role (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:48PM: create mutatingwebhookconfiguration/cartographer-conventions-mutating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
-            | 8:16:49PM: create customresourcedefinition/clusterpodconventions.conventions.carto.run (apiextensions.k8s.io/v1) cluster
-            | 8:16:50PM: create customresourcedefinition/podintents.conventions.carto.run (apiextensions.k8s.io/v1) cluster
-            | 8:16:50PM: ---- waiting on 7 changes [0/19 done] ----
-            | 8:16:50PM: ok: reconcile clusterrole/cartographer-conventions-proxy-role (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:50PM: ok: reconcile namespace/conventions-system (v1) cluster
-            | 8:16:50PM: ok: reconcile validatingwebhookconfiguration/cartographer-conventions-validating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
-            | 8:16:50PM: ok: reconcile clusterrole/cartographer-conventions-manager-role (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:50PM: ok: reconcile customresourcedefinition/clusterpodconventions.conventions.carto.run (apiextensions.k8s.io/v1) cluster
-            | 8:16:50PM: ok: reconcile mutatingwebhookconfiguration/cartographer-conventions-mutating-webhook-configuration (admissionregistration.k8s.io/v1) cluster
-            | 8:16:50PM: ok: reconcile customresourcedefinition/podintents.conventions.carto.run (apiextensions.k8s.io/v1) cluster
-            | 8:16:50PM: ---- applying 4 changes [7/19 done] ----
-            | 8:16:50PM: create serviceaccount/cartographer-conventions-controller-manager (v1) namespace: conventions-system
-            | 8:16:50PM: create role/cartographer-conventions-leader-election-role (rbac.authorization.k8s.io/v1) namespace: conventions-system
-            | 8:16:50PM: create secret/cartographer-conventions-ca-certificates (v1) namespace: conventions-system
-            | 8:16:51PM: create secret/cartographer-conventions-reg-creds (v1) namespace: conventions-system
-            | 8:16:51PM: ---- waiting on 4 changes [7/19 done] ----
-            | 8:16:51PM: ok: reconcile serviceaccount/cartographer-conventions-controller-manager (v1) namespace: conventions-system
-            | 8:16:51PM: ok: reconcile role/cartographer-conventions-leader-election-role (rbac.authorization.k8s.io/v1) namespace: conventions-system
-            | 8:16:51PM: ok: reconcile secret/cartographer-conventions-ca-certificates (v1) namespace: conventions-system
-            | 8:16:51PM: ok: reconcile secret/cartographer-conventions-reg-creds (v1) namespace: conventions-system
-            | 8:16:51PM: ---- applying 3 changes [11/19 done] ----
-            | 8:16:51PM: create clusterrolebinding/cartographer-conventions-proxy-rolebinding (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:51PM: create clusterrolebinding/cartographer-conventions-manager-rolebinding (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:51PM: create rolebinding/cartographer-conventions-leader-election-rolebinding (rbac.authorization.k8s.io/v1) namespace: conventions-system
-            | 8:16:51PM: ---- waiting on 3 changes [11/19 done] ----
-            | 8:16:51PM: ok: reconcile rolebinding/cartographer-conventions-leader-election-rolebinding (rbac.authorization.k8s.io/v1) namespace: conventions-system
-            | 8:16:51PM: ok: reconcile clusterrolebinding/cartographer-conventions-manager-rolebinding (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:51PM: ok: reconcile clusterrolebinding/cartographer-conventions-proxy-rolebinding (rbac.authorization.k8s.io/v1) cluster
-            | 8:16:51PM: ---- applying 5 changes [14/19 done] ----
-            | 8:16:51PM: create service/cartographer-conventions-controller-manager-metrics-service (v1) namespace: conventions-system
-            | 8:16:51PM: create service/cartographer-conventions-webhook-service (v1) namespace: conventions-system
-            | 8:16:52PM: create deployment/cartographer-conventions-controller-manager (apps/v1) namespace: conventions-system
-            | 8:16:52PM: create certificate/cartographer-conventions-serving-cert (cert-manager.io/v1) namespace: conventions-system
-            | 8:16:52PM: create issuer/cartographer-conventions-selfsigned-issuer (cert-manager.io/v1) namespace: conventions-system
-            | 8:16:52PM: ---- waiting on 5 changes [14/19 done] ----
-            | 8:16:52PM: ok: reconcile issuer/cartographer-conventions-selfsigned-issuer (cert-manager.io/v1) namespace: conventions-system
-            | 8:16:52PM: ok: reconcile certificate/cartographer-conventions-serving-cert (cert-manager.io/v1) namespace: conventions-system
-            | 8:16:52PM: ok: reconcile service/cartographer-conventions-controller-manager-metrics-service (v1) namespace: conventions-system
-            | 8:16:52PM: ok: reconcile service/cartographer-conventions-webhook-service (v1) namespace: conventions-system
-            | 8:16:52PM: ongoing: reconcile deployment/cartographer-conventions-controller-manager (apps/v1) namespace: conventions-system
-            | 8:16:52PM:  ^ Waiting for generation 2 to be observed
-            | 8:16:52PM:  L ok: waiting on replicaset/cartographer-conventions-controller-manager-6cc74788 (apps/v1) namespace: conventions-system
-            | 8:16:52PM:  L ongoing: waiting on pod/cartographer-conventions-controller-manager-6cc74788-2z2v9 (v1) namespace: conventions-system
-            | 8:16:52PM:     ^ Pending: ContainerCreating
-            | 8:16:52PM: ---- waiting on 1 changes [18/19 done] ----
-            | 8:16:52PM: ongoing: reconcile deployment/cartographer-conventions-controller-manager (apps/v1) namespace: conventions-system
-            | 8:16:52PM:  ^ Waiting for 1 unavailable replicas
-            | 8:16:52PM:  L ok: waiting on replicaset/cartographer-conventions-controller-manager-6cc74788 (apps/v1) namespace: conventions-system
-            | 8:16:52PM:  L ongoing: waiting on pod/cartographer-conventions-controller-manager-6cc74788-2z2v9 (v1) namespace: conventions-system
-            | 8:16:52PM:     ^ Pending: ContainerCreating
+            | ...
             | 8:17:07PM: ok: reconcile deployment/cartographer-conventions-controller-manager (apps/v1) namespace: conventions-system
             | 8:17:07PM: ---- applying complete [19/19 done] ----
             | 8:17:07PM: ---- waiting complete [19/19 done] ----
