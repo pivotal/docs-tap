@@ -70,7 +70,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
@@ -193,6 +193,8 @@ To add the Tanzu Application Platform package repository to your cluster:
       buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized
                                                                                                                                      software workflows securely and at scale.
       carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                Default scan templates using VMware Carbon Black
+      cartographer.conventions.apps.tanzu.vmware.com       Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime
+                                                                                                                                     configurations to fleets of workloads.
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
       connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps

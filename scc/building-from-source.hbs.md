@@ -227,7 +227,7 @@ other components to fetch the source code from within the cluster.
 The digest of the latest commit:
 
   ```yaml
-  apiVersion: source.toolkit.fluxcd.io/v1beta1
+  apiVersion: source.toolkit.fluxcd.io/v1
   kind: GitRepository
   metadata:
     name: tanzu-java-web-app

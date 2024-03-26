@@ -144,7 +144,7 @@ To create the Composition:
         name: default
       resources:
       - base:
-          apiVersion: kubernetes.crossplane.io/v1alpha1
+          apiVersion: kubernetes.crossplane.io/v1alpha2
           kind: Object
           spec:
             forProvider:

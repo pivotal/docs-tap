@@ -110,9 +110,25 @@ NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED A
 my-apps             petstore     cute-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
 ```
 
+## <a id='view-curated-api-desc'></a>View the auto-registered API within Tanzu Developer Portal
+
+After you the CuratedAPIDescriptor you created is in the `Ready` state, navigate to Tanzu Developer Portal
+to view the automatically registered APIs.
+You will see one new API for the CuratedAPIDescriptor and the other APIs generated from APIDescriptors.
+
+Additionally, you will see a component registered for the curated API. If you chose to use Spring Cloud Gateway
+as the route provider in [Setup Spring Cloud Gateway integration](#setup-scg) earlier,
+this component can show any gateway resources with the matching `app.kubernetes.io/part-of={PART_OF}` label
+under the **Runtime Resources**.
+To make this connection, add the `app.kubernetes.io/part-of={PART_OF}` label to the `SpringCloudGateway`
+instance you create.
+For more information, see the [Spring Cloud Gateway documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-tap-organization-catalog.html).
+
+![Tanzu Developer Portal showing the running Spring Cloud Gateway resources.](./images/api-curation-component.png)
+
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
-The API Auto Registration controller offers an endpoint to retrieve all of the generated API specifications
+The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications
 for the curated APIs in the cluster.
 
 To retrieve curated API specifications:

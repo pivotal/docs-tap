@@ -74,13 +74,11 @@ and Tanzu Application Platform.
 In Tanzu Application Platform, you can vendor in your app dependencies before a build.
 To do this, put all `.gem` files into the custom path inside the app source code, for example, `custom_dir/custom_cache`.
 Then, create a `.bundle/config` file with the `BUNDLE_CACHE_PATH` setting configured:
-<!-- is this ".bundle or .config" or is this ".bundle/config"? -->
 
 ```
 ---
 BUNDLE_CACHE_PATH: "custom_dir/custom_cache"
 ```
-<!-- what language is this snippet? -->
 
 ## <a id="rake-config"></a> Configure Rake tasks
 
@@ -96,7 +94,7 @@ Tanzu Application Platform.
 
 In Tanzu Application Service, you can automatically invoke a Rake task as follows:
 
-- Include a `.rake` file containing a Rake task in `lib/tasks`. For example:
+1. Include a `.rake` file containing a Rake task in `lib/tasks`. For example:
 
     ```ruby
     namespace :cf do
@@ -108,15 +106,13 @@ In Tanzu Application Service, you can automatically invoke a Rake task as follow
     end
     ```
 
-- Add the task to the `manifest.yml` with the command attribute to use this as the start command. For example:
+1. Add the task to the `manifest.yml` with the command attribute to use this as the start command. For example:
 
     ```yaml
     applications:
     - name: my-app
       command: bundle exec rake cf:on_first_instance db:migrate
     ```
-
-<!-- are these steps? do users have to do both of the above tasks or just one of them?-->
 
 ### <a id="invoke-rake-tap"></a> Tanzu Application Platform: Invoke Rake tasks
 

@@ -203,7 +203,7 @@ For information about the custom resource, see the
 [MavenArtifact reference documentation](../source-controller/reference.hbs.md#mavenartifact).
 
 For information about how to use the custom resource with the Tanzu apps CLI
-plug-in, see the [Tanzu CLI Command Reference documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html).
+plug-in, see the [Tanzu CLI Command Reference documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html).
 
 ### <a id="source-tester"></a>source-tester
 
@@ -774,7 +774,7 @@ Parameters:
 </table>
 
 For an example, see the
-[Tanzu CLI Command Reference documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html).
+[Tanzu CLI Command Reference documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/command-ref.html).
 
 For an overview of the function, see
 [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).

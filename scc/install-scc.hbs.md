@@ -41,12 +41,6 @@ To install Supply Chain Choreographer:
     cartographer.resources.limits.memory     128Mi             Optional: maximum amount of memory to allow the controller to use
     cartographer.resources.requests.cpu      250m              Optional: minimum amount of cpu to reserve
     cartographer.resources.requests.memory   128Mi             Optional: minimum amount of memory to reserve
-    conventions.resources.limits.cpu         1000m             Optional: maximum amount of cpu resources to allow the controller to use
-    conventions.resources.limits.memory      128Mi             Optional: maximum amount of memory to allow the controller to use
-    conventions.resources.requests.cpu       250m              Optional: minimum amount of cpu to reserve
-    conventions.resources.requests.memory    128Mi             Optional: minimum amount of memory to reserve
-    excluded_components                               array    Optional: List of components to exclude from installation (e.g. [conventions])
-    aws_iam_role_arn                         ""       string   Optional: Arn role that has access to pull images from ECR container registry
     ```
 
 1. Install v0.4.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`. Run:

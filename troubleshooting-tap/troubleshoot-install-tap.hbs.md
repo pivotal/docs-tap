@@ -311,7 +311,7 @@ To deploy successfully, the `servicebinding.tanzu.vmware.com` package requires C
 **Solution**
 
 Upgrade to Cluster Essentials v{{ vars.url_version }}. For more information about the upgrade procedures, see the
-[Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
+[Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html#upgrade).
 
 ## <a id='scst-scan-fail'></a> Reconciliation fails with Supply Chain Security Tools - Scan 2.0 upgrade
 

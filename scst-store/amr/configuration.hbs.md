@@ -30,12 +30,11 @@ amr:
       liveness_period_seconds: 10
     auth:
       kubernetes_service_accounts:
-        enabled: true
-        autoconfigured: true
+        enable: true
+        autoconfigure: true
         secret:
           ref: "amr-observer-edit-token"
           value: ""
-    deployed_through_tmc: false
     max_concurrent_reconciles:
       image_vulnerability_scans: 1
 ```

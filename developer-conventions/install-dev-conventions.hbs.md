@@ -13,6 +13,7 @@ Before installing Developer Conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install [Supply Chain Choreographer](../scc/install-scc.md).
+- [Create conventions with Cartographer Conventions](../cartographer-conventions/creating-conventions.hbs.md).
 
 ## <a id='dc-install'></a>Install
 

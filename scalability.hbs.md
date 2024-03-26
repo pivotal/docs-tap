@@ -490,7 +490,6 @@ services_toolkit:
         memory: "1.5Gi"
 ```
 
-
 ### Services Toolkit Resource Claims API Server
 
 The default resource limits are:
@@ -518,3 +517,20 @@ services_toolkit:
         cpu: "200m"
         memory: "1.5Gi"
 ```
+
+### FluxCD Source Controller
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+```
+
+To change the resource limits for FluxCD Source controller, follow the procedure in
+[Configure resource Limits](fluxcd-source-controller/install.hbs.md#resource-limits).

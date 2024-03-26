@@ -33,17 +33,17 @@ spec:
 ## <a id="pip-version"></a> Install a specific pip version
 
 Both Tanzu Application Service and Tanzu Application Platform Python buildpacks provide an
-extra pip dependency. You can configure this dependency using the `$BP_PIP_VERSION` environment variable,
-just `$BP_CPYTHON_VERSION`.
-<!-- clarify -->
+extra pip dependency. You can configure this dependency using the `$BP_PIP_VERSION` environment variable
+in the same way you configure `$BP_CPYTHON_VERSION` in
+[Tanzu Application Platform: Specify version](#override-version-tap) above.
 
 ## <a id="pipenv-version"></a> Install a specific Pipenv version
 
 Tanzu Application Service buildpack does not support selecting a version.
 However, for the Tanzu Application Platform Python buildpack, you con configure the Pipenv version
-using the `$BP_PIP_VERSION` environment variable.
+using the `$BP_PIPENV_VERSION` environment variable.
 
-## <a id="start-command"></a> Start Command
+## <a id="start-command"></a> Start command
 
 The Tanzu Application Service buildpack does not generate a default start command for your apps.
 However, the Tanzu Application Platform Python buildpack sets the default start command to run the

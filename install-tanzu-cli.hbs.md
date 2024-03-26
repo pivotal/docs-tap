@@ -283,34 +283,34 @@ documentation.
 
 For online installation:
 
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform package and profiles](install-online/profile.hbs.md)
 
 For air-gapped installation:
 
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in your air-gapped environment](install-offline/profile.hbs.md)
 
 For installation on AWS Cloud:
 
 - [Create AWS Resources for Tanzu Application Platform](install-aws/resources.hbs.md)
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform package and profiles on AWS](install-aws/profile.hbs.md)
 
 For installation on Azure Cloud:
 
 - [Create Azure Resources for Tanzu Application Platform](install-azure/resources.hbs.md)
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform package and profiles on Azure](install-azure/profile.hbs.md)
 
 For installation on OpenShift clusters:
 
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 - [Install the Tanzu Application Platform package and profiles](install-openshift/profile.hbs.md)
 
 For GitOps (beta) installation:
 
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html)
 
 - [Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](install-gitops/eso.hbs.md)
 - [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](install-gitops/sops.hbs.md)

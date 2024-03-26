@@ -259,7 +259,7 @@ spec:
     kind: XRabbitmqCluster
   resources:
   - base:
-      apiVersion: kubernetes.crossplane.io/v1alpha1
+      apiVersion: kubernetes.crossplane.io/v1alpha2
       kind: Object
       spec:
         forProvider:
@@ -469,7 +469,7 @@ Crossplane managed resource and to then use them like any other managed resource
 spec:
   resources:
   - base:
-      apiVersion: kubernetes.crossplane.io/v1alpha1
+      apiVersion: kubernetes.crossplane.io/v1alpha2
       kind: Object
       spec:
         forProvider:
@@ -616,7 +616,7 @@ provisioned `RabbitmqCluster` resources. This tutorial uses the `rmq-clusters` n
 spec:
   resources:
   - base:
-      apiVersion: kubernetes.crossplane.io/v1alpha1
+      apiVersion: kubernetes.crossplane.io/v1alpha2
       kind: Object
       spec:
         forProvider:

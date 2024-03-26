@@ -38,4 +38,7 @@ which accelerates developer productivity and reduces time-to-market.
 
 ## <a id="deployment"></a> Deployment
 
-Use a connector as the mode of deployment for registering apps with the Application Live View running on a Kubernetes cluster. A connector is a component responsible for discovering multiple apps running on a Kubernetes cluster and is installed as a DaemonSet by default.
+A connector is a component responsible for discovering and registering multiple apps with
+Application Live View running on a Kubernetes cluster.
+The connector is installed as a Kubernetes Deployment by default, but you can switch to DaemonSet or
+Namespace-scoped mode if required.

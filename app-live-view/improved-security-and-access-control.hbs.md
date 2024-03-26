@@ -101,12 +101,12 @@ following steps.
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.8.0`.
+    `1.9.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
+    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.9.0 --values-schema --namespace tap-install
       KEY                                   DEFAULT             TYPE        DESCRIPTION
       kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
 
@@ -118,7 +118,7 @@ following steps.
       backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on back end.
 
       backend.port                          <nil>               number      Port to reach the Application Live View back end.
-      connector.deployment.enabled            false             boolean     Flag for the connector to run in deployment mode
+      connector.deployment.enabled            true             boolean     Flag for the connector to run in deployment mode
       connector.deployment.replicas             1               number      Number of replicas of connector pods at any given time
       connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope.
       connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
@@ -167,14 +167,14 @@ following steps.
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.8.0`.
+    `1.9.0`.
 
     For example:
 
     ```console
     $ tanzu package install appliveview-connector \
         --package connector.appliveview.tanzu.vmware.com \
-        --version 1.8.0 \
+        --version 1.9.0 \
         --namespace tap-install \
         --values-file app-live-view-connector-values.yaml
     | Installing package 'connector.appliveview.tanzu.vmware.com'
@@ -202,7 +202,7 @@ following steps.
     | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.8.0
+    PACKAGE-VERSION:         1.9.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
