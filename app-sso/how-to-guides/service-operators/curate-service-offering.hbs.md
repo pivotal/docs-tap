@@ -44,10 +44,11 @@ metadata:
   name: demo
 spec:
   base:
-    authServerSelector:
-      matchLabels:
-        sso.apps.tanzu.vmware.com/env: staging
-        sso.apps.tanzu.vmware.com/ldap: ""
+    spec:
+      authServerSelector:
+        matchLabels:
+          sso.apps.tanzu.vmware.com/env: staging
+          sso.apps.tanzu.vmware.com/ldap: ""
 ```
 
 After you apply this resource, application operators can discover it by running `tanzu service class list`,
