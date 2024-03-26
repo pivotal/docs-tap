@@ -72,12 +72,15 @@ in the last 7 days. Two filtering options are available from drop-down menus:
 For more information about location configuration, see
 [Configure Artifact Metadata Repository](../../scst-store/amr/configuration.hbs.md).
 
-DORA Graphs provide visual insights into the trends of Lead Time and Deployment Frequency metrics over time.
-The Lead Time graph displays the average time taken for a code change to go from commit to a running container 
-on a daily basis, represented by individual bars. Alongside, a trend line illustrates the average lead time for 
-deployments made in the last 7 days. The Deployment Frequency graph showcases the frequency of code changes 
-being deployed to production, depicted with daily bars and a corresponding 7-day moving average trend line.
+DORA graphs display trends of Lead Time and Deployment Frequency metrics over time.
+
+The Lead Time graph displays in bars the daily average time taken for a code change to go from a
+commit to a running container. The trend line illustrates the average lead time for deployments made
+in the last 7 days.
+
+The Deployment Frequency graph displays the frequency of code changes deployed to production,
+depicted in daily bars and a corresponding 7-day moving average trend line.
 
 Tanzu workloads have a correlation ID that groups all the artifacts together.
 
-![The DORA tab is selected in Tanzu Developer Portal.](images/dora-tab-graphs.png)
+![The DORA tab is selected in Tanzu Developer Portal, revealing the graphs.](images/dora-tab-graphs.png)
