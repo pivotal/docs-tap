@@ -10,63 +10,55 @@ This includes:
 - The default Helm chart versions for each of the Bitnami services. You can overwrite Helm chart
   versions by configuring package values.
 
+The following table provides component versions for the Bitnami Services package in Tanzu Application Platform v1.9.
+To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
+the top of this page.
+
 > **Note** Tanzu Application Platform patch releases are only added to the table when there
 > is a change to one or more of the other versions in the table. Otherwise, the corresponding
 > versions remain the same for each Tanzu Application Platform patch release.
 
+<!-- add patch updates in a new column -->
+
 <table>
   <thead>
     <tr>
-        <th>Tanzu Application Platform version</th>
-        <th>Bitnami Services package version</th>
-        <th>MySQL Chart version</th>
-        <th>PostgreSQL Chart version</th>
-        <th>RabbitMQ Chart version</th>
-        <th>Redis Chart version</th>
-        <th>MongoDB Chart version</th>
-        <th>Kafka Chart version</th>
+      <th>Component</th>
+      <th>Version</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>1.5.0</td>
-        <td>0.1.0</td>
-        <td>9.5.0</td>
-        <td>12.2.0</td>
-        <td>11.10.0</td>
-        <td>17.8.0</td>
-        <td>not included</td>
-        <td>not included</td>
+      <th>Bitnami Services package</th>
+      <td></td>
     </tr>
     <tr>
-        <td>1.6.0</td>
-        <td>0.2.0</td>
-        <td>9.5.0</td>
-        <td>12.2.0</td>
-        <td>11.10.0</td>
-        <td>17.8.0</td>
-        <td>13.13.1</td>
-        <td>22.0.0</td>
+      <td>UXP</td>
+      <td></td>
     </tr>
     <tr>
-        <td>1.7.0</td>
-        <td>0.3.1</td>
-        <td>9.5.0</td>
-        <td>12.2.0</td>
-        <td>11.10.0</td>
-        <td>17.8.0</td>
-        <td>13.13.1</td>
-        <td>22.0.0</td>
+      <th>MySQL Chart</th>
+      <td></td>
     </tr>
     <tr>
-        <td>1.8.0</td>
-        <td>0.4.0</td>
-        <td>9.5.0</td>
-        <td>12.2.0</td>
-        <td>11.10.0</td>
-        <td>17.8.0</td>
-        <td>13.13.1</td>
-        <td>22.0.0</td>
+      <th>PostgreSQL Chart</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>RabbitMQ Chart</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Redis Chart</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>MongoDB Chart</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Kafka Chart</th>
+      <td></td>
     </tr>
   </tbody>
 </table>
