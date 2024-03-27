@@ -13,10 +13,6 @@ The following table provides component versions for the AWS Services package in 
 To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
 the top of this page.
 
-> **Note** Tanzu Application Platform patch releases are only added to the table when there
-> is a change to one or more of the other versions in the table. Otherwise, the corresponding
-> versions remain the same for each Tanzu Application Platform patch release.
-
 <!-- add patch updates in a new column -->
 
 <table>
@@ -37,3 +33,7 @@ the top of this page.
     </tr>
   </tbody>
 </table>
+
+> **Note** Tanzu Application Platform patch releases are only added to the table when there
+> is a change to one or more of the other versions in the table. Otherwise, the corresponding
+> versions remain the same for each Tanzu Application Platform patch release.
