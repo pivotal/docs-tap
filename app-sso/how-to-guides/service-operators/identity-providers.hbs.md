@@ -96,7 +96,7 @@ Where:
 - `.openID.jwksUri` (optional): The JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures. If the `configurationURI` and `issuerURI` fields are not set, this field must not be empty.
 - `.openID.userinfoUri` (optional): The URI for obtaining the additional identity claims from the upstream IdP (identity provider).
 - `.openID.roles.fromUpstream.claim` (optional): Selects which claim in the `id_token` contains the `roles` of
-  the user. `roles` is not a standard OpenID Connect claim. When `ClientRegistrations` or `ClassClaims` have a `roles` scope, it  populates the `roles` claim in the `id_token` issued by the `AuthServer`.
+  the user. `roles` is not a standard OpenID Connect claim. If `ClientRegistrations` or `ClassClaims` have a `roles` scope, it  populates the `roles` claim in the `id_token` issued by the `AuthServer`.
   For more information, see [OpenID external groups mapping](#openid-external-groups-mapping).
   - `MY-OIDC-PROVIDER-GROUPS`: Claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in the id tokens issued by AppSSO.
 - `.openID.idToken.claims`: Allows mapping a claim from an upstream identity provider to the current
@@ -145,7 +145,7 @@ spec:
   # ...
 ```
 
-The same is applicable for [ClassClaim](../../reference/api/clusterworkloadregistrationclass.hbs.md#claims-spec):
+This rule also applies to [ClassClaim](../../reference/api/clusterworkloadregistrationclass.hbs.md#claims-spec):
 
 ```yaml
 kind: ClassClaim
@@ -323,8 +323,7 @@ spec:
             attribute: "upstream-identity-providers-groups-attribute" # e.g. "cn" or "dn"
 ```
 
-For every [ClientRegistration](../../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
-token will be populated with the `roles` claim:
+For every [ClientRegistration](../../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity token is populated with the `roles` claim:
 
 ```yaml
 kind: ClientRegistration
@@ -337,7 +336,7 @@ spec:
   # ...
 ```
 
-The same is applicable for [ClassClaim](../../reference/api/clusterworkloadregistrationclass.hbs.md#claims-spec):
+This rule also applies to [ClassClaim](../../reference/api/clusterworkloadregistrationclass.hbs.md#claims-spec):
 
 ```yaml
 kind: ClassClaim
