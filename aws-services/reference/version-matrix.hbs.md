@@ -28,7 +28,7 @@ the top of this page.
   </thead>
   <tbody>
     <tr>
-      <th>AWS Services package</th>
+      <td>AWS Services package</td>
       <td></td>
     </tr>
     <tr>

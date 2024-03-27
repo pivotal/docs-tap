@@ -29,7 +29,7 @@ the top of this page.
   </thead>
   <tbody>
     <tr>
-      <th>Bitnami Services package</th>
+      <td>Bitnami Services package</td>
       <td></td>
     </tr>
     <tr>
@@ -37,27 +37,27 @@ the top of this page.
       <td></td>
     </tr>
     <tr>
-      <th>MySQL Chart</th>
+      <td>MySQL Chart</td>
       <td></td>
     </tr>
     <tr>
-      <th>PostgreSQL Chart</th>
+      <td>PostgreSQL Chart</td>
       <td></td>
     </tr>
     <tr>
-      <th>RabbitMQ Chart</th>
+      <td>RabbitMQ Chart</td>
       <td></td>
     </tr>
     <tr>
-      <th>Redis Chart</th>
+      <td>Redis Chart</td>
       <td></td>
     </tr>
     <tr>
-      <th>MongoDB Chart</th>
+      <td>MongoDB Chart</td>
       <td></td>
     </tr>
     <tr>
-      <th>Kafka Chart</th>
+      <td>Kafka Chart</td>
       <td></td>
     </tr>
   </tbody>
