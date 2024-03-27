@@ -30,35 +30,35 @@ the top of this page.
   <tbody>
     <tr>
       <td>Bitnami Services package</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>UXP</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>MySQL Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>PostgreSQL Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>RabbitMQ Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>Redis Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>MongoDB Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>Kafka Chart</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
   </tbody>
 </table>

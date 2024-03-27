@@ -32,23 +32,23 @@ the top of this page.
   <tbody>
     <tr>
       <td>Crossplane package</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>UXP</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>Upbound Crossplane</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>provider-helm</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>provider-kubernetes</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
   </tbody>
 </table>

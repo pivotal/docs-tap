@@ -29,11 +29,11 @@ the top of this page.
   <tbody>
     <tr>
       <td>AWS Services package</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
     <tr>
       <td>provider-aws</td>
-      <td></td>
+      <td>x.x</td>
     </tr>
   </tbody>
 </table>
