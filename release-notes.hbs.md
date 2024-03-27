@@ -144,6 +144,9 @@ enable TUF:
 
 - SCST - Store returns an expired certificate error message when a CA certificate expires before the app certificate. For more information, see [CA Cert expires](scst-store/troubleshooting.hbs.md#ca-cert-expires).
 
+#### <a id='1-9-0-tdp-ki'></a>v1.9.0 Known issues: Tanzu Developer Portal - ScmAuth
+[ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept that abstracts Source Code Management (SCM) authentication into a package. An oversight in a recent codebase migration led to the accidental exclusion of custom ScmAuth functionality, affecting certain client operations such as creating Git repos on behalf of users via Application Accelerators. This issue is scheduled for correction in the next patch release.
+
 ---
 
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
