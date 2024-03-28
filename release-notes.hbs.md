@@ -267,6 +267,12 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
+### <a id='1-8-1-resolved-issues'></a> v1.8.1 Resolved issues
+
+#### <a id='1-8-1-alm-ri'></a> v1.8.1 Resolved issues: App Last Mile Catalog
+
+- Resolved an issue where the app-config-web, app-config-server, and app-config-worker components output a YTT overlay that incorrectly replaced all Convention provided environment variables, instead of merging developer provided environment variables. Environment variables will now be correctly merged.
+
 ### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues
 
 This release has the following known issues, listed by component and area.
@@ -317,13 +323,6 @@ This release has the following known issues, listed by component and area.
   This means that applications that use non-standard ports do not work. To work around this, you can
   configure ports by providing values to the resulting Carvel package.
   This issue is planned to be fixed in a future release.
-
-- The app-config-web, app-config-server, and app-config-worker components output a YTT overlay that
-  allows developers to configure the environment variables for their Carvel package.
-  This overlay incorrectly replaces all Convention provided environment variables, instead of merging
-  developer provided environment variables.
-  To work around this, supply all environment variables, both Convention provided and user provided,
-  to the Carvel package. This issue is planned to be fixed in a future release.
 
 #### <a id='1-8-1-alv-ki'></a> v1.8.1 Known issues: Application Live View
 
