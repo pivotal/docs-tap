@@ -61,7 +61,13 @@ To set up a Service Account to view resources on a cluster:
       name: k8s-reader
     rules:
     - apiGroups: ['']
-      resources: ['pods', 'pods/log', 'services', 'configmaps', 'limitranges']
+      resources:
+      - pods
+      - pods/log
+      - services
+      - configmaps
+      - limitranges
+      - namespaces
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['metrics.k8s.io']
       resources: ['pods']
