@@ -125,9 +125,9 @@ OR add HTML table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-9-0-COMPONENT-NAME-ri'></a> v1.9.0 Resolved issues: COMPONENT-NAME
+#### <a id='1-9-0-alm-ri'></a> v1.9.0 Resolved issues: App Last Mile Catalog
 
-- Resolved issue description.
+- Resolved an issue where the Deployer component would output an error message larger than 4KB, resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
 
 ---
 
@@ -150,6 +150,9 @@ enable TUF:
 #### <a id='1-9-0-scst-store-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Store
 
 - SCST - Store returns an expired certificate error message when a CA certificate expires before the app certificate. For more information, see [CA Cert expires](scst-store/troubleshooting.hbs.md#ca-cert-expires).
+
+#### <a id='1-9-0-tdp-ki'></a>v1.9.0 Known issues: Tanzu Developer Portal - ScmAuth
+[ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept that abstracts Source Code Management (SCM) authentication into a package. An oversight in a recent codebase migration led to the accidental exclusion of custom ScmAuth functionality, affecting certain client operations such as creating Git repos on behalf of users via Application Accelerators. This issue is scheduled for correction in the next patch release.
 
 ---
 

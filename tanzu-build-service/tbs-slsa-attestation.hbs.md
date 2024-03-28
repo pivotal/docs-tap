@@ -111,7 +111,7 @@ image where the attestation is stored.
 
 ### <a id="build-image-l0"></a> Build the image
 
-No action is required to configure the Image or Workload resource. To learn how to create an app, see
+No action is required to configure the Image or Workload resources. To learn how to create an app, see
 [Configure Tanzu Build Service properties on a workload](tbs-workload-config.hbs.md).
 
 ### <a id="view-attestation"></a> View the attestation
