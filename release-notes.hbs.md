@@ -118,9 +118,9 @@ OR add HTML table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-9-0-COMPONENT-NAME-ri'></a> v1.9.0 Resolved issues: COMPONENT-NAME
+#### <a id='1-9-0-alm-ri'></a> v1.9.0 Resolved issues: App Last Mile Catalog
 
-- Resolved issue description.
+- Resolved an issue where the Deployer component would output an error message larger than 4KB, resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
 
 ---
 
