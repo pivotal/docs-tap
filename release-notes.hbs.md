@@ -40,33 +40,25 @@ OR add HTML table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-8-2-COMPONENT-NAME-ri'></a> v1.8.2 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
 #### <a id='1-8-2-aws-services-ri'></a> v1.8.2 Resolved issues: AWS Services
 
 - Updated the `endpoint` key name in the binding secret for Amazon MQ (RabbitMQ) claims to `addresses`
-  so that it matches the name used by the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library.
-  This key name change will not be applied to any existing Amazon MQ (RabbitMQ) claims. If you find that
-  new  Amazon MQ (RabbitMQ) claims still do not have the updated `addresses` key name, please refer to
+  so that it matches the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library uses.
+  This key name change is not applied to any existing Amazon MQ (RabbitMQ) claims.
+  If new Amazon MQ (RabbitMQ) claims still do not have the updated `addresses` key name, see
   [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-8-2-crossplane-ri'></a> v1.8.2 Resolved issues: Crossplane
 
-- Fixed an issue which could be encountered if uninstalling and then reinstalling the Crossplane
-  Package on the same cluster. The issue encountered was a TLS certificate verification error, which
-  led to service claims never transitioning to `READY=True`. This has now been resolved.
+- Fixed an issue that you might encounter if you uninstall and reinstall the Crossplane
+  package on the same cluster. You no longer receive a TLS certificate verification error with
+  service claims never transitioning to `READY=True`.
 
 ---
 
 ### <a id='1-8-2-known-issues'></a> v1.8.2 Known issues
 
 This release has the following known issues, listed by component and area.
-
-#### <a id='1-8-2-COMPONENT-NAME-ki'></a> v1.8.2 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
 
 #### <a id='1-8-2-scst-policy-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Policy
 
@@ -487,8 +479,8 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-bitnami-services-ki'></a> v1.8.1 Known issues: Bitnami Services
 
-- If you try to configure private registry integration for the Bitnami services
-  after having already created a claim for one or more of the Bitnami services using the default
+- If you try to configure private registry integration for the Bitnami Services
+  after having already created a claim for one or more of the services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
@@ -1528,8 +1520,8 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-bitnami-services-ki'></a> v1.8.0 Known issues: Bitnami Services
 
-- If you try to configure private registry integration for the Bitnami services
-  after having already created a claim for one or more of the Bitnami services using the default
+- If you try to configure private registry integration for the Bitnami Services
+  after having already created a claim for one or more of the services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).

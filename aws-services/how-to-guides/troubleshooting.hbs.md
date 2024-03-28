@@ -15,17 +15,18 @@ established automatically.
 
 **Cause:**
 
-This issue was originally caused due to a misconfiguration in the `CompositeResourceDefinition` and
-`Composition` for the Amazon MQ service. These resources have since been updated to rectify the issue,
-however Crossplane does not currently support changes to connectionSecretKeys in `CompositeResourceDefinition`
-resources. There is however a fairly simple workaround to this issue. This should only be needed in cases
-where you have upgraded your Tanzu Application Platform from v1.8.0 or v1.8.1 to v1.8.2+.
+This issue was caused by a misconfiguration in the `CompositeResourceDefinition` and
+`Composition` for the Amazon MQ service.
+These resources have been updated to resolve the issue. However, Crossplane does not support
+changes to `connectionSecretKeys` in `CompositeResourceDefinition` resources.
 
 **Solution:**
 
+The following workaround is only required if you have upgraded Tanzu Application Platform from v1.8.0 or v1.8.1.
+
 To workaround this issue:
 
-1. Find the name of the crossplane pod, for example:
+1. Find the name of the Crossplane pod, for example:
 
     ```console
     kubectl get pod -lapp=crossplane -n crossplane-system
@@ -34,9 +35,11 @@ To workaround this issue:
 2. Delete the pod, for example:
 
     ```console
-    kubectl delete pod <CROSSPLANE POD NAME> -n crossplane-system
+    kubectl delete pod CROSSPLANE-POD-NAME -n crossplane-system
     ```
 
-The pod will be recreated and in doing so will re-read the updated list of connectionSecretKeys
-from the `CompositeResourceDefinition`. New claims for Amazon MQ (RabbitMQ) will now contain the
-correct set of key names.
+    Where `CROSSPLANE-POD-NAME` is the name of the Crossplane pod you retrieved.
+
+After you delete the pod, it is automatically recreated. This causes Crossplane to re-read the updated
+list of `connectionSecretKeys` from the `CompositeResourceDefinition`.
+New claims for Amazon MQ (RabbitMQ) will now contain the correct set of key names.
