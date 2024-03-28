@@ -12,7 +12,7 @@ Tanzu Application Platform without changing the application code.
 
 This section describes, at a high level, the steps for deploying the example `fortune-teller` app
 on Tanzu Application Service.
-For more detailed instructions, see the [fortune-teller README](https://github.com/akrishna90/fortune-teller/blob/main/README.adoc) in GitHub.
+For more detailed instructions, see the [fortune-teller README](https://github.com/spring-cloud-services-samples/fortune-teller/blob/main/README.adoc) in GitHub.
 
 To deploy the app:
 
@@ -103,12 +103,12 @@ For information about installing and configuring data services on Tanzu Applicat
 [Services Toolkit documentation](../services-toolkit/about.hbs.md).
 
 **Prerequisites:** To follow this example, you must first deploy Service Registry and Spring Config Server instances.
-To do so, apply the following YAML files in the [fortune-teller repo](https://github.com/akrishna90/fortune-teller/tree/main/tap):
+To do so, apply the following YAML files in the [fortune-teller repo](https://github.com/spring-cloud-services-samples/fortune-teller/tree/main/tap):
 
-- Install Service Registry: Apply the file [eureka-server.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/eureka-server.yaml).
-- Install Spring Config Server: Apply the file [configuration-source.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-source.yaml).
-- ConfigureSpring Config Server: Apply the file [configuration-slice.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/configuration-slice.yaml).
-- Setup the `forture-teller` app to use Service Registry and Spring Config Server: Apply the file [resource-claim.yaml](https://github.com/akrishna90/fortune-teller/blob/main/tap/resource-claim.yaml).
+- Install Service Registry: Apply the file [eureka-server.yaml](https://github.com/spring-cloud-services-samples/fortune-teller/blob/main/tap/eureka-server.yaml).
+- Install Spring Config Server: Apply the file [configuration-source.yaml](https://github.com/spring-cloud-services-samples/fortune-teller/blob/main/tap/configuration-source.yaml).
+- ConfigureSpring Config Server: Apply the file [configuration-slice.yaml](https://github.com/spring-cloud-services-samples/fortune-teller/blob/main/tap/configuration-slice.yaml).
+- Setup the `forture-teller` app to use Service Registry and Spring Config Server: Apply the file [resource-claim.yaml](https://github.com/spring-cloud-services-samples/fortune-teller/blob/main/tap/resource-claim.yaml).
 
 > **Note** This prerequisite is not required for all Spring Data Services apps.
 
