@@ -38,7 +38,7 @@ This release includes the following changes, listed by component and area.
 - Feature description.
 
 #### <a id='1-9-0-application-accelerator'></a> v1.9.0 Features: Application Accelerator
-Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using the IntelliJ IDE. For more information, see [Using a local Application Accelerator engine server](/application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
+- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using the IntelliJ IDE. For more information, see [Using a local Application Accelerator engine server](/application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
 
 #### <a id='1-9-0-app-live-view'></a> v1.9.0 Features: Application Live View
 
