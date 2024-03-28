@@ -44,6 +44,20 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-8-2-aws-services-ri'></a> v1.8.2 Resolved issues: AWS Services
+
+- Updated the `endpoint` key name in the binding secret for Amazon MQ (RabbitMQ) claims to `addresses`
+  so that it matches the name used by the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library.
+  This key name change will not be applied to any existing Amazon MQ (RabbitMQ) claims. If you find that
+  new  Amazon MQ (RabbitMQ) claims still do not have the updated `addresses` key name, please refer to
+  [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
+
+#### <a id='1-8-2-crossplane-ri'></a> v1.8.2 Resolved issues: Crossplane
+
+- Fixed an issue which could be encountered if uninstalling and then reinstalling the Crossplane
+  Package on the same cluster. The issue encountered was a TLS certificate verification error, which
+  led to service claims never transitioning to `READY=True`. This has now been resolved.
+
 ---
 
 ### <a id='1-8-2-known-issues'></a> v1.8.2 Known issues

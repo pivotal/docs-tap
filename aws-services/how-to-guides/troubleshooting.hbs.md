@@ -15,39 +15,28 @@ established automatically.
 
 **Cause:**
 
-This is due to a misconfiguration in the `Composition` for the Amazon MQ service.
+This issue was originally caused due to a misconfiguration in the `CompositeResourceDefinition` and
+`Composition` for the Amazon MQ service. These resources have since been updated to rectify the issue,
+however Crossplane does not currently support changes to connectionSecretKeys in `CompositeResourceDefinition`
+resources. There is however a fairly simple workaround to this issue. This should only be needed in cases
+where you have upgraded your Tanzu Application Platform from v1.8.0 or v1.8.1 to v1.8.2+.
 
 **Solution:**
 
 To workaround this issue:
 
-1. Pause reconciliation of the aws-services PackageInstall, for example:
+1. Find the name of the crossplane pod, for example:
 
     ```console
-    kubectl patch packageinstall/aws-services -n tap-install -p '{"spec":{"paused": true}}' --type=merge
+    kubectl get pod -lapp=crossplane -n crossplane-system
     ```
 
-2. Manually edit the Amazon MQ (RabbitMQ) CompositionResourceDefinition and Composition to change the
-   key name from `endpoint` to `addresses` by running these commands:
+2. Delete the pod, for example:
 
     ```console
-    kubectl edit xrd xrabbitmqbrokers.aws.queue.tanzu.vmware.com
-    # replace "endpoint" with "addresses"
-    ```
-    ```console
-    kubectl edit composition xrabbitmqbrokers.aws.queue.tanzu.vmware.com
-    # replace "endpoint" with "addresses"
+    kubectl delete pod <CROSSPLANE POD NAME> -n crossplane-system
     ```
 
-3. Create a new class claim for the Amazon MQ (RabbitMQ) service, for example:
-
-    ```
-    tanzu service class-claim create NAME --class rabbitmq-managed-aws
-    ```
-
-    Where `NAME` is the name you choose for your class claim.
-
-That these changes do not have any effect on any existing claims for the Amazon MQ (RabbitMQ) service.
-
-Upgrading to a later version of Tanzu Application Platform might overwrite this temporary workaround,
-but any existing service instances will continue to function as expected.
+The pod will be recreated and in doing so will re-read the updated list of connectionSecretKeys
+from the `CompositeResourceDefinition`. New claims for Amazon MQ (RabbitMQ) will now contain the
+correct set of key names.
