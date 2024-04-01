@@ -146,7 +146,7 @@ enable TUF:
 
 #### <a id='1-9-0-ssc-ui-ki'></a> v1.9.0 Known issues: Supply Chain UI
 
-- When accessing the supply chain tab in the Tanzu Developer Portal, users might encounter an error related to data.packaging.carvel.dev. This issue arises even for supply chains that do not generate Carvel packages, indicating an unexpected configuration requirement. The error message displayed is related to permission issues and JSON parsing errors, specifically mentioning that the user "system:serviceaccount:tap-gui:tap-gui-viewer" cannot list resource "packages" in the API group "data.packaging.carvel.dev" at the cluster scope. Additionally, an unexpected non-whitespace character is reported after JSON at position 4.
+- When accessing the supply chain tab in the Tanzu Developer Portal, users might encounter an error related to data.packaging.carvel.dev. The error message displayed is related to permission issues and JSON parsing errors, specifically mentioning that the user "system:serviceaccount:tap-gui:tap-gui-viewer" cannot list resource "packages" in the API group "data.packaging.carvel.dev" at the cluster scope. Additionally, an unexpected non-whitespace character is reported after JSON at position 4.
 
 Workaround: A temporary solution involves applying an RBAC configuration that includes permissions (get, watch, list) for the resources within the data.packaging.carvel.dev API group. This configuration mitigates the issue but it is highlighted that such a requirement should not be mandated for supply chains not generating Carvel packages.
 
