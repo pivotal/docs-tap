@@ -66,13 +66,17 @@ To install the local engine server:
       workspace
       ├── accelerators
       │   └── hello-world
-      │       ├── ...
+      │       ├── accelerator.yaml
+      │       ├── ...
       └── fragments
           ├── build-wrapper-maven
-          │   ├── ...
+          │   ├── accelerator.yaml
+          │   ├── ...
           ├── java-version
-          │   ├── ...
+          │   ├── accelerator.yaml
+          │   ├── ...
     ```
+  For more examples refer, [Application Accelerator samples.](https://github.com/vmware-tanzu/application-accelerator-samples)
 
     - **For macOS and Linux:** Set this environment variable, for example:
 
