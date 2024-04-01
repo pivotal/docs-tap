@@ -96,14 +96,21 @@ To use the local engine server:
     ./engine
     ```
 
-1. The latest versions of the VS Code Tanzu App Accelerator extension and the Tanzu CLI Accelerator
-   plug-in have settings to use the local engine server instead of the regular cluster endpoints.
+1. The latest versions of the VS Code Tanzu App Accelerator extension, Tanzu Application Accelerator plug-in for IntelliJ 
+   and the Tanzu CLI Accelerator plug-in have settings to use the local engine server instead of the regular cluster endpoints.
 
     - **For the VS Code Tanzu App Accelerator extension:**
 
       There is a new setting under **Tanzu Application Accelerator**. If you select the
+      **Use Local Server instead of Developer Portal** check box, the extension shows available
+      accelerators from the local engine server that you started.
+      You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
+
+   - **For the Tanzu Application Accelerator plug-in for IntelliJ:**
+
+      There is a new setting under **IntelliJ IDEA > Preferences** > **Tools** > **Tanzu Application Accelerator**. If you select the
       **Use Local Server instead of Developer Portal** check box, the plug-in shows available
-      accelerators from the local engine server you started.
+      accelerators from the local engine server that you started.
       You can use them in the same way that you use accelerators loaded from Tanzu Developer Portal.
 
     - **For the Tanzu CLI Accelerator plug-in:**
