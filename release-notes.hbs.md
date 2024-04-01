@@ -150,11 +150,15 @@ enable TUF:
 
 Workaround: A temporary solution involves applying an RBAC configuration that includes permissions (get, watch, list) for the resources within the data.packaging.carvel.dev API group. This configuration mitigates the issue but it is highlighted that such a requirement should not be mandated for supply chains not generating Carvel packages.
 
-The error goes away after below rbac config is applied:
+Configuring RBAC to allow access to the Carvel package resource eliminates the error message:
 
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 - apiGroups: [data.packaging.carvel.dev]
   resources: [packages]
   verbs: ['get', 'watch', 'list']
+```
 
 ---
 
