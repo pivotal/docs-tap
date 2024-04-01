@@ -26,7 +26,7 @@ Before you upgrade Tanzu Application Platform:
 - The previously deprecated field `scanning.metadataStore.url` is removed from the values for installing or upgrading Tanzu Application Platform v1.7 and later. This field must not present in the `tap-non-sensitive-values.yaml` file when performing the upgrade.
 - Note that this upgrade will update all workloads and pods that are using service bindings. This is done automatically after upgrading to 1.7 or later and requires no user action.
 - All pods with service bindings are recreated concurrently at the time of the upgrade. You must have sufficient Kubernetes resources in your clusters to support the pod rollout.
-- If you have previously manually created a secret to configure the Metadata Store CA Certificate for Supply Chain Security Tools - Scan. Please configure this certificate in TAP values before upgrading. See [breaking changes](release-notes.hbs.md#1-9-0-scst-scan-bc) for more information.
+- If you manually created a secret to configure the Metadata Store CA Certificate for Supply Chain Security Tools (SCST) - Scan, you must configure this certificate in Tanzu Application Platform values file before upgrading. For more information, see [v1.9.0 Breaking changes: Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.9/tap/release-notes.html#v190-breaking-changes-3).
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 

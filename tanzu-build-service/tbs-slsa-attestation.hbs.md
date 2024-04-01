@@ -25,7 +25,7 @@ are not generated unless configured for your installation.
 
 **Specification:** [Build L1: Provenance exists](https://slsa.dev/spec/v1.0/levels#build-l1-provenance-exists)
 
-This is the level Tanzu Build Service and Tanzu Application Platform achieves if SLSA generation is
+This is the level Tanzu Build Service and Tanzu Application Platform achieve if SLSA generation is
 enabled.
 
 - The build process is consistent. You can see an example app with expected output in
@@ -38,7 +38,7 @@ enabled.
 
 **Specification:** [Build L2: Hosted build platform](https://slsa.dev/spec/v1.0/levels#build-l2-hosted-build-platform)
 
-This is the level Tanzu Build Service and Tanzu Application Platform achieves if SLSA generation is
+This is the level Tanzu Build Service and Tanzu Application Platform achieve if SLSA generation is
 enabled and a signing key is attached to the service account of the workload.
 
 - All builds executed by Tanzu Build Service occur on a dedicated Kubernetes cluster,
@@ -49,13 +49,13 @@ enabled and a signing key is attached to the service account of the workload.
 
 Specification: [Build L3: Hardened builds](https://slsa.dev/spec/v1.0/levels#build-l3-hardened-builds)
 
-This is the level Tanzu Build Service and Tanzu Application Platform achieves if SLSA generation is
+This is the level Tanzu Build Service and Tanzu Application Platform achieve if SLSA generation is
 enabled and a signing key is attached to the service account of the workload.
 
 - Builds are isolated from each other by using a different Kubernetes pod per build process.
 - Signing keys are only readable by Tanzu Build Service system resources. No user defined build
   steps, such as custom Buildpacks, custom Stacks, and custom Builders, can access the signing keys.
-- You can use Kubernetes Role Based Access Control (RBAC) to secure the signing keys at the cluster
+- You can use Kubernetes Role-Based Access Control (RBAC) to secure the signing keys at the cluster
   level.
 
 ## <a id="prereqs"></a> Prerequisites
@@ -67,7 +67,7 @@ Before you can configure Tanzu Build Service to sign your image builds, you must
 - If you did not install Tanzu Application Platform by using the Full, Iterate, or Build profile,
   install the Tanzu Build Service package. See [Installing Tanzu Build Service](install-tbs.md).
 
-- Install jq. For instructions, see the [jq documentation](https://jqlang.github.io/jq)
+- Install jq. For instructions, see the [jq documentation](https://jqlang.github.io/jq).
 
 - To view and verify signed attestations, install Cosign. For instructions, see the
   [Cosign documentation](https://github.com/sigstore/cosign#installation).
@@ -106,12 +106,12 @@ Tanzu Build Service does not generate SLSA attestation by default. To enable thi
 
 ## <a id="unsigned-attestation"></a> Create unsigned attestations (SLSA L0)
 
-If Tanzu Build Service has SLSA attestation enabled, every app image built by TBS generates a second
+If Tanzu Build Service has SLSA attestation enabled, every app image built by Tanzu Build Service generates a second
 image where the attestation is stored.
 
 ### <a id="build-image-l0"></a> Build the image
 
-No action is required to configure the Image or Workload resource. To learn how to create an app, see
+No action is required to configure the Image or Workload resources. To learn how to create an app, see
 [Configure Tanzu Build Service properties on a workload](tbs-workload-config.hbs.md).
 
 ### <a id="view-attestation"></a> View the attestation
@@ -127,7 +127,7 @@ For more information, see [Location of the attestation](#attestation-location) l
 
 For more information about the attestation, see the [kpack documentation](https://github.com/buildpacks-community/kpack/blob/main/docs/slsa_build.md).
 
-For an example of expected output, see the [kpack documentation](https://github.com/buildpacks-community/kpack/blob/main/docs/slsa_build.md#examples)
+For an example of expected output, see the [kpack documentation](https://github.com/buildpacks-community/kpack/blob/main/docs/slsa_build.md#examples).
 
 ## <a id="signed-attestation"></a> Create signed attestations (SLSA L3)
 
@@ -158,9 +158,9 @@ To generate and save the signing key:
    kubectl annotate secret COSIGN-KEYPAIR-NAME 'kpack.io/slsa='
    ```
 
-   Tanzu Build Service only considers secrets with the annotation `kpack.io/slsa: ""` for signing:
+   Tanzu Build Service only considers secrets with the annotation `kpack.io/slsa: ""` for signing.
 
-1. Attach the secret to the service account:
+1. Attach the secret to the service account by running:
 
     ```console
     kubectl patch serviceaccount SERVICE-ACCOUNT-NAME -p '{"secrets":[{"name":"COSIGN-KEYPAIR-NAME"}]}'
@@ -170,7 +170,7 @@ To generate and save the signing key:
 
 ### <a id="build-image-l3"></a> Build the image
 
-No action is required to configure the Image or Workload resource. To learn how to create an app, see
+No action is required to configure the Image or Workload resources. To learn how to create an app, see
 [Configure Tanzu Build Service properties on a workload](tbs-workload-config.md).
 
 ### <a id="verify-signature"></a> Verify the attestation signature
@@ -191,7 +191,7 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
     Where:
 
     - `PUBLIC-KEY` is either `k8s://NAMESPACE/COSIGN-KEYPAIR-NAME` from
-      [Generate and save the signing key](#configure-signing-key) earlier, or the path to the `cosign.pub`
+      [Generate and save the signing key](#configure-signing-key) earlier or the path to the `cosign.pub`
       that was generated.
     - `APP-IMAGE-DIGEST` is digest of the image that the workload built.
 
@@ -217,9 +217,9 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
     Where:
 
     - `PUBLIC-KEY` is either `k8s://NAMESPACE/COSIGN-KEYPAIR-NAME` from
-      [Generate and save the signing key](#configure-signing-key) earlier, or the path to the `cosign.pub`
+      [Generate and save the signing key](#configure-signing-key) earlier or the path to the `cosign.pub`
       that was generated.
-    - `APP-IMAGE-DIGEST` is digest of the image that the workload built.
+    - `APP-IMAGE-DIGEST` is the digest of the image that the workload built.
 
     For more information about the attestation, see the [kpack documentation](https://github.com/buildpacks-community/kpack/blob/main/docs/slsa_build.md).
 
@@ -227,9 +227,9 @@ For more information, see [Reproducible builds](#reproducible-builds) later in t
 
 ## <a id="attestation-location"></a> Location of the attestation
 
-The tag of the attestation image is predictable from the digest of the app (aka attested) image.
+The tag of the attestation image is predictable from the digest of the app image.
 
-If the digest of your app (attested) image is `index.docker.io/your-project/app@sha256:1234`, the tag
+If the digest of your app image is `index.docker.io/your-project/app@sha256:1234`, the tag
 of your attestation image is `index.docker.io/your-project/app:sha256-1234.att`.
 
 ### <a id="reproducible-builds"></a> Reproducible builds
@@ -239,7 +239,7 @@ generate the exact same bit-for-bit image as a previous run.
 This is most likely to occur if a build is manually re-triggered, but might also automatically occur
 as part of a dependency upgrade.
 
-In these cases, because the image is bit-for-bit identical (i.e. the same digest) as the previous image,
+In these cases, because the image is bit-for-bit identical and has the same digest as the previous image,
 the tag of the attestation image overlaps.
 In this scenario, the newer attestation overwrites the older attestation.
 
