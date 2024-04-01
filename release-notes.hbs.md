@@ -38,12 +38,12 @@ This release includes the following changes, listed by component and area.
 - Feature description.
 
 #### <a id='1-9-0-application-accelerator'></a> v1.9.0 Features: Application Accelerator
-- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using the IntelliJ IDE. For more information, see [Using a local Application Accelerator engine server](/application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
+- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using the IntelliJ IDE. For more information, see [Using a local Application Accelerator engine server](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
 - The spring-ai-chat sample accelerator provides an out-of-the-box application setup to fast start development of a Web Application for AI Chat based on Spring AI. This web application offers an interactive chat experience utilizing RAG (Retrieval Augmented Generation) to enable a user to ask questions about their own uploaded documents. For more information, see [Spring AI Chat Sample Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/spring-ai-chat).
 
 #### <a id='1-9-0-app-live-view'></a> v1.9.0 Features: Application Live View
 
-- By default, Application Live View connector is deployed as a Deployment to discover applications across all namespaces running in a worker node of a Kubernetes cluster. This is to override the earlier behavior where the connector is deployed as a DaemonSet, making the Kubernetes scheduling pattern unpredictable when a node restarts. For more information, see [Connector deployment modes in Application Live View](/app-live-view/connector-deployment-modes.hbs.md).
+- By default, Application Live View connector is deployed as a Deployment to discover applications across all namespaces running in a worker node of a Kubernetes cluster. This is to override the earlier behavior where the connector is deployed as a DaemonSet, making the Kubernetes scheduling pattern unpredictable when a node restarts. For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
 #### <a id='1-9-0-tanzu-dev-portal'></a> v1.9.0 Features: Tanzu Developer Portal
 
@@ -152,8 +152,26 @@ enable TUF:
 
 - SCST - Store returns an expired certificate error message when a CA certificate expires before the app certificate. For more information, see [CA Cert expires](scst-store/troubleshooting.hbs.md#ca-cert-expires).
 
+
+#### <a id='1-9-0-ssc-ui-ki'></a> v1.9.0 Known issues: Supply Chain UI
+
+- When accessing the supply chain tab in the Tanzu Developer Portal, users might encounter an error related to data.packaging.carvel.dev. The error message displayed is related to permission issues and JSON parsing errors, specifically mentioning that the user "system:serviceaccount:tap-gui:tap-gui-viewer" cannot list resource "packages" in the API group "data.packaging.carvel.dev" at the cluster scope. Additionally, an unexpected non-whitespace character is reported after JSON at position 4.
+
+Workaround: A temporary solution involves applying an RBAC configuration that includes permissions (get, watch, list) for the resources within the data.packaging.carvel.dev API group. This configuration mitigates the issue but it is highlighted that such a requirement should not be mandated for supply chains not generating Carvel packages.
+
+Configuring RBAC to allow access to the Carvel package resource eliminates the error message:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+- apiGroups: [data.packaging.carvel.dev]
+  resources: [packages]
+  verbs: ['get', 'watch', 'list']
+```
+
 #### <a id='1-9-0-tdp-ki'></a>v1.9.0 Known issues: Tanzu Developer Portal - ScmAuth
 [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept that abstracts Source Code Management (SCM) authentication into a package. An oversight in a recent codebase migration led to the accidental exclusion of custom ScmAuth functionality, affecting certain client operations such as creating Git repos on behalf of users via Application Accelerators. This issue is scheduled for correction in the next patch release.
+
 
 ---
 
@@ -231,3 +249,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
 
 - In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
+
+### <a id='1-9-0-scst-scan-bc'></a> Supply Chain Security Tools - Scan 1.0 deprecation
+
+- In Tanzu Application Platform v1.9.0, Scan 1.0 has been marked for deprecation in favor of Scan 2.0.  Scan 1.0 will remain the documented default for online installations and replaced as the documented default in Tanzu Application Platform v1.10.0, then removed in a future release.  For an overview of Scan 1.0 versus scan 2.0, please see the [scan overview page](./scst-scan/overview.hbs.md).
