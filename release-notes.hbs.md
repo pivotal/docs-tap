@@ -185,11 +185,11 @@ kind: ClusterRole
 
 #### <a id='1-9-0-tdp-ki'></a>v1.9.0 Known issues: Tanzu Developer Portal
 
-[ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
-that abstracts Source Code Management (SCM) authentication into a package. An oversight in a recent
-code-base migration led to the accidental exclusion of custom ScmAuth functions. This exclusion
-affected some client operations, such as using Application Accelerators to create Git repositories
-on behalf of users. A fix for this issue is planned for the next patch.
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users. A fix for this issue is planned for the next patch.
 
 ---
 
