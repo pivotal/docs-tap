@@ -567,6 +567,12 @@ automatically goes into the ready state. For more information, see this [issue](
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-6-9-sc-plugin-ki'></a> v1.6.9 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a custom resource definition (CRD) might not work as expected.
@@ -897,6 +903,12 @@ automatically goes into the ready state. For more information, see this [issue](
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-8-sc-plugin-ki'></a> v1.6.8 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
@@ -1244,6 +1256,12 @@ automatically goes into the ready state. For more information, see this [issue](
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-7-sc-plugin-ki'></a> v1.6.7 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
@@ -1655,6 +1673,12 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-6-6-sc-plugin-ki'></a> v1.6.6 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a custom resource definition (CRD) might not work as expected.
@@ -1963,6 +1987,12 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-5-sc-plugin-ki'></a> v1.6.5 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
@@ -2351,6 +2381,12 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-4-sc-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
@@ -2774,6 +2810,12 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-6-3-sc-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a custom resource definition (CRD) might not work as expected.
@@ -3110,6 +3152,12 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-2-sc-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
@@ -3975,6 +4023,12 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-6-1-sc-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
