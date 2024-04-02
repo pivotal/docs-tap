@@ -211,7 +211,15 @@ Non-interactive
 : Generate the Supply chain by using flags:
 
     ```console
-    tanzu supplychain generate --kind AppBuildV1 --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." --component "source-git-provider-1.0.0" --component "buildpack-build-1.0.0" --component "conventions-1.0.0" --component "app-config-server-1.0.0" --component "carvel-package-1.0.0" --component "git-writer-pr-1.0.0"
+    tanzu supplychain generate \
+    --kind AppBuildV1 \
+    --description "Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package." \
+    --component "source-git-provider-1.0.0" \
+    --component "buildpack-build-1.0.0" \
+    --component "conventions-1.0.0" \
+    --component "app-config-server-1.0.0" \
+    --component "carvel-package-1.0.0" \
+    --component "git-writer-pr-1.0.0"
     ```
 
 When you have selected the components, the Tanzu Supply Chain CLI plug-in creates
