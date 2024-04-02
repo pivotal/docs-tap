@@ -662,6 +662,12 @@ enable TUF:
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-8-1-intellij-plugin-ki'></a> v1.8.1 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -1690,6 +1696,12 @@ while installing through Tanzu Mission Control.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-8-0-intellij-plugin-ki'></a> v1.8.0 Known issues: Tanzu Developer Tools for IntelliJ
 
