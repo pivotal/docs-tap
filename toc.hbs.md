@@ -177,7 +177,6 @@
                 - [Tanzu Apps CLI plug-in command reference](cli-plugins/apps/reference/reference.hbs.md)
           - [Accelerator](cli-plugins/accelerator/overview.hbs.md)
                 - [Tanzu Accelerator CLI plug-in overview](cli-plugins/accelerator/overview.hbs.md)
-                - [Install Tanzu Accelerator CLI plug-in](cli-plugins/accelerator/install-accelerator-cli.hbs.md)
                 - [Tanzu Accelerator CLI plug-in command reference](cli-plugins/accelerator/command-reference.hbs.md)
           - [Build Service](cli-plugins/build-service/overview.hbs.md)
           - [Insight](cli-plugins/insight/cli-overview.hbs.md)
