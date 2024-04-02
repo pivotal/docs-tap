@@ -11,11 +11,69 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-2650</li><li>CVE-2013-1779</li><li>CVE-2020-17753</li><li>CVE-2020-36634</li><li>CVE-2022-3821</li><li>CVE-2022-4415</li><li>CVE-2023-30588</li><li>CVE-2023-30589</li><li>CVE-2002-1647</li><li>CVE-2006-1611</li><li>CVE-2017-9525</li><li>CVE-2019-9704</li><li>CVE-2019-9705</li><li>CVE-2023-0466</li><li>CVE-2023-0842 </li></ul>|
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5981</li><li>CVE-2023-7008</li><li>CVE-2024-0553</li><li>CVE-2024-26458</li><li>CVE-2024-26461</li><li>CVE-2024-26462</li><li>CVE-2022-48303</li><li>CVE-2021-36084</li><li>CVE-2021-36085</li><li>CVE-2021-36086</li><li>CVE-2021-36087 </li></ul>|
-| metadata-store.apps.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>CVE-2023-44487</li><li>GHSA-m425-mq94-257g</li><li>CVE-2023-39323</li><li>CVE-2023-39325</li><li>CVE-2023-45285</li><li>GHSA-rcjv-mgp8-qvmr </li></ul>|
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metadata-store.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-rcjv-mgp8-qvmr">GHSA-rcjv-mgp8-qvmr</a></li>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-m425-mq94-257g">GHSA-m425-mq94-257g</a></li>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45285">CVE-2023-45285</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487">CVE-2023-44487</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39325">CVE-2023-39325</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39323">CVE-2023-39323</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-26462">CVE-2024-26462</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-26461">CVE-2024-26461</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-26458">CVE-2024-26458</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-0553">CVE-2024-0553</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-7008">CVE-2023-7008</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5981">CVE-2023-5981</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4813">CVE-2023-4813</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4806">CVE-2023-4806</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48303">CVE-2022-48303</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-36087">CVE-2021-36087</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-36086">CVE-2021-36086</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-36085">CVE-2021-36085</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-36084">CVE-2021-36084</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-30589">CVE-2023-30589</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-30588">CVE-2023-30588</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0842">CVE-2023-0842</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4415">CVE-2022-4415</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3821">CVE-2022-3821</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-36634">CVE-2020-36634</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-17753">CVE-2020-17753</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-9705">CVE-2019-9705</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-9704">CVE-2019-9704</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9525">CVE-2017-9525</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2013-1779">CVE-2013-1779</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2006-1611">CVE-2006-1611</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2002-1647">CVE-2002-1647</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
