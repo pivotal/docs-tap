@@ -13,7 +13,7 @@ This SupplyChain retrieves the source code from a Git repository, proceeds with 
 
 2. Ensure that [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
-## Getting Started
+## Browse the component catalog
 
 When you have completed the prerequisites, you have the
 Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build your first SupplyChain.
@@ -117,6 +117,8 @@ Run:
 
     🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
     ```
+
+## Generate a Supplychain
 
 1. Now that you know what components are available to create your SupplyChain, start the
 authoring process. Use the `tanzu supplychain init` command to scaffold the current directory. Run:
