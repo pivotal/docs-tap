@@ -44,9 +44,13 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-6-COMPONENT-NAME-ki'></a> v1.7.6 Known issues: COMPONENT-NAME
+#### <a id='1-7-6-tdp-ki'></a>v1.7.6 Known issues: Tanzu Developer Portal
 
-- Known issue description with link to workaround.
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users. A fix for this issue is planned for the next patch.
 
 ---
 
@@ -555,7 +559,7 @@ automatically goes into the ready state. For more information, see this [issue](
   that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
   recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
   exclusion affected some client operations, such as using Application Accelerators to create Git
-  repositories on behalf of users. A fix for this issue is planned for the next patch.
+  repositories on behalf of users.
 
 #### <a id='1-7-5-intellij-plugin-ki'></a> v1.7.5 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -1134,6 +1138,12 @@ automatically goes into the ready state. For more information, see this [issue](
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-7-4-intellij-plugin-ki'></a> v1.7.4 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -1639,6 +1649,12 @@ Github repository.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-7-3-intellij-plugin-ki'></a> v1.7.3 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -2178,6 +2194,12 @@ while installing through Tanzu Mission Control.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-7-2-intellij-plugin-ki'></a> v1.7.2 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -2613,6 +2635,12 @@ while installing through Tanzu Mission Control.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
 
 #### <a id='1-7-1-intellij-plugin-ki'></a> v1.7.1 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -4066,6 +4094,12 @@ to ensure that they are correctly created.
   automatic retry. The issue is related to the order of creation for Kubernetes resources.
   A fix is planned for a later release.
 
+- [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
+  that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
+  recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
+  exclusion affected some client operations, such as using Application Accelerators to create Git
+  repositories on behalf of users.
+
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -4090,9 +4124,6 @@ to ensure that they are correctly created.
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
-
-#### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
-- On first install, Tanzu Developer Portal will sometimes experience a transient failure during reconciliation. No action is needed as reconcile will succeed during automatic retry. The issue is related to the order of creation for Kubernetes resources and will be addressed in a future release.
 
 ---
 
