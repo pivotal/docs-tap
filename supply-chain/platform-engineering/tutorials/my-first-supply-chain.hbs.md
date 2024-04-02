@@ -29,20 +29,21 @@ Run:
 
   ```console
   Listing components from the catalog
-    NAME                             INPUTS                                                        OUTPUTS                                                       AGE
-    app-config-server-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-    app-config-worker-1.0.0          conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-    carvel-package-1.0.0             oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  package[package]                                              14d
-    deployer-1.0.0                   package[package]                                              <none>                                                        14d
-    source-package-translator-1.0.0  source[source]                                                package[package]                                              14d
-    conventions-1.0.0                image[image]                                                  conventions[conventions]                                      14d
-    app-config-web-1.0.0             conventions[conventions]                                      oci-yaml-files[oci-yaml-files], oci-ytt-files[oci-ytt-files]  14d
-    git-writer-1.0.0                 package[package]                                              <none>                                                        14d
-    git-writer-pr-1.0.0              package[package]                                              git-pr[git-pr]                                                14d
-    source-git-provider-1.0.0        <none>                                                        source[source], git[git]                                      14d
-    buildpack-build-1.0.0            source[source], git[git]                                      image[image]                                                  14d
-    trivy-image-scan-1.0.0           image[image], git[git]                                        <none>                                                        14d
+  NAMESPACE                   NAME                             AGE  DESCRIPTION                                                                       
+  alm-catalog                 app-config-server-1.0.0          18h  Generates configuration for a Server application from a Conventions PodIntent.    
+  alm-catalog                 app-config-web-1.0.0             18h  Generates configuration for a Web application from a Conventions PodIntent.       
+  alm-catalog                 app-config-worker-1.0.0          18h  Generates configuration for a Worker application from a Conventions PodIntent.    
+  alm-catalog                 carvel-package-1.0.0             18h  Generates a carvel package from OCI images containing raw YAML files and YTT      
+                                                                    files.                                                                            
+  alm-catalog                 deployer-1.0.0                   18h  Deploys K8s resources to the cluster.                                             
+  alm-catalog                 source-package-translator-1.0.0  18h  Takes the type source and immediately outputs it as type package.                 
+  conventions-component       conventions-1.0.0                18h  The Conventions component analyzes the `image` input as described in the          
+  git-writer-catalog          git-writer-1.0.0                 18h  Writes carvel package config directly to a gitops repository                      
+  git-writer-catalog          git-writer-pr-1.0.0              18h  Writes carvel package config to a gitops repository and opens a PR                
+  kaniko-catalog              kaniko-build-1.0.0               18h  Builds an app with kaniko                                                         
+  source-provider             source-git-provider-1.0.0        18h  Source git provider retrieves source code and monitors a git repository.          
+  tbs-catalog                 buildpack-build-1.0.0            18h  Builds an app with buildpacks using kpack                                         
+  trivy-app-scanning-catalog  trivy-image-scan-1.0.0           18h  Performs a trivy image scan using the scan 2.0 components                         
 
   🔎 To view the details of a component, use 'tanzu supplychain component get'
   ```
