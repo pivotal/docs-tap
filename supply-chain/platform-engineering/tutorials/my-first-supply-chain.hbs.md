@@ -257,11 +257,14 @@ by viewing the manifest created in the `supplychains/` directory. Run:
   * Name of the Supplychain.
   * The Kind definition of the Developer API (Workload) it will create.
   * Stages in the SupplyChain.
-    * Order of the stages matter as the stages are executed sequentially.
-    * Each stage is represented by a component.
+
+      * Order of the stages matter as the stages are executed sequentially.
+      * Each stage is represented by a component.
+
   * Configuration section.
-    * `overrides`: are the configuration supplied by a platform engineer for a stage (component) in the supplychain that **cannot** be overriden by Developers using the `Workload` (Developer API) created by this supplychain.
-    * `defaults`: are the configuration supplied by a platform engineer for a stage (component ) in the supplychain that **can** be overriden by Developers using the `Workload` (Developer API) created by this supplychain, but will have the default value provided by the platform engineer if they don't.
+  
+      * `overrides`: are the configuration supplied by a platform engineer for a stage (component) in the supplychain that **cannot** be overriden by Developers using the `Workload` (Developer API) created by this supplychain.
+      * `defaults`: are the configuration supplied by a platform engineer for a stage (component ) in the supplychain that **can** be overriden by Developers using the `Workload` (Developer API) created by this supplychain, but will have the default value provided by the platform engineer if they don't.
 
 ## Configure a Supply chain to run securely
 
