@@ -416,8 +416,6 @@ spec:
         # Platform Engineer provided GitOps repo overrides
         - path: spec.gitOps.baseBranch
           value: main
-        - path: spec.gitOps.branch
-          value: main
         - path: spec.gitOps.subPath
           value: "YOUR-GITOPS-REPO-SUBPATH"
         - path: spec.gitOps.url
