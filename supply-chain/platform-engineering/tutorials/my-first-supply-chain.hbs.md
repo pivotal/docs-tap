@@ -5,7 +5,7 @@ for developers to use.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This SupplyChain pulls the source code from a Git repository, builds, and packages it as a Carvel package. The SupplyChain then creates a pull request to push the Carvel package to a GitOps repository so the built package can be installed on the Run clusters.
+This SupplyChain retrieves the source code from a Git repository, proceeds with building and packaging it as a Carvel package. Subsequently, it initiates a pull request to transfer the Carvel package to a GitOps repository, facilitating the installation of the built package on the Run clusters. For the purposes of this tutorial, we will construct a supply chain specifically tailored to build, test, and package Java Maven applications.
 
 ## Prerequisites
 
@@ -48,12 +48,13 @@ Run:
   🔎 To view the details of a component, use 'tanzu supplychain component get'
   ```
 
-    Use the `-w/--wide` flag to see a more detailed output including a description of each component.
+    >**Important** Use the `-w/--wide` flag to see a more detailed output including a inputs/outputs of each component.
+    
 
 1. To get more information about each component on the cluster, use the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run:
 
   ```console
-  tanzu supplychain component get source-git-provider-1.0.0 -n source-provider --show-details
+  tanzu supplychain component get source-git-provider-1.0.0 --show-details
   ```
 
   Example output:
@@ -62,27 +63,31 @@ Run:
     📡 Overview
       name:         source-git-provider-1.0.0
       namespace:    source-provider
-      age:          14d
+      age:          19h
       status:       True
       reason:       Ready
-      description:  Monitors a git repository
+      description:  Source git provider retrieves source code and monitors a git repository.
 
     📝 Configuration
       source:
         #! Use this object to retrieve source from a git repository.
-        #! The tag, commit, and branch fields are mutually exclusive, use only one.
+        #! The tag, commit and branch fields are mutually exclusive, use only one.
         #! Required
         git:
           #! A git branch ref to watch for new source
-          branch: "main"
+          #! Example: "main"
+          branch: ""
           #! A git commit sha to use
           commit: ""
           #! A git tag ref to watch for new source
-          tag: "v1.0.0"
+          #! Example: "v1.0.0"
+          tag: ""
           #! The url to the git source repository
+          #! Example: "https://github.com/acme/my-workload.git"
           #! Required
-          url: "https://github.com/acme/my-workload.git"
+          url: ""
         #! The sub path in the bundle to locate source code
+        #! Example: "sub-dir"
         subPath: ""
 
     📤 Outputs
@@ -95,7 +100,7 @@ Run:
         ├─ type: source
         └─ url: $(pipeline.results.url)
 
-    🏃 Pipeline
+    🏃 Pipeline   
         ├─ name: source-git-provider
         └─ 📋 parameters
           ├─ git-url: $(workload.spec.source.git.url)
@@ -103,7 +108,7 @@ Run:
           └─ workload-name: $(workload.metadata.name)
 
     🔁 Resumptions
-      - check-source runs source-git-check task every 300s
+      - check-source runs source-git-check task every 60s
         📋 Parameters
           ├─ git-branch: $(workload.spec.source.git.branch)
           ├─ git-commit: $(workload.spec.source.git.commit)
@@ -111,7 +116,6 @@ Run:
           └─ git-url: $(workload.spec.source.git.url)
 
     🔎 To generate a supplychain using the available components, use 'tanzu supplychain generate'
-
     ```
 
 1. Now that you know what components are available to create your SupplyChain, start the
@@ -151,15 +155,15 @@ authoring process. Use the `tanzu supplychain init` command to scaffold the curr
 generate your first SupplyChain. Start the wizard:
 
   ```console
-  tanzu supplychain generate
+  tanzu supplychain generate --allow-defaults --allow-overrides
   ```
 
 1. In the wizard prompts that follow, add the following values:
 
     |Prompt|Value|
     |:--|:--|
-    |What Kind would you like to use as the developer interface?|`AppBuildV1`|
-    |Give Supply chain a description?|`Supply chain that pulls the source code from Git repository, builds it using buildpacks and packages the output as Carvel package.`|
+    |What Kind would you like to use as the developer interface?|`MavenAppBuildv1`|
+    |Give Supply chain a description?|`Supply chain that pulls the maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.`|
     |Select a component as the first stage of the supply chain?|`source-git-provider-1.0.0`|
     |Select a component as the next stage of the supply chain?|`buildpack-build-1.0.0`|
     |Select a component as the next stage of the supply chain?|`conventions-1.0.0`|
@@ -173,7 +177,7 @@ generate your first SupplyChain. Start the wizard:
 
     ```console
     ✓ Successfully fetched all component dependencies
-    Created file supplychains/appbuildv1.yaml
+    Created file supplychains/mavenappbuildv1.yaml
     Created file components/app-config-server-1.0.0.yaml
     Created file components/buildpack-build-1.0.0.yaml
     Created file components/carvel-package-1.0.0.yaml
@@ -203,7 +207,7 @@ generate your first SupplyChain. Start the wizard:
 by viewing the manifest created in the `supplychains/` directory. Run:
 
   ```console
-  cat supplychains/appbuildv1.yaml
+  cat supplychains/mavenappbuildv1.yaml
   ```
 
   Example output
@@ -212,14 +216,14 @@ by viewing the manifest created in the `supplychains/` directory. Run:
   apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
   kind: SupplyChain
   metadata:
-      name: appbuildv1
+      name: mavenappbuildv1
   spec:
       defines:
           group: supplychains.tanzu.vmware.com
-          kind: AppBuildV1
-          plural: appbuildv1s
+          kind: MavenAppBuildv1
+          plural: mavenappbuildv1s
           version: v1alpha1
-      description: Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
+      description: Supply chain that pulls the maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.
       stages:
           - componentRef:
               name: source-git-provider-1.0.0
@@ -239,6 +243,11 @@ by viewing the manifest created in the `supplychains/` directory. Run:
           - componentRef:
               name: git-writer-pr-1.0.0
             name: git-writer-pr
+      config:
+      #   overrides:
+            ...
+      #   defaults:
+            ...
   ```
 
 ## Next Steps
