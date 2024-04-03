@@ -68,5 +68,15 @@ This includes:
         <td>13.13.1</td>
         <td>22.0.0</td>
     </tr>
+    <tr>
+        <td>1.9.0</td>
+        <td>0.5.0</td>
+        <td>9.5.0</td>
+        <td>12.2.0</td>
+        <td>11.10.0</td>
+        <td>17.8.0</td>
+        <td>13.13.1</td>
+        <td>22.0.0</td>
+    </tr>
   </tbody>
 </table>

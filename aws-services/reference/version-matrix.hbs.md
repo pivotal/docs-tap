@@ -32,5 +32,10 @@ This includes:
         <td>0.2.0</td>
         <td>0.46.0</td>
     </tr>
+    <tr>
+        <td>1.9.0</td>
+        <td>0.3.0</td>
+        <td>1.2.0</td>
+    </tr>
   </tbody>
 </table>
