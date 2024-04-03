@@ -1,15 +1,17 @@
 # Enabling policy enforcement with Scan 2.0 in a supply chain
 
-Policy enforcement is not inbuilt in Scan 2.0. It can be achieved by the following example of a 
+Policy enforcement is not inbuilt in Scan 2.0. It can be achieved by the creating a 
 `ClusterImageTemplate` that stamps out a Tekton `TaskRun` that evaluates the vulnerabilities
-and enforces the policy set.
+and enforces the policy set. A sample of the task run along with a the cluster image template
+is provided here
 
 ## Set up required for the Task Run to succeed
 
-The task run queries the Metadata data to get the list of vulnerabilities for the image.
-To authenticate with the MDS api an accessToken and cert is needed.
+The task run queries the metadata store to get the list of vulnerabilities for the image.
 
-- Build a an image that contains `curl` and `jq`. This image will be used by the task run
+To authenticate with the MDS API an accessToken and cert is needed.
+
+- Build an image that contains `curl` and `jq`. This image will be used by the task run
 
 - Get the access token from MDS:
 
@@ -49,10 +51,10 @@ stringData:
 - Task run sample that enforces policy:
 
 The sample task run waits until the vulnerability data is avaiable for the image. When the data is
-available, the vulnerabilities are counted by severity. The task run succeeds or fails based on the `GATE`
-set.
+available, the vulnerabilities are aggegrated by severity. The task run succeeds or fails based on 
+the policy `GATE` set.
 
-For example, is the `GATE` is set to `high`, the task run fails if it finds high or critical vulnerabilities
+For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical vulnerabilities
 for the image
 
 ```yaml
@@ -70,6 +72,7 @@ spec:
         if [ ${GATE} -eq "none" ]; then
             exit 0
         fi
+
         IMAGE_DIGEST=$(echo ${IMAGE} | cut -d "@" -f 2)
         while true; do
           response_code=$(curl -k https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT/api/v1/images/${IMAGE_DIGEST} -H "Authorization: Bearer ${ACCESS_TOKEN}" -H 'accept: application/json' --cacert /var/cert/caCrt -o vulnerabilities.json -w "%{http_code}")
@@ -208,7 +211,7 @@ spec:
       default: report-publisher
     - name: image_scanning_workspace_size
       default: 4Gi
-    - name: policy # default policy, lets images through even if it has vulnerabilities
+    - name: policy # default policy, lets the supply chain proceed even if the image has vulnerabilities
       default:
         gate: "none"
 
@@ -244,9 +247,16 @@ spec:
     images:
     - resource: image-scanner
       name: image
+    ... <supply chain continues>
 ```
 
-- Create a workload to trigger the supply chain. Set the `policy.gate` param accordingly.
+- Create a workload to trigger the supply chain. Set the `policy.gate` param to one of the following:
+
+  - none
+  - critical
+  - high
+  - medium
+  - low
 
 ```yaml
 apiVersion: carto.run/v1alpha1
