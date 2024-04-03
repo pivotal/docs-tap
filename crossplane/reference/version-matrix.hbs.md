@@ -60,5 +60,13 @@ This includes:
         <td>0.15.0</td>
         <td>0.9.0</td>
     </tr>
+    <tr>
+        <td>1.9.0</td>
+        <td>0.5.0</td>
+        <td>1.15.0-up.1</td>
+        <td>1.15.0-up.1</td>
+        <td>0.15.0</td>
+        <td>0.12.1</td>
+    </tr>
   </tbody>
 </table>
