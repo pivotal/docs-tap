@@ -28,23 +28,23 @@ the top of this page.
   <tbody>
     <tr>
       <td>Crossplane package</td>
-      <td>x.x</td>
+      <td>0.5.0</td>
     </tr>
     <tr>
       <td>UXP</td>
-      <td>x.x</td>
+      <td>1.15.0-up.1</td>
     </tr>
     <tr>
       <td>Upbound Crossplane</td>
-      <td>x.x</td>
+      <td>1.15.0-up.1</td>
     </tr>
     <tr>
       <td>provider-helm</td>
-      <td>x.x</td>
+      <td>0.15.0</td>
     </tr>
     <tr>
       <td>provider-kubernetes</td>
-      <td>x.x</td>
+      <td>0.12.1</td>
     </tr>
   </tbody>
 </table>

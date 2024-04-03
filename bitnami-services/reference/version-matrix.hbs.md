@@ -26,35 +26,31 @@ the top of this page.
   <tbody>
     <tr>
       <td>Bitnami Services package</td>
-      <td>x.x</td>
-    </tr>
-    <tr>
-      <td>UXP</td>
-      <td>x.x</td>
+      <td>0.5.0</td>
     </tr>
     <tr>
       <td>MySQL Chart</td>
-      <td>x.x</td>
+      <td>9.5.0</td>
     </tr>
     <tr>
       <td>PostgreSQL Chart</td>
-      <td>x.x</td>
+      <td>12.2.0</td>
     </tr>
     <tr>
       <td>RabbitMQ Chart</td>
-      <td>x.x</td>
+      <td>11.10.0</td>
     </tr>
     <tr>
       <td>Redis Chart</td>
-      <td>x.x</td>
+      <td>17.8.0</td>
     </tr>
     <tr>
       <td>MongoDB Chart</td>
-      <td>x.x</td>
+      <td>13.13.1</td>
     </tr>
     <tr>
       <td>Kafka Chart</td>
-      <td>x.x</td>
+      <td>22.0.0</td>
     </tr>
   </tbody>
 </table>
