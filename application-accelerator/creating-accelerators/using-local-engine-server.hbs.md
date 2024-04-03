@@ -79,13 +79,13 @@ To install the local engine server:
 
   For more examples, see [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples) in GitHub.
 
-    - **For macOS and Linux:** Set this environment variable, for example:
+    - **For macOS and Linux:** Set the environment variable, for example:
 
         ```console
         $ export ACC_LOCAL_FILES="$HOME/workspace"
         ```
 
-    - **For Windows Powershell:** Set this environment variable, for example:
+    - **For Windows Powershell:** Set the environment variable, for example:
 
         ```console
         $ $Env:ACC_LOCAL_FILES="$HOME\workspace"
