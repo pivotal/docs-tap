@@ -11,7 +11,7 @@ This includes:
   versions by configuring package values.
 
 The following table provides component versions for the Bitnami Services package in Tanzu Application Platform
-v{{ vars.tanzu-cli.url_version }}.
+v{{ vars.url_version }}.
 To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
 the top of this page.
 
