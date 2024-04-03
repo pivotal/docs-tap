@@ -6,7 +6,7 @@ using a profile. By default, SCST - Scan 2.0 is installed in the build and full 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > SCST - Scan 2.0.
 > For more information about profiles, see
-> [Installation profiles in Tanzu Application Platform v1.8](../about-package-profiles.hbs.md#installation-profiles-in-tanzu-application-platform-v-varsurl_version).
+> [Installation profiles in Tanzu Application Platform v{{ vars.url_version }}](../about-package-profiles.hbs.md#installation-profiles-in-tanzu-application-platform-v-varsurl_version).
 
 ## <a id="scst-app-scanning-prereqs"></a> Prerequisites
 
