@@ -67,4 +67,5 @@ For more information, see [Manage SupplyChains with GitOps](./../how-to/deployin
 [WorkloadRun]: ./workload-runs.hbs.md
 [Components]: ./components.hbs.md
 [Resumptions]: ./resumptions.hbs.md
+[SecurityModel]: ./security-model.hbs.md
 -->
