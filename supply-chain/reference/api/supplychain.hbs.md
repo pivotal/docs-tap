@@ -145,6 +145,12 @@ The [Component] must exist in the same namespace as the `SupplyChain`. This will
 The supply chain returns an error if a component expects an input that has not been output by a
 previous stage.
 
+### `spec.stages[].securityContext`
+
+Each stage may also specify a `securityContext` with a single field `runAs`. When this is
+set to `workload` the stage is executed in the namespace of the workload, rather than the supply
+chain. See [Security Model](../../platform-engineering/explanation/security-model.hbs.md)
+
 #### Example
 
 ```yaml
@@ -155,6 +161,8 @@ spec:
     - name: fetch-source
       componentRef:
         name: source-git-provider-1.0.0
+      securityContext:
+        runAs: workload
     - name: build
       componentRef:
         name: golang-builder-1.0.0

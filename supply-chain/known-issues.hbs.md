@@ -4,13 +4,6 @@ This topic lists known issues for Tanzu Supply Chains.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-## Workload Creation
-
-- The Beta version of the Tanzu Supply Chains only supports creating `Workloads` in the same
-namespace where the `SupplyChain` is installed. This will be fixed in the future versions before
-Tanzu Supply Chains becomes GA and `SupplyChain` will be installed inprotected namespace(s) in the
-cluster based on Platform Engineer preferences. Developers will be able to create `Workloads` in any namespace as long as they have permissions to do so in that namespace.
-
 ## Workload Visibility
 
 - Tekton failures in Tasks are not propagated properly in the status of the `WorkloadRuns` and
