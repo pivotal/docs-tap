@@ -1,9 +1,13 @@
 # Upgrade Supply Chain Security Tools - Scan
 
-> **Note** This topic is part of Scan 1.0. Scan 1.0 has been deprecated as of the TAP 1.9 release.  Scan 1.0 will remain the default in the [test and scan supply chain](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application) in the TAP 1.9 release but it is recommended to opt-in to Scan 2.0 as Scan 1.0 will be replaced as the default and removed in a future version.  For more information about Scan 1.0 versus Scan 2.0, see the [scan overview page](./overview.hbs.md)
-
 This topic describes how you can upgrade Supply Chain Security Tools - Scan from the
 Tanzu Application Platform package repository.
+
+> **Note** This topic uses SCST - Scan 1.0. SCST - Scan 1.0 is deprecated in
+Tanzu Application Platform v1.9 and later. In Tanzu Application Platform v1.9, SCST - Scan 1.0 is
+still the default in Supply Chain with Testing. For more information, see [Add testing and scanning to your application](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application).
+VMware recommends using SCST - Scan 2.0 as SCST - Scan 1.0 will be removed in a future version and
+SCST - Scan 2.0 will be the default. For more information, see [SCST - Scan versions](./overview.hbs.md).
 
 You can perform a fresh install of SCST - Scan by following the instructions in
 [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
