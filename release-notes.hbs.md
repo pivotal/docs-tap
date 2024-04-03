@@ -416,9 +416,15 @@ This release has the following security fixes, listed by component and area.
 
 ### <a id='1-8-1-resolved-issues'></a> v1.8.1 Resolved issues
 
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-8-1-alm-ri'></a> v1.8.1 Resolved issues: App Last Mile Catalog
 
-- Resolved an issue where the app-config-web, app-config-server, and app-config-worker components output a YTT overlay that incorrectly replaced all Convention provided environment variables, instead of merging developer provided environment variables. Environment variables will now be correctly merged.
+- Resolved an issue where the app-config-web, app-config-server, and app-config-worker components
+  output a YTT overlay that incorrectly replaced all Convention provided environment variables instead
+  of merging developer provided environment variables. Environment variables are now correctly merged.
+
+---
 
 ### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues
 
