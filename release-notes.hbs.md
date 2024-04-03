@@ -271,4 +271,4 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id='1-9-0-scst-scan-bc'></a> Supply Chain Security Tools - Scan 1.0 deprecation
 
-- In Tanzu Application Platform v1.9.0, Scan 1.0 has been marked for deprecation in favor of Scan 2.0.  Scan 1.0 will remain the documented default for online installations and replaced as the documented default in Tanzu Application Platform v1.10.0, then removed in a future release.  For an overview of Scan 1.0 versus scan 2.0, please see the [scan overview page](./scst-scan/overview.hbs.md).
+- In Tanzu Application Platform v1.9.0, SCST - Scan 1.0 is deprecated in favor of SCST - Scan 2.0.  In Tanzu Application Platform v1.9.0, SCST - Scan 1.0 is still the documented default for online installation. SCST - Scan 2.0 will be the default in v1.10.and will be removed in a future release. For more information, see [SCST - Scan versions](./overview.hbs.md).
