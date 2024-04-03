@@ -77,11 +77,7 @@ To install the local engine server:
           │   ├── ...
     ```
 
-<<<<<<< HEAD
-  For more examples, see [Application Accelerator samples.](https://github.com/vmware-tanzu/application-accelerator-samples)
-=======
-  For more examples refer, [Application Accelerator samples.](https://github.com/vmware-tanzu/application-accelerator-samples)
->>>>>>> b2d66e07e ([TAAP-3438] Minor edits for PR #3485)
+  For more examples, see [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples) in GitHub.
 
     - **For macOS and Linux:** Set this environment variable, for example:
 
