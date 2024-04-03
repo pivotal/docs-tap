@@ -10,7 +10,8 @@ This includes:
 - The default Helm chart versions for each of the Bitnami services. You can overwrite Helm chart
   versions by configuring package values.
 
-The following table provides component versions for the Bitnami Services package in Tanzu Application Platform v1.9.
+The following table provides component versions for the Bitnami Services package in Tanzu Application Platform
+v{{ vars.tanzu-cli.url_version }}.
 To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
 the top of this page.
 
