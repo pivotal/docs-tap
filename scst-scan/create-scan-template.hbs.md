@@ -1,6 +1,10 @@
 # Create a ScanTemplate with Supply Chain Security Tools - Scan
 
-> **Note** This topic is part of Scan 1.0. Scan 1.0 has been deprecated as of the TAP 1.9 release.  Scan 1.0 will remain the default in the [test and scan supply chain](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application) in the TAP 1.9 release but it is recommended to opt-in to Scan 2.0 as Scan 1.0 will be replaced as the default and removed in a future version.  For more information about Scan 1.0 versus Scan 2.0, see the [scan overview page](./overview.hbs.md)
+> **Note** This topic uses SCST - Scan 1.0. SCST - Scan 1.0 is deprecated in
+Tanzu Application Platform v1.9 and later. In Tanzu Application Platform v1.9, SCST - Scan 1.0 is
+still the default in Supply Chain with Testing. For more information, see [Add testing and scanning to your application](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application).
+VMware recommends using SCST - Scan 2.0 as SCST - Scan 1.0 will be removed in a future version and
+SCST - Scan 2.0 will be the default. For more information, see [SCST - Scan versions](./overview.hbs.md).
 
 This topic describes how to create a ScanTemplate with Supply Chain Security Tools - Scan.
 
@@ -13,6 +17,7 @@ A customized ScanTemplate is created by editing or replacing `initContainer` def
 ## <a id="output-model"></a>Output Model
 
 Each initContainer can create a subdirectory in `/workspace` to use as a scratch space. Before terminating the container must create an `out.yaml` file in the subdirectory containing the relevant subset of fields from the output model:
+
 ```yaml
 fetch:
   git: 
@@ -89,6 +94,7 @@ fetch:
     revision: aee9f8
     path: /workspace/git-clone/cloned-repository
 ```
+
 ```yaml
 # an example of typical scan stage
 # saved at: /workspace/grype-scan/out.yaml
@@ -110,6 +116,7 @@ scan:
   - /workspace/grype-scan/app.cyclonedx.xml
   - /workspace/grype-scan/base.cyclonedx.xml
 ```
+
 ```yaml
 # example of a typical evaluation stage
 # saved at: /workspace/policy-eval/out.yaml
@@ -119,6 +126,7 @@ eval:
     - critical CVE 2022-01-01-3333
     - number of critical CVEs over threshold
 ```
+
 ```yaml
 # example of a typical upload to store stage
 # saved at: /workspace/upload-to-store/out.yaml
