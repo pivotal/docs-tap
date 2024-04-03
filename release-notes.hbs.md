@@ -46,6 +46,14 @@ This release includes the following changes, listed by component and area.
 
 - By default, Application Live View connector is deployed as a Deployment to discover applications across all namespaces running in a worker node of a Kubernetes cluster. This is to override the earlier behavior where the connector is deployed as a DaemonSet, making the Kubernetes scheduling pattern unpredictable when a node restarts. For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
+#### <a id='1-9-0-bitnami-service'></a> v1.9.0 Features: Bitnami Services
+
+- Introduces a new package value `claim_namespace` that allows services to be created in the same namespace as the originating claim. This value can be set globally or on a specific service. For more information, see [Package values of Bitnami Services](bitnami-services/reference/package-values.hbs.md).
+
+#### <a id='1-9-0-services-toolkit'></a> v1.9.0 Features: Services Toolkit
+
+- Allow configuration of Resource Limits and Requests of the Services Toolkit Controller Manager and Resource Claims API server deployments through package values. For more information, see [Scalability](scalability.hbs.md).
+
 #### <a id='1-9-0-tanzu-dev-portal'></a> v1.9.0 Features: Tanzu Developer Portal
 
 - The DORA plug-in now has the following changes:
@@ -144,6 +152,15 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-9-0-alm-ri'></a> v1.9.0 Resolved issues: App Last Mile Catalog
 
 - Resolved an issue where the Deployer component would output an error message larger than 4KB, resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
+
+#### <a id='1-9-0-aws-services'></a> v1.9.0 Resolved issues: AWS Services
+
+
+Updated the endpoint key name in the binding secret for Amazon MQ (RabbitMQ) claims to addresses so that it matches the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library uses. This key name change is not applied to any existing Amazon MQ (RabbitMQ) claims. If new Amazon MQ (RabbitMQ) claims still do not have the updated addresses key name, see [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
+
+#### <a id='1-9-0-crossplane'></a> v1.9.0 Resolved issues: Crossplane
+
+- Fixed an issue that you might encounter if you uninstall and reinstall the Crossplane package on the same cluster. You no longer receive a TLS certificate verification error with service claims never transitioning to READY=True.
 
 ---
 
