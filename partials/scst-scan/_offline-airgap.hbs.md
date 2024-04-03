@@ -535,5 +535,4 @@ to troubleshoot inside the container:
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
 If you used the Namespace Provisioner to provision a new developer namespace and
-want to apply a package overlay for Grype, see [Import overlay
-secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/namespace-provisioner-customize-installation.html)[Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md#import-overlay-secrets).
+want to apply a package overlay for Grype, see [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md#import-overlay-secrets).
