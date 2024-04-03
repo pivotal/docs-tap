@@ -39,7 +39,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-9-0-application-accelerator'></a> v1.9.0 Features: Application Accelerator
 
-- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using IntelliJ IDE or VS Code. For more information, see [Using a local Application Accelerator engine server](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
+- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using IntelliJ IDE, in addition to VS Code. For more information, see [Use the local engine server to generate projects](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
 - The Spring AI Chat sample accelerator provides a sample application you can use to quickly start development of a web application for AI Chat based on Spring AI. This web application offers an interactive chat experience utilizing RAG (Retrieval Augmented Generation) to enable a user to ask questions about their own uploaded documents. For more information, see [Spring AI Chat Sample Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/spring-ai-chat).
 
 #### <a id='1-9-0-app-live-view'></a> v1.9.0 Features: Application Live View

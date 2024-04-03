@@ -5,7 +5,7 @@ testing accelerators that you are authoring.
 
 ## <a id="overview"></a> About running a local engine server
 
-When you are authoring your accelerator, it might be convenient generate a project based on the local
+When you are authoring your accelerator, it might be convenient to generate a project based on the local
 files. This enables you to verify that the accelerator provides the defined options and generates
 the correct set of files.
 
@@ -76,7 +76,8 @@ To install the local engine server:
           │   ├── accelerator.yaml
           │   ├── ...
     ```
-  For more examples refer, [Application Accelerator samples.](https://github.com/vmware-tanzu/application-accelerator-samples)
+
+  For more examples, see [Application Accelerator samples.](https://github.com/vmware-tanzu/application-accelerator-samples)
 
     - **For macOS and Linux:** Set this environment variable, for example:
 
