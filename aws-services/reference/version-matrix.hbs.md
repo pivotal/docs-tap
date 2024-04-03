@@ -9,33 +9,31 @@ This includes:
 - The AWS Services package (`aws.services.tanzu.vmware.com`)
 - [provider-aws](https://github.com/upbound/provider-aws)
 
-> **Note** Tanzu Application Platform patch releases are only added to the table when there
-> is a change to one or more of the other versions in the table. Otherwise, the corresponding
-> versions remain the same for each Tanzu Application Platform patch release.
+The following table provides component versions for the AWS Services package in Tanzu Application Platform v1.9.
+To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
+the top of this page.
+
+<!-- add patch updates in a new column -->
 
 <table>
   <thead>
     <tr>
-        <th>Tanzu Application Platform version</th>
-        <th>AWS Services package</th>
-        <th>provider-aws</th>
+      <th>Component</th>
+      <th>Version</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>1.7.0</td>
-        <td>0.1.0</td>
-        <td>0.39.0</td>
+      <td>AWS Services package</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
-        <td>1.8.0</td>
-        <td>0.2.0</td>
-        <td>0.46.0</td>
-    </tr>
-    <tr>
-        <td>1.9.0</td>
-        <td>0.3.0</td>
-        <td>1.2.0</td>
+      <td>provider-aws</td>
+      <td>1.2.0</td>
     </tr>
   </tbody>
 </table>
+
+> **Note** Tanzu Application Platform patch releases are only added to the table when there
+> is a change to one or more of the other versions in the table. Otherwise, the corresponding
+> versions remain the same for each Tanzu Application Platform patch release.
