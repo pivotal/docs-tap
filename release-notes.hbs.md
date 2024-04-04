@@ -472,7 +472,6 @@ This release has the following security fixes, listed by component and area.
 </tbody>
 </table>
 
-
 ---
 
 ### <a id='1-8-2-resolved-issues'></a> v1.8.2 Resolved issues
