@@ -205,13 +205,13 @@ enable TUF:
   the scanning image is overwritten with an incorrect default value from
   `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Trivy image packaged with Tanzu Application Platform:
+  For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanner_template_name: image-vulnerability-scan-grype
       image_scanning_cli:
-        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
 #### <a id='1-9-0-scst-store-ki'></a> v1.9.0 Known issues: Supply Chain Security Tools - Store
