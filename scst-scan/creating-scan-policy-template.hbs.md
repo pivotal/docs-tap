@@ -57,6 +57,8 @@ the policy `GATE` set.
 For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical vulnerabilities
 for the image
 
+If the `GATE` is set to `none` no policy would be enforced
+
 ```yaml
 apiVersion: tekton.dev/v1
 kind: TaskRun
@@ -175,16 +177,13 @@ spec:
             IMAGE_DIGEST=$(echo ${IMAGE} | cut -d "@" -f 2)
            ....
           env:
-          - name: GATE
-            value: #@ data.values.policy.gate # <--------- The gate can be supplied through the workload params
           ...
           - name: IMAGE
             value: #@ data.values.image # <------ template the image so that it can flow through the supply chain
           ....
 ```
 
-- Plug in the created `ClusterImageTemplate` after the scan step in the supply chain. Set the default
-as `none` for the `policy.gate` param.
+- Plug in the created `ClusterImageTemplate` after the scan step in the supply chain.
 
 ```yaml
 ---
@@ -211,9 +210,6 @@ spec:
       default: report-publisher
     - name: image_scanning_workspace_size
       default: 4Gi
-    - name: policy # default policy, lets the supply chain proceed even if the image has vulnerabilities
-      default:
-        gate: "none"
 
   resources:
   - name: image-provider
@@ -250,13 +246,7 @@ spec:
     ... <supply chain continues>
 ```
 
-- Create a workload to trigger the supply chain. Set the `policy.gate` param to one of the following:
-
-  - none
-  - critical
-  - high
-  - medium
-  - low
+- Create a workload to trigger the supply chain.
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -269,8 +259,4 @@ metadata:
   namespace: app-scanning
 spec:
   image: image@sha256:digest
-  params:
-  - name: policy
-    value:
-      gate: "critical"
 ```
