@@ -790,6 +790,7 @@
                   - [Configure Tanzu Supply Chain](./supply-chain/platform-engineering/how-to/installing-supply-chain/post-install-configuration.hbs.md)
               - [Supply Chain Authoring](./supply-chain/platform-engineering/how-to/supply-chain-authoring/about.hbs.md)
                   - [Construct a Supply Chain using the CLI](./supply-chain/platform-engineering/how-to/supply-chain-authoring/construct-with-cli.hbs.md)
+                  - [Configure a Supply Chain using the CLI](./supply-chain/platform-engineering/how-to/supply-chain-authoring/configure.hbs.md)
               - [Deploy and Manage Supply Chains](./supply-chain/platform-engineering/how-to/deploying-supply-chains/about.hbs.md)
                   - [Install a Supply Chain](./supply-chain/platform-engineering/how-to/deploying-supply-chains/install.hbs.md)
                   - [Manage SupplyChains with GitOps](./supply-chain/platform-engineering/how-to/deploying-supply-chains/gitops-managed.hbs.md)
