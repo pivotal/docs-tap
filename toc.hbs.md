@@ -403,6 +403,7 @@ docs.vmware.com is built.
         - [Reference](bitnami-services/reference/index.hbs.md)
             - [Dependencies](bitnami-services/reference/dependencies.hbs.md)
             - [Package values](bitnami-services/reference/package-values.hbs.md)
+            - [Version matrix](bitnami-services/reference/version-matrix.hbs.md)
     - [Cartographer Conventions](cartographer-conventions/about.hbs.md)
       - [Cartographer Conventions overview](cartographer-conventions/about.hbs.md)
       - [Install Cartographer Conventions](cartographer-conventions/install-conv-service.hbs.md)
