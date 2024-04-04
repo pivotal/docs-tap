@@ -55,11 +55,16 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-9-0-bitnami-service'></a> v1.9.0 Features: Bitnami Services
 
-- Introduces a new package value `claim_namespace` that allows services to be created in the same namespace as the originating claim. This value can be set globally or on a specific service. For more information, see [Package values of Bitnami Services](bitnami-services/reference/package-values.hbs.md).
+- Introduces the package value `claim_namespace`, which enables you to create services in the same
+  namespace as the originating claim.
+  You can set this value globally or on a specific service. For more information, see
+  [Package values of Bitnami Services](bitnami-services/reference/package-values.hbs.md).
 
 #### <a id='1-9-0-services-toolkit'></a> v1.9.0 Features: Services Toolkit
 
-- Allow configuration of Resource Limits and Requests of the Services Toolkit Controller Manager and Resource Claims API server deployments through package values. For more information, see [Scalability](scalability.hbs.md).
+- You can configure resource limits and requests for the Services Toolkit Controller Manager
+  and Services Toolkit Resource Claims API Server deployments through the package values.
+  For more information, see [Scalability](scalability.hbs.md).
 
 #### <a id='1-9-0-tanzu-dev-portal'></a> v1.9.0 Features: Tanzu Developer Portal
 
