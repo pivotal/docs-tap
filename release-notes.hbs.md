@@ -878,6 +878,32 @@ kind: ClusterRole
   exclusion affected some client operations, such as using Application Accelerators to create Git
   repositories on behalf of users. A fix for this issue is planned for the next patch.
 
+#### <a id='1-9-0-cartographer-conventions'></a>v1.9.0 Known issues: Cartographer Conventions
+
+- Prior to TAP 1.9.0 the "cartographer.tanzu.vmware.com" package contained two products:
+  "Cartographer" itself and "Cartographer Conventions".  In TAP 1.9.0 the "Cartographer Conventions"
+  product has been removed from the "cartographer.tanzu.vmware.com" package and will be distributed
+  in its own package: "cartographer.conventions.apps.tanzu.vmware.com".
+
+  During an upgrade from TAP < 1.9.0 to TAP >= 1.9.0 an issue may occur when installing the new
+  package for "Cartographer Conventions".  The upgrade may fail to reconcile and show error messages
+  similar to the following:
+
+    Resource 'clusterrole/cartographer-conventions-manager-role (rbac.authorization.k8s.io/v1) cluster' is already associated with a different app 'cartographer.app'
+
+  This message may appear more than once and it can refer to several different resources.
+
+  These errors appear when "kapp-controller" on the cluster tries to install the new "Cartographer
+  Conventions" package before the "Cartographer" packge itself is finished being reconciled; the
+  new package for "Cartographer Conventions" tries to install resources that the existing
+  "Cartographer" package still owns.
+
+  Although it looks like the upgrade fails, if you wait a few minutes, "kapp-controller" finishes
+  the install and the packages will reconcile successfully.  The system should work normally after
+  the reconcilation is complete.
+
+  This error does not occur on a new installation of TAP 1.9.0.
+
 ---
 
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
