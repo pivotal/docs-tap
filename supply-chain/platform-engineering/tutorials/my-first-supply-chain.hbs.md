@@ -5,53 +5,61 @@ for developers to use.
 
 {{> 'partials/supply-chain/beta-banner' }}
 
-This SupplyChain retrieves the source code from a Git repository, proceeds with building and packaging it as a Carvel package. Subsequently, it initiates a pull request to transfer the Carvel package to a GitOps repository, facilitating the installation of the built package on the Run clusters. For the purposes of this tutorial, we will construct a supply chain specifically tailored to build, test, and package Java Maven applications.
+This SupplyChain retrieves the source code from a Git repository, and proceeds with building and
+packaging it as a Carvel package. Subsequently, it initiates a pull request to transfer the Carvel
+package to a GitOps repository, facilitating the installation of the built package on the Run
+clusters. In this tutorial, you will construct a supply chain specifically tailored
+to build, test, and package Java Maven applications.
 
 ## Prerequisites
 
-1. Ensure that the [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and [Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
+1. Ensure that the [Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-tanzu-cli) and
+[Tanzu Supply Chain CLI plug-ins](../how-to/install-the-cli.hbs.md) are installed on your local machine.
 
-2. Ensure that [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed on the Tanzu Application Platform cluster that you are using to author your first supply chain.
+2. Ensure that [Tanzu Supply Chain](../how-to/installing-supply-chain/about.hbs.md) is installed
+on the Tanzu Application Platform cluster that you are using to author your first supply chain.
 
 ## Browse the component catalog
 
 When you have completed the prerequisites, you have the
-Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the cluster and you are ready to build your first SupplyChain.
+Tanzu Supply Chain controller, Managed Resource Controller, and Component packages installed on the
+cluster and you are ready to build your first SupplyChain.
 
 1. As a Platform Engineer, you want to know which components are available to use in your SupplyChain.
 Run:
 
-  ```console
-  tanzu supplychain component list
-  ```
+    ```console
+    tanzu supplychain component list
+    ```
 
-  Example output:
+    Example output:
 
-  ```console
-  Listing components from the catalog
-  NAMESPACE                   NAME                             AGE  DESCRIPTION                                                                       
-  alm-catalog                 app-config-server-1.0.0          18h  Generates configuration for a Server application from a Conventions PodIntent.    
-  alm-catalog                 app-config-web-1.0.0             18h  Generates configuration for a Web application from a Conventions PodIntent.       
-  alm-catalog                 app-config-worker-1.0.0          18h  Generates configuration for a Worker application from a Conventions PodIntent.    
-  alm-catalog                 carvel-package-1.0.0             18h  Generates a carvel package from OCI images containing raw YAML files and YTT      
-                                                                    files.                                                                            
-  alm-catalog                 deployer-1.0.0                   18h  Deploys K8s resources to the cluster.                                             
-  alm-catalog                 source-package-translator-1.0.0  18h  Takes the type source and immediately outputs it as type package.                 
-  conventions-component       conventions-1.0.0                18h  The Conventions component analyzes the `image` input as described in the          
-  git-writer-catalog          git-writer-1.0.0                 18h  Writes carvel package config directly to a gitops repository                      
-  git-writer-catalog          git-writer-pr-1.0.0              18h  Writes carvel package config to a gitops repository and opens a PR                
-  kaniko-catalog              kaniko-build-1.0.0               18h  Builds an app with kaniko                                                         
-  source-provider             source-git-provider-1.0.0        18h  Source git provider retrieves source code and monitors a git repository.          
-  tbs-catalog                 buildpack-build-1.0.0            18h  Builds an app with buildpacks using kpack                                         
-  trivy-app-scanning-catalog  trivy-image-scan-1.0.0           18h  Performs a trivy image scan using the scan 2.0 components                         
+    ```console
+    Listing components from the catalog
+    NAMESPACE                   NAME                             AGE  DESCRIPTION                                                                       
+    alm-catalog                 app-config-server-1.0.0          18h  Generates configuration for a Server application from a Conventions PodIntent.    
+    alm-catalog                 app-config-web-1.0.0             18h  Generates configuration for a Web application from a Conventions PodIntent.       
+    alm-catalog                 app-config-worker-1.0.0          18h  Generates configuration for a Worker application from a Conventions PodIntent.    
+    alm-catalog                 carvel-package-1.0.0             18h  Generates a carvel package from OCI images containing raw YAML files and YTT      
+                                                                      files.                                                                            
+    alm-catalog                 deployer-1.0.0                   18h  Deploys K8s resources to the cluster.                                             
+    alm-catalog                 source-package-translator-1.0.0  18h  Takes the type source and immediately outputs it as type package.                 
+    conventions-component       conventions-1.0.0                18h  The Conventions component analyzes the `image` input as described in the          
+    git-writer-catalog          git-writer-1.0.0                 18h  Writes carvel package config directly to a gitops repository                      
+    git-writer-catalog          git-writer-pr-1.0.0              18h  Writes carvel package config to a gitops repository and opens a PR                
+    kaniko-catalog              kaniko-build-1.0.0               18h  Builds an app with kaniko                                                         
+    source-provider             source-git-provider-1.0.0        18h  Source git provider retrieves source code and monitors a git repository.          
+    tbs-catalog                 buildpack-build-1.0.0            18h  Builds an app with buildpacks using kpack                                         
+    trivy-app-scanning-catalog  trivy-image-scan-1.0.0           18h  Performs a trivy image scan using the scan 2.0 components                         
 
-  🔎 To view the details of a component, use 'tanzu supplychain component get'
-  ```
+    🔎 To view the details of a component, use 'tanzu supplychain component get'
+    ```
 
-    >**Important** Use the `-w/--wide` flag to see a more detailed output including a inputs/outputs of each component.
-    
+    Use the `-w/--wide` flag to see a more detailed output including a inputs/outputs of each component.
 
-2. To get more information about each component on the cluster, use the `tanzu supplychain component get` command. For example, to get the information about the `source-git-provider` component, run:
+2. To get more information about each component on the cluster, use the
+`tanzu supplychain component get` command. For example, to get the information about the
+`source-git-provider` component, run:
 
   ```console
   tanzu supplychain component get source-git-provider-1.0.0 --show-details
@@ -123,49 +131,49 @@ Run:
 1. Now that you know what components are available to create your SupplyChain, start the
 authoring process. Use the `tanzu supplychain init` command to scaffold the current directory. Run:
 
-  ```console
-  mkdir myfirstsupplychaingroup
-  cd myfirstsupplychaingroup
-  tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
-  ```
+    ```console
+    mkdir myfirstsupplychaingroup
+    cd myfirstsupplychaingroup
+    tanzu supplychain init --group supplychains.tanzu.vmware.com --description "This is my first Supplychain group"
+    ```
 
-  Example output:
+    Example output:
 
-  ```console
-  Initializing group supplychains.tanzu.vmware.com
-  Creating directory structure
-  ├─ supplychains/
-  ├─ components/
-  ├─ pipelines/
-  ├─ tasks/
-  ├─ Makefile
-  ├─ README.md
-  └─ config.yaml
+    ```console
+    Initializing group supplychains.tanzu.vmware.com
+    Creating directory structure
+    ├─ supplychains/
+    ├─ components/
+    ├─ pipelines/
+    ├─ tasks/
+    ├─ Makefile
+    ├─ README.md
+    └─ config.yaml
 
-  Writing group configuration to config.yaml
-  ```
+    Writing group configuration to config.yaml
+    ```
 
-  The `tanzu supplychain init` command creates the following:
+    The `tanzu supplychain init` command creates the following:
 
-  - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
-  - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by
-  the authoring wizard later in this tutorial.
-  - `Makefile` which has the targets to install and uninstall the SupplyChain and related dependencies on any build or full profile clusters.
-  - `README.md` file which has instructions on how to use the targets in the `Makefile`.
+    - `config.yaml` file that contains the information about the group name, and the description of the Supplychain group.
+    - `supplychains`, `components`, `pipelines`, and `tasks` directories which are auto-populated by
+    the authoring wizard later in this tutorial.
+    - `Makefile` which has the targets to install and uninstall the SupplyChain and related dependencies on any build or full profile clusters.
+    - `README.md` file which has instructions on how to use the targets in the `Makefile`.
 
-2. Your current directory is now initialized, and you can use the SupplyChain authoring wizard to
+2. Your current directory is now initialized, use the SupplyChain authoring wizard to
 generate your first SupplyChain. Start the wizard:
 
-  ```console
-  tanzu supplychain generate --allow-defaults --allow-overrides
-  ```
+    ```console
+    tanzu supplychain generate --allow-defaults --allow-overrides
+    ```
 
 3. In the wizard prompts that follow, add the following values:
 
     |Prompt|Value|
     |:--|:--|
     |What Kind would you like to use as the developer interface?|`MavenAppBuildv1`|
-    |Give Supply chain a description?|`Supply chain that pulls the maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.`|
+    |Give Supply chain a description?|`Supply chain that pulls the Maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.`|
     |Select a component as the first stage of the supply chain?|`source-git-provider-1.0.0`|
     |Select a component as the next stage of the supply chain?|`buildpack-build-1.0.0`|
     |Select a component as the next stage of the supply chain?|`conventions-1.0.0`|
@@ -174,8 +182,8 @@ generate your first SupplyChain. Start the wizard:
     |Select a component as the next stage of the supply chain?|`git-writer-pr-1.0.0`|
     |Select a component as the next stage of the supply chain?|`Done`|
 
-  After you have selected the components for your chain, the wizard creates the required files to
-  deploy your SupplyChain in the current directory. Example output:
+    After you have selected the components, the wizard creates the required files to
+    deploy your SupplyChain in the current directory. Example output:
 
     ```console
     ✓ Successfully fetched all component dependencies
@@ -208,77 +216,94 @@ generate your first SupplyChain. Start the wizard:
 4. You have now authored your first SupplyChain. View the SupplyChain definition created by the wizard
 by viewing the manifest created in the `supplychains/` directory. Run:
 
-  ```console
-  cat supplychains/mavenappbuildv1.yaml
-  ```
+    ```console
+    cat supplychains/mavenappbuildv1.yaml
+    ```
 
-  Example output
+    Example output
 
-  ```console
-  apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
-  kind: SupplyChain
-  metadata:
-      name: mavenappbuildv1
-  spec:
-      defines:
-          group: supplychains.tanzu.vmware.com
-          kind: MavenAppBuildv1
-          plural: mavenappbuildv1s
-          version: v1alpha1
-      description: Supply chain that pulls the maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.
-      stages:
-          - componentRef:
-              name: source-git-provider-1.0.0
-            name: source-git-provider
-          - componentRef:
-              name: buildpack-build-1.0.0
-            name: buildpack-build
-          - componentRef:
-              name: conventions-1.0.0
-            name: conventions
-          - componentRef:
-              name: app-config-server-1.0.0
-            name: app-config-server
-          - componentRef:
-              name: carvel-package-1.0.0
-            name: carvel-package
-          - componentRef:
-              name: git-writer-pr-1.0.0
-            name: git-writer-pr
-      config:
-      #   overrides:
-            ...
-      #   defaults:
-            ...
-  ```
+    ```console
+    apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
+    kind: SupplyChain
+    metadata:
+        name: mavenappbuildv1
+    spec:
+        defines:
+            group: supplychains.tanzu.vmware.com
+            kind: MavenAppBuildv1
+            plural: mavenappbuildv1s
+            version: v1alpha1
+        description: Supply chain that pulls the maven app source code from Git repository, builds it using buildpacks and packages the output as Carvel package.
+        stages:
+            - componentRef:
+                name: source-git-provider-1.0.0
+              name: source-git-provider
+            - componentRef:
+                name: buildpack-build-1.0.0
+              name: buildpack-build
+            - componentRef:
+                name: conventions-1.0.0
+              name: conventions
+            - componentRef:
+                name: app-config-server-1.0.0
+              name: app-config-server
+            - componentRef:
+                name: carvel-package-1.0.0
+              name: carvel-package
+            - componentRef:
+                name: git-writer-pr-1.0.0
+              name: git-writer-pr
+        config:
+        #   overrides:
+              ...
+        #   defaults:
+              ...
+    ```
 
-  The CLI generated `SupplyChain` manifest has the following information:
+    The CLI generated `SupplyChain` manifest has the following information:
 
-  * Name of the Supplychain.
-  * The Kind definition of the Developer API (Workload) it will create.
-  * Stages in the SupplyChain.
-
-      * Order of the stages matter as the stages are executed sequentially.
-      * Each stage is represented by a component.
-
-  * Configuration section.
-
-      * `overrides`: are the configuration supplied by a platform engineer for a stage (component) in the supplychain that **cannot** be overriden by Developers using the `Workload` (Developer API) created by this supplychain.
-      * `defaults`: are the configuration supplied by a platform engineer for a stage (component ) in the supplychain that **can** be overriden by Developers using the `Workload` (Developer API) created by this supplychain, but will have the default value provided by the platform engineer if they don't.
+    - Name of the Supplychain.
+    - The Kind definition of the Developer API (Workload) it will create.
+    - Stages in the SupplyChain. The order of the stages are important as the stages are executed
+    sequentially. Each stage is represented by a component.
+    - `overrides`: The configuration supplied by a platform engineer for a stage (component)
+    in the supplychain that **cannot** be overridden by developers using the `Workload` (Developer API)
+    created by this supplychain.
+    - `defaults`: The configuration supplied by a platform engineer for a stage (component)
+    in the supplychain that **can** be overridden by developers using the `Workload` (Developer API)
+    created by this supplychain. If the developer does not override the configuration, the platform
+    engineer provides the default value.
 
 ## Configure a Supply chain to run securely
 
 ### Decide where the Supplychain stages run
 
-Supply chains are designed to execute workloads crafted by developers in accordance with the continuous delivery guidelines established by platform engineers. To ensure compliance and security, platform engineers must supply configurations and sensitive secrets that should not be accessible to developers. While supply chains can operate within hardened namespaces to address these concerns, certain elements of a supply chain workload must remain configurable by developers.
+Supply chains execute workloads created by developers in accordance with the
+continuous delivery guidelines established by platform engineers. To ensure compliance and security,
+platform engineers must supply configurations and sensitive secrets that are not accessible to
+developers. While supply chains can operate within hardened namespaces to address these concerns,
+certain elements of a supply chain workload must remain configurable by developers.
 
->**Important** Each stage within a supply chain can be tailored to operate within either the `supplychain` namespace, where the `Supplychain` will be deployed, or the `developer` namespace, where the `Workload` will be generated by the developer. According to the security protocol, by default, every stage in a supply chain operates within the `supplychain` namespace. This namespace is secure, restricting developers' access to create or view sensitive resources such as secrets. Nevertheless, there are scenarios where developers must furnish secrets required by specific stages within the supply chain.
+>**Important** Each stage within a supply chain can be tailored to operate within either the
+`supplychain` namespace, where the `Supplychain` will be deployed, or the `developer` namespace,
+where the `Workload` will be generated by the developer. According to the security protocol,
+by default, every stage in a supply chain operates within the `supplychain` namespace.
+This namespace is secure, restricting developers access to create or view sensitive resources such
+as secrets. Nevertheless, there are scenarios where developers must provide secrets required by
+specific stages within the supply chain.
 
-For our generated supply chain, the `source-git-provider` stage should operate within the `developer` namespace. Developers ought to have the capability to create a **git-secret** for their private git repository where their source code is stored, without requiring involvement from platform engineers. However, stages such as `buildpack-build`, which necessitate **registry credentials** for storing the built images, and the `git-writer-pr` stage, which requires a **git-secret** with write permissions to generate a PR to the GitOps repository, should not operate within the developer namespace. Developers should not have access to provide or view these secrets due to compliance reasons, as they may contain sensitive corporate data.
+For our generated supply chain, the `source-git-provider` stage should operate within the
+`developer` namespace. Developers need the capability to create a **git-secret** for their
+private Git repository where their source code is stored, without requiring involvement from platform
+engineers. However, stages such as `buildpack-build`, which require **registry credentials** for
+storing the built images, and the `git-writer-pr` stage, which requires a **git-secret** with write
+permissions to generate a PR to the GitOps repository, should not operate within the developer namespace.
+Developers should not have access to provide or view these secrets due to compliance reasons, as they
+might contain sensitive corporate data.
 
 To do this, update the `source-git-provider` stage of the generated `supplychains/mavenappbuildv1.yaml` file as follows:
 
-```
+```console
 ...
       - componentRef:
           name: source-git-provider-1.0.0
@@ -288,15 +313,35 @@ To do this, update the `source-git-provider` stage of the generated `supplychain
 ...
 ```
 
-This will tell the supplychain to run the `source-git-provider` stage in the `developer` namespace where the developer source git repository secret needed by `source-git-provider` can be provided by developers. All other steps will run in the `supplychain` namespace where a platform engineer can provide the necessary secrets for the `buildpack-build` stage and the `git-writer-pr` stage during supply chain installation.
+This tells the supplychain to run the `source-git-provider` stage in the `developer` namespace
+where the developer source Git repository secret needed by `source-git-provider` is provided by
+developers. All other steps run in the `supplychain` namespace where a platform engineer can
+provide the necessary secrets for the `buildpack-build` stage and the `git-writer-pr` stage during
+supply chain installation.
 
 ### Refine the Developer API (Workload) using Overrides and Defaults
 
-When generating the supply chain using the Tanzu Supply Chain CLI, we incorporated the flags `--allow-defaults` and `--allow-overrides` into the `tanzu supplychain generate` command. These flags instruct the CLI to generate all the fields accessible in the Developer API (Workload) for developers to configure. These fields represent the configurations exposed by the components, which can be viewed using the `tanzu component get` command, as demonstrated earlier in the tutorial. Upon inspecting the `config.overrides` section of the `supplychains/mavenappbuildv1.yaml` file generated by the CLI, you'll encounter all the values that developers can specify in a `Workload`. However, certain fields, such as `spec.registry`, should be defined by platform engineers, who will provide the necessary secrets to access those locations in the secure `supplychain` namespace. Developers shouldn't have the ability to override these values. This is where the overrides feature becomes relevant. Platform engineers only need to uncomment the fields they wish to override and provide the corresponding values at the supply chain level. Once these overrides are implemented, these fields will no longer be accessible within the `Workload`.
+When you generate a supply chain using the `tanzu supplychain generate`
+command, use the `--allow-defaults` and `--allow-overrides` to generate all the fields that are
+accessible in the Developer API (Workload) for developers to configure.
+These fields represent the configurations exposed by the components.
+Run the `tanzu supplychain component get` command to view the configurations exposed by the
+components.
+Inspect the `config.overrides` section of the `supplychains/mavenappbuildv1.yaml` file
+generated by the CLI to see all the values that developers can specify in a `Workload`.
 
-To do this, update the `config.overrides` section of the generated `supplychains/mavenappbuildv1.yaml` file as follows:
+Some fields, such as `spec.registry`, are only be defined by platform engineers, who can
+provide the necessary secrets to access those locations in the secure `supplychain` namespace.
 
-```
+Developers cannot override these values. This is where the overrides feature
+becomes relevant. Platform engineers uncomment the fields they want to override and
+provide the corresponding values at the supply chain level. When these overrides are implemented,
+these fields are no longer accessible within the `Workload`.
+
+To do this, update the `config.overrides` section of the generated `supplychains/mavenappbuildv1.yaml`
+file as follows:
+
+```console
 ...
   config:
     overrides:
@@ -342,12 +387,11 @@ To do this, update the `config.overrides` section of the generated `supplychains
 ...
 ```
 
-
 ## Review our Supplychain
 
-Here is what our final `SupplyChain` should look like after all the configuration:
+Here is an example of what a `SupplyChain` looks like when configuration is complete:
 
-```
+```console
 apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: SupplyChain
 metadata:
@@ -425,7 +469,9 @@ spec:
 
 ## Next Steps
 
-Deploy the `SupplyChain` to your Tanzu Application Platform clusters where your developers are creating the `Workloads`. For instructions, see [Install an authored Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
+Deploy the `SupplyChain` to your Tanzu Application Platform clusters where your developers are
+creating the `Workloads`. For instructions, see
+[Install an authored Supply Chain](../how-to/deploying-supply-chains/install.hbs.md).
 
 ### Useful links
 
