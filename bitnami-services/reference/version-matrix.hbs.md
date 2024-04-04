@@ -5,7 +5,6 @@ the Bitnami Services package, and its open source components.
 
 This includes:
 
-- Tanzu Application Platform
 - The Bitnami Services package (`bitnami.services.tanzu.vmware.com`)
 - The default Helm chart versions for each of the Bitnami services. You can overwrite Helm chart
   versions by configuring package values.
