@@ -6,8 +6,6 @@ chain supports the source and container image scan types.
 
 ## <a id="source-scan"></a> Source scan
 
-> **Note** Source scanning is a capability of Scan 1.0.  Scan 1.0 has been deprecated as of the TAP 1.9 release.  Scan 1.0 will remain the default in the [test and scan supply chain](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application) in the TAP 1.9 release but it is recommended to opt-in to Scan 2.0 as Scan 1.0 will be replaced as the default and removed in a future version.  For more information about Scan 1.0 versus Scan 2.0, see the [scan overview page](./overview.hbs.md)
-
 The source scan step in the test and scan supply chain performs a Software
 Composition Analysis (SCA) scan to inspect the open source dependencies of an
 application for vulnerabilities. You perform this by inspecting the file that

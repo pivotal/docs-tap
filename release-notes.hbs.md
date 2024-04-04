@@ -223,7 +223,3 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
 
 - In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
-
-### <a id='1-9-0-scst-scan-bc'></a> Supply Chain Security Tools - Scan 1.0 deprecation
-
-- In Tanzu Application Platform v1.9.0, Scan 1.0 has been marked for deprecation in favor of Scan 2.0.  Scan 1.0 will remain the documented default for online installations and replaced as the documented default in Tanzu Application Platform v1.10.0, then removed in a future release.  For an overview of Scan 1.0 versus scan 2.0, please see the [scan overview page](./scst-scan/overview.hbs.md).
