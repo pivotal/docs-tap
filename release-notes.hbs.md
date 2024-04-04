@@ -163,16 +163,22 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-9-0-alm-ri'></a> v1.9.0 Resolved issues: App Last Mile Catalog
 
-- Resolved an issue where the Deployer component would output an error message larger than 4KB, resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
+- Resolved an issue where the Deployer component would output an error message larger than 4KB,
+  resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
 
 #### <a id='1-9-0-aws-services'></a> v1.9.0 Resolved issues: AWS Services
 
-
-Updated the endpoint key name in the binding secret for Amazon MQ (RabbitMQ) claims to addresses so that it matches the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library uses. This key name change is not applied to any existing Amazon MQ (RabbitMQ) claims. If new Amazon MQ (RabbitMQ) claims still do not have the updated addresses key name, see [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
+- Updated the `endpoint` key name in the binding secret for Amazon MQ (RabbitMQ) claims to `addresses`
+  so that it matches the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) library uses.
+  This key name change is not applied to any existing Amazon MQ (RabbitMQ) claims.
+  If new Amazon MQ (RabbitMQ) claims still do not have the updated `addresses` key name, see
+  [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
 
 #### <a id='1-9-0-crossplane'></a> v1.9.0 Resolved issues: Crossplane
 
-- Fixed an issue that you might encounter if you uninstall and reinstall the Crossplane package on the same cluster. You no longer receive a TLS certificate verification error with service claims never transitioning to READY=True.
+- Fixed an issue that you might encounter if you uninstall and reinstall the Crossplane
+  package on the same cluster. You no longer receive a TLS certificate verification error with
+  service claims never transitioning to `READY=True`.
 
 ---
 
