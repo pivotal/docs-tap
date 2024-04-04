@@ -3,15 +3,15 @@
 Policy enforcement is not inbuilt in Scan 2.0. It can be achieved by the creating a 
 `ClusterImageTemplate` that stamps out a Tekton `TaskRun` that evaluates the vulnerabilities
 and enforces the policy set. A sample of the task run along with a the cluster image template
-is provided here
+is provided here.
 
 ## Set up required for the Task Run to succeed
 
-The task run queries the metadata store to get the list of vulnerabilities for the image.
+The `TaskRun` queries the metadata store to get the list of vulnerabilities for the image.
 
 To authenticate with the MDS API an accessToken and cert is needed.
 
-- Build an image that contains `curl` and `jq`. This image will be used by the task run
+- Build an image that contains `curl` and `jq`. This image will be used by the task run.
 
 - Get the access token from MDS:
 
@@ -55,9 +55,9 @@ available, the vulnerabilities are aggegrated by severity. The task run succeeds
 the policy `GATE` set.
 
 For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical vulnerabilities
-for the image
+for the image.
 
-If the `GATE` is set to `none` no policy would be enforced
+If the `GATE` is set to `none` no policy would be enforced.
 
 ```yaml
 apiVersion: tekton.dev/v1
@@ -135,7 +135,7 @@ spec:
         secretName: metadata-store-cert
 ```
 
-## Including the policy cluster image template in a supply chain
+## Including the policy ClusterImageTemplate in a supply chain
 
 - Embed the sample task run in a `ClusterImageTemplate`. 
 
