@@ -10,7 +10,7 @@ template_variables:
   tanzu-cli:
     version: 1.2.0
     url_version: 1.2
-    plugin_group_version: 1.8
+    plugin_group_version: 1.9
   api-portal:
     version: 1.4
   api-auto-registration:

@@ -68,7 +68,7 @@ If the developer explicitly specifies the `--server-url` flag, it overrides the 
 
 ## <a id="installation"></a>Installation
 
-For information about installing the Tanzu CLI Accelerator plug-in, see [Install Accelerator CLI plug-in](install-accelerator-cli.md).
+To install the Tanzu Accelerator CLI plug-in, see [Install new CLI plug-ins](../tanzu-cli.hbs.md).
 
 ## <a id='command-reference'></a>Command reference
 

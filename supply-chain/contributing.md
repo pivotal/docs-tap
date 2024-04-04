@@ -50,9 +50,9 @@ For example,
 Why: There is a history of the old supply chain docs being wrong because sections haven't been updated, and information is spread across different places. The source of truth is in too many places. 
 Solution: One source of truth. Doc automation that takes descriptions directly from components, generates md, and raises a doc PR.
 
-What topic in the doc contains the automated doc: [Catalog of Tanzu Supply Chain Components](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.8/tap/supply-chain-reference-catalog-about.html)
+What topic in the doc contains the automated doc: [Catalog of Tanzu Supply Chain Components](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/supply-chain-reference-catalog-about.html)
 What does this page describe: Provides descriptions for components provided by the authoring profile
-Other pages: [Output Types](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.8/tap/supply-chain-reference-catalog-output-types.html), while the content of this page is manually created, the Catalog of Tanzu
+Other pages: [Output Types](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.8/tap/supply-chain-reference-catalog-output-types.html), while the content of this page is manually created, the Catalog of Tanzu
 Supply Chain Components page links to this page.
 
 ### Platform Engineer User Experience

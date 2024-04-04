@@ -429,7 +429,7 @@ For information about `shared.ca_cert_data`, see [View possible configuration se
 ### <a id="unable-pull-scanner-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
 The `docker` field and related sub-fields by SCST - Scan Controller, Grype
-Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0 and removed in Tanzu Application Platform v1.8.0.
+Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0 and removed in Tanzu Application Platform v{{ vars.tap_version }}.
 Previously these fields might be used to populate the `registry-credentials`
 secret. You might encounter the following error during installation:
 
@@ -475,14 +475,14 @@ Pods
 
 One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container specifications.
 
-### <a id="reconciliation-failure-during-upgrade"></a> Reconciliation of SCST - Scan fails when upgrading to v1.8
+### <a id="reconciliation-failure-during-upgrade"></a> Reconciliation of SCST - Scan fails when upgrading to v{{ vars.url_version }}
 
-When upgrading the SCST - Scan from a previous version to v1.8, you might see a reconciliation
+When upgrading the SCST - Scan from a previous version to v{{ vars.url_version }}, you might see a reconciliation
 failure similar to:
 
 ```console
 NAME                                PACKAGE-NAME                                         PACKAGE-VERSION                STATUS
-scanning                            scanning.apps.tanzu.vmware.com                       1.8.0-build.36081392+c072d305  Reconcile failed
+scanning                            scanning.apps.tanzu.vmware.com                       {{ vars.tap_version }}-build.36081392+c072d305  Reconcile failed
 ```
 
 If getting the package by running the command `tanzu package installed get scanning -n tap-install` you

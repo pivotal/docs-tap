@@ -30,5 +30,10 @@ implementation of [Service Binding](https://servicebinding.io/).
         <td>0.11.0</td>
         <td>0.7.0</td>
     </tr>
+    <tr>
+        <td>1.9.0</td>
+        <td>0.12.0</td>
+        <td>0.8.0</td>
+    </tr>
   </tbody>
 </table>

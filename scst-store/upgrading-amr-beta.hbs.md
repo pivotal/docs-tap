@@ -8,8 +8,8 @@ enabled. Because AMR is not enabled by default in Tanzu Application Platform
 
 ## <a id='ki'></a>Known issues and workarounds
 
-Because AMR was in beta in Tanzu Application Platform 1.6, there are breaking
-changes when upgrading to Tanzu Application Platform 1.8. This section lists all
+Because AMR was in beta in Tanzu Application Platform v1.6, there are breaking
+changes when upgrading to Tanzu Application Platform v{{ vars.url_version }}. This section lists all
 the known issues and workarounds.
 
 ### <a id='config-changes'></a>Configuration Changes
@@ -36,7 +36,7 @@ In the AMR Beta release, most of the AMR configurations are in-line with `metada
 
 ### <a id='db-changes'></a>Database changes
 
-In the AMR Beta release, the `Alias` field was introduced in the `Location` table. The `Alias` field is removed in Tanzu Application Platform 1.8. To drop this field from Tanzu Application Platform 1.8:
+In the AMR Beta release, the `Alias` field was introduced in the `Location` table. The `Alias` field is removed in Tanzu Application Platform v{{ vars.url_version }}. To drop this field from Tanzu Application Platform v{{ vars.url_version }}:
 
 1. Connect to the [Postgres database](./connect-to-database.hbs.md).
 1. Run the following SQL command:
