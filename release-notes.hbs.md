@@ -163,8 +163,9 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-9-0-alm-ri'></a> v1.9.0 Resolved issues: App Last Mile Catalog
 
-- Resolved an issue where the Deployer component would output an error message larger than 4KB,
-  resulting in a Tekton error. The Deployer component now outputs a smaller, human readable error message.
+- Resolved an issue where the Deployer component output an error message that was larger than 4&nbsp;KB.
+  This caused a Tekton error. The Deployer component now outputs a smaller error message that is
+  human readable.
 
 #### <a id='1-9-0-aws-services'></a> v1.9.0 Resolved issues: AWS Services
 
