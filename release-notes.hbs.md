@@ -33,18 +33,25 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-9-0-COMPONENT-NAME'></a> v1.9.0 Features: COMPONENT-NAME
+#### <a id='1-9-0-app-acc'></a> v1.9.0 Features: Application Accelerator
 
-- Feature description.
+- Accelerator authors can use IntelliJ or VS Code to create accelerators using the local authoring
+  experience without connecting to a Tanzu Application Platform cluster.
+  For more information, see [Use a local Application Accelerator engine server](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
 
-#### <a id='1-9-0-application-accelerator'></a> v1.9.0 Features: Application Accelerator
-
-- Accelerator authors can create accelerators faster using a local authoring experience without connecting to a Tanzu Application Platform cluster using IntelliJ IDE, in addition to VS Code. For more information, see [Use the local engine server to generate projects](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md).
-- The Spring AI Chat sample accelerator provides a sample application you can use to quickly start development of a web application for AI Chat based on Spring AI. This web application offers an interactive chat experience utilizing RAG (Retrieval Augmented Generation) to enable a user to ask questions about their own uploaded documents. For more information, see [Spring AI Chat Sample Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/spring-ai-chat).
+- Adds the Spring AI Chat sample accelerator, which provides a sample application you can use to
+  quickly start development of a web application for AI chat based on Spring AI.
+  This web application offers an interactive chat experience that uses Retrieval Augmented Generation (RAG)
+  to enable a user to ask questions about their uploaded documents. For more information, see
+  [Spring AI Chat Sample Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/spring-ai-chat).
 
 #### <a id='1-9-0-app-live-view'></a> v1.9.0 Features: Application Live View
 
-- By default, Application Live View connector is deployed as a Deployment to discover applications across all namespaces running in a worker node of a Kubernetes cluster. This is to override the earlier behavior where the connector is deployed as a DaemonSet, making the Kubernetes scheduling pattern unpredictable when a node restarts. For more information, see [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
+- By default, Application Live View connector is deployed as a Deployment to discover applications
+  across all namespaces running in a worker node of a Kubernetes cluster.
+  This overrides the previous behavior where the connector was deployed as a DaemonSet, which made the
+  Kubernetes scheduling pattern unpredictable when a node restarts. For more information, see
+  [Connector deployment modes in Application Live View](app-live-view/connector-deployment-modes.hbs.md).
 
 #### <a id='1-9-0-bitnami-service'></a> v1.9.0 Features: Bitnami Services
 
