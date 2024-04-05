@@ -5,7 +5,6 @@ the Crossplane package, and its open source components.
 
 This includes:
 
-- Tanzu Application Platform
 - The Crossplane package (`crossplane.tanzu.vmware.com`)
 - Universal Crossplane (UXP)
 - The version of Upbound Crossplane used in UXP

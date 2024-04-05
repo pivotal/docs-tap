@@ -5,7 +5,6 @@ the AWS Services package, and its open source components.
 
 This includes:
 
-- Tanzu Application Platform
 - The AWS Services package (`aws.services.tanzu.vmware.com`)
 - [provider-aws](https://github.com/upbound/provider-aws)
 
