@@ -77,6 +77,7 @@ This release includes the following changes, listed by component and area.
     previous time period
   - Added graphs to display changes in Lead Time and Deployment Frequency metrics over time
   - Performance improvements
+- Added configuration to route traffic through a specified HTTP/HTTPS proxy. This includes all outgoing requests made by Backstage and Tanzu Developer Portal. For more information, see [Configure HTTP Proxy documentation](tap-gui/http-proxy.hbs.md).
 
 ---
 
@@ -884,6 +885,32 @@ is reported after JSON at position 4.
   exclusion affected some client operations, such as using Application Accelerators to create Git
   repositories on behalf of users. A fix for this issue is planned for the next patch.
 
+#### <a id='1-9-0-cartographer-conventions'></a>v1.9.0 Known issues: Cartographer Conventions
+
+- Prior to TAP 1.9.0 the "cartographer.tanzu.vmware.com" package contained two products:
+  "Cartographer" itself and "Cartographer Conventions".  In TAP 1.9.0 the "Cartographer Conventions"
+  product has been removed from the "cartographer.tanzu.vmware.com" package and will be distributed
+  in its own package: "cartographer.conventions.apps.tanzu.vmware.com".
+
+  During an upgrade from TAP < 1.9.0 to TAP >= 1.9.0 an issue may occur when installing the new
+  package for "Cartographer Conventions".  The upgrade may fail to reconcile and show error messages
+  similar to the following:
+
+    Resource 'clusterrole/cartographer-conventions-manager-role (rbac.authorization.k8s.io/v1) cluster' is already associated with a different app 'cartographer.app'
+
+  This message may appear more than once and it can refer to several different resources.
+
+  These errors appear when "kapp-controller" on the cluster tries to install the new "Cartographer
+  Conventions" package before the "Cartographer" packge itself is finished being reconciled; the
+  new package for "Cartographer Conventions" tries to install resources that the existing
+  "Cartographer" package still owns.
+
+  Although it looks like the upgrade fails, if you wait a few minutes, "kapp-controller" finishes
+  the install and the packages will reconcile successfully.  The system should work normally after
+  the reconcilation is complete.
+
+  This error does not occur on a new installation of TAP 1.9.0.
+
 ---
 
 ### <a id='1-9-0-components'></a> v1.9.0 Component versions
@@ -960,7 +987,3 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
 
 - In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
-
-### <a id='1-9-0-scst-scan-bc'></a> Supply Chain Security Tools - Scan 1.0 deprecation
-
-- In Tanzu Application Platform v1.9.0, SCST - Scan 1.0 is deprecated in favor of SCST - Scan 2.0.  In Tanzu Application Platform v1.9.0, SCST - Scan 1.0 is still the documented default for online installation. SCST - Scan 2.0 will be the default in v1.10 and will be removed in a future release. For more information, see [SCST - Scan versions](./overview.hbs.md).

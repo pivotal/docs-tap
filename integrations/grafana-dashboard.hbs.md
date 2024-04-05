@@ -1,137 +1,199 @@
-# Grafana Dashboard for Tanzu Application Platform
+# Create a Grafana Dashboard
 
+This topic tells you how to configure and set up a public Grafana-Prometheus Helm with Tanzu
+Application Platform `CustomResource` metrics collection.
 
-1.1.1. Context
+## <a id="prereqs"></a> Prerequisites
 
-Configuration and setup public Grafana-Prometheus helm with TAP CR metrics collection
+Before proceeding you must have:
 
+- kubectl
+- Helm
+- A Kubernetes cluster with Tanzu Application Platform and associated workloads
 
-Pre-requisites:
+## <a id="tanzu-cli"></a> Download and unzip the Tanzu CLI binary
 
-  1. Kubectl and Helm should be installed
-  2. Kubernetes cluster with TAP and TAP workloads
+To download the Tanzu CLI binary and set up the cluster:
 
-1.1.2. Downloading and setting up cluster
+1. Go to [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
-Complete the following steps:
+1. Select {{ vars.tap_version }} from the release drop-down menu for Tanzu Application Platform.
 
-  1. Download the Tanzu CLI binary from the [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/)
-     a. Go to VMware Tanzu Network.
-     b. Choose the TAP tile
-         ![image](https://github.com/pivotal/docs-tap/assets/8050380/8982b19b-32e4-45c9-8a27-559208b35057)
+1. Download the Tanzu CLI binary from [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/) 
+   and click the Tanzu Application Platform tile.
+     
+   ![alt text](images/TanzuNet_grafana_dashboard.png)
 
-     c. Click the item "Grafana Dashboard for Tanzu Application Platform (Beta)" from the result set.
-     d. Download the "prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip" onto your machine.
+1. Click **Grafana Dashboard for Tanzu Application Platform (Beta)**.
 
-   2. Use an extraction tool to unpack the binary file:
+1. Download `prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip`.
 
-        **macOS**:
+1. If on macOS or Linux, unzip `prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip`. If you're
+   using Windows, use the Windows extractor tool to unzip it.
 
-        unzip prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip
+## <a id="install-helm-chart"></a> Install a public Helm chart
 
-        **Linux**:
+To install a public Helm chart:
 
-        unzip prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip
+1. Apply `tap-metrics.yaml` on the Tanzu Application Platform cluster, which enables collection of
+   the Tanzu Application Platform `CustomResource` metrics.
 
-        **Windows**:
+1. Install a public Helm chart for Prometheus with a public HTTP endpoint in all Tanzu Application
+   Platform clusters where necessary for observability.
 
-        Use the Windows extractor tool to unzip prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip
+   For example, if you have a View cluster, a Build cluster, and a Run cluster:
 
-   3. **Apply** the tap-metrics.taml file on to the TAP cluster which enables collection of the TAP CustomResource metrics
+   1. Set the context to View cluster and install the Prometheus public Helm chart by running:
 
+      ```console
+      # Add Prometheus helm repo
+      helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      helm repo update
 
-   4. **Install** public helm chart for Prometheus with public http endpoint in **all TAP clusters** that needs to be added to observability. For this example, it is considered that there will be three TAP clusters - one View cluster, one Build cluster and one Run cluster
-
-      a. Set context to View cluster and Install the Prometheus public helm chart using the below commands,
-        ```
-        # Add Prometheus helm repo
-        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-        helm repo update
-         
-        # Install prometheus chart
-        helm install prometheus -f <DOWNLOADED_tap-metrics.yaml> prometheus-community/kube-prometheus-stack --namespace tap-monitoring --create-namespace
-        ```
-      b. Repeat Step 4.a for Build and Run clusters
-      c. Now we have a Prometheus endpoint (for each of the cluster) which will act as a data source for Grafana in later steps. Note the public LoadBalancer IP <PUBLIC_ENDPOINT> from below command in each of the cluster where Prometheus is installed,
+      # Install prometheus chart
+      helm install prometheus -f DOWNLOADED-TAP-METRICS-YAML-FILE \
+      prometheus-community/kube-prometheus-stack --namespace tap-monitoring --create-namespace
       ```
-        kubectl get svc -n tap-monitoring | grep prometheus
-        prometheus-operated                          ClusterIP      None           <none>            9090/TCP                        20h
-        tap-observability-kube-pro-prometheus        LoadBalancer   10.0.19.222    <PUBLIC_ENDPOINT> 9090:32357/TCP,8080:31323/TCP   20h
-        tap-observability-prometheus-node-exporter   ClusterIP      10.0.34.213    <none>            9100/TCP                        20h
+
+   1. Repeat the previous step for the Build cluster and the Run cluster.
+
+   1. You now have a Prometheus endpoint, for each cluster, which acts as a data source for Grafana
+      in later steps. See the public LoadBalancer IP `<PUBLIC_ENDPOINT>` in each cluster where
+      Prometheus is installed by running:
+
+      ```console
+      kubectl get svc -n tap-monitoring | grep prometheus
       ```
-       d. Note that here the example is given only for http endpoints exposed to public. Users have to follow their own security practices like private endpoints, TLS mechanism, etc.
-     5. Moving on to Centralized Grafana, where we can create a single dashboard to view metrics from different TAP cluster,
 
-       a. Create Grafana values yaml (grafana-values.yaml in this example) with different prometheus endpoints captured above along with the port (default 9090 for prometheus)
+      Example output:
+
+      ```console
+      $ kubectl get svc -n tap-monitoring | grep prometheus
+      prometheus-operated                          ClusterIP      None           <none>            9090/TCP                        20h
+      tap-observability-kube-pro-prometheus        LoadBalancer   10.0.19.222    <PUBLIC_ENDPOINT> 9090:32357/TCP,8080:31323/TCP   20h
+      tap-observability-prometheus-node-exporter   ClusterIP      10.0.34.213    <none>            9100/TCP                        20h
       ```
-      datasources:
-          datasources.yaml:
-            apiVersion: 1
-            datasources:
-            - name: prometheus-view-cluster
-              type: prometheus
-              url: <VIEW_CLUSTER_PROMETHEUS_ENDPOINT>:9090
-              access: proxy
-              isDefault: true
-            - name: prometheus-build-cluster
-              type: prometheus
-              url: <BUILD_CLUSTER_PROMETHEUS_ENDPOINT>:9090
-              access: proxy
-              isDefault: false
-            - name: prometheus-run-cluster
-              type: prometheus
-              url: <RUN_CLUSTER_PROMETHEUS_ENDPOINT>:9090
-              access: proxy
-              isDefault: false
-      ```
-       b. Install Grafana in a cluster dedicated for the Grafana dashboard using below commands updating the <DEFAULT_PVC_STORAGE_CLASS> and <PASSWORD_TO_LOG_INTO_GRAFANA_ENDPOINT>,
 
-        ```
-        kubectl create ns grafana
-         
-        #Add grafana helm repo
-        helm repo add grafana https://grafana.github.io/helm-charts
-        helm repo update
-         
-        # Install the chart - set your grafana user and password in command
-        helm install grafana grafana/grafana \
-            --namespace grafana \
-            --set persistence.storageClassName=<DEFAULT_PVC_STORAGE_CLASS> \
-            --set persistence.enabled=true \
-            --set adminPassword='<PASSWORD_TO_LOG_INTO_GRAFANA_ENDPOINT>' \
-            --values  grafana-values.yaml \
-            --set service.type=LoadBalancer
-         
-        # <DEFAULT_PVC_STORAGE_CLASS> - some examples 'default' for Azure, 'gp2' for AWS, etc
-         
-        # In case any auto-generate mechanism is used, users can get grafana userid and password using below command 
-        kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-        ```
-       c. Access Grafana UI via the <PUBLIC_ENDPOINT> created by the default LoadBalancer (could be configured behind any ingress service)
-      ```
-        kubectl get svc -n grafana
-        NAME      TYPE           CLUSTER-IP     EXTERNAL-IP        PORT(S)        AGE
-        grafana   LoadBalancer   10.0.133.110   <PUBLIC_ENDPOINT>  80:31147/TCP   20h
-      ```
-       d. Login to the Grafana UI using above endpoint and configured username/password (default username 'admin' if not configured above)
-       e. Import the TAP_dashboard.json downloaded via TAP artifact download in step 1
-        i. Navigate to Dashboards page
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/db7056a6-6ffa-4227-86a8-ab62fe9e2b20)
- 
-        ii. Click on New → Import
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/932d5441-dbd7-4828-a0e2-089305c33071)
+      > **Note** This example is given only for HTTP endpoints exposed publicly. Your own
+      > security policy might require private endpoints, a TLS mechanism, or other restrictions.
 
-        iii. Select and import the downloaded dashboard from Step 2 named TAP_Grafana_Dashboard.json
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/371bdd7a-a0dd-4a9e-a70a-773d5469b21f)
+## <a id="create-grafana-dashboard"></a> Create a Grafana dashboard
 
-        iv. View the TAP health dashboard for different TAP clusters by selecting the right datasource
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/5ef143dd-0bdc-47b5-864a-e435c0c1940b)
+To create a Grafana dashboard:
 
-       f. Users can bring their own set of Datasources, configure the datasources in the Dashboard variable like below
-        i. Navigate to Dashboard Settings
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/f7fc496e-e598-4921-9b52-c066c4031d87)
+1. Create `grafana-values.yaml` with the following content to establish the Prometheus endpoints
+   with the port (9090 by default for Prometheus):
 
-        ii. Navigate to Variables tab, click on the datasource variable and update the proper datasource names in the datasource variable
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/fb29f96e-f336-4a4d-8a8a-ee8e072f20e3)
+    ```yaml
+    datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+          - name: prometheus-view-cluster
+            type: prometheus
+            url: VIEW-CLUSTER-PROMETHEUS-ENDPOINT:9090
+            access: proxy
+            isDefault: true
+          - name: prometheus-build-cluster
+            type: prometheus
+            url: BUILD-CLUSTER-PROMETHEUS-ENDPOINT:9090
+            access: proxy
+            isDefault: false
+          - name: prometheus-run-cluster
+            type: prometheus
+            url: RUN-CLUSTER-PROMETHEUS-ENDPOINT:9090
+            access: proxy
+            isDefault: false
+    ```
 
+1. Install Grafana in a cluster dedicated for the Grafana dashboard by running:
 
+   ```console
+   kubectl create ns grafana
+
+   # Add Grafana Helm repository
+   helm repo add grafana https://grafana.github.io/helm-charts
+   helm repo update
+
+   # Install the chart by setting your Grafana password
+   helm install grafana grafana/grafana \
+      --namespace grafana \
+      --set persistence.storageClassName=DEFAULT-PVC-STORAGE-CLASS \
+      --set persistence.enabled=true \
+      --set adminPassword='GRAFANA-ENDPOINT-PASSWORD' \
+      --values  grafana-values.yaml \
+      --set service.type=LoadBalancer
+
+   # DEFAULT-PVC-STORAGE-CLASS - some examples 'default' for Azure, 'gp2' for AWS, etc
+
+   # In case any auto-generate mechanism is used, you can get your Grafana user ID and password by running:
+   kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+   ```
+
+   Where:
+
+   - `DEFAULT-PVC-STORAGE-CLASS` is the default PVC storage class
+   - `GRAFANA-ENDPOINT-PASSWORD` is the password for logging in to the Grafana endpoint
+
+   In case any auto-generate mechanism is used, you can get your Grafana user ID and password by
+   running:
+
+   ```console
+   kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 \
+   --decode ; echo
+   ```
+
+1. Access the Grafana UI by using the `<PUBLIC_ENDPOINT>` created by the default LoadBalancer. This
+   can be configured behind any ingress service.
+
+   ```console
+   kubectl get svc -n grafana
+   NAME      TYPE           CLUSTER-IP     EXTERNAL-IP        PORT(S)        AGE
+   grafana   LoadBalancer   10.0.133.110   <PUBLIC_ENDPOINT>  80:31147/TCP   20h
+   ```
+
+1. Log in to the Grafana UI through the endpoint and configured user name and password. The default
+   user name is `admin` if you did not configure a different one earlier.
+
+## <a id="import-grafana-dashboard"></a> Import `TAP_Grafana_Dashboard.json`
+
+To import `TAP_Grafana_Dashboard.json` from the Tanzu Application Platform artifact you downloaded
+earlier:
+
+1. Go to the **Dashboards** page.
+
+   ![image](https://github.com/pivotal/docs-tap/assets/8050380/db7056a6-6ffa-4227-86a8-ab62fe9e2b20)
+
+1. Click **New** > **Import**.
+
+   ![image](https://github.com/pivotal/docs-tap/assets/8050380/932d5441-dbd7-4828-a0e2-089305c33071)
+
+1. Select and import the dashboard downloaded earlier named `TAP_Grafana_Dashboard.json`.
+
+   ![image](images/import_dashboard.png)
+
+1. View the Tanzu Application Platform health dashboard for different Tanzu Application Platform
+   clusters by selecting the right datasource.
+
+   ![image](images/selecting_datasource.png)
+
+Sample data for packageinstalls and workloads with failures in build cluster
+
+![image](images/package_installs.png)
+
+![image](images/workloads.png)
+
+![alt edit_and_save_dashboard](images/edit_and_save.png)
+
+### <a id="use-own-datasources"></a> (Optional) Use your own datasources
+
+To use your own set of datasources:
+
+1. Go to **Dashboard Settings**.
+
+   ![image](images/dashboard_settings.png)
+
+1. Go to the **Variables** tab, click the datasource variable, and then update the proper
+   datasource names in the datasource variable.
+
+   ![image](images/variables_tab.png)
