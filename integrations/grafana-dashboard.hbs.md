@@ -18,7 +18,7 @@ Complete the following steps:
   1. Download the Tanzu CLI binary from the [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/)
      a. Go to VMware Tanzu Network.
      b. Choose the TAP tile
-         ![image](https://github.com/pivotal/docs-tap/assets/8050380/8982b19b-32e4-45c9-8a27-559208b35057)
+         ![alt text](images/TanzuNet_grafana_dashboard.png)
 
      c. Click the item "Grafana Dashboard for Tanzu Application Platform (Beta)" from the result set.
      d. Download the "prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip" onto your machine.
@@ -122,16 +122,23 @@ Complete the following steps:
       ![image](https://github.com/pivotal/docs-tap/assets/8050380/932d5441-dbd7-4828-a0e2-089305c33071)
 
         iii. Select and import the downloaded dashboard from Step 2 named TAP_Grafana_Dashboard.json
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/371bdd7a-a0dd-4a9e-a70a-773d5469b21f)
+      ![image](images/import_dashboard.png)
 
         iv. View the TAP health dashboard for different TAP clusters by selecting the right datasource
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/5ef143dd-0bdc-47b5-864a-e435c0c1940b)
+      ![image](images/selecting_datasource.png)
+
+        v. Sample data for packageinstalls and workloads with failures in build cluster
+      ![image](images/package_installs.png)
+
+      ![image](images/workloads.png)
 
        f. Users can bring their own set of Datasources, configure the datasources in the Dashboard variable like below
         i. Navigate to Dashboard Settings
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/f7fc496e-e598-4921-9b52-c066c4031d87)
+      ![image](images/dashboard_settings.png)
 
-        ii. Navigate to Variables tab, click on the datasource variable and update the proper datasource names in the datasource variable
-      ![image](https://github.com/pivotal/docs-tap/assets/8050380/fb29f96e-f336-4a4d-8a8a-ee8e072f20e3)
+        ii. Navigate to Variables tab, click on the datasource variable, update the proper datasource names in the datasource variable under "Custom options" and **Save** the dashboard
+      ![image](images/variables_tab.png)
+
+      ![alt edit_and_save_dashboard](images/edit_and_save.png)
 
 
