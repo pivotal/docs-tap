@@ -19,11 +19,6 @@ To download the Tanzu CLI binary and set up the cluster:
 
 1. Select {{ vars.tap_version }} from the release drop-down menu for Tanzu Application Platform.
 
-1. Download the Tanzu CLI binary from [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/) 
-   and click the Tanzu Application Platform tile.
-     
-   ![alt text](images/TanzuNet_grafana_dashboard.png)
-
 1. Click **Grafana Dashboard for Tanzu Application Platform (Beta)**.
 
 1. Download `prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip`.
@@ -158,28 +153,24 @@ earlier:
 
 1. Go to the **Dashboards** page.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/db7056a6-6ffa-4227-86a8-ab62fe9e2b20)
+   ![Section of the Dashboards page, which shows the search bar and the filter drop-down menu.](images/dashboards.png)
 
 1. Click **New** > **Import**.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/932d5441-dbd7-4828-a0e2-089305c33071)
-
 1. Select and import the dashboard downloaded earlier named `TAP_Grafana_Dashboard.json`.
 
-   ![image](images/import_dashboard.png)
+   ![Section of the Import dashboard page, which shows the name box and the folder drop-down menu.](images/import-dashboard.png)
 
 1. View the Tanzu Application Platform health dashboard for different Tanzu Application Platform
    clusters by selecting the right datasource.
 
-   ![image](images/selecting_datasource.png)
+   ![Sample dashboard. Suggestions are listed below the variable value box.](images/selecting-datasource.png)
 
-Sample data for packageinstalls and workloads with failures in build cluster
+Sample data for package installations and workloads with failures in build cluster
 
-![image](images/package_installs.png)
+![Sample dashboard, which shows data for package installations.](images/package-installs.png)
 
-![image](images/workloads.png)
-
-![alt edit_and_save_dashboard](images/edit_and_save.png)
+![Sample dashboard, which shows data for workloads with failures in the Build cluster.](images/workloads.png)
 
 ### <a id="use-own-datasources"></a> (Optional) Use your own datasources
 
@@ -187,9 +178,11 @@ To use your own set of datasources:
 
 1. Go to **Dashboard Settings**.
 
-   ![image](images/dashboard_settings.png)
+   ![Sample dashboard. The settings button is a cog in the toolbar.](images/dashboard-settings.png)
 
-1. Go to the **Variables** tab, click the datasource variable, and then update the proper
-   datasource names in the datasource variable.
+1. Go to the **Variables** tab, click the datasource variable, and then update the proper datasource
+   names in the datasource variable.
 
-   ![image](images/variables_tab.png)
+   ![The Variables tab within the sample dashboard.](images/variables-tab.png)
+
+![The datasources page within the sample dashboard.](images/edit-and-save.png)
