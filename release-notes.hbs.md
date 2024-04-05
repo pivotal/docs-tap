@@ -60,6 +60,12 @@ This release includes the following changes, listed by component and area.
   You can set this value globally or on a specific service. For more information, see
   [Package values of Bitnami Services](bitnami-services/reference/package-values.hbs.md).
 
+#### <a id='1-9-0-buildpacks'></a> v1.9.0 Features: Buildpacks and Stacks
+
+- Adds support for the [`Tanzu Standard Stack for UBI 8`](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks)
+  to the [`.NET Core`](https://network.tanzu.vmware.com/products/tanzu-dotnet-core-buildpack)
+  and [`Web Servers`](https://network.tanzu.vmware.com/products/tanzu-web-servers-buildpack/) Buildpacks.
+
 #### <a id='1-9-0-services-toolkit'></a> v1.9.0 Features: Services Toolkit
 
 - You can configure resource limits and requests for the Services Toolkit Controller Manager
