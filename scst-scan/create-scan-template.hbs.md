@@ -2,12 +2,6 @@
 
 This topic describes how to create a ScanTemplate with Supply Chain Security Tools - Scan.
 
-> **Note** This topic uses SCST - Scan 1.0. SCST - Scan 1.0 is deprecated in
-Tanzu Application Platform v1.9 and later. In Tanzu Application Platform v1.9, SCST - Scan 1.0 is
-still the default in Supply Chain with Testing. For more information, see [Add testing and scanning to your application](../getting-started/add-test-and-security.hbs.md#add-testing-and-scanning-to-your-application).
-VMware recommends using SCST - Scan 2.0 as SCST - Scan 1.0 will be removed in a future version and
-SCST - Scan 2.0 will be the default. For more information, see [SCST - Scan versions](./overview.hbs.md).
-
 ## Overview
 
 The `ScanTemplate` custom resource (CR) defines how the scan Pod fulfills the task of vulnerability scanning. There are default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore Grype`. One or more `initContainers` run to complete the scan and must save results to a shared `volume`. After the `initContainers` completes, a single container on the scan Pod called `summary` combines the result of the initContainers so that the `Scan CR` status is updated.
