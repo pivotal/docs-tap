@@ -1,7 +1,7 @@
 # Create a Grafana Dashboard
 
 This topic tells you how to configure and set up a public Grafana-Prometheus Helm with Tanzu
-Application Platform `CustomResource` metrics collection.
+Application Platform (commonly known as TAP) `CustomResource` metrics collection.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -123,16 +123,12 @@ To create a Grafana dashboard:
       --set adminPassword='GRAFANA-ENDPOINT-PASSWORD' \
       --values  grafana-values.yaml \
       --set service.type=LoadBalancer
-
-   # DEFAULT-PVC-STORAGE-CLASS - some examples 'default' for Azure, 'gp2' for AWS, etc
-
-   # In case any auto-generate mechanism is used, you can get your Grafana user ID and password by running:
-   kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
    ```
 
    Where:
 
-   - `DEFAULT-PVC-STORAGE-CLASS` is the default PVC storage class
+   - `DEFAULT-PVC-STORAGE-CLASS` is the default PVC storage class. For some examples there is
+     `default` for Azure, `gp2` for Amazon Web Services, and so on.
    - `GRAFANA-ENDPOINT-PASSWORD` is the password for logging in to the Grafana endpoint
 
    In case any auto-generate mechanism is used, you can get your Grafana user ID and password by
