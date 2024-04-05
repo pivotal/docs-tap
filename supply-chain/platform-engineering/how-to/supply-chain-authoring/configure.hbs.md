@@ -156,7 +156,7 @@ a path to any structure where all desired child fields must be set. For example:
 ### Generate SupplyChain with defaults
 
 Platform engineers generate SupplyChains with  defaults to allow them to define default values
-that can be changed by Developers using the `Workload` (Developer API).
+that can be changed by developers using the `Workload` (Developer API).
 By configuring defaults for each component in the SupplyChain, the generated `Workload` will contain
 default values.
 
@@ -169,7 +169,7 @@ Defaults consist of:
 
 #### Defaults use case
 
-1. Generate the Supply chain by supplying the `--allow-defaults` flag:
+1. Generate the SupplyChain by supplying the `--allow-defaults` flag:
 
     ```console
     tanzu supplychain generate \
@@ -189,7 +189,7 @@ Defaults consist of:
     ...
     ```
 
-1. To configure defaults, open `supplychains/appbuildv1.yaml` in your editor and navigate to the
+1. To configure defaults, open the `supplychains/appbuildv1.yaml` file in your editor and navigate to the
 following section:
 
     ```console
