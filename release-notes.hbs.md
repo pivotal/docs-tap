@@ -87,9 +87,9 @@ This release includes the following changes, listed by component and area.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-9-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
+#### <a id='1-9-0-fluxcd-sc-bc'></a> v1.9.0 Breaking changes: FluxCD Source Controller
 
-- When you configure SCST - Scan with the Metadata Store CA Certificate, the secret can no longer be manually created. Configure the secret in the `values.yaml` file. For more information, see [Multicluster setup for Supply Chain Security Tools](scst-store/multicluster-setup.hbs.md#apply-kubernetes).
+- FluxCD Source Controller no longer supports the `git_implementation` field in `GitRepository` version `v1`.
 
 #### <a id='svc-toolkit-bc'></a> v1.9.0 Breaking changes: Services Toolkit
 
@@ -110,9 +110,11 @@ The following APIs and tools have now been removed:
   * `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   * `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
 
-#### <a id='1-9-0-fluxcd-sc-bc'></a> v1.9.0 Breaking changes: FluxCD Source Controller
+#### <a id='1-9-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
 
-- In Tanzu Application Platform v1.9.0, FluxCD Source Controller no longer supports the `git_implementation` field in `GitRepository` version `v1`.
+- When you configure SCST - Scan with the Metadata Store CA Certificate, you can no longer manually
+  create the secret. Configure the secret in the `values.yaml` file. For more information, see
+  [Multicluster setup for Supply Chain Security Tools](scst-store/multicluster-setup.hbs.md#apply-kubernetes).
 
 ---
 
@@ -919,58 +921,58 @@ is reported after JSON at position 4.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                     | Version |
-| -------------------------------------------------- | ------- |
-| API Auto Registration                              |         |
-| API portal                                         |         |
-| Application Accelerator                            |         |
-| Application Configuration Service                  |         |
-| Application Live View APIServer                    |         |
-| Application Live View back end                     |         |
-| Application Live View connector                    |         |
-| Application Live View conventions                  |         |
-| Application Single Sign-On                         |         |
-| Artifact Metadata Repository Observer              |         |
-| AWS Services                                       |         |
-| Bitnami Services                                   |         |
-| Carbon Black Scanner for SCST - Scan (beta)        |         |
-| Cartographer Conventions                           |         |
-| cert-manager                                       |         |
-| Cloud Native Runtimes                              |         |
-| Contour                                            |         |
-| Crossplane                                         |         |
-| Default Roles                                      |         |
-| Developer Conventions                              |         |
-| External Secrets Operator                          |         |
-| Flux CD Source Controller                          |         |
-| Grype Scanner for SCST - Scan                      |         |
-| Local Source Proxy                                 |         |
-| Managed Resource Controller (beta)                 |         |
-| Namespace Provisioner                              |         |
-| Out of the Box Delivery - Basic                    |         |
-| Out of the Box Supply Chain - Basic                |         |
-| Out of the Box Supply Chain - Testing              |         |
-| Out of the Box Supply Chain - Testing and Scanning |         |
-| Out of the Box Templates                           |         |
-| Service Bindings                                   |         |
-| Service Registry                                   |         |
-| Services Toolkit                                   |         |
-| Snyk Scanner for SCST - Scan (beta)                |         |
-| Source Controller                                  |         |
-| Spring Boot conventions                            |         |
-| Spring Cloud Gateway                               |         |
-| Supply Chain Choreographer                         |         |
-| Supply Chain Security Tools - Policy Controller    |         |
-| Supply Chain Security Tools - Scan                 |         |
-| Supply Chain Security Tools - Scan 2.0             |         |
-| Supply Chain Security Tools - Store                |         |
-| Tanzu Application Platform Telemetry               |         |
-| Tanzu Build Service                                |         |
-| Tanzu CLI                                          |         |
-| Tanzu Developer Portal                             |         |
-| Tanzu Developer Portal Configurator                |         |
-| Tanzu Supply Chain (beta)                          |         |
-| Tekton Pipelines                                   |         |
+| Component Name                                     | Version        |
+| -------------------------------------------------- | -------------- |
+| API Auto Registration                              | 0.5.0          |
+| API portal                                         | 1.5.0          |
+| Application Accelerator                            | 1.9.1          |
+| Application Configuration Service                  | 2.3.1          |
+| Application Live View APIServer                    | 1.9.1          |
+| Application Live View back end                     | 1.9.1          |
+| Application Live View connector                    | 1.9.1          |
+| Application Live View conventions                  | 1.9.1          |
+| Application Single Sign-On                         | 5.1.4          |
+| Artifact Metadata Repository Observer              | 0.5.0          |
+| AWS Services                                       | 0.3.0-rc.2     |
+| Bitnami Services                                   | 0.5.0-rc.3     |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.4.0          |
+| Cartographer Conventions                           | 0.9.0          |
+| cert-manager                                       | 2.7.2          |
+| Cloud Native Runtimes                              | 2.5.3          |
+| Contour                                            | 2.2.0          |
+| Crossplane                                         | 0.5.0-rc.3     |
+| Default Roles                                      | 1.1.0          |
+| Developer Conventions                              | 0.16.1         |
+| External Secrets Operator                          | 0.9.4+tanzu.3  |
+| Flux CD Source Controller                          | 1.1.2+tanzu.1  |
+| Grype Scanner for SCST - Scan                      | 1.9.0          |
+| Local Source Proxy                                 | 0.2.1          |
+| Managed Resource Controller (beta)                 | 0.2.1          |
+| Namespace Provisioner                              | 0.6.2          |
+| Out of the Box Delivery - Basic                    | 0.16.1         |
+| Out of the Box Supply Chain - Basic                | 0.16.1         |
+| Out of the Box Supply Chain - Testing              | 0.16.1         |
+| Out of the Box Supply Chain - Testing and Scanning | 0.16.1         |
+| Out of the Box Templates                           | 0.16.1         |
+| Service Bindings                                   | 0.12.0-rc.2    |
+| Service Registry                                   | 1.3.2          |
+| Services Toolkit                                   | 0.14.0-rc.5    |
+| Snyk Scanner for SCST - Scan (beta)                | 1.3.0          |
+| Source Controller                                  | 0.9.0          |
+| Spring Boot conventions                            | 1.9.1          |
+| Spring Cloud Gateway                               | 2.1.9          |
+| Supply Chain Choreographer                         | 0.9.0          |
+| Supply Chain Security Tools - Policy Controller    | 1.6.4          |
+| Supply Chain Security Tools - Scan                 | 1.9.1          |
+| Supply Chain Security Tools - Scan 2.0             | 0.4.0          |
+| Supply Chain Security Tools - Store                | 1.9.0          |
+| Tanzu Application Platform Telemetry               | 0.7.0          |
+| Tanzu Build Service                                | 1.13.0         |
+| Tanzu CLI                                          | 1.2.0          |
+| Tanzu Developer Portal                             | 1.9.1          |
+| Tanzu Developer Portal Configurator                | 1.9.1          |
+| Tanzu Supply Chain (beta)                          | 0.2.9          |
+| Tekton Pipelines                                   | 0.56.2+tanzu.1 |
 
 ---
 
@@ -979,6 +981,24 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
+### <a id='cnrs-deprecations'></a> Cloud Native Runtimes deprecations
+
+- **`default_tls_secret` config option**: After changes in this release, this config option is moved
+  to `contour.default_tls_secret`. `default_tls_secret` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.default_tls_secret` takes precedence over
+  `default_tls_secret`.
+
+- **`ingress.[internal/external].namespace` config options**: After changes in this release, these
+  config options are moved to `contour.[internal/external].namespace`.
+  `ingress.[internal/external].namespace` is marked for removal in Cloud Native Runtimes v2.7.
+  In the meantime, both options are supported, and `contour.[internal/external].namespace` takes
+  precedence over `ingress.[internal/external].namespace`.
+
+### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
+
+- FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.
+  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
+
 ### <a id='svc-toolkit-deprecations'></a> Services Toolkit deprecations
 
 - The following APIs are deprecated and are marked for removal in
@@ -986,6 +1006,4 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   - `clusterexampleusages.services.apps.tanzu.vmware.com/v1alpha1`
   - `clusterresources.services.apps.tanzu.vmware.com/v1alpha1`
 
-### <a id='fluxcd-sc-deprecations'></a> FluxCD Source Controller deprecations
 
-- In Tanzu Application Platform v1.9.0, FluxCD Source Controller updates the `GitRepository` API from `v1beta2` to `v1`.  The controller accepts resources with API versions `v1beta1` and `v1beta2`, saving them as `v1`.
