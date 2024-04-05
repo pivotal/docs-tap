@@ -482,6 +482,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | AWS Services | 0.1.0 |
 | Bitnami Services | 0.3.1 |
 | Carbon Black Scanner for SCST - Scan (beta) | 1.2.8 |
+| Cartographer Conventions | 0.8.10 |
 | cert-manager | 2.4.3 |
 | Cloud Native Runtimes | 2.4.17 |
 | Contour | 2.1.0 |
@@ -512,11 +513,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Store | 1.7.6 |
 | Tanzu Application Platform Telemetry | 0.7.0 |
 | Tanzu Build Service | 1.12.6 |
+| Tanzu CLI | 1.2.0 |
 | Tanzu Developer Portal | 1.7.11 |
 | Tanzu Developer Portal Configurator | 1.7.11 |
 | Tekton Pipelines | 0.50.3+tanzu.4 |
-| Tanzu CLI | 1.2.0 |
-| Cartographer Conventions | 0.8.10 |
 
 ---
 
