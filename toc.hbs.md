@@ -687,6 +687,7 @@
     - [Tanzu Developer Portal](tap-gui/about.hbs.md)
       - [Tanzu Developer Portal overview](tap-gui/about.hbs.md)
       - [Install Tanzu Developer Portal](tap-gui/install-tap-gui.hbs.md)
+      - [Configure an HTTP or HTTPS proxy](tap-gui/http-proxy.hbs.md)
       - [Runtime configuration options for Tanzu Developer Portal](tap-gui/runtime-config-options.hbs.md)
       - [Runtime customization of Tanzu Developer Portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the portal](tap-gui/customize/customize-portal.hbs.md)

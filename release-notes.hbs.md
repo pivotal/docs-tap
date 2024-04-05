@@ -68,6 +68,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-9-0-tanzu-dev-portal'></a> v1.9.0 Features: Tanzu Developer Portal
 
+- Added configuration to route traffic through a specified HTTP/HTTPS proxy. This includes all
+  outgoing requests made by Backstage and Tanzu Developer Portal. For more information, see
+  [Configure HTTP Proxy](tap-gui/http-proxy.hbs.md).
 - The DORA plug-in now has the following changes:
   - Added the date range drop-down menu filters **Last 7 Days** and **Last 30 Days**
   - The default date range filter is now **Last 7 Days** instead of **Last 90 Days**
@@ -77,7 +80,6 @@ This release includes the following changes, listed by component and area.
     previous time period
   - Added graphs to display changes in Lead Time and Deployment Frequency metrics over time
   - Performance improvements
-- Added configuration to route traffic through a specified HTTP/HTTPS proxy. This includes all outgoing requests made by Backstage and Tanzu Developer Portal. For more information, see [Configure HTTP Proxy documentation](tap-gui/http-proxy.hbs.md).
 
 ---
 
