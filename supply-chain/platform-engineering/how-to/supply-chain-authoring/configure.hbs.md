@@ -109,50 +109,49 @@ As a platform engineer, I want all built images to be accessible only through my
 3. Configure overrides using either a full path to the field you want to set or
 a path to any structure where all desired child fields must be set. For example:
 
-  Full path
-  : Example path `spec.registry.repository`. As this example does not provide a value for
-  `spec.registry.server`, it will not be available to modify in the `Workload`.
+    Full path
+    : Example path `spec.registry.repository`. As this example does not provide a value for
+    `spec.registry.server`, it will not be available to modify in the `Workload`.
 
-      ```yaml
-      config:
-        overrides:
-          - path: spec.registry.repository
-            value: "https://my-registry.url.com"
-      ```
+        ```yaml
+        config:
+          overrides:
+            - path: spec.registry.repository
+              value: "https://my-registry.url.com"
+        ```
 
-      
+    Path to any key representing a YAML object
+    : Examples:
 
-  Path to any key representing a YAML object
-  : Examples:
-  
-     1. Path `spec.registry`:
+       1. Path `spec.registry`:
 
-         ```yaml
-         config:
-           overrides:
-             - path: spec.registry
-               value:
-                 repository: "https://my-registry.url.com"
-         ```
+            ```yaml
+            config:
+              overrides:
+                - path: spec.registry
+                  value:
+                    repository: "https://my-registry.url.com"
+            ```
 
        1. Path `spec`. In this example, there is no value for `spec.registry.server`, it will not be available to modify in the `Workload`.
-         ```yaml
-         config:
-           overrides:
-             - path: spec
-               value:
-                 registry:
-                   repository: "https://my-registry.url.com"
-         ```
 
-       2. Path `spec` with empty value. This example results in a `Workload` without a spec.
+          ```yaml
+          config:
+            overrides:
+              - path: spec
+                value:
+                  registry:
+                    repository: "https://my-registry.url.com"
+          ```
 
-         ```yaml
-         config:
-           defaults:
-             - path: spec
-               value: {}
-         ```
+       1. Path `spec` with empty value. This example results in a `Workload` without a spec.
+
+          ```yaml
+          config:
+            defaults:
+              - path: spec
+                value: {}
+          ```
 
 ### Generate SupplyChain with defaults
 
@@ -253,8 +252,8 @@ or a path to any structure where all desired child fields must be set.
 
     Path to any key representing a YAML object
     : Examples
-    
-       1. Path `spec.registry`:
+
+        1. Path `spec.registry`:
 
            ```yaml
            config:
@@ -264,7 +263,7 @@ or a path to any structure where all desired child fields must be set.
                    repository: "https://my-default-registry.url.com"
            ```
 
-       2. Path `spec`:
+        1. Path `spec`:
 
            ```yaml
            config:
