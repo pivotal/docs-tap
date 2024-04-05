@@ -18,7 +18,7 @@ This topic tells you how to construct a SupplyChain configuration.
 ## SupplyChain configuration
 
 SupplyChains can be configured to supply default and override values for each component.
-This allows a Platform Engineer to either pre-populate common default values for a component or override values to always be some value that the developer cannot modify.
+This allows a platform engineer to either pre-populate common default values for a component or override values to always be some value that the developer cannot modify.
 
 ### Generate SupplyChain with overrides
 
@@ -27,16 +27,16 @@ By configuring overrides for each component in the SupplyChain, the generated `W
 
 Overrides consist of:
 
-- `path`: path to the configuration value, formatted as either:
+- `path`: The path to the configuration value, formatted as either:
   1. The full path to the field you want to set.
   2. The path to any structure where all desired child fields must be set.
-- `value`: String or YAML structured value.
+- `value`: A string or YAML structured value.
 
 #### Overrides use case
 
 As a platform engineer, I want all built images to be accessible only through my organizations QA registry.
 
-1. Generate the Supply chain by supplying the `--allow-overrides` flag:
+1. Generate the SupplyChain by supplying the `--allow-overrides` flag:
 
     ```console
     tanzu supplychain generate \
@@ -156,7 +156,7 @@ a path to any structure where all desired child fields must be set. For example:
 ### Generate SupplyChain with defaults
 
 Platform engineers generate SupplyChains with  defaults to allow them to define default values
-that **can** be changed by Developers using the `Workload` (Developer API).
+that can be changed by Developers using the `Workload` (Developer API).
 By configuring defaults for each component in the SupplyChain, the generated `Workload` will contain
 default values.
 
