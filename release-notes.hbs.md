@@ -294,6 +294,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Artifact Metadata Repository Observer | 0.1.2 |
 | Bitnami Services | 0.2.0 |
 | Carbon Black Scanner for SCST - Scan (beta) | 1.2.5 |
+| Cartographer Conventions | 0.7.5 |
 | cert-manager | 2.4.3 |
 | Cloud Native Runtimes | 2.3.14 |
 | Contour | 2.0.0 |
@@ -326,11 +327,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Store | 1.6.9 |
 | Tanzu Application Platform Telemetry | 0.6.2 |
 | Tanzu Build Service | 1.11.18 |
+| Tanzu CLI | 1.1.0 |
 | Tanzu Developer Portal | 1.6.8 |
 | Tanzu Developer Portal Configurator | 0.1.2 |
 | Tekton Pipelines | 0.41.0+tap.9 |
-| Tanzu CLI | 1.1.0 |
-| Cartographer Conventions | 0.7.5 |
 
 ---
 
