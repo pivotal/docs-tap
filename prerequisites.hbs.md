@@ -67,7 +67,7 @@ There are some optional but recommended DNS records you must allocate if you dec
 
 ### <a id='scst-store'></a>Supply Chain Security Tools - Store
 
-The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. For more information about setting up the database for production, see [Database configuration](scst-store/deployment-details.hbs.md#db-config).
+While the default installation of the Tanzu Application Platform includes a database for **Supply Chain Security Tools - Store**, it is not recommended for production deployments.  The included database does not include capabilities typically associated with production enterprise databases, including scaling, high availability, and automated backups. VMware recommends using an external database with production level capabilities.  For more information about setting up the database for production, see [Database configuration](scst-store/deployment-details.hbs.md#db-config).
 
 ### <a id='tap-gui'></a>Tanzu Developer Portal
 
