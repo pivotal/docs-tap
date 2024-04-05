@@ -101,7 +101,7 @@ To create a Grafana dashboard:
             isDefault: false
     ```
 
-1. Install Grafana in a cluster dedicated for the Grafana dashboard by running:
+1. Install Grafana in a cluster dedicated to the Grafana dashboard by running:
 
    ```console
    kubectl create ns grafana
@@ -124,10 +124,9 @@ To create a Grafana dashboard:
 
    - `DEFAULT-PVC-STORAGE-CLASS` is the default PVC storage class. For some examples there is
      `default` for Azure, `gp2` for Amazon Web Services, and so on.
-   - `GRAFANA-ENDPOINT-PASSWORD` is the password for logging in to the Grafana endpoint
+   - `GRAFANA-ENDPOINT-PASSWORD` is the password for logging in to the Grafana endpoint.
 
-   In case any auto-generate mechanism is used, you can get your Grafana user ID and password by
-   running:
+   If any auto-generate mechanism is used, you can get your Grafana user ID and password by running:
 
    ```console
    kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-password}" | base64 \
@@ -144,11 +143,11 @@ To create a Grafana dashboard:
    ```
 
 1. Log in to the Grafana UI through the endpoint and configured user name and password. The default
-   user name is `admin` if you did not configure a different one earlier.
+   user name is `admin`.
 
-## <a id="import-grafana-dashboard"></a> Import `TAP_Grafana_Dashboard.json`
+## <a id="import-grafana-dashboard"></a> Import the Grafana dashboard
 
-To import `TAP_Grafana_Dashboard.json` from the Tanzu Application Platform artifact you downloaded
+To import `TAP_Metrics_Grafana_Dashboard.json` from the Tanzu Application Platform artifact you downloaded
 earlier:
 
 1. Go to the **Dashboards** page.
@@ -157,20 +156,16 @@ earlier:
 
 1. Click **New** > **Import**.
 
-1. Select and import the dashboard downloaded earlier named `TAP_Grafana_Dashboard.json`.
+1. Select and import the dashboard downloaded earlier named `TAP_Metrics_Grafana_Dashboard.json`.
 
    ![Section of the Import dashboard page, which shows the name box and the folder drop-down menu.](images/import-dashboard.png)
 
 1. View the Tanzu Application Platform health dashboard for different Tanzu Application Platform
-   clusters by selecting the right datasource.
+   clusters by selecting the appropriate datasource.
 
    ![Sample dashboard. Suggestions are listed below the variable value box.](images/selecting-datasource.png)
 
-Sample data for package installations and workloads with failures in build cluster
-
-![Sample dashboard, which shows data for package installations.](images/package-installs.png)
-
-![Sample dashboard, which shows data for workloads with failures in the Build cluster.](images/workloads.png)
+   ![Sample dashboard, which shows data for workloads with failures in the Build cluster.](images/workloads.png)
 
 ### <a id="use-own-datasources"></a> (Optional) Use your own datasources
 
@@ -184,5 +179,3 @@ To use your own set of datasources:
    names in the datasource variable.
 
    ![The Variables tab within the sample dashboard.](images/variables-tab.png)
-
-![The datasources page within the sample dashboard.](images/edit-and-save.png)
