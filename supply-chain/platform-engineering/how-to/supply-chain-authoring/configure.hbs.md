@@ -18,7 +18,7 @@ This topic tells you how to construct a SupplyChain configuration.
 ## SupplyChain configuration
 
 SupplyChains can be configured to supply default and override values for each component.
-This allows a Platform Engineer to either pre-populate common default values for a component or override values to always be some value which the developer cannot modify.
+This allows a Platform Engineer to either pre-populate common default values for a component or override values to always be some value that the developer cannot modify.
 
 ### Generate SupplyChain with overrides
 
@@ -34,7 +34,7 @@ Overrides consist of:
 
 #### Overrides use case
 
-As a platform engineer, I want all built images to be accessible only via my organizations QA registry.
+As a platform engineer, I want all built images to be accessible only through my organizations QA registry.
 
 1. Generate the Supply chain by supplying the `--allow-overrides` flag:
 
@@ -110,7 +110,8 @@ As a platform engineer, I want all built images to be accessible only via my org
 a path to any structure where all desired child fields must be set. For example:
 
   Full path
-  : Example path `spec.registry.repository`:
+  : Example path `spec.registry.repository`. As this example does not provide a value for
+  `spec.registry.server`, it will not be available to modify in the `Workload`.
 
       ```yaml
       config:
@@ -119,50 +120,51 @@ a path to any structure where all desired child fields must be set. For example:
             value: "https://my-registry.url.com"
       ```
 
-      Note that we did not provide a value for `spec.registry.server`, it will **not** be available to modify in the `Workload`.
+      
 
   Path to any key representing a YAML object
   : Examples:
   
-  1. Path `spec.registry`:
+     1. Path `spec.registry`:
 
-      ```yaml
-      config:
-        overrides:
-          - path: spec.registry
-            value:
-              repository: "https://my-registry.url.com"
-      ```
+         ```yaml
+         config:
+           overrides:
+             - path: spec.registry
+               value:
+                 repository: "https://my-registry.url.com"
+         ```
 
-    1. Path `spec`. In this example, as there is no value for `spec.registry.server`, it will not be available to modify in the `Workload`.
-      ```yaml
-      config:
-        overrides:
-          - path: spec
-            value:
-              registry:
-                repository: "https://my-registry.url.com"
-      ```
+       1. Path `spec`. In this example, there is no value for `spec.registry.server`, it will not be available to modify in the `Workload`.
+         ```yaml
+         config:
+           overrides:
+             - path: spec
+               value:
+                 registry:
+                   repository: "https://my-registry.url.com"
+         ```
 
-    3. Path `spec` with empty value. This example results in a `Workload` without a spec.
+       2. Path `spec` with empty value. This example results in a `Workload` without a spec.
 
-      ```yaml
-      config:
-        defaults:
-          - path: spec
-            value: {}
-      ```
+         ```yaml
+         config:
+           defaults:
+             - path: spec
+               value: {}
+         ```
 
 ### Generate SupplyChain with defaults
 
 Platform engineers generate SupplyChains with  defaults to allow them to define default values
 that **can** be changed by Developers using the `Workload` (Developer API).
-By configuring defaults for each component in the SupplyChain, the generated `Workload` will contain default values.
+By configuring defaults for each component in the SupplyChain, the generated `Workload` will contain
+default values.
 
 Defaults consist of:
 
 - `path`: path to the configuration value, formatted as either:
-  1. The full path to the field you wish to set.
+  1. The full path to the field you want to set.
   2. The path to any structure where all desired child fields must be set.
 - `value`: String or YAML structured value.
 
@@ -252,26 +254,26 @@ or a path to any structure where all desired child fields must be set.
     Path to any key representing a YAML object
     : Examples
     
-    1. Path `spec.registry`:
+       1. Path `spec.registry`:
 
-        ```yaml
-        config:
-          defaults:
-            - path: spec.registry
-              value:
-                repository: "https://my-default-registry.url.com"
-        ```
+           ```yaml
+           config:
+             defaults:
+               - path: spec.registry
+                 value:
+                   repository: "https://my-default-registry.url.com"
+           ```
 
-    2. Path `spec`:
+       2. Path `spec`:
 
-        ```yaml
-        config:
-          defaults:
-            - path: spec
-              value:
-                registry:
-                  repository: "https://my-default-registry.url.com"
-        ```
+           ```yaml
+           config:
+             defaults:
+               - path: spec
+                 value:
+                   registry:
+                     repository: "https://my-default-registry.url.com"
+           ```
 
 ## Reference Guides
 
