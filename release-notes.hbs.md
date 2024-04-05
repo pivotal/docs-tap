@@ -861,20 +861,20 @@ related to `data.packaging.carvel.dev`. The error message is related to permissi
 and JSON parsing errors. The error message indicates that the user `system:serviceaccount:tap-gui:tap-gui-viewer` cannot list resource `packages` in the API group `data.packaging.carvel.dev` at the cluster scope. Additionally, an unexpected non-whitespace character
 is reported after JSON at position 4.
 
-As a temporary workaround, apply an RBAC configuration that includes the get, watch, and list
-permissions for the resources in the `data.packaging.carvel.dev` API group. This workaround should
-not be mandated for supply chains that do not generate Carvel packages.
+  As a temporary workaround, apply an RBAC configuration that includes the get, watch, and list
+  permissions for the resources in the `data.packaging.carvel.dev` API group. This workaround should
+  not be mandated for supply chains that do not generate Carvel packages.
 
-To eliminate the error message, configure RBAC to allow access to the Carvel package resource as
-follows:
+  To eliminate the error message, configure RBAC to allow access to the Carvel package resource as
+  follows:
 
-```console
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-- apiGroups: [data.packaging.carvel.dev]
-  resources: [packages]
-  verbs: ['get', 'watch', 'list']
-```
+  ```console
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  - apiGroups: [data.packaging.carvel.dev]
+    resources: [packages]
+    verbs: ['get', 'watch', 'list']
+  ```
 
 #### <a id='1-9-0-tdp-ki'></a>v1.9.0 Known issues: Tanzu Developer Portal
 
