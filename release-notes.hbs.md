@@ -77,6 +77,7 @@ This release includes the following changes, listed by component and area.
     previous time period
   - Added graphs to display changes in Lead Time and Deployment Frequency metrics over time
   - Performance improvements
+- Added configuration to route traffic through a specified HTTP/HTTPS proxy. This includes all outgoing requests made by Backstage and Tanzu Developer Portal. For more information, see [Configure HTTP Proxy documentation](tap-gui/http-proxy.hbs.md).
 
 ---
 
