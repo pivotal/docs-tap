@@ -1,4 +1,4 @@
-# Configure an HTTP or HTTPS proxy
+# Configure a corporate HTTP or HTTPS proxy
 
 You can configure Tanzu Developer Portal to route its traffic through a specified HTTP or HTTPS proxy.
 This includes all outgoing requests that Backstage or Tanzu Developer Portal makes. This topic shows
