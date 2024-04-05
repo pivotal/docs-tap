@@ -533,6 +533,17 @@ enable TUF:
   exclusion affected some client operations, such as using Application Accelerators to create Git
   repositories on behalf of users. A fix for this issue is planned for the next patch.
 
+#### <a id='1-8-2-tap-buildpacks'></a>v1.8.2 Known issues: Go Lite Buildpack in TAP Packages
+
+- In v1.8.1 there was a mismatch in version between the Go Lite buildpack
+  provided in TAP packages and the Go buildpack provided in Full Deps. This
+  version mismatch made it imposstible to use the Dependency Updater. For
+  v1.8.2 the version of Go Lite has been upgraded frome 2.2.x to 3.1.x. This
+  version of the buildpack contains a breaking change which is the removal of
+  the Dep package manager, which has been deprecated for years. If you still
+  require the use of the Dep package manager see TBS documentation about using
+  out of band packages.
+
 ---
 
 ### <a id='1-8-2-components'></a> v1.8.2 Component versions
