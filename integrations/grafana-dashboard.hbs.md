@@ -19,6 +19,11 @@ To download the Tanzu CLI binary and set up the cluster:
 
 1. Select {{ vars.tap_version }} from the release drop-down menu for Tanzu Application Platform.
 
+1. Download the Tanzu CLI binary from [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/) 
+   and click the Tanzu Application Platform tile.
+     
+   ![alt text](images/TanzuNet_grafana_dashboard.png)
+
 1. Click **Grafana Dashboard for Tanzu Application Platform (Beta)**.
 
 1. Download `prometheus-grafana-dashboard-for-tap-1.0.0-beta.1.zip`.
@@ -165,12 +170,20 @@ earlier:
 
 1. Select and import the dashboard downloaded earlier named `TAP_Grafana_Dashboard.json`.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/371bdd7a-a0dd-4a9e-a70a-773d5469b21f)
+   ![image](images/import_dashboard.png)
 
 1. View the Tanzu Application Platform health dashboard for different Tanzu Application Platform
    clusters by selecting the right datasource.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/5ef143dd-0bdc-47b5-864a-e435c0c1940b)
+   ![image](images/selecting_datasource.png)
+
+Sample data for packageinstalls and workloads with failures in build cluster
+
+![image](images/package_installs.png)
+
+![image](images/workloads.png)
+
+![alt edit_and_save_dashboard](images/edit_and_save.png)
 
 ### <a id="use-own-datasources"></a> (Optional) Use your own datasources
 
@@ -178,9 +191,9 @@ To use your own set of datasources:
 
 1. Go to **Dashboard Settings**.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/f7fc496e-e598-4921-9b52-c066c4031d87)
+   ![image](images/dashboard_settings.png)
 
 1. Go to the **Variables** tab, click the datasource variable, and then update the proper
    datasource names in the datasource variable.
 
-   ![image](https://github.com/pivotal/docs-tap/assets/8050380/fb29f96e-f336-4a4d-8a8a-ee8e072f20e3)
+   ![image](images/variables_tab.png)
