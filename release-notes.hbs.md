@@ -87,6 +87,11 @@ This release includes the following changes, listed by component and area.
   - Added graphs to display changes in Lead Time and Deployment Frequency metrics over time
   - Performance improvements
 
+#### <a id='1-9-0-tap-upgrade'></a> v1.9.0 Features: N-2 upgrade to TAP 1.9.x
+
+- TAP supports N-2 upgrades starting with 1.9.0, i.e, one can upgrade from TAP 1.7.x -> 1.9.x and TAP 1.8.x -> 1.9.x.
+
+
 ---
 
 ### <a id='1-9-0-breaking-changes'></a> v1.9.0 Breaking changes
