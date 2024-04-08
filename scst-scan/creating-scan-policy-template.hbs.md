@@ -5,13 +5,13 @@ Tools (SCST) - Scan 2.0.
 
 Policy enforcement is not inbuilt in SCST - Scan 2.0. It can be achieved by creating a
 `ClusterImageTemplate` that stamps out a Tekton `TaskRun` that evaluates the vulnerabilities
-and enforces the policy set. A sample of the task and cluster image template
+and enforces the policy set. A sample of the task run and cluster image template
 are provided in this topic.
 
 ## Prerequisites for the task run
 
 The `TaskRun` queries the metadata store to get the list of vulnerabilities for the image.
-To authenticate with the MDS (Metadata Store) API an accessToken and certificate are needed.
+To authenticate with the MDS (Metadata Store) API, an accessToken and certificate are needed.
 Complete the following steps:
 
 1. Build an image that contains `curl` and `jq`. This image is used by the task run.
