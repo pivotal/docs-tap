@@ -923,7 +923,7 @@ while installing through Tanzu Mission Control.
   This message might appear more than once, and it can refer to several resources.
 
   These errors appear when kapp-controller on the cluster tries to install the new Cartographer
-  Conventions package before the Cartographer packge has reconciled.
+  Conventions package before the Cartographer package has reconciled.
   The new package for Cartographer Conventions tries to install resources that the existing
   Cartographer package still owns.
 
