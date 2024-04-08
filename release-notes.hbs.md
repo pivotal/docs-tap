@@ -498,17 +498,171 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-8-2-tap-ki'></a> v1.8.2 Known issues: Tanzu Application Platform
+
+- On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
+  leads to an error.
+  For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
+
+- The Tanzu Application Platform integration with Tanzu Service Mesh does not work
+  on vSphere with TKR v1.26. For more information about this integration, see
+  [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md).
+  As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
+  as advised by the release notes for
+  [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
+  However, applying this label provides more than the minimum necessary privilege to the resources in
+  developer namespaces.
+
+#### <a id='1-8-2-api-auto-reg-ki'></a> v1.8.2 Known issues: API Auto Registration
+
+- Registering conflicting `groupId` and `version` with API portal:
+
+  If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version` combination, both
+  reconcile without throwing an error, and the `/openapi?groupId&version` endpoint returns both specifications.
+  If you are adding both specifications to the API portal, only one of them might show up in the
+  API portal UI with a warning indicating that there is a conflict.
+  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use Spring Cloud Gateway,
+  the generated API specspecification includes API routes from both `CuratedAPIDescriptor`s.
+
+  You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+
+    ```console
+    $ kubectl get curatedapidescriptors -A
+
+    NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+    my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+    default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
+    ```
+
+- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
+  incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-8-2-alm-ki'></a> v1.8.2 Known issues: App Last Mile Catalog
+
+- The app-config-web, app-config-server, and app-config-worker components do not allow developers to
+  override the default application ports.
+  This means that applications that use non-standard ports do not work. To work around this, you can
+  configure ports by providing values to the resulting Carvel package.
+  This issue is planned to be fixed in a future release.
+
+#### <a id='1-8-2-alv-ki'></a> v1.8.2 Known issues: Application Live View
+
+- On the Run profile, Application Live View fails to reconcile if you use a non-default cluster issuer
+while installing through Tanzu Mission Control.
+
+#### <a id='1-8-2-amr-obs-ce-hndlr-ki'></a> v1.8.2 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+#### <a id='1-8-2-aws-services-ki'></a> v1.8.2 Known issues: AWS Services
+
+- When you create claims for Amazon MQ (RabbitMQ), one of the key names in the binding secret
+  is `endpoint`.
+  This does not match the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
+  library expects, which is `addresses`.
+  As a result, when you bind Spring-based workloads to the Amazon MQ service, the connection is not
+  established automatically.
+  For a workaround, see [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
+
+#### <a id='1-8-2-bitnami-services-ki'></a> v1.8.2 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami Services
+  after having already created a claim for one or more of the services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-8-2-convention-ki'></a> v1.8.2 Known issues: Cartographer Conventions
+
+- While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
+  fail with the status `CrashLoopBackOff` or `OOMKilled`.
+  For information about how to increase the memory limit for both the convention server and webhook
+  servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
+  see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-8-2-crossplane-ki'></a> v1.8.2 Known issues: Crossplane
+
+- After you uninstall the Crossplane package and reinstall it on the same cluster,
+  service claims you create never transition to `READY=True`. If you inspect the
+  underlying Crossplane managed resource, you see a TLS certificate verification error.
+  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#error-reinstallation).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-8-2-tap-buildpacks'></a>v1.8.2 Known issues: Go Lite Buildpack
+
+- In v1.8.1 there was a mismatch in version between the Go Lite buildpack provided in the
+  Tanzu Application Platform packages and the Go buildpack provided in the full dependencies.
+  This version mismatch made it impossible to use the dependency updater.
+  For Tanzu Application Platform v1.8.2, the version of Go Lite has been upgraded from v2.2.x to v3.1.x.
+  This version of the buildpack contains a breaking change which is the removal of the Dep package manager,
+  which has been deprecated.
+  If you still need to use the Dep package manager, see Tanzu Build Service documentation about using
+  out of band packages. <!-- get link -->
+
+#### <a id='1-8-2-svc-bindings-ki'></a> v1.8.2 Known issues: Service Bindings
+
+- When upgrading Tanzu Application Platform, pods are recreated for all workloads with service bindings.
+  This is because workloads and pods that use service bindings are being updated to new service
+  binding volumes. This happens automatically and will not affect subsequent upgrades.
+
+  Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
+  resources in your clusters to support the pod rollout.
+
+#### <a id='1-8-2-stk-ki'></a> v1.8.2 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-8-2-scc-ki'></a> v1.8.2 Known issues: Supply Chain Choreographer
+
+- The template for the `external-deliverable-template` does not respect the
+  `gitops_credentials_secret` parameter. The value is not present on the deliverable if it is
+  provided in the workload parameter `gitops_credentials_secret` or the supply chain tap-value
+  `ootb_supply_chain*.gitops.credentials_secret`. As a workaround, operators must provide the value
+  as a tap-value for the delivery: `ootb_delivery_basic.source.credentials_secret`.
+  The supply chain's GitOps credentials must authenticate to the same repository as the delivery's
+  source credentials. If a deliverable must use a secret different from that specified by the
+  delivery tap-value, the deliverable must be manually altered when being copied to the Run
+  cluster. Add the secret name as a `source_credentials_secret` parameter on the deliverable.
+
+- By default, Server Workload Carvel packages generated by the Carvel package supply chains no longer
+  contain OpenAPIv3 descriptions of their parameters.
+  These descriptions were omitted to keep the size of the Carvel Package definition under 4&nbsp;KB,
+  which is the size limit for the string output of a Tekton Task. For information about these parameters,
+  see [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md).
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+- Supply Chains that use [SSH auth](scc/git-auth.hbs.md#sshassh) with the git-writer resource will fail in the
+  [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
+  [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
+
 #### <a id='1-8-2-scst-policy-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Policy
 
-- Supply Chain Security Tools - Policy is defaulting to TUF enabled due to incorrect logic.
-This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
-To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
-enable TUF:
+- Supply Chain Security Tools - Policy defaults to The Update Framework (TUF) enabled due to incorrect logic.
+  This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
+  To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
+  enable TUF:
 
-  ```yaml
-  policy:
-    tuf_enabled: true
-  ```
+    ```yaml
+    policy:
+      tuf_enabled: true
+    ```
 
 #### <a id='1-8-2-scst-scan-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Scan
 
@@ -525,24 +679,106 @@ enable TUF:
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-#### <a id='1-8-2-tdp-ki'></a>v1.8.2 Known issues: Tanzu Developer Portal
+- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+  the default for later versions of Trivy and is not supported by AMR.
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
+  is in a failed state due to an invalid date, wait approximately 10 hours and the workload
+  automatically goes into the ready state.
+  For more about this issue information, see the
+  [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
+
+- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
+  To work around, create a Docker config secret for the registry.
+
+- Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
+  single time due to size limits configMaps.
+
+- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
+  This is cosmetic and does not have any impact on the vulnerabilities shown.
+
+- If the supply chain container image scanning is configured to use a different scanner or scanner
+  version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
+  be inaccurate.
+
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using
+  Tanzu Mission Control with a non-default issuer. For how to work around this issue, see
+  [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+
+#### <a id='1-8-2-scst-store-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Store
+
+- When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
+  This issue is planned to be fixed in a future release.
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
+
+#### <a id='1-8-2-tbs-ki'></a> v1.8.2 Known issues: Tanzu Build Service
+
+- During upgrades a large number of builds might be created due to buildpack and stack updates.
+  Some of these builds might fail due to transient network issues,
+  causing the workload to be in an unhealthy state. This resolves itself on subsequent builds
+  after a code change and does not affect the running application.
+
+  If you do not want to wait for subsequent builds to run, you can manually trigger a build.
+  For instructions, see [Troubleshooting](./tanzu-build-service/troubleshooting.hbs.md#failed-builds-upgrade).
+
+#### <a id='1-8-2-tdp-ki'></a> v1.8.2 Known issues: Tanzu Developer Portal
+
+- Tanzu Developer Portal Configurator jumps from v1.0.x in Tanzu Application Platform v1.7 to v1.8.x
+  in Tanzu Application Platform v1.8. This version jump enables future versions of
+  Tanzu Developer Portal and Tanzu Developer Portal Configurator to sync going forward.
+
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+    ```console
+    No configured authentication providers. Please configure at least one.
+    ```
+
+    To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
 - [ScmAuth](https://backstage.io/docs/reference/integration-react.scmauth/) is a Backstage concept
   that abstracts Source Code Management (SCM) authentication into a package. An oversight in a
   recent code-base migration led to the accidental exclusion of custom ScmAuth functions. This
   exclusion affected some client operations, such as using Application Accelerators to create Git
-  repositories on behalf of users. A fix for this issue is planned for the next patch.
+  repositories on behalf of users.
 
-#### <a id='1-8-2-tap-buildpacks'></a>v1.8.2 Known issues: Go Lite Buildpack in TAP Packages
+#### <a id='1-8-2-intellij-plugin-ki'></a> v1.8.2 Known issues: Tanzu Developer Tools for IntelliJ
 
-- In v1.8.1 there was a mismatch in version between the Go Lite buildpack
-  provided in TAP packages and the Go buildpack provided in Full Deps. This
-  version mismatch made it imposstible to use the Dependency Updater. For
-  v1.8.2 the version of Go Lite has been upgraded frome 2.2.x to 3.1.x. This
-  version of the buildpack contains a breaking change which is the removal of
-  the Dep package manager, which has been deprecated for years. If you still
-  require the use of the Dep package manager see TBS documentation about using
-  out of band packages.
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-8-2-vs-plugin-ki'></a> v1.8.2 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
 ---
 
@@ -552,56 +788,56 @@ The following table lists the supported component versions for this Tanzu Applic
 
 | Component Name                                     | Version        |
 | -------------------------------------------------- | -------------- |
-| API Auto Registration                              |                |
-| API portal                                         |                |
-| Application Accelerator                            |                |
-| Application Configuration Service                  |                |
-| Application Live View APIServer                    |                |
-| Application Live View back end                     |                |
-| Application Live View connector                    |                |
-| Application Live View conventions                  |                |
-| Application Single Sign-On                         |                |
-| Artifact Metadata Repository Observer              |                |
-| AWS Services                                       |                |
-| Bitnami Services                                   |                |
-| Carbon Black Scanner for SCST - Scan (beta)        |                |
-| Cartographer Conventions                           |                |
-| cert-manager                                       |                |
-| Cloud Native Runtimes                              |                |
-| Contour                                            |                |
-| Crossplane                                         |                |
-| Default Roles                                      |                |
-| Developer Conventions                              |                |
-| External Secrets Operator                          |                |
-| Flux CD Source Controller                          |                |
-| Grype Scanner for SCST - Scan                      |                |
-| Local Source Proxy                                 |                |
-| Managed Resource Controller (beta)                 |                |
-| Namespace Provisioner                              |                |
-| Out of the Box Delivery - Basic                    |                |
-| Out of the Box Supply Chain - Basic                |                |
-| Out of the Box Supply Chain - Testing              |                |
-| Out of the Box Supply Chain - Testing and Scanning |                |
-| Out of the Box Templates                           |                |
-| Service Bindings                                   |                |
-| Service Registry                                   |                |
-| Services Toolkit                                   |                |
-| Snyk Scanner for SCST - Scan (beta)                |                |
-| Source Controller                                  |                |
-| Spring Boot conventions                            |                |
-| Spring Cloud Gateway                               |                |
-| Supply Chain Choreographer                         |                |
-| Supply Chain Security Tools - Policy Controller    |                |
-| Supply Chain Security Tools - Scan                 |                |
-| Supply Chain Security Tools - Scan 2.0             |                |
-| Supply Chain Security Tools - Store                |                |
-| Tanzu Application Platform Telemetry               |                |
-| Tanzu Build Service                                |                |
-| Tanzu CLI                                          |                |
-| Tanzu Developer Portal                             |                |
-| Tanzu Developer Portal Configurator                |                |
-| Tanzu Supply Chain (beta)                          |                |
-| Tekton Pipelines                                   |                |
+| API Auto Registration                              | 0.5.0          |
+| API portal                                         | 1.5.0          |
+| Application Accelerator                            | 1.8.1          |
+| Application Configuration Service                  | 2.3.1          |
+| Application Live View APIServer                    | 1.8.2          |
+| Application Live View back end                     | 1.8.2          |
+| Application Live View connector                    | 1.8.2          |
+| Application Live View conventions                  | 1.8.2          |
+| Application Single Sign-On                         | 5.1.4          |
+| Artifact Metadata Repository Observer              | 0.4.3          |
+| AWS Services                                       | 0.2.1          |
+| Bitnami Services                                   | 0.4.0          |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.3.7          |
+| Cartographer Conventions                           | 0.8.10         |
+| cert-manager                                       | 2.7.2          |
+| Cloud Native Runtimes                              | 2.5.3          |
+| Contour                                            | 2.2.0          |
+| Crossplane                                         | 0.4.2          |
+| Default Roles                                      | 1.1.0          |
+| Developer Conventions                              | 0.16.1         |
+| External Secrets Operator                          | 0.9.4+tanzu.3  |
+| Flux CD Source Controller                          | 0.36.1+tanzu.2 |
+| Grype Scanner for SCST - Scan                      | 1.8.8          |
+| Local Source Proxy                                 | 0.2.1          |
+| Managed Resource Controller (beta)                 | 0.1.9          |
+| Namespace Provisioner                              | 0.6.2          |
+| Out of the Box Delivery - Basic                    | 0.15.7         |
+| Out of the Box Supply Chain - Basic                | 0.15.7         |
+| Out of the Box Supply Chain - Testing              | 0.15.7         |
+| Out of the Box Supply Chain - Testing and Scanning | 0.15.7         |
+| Out of the Box Templates                           | 0.15.7         |
+| Service Bindings                                   | 0.11.0         |
+| Service Registry                                   | 1.3.2          |
+| Services Toolkit                                   | 0.13.0         |
+| Snyk Scanner for SCST - Scan (beta)                | 1.2.7          |
+| Source Controller                                  | 0.8.4          |
+| Spring Boot conventions                            | 1.8.2          |
+| Spring Cloud Gateway                               | 2.1.9          |
+| Supply Chain Choreographer                         | 0.8.10         |
+| Supply Chain Security Tools - Policy Controller    | 1.6.4          |
+| Supply Chain Security Tools - Scan                 | 1.8.9          |
+| Supply Chain Security Tools - Scan 2.0             | 0.3.6          |
+| Supply Chain Security Tools - Store                | 1.8.3          |
+| Tanzu Application Platform Telemetry               | 0.7.0          |
+| Tanzu Build Service                                | 1.13.0         |
+| Tanzu CLI                                          | 1.2.0          |
+| Tanzu Developer Portal                             | 1.8.4          |
+| Tanzu Developer Portal Configurator                | 1.8.4          |
+| Tanzu Supply Chain (beta)                          | 0.1.38         |
+| Tekton Pipelines                                   | 0.50.3+tanzu.4 |
 
 ---
 
@@ -1031,15 +1267,15 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-scst-policy-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Policy
 
-- Supply Chain Security Tools - Policy is defaulting to TUF enabled due to incorrect logic.
-This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
-To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
-enable TUF:
+- Supply Chain Security Tools - Policy defaults to The Update Framework (TUF) enabled due to incorrect logic.
+  This might cause the package to not reconcile correctly if the default TUF mirrors are not reachable.
+  To work around this, explicitly configure policy controller in the `tap-values.yaml` file to
+  enable TUF:
 
-  ```yaml
-  policy:
-    tuf_enabled: true
-  ```
+    ```yaml
+    policy:
+      tuf_enabled: true
+    ```
 
 #### <a id='1-8-1-scst-scan-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Scan
 
@@ -1047,13 +1283,13 @@ enable TUF:
   the scanning image is overwritten with an incorrect default value from
   `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Trivy image packaged with Tanzu Application Platform:
+  For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanner_template_name: image-vulnerability-scan-grype
       image_scanning_cli:
-        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
@@ -1078,7 +1314,9 @@ enable TUF:
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
   be inaccurate.
 
-- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using
+  Tanzu Mission Control with a non-default issuer. For how to work around this issue, see
+  [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
 #### <a id='1-8-1-scst-store-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Store
 
@@ -1112,11 +1350,11 @@ enable TUF:
 - If you do not configure any authentication providers, and do not allow guest access, the following
   message appears when loading Tanzu Developer Portal in a browser:
 
-   ```console
-   No configured authentication providers. Please configure at least one.
-   ```
+    ```console
+    No configured authentication providers. Please configure at least one.
+    ```
 
-  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+    To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
@@ -2082,13 +2320,13 @@ while installing through Tanzu Mission Control.
   the scanning image is overwritten with an incorrect default value from
   `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Trivy image packaged with Tanzu Application Platform:
+  For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanner_template_name: image-vulnerability-scan-grype
       image_scanning_cli:
-        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
@@ -2113,7 +2351,9 @@ while installing through Tanzu Mission Control.
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
   be inaccurate.
 
-- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using Tanzu Mission Control with a non-default issuer. For how to work around this issue, see [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
+- SCST - Scan 1.0 fails with the error `secrets 'store-ca-cert' not found` during deployment by using
+  Tanzu Mission Control with a non-default issuer. For how to work around this issue, see
+  [Deployment failure with non-default issuer](scst-scan/troubleshoot-scan.hbs.md#non-default-issuer).
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
@@ -2147,11 +2387,11 @@ while installing through Tanzu Mission Control.
 - If you do not configure any authentication providers, and do not allow guest access, the following
   message appears when loading Tanzu Developer Portal in a browser:
 
-   ```console
-   No configured authentication providers. Please configure at least one.
-   ```
+    ```console
+    No configured authentication providers. Please configure at least one.
+    ```
 
-  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+    To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
