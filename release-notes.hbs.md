@@ -1205,7 +1205,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Developer Portal                             | 1.9.1          |
 | Tanzu Developer Portal Configurator                | 1.9.1          |
 | Tanzu Supply Chain (beta)                          | 0.2.9          |
-| Tekton Pipelines                                   | 0.56.2+tanzu.1 |
+| Tekton Pipelines                                   | 0.50.3+tanzu.4 |
 
 ---
 
