@@ -1,21 +1,12 @@
 # Version matrix for Crossplane
 
-This topic provides you with a version matrix for Tanzu Application Platform (commonly known as TAP),
-the Crossplane package, and its open source components.
+This topic provides you with a version matrix for the Crossplane package and its open source
+components in Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }}.
 
-This includes:
+To view this information for another Tanzu Application Platform version, select the version from the
+drop-down menu at the top of this page.
 
-- The Crossplane package (`crossplane.tanzu.vmware.com`)
-- Universal Crossplane (UXP)
-- The version of Upbound Crossplane used in UXP
-- provider-helm
-- provider-kubernetes
-
-The following table provides component versions for the Crossplane package in Tanzu Application Platform
-v{{ vars.url_version }}.
-To view this information for another Tanzu Application Platform version, select the version from the drop-down menu at
-the top of this page.
-
+The following table has the component versions for the Crossplane package.
 <!-- add patch updates in a new column -->
 
 <table>
