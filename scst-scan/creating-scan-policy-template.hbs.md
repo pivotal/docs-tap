@@ -1,63 +1,65 @@
-# Enabling policy enforcement with Scan 2.0 in a supply chain
+# Enable policy enforcement with Scan 2.0 in a supply chain
 
-Policy enforcement is not inbuilt in Scan 2.0. It can be achieved by the creating a 
+This topic tells you how to enable policy enforcement with SCST - Scan 2.0.
+
+Policy enforcement is not inbuilt in SCST - Scan 2.0. It can be achieved by the creating a
 `ClusterImageTemplate` that stamps out a Tekton `TaskRun` that evaluates the vulnerabilities
-and enforces the policy set. A sample of the task run along with a the cluster image template
-is provided here.
+and enforces the policy set. A sample of the task, and cluster image template
+are provided in this topic.
 
-## Set up required for the Task Run to succeed
+## Prerequisites for the Task Run to succeed
 
 The `TaskRun` queries the metadata store to get the list of vulnerabilities for the image.
+To authenticate with the MDS (Metadata Store) API an accessToken and certificate are needed.
+Complete the following steps:
 
-To authenticate with the MDS API an accessToken and cert is needed.
+1. Build an image that contains `curl` and `jq`. This image is used by the task run.
 
-- Build an image that contains `curl` and `jq`. This image will be used by the task run.
+1. Get the access token from MDS:
 
-- Get the access token from MDS:
+    ```console
+    ACCESS-TOKEN=$(kubectl get secrets -n metadata-store  metadata-store-read-write-client -o yaml | yq .data.token | base64 -d)
+    ```
 
-```console
-ACCESS-TOKEN=$(kubectl get secrets -n metadata-store  metadata-store-read-write-client -o yaml | yq .data.token | base64 -d)
-```
+1. Create a secret `metadata-store-access-token`
 
-Create a secret `metadata-store-access-token`
+    ```yaml
+    kind: Secret
+    apiVersion: v1
+    metadata:
+      name: metadata-store-access-token
+    stringData:
+      accessToken: <ACCESS-TOKEN>
+    ```
 
-```yaml
-kind: Secret
-apiVersion: v1
-metadata:
-  name: metadata-store-access-token
-stringData:
-  accessToken: <ACCESS-TOKEN>
-```
+1. Get the CA certificate from MDS:
 
-- Get the CA cert from MDS:
+    ```console
+    MDS_CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"" | base64 -d)
+    ```
 
-```console
-MDS_CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"" | base64 -d)
-```
+1. Create a secret `metadata-store-cert`:
 
-Create a secret `metadata-store-cert`
+    ```yaml
+    kind: Secret
+    apiVersion: v1
+    metadata:
+      name: metadata-store-cert
+    stringData:
+      caCrt: |
+        <MDS_CA_CERT>
+    ```
 
-```yaml
-kind: Secret
-apiVersion: v1
-metadata:
-  name: metadata-store-cert
-stringData:
-  caCrt: |
-    <MDS_CA_CERT>
-```
+## Task run sample that enforces policy
 
-- Task run sample that enforces policy:
-
-The sample task run waits until the vulnerability data is avaiable for the image. When the data is
-available, the vulnerabilities are aggegrated by severity. The task run succeeds or fails based on 
+The sample task run waits until the vulnerability data is available for the image. When the data is
+available, the vulnerabilities are aggregated by severity. The task run succeeds or fails based on
 the policy `GATE` set.
 
-For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical vulnerabilities
-for the image.
+For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical
+vulnerabilities for the image.
 
-If the `GATE` is set to `none` no policy would be enforced.
+If the `GATE` is set to `none` no policy is enforced.
 
 ```yaml
 apiVersion: tekton.dev/v1
@@ -135,128 +137,128 @@ spec:
         secretName: metadata-store-cert
 ```
 
-## Including the policy ClusterImageTemplate in a supply chain
+## Include the policy ClusterImageTemplate in a supply chain
 
-- Embed the sample task run in a `ClusterImageTemplate`. 
+1. Embed the sample task run in a `ClusterImageTemplate`.
 
-```yaml
-#@ load("@ytt:data", "data")
----
-apiVersion: carto.run/v1alpha1
-kind: ClusterImageTemplate
-metadata:
-  name: scan-policy-template
-spec:
-  imagePath: .status.compliantArtifact.registry.image
-  healthRule:
-    multiMatch:
-      healthy:
-        matchConditions:
-          - type: Succeeded
-            status: "True"
-      unhealthy:
-        matchConditions:
-          - type: Succeeded
-            status: "False"
-  ytt: |
+    ```yaml
     #@ load("@ytt:data", "data")
-    #@ load("@ytt:template", "template")
     ---
-    apiVersion: tekton.dev/v1
-    kind: TaskRun
+    apiVersion: carto.run/v1alpha1
+    kind: ClusterImageTemplate
     metadata:
-      name: enforce-policy
-    spec:
-      serviceAccountName: scanner
-      taskSpec:  
-        steps:
-        - name: enforce-policy
-          image: dev.local:5000/taskrun-image:latest
-          script: |
-          ....
-            IMAGE_DIGEST=$(echo ${IMAGE} | cut -d "@" -f 2)
-           ....
-          env:
-          ...
-          - name: IMAGE
-            value: #@ data.values.image # <------ template the image so that it can flow through the supply chain
-          ....
-```
-
-- Plug in the created `ClusterImageTemplate` after the scan step in the supply chain.
-
-```yaml
----
-apiVersion: carto.run/v1alpha1
-kind: ClusterSupplyChain
-metadata:
-  name: scanning-image-scan-to-url
-spec:
-  selectorMatchExpressions:
-    - key: 'apps.tanzu.vmware.com/workload-type'
-      operator: In
-      values:
-      - web
-      - server
-      - worker
-  selectorMatchFields:
-    - key: spec.image
-      operator: Exists
-
-  params:
-    - name: image_scanning_service_account_publisher
-      value: scanner
-    - name: image_scanning_service_account_scanner
-      default: report-publisher
-    - name: image_scanning_workspace_size
-      default: 4Gi
-
-  resources:
-  - name: image-provider
-    templateRef:
-      kind: ClusterImageTemplate
-      name: image-provider-template
-    params:
-      - name: serviceAccount
-        default: scanner
-
-  - name: image-scanner
-    templateRef:
-      kind: ClusterImageTemplate
-      name: image-vulnerability-scan-trivy
-    params:
-      - name: registry
-        default:
-          server: dev.registry.tanzu.vmware.com
-          repository: tanzu-image-signing/test-policy
-    images:
-      - resource: image-provider
-        name: image
-
-  - name: policy # policy cluster image template
-    templateRef:
-      kind: ClusterImageTemplate
       name: scan-policy-template
-    params:
-      - name: serviceAccount
-        default: scanner
-    images:
-    - resource: image-scanner
-      name: image
-    ... <supply chain continues>
-```
+    spec:
+      imagePath: .status.compliantArtifact.registry.image
+      healthRule:
+        multiMatch:
+          healthy:
+            matchConditions:
+              - type: Succeeded
+                status: "True"
+          unhealthy:
+            matchConditions:
+              - type: Succeeded
+                status: "False"
+      ytt: |
+        #@ load("@ytt:data", "data")
+        #@ load("@ytt:template", "template")
+        ---
+        apiVersion: tekton.dev/v1
+        kind: TaskRun
+        metadata:
+          name: enforce-policy
+        spec:
+          serviceAccountName: scanner
+          taskSpec:  
+            steps:
+            - name: enforce-policy
+              image: dev.local:5000/taskrun-image:latest
+              script: |
+              ....
+                IMAGE_DIGEST=$(echo ${IMAGE} | cut -d "@" -f 2)
+              ....
+              env:
+              ...
+              - name: IMAGE
+                value: #@ data.values.image # <------ template the image so that it can flow through the supply chain
+              ....
+    ```
 
-- Create a workload to trigger the supply chain.
+1. Plug in the created `ClusterImageTemplate` after the scan step in the supply chain.
 
-```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  labels:
-    app.kubernetes.io/part-of: test-policy
-    apps.tanzu.vmware.com/workload-type: web
-  name: test-policy
-  namespace: app-scanning
-spec:
-  image: image@sha256:digest
-```
+    ```yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: ClusterSupplyChain
+    metadata:
+      name: scanning-image-scan-to-url
+    spec:
+      selectorMatchExpressions:
+        - key: 'apps.tanzu.vmware.com/workload-type'
+          operator: In
+          values:
+          - web
+          - server
+          - worker
+      selectorMatchFields:
+        - key: spec.image
+          operator: Exists
+
+      params:
+        - name: image_scanning_service_account_publisher
+          value: scanner
+        - name: image_scanning_service_account_scanner
+          default: report-publisher
+        - name: image_scanning_workspace_size
+          default: 4Gi
+
+      resources:
+      - name: image-provider
+        templateRef:
+          kind: ClusterImageTemplate
+          name: image-provider-template
+        params:
+          - name: serviceAccount
+            default: scanner
+
+      - name: image-scanner
+        templateRef:
+          kind: ClusterImageTemplate
+          name: image-vulnerability-scan-trivy
+        params:
+          - name: registry
+            default:
+              server: dev.registry.tanzu.vmware.com
+              repository: tanzu-image-signing/test-policy
+        images:
+          - resource: image-provider
+            name: image
+
+      - name: policy # policy cluster image template
+        templateRef:
+          kind: ClusterImageTemplate
+          name: scan-policy-template
+        params:
+          - name: serviceAccount
+            default: scanner
+        images:
+        - resource: image-scanner
+          name: image
+        ... <supply chain continues>
+    ```
+
+1. Create a workload to trigger the supply chain.
+
+    ```yaml
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: test-policy
+        apps.tanzu.vmware.com/workload-type: web
+      name: test-policy
+      namespace: app-scanning
+    spec:
+      image: image@sha256:digest
+    ```
