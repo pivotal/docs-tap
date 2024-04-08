@@ -556,16 +556,6 @@ while installing through Tanzu Mission Control.
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical
   ImageVulnerabilityScans you can ignore if the previous submission was successful.
 
-#### <a id='1-8-2-aws-services-ki'></a> v1.8.2 Known issues: AWS Services
-
-- When you create claims for Amazon MQ (RabbitMQ), one of the key names in the binding secret
-  is `endpoint`.
-  This does not match the name that the [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)
-  library expects, which is `addresses`.
-  As a result, when you bind Spring-based workloads to the Amazon MQ service, the connection is not
-  established automatically.
-  For a workaround, see [Troubleshoot AWS Services](aws-services/how-to-guides/troubleshooting.hbs.md).
-
 #### <a id='1-8-2-bitnami-services-ki'></a> v1.8.2 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami Services
@@ -583,11 +573,6 @@ while installing through Tanzu Mission Control.
   see [Troubleshoot Cartographer Conventions](cartographer-conventions/troubleshooting.hbs.md).
 
 #### <a id='1-8-2-crossplane-ki'></a> v1.8.2 Known issues: Crossplane
-
-- After you uninstall the Crossplane package and reinstall it on the same cluster,
-  service claims you create never transition to `READY=True`. If you inspect the
-  underlying Crossplane managed resource, you see a TLS certificate verification error.
-  For more information, see [Troubleshoot Crossplane](crossplane/how-to-guides/troubleshooting.hbs.md#error-reinstallation).
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
