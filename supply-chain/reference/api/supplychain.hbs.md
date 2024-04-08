@@ -31,6 +31,54 @@ metadata:
 
 ## Spec
 
+### `spec.config`
+
+The [`spec.stages`](#specstages) structure introduces `Components` whose aggregated [config sections](./component.hbs.md#specconfig),
+form the SupplyChain's Configuration which become the [Workload's spec](./workload.hbs.md#spec).
+
+This configuration can be altered by changing defaults, or overridden and hidden from the `Workload`.
+
+#### `spec.config.defaults`
+
+Tanzu Supply Chains provide a mechanism to change or add defaults for the config that is presented in the [Workload's spec](./workload.hbs.md#spec).
+
+`spec.config.defaults` is an array of `path:` and `value:` fields, where:
+
+- `path`: path to the configuration value, formatted as either:
+  - The full path to the field you wish to set.
+  - The path to any structure where all desired child fields must be set.
+- `value`: string or structure value. 
+
+#### `spec.config.overrides`
+
+Tanzu Supply Chains provide a mechanism to override the value of a config field, such that it no longer appears in the [Workload's spec](./workload.hbs.md#spec).
+
+`spec.config.overrides` is an array of `path:` and `value:` fields, where:
+
+- `path`: path to the configuration value, formatted as either:
+  - The full path to the field you wish to set.
+  - The path to any structure where all desired child fields must be set.
+- `value`: string or structure value.
+
+#### Example
+
+```yaml
+apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
+kind: SupplyChain
+spec:
+  config:
+    defaults:
+      - path: spec.source
+        value: 
+          branch: develop
+          url: https://our.git.com/our-monorepo
+    overrides:
+      - path: spec.registry.repository
+        value: "YOUR-REGISTRY-REPO"
+      - path: spec.registry.server
+        value: "YOUR-REGISTRY-SERVER"
+```
+
 ### `spec.description`
 
 The `spec.description` field is visible to an app developer when they use the CLI to discover

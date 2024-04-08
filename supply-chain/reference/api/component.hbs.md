@@ -236,6 +236,52 @@ status:
   observedGeneration: 1
 ```
 
+### `status.docs`
+
+`status.docs` contains a human-readable explanation of the content of the component. 
+It's mostly useful for CLIs and UIs, however it does provide a clean summary of the component.
+
+#### Example
+```
+docs: |
+  # source
+
+  Version: 1.0.0
+
+  ## Description
+
+  Monitors a git repository
+
+  ## Inputs
+
+  * _none_
+
+  ## Outputs
+
+  | Name  | Type |
+  | ---   | ---  |
+  | source | [source](./output-types.hbs.md#source) |
+
+  ## Config
+
+  ``yaml
+  spec:
+    source:
+      # Fill this object in if you want your source to come from git.
+      # The tag, commit and branch fields are mutually exclusive, use only one.
+      git:
+        # A git branch ref to watch for new source
+        branch:
+        # A git commit sha to use
+        commit:
+        # A git tag ref to watch for new source
+        tag:
+        # The url to the git source repository
+        # +required
+        url:
+  ``
+```
+
 <!--
 [SupplyChain]: supplychain.hbs.md
 [Workload]: workload.hbs.md
