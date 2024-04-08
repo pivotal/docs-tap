@@ -15,13 +15,13 @@ In release notes, this condition hides content that describes an unreleased patc
 
 **Release Date**: 9 April 2024
 
-### <a id='1-9-0-whats-new'></a> What's new in Tanzu Application Platform vX.X
+### <a id='1-9-0-whats-new'></a> What's new in Tanzu Application Platform v1.9
 
 This release includes the following platform-wide enhancements.
 
 #### <a id='1-9-0-new-platform-features'></a> New platform-wide features
 
-- Feature Description.
+- Tanzu Application Platform v1.9 supports N-2 upgrades, which allows you to upgrade from Tanzu Application Platform v1.7.x to v1.9.x and from Tanzu Application Platform v1.8.x to v1.9.x.
 
 #### <a id='1-9-0-new-components'></a> New components
 
@@ -86,11 +86,6 @@ This release includes the following changes, listed by component and area.
     previous time period
   - Added graphs to display changes in Lead Time and Deployment Frequency metrics over time
   - Performance improvements
-
-#### <a id='1-9-0-tap-upgrade'></a> v1.9.0 Features: N-2 upgrade to TAP 1.9.x
-
-- TAP supports N-2 upgrades starting with 1.9.0, i.e, one can upgrade from TAP 1.7.x -> 1.9.x and TAP 1.8.x -> 1.9.x.
-
 
 ---
 
