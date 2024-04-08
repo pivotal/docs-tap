@@ -89,7 +89,7 @@ metadata:
 
 ## Dynamic Workload API
 
-### `spec`
+### <a id='spec'></a>`spec`
 
 The `spec` of a `Workload` resource is dynamic, however it is immutable after it is applied. The
 `spec` is derived by combining the [Component configurations](component.hbs.md#specconfig) of all

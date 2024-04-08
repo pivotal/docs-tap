@@ -31,27 +31,29 @@ metadata:
 
 ## Spec
 
-### `spec.config`
+### <a id='spec-config'></a>`spec.config`
 
-The [`spec.stages`](#specstages) structure introduces `Components` whose aggregated [config sections](./component.hbs.md#specconfig),
-form the SupplyChain's Configuration which become the [Workload's spec](./workload.hbs.md#spec).
+The [`spec.stages`](#specstages) structure introduces `Components` where the aggregated [config sections](./component.hbs.md#specconfig),
+form the SupplyChain's configuration and become the [Workload's spec](./workload.hbs.md#spec).
 
 This configuration can be altered by changing defaults, or overridden and hidden from the `Workload`.
 
-#### `spec.config.defaults`
+#### <a id='spec-config-defaults'></a>`spec.config.defaults`
 
-Tanzu Supply Chains provide a mechanism to change or add defaults for the config that is presented in the [Workload's spec](./workload.hbs.md#spec).
+Change or add defaults for the config that is presented
+in the [Workload's spec](./workload.hbs.md#spec).
 
 `spec.config.defaults` is an array of `path:` and `value:` fields, where:
 
-- `path`: path to the configuration value, formatted as either:
-  - The full path to the field you wish to set.
+- `path`: Path to the configuration value, formatted as either:
+  - The full path to the field you want to set.
   - The path to any structure where all desired child fields must be set.
-- `value`: string or structure value. 
+- `value`: A string or structure value.
 
-#### `spec.config.overrides`
+#### <a id='spec-config-overrides'></a>`spec.config.overrides`
 
-Tanzu Supply Chains provide a mechanism to override the value of a config field, such that it no longer appears in the [Workload's spec](./workload.hbs.md#spec).
+Override the value of a config field, so that it no
+longer appears in the [Workload's spec](./workload.hbs.md#spec).
 
 `spec.config.overrides` is an array of `path:` and `value:` fields, where:
 

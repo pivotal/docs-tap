@@ -37,7 +37,7 @@ spec:
   description: Gets the latest source and stores it in an OCI Image
 ```
 
-### `spec.config`
+### <a id='spec-config'></a>`spec.config`
 
 `spec.config` defines the configuration in a workload (`spec` of the workload) that is required for
 the component to operate.
@@ -236,10 +236,10 @@ status:
   observedGeneration: 1
 ```
 
-### `status.docs`
+### <a id='status-docs'>`status.docs`
 
 `status.docs` contains a human-readable explanation of the content of the component. 
-It's mostly useful for CLIs and UIs, however it does provide a clean summary of the component.
+It's useful for CLIs and UIs, and provides a clean summary of the component.
 
 #### Example
 ```
