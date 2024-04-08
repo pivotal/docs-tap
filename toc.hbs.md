@@ -615,6 +615,7 @@
                         - [Grype IVS sample](scst-scan/ivs-grype.hbs.md)
                 - [Verify Scan 2.0](scst-scan/verify-app-scanning-supply-chain.hbs.md)
             - [Set up recurring scanning](scst-scan/recurring-scanning.hbs.md)
+            - [Enable policy enforcement in a supply chain](scst-scan/creating-scan-policy-template.hbs.md)
             - [Observing](scst-scan/app-scanning-observing.hbs.md)
             - [Troubleshooting](scst-scan/app-scanning-troubleshooting.hbs.md)
         - [Tanzu Supply Chain Scan 2.0 Components (Beta)](scst-scan/tanzu-supply-chain/scan-2-0-with-tanzu-supply-chain-overview.hbs.md)
