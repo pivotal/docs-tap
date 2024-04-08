@@ -802,6 +802,7 @@
               - [Workload Runs overview](./supply-chain/platform-engineering/explanation/workload-runs.hbs.md)
               - [Components overview](./supply-chain/platform-engineering/explanation/components.hbs.md)
               - [Resumptions overview](./supply-chain/platform-engineering/explanation/resumptions.hbs.md)
+              - [Security Model overview](./supply-chain/platform-engineering/explanation/security-model.hbs.md)
       - [Developing software with Supply Chain](./supply-chain/development/about.hbs.md)
           - [Tutorials](supply-chain/development/tutorials/about.hbs.md)
               - [Deploy your first Workload](./supply-chain/development/tutorials/deploy-your-first-workload.hbs.md)

@@ -145,7 +145,7 @@ The [Component] must exist in the same namespace as the `SupplyChain`. This will
 The supply chain returns an error if a component expects an input that has not been output by a
 previous stage.
 
-### `spec.stages[].securityContext`
+### <a id='security-context'></a> `spec.stages[].securityContext`
 
 Each stage may also specify a `securityContext` with a single field `runAs`. When this is
 set to `workload` the stage is executed in the namespace of the workload, rather than the supply
