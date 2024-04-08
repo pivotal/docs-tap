@@ -503,7 +503,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Service Registry | 1.2.4 |
 | Services Toolkit | 0.12.0 |
 | Snyk Scanner for SCST - Scan (beta) | 1.1.7 |
-| Source Controller | 0.9.0-build.2 |
+| Source Controller | 0.8.4 |
 | Spring Boot conventions | 1.7.4 |
 | Spring Cloud Gateway | 2.1.9 |
 | Supply Chain Choreographer | 0.8.10 |
@@ -514,8 +514,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Application Platform Telemetry | 0.7.0 |
 | Tanzu Build Service | 1.12.6 |
 | Tanzu CLI | 1.2.0 |
-| Tanzu Developer Portal | 1.7.11 |
-| Tanzu Developer Portal Configurator | 1.7.11 |
+| Tanzu Developer Portal | 1.7.12 |
+| Tanzu Developer Portal Configurator | 1.7.12 |
 | Tekton Pipelines | 0.50.3+tanzu.4 |
 
 ---
