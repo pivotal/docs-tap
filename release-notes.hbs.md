@@ -317,7 +317,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Service Bindings | 0.9.4 |
 | Services Toolkit | 0.11.1 |
 | Snyk Scanner for SCST - Scan (beta) | 1.0.0-beta.156 |
-| Source Controller | 0.9.0-build.2 |
+| Source Controller | 0.8.4 |
 | Spring Boot conventions | 1.6.3 |
 | Spring Cloud Gateway | 2.0.12 |
 | Supply Chain Choreographer | 0.7.5 |
