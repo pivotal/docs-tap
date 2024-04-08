@@ -236,12 +236,13 @@ status:
   observedGeneration: 1
 ```
 
-### <a id='status-docs'>`status.docs`
+### <a id='status-docs'></a>`status.docs`
 
-`status.docs` contains a human-readable explanation of the content of the component. 
+`status.docs` contains a human-readable explanation of the content of the component.
 It's useful for CLIs and UIs, and provides a clean summary of the component.
 
 #### Example
+
 ```
 docs: |
   # source
