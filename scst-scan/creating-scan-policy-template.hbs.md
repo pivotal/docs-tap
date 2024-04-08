@@ -1,13 +1,14 @@
 # Enable policy enforcement with Scan 2.0 in a supply chain
 
-This topic tells you how to enable policy enforcement with SCST - Scan 2.0.
+This topic tells you how to enable policy enforcement in a supply chain with Supply Chain Security
+Tools (SCST) - Scan 2.0.
 
-Policy enforcement is not inbuilt in SCST - Scan 2.0. It can be achieved by the creating a
+Policy enforcement is not inbuilt in SCST - Scan 2.0. It can be achieved by creating a
 `ClusterImageTemplate` that stamps out a Tekton `TaskRun` that evaluates the vulnerabilities
-and enforces the policy set. A sample of the task, and cluster image template
+and enforces the policy set. A sample of the task and cluster image template
 are provided in this topic.
 
-## Prerequisites for the Task Run to succeed
+## Prerequisites for the task run
 
 The `TaskRun` queries the metadata store to get the list of vulnerabilities for the image.
 To authenticate with the MDS (Metadata Store) API an accessToken and certificate are needed.
@@ -21,7 +22,7 @@ Complete the following steps:
     ACCESS-TOKEN=$(kubectl get secrets -n metadata-store  metadata-store-read-write-client -o yaml | yq .data.token | base64 -d)
     ```
 
-1. Create a secret `metadata-store-access-token`
+1. Create a secret `metadata-store-access-token`.
 
     ```yaml
     kind: Secret
@@ -59,7 +60,7 @@ the policy `GATE` set.
 For example, if the `GATE` is set to `high`, the task run fails if it finds high or critical
 vulnerabilities for the image.
 
-If the `GATE` is set to `none` no policy is enforced.
+If the `GATE` is set to `none`, no policy is enforced.
 
 ```yaml
 apiVersion: tekton.dev/v1
