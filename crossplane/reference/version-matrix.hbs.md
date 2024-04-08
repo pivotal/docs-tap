@@ -1,7 +1,7 @@
 # Version matrix for Crossplane
 
 This topic provides you with a version matrix for the Crossplane package and its open source
-components in Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }}.
+components in Tanzu Application Platform v{{ vars.url_version }} (commonly known as TAP).
 
 To view this information for another Tanzu Application Platform version, select the version from the
 drop-down menu at the top of this page.
