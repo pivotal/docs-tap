@@ -31,44 +31,46 @@ tap_gui:
   NO_PROXY: 'bar.com,baz.com'
 ```
 
-## NO_PROXY Defaults
+## <a id='no-proxy-def-values'></a> `NO_PROXY` default values
 
-Tanzu Developer Portal applies defaults for NO_PROXY to its kubernetes
-manifests. These defaults will be implemented any time you use the HTTP_PROXY
-variable, even when you have not specified NO_PROXY. When you do specify a value
-for NO_PROXY, your input will be prepended to the defaults with a comma. For example
+Tanzu Developer Portal applies default values for `NO_PROXY` to its Kubernetes manifests. These
+default values are implemented any time you use the `HTTP_PROXY` variable, even when you have not
+specified `NO_PROXY`. When you do specify a value for `NO_PROXY`, your input is prepended to the
+default values with a comma.
+
+`tap-values.yaml` snippet example:
 
 ```yaml
-# tap-values.yaml
 tap_gui:
   HTTP_PROXY: http://foo:bar@127.0.0.1:8888
   NO_PROXY: 'bar.com,baz.com'
 ```
 
-Then the output of the following command would be:
-```shell
-kubectl -n tap-gui get deployment server -o jsonpath="{.spec.template.spec.containers[0].env[?(@.name=='NO_PROXY')].value}"
-```
-```shell
+Command output example:
+
+```console
+$ kubectl -n tap-gui get deployment server -o jsonpath="{.spec.template.spec.containers[0].env[?(@.name=='NO_PROXY')].value}"
 bar.com,baz.com,.local,.local.,localhost,.metadata-store,.accelerator-system,$(KUBERNETES_SERVICE_HOST)
 ```
 
-The list of defaults is as follows and should only affect requests within the
-cluster
+The list of default values is as follows and only affects requests within the cluster:
 
-```
+```console
 .local,.local.,localhost,.metadata-store,.accelerator-system,$(KUBERNETES_SERVICE_HOST)
 ```
 
-If you'd like to see which values are being used on your installation you can run
-```
+### <a id='see-values'></a> See which values are in use on your installation
+
+To see which values are in use on your installation, run:
+
+```console
 kubectl -n tap-gui get deployment server -o jsonpath="{.spec.template.spec.containers[0].env[?(@.name=='NO_PROXY')].value}"
 ```
 
-### Overriding the Defaults
+### <a id='override-def-values'></a> Override the default values
 
-Currently the only way to override the list of defaults is to use an overlay and
-replace the entire list.
+Currently the only way to override the list of default values is to use an overlay and replace the
+entire list. For example:
 
 ```yaml
 apiVersion: v1
@@ -95,6 +97,5 @@ stringData:
                   value: 'MY-VALUES'
 ```
 
-See the doc on [customizing your package
-installation](../customize-package-installation.hbs.md) to learn more about how
-to apply overlays.
+For more information about how to apply overlays, see
+[Customize your package installation](../customize-package-installation.hbs.md).
