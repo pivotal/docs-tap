@@ -21,11 +21,8 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-9-0-new-platform-features'></a> New platform-wide features
 
-- Tanzu Application Platform v1.9 supports N-2 upgrades, which allows you to upgrade from Tanzu Application Platform v1.7.x to v1.9.x and from Tanzu Application Platform v1.8.x to v1.9.x.
-
-#### <a id='1-9-0-new-components'></a> New components
-
-- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
+- Tanzu Application Platform v1.9 supports N-2 upgrades, which allows you to upgrade from
+  Tanzu Application Platform v1.7.x to v1.9.x or from Tanzu Application Platform v1.8.x to v1.9.x.
 
 ---
 
@@ -60,7 +57,7 @@ This release includes the following changes, listed by component and area.
   You can set this value globally or on a specific service. For more information, see
   [Package values of Bitnami Services](bitnami-services/reference/package-values.hbs.md).
 
-#### <a id='1-9-0-buildpacks'></a> v1.9.0 Features: Buildpacks and stacks
+#### <a id='1-9-0-buildpacks'></a> v1.9.0 Features: Buildpacks and Stacks
 
 - Adds support for the Tanzu Standard Stack for UBI 8 to the .NET Core and Web Servers buildpacks.
   For more information about the Tanzu Standard Stack for UBI 8, see the
@@ -99,22 +96,23 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='svc-toolkit-bc'></a> v1.9.0 Breaking changes: Services Toolkit
 
-The following APIs and tools have now been removed:
+- The `tanzu services claims` CLI plug-in command has been removed. You must now use the
+  `tanzu services resource-claims` command instead.
 
-* The experimental kubectl-scp plug-in.
+-  The experimental kubectl-scp plug-in has been removed.
 
-* The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1`.
-  * `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  * `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+-  The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1` have been removed.
+  - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
 
 #### <a id='1-9-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
 
