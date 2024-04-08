@@ -753,6 +753,7 @@
          - [Configure by using an existing certificate](tap-gui/tls/enable-tls-existing-cert.hbs.md)
          - [Configure by using a self-signed certificate](tap-gui/tls/enable-self-signed-cert.hbs.md)
          - [Configure by using cert-manager and ClusterIssuer](tap-gui/tls/cert-mngr-ext-clusterissuer.hbs.md)
+      - [Configure a corporate HTTP or HTTPS proxy](tap-gui/http-proxy.hbs.md)
       - [Upgrade Tanzu Developer Portal](tap-gui/upgrades.hbs.md)
       - [Troubleshoot Tanzu Developer Portal](tap-gui/troubleshooting.hbs.md)
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)
