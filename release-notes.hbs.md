@@ -1239,4 +1239,10 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   - `clusterexampleusages.services.apps.tanzu.vmware.com/v1alpha1`
   - `clusterresources.services.apps.tanzu.vmware.com/v1alpha1`
 
+### <a id="sc-deprecations"></a> Source Controller deprecations
 
+- The Source Controller `ImageRepository` API is deprecated and is marked for
+  removal. Use the `OCIRepository` API instead.
+  The Flux Source Controller installation includes the `OCIRepository` API.
+  For more information about the `OCIRepository` API, see the
+  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
