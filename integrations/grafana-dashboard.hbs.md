@@ -1,4 +1,4 @@
-# Using a Grafana Dashboard for TAP Observability
+# Use a Grafana dashboard for Tanzu Application Platform observability
 
 This topic tells you how to configure and set up a public Grafana-Prometheus Helm with Tanzu
 Application Platform (commonly known as TAP) `CustomResource` metrics collection.

@@ -132,7 +132,7 @@
 - [Integrations](integrations/tsm-tap-integration.hbs.md)
   - [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md)
   - [Use external observability tools](integrations/external-observability-tools.hbs.md)
-  - [Create a Grafana Dashboard](integrations/grafana-dashboard.hbs.md)
+  - [Use a Grafana dashboard for Tanzu Application Platform observability](integrations/grafana-dashboard.hbs.md)
 - [Workloads](workloads/workload-types.hbs.md)
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)
