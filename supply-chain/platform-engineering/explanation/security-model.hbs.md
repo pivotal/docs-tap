@@ -11,7 +11,7 @@ creates security concerns over platform configuration and secrets.
 Tanzu Application Platform v1.9.0 introduces a security model for executing stages of a Supply Chain
 where Workloads exist in a separate namespaces to the Supply Chain.
 
-![Security Model Diagram](./images/security-model.png)
+![Diagram of Security Model.](./images/security-model.png)
 
 Runs for associated Workloads are created in the same namespace as the Workload.
 

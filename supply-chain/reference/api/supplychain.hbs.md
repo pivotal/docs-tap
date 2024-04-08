@@ -34,7 +34,7 @@ metadata:
 ### `spec.description`
 
 The `spec.description` field is visible to an app developer when they use the CLI to discover
-available workload kinds:
+available Workload kinds:
 
 ```console
 tanzu workload kind list --wide
@@ -147,9 +147,9 @@ previous stage.
 
 ### <a id='security-context'></a> `spec.stages[].securityContext`
 
-Each stage may also specify a `securityContext` with a single field `runAs`. When this is
-set to `workload` the stage is executed in the namespace of the workload, rather than the supply
-chain. See [Security Model](../../platform-engineering/explanation/security-model.hbs.md)
+Each stage can specify a `securityContext` with a single field `runAs`. When this is
+set to `workload` the stage is executed in the namespace of the Workload rather than the Supply
+Chain. See [Security Model](../../platform-engineering/explanation/security-model.hbs.md).
 
 #### Example
 
