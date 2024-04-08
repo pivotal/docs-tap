@@ -929,7 +929,7 @@ while installing through Tanzu Mission Control.
 
   Although it looks like the upgrade fails, if you wait a few minutes, kapp-controller finishes
   the installation and the packages will reconcile successfully. The system works normally after
-  the reconcilation is complete.
+  the reconciliation is complete.
 
   This error does not occur on a new installation of Tanzu Application Platform v1.9.
 
