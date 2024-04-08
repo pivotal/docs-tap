@@ -1080,7 +1080,7 @@ while installing through Tanzu Mission Control.
   related to `data.packaging.carvel.dev`. The error message is related to permission issues and JSON
   parsing errors. The error message indicates that the user `system:serviceaccount:tap-gui:tap-gui-viewer`
   cannot list resource `packages` in the API group `data.packaging.carvel.dev` at the cluster scope.
-  Additionally, an unexpected non-whitespace character s reported after JSON at position 4.
+  Additionally, an unexpected non-whitespace character is reported after JSON at position 4.
 
   As a temporary workaround, apply an RBAC configuration that includes the get, watch, and list
   permissions for the resources in the `data.packaging.carvel.dev` API group. This workaround must
