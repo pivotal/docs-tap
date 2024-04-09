@@ -2561,8 +2561,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id="tekton-deprecations"></a> Tekton Pipelines deprecations
 
-- Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application Platform v1.9.
-  Use the `Task` API instead. For more information, see the
-  [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
+- Tekton `ClusterTask` is deprecated and marked for removal. Use the `Task` API instead.
+  For more information, see the [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
 
 ---
