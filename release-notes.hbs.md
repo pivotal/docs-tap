@@ -181,6 +181,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-9-0-scc-bc'></a> v1.9.0 Breaking changes: Supply Chain Choreographer
 
 - Supply Chain Choreographer no longer supports the `git_implementation` field in `GitRepository` version `v1`.
+  If you use a custom supply chain, when you upgrade to Tanzu Application Platform v1.9 you must
+  ensure that the `GitRepository` resource conforms to the `v1` API.
 
 #### <a id='1-9-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
 
