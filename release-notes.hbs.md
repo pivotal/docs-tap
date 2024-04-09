@@ -231,6 +231,13 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-36084">CVE-2021-36084</a></li>
 </ul></details></td>
 </tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45133">CVE-2023-45133</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-46234">CVE-2023-46234</a></li>
+</ul></details></td>
+</tr>
 </tbody>
 </table>
 
