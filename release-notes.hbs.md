@@ -939,6 +939,7 @@ while installing through Tanzu Mission Control.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
+<!--
 #### <a id='1-9-0-tap-buildpacks'></a>v1.9.0 Known issues: Go Lite Buildpack
 
 - In v1.8.1 there was a mismatch in version between the Go Lite buildpack provided in the
