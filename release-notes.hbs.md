@@ -34,6 +34,10 @@ This release includes the following changes, listed by component and area.
  
 This release includes the following changes, listed by component and area. 
  
+#### <a id='bitnami-services-bc'></a> v1.10.0 Breaking changes: Bitnami Services
+
+Bitnami Services are now created by default in the same namespace as the original Claim rather than in a new dedicated namespace. This can be configured by the `claim_namespace` package value. Existing instances that used the default behaviour will be uneffected unless the user has overriden `compositionUpdatePolicy` to Automatic or altered the `compositionRevisionRef`, in that case the the Bitnami instances will be recreated on the package upgrade. To avoid the recreation you can mimic the previous default behaviour by explicitly setting the Bitnami Package values to `shared_namespace=""` and `claim_namespace=False`.
+
 #### <a id='1-10-0-COMPONENT-NAME-bc'></a> v1.10.0 Breaking changes: COMPONENT-NAME
  
 - Breaking change description.
