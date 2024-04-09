@@ -114,6 +114,10 @@ This release includes the following changes, listed by component and area.
   - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
 
+#### <a id='1-9-0-scc-bc'></a> v1.9.0 Breaking changes: Supply Chain Choreographer
+
+- Supply Chain Choreographer no longer supports the `git_implementation` field in `GitRepository` version `v1`.
+
 #### <a id='1-9-0-scst-scan-bc'></a> v1.9.0 Breaking changes: Supply Chain Security Tools - Scan
 
 - When you configure SCST - Scan with the Metadata Store CA Certificate, you can no longer manually
