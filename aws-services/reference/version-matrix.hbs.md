@@ -8,7 +8,7 @@ drop-down menu at the top of this page.
 
 The following table has the component versions for the AWS Services package.
 
-<!-- add patch updates in a new column -->
+<!-- add patch updates, if any, in a new column -->
 
 <table>
   <thead>
