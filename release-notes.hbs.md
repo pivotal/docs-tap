@@ -1319,3 +1319,8 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   The Flux Source Controller installation includes the `OCIRepository` API.
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
+
+### <a id="tekton-deprecations"></a> Tekton Pipelines deprecations
+
+- Tekton `ClusterTask` is deprecated and marked for removal. Use the `Task` API instead.
+  For more information, see the [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
