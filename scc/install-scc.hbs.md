@@ -5,9 +5,6 @@ from the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Choreographer. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md)..
 
->**Note** The Supply Chain Choreographer is now bundled with the Cartographer Conventions.
-For information on configuring and using Cartographer Conventions, see [Creating conventions](../cartographer-conventions/creating-conventions.hbs.md).
-
 Supply Chain Choreographer provides the custom resource definitions the supply chain uses.
 Each pre-approved supply chain creates a clear road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
 users. Application operators can rest assured that all code in production has passed
