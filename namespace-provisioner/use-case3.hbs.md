@@ -264,7 +264,7 @@ To configure the service account to work with private Git repositories, follow t
         name: git
         annotations:
           tekton.dev/git-0: #@ data.values.imported.git.host
-      type: kubernetes.io/basic-auth
+      type: kubernetes.io/ssh-auth
       stringData:
         identity: #@ data.values.imported.git.identity
         identity.pub: #@ data.values.imported.git.identity_pub
