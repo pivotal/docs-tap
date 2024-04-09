@@ -1175,14 +1175,14 @@ The following table lists the supported component versions for this Tanzu Applic
 | Application Live View conventions                  | 1.9.1          |
 | Application Single Sign-On                         | 5.1.4          |
 | Artifact Metadata Repository Observer              | 0.5.0          |
-| AWS Services                                       | 0.3.0-rc.2     |
-| Bitnami Services                                   | 0.5.0-rc.3     |
+| AWS Services                                       | 0.3.0          |
+| Bitnami Services                                   | 0.5.0          |
 | Carbon Black Scanner for SCST - Scan (beta)        | 1.4.0          |
 | Cartographer Conventions                           | 0.9.0          |
 | cert-manager                                       | 2.7.2          |
 | Cloud Native Runtimes                              | 2.5.3          |
 | Contour                                            | 2.2.0          |
-| Crossplane                                         | 0.5.0-rc.3     |
+| Crossplane                                         | 0.5.0          |
 | Default Roles                                      | 1.1.0          |
 | Developer Conventions                              | 0.16.1         |
 | External Secrets Operator                          | 0.9.4+tanzu.3  |
@@ -1196,9 +1196,9 @@ The following table lists the supported component versions for this Tanzu Applic
 | Out of the Box Supply Chain - Testing              | 0.16.1         |
 | Out of the Box Supply Chain - Testing and Scanning | 0.16.1         |
 | Out of the Box Templates                           | 0.16.1         |
-| Service Bindings                                   | 0.12.0-rc.2    |
+| Service Bindings                                   | 0.12.0         |
 | Service Registry                                   | 1.3.2          |
-| Services Toolkit                                   | 0.14.0-rc.5    |
+| Services Toolkit                                   | 0.14.0         |
 | Snyk Scanner for SCST - Scan (beta)                | 1.3.0          |
 | Source Controller                                  | 0.9.0          |
 | Spring Boot conventions                            | 1.9.1          |
