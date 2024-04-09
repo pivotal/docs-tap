@@ -12,7 +12,7 @@ This makes it incredibly quick and easy to get started working with services on 
 
 >**Note** The Bitnami Services Package provides unmanaged services that are not designed to support long lived instances, therefore there is no supported path to upgrade individual 
 > instances. Bitnami Services are instantiated using the configuration and version of the Package at creation time and so an upgrade of the Package will have no effect on existing 
-> instances. Users familiar with Crossplane should not change the `compositionUpdatePolicy` to Automatic or alter the `compositionRevisionRef` version as there may be unintended side 
+> instances. For users familiar with Crossplane, we advise against changing `compositionUpdatePolicy` and `compositionRevisionRef` on the individual XRs as there may be unintended side
 > effects.
 
 ## <a id="getting-started"></a> Getting started
