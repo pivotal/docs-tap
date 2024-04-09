@@ -1,39 +1,36 @@
 # Version matrix for Service Bindings
 
-This topic gives you a matrix of versions between Tanzu Application Platform (commonly known as TAP),
-the package (`servicebinding.tanzu.vmware.com`), and
-[Service Binding Runtime](https://github.com/servicebinding/runtime/).
+This topic provides you with a version matrix for the Service Bindings package (`servicebinding.tanzu.vmware.com`)
+and its open source components in Tanzu Application Platform v{{ vars.url_version }} (commonly known as TAP).
+
+To view this information for another Tanzu Application Platform version, select the version from the
+drop-down menu at the top of this page.
 
 [Service Binding Runtime](https://github.com/servicebinding/runtime/) is the community reference
 implementation of [Service Binding](https://servicebinding.io/).
 
-> **Note** Tanzu Application Platform patch releases are only added to the table when there
-> is a change to one or more of the other versions in the table. Otherwise, the corresponding
-> versions remain the same for each Tanzu Application Platform patch release.
+The following table has the component versions for the Service Bindings package.
+<!-- add patch updates in a new column -->
 
 <table>
   <thead>
     <tr>
-        <th>Tanzu Application Platform version</th>
-        <th>Service Bindings package version</th>
-        <th>Service Bindings runtime version</th>
+        <th>Component</th>
+        <th>Version</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>1.7.1</td>
-        <td>0.10.2</td>
-        <td>0.6.0</td>
+        <th>Service Bindings package version</th>
+        <th>0.12.0</th>
     </tr>
     <tr>
-        <td>1.8.0</td>
-        <td>0.11.0</td>
-        <td>0.7.0</td>
-    </tr>
-    <tr>
-        <td>1.9.0</td>
-        <td>0.12.0</td>
+        <td>Service Bindings runtime version</td>
         <td>0.8.0</td>
     </tr>
   </tbody>
 </table>
+
+> **Note** Tanzu Application Platform patch releases are only added to the table when there
+> is a change to one or more of the other versions in the table. Otherwise, the corresponding
+> versions remain the same for each Tanzu Application Platform patch release.
