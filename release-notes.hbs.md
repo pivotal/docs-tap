@@ -2,20 +2,20 @@
 
 This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
 
-## <a id='1-8-3'></a> v1.8.3 
- 
-**Release Date**: 7 May 2024 
- 
-### <a id='1-8-3-security-fixes'></a> v1.8.3 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-8-3'></a> v1.8.3
+
+**Release Date**: 7 May 2024
+
+### <a id='1-8-3-security-fixes'></a> v1.8.3 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-8-3-COMPONENT-NAME-fixes'></a> v1.8.3 Security fixes: COMPONENT-NAME
- 
+
 - [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
+
 OR add HTML table
- 
+
 <table>
 <thead>
 <tr>
@@ -32,40 +32,40 @@ OR add HTML table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-8-3-resolved-issues'></a> v1.8.3 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-8-3-resolved-issues'></a> v1.8.3 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-8-3-COMPONENT-NAME-ri'></a> v1.8.3 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-8-3-known-issues'></a> v1.8.3 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-8-3-known-issues'></a> v1.8.3 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-8-3-COMPONENT-NAME-ki'></a> v1.8.3 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-8-3-components'></a> v1.8.3 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH
- 
+
 <!-- Do not use the table from the template for minor releases. -->
 <!-- The component list for the next minor release might be different. -->
- 
----   
+
+---
 
 ## <a id='1-8-2'></a> v1.8.2
 
@@ -2626,8 +2626,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id="tekton-deprecations"></a> Tekton Pipelines deprecations
 
-- Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application Platform v1.9.
-  Use the `Task` API instead. For more information, see the
-  [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
+- Tekton `ClusterTask` is deprecated and marked for removal. Use the `Task` API instead.
+  For more information, see the [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
 
 ---
