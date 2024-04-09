@@ -10,7 +10,8 @@ drop-down menu at the top of this page.
 implementation of [Service Binding](https://servicebinding.io/).
 
 The following table has the component versions for the Service Bindings package.
-<!-- add patch updates in a new column -->
+
+<!-- add patch updates, if any, in a new column -->
 
 <table>
   <thead>
