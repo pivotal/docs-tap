@@ -686,8 +686,6 @@ while installing through Tanzu Mission Control.
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
 
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
-
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
   attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres 
@@ -1291,8 +1289,6 @@ while installing through Tanzu Mission Control.
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
@@ -2319,8 +2315,6 @@ while installing through Tanzu Mission Control.
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
