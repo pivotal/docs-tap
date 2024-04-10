@@ -1058,8 +1058,8 @@ while installing through Tanzu Mission Control.
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
-  attempt to repair, which may cause reconcilation during package updates.  When this happens, the included Postgres 
-  database may take time complete the repair and accept connections. For more information, 
+  attempt to repair, which might cause reconcilation during package updates.  When this happens, the included Postgres 
+  database might take some time to complete the repair and accept connections. For more information,
   see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not
