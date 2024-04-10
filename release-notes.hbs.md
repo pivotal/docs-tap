@@ -688,8 +688,7 @@ while installing through Tanzu Mission Control.
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
-  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres 
-  database might take time to complete the repair and accept connections. For more information,
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take time to complete the repair and accept connections. For more information,
   see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
@@ -1289,10 +1288,6 @@ while installing through Tanzu Mission Control.
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
-  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take time to complete the repair and accept connections. For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -2315,10 +2310,6 @@ while installing through Tanzu Mission Control.
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
-  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take time to complete the repair and accept connections. For more information,   see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
