@@ -752,16 +752,13 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-2-scst-store-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Store
 
-- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
-  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
-  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
-  database may take time complete the repair and accept connections. 
-  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take some time to complete the repair and accept connections. For more information,
+  see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -1367,16 +1364,13 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-scst-store-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Store
 
-- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
-  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
-  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
-  database may take time complete the repair and accept connections. 
-  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take some time to complete the repair and accept connections. For more information,
+  see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -2392,14 +2386,8 @@ while installing through Tanzu Mission Control.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -2411,16 +2399,13 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
-- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
-  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
-  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
-  database may take time complete the repair and accept connections. 
-  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take some time to complete the repair and accept connections. For more information,
+  see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
-
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
