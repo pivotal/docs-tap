@@ -653,9 +653,9 @@ while installing through Tanzu Mission Control.
 
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -664,23 +664,14 @@ while installing through Tanzu Mission Control.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -698,8 +689,10 @@ while installing through Tanzu Mission Control.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres 
+  database might take time to complete the repair and accept connections. For more information,
+  see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -1266,9 +1259,9 @@ while installing through Tanzu Mission Control.
 
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -1277,23 +1270,14 @@ while installing through Tanzu Mission Control.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -1311,8 +1295,8 @@ while installing through Tanzu Mission Control.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take time to complete the repair and accept connections. For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -2303,9 +2287,9 @@ while installing through Tanzu Mission Control.
 
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -2314,23 +2298,14 @@ while installing through Tanzu Mission Control.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -2348,8 +2323,8 @@ while installing through Tanzu Mission Control.
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+  If SCST - Store finds a PostgresSQL database index has been corrupted, SCST - Store will automatically
+  attempt to repair, which might cause reconciliation during package updates. When this happens, the included Postgres database might take time to complete the repair and accept connections. For more information,   see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
