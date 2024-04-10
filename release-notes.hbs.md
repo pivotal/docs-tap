@@ -557,6 +557,10 @@ The following issues, listed by component and area, are resolved in this release
   package on the same cluster. You no longer receive a TLS certificate verification error with
   service claims never transitioning to `READY=True`.
 
+#### <a id='1-8-2-scst-scan-ri'></a> v1.8.2 Resolved issues: Supply Chain Security Tools - Scan
+
+- Resolved an issue that caused source code scanning to fail due to `curl` missing in the container image.
+
 ---
 
 ### <a id='1-8-2-known-issues'></a> v1.8.2 Known issues
@@ -718,9 +722,9 @@ while installing through Tanzu Mission Control.
 
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -729,23 +733,14 @@ while installing through Tanzu Mission Control.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -757,14 +752,16 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-2-scst-store-ki'></a> v1.8.2 Known issues: Supply Chain Security Tools - Store
 
+- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
+  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
+  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
+  database may take time complete the repair and accept connections. 
+  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
-
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -1166,6 +1163,12 @@ The following issues, listed by component and area, are resolved in this release
   output a YTT overlay that incorrectly replaced all Convention provided environment variables instead
   of merging developer provided environment variables. Environment variables are now correctly merged.
 
+#### <a id='1-8-1-scst-scan-ri'></a> v1.8.1 Resolved issues: Supply Chain Security Tools - Scan
+
+- Resolved an issue prevent recurring scanning from import keychains for cloud container registries such as ECR, ACR, and GCR.
+
+- Resolved an issue which caused recurring scan resources to appear in the Security Analysis Plug-in in Tanzu Developer Portal.
+
 ---
 
 ### <a id='1-8-1-known-issues'></a> v1.8.1 Known issues
@@ -1329,11 +1332,14 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-scst-scan-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Scan
 
+- When opting in to [source scanning in the supply chain](./scst-scan/scan-types.hbs.md#adding-source-scan-to-the-test-and-scan-supply-chain)
+  the source scan will fail because curl is not available in the source scan image for Grype. 
+
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -1342,23 +1348,14 @@ while installing through Tanzu Mission Control.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
 
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
   For more about this issue information, see the
   [Snyk](https://github.com/snyk-tech-services/snyk2spdx/issues/54) GitHub repository.
 
-- Recurring scan fails to import keychains for cloud container registries such as ECR, ACR, and GCR.
-  To work around, create a Docker config secret for the registry.
-
 - Recurring scan has a maximum of approximately 5000 container images that can be scanned at a
   single time due to size limits configMaps.
-
-- Recurring scan resources are shown in the Security Analysis Plug-in in Tanzu Developer Portal.
-  This is cosmetic and does not have any impact on the vulnerabilities shown.
 
 - If the supply chain container image scanning is configured to use a different scanner or scanner
   version than the recurring scanning, the vulnerabilities displayed in Tanzu Developer Portal might
@@ -1370,14 +1367,16 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-1-scst-store-ki'></a> v1.8.1 Known issues: Supply Chain Security Tools - Store
 
+- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
+  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
+  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
+  database may take time complete the repair and accept connections. 
+  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
-
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
@@ -2191,6 +2190,11 @@ The following issues, listed by component and area, are resolved in this release
 - Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name`
   changes on a previously bound service resource.
 
+#### <a id='1-8-0-scst-scan-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Scan
+
+- Trivy is no longer pinned to an old version with the introduction of support of CycloneDX 1.5 from 
+  SCST - Store.
+
 #### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
 
 - Resolved the issue where using a custom issuer such as Let's Encrypt broke the Tanzu Mission Console
@@ -2366,11 +2370,14 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
+- When opting in to [source scanning in the supply chain](./scst-scan/scan-types.hbs.md#adding-source-scan-to-the-test-and-scan-supply-chain)
+  the source scan will fail because curl is not available in the source scan image for Grype. 
+
 - When using Supply Chain Security Tools (SCST) - Scan 2.0 with a ClusterImageTemplate, the value for
   the scanning image is overwritten with an incorrect default value from
-  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file.
-  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
-  For example, for the Grype image packaged with Tanzu Application Platform:
+  `ootb_supply_chain_testing_scanning.image_scanner_cli` in the `tap-values.yaml` file for templates
+  other than Trivy. You can prevent this by setting the value in your `tap-values.yaml` file 
+  to the correct image. For example, for the Grype image packaged with Tanzu Application Platform:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -2378,10 +2385,7 @@ while installing through Tanzu Mission Control.
       image_scanning_cli:
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:feb1cdbd5c918aae7a89bdb2aa39d486bf6ffc81000764b522842e5934578497
     ```
-
-- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
-  the default for later versions of Trivy and is not supported by AMR.
-
+  
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. If the workload
   is in a failed state due to an invalid date, wait approximately 10 hours and the workload
   automatically goes into the ready state.
@@ -2407,14 +2411,16 @@ while installing through Tanzu Mission Control.
 
 #### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
 
+- SCST - Store automatically detects PostgreSQL database index corruptions. If SCST - Store finds a 
+  PostgresSQL database index has been corrupted, SCST - Store will automatically attempt to repair, 
+  which may cause reconcilation failures during package updates. When this happens, the included Postgres 
+  database may take time complete the repair and accept connections. 
+  For more information, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
 - When outputting CycloneDX v1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators.
   This issue is planned to be fixed in a future release.
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
-
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  If SCST - Store finds a PostgresSQL database index corruption issue, SCST - Store does not reconcile.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - If CA Certificate data is included in the shared Tanzu Application Platform values section, do not configure AMR Observer with CA Certificate data.
 
