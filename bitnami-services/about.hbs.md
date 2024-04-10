@@ -10,6 +10,13 @@ Through integration with [Crossplane](../crossplane/about.hbs.md) and
 for apps teams to consume, with no additional setup or configuration required from ops teams.
 This makes it incredibly quick and easy to get started working with services on Tanzu Application Platform.
 
+> **Note** The Bitnami Services package provides unmanaged services that are not designed to support
+> long lived instances. Therefore, there is no supported path to upgrade individual instances.
+> Bitnami Services are instantiated using the configuration and version of the package at creation
+> time and so upgrading the Bitnami Services package has no effect on existing instances.
+> VMware discourages changing the `compositionUpdatePolicy` and `compositionRevisionRef` on the
+> individual composite resources (XRs) because this might cause unintended side effects.
+
 ## <a id="getting-started"></a> Getting started
 
 If this is your first time working with Bitnami Services on Tanzu Application Platform,
