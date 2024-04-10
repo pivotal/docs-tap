@@ -1,7 +1,5 @@
 # Documentation Repository for Tanzu Application Platform (TAP)
 
-## Overview
-
 This repo contains the content for Tanzu Application Platform docs.
 
 ## Branches
