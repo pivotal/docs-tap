@@ -1,59 +1,62 @@
-# Tanzu Application Platform release notes 
- 
-This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}. 
- 
-## <a id='1-10-0'></a> v1.10.0 
- 
-**Release Date**: 21 May 2024 
- 
+# Tanzu Application Platform release notes
+
+This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
+
+## <a id='1-10-0'></a> v1.10.0
+
+**Release Date**: 21 May 2024
+
 ### <a id='1-10-0-whats-new'></a> What's new in Tanzu Application Platform v1.10
- 
+
 This release includes the following platform-wide enhancements.
- 
+
 #### <a id='1-10-0-new-platform-features'></a> New platform-wide features
- 
+
 - Feature Description.
- 
+
 #### <a id='1-10-0-new-components'></a> New components
- 
+
 - [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
- 
+
 ---
- 
+
 ### <a id='1-10-0-new-features'></a> v1.10.0 New features by component and area
- 
-This release includes the following changes, listed by component and area. 
- 
+
+This release includes the following changes, listed by component and area.
+
 #### <a id='1-10-0-COMPONENT-NAME'></a> v1.10.0 Features: COMPONENT-NAME
- 
+
 - Feature description.
- 
+
 ---
- 
-### <a id='1-10-0-breaking-changes'></a> v1.10.0 Breaking changes 
- 
-This release includes the following changes, listed by component and area. 
- 
+
+### <a id='1-10-0-breaking-changes'></a> v1.10.0 Breaking changes
+
+This release includes the following changes, listed by component and area.
+
 #### <a id='bitnami-services-bc'></a> v1.10.0 Breaking changes: Bitnami Services
 
-Bitnami Services are now created by default in the same namespace as the original Claim rather than in a new dedicated namespace. This can be configured by the `claim_namespace` package value. Existing instances that used the default behaviour will be uneffected unless the user has overriden `compositionUpdatePolicy` to Automatic or altered the `compositionRevisionRef`, in that case the the Bitnami instances will be recreated on the package upgrade. To avoid the recreation you can mimic the previous default behaviour by explicitly setting the Bitnami Package values to `shared_namespace=""` and `claim_namespace=False`.
+- Bitnami Services are now created by default in the same namespace as the original claim rather
+  than in a new dedicated namespace. You can configure this by using the `claim_namespace` package value.
 
-#### <a id='1-10-0-COMPONENT-NAME-bc'></a> v1.10.0 Breaking changes: COMPONENT-NAME
- 
-- Breaking change description.
- 
+  Existing instances that use the default behaviour are unaffected unless the user has overriden
+  `compositionUpdatePolicy` to `Automatic` or altered the `compositionRevisionRef`.
+  In that case, the the Bitnami instances will be recreated when the package is upgraded.
+  To prevent instances being recreated, you can set the Bitnami package values to `shared_namespace=""`
+  and `claim_namespace=False`, which was the previous default.
+
 ---
- 
-### <a id='1-10-0-security-fixes'></a> v1.10.0 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+### <a id='1-10-0-security-fixes'></a> v1.10.0 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-10-0-COMPONENT-NAME-fixes'></a> v1.10.0 Security fixes: COMPONENT-NAME
- 
+
 - [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table  
- 
+
+OR add HTML table
+
 <table>
 <thead>
 <tr>
@@ -71,33 +74,33 @@ OR add HTML table
 </tr>
 </tbody>
 </table>
- 
+
 ---
- 
-### <a id='1-10-0-resolved-issues'></a> v1.10.0 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-10-0-resolved-issues'></a> v1.10.0 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-10-0-COMPONENT-NAME-ri'></a> v1.10.0 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-10-0-known-issues'></a> v1.10.0 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-10-0-known-issues'></a> v1.10.0 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-10-0-COMPONENT-NAME-ki'></a> v1.10.0 Known issues: COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.
- 
+
 ---
- 
+
 ### <a id='1-10-0-components'></a> v1.10.0 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.      
- 
+
+The following table lists the supported component versions for this Tanzu Application Platform release.
+
 | Component Name                                     | Version |
 | -------------------------------------------------- | ------- |
 | API Auto Registration                              |         |
@@ -149,17 +152,17 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Developer Portal                             |         |
 | Tanzu Developer Portal Configurator                |         |
 | Tanzu Supply Chain (beta)                          |         |
-| Tekton Pipelines                                   |         |  
- 
----  
- 
-## <a id='deprecations'></a> Deprecations 
- 
-The following features, listed by component, are deprecated. 
-Deprecated features remain on this list until they are retired from Tanzu Application Platform. 
- 
+| Tekton Pipelines                                   |         |
+
+---
+
+## <a id='deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features remain on this list until they are retired from Tanzu Application Platform.
+
 ### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
- 
+
 - Deprecation description including the release when the feature will be removed.
- 
+
 ---
