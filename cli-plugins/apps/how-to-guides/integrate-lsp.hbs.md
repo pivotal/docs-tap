@@ -13,7 +13,7 @@ To check the installation and health of Local Source Proxy and determine if fail
 the Local Source Proxy or the upstream registry, run:
 
 ```console
-tanzu apps local-source-proxy health`
+tanzu apps local-source-proxy health
 ```
 
 This returns an overview of the health of the Local Source Proxy. This information is obtained
