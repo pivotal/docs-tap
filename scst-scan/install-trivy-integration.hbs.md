@@ -85,7 +85,7 @@ To relocate images from the VMware Project Registry to your registry:
     `MY-REGISTRY` that serves as the location for the installation files for
     Trivy.
 
-2. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+2. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.ce_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
 3. Relocate the images with the imgpkg CLI by running:
 
