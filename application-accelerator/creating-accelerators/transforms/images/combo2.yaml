@@ -1,6 +1,0 @@
-engine:
-  include: ['**/*.yaml']
-  exclude: ['**/secret/**']
-  chain:
-    - type: T1
-    - type: T2
