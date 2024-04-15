@@ -1,4 +1,6 @@
-# Create an accelerator
+# Create a new application accelerator
+
+Tanzu Application Platform offers a suite of out-of-the-box accelerators to streamline your development process. However, if these accelerators don't align perfectly with your needs, you have the option to create a new accelerator. By doing so, you can ensure that your technology stacks and organizational best practices are adhered to consistently. 
 
 This topic guides you through creating an accelerator and registering it in a Tanzu Application Platform
 (commonly known as TAP) instance.
