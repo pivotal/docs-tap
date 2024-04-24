@@ -134,18 +134,3 @@ For the Visual Studio Code extension, the options can be exported using the butt
 The button appears at the end of the form before generating the project
 
 ![Export Options](../images/export-options-vscode.png)
-
-## <a id="language-server"></a>Appendix B: Language Server
-
-The local engine comes bundled with a language server that IDE's can use to improve the developer
-experience of writing accelerators
-
-### Visual Studio Code
-
-to use the language server in Visual Studio Code there is a couple of config settings that need to be
-added to use it
-
-- Language Server Host: ip address of the language server host.
-- Language Server Port: port listening to connections.
-
-![Language Server Config](../images/language-server-config-vscode.png)
